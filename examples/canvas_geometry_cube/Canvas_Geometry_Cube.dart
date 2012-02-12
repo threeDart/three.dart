@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../ThreeD/ThreeD.dart');
+#import('../../src/ThreeD.dart');
 
 class Canvas_Geometry_Cube 
 {

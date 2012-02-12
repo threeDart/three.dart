@@ -9,6 +9,12 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 ### Change Log ###
 
+2012 02 12 - **r1.1**
+
+Project restructuring:
+  - "ThreeD" renamed to "src"
+  - "examples" folder introduced
+
 2012 02 11 - **r1**
 
 * Pre-alpha release (I can see a cube!! :D - Tested in Google Chrome Browser on Windows 7)

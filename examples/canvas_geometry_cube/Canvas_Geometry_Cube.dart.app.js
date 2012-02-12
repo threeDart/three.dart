@@ -69486,411 +69486,411 @@ htmld071c1$XMLHttpRequestProgressEvent$Dart.$addTo = function(target){
   htmld071c1$ProgressEvent$Dart.$addTo(target);
 }
 ;
-function ThreeD85b351$Three$Dart(){
+function ThreeD88754a$Three$Dart(){
 }
-ThreeD85b351$Three$Dart.GeometryCount$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartGeometryCount$field;
-}
-;
-ThreeD85b351$Three$Dart.GeometryCount$setter = function(tmp$0){
-  isolate$current.ThreeD85b351$Three$DartGeometryCount$field = tmp$0;
+ThreeD88754a$Three$Dart.GeometryCount$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartGeometryCount$field;
 }
 ;
-ThreeD85b351$Three$Dart.Object3DCount$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartObject3DCount$field;
+ThreeD88754a$Three$Dart.GeometryCount$setter = function(tmp$0){
+  isolate$current.ThreeD88754a$Three$DartGeometryCount$field = tmp$0;
 }
 ;
-ThreeD85b351$Three$Dart.Object3DCount$setter = function(tmp$0){
-  isolate$current.ThreeD85b351$Three$DartObject3DCount$field = tmp$0;
+ThreeD88754a$Three$Dart.Object3DCount$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartObject3DCount$field;
 }
 ;
-ThreeD85b351$Three$Dart.MaterialCount$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartMaterialCount$field;
+ThreeD88754a$Three$Dart.Object3DCount$setter = function(tmp$0){
+  isolate$current.ThreeD88754a$Three$DartObject3DCount$field = tmp$0;
 }
 ;
-ThreeD85b351$Three$Dart.MaterialCount$setter = function(tmp$0){
-  isolate$current.ThreeD85b351$Three$DartMaterialCount$field = tmp$0;
+ThreeD88754a$Three$Dart.MaterialCount$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartMaterialCount$field;
 }
 ;
-ThreeD85b351$Three$Dart.SmoothShading$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartSmoothShading$field;
+ThreeD88754a$Three$Dart.MaterialCount$setter = function(tmp$0){
+  isolate$current.ThreeD88754a$Three$DartMaterialCount$field = tmp$0;
 }
 ;
-ThreeD85b351$Three$Dart.NormalBlending$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartNormalBlending$field;
+ThreeD88754a$Three$Dart.SmoothShading$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartSmoothShading$field;
 }
 ;
-ThreeD85b351$Three$Dart.AdditiveBlending$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartAdditiveBlending$field;
+ThreeD88754a$Three$Dart.NormalBlending$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartNormalBlending$field;
 }
 ;
-ThreeD85b351$Three$Dart.SubtractiveBlending$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartSubtractiveBlending$field;
+ThreeD88754a$Three$Dart.AdditiveBlending$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartAdditiveBlending$field;
 }
 ;
-ThreeD85b351$Three$Dart.MultiplyOperation$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartMultiplyOperation$field;
+ThreeD88754a$Three$Dart.SubtractiveBlending$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartSubtractiveBlending$field;
 }
 ;
-ThreeD85b351$Three$Dart.RepeatWrapping$getter = function(){
-  return isolate$current.ThreeD85b351$Three$DartRepeatWrapping$field;
+ThreeD88754a$Three$Dart.MultiplyOperation$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartMultiplyOperation$field;
 }
 ;
-function ThreeD85b351$Color$Dart(){
-}
-ThreeD85b351$Color$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Color$Dart'), null, null, named);
+ThreeD88754a$Three$Dart.RepeatWrapping$getter = function(){
+  return isolate$current.ThreeD88754a$Three$DartRepeatWrapping$field;
 }
 ;
-ThreeD85b351$Color$Dart.prototype.$implements$ThreeD85b351$Color$Dart = 1;
-ThreeD85b351$Color$Dart.$Constructor = function(hex){
+function ThreeD88754a$Color$Dart(){
+}
+ThreeD88754a$Color$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Color$Dart'), null, null, named);
+}
+;
+ThreeD88754a$Color$Dart.prototype.$implements$ThreeD88754a$Color$Dart = 1;
+ThreeD88754a$Color$Dart.$Constructor = function(hex){
   var tmp$1, tmp$2, tmp$0;
-  this._r$ThreeD85b351$$setter_(tmp$0 = 1) , tmp$0;
-  this._g$ThreeD85b351$$setter_(tmp$1 = 1) , tmp$1;
-  this._b$ThreeD85b351$$setter_(tmp$2 = 1) , tmp$2;
+  this._r$ThreeD88754a$$setter_(tmp$0 = 1) , tmp$0;
+  this._g$ThreeD88754a$$setter_(tmp$1 = 1) , tmp$1;
+  this._b$ThreeD88754a$$setter_(tmp$2 = 1) , tmp$2;
   if (hex != null) {
     this.setHex$member(hex);
   }
 }
 ;
-ThreeD85b351$Color$Dart.$Initializer = function(hex){
+ThreeD88754a$Color$Dart.$Initializer = function(hex){
 }
 ;
-ThreeD85b351$Color$Dart.Color$$Factory = function(hex){
-  var tmp$0 = new ThreeD85b351$Color$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Color$Dart.$lookupRTT();
-  ThreeD85b351$Color$Dart.$Initializer.call(tmp$0, hex);
-  ThreeD85b351$Color$Dart.$Constructor.call(tmp$0, hex);
+ThreeD88754a$Color$Dart.Color$$Factory = function(hex){
+  var tmp$0 = new ThreeD88754a$Color$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Color$Dart.$lookupRTT();
+  ThreeD88754a$Color$Dart.$Initializer.call(tmp$0, hex);
+  ThreeD88754a$Color$Dart.$Constructor.call(tmp$0, hex);
   return tmp$0;
 }
 ;
-ThreeD85b351$Color$Dart.prototype._r$ThreeD85b351$$getter_ = function(){
-  return this._r$ThreeD85b351$$field_;
+ThreeD88754a$Color$Dart.prototype._r$ThreeD88754a$$getter_ = function(){
+  return this._r$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Color$Dart.prototype._r$ThreeD85b351$$setter_ = function(tmp$0){
-  this._r$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Color$Dart.prototype._r$ThreeD88754a$$setter_ = function(tmp$0){
+  this._r$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Color$Dart.prototype._g$ThreeD85b351$$getter_ = function(){
-  return this._g$ThreeD85b351$$field_;
+ThreeD88754a$Color$Dart.prototype._g$ThreeD88754a$$getter_ = function(){
+  return this._g$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Color$Dart.prototype._g$ThreeD85b351$$setter_ = function(tmp$0){
-  this._g$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Color$Dart.prototype._g$ThreeD88754a$$setter_ = function(tmp$0){
+  this._g$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Color$Dart.prototype._b$ThreeD85b351$$getter_ = function(){
-  return this._b$ThreeD85b351$$field_;
+ThreeD88754a$Color$Dart.prototype._b$ThreeD88754a$$getter_ = function(){
+  return this._b$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Color$Dart.prototype._b$ThreeD85b351$$setter_ = function(tmp$0){
-  this._b$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Color$Dart.prototype._b$ThreeD88754a$$setter_ = function(tmp$0){
+  this._b$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Color$Dart.prototype.r$getter = function(){
-  return this._r$ThreeD85b351$$getter_();
+ThreeD88754a$Color$Dart.prototype.r$getter = function(){
+  return this._r$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Color$Dart.prototype.g$getter = function(){
-  return this._g$ThreeD85b351$$getter_();
+ThreeD88754a$Color$Dart.prototype.g$getter = function(){
+  return this._g$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Color$Dart.prototype.b$getter = function(){
-  return this._b$ThreeD85b351$$getter_();
+ThreeD88754a$Color$Dart.prototype.b$getter = function(){
+  return this._b$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Color$Dart.prototype.copy$member = function(color){
+ThreeD88754a$Color$Dart.prototype.copy$member = function(color){
   var tmp$1, tmp$2, tmp$0;
-  this._r$ThreeD85b351$$setter_(tmp$0 = color.r$getter()) , tmp$0;
-  this._g$ThreeD85b351$$setter_(tmp$1 = color.g$getter()) , tmp$1;
-  this._b$ThreeD85b351$$setter_(tmp$2 = color.b$getter()) , tmp$2;
+  this._r$ThreeD88754a$$setter_(tmp$0 = color.r$getter()) , tmp$0;
+  this._g$ThreeD88754a$$setter_(tmp$1 = color.g$getter()) , tmp$1;
+  this._b$ThreeD88754a$$setter_(tmp$2 = color.b$getter()) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Color$Dart.prototype.copy$named = function($n, $o, color){
+ThreeD88754a$Color$Dart.prototype.copy$named = function($n, $o, color){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Color$Dart.prototype.copy$member.call(this, color);
+  return ThreeD88754a$Color$Dart.prototype.copy$member.call(this, color);
 }
 ;
-ThreeD85b351$Color$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$Color$Dart.$lookupRTT()], ThreeD85b351$Color$Dart.$lookupRTT());
+ThreeD88754a$Color$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$Color$Dart.$lookupRTT()], ThreeD88754a$Color$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Color$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$Color$Dart.prototype.copy$named, ThreeD85b351$Color$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$Color$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$Color$Dart.prototype.copy$named, ThreeD88754a$Color$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Color$Dart.prototype.setRGB$member = function(r, g, b){
+ThreeD88754a$Color$Dart.prototype.setRGB$member = function(r, g, b){
   var tmp$1, tmp$2, tmp$0;
-  this._r$ThreeD85b351$$setter_(tmp$0 = r) , tmp$0;
-  this._g$ThreeD85b351$$setter_(tmp$1 = g) , tmp$1;
-  this._b$ThreeD85b351$$setter_(tmp$2 = b) , tmp$2;
+  this._r$ThreeD88754a$$setter_(tmp$0 = r) , tmp$0;
+  this._g$ThreeD88754a$$setter_(tmp$1 = g) , tmp$1;
+  this._b$ThreeD88754a$$setter_(tmp$2 = b) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Color$Dart.prototype.setRGB$named = function($n, $o, r, g, b){
+ThreeD88754a$Color$Dart.prototype.setRGB$named = function($n, $o, r, g, b){
   if ($o.count || $n != 3)
     $nsme();
-  return ThreeD85b351$Color$Dart.prototype.setRGB$member.call(this, r, g, b);
+  return ThreeD88754a$Color$Dart.prototype.setRGB$member.call(this, r, g, b);
 }
 ;
-ThreeD85b351$Color$Dart.prototype.setHex$member = function(hex){
+ThreeD88754a$Color$Dart.prototype.setHex$member = function(hex){
   var tmp$1, tmp$2, tmp$0;
   hex = hex.floor$named(0, $noargs);
-  this._r$ThreeD85b351$$setter_(tmp$0 = DIV$operator(BIT_AND$operator(SAR$operator(hex, 16), 255), 255)) , tmp$0;
-  this._g$ThreeD85b351$$setter_(tmp$1 = DIV$operator(BIT_AND$operator(SAR$operator(hex, 8), 255), 255)) , tmp$1;
-  this._b$ThreeD85b351$$setter_(tmp$2 = DIV$operator(BIT_AND$operator(hex, 255), 255)) , tmp$2;
+  this._r$ThreeD88754a$$setter_(tmp$0 = DIV$operator(BIT_AND$operator(SAR$operator(hex, 16), 255), 255)) , tmp$0;
+  this._g$ThreeD88754a$$setter_(tmp$1 = DIV$operator(BIT_AND$operator(SAR$operator(hex, 8), 255), 255)) , tmp$1;
+  this._b$ThreeD88754a$$setter_(tmp$2 = DIV$operator(BIT_AND$operator(hex, 255), 255)) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Color$Dart.prototype.getContextStyle$member = function(){
-  return ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator('rgb(', MUL$operator(this._r$ThreeD85b351$$getter_(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._g$ThreeD85b351$$getter_(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._b$ThreeD85b351$$getter_(), 255).floor$named(0, $noargs)), ')');
+ThreeD88754a$Color$Dart.prototype.getContextStyle$member = function(){
+  return ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator('rgb(', MUL$operator(this._r$ThreeD88754a$$getter_(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._g$ThreeD88754a$$getter_(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._b$ThreeD88754a$$getter_(), 255).floor$named(0, $noargs)), ')');
 }
 ;
-ThreeD85b351$Color$Dart.prototype.getContextStyle$named = function($n, $o){
+ThreeD88754a$Color$Dart.prototype.getContextStyle$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Color$Dart.prototype.getContextStyle$member.call(this);
+  return ThreeD88754a$Color$Dart.prototype.getContextStyle$member.call(this);
 }
 ;
-ThreeD85b351$Color$Dart.prototype.clone$member = function(){
-  return ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null).setRGB$named(3, $noargs, this._r$ThreeD85b351$$getter_(), this._g$ThreeD85b351$$getter_(), this._b$ThreeD85b351$$getter_());
+ThreeD88754a$Color$Dart.prototype.clone$member = function(){
+  return ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null).setRGB$named(3, $noargs, this._r$ThreeD88754a$$getter_(), this._g$ThreeD88754a$$getter_(), this._b$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Color$Dart.prototype.clone$named = function($n, $o){
+ThreeD88754a$Color$Dart.prototype.clone$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Color$Dart.prototype.clone$member.call(this);
+  return ThreeD88754a$Color$Dart.prototype.clone$member.call(this);
 }
 ;
-function ThreeD85b351$Face4$Dart(){
+function ThreeD88754a$Face4$Dart(){
 }
-ThreeD85b351$Face4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Face4$Dart'), ThreeD85b351$Face4$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Face4$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Face4$Dart.$addTo(rtt);
+ThreeD88754a$Face4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Face4$Dart'), ThreeD88754a$Face4$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Face4$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Face4$Dart.$lookupRTT();
+ThreeD88754a$Face4$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Face4$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Face4$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Face4$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IFace4$Dart.$addTo(target);
+  ThreeD88754a$IFace4$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.$implements$ThreeD85b351$Face4$Dart = 1;
-ThreeD85b351$Face4$Dart.$Constructor = function(a, b, c, d, normal, color, materialIndex){
+ThreeD88754a$Face4$Dart.prototype.$implements$ThreeD88754a$Face4$Dart = 1;
+ThreeD88754a$Face4$Dart.$Constructor = function(a, b, c, d, normal, color, materialIndex){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._a$ThreeD85b351$$setter_(tmp$0 = a) , tmp$0;
-  this._b$ThreeD85b351$$setter_(tmp$1 = b) , tmp$1;
-  this._c$ThreeD85b351$$setter_(tmp$2 = c) , tmp$2;
-  this._d$ThreeD85b351$$setter_(tmp$3 = d) , tmp$3;
-  this._normal$ThreeD85b351$$setter_(tmp$5 = !!(tmp$4 = normal , tmp$4 != null && tmp$4.$implements$ThreeD85b351$Vector3$Dart)?normal:ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
-  this._vertexNormals$ThreeD85b351$$setter_(tmp$7 = !!(tmp$6 = normal , tmp$6 != null && tmp$6.$implements$List$Dart)?normal:RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$7;
-  this._color$ThreeD85b351$$setter_(tmp$9 = !!(tmp$8 = color , tmp$8 != null && tmp$8.$implements$ThreeD85b351$Color$Dart)?color:ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$9;
-  this._vertexColors$ThreeD85b351$$setter_(tmp$11 = !!(tmp$10 = color , tmp$10 != null && tmp$10.$implements$List$Dart)?color:RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$11;
-  this._vertexTangents$ThreeD85b351$$setter_(tmp$12 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$12;
-  this._materialIndex$ThreeD85b351$$setter_(tmp$13 = materialIndex) , tmp$13;
-  this._centroid$ThreeD85b351$$setter_(tmp$14 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$14;
+  this._a$ThreeD88754a$$setter_(tmp$0 = a) , tmp$0;
+  this._b$ThreeD88754a$$setter_(tmp$1 = b) , tmp$1;
+  this._c$ThreeD88754a$$setter_(tmp$2 = c) , tmp$2;
+  this._d$ThreeD88754a$$setter_(tmp$3 = d) , tmp$3;
+  this._normal$ThreeD88754a$$setter_(tmp$5 = !!(tmp$4 = normal , tmp$4 != null && tmp$4.$implements$ThreeD88754a$Vector3$Dart)?normal:ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
+  this._vertexNormals$ThreeD88754a$$setter_(tmp$7 = !!(tmp$6 = normal , tmp$6 != null && tmp$6.$implements$List$Dart)?normal:RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$7;
+  this._color$ThreeD88754a$$setter_(tmp$9 = !!(tmp$8 = color , tmp$8 != null && tmp$8.$implements$ThreeD88754a$Color$Dart)?color:ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$9;
+  this._vertexColors$ThreeD88754a$$setter_(tmp$11 = !!(tmp$10 = color , tmp$10 != null && tmp$10.$implements$List$Dart)?color:RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$11;
+  this._vertexTangents$ThreeD88754a$$setter_(tmp$12 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$12;
+  this._materialIndex$ThreeD88754a$$setter_(tmp$13 = materialIndex) , tmp$13;
+  this._centroid$ThreeD88754a$$setter_(tmp$14 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$14;
 }
 ;
-ThreeD85b351$Face4$Dart.$Initializer = function(a, b, c, d, normal, color, materialIndex){
+ThreeD88754a$Face4$Dart.$Initializer = function(a, b, c, d, normal, color, materialIndex){
 }
 ;
-ThreeD85b351$Face4$Dart.Face4$$Factory = function(a, b, c, d, normal, color, materialIndex){
-  var tmp$0 = new ThreeD85b351$Face4$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Face4$Dart.$lookupRTT();
-  ThreeD85b351$Face4$Dart.$Initializer.call(tmp$0, a, b, c, d, normal, color, materialIndex);
-  ThreeD85b351$Face4$Dart.$Constructor.call(tmp$0, a, b, c, d, normal, color, materialIndex);
+ThreeD88754a$Face4$Dart.Face4$$Factory = function(a, b, c, d, normal, color, materialIndex){
+  var tmp$0 = new ThreeD88754a$Face4$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Face4$Dart.$lookupRTT();
+  ThreeD88754a$Face4$Dart.$Initializer.call(tmp$0, a, b, c, d, normal, color, materialIndex);
+  ThreeD88754a$Face4$Dart.$Constructor.call(tmp$0, a, b, c, d, normal, color, materialIndex);
   return tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._a$ThreeD85b351$$getter_ = function(){
-  return this._a$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._a$ThreeD88754a$$getter_ = function(){
+  return this._a$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._a$ThreeD85b351$$setter_ = function(tmp$0){
-  this._a$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._a$ThreeD88754a$$setter_ = function(tmp$0){
+  this._a$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._b$ThreeD85b351$$getter_ = function(){
-  return this._b$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._b$ThreeD88754a$$getter_ = function(){
+  return this._b$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._b$ThreeD85b351$$setter_ = function(tmp$0){
-  this._b$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._b$ThreeD88754a$$setter_ = function(tmp$0){
+  this._b$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._c$ThreeD85b351$$getter_ = function(){
-  return this._c$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._c$ThreeD88754a$$getter_ = function(){
+  return this._c$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._c$ThreeD85b351$$setter_ = function(tmp$0){
-  this._c$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._c$ThreeD88754a$$setter_ = function(tmp$0){
+  this._c$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._d$ThreeD85b351$$getter_ = function(){
-  return this._d$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._d$ThreeD88754a$$getter_ = function(){
+  return this._d$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._d$ThreeD85b351$$setter_ = function(tmp$0){
-  this._d$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._d$ThreeD88754a$$setter_ = function(tmp$0){
+  this._d$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._normal$ThreeD85b351$$getter_ = function(){
-  return this._normal$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._normal$ThreeD88754a$$getter_ = function(){
+  return this._normal$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._normal$ThreeD85b351$$setter_ = function(tmp$0){
-  this._normal$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._normal$ThreeD88754a$$setter_ = function(tmp$0){
+  this._normal$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._vertexNormals$ThreeD85b351$$getter_ = function(){
-  return this._vertexNormals$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._vertexNormals$ThreeD88754a$$getter_ = function(){
+  return this._vertexNormals$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._vertexNormals$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexNormals$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._vertexNormals$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexNormals$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._vertexColors$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexColors$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._vertexColors$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexColors$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._vertexTangents$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexTangents$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._vertexTangents$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexTangents$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._color$ThreeD85b351$$getter_ = function(){
-  return this._color$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._color$ThreeD88754a$$getter_ = function(){
+  return this._color$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._color$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._color$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._materialIndex$ThreeD85b351$$getter_ = function(){
-  return this._materialIndex$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._materialIndex$ThreeD88754a$$getter_ = function(){
+  return this._materialIndex$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._materialIndex$ThreeD85b351$$setter_ = function(tmp$0){
-  this._materialIndex$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._materialIndex$ThreeD88754a$$setter_ = function(tmp$0){
+  this._materialIndex$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._centroid$ThreeD85b351$$getter_ = function(){
-  return this._centroid$ThreeD85b351$$field_;
+ThreeD88754a$Face4$Dart.prototype._centroid$ThreeD88754a$$getter_ = function(){
+  return this._centroid$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype._centroid$ThreeD85b351$$setter_ = function(tmp$0){
-  this._centroid$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Face4$Dart.prototype._centroid$ThreeD88754a$$setter_ = function(tmp$0){
+  this._centroid$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.centroid$getter = function(){
-  return this._centroid$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.centroid$getter = function(){
+  return this._centroid$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.normal$getter = function(){
-  return this._normal$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.normal$getter = function(){
+  return this._normal$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.vertexNormals$getter = function(){
-  return this._vertexNormals$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.vertexNormals$getter = function(){
+  return this._vertexNormals$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.materialIndex$getter = function(){
-  return this._materialIndex$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.materialIndex$getter = function(){
+  return this._materialIndex$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.materialIndex$setter = function(value){
+ThreeD88754a$Face4$Dart.prototype.materialIndex$setter = function(value){
   var tmp$0;
-  this._materialIndex$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._materialIndex$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.a$getter = function(){
-  return this._a$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.a$getter = function(){
+  return this._a$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.a$setter = function(value){
+ThreeD88754a$Face4$Dart.prototype.a$setter = function(value){
   var tmp$0;
-  this._a$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._a$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.b$getter = function(){
-  return this._b$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.b$getter = function(){
+  return this._b$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.b$setter = function(value){
+ThreeD88754a$Face4$Dart.prototype.b$setter = function(value){
   var tmp$0;
-  this._b$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._b$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.c$getter = function(){
-  return this._c$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.c$getter = function(){
+  return this._c$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.c$setter = function(value){
+ThreeD88754a$Face4$Dart.prototype.c$setter = function(value){
   var tmp$0;
-  this._c$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._c$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.d$getter = function(){
-  return this._d$ThreeD85b351$$getter_();
+ThreeD88754a$Face4$Dart.prototype.d$getter = function(){
+  return this._d$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Face4$Dart.prototype.d$setter = function(value){
+ThreeD88754a$Face4$Dart.prototype.d$setter = function(value){
   var tmp$0;
-  this._d$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._d$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-function ThreeD85b351$Frustum$Dart(){
+function ThreeD88754a$Frustum$Dart(){
 }
-ThreeD85b351$Frustum$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Frustum$Dart'), null, null, named);
+ThreeD88754a$Frustum$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Frustum$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Frustum$Dart.$Constructor = function(){
+ThreeD88754a$Frustum$Dart.$Constructor = function(){
   var tmp$1, tmp$0;
-  if (EQ$operator(ThreeD85b351$Frustum$Dart.__v1$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Frustum$Dart.__v1$ThreeD85b351$$setter_(tmp$0 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
+  if (EQ$operator(ThreeD88754a$Frustum$Dart.__v1$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Frustum$Dart.__v1$ThreeD88754a$$setter_(tmp$0 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
   }
-  this._planes$ThreeD85b351$$setter_(tmp$1 = RTT.setTypeInfo([ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)], Array.$lookupRTT())) , tmp$1;
+  this._planes$ThreeD88754a$$setter_(tmp$1 = RTT.setTypeInfo([ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)], Array.$lookupRTT())) , tmp$1;
 }
 ;
-ThreeD85b351$Frustum$Dart.$Initializer = function(){
+ThreeD88754a$Frustum$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$Frustum$Dart.Frustum$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$Frustum$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Frustum$Dart.$lookupRTT();
-  ThreeD85b351$Frustum$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$Frustum$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$Frustum$Dart.Frustum$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$Frustum$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Frustum$Dart.$lookupRTT();
+  ThreeD88754a$Frustum$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$Frustum$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$Frustum$Dart.prototype._planes$ThreeD85b351$$getter_ = function(){
-  return this._planes$ThreeD85b351$$field_;
+ThreeD88754a$Frustum$Dart.prototype._planes$ThreeD88754a$$getter_ = function(){
+  return this._planes$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Frustum$Dart.prototype._planes$ThreeD85b351$$setter_ = function(tmp$0){
-  this._planes$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Frustum$Dart.prototype._planes$ThreeD88754a$$setter_ = function(tmp$0){
+  this._planes$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Frustum$Dart.__v1$ThreeD85b351$$getter_ = function(){
-  return isolate$current.ThreeD85b351$Frustum$Dart__v1$ThreeD85b351$$field_;
+ThreeD88754a$Frustum$Dart.__v1$ThreeD88754a$$getter_ = function(){
+  return isolate$current.ThreeD88754a$Frustum$Dart__v1$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Frustum$Dart.__v1$ThreeD85b351$$setter_ = function(tmp$0){
-  isolate$current.ThreeD85b351$Frustum$Dart__v1$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Frustum$Dart.__v1$ThreeD88754a$$setter_ = function(tmp$0){
+  isolate$current.ThreeD88754a$Frustum$Dart__v1$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Frustum$Dart.prototype.setFromMatrix$member = function(m){
+ThreeD88754a$Frustum$Dart.prototype.setFromMatrix$member = function(m){
   var tmp$0;
   var i = $Dart$Null;
   var plane = $Dart$Null;
-  var planes = this._planes$ThreeD85b351$$getter_();
+  var planes = this._planes$ThreeD88754a$$getter_();
   plane = planes.INDEX$operator(0);
   plane.setValues$named(4, $noargs, SUB$operator(m.n41$getter(), m.n11$getter()), SUB$operator(m.n42$getter(), m.n12$getter()), SUB$operator(m.n43$getter(), m.n13$getter()), SUB$operator(m.n44$getter(), m.n14$getter()));
   plane = planes.INDEX$operator(1);
@@ -69912,18 +69912,18 @@ ThreeD85b351$Frustum$Dart.prototype.setFromMatrix$member = function(m){
   }
 }
 ;
-ThreeD85b351$Frustum$Dart.prototype.setFromMatrix$named = function($n, $o, m){
+ThreeD88754a$Frustum$Dart.prototype.setFromMatrix$named = function($n, $o, m){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Frustum$Dart.prototype.setFromMatrix$member.call(this, m);
+  return ThreeD88754a$Frustum$Dart.prototype.setFromMatrix$member.call(this, m);
 }
 ;
-ThreeD85b351$Frustum$Dart.prototype.contains$member = function(object){
+ThreeD88754a$Frustum$Dart.prototype.contains$member = function(object){
   var tmp$0;
   var distance = $Dart$Null;
-  var planes = this._planes$ThreeD85b351$$getter_();
+  var planes = this._planes$ThreeD88754a$$getter_();
   var matrix = object.matrixWorld$getter();
-  var scale = ThreeD85b351$Frustum$Dart.__v1$ThreeD85b351$$getter_().setValues$named(3, $noargs, matrix.getColumnX$named(0, $noargs).length$named(0, $noargs), matrix.getColumnY$named(0, $noargs).length$named(0, $noargs), matrix.getColumnZ$named(0, $noargs).length$named(0, $noargs));
+  var scale = ThreeD88754a$Frustum$Dart.__v1$ThreeD88754a$$getter_().setValues$named(3, $noargs, matrix.getColumnX$named(0, $noargs).length$named(0, $noargs), matrix.getColumnY$named(0, $noargs).length$named(0, $noargs), matrix.getColumnZ$named(0, $noargs).length$named(0, $noargs));
   var radius = MUL$operator(negate$operator(object.geometry$getter().boundingSphere$getter().INDEX$operator('radius')), Math$Dart.max$member(scale.x$getter(), Math$Dart.max$member(scale.y$getter(), scale.z$getter())));
   {
     var i = 0;
@@ -69937,177 +69937,177 @@ ThreeD85b351$Frustum$Dart.prototype.contains$member = function(object){
   return true;
 }
 ;
-ThreeD85b351$Frustum$Dart.prototype.contains$named = function($n, $o, object){
+ThreeD88754a$Frustum$Dart.prototype.contains$named = function($n, $o, object){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Frustum$Dart.prototype.contains$member.call(this, object);
+  return ThreeD88754a$Frustum$Dart.prototype.contains$member.call(this, object);
 }
 ;
-function ThreeD85b351$Geometry$Dart(){
+function ThreeD88754a$Geometry$Dart(){
 }
-ThreeD85b351$Geometry$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Geometry$Dart'), null, null, named);
+ThreeD88754a$Geometry$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Geometry$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Geometry$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Geometry$Dart.$lookupRTT();
+ThreeD88754a$Geometry$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Geometry$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-ThreeD85b351$Geometry$Dart.$Constructor = function(){
+ThreeD88754a$Geometry$Dart.$Constructor = function(){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$16, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._id$ThreeD85b351$$setter_(tmp$2 = (tmp$0 = ThreeD85b351$Three$Dart.GeometryCount$getter() , (ThreeD85b351$Three$Dart.GeometryCount$setter(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0))) , tmp$2;
-  this._vertices$ThreeD85b351$$setter_(tmp$3 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$3;
-  this._colors$ThreeD85b351$$setter_(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
-  this._materials$ThreeD85b351$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
-  this._faces$ThreeD85b351$$setter_(tmp$6 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$6;
-  this._faceUvs$ThreeD85b351$$setter_(tmp$7 = RTT.setTypeInfo([RTT.setTypeInfo([], Array.$lookupRTT())], Array.$lookupRTT())) , tmp$7;
-  this._faceVertexUvs$ThreeD85b351$$setter_(tmp$8 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$8;
-  this._faceVertexUvs$ThreeD85b351$$getter_().add$named(1, $noargs, ListFactory$Dart.List$$Factory(null, $Dart$Null));
-  this._morphTargets$ThreeD85b351$$setter_(tmp$9 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$9;
-  this._morphColors$ThreeD85b351$$setter_(tmp$10 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$10;
-  this._skinWeights$ThreeD85b351$$setter_(tmp$11 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$11;
-  this._skinIndices$ThreeD85b351$$setter_(tmp$12 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$12;
-  this._boundingBox$ThreeD85b351$$setter_(tmp$13 = $Dart$Null) , tmp$13;
-  this._boundingSphere$ThreeD85b351$$setter_(tmp$14 = $Dart$Null) , tmp$14;
-  this._hasTangents$ThreeD85b351$$setter_(tmp$15 = false) , tmp$15;
-  this._dynamic$ThreeD85b351$$setter_(tmp$16 = false) , tmp$16;
+  this._id$ThreeD88754a$$setter_(tmp$2 = (tmp$0 = ThreeD88754a$Three$Dart.GeometryCount$getter() , (ThreeD88754a$Three$Dart.GeometryCount$setter(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0))) , tmp$2;
+  this._vertices$ThreeD88754a$$setter_(tmp$3 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$3;
+  this._colors$ThreeD88754a$$setter_(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
+  this._materials$ThreeD88754a$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
+  this._faces$ThreeD88754a$$setter_(tmp$6 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$6;
+  this._faceUvs$ThreeD88754a$$setter_(tmp$7 = RTT.setTypeInfo([RTT.setTypeInfo([], Array.$lookupRTT())], Array.$lookupRTT())) , tmp$7;
+  this._faceVertexUvs$ThreeD88754a$$setter_(tmp$8 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$8;
+  this._faceVertexUvs$ThreeD88754a$$getter_().add$named(1, $noargs, ListFactory$Dart.List$$Factory(null, $Dart$Null));
+  this._morphTargets$ThreeD88754a$$setter_(tmp$9 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$9;
+  this._morphColors$ThreeD88754a$$setter_(tmp$10 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$10;
+  this._skinWeights$ThreeD88754a$$setter_(tmp$11 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$11;
+  this._skinIndices$ThreeD88754a$$setter_(tmp$12 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$12;
+  this._boundingBox$ThreeD88754a$$setter_(tmp$13 = $Dart$Null) , tmp$13;
+  this._boundingSphere$ThreeD88754a$$setter_(tmp$14 = $Dart$Null) , tmp$14;
+  this._hasTangents$ThreeD88754a$$setter_(tmp$15 = false) , tmp$15;
+  this._dynamic$ThreeD88754a$$setter_(tmp$16 = false) , tmp$16;
 }
 ;
-ThreeD85b351$Geometry$Dart.$Initializer = function(){
+ThreeD88754a$Geometry$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._id$ThreeD85b351$$setter_ = function(tmp$0){
-  this._id$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._id$ThreeD88754a$$setter_ = function(tmp$0){
+  this._id$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._vertices$ThreeD85b351$$getter_ = function(){
-  return this._vertices$ThreeD85b351$$field_;
+ThreeD88754a$Geometry$Dart.prototype._vertices$ThreeD88754a$$getter_ = function(){
+  return this._vertices$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._vertices$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertices$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._vertices$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertices$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._colors$ThreeD85b351$$setter_ = function(tmp$0){
-  this._colors$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._colors$ThreeD88754a$$setter_ = function(tmp$0){
+  this._colors$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._materials$ThreeD85b351$$getter_ = function(){
-  return this._materials$ThreeD85b351$$field_;
+ThreeD88754a$Geometry$Dart.prototype._materials$ThreeD88754a$$getter_ = function(){
+  return this._materials$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._materials$ThreeD85b351$$setter_ = function(tmp$0){
-  this._materials$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._materials$ThreeD88754a$$setter_ = function(tmp$0){
+  this._materials$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._faces$ThreeD85b351$$getter_ = function(){
-  return this._faces$ThreeD85b351$$field_;
+ThreeD88754a$Geometry$Dart.prototype._faces$ThreeD88754a$$getter_ = function(){
+  return this._faces$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._faces$ThreeD85b351$$setter_ = function(tmp$0){
-  this._faces$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._faces$ThreeD88754a$$setter_ = function(tmp$0){
+  this._faces$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._faceUvs$ThreeD85b351$$setter_ = function(tmp$0){
-  this._faceUvs$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._faceUvs$ThreeD88754a$$setter_ = function(tmp$0){
+  this._faceUvs$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._faceVertexUvs$ThreeD85b351$$getter_ = function(){
-  return this._faceVertexUvs$ThreeD85b351$$field_;
+ThreeD88754a$Geometry$Dart.prototype._faceVertexUvs$ThreeD88754a$$getter_ = function(){
+  return this._faceVertexUvs$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._faceVertexUvs$ThreeD85b351$$setter_ = function(tmp$0){
-  this._faceVertexUvs$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._faceVertexUvs$ThreeD88754a$$setter_ = function(tmp$0){
+  this._faceVertexUvs$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._morphTargets$ThreeD85b351$$getter_ = function(){
-  return this._morphTargets$ThreeD85b351$$field_;
+ThreeD88754a$Geometry$Dart.prototype._morphTargets$ThreeD88754a$$getter_ = function(){
+  return this._morphTargets$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._morphTargets$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphTargets$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._morphTargets$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphTargets$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._morphColors$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphColors$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._morphColors$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphColors$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._skinWeights$ThreeD85b351$$setter_ = function(tmp$0){
-  this._skinWeights$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._skinWeights$ThreeD88754a$$setter_ = function(tmp$0){
+  this._skinWeights$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._skinIndices$ThreeD85b351$$setter_ = function(tmp$0){
-  this._skinIndices$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._skinIndices$ThreeD88754a$$setter_ = function(tmp$0){
+  this._skinIndices$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._boundingBox$ThreeD85b351$$setter_ = function(tmp$0){
-  this._boundingBox$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._boundingBox$ThreeD88754a$$setter_ = function(tmp$0){
+  this._boundingBox$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._boundingSphere$ThreeD85b351$$getter_ = function(){
-  return this._boundingSphere$ThreeD85b351$$field_;
+ThreeD88754a$Geometry$Dart.prototype._boundingSphere$ThreeD88754a$$getter_ = function(){
+  return this._boundingSphere$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._boundingSphere$ThreeD85b351$$setter_ = function(tmp$0){
-  this._boundingSphere$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._boundingSphere$ThreeD88754a$$setter_ = function(tmp$0){
+  this._boundingSphere$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._hasTangents$ThreeD85b351$$setter_ = function(tmp$0){
-  this._hasTangents$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._hasTangents$ThreeD88754a$$setter_ = function(tmp$0){
+  this._hasTangents$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype._dynamic$ThreeD85b351$$setter_ = function(tmp$0){
-  this._dynamic$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Geometry$Dart.prototype._dynamic$ThreeD88754a$$setter_ = function(tmp$0){
+  this._dynamic$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.boundingSphere$getter = function(){
-  return this._boundingSphere$ThreeD85b351$$getter_();
+ThreeD88754a$Geometry$Dart.prototype.boundingSphere$getter = function(){
+  return this._boundingSphere$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.morphTargets$getter = function(){
-  return this._morphTargets$ThreeD85b351$$getter_();
+ThreeD88754a$Geometry$Dart.prototype.morphTargets$getter = function(){
+  return this._morphTargets$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.faces$getter = function(){
-  return this._faces$ThreeD85b351$$getter_();
+ThreeD88754a$Geometry$Dart.prototype.faces$getter = function(){
+  return this._faces$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.materials$getter = function(){
-  return this._materials$ThreeD85b351$$getter_();
+ThreeD88754a$Geometry$Dart.prototype.materials$getter = function(){
+  return this._materials$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.vertices$getter = function(){
-  return this._vertices$ThreeD85b351$$getter_();
+ThreeD88754a$Geometry$Dart.prototype.vertices$getter = function(){
+  return this._vertices$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.faceVertexUvs$getter = function(){
-  return this._faceVertexUvs$ThreeD85b351$$getter_();
+ThreeD88754a$Geometry$Dart.prototype.faceVertexUvs$getter = function(){
+  return this._faceVertexUvs$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.computeCentroids$member = function(){
+ThreeD88754a$Geometry$Dart.prototype.computeCentroids$member = function(){
   var tmp$1, tmp$2, tmp$0;
   var f = $Dart$Null;
-  var fl = this._faces$ThreeD85b351$$getter_().length$getter();
+  var fl = this._faces$ThreeD88754a$$getter_().length$getter();
   var face = $Dart$Null;
   {
     f = 0;
     for (; LT$operator(f, fl); tmp$0 = f , (f = ADD$operator(tmp$0, 1) , tmp$0)) {
-      face = this._faces$ThreeD85b351$$getter_().INDEX$operator(f);
+      face = this._faces$ThreeD88754a$$getter_().INDEX$operator(f);
       face.centroid$getter().setValues$named(3, $noargs, 0, 0, 0);
-      if (!!(tmp$1 = face , tmp$1 != null && tmp$1.$implements$ThreeD85b351$Face3$Dart)) {
-        face.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face.a$getter()).position$getter());
-        face.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face.b$getter()).position$getter());
-        face.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face.c$getter()).position$getter());
+      if (!!(tmp$1 = face , tmp$1 != null && tmp$1.$implements$ThreeD88754a$Face3$Dart)) {
+        face.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face.a$getter()).position$getter());
+        face.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face.b$getter()).position$getter());
+        face.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face.c$getter()).position$getter());
         face.centroid$getter().divideScalar$named(1, $noargs, 3);
       }
        else {
-        if (!!(tmp$2 = face , tmp$2 != null && tmp$2.$implements$ThreeD85b351$Face4$Dart)) {
+        if (!!(tmp$2 = face , tmp$2 != null && tmp$2.$implements$ThreeD88754a$Face4$Dart)) {
           var face4 = face;
-          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face4.a$getter()).position$getter());
-          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face4.b$getter()).position$getter());
-          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face4.c$getter()).position$getter());
-          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(face4.d$getter()).position$getter());
+          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face4.a$getter()).position$getter());
+          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face4.b$getter()).position$getter());
+          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face4.c$getter()).position$getter());
+          face4.centroid$getter().addSelf$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(face4.d$getter()).position$getter());
           face4.centroid$getter().divideScalar$named(1, $noargs, 4);
         }
       }
@@ -70115,30 +70115,30 @@ ThreeD85b351$Geometry$Dart.prototype.computeCentroids$member = function(){
   }
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.computeBoundingSphere$member = function(){
+ThreeD88754a$Geometry$Dart.prototype.computeBoundingSphere$member = function(){
   var tmp$1, tmp$2, tmp$0;
   var radius = $Dart$Null;
   var maxRadius = 0;
-  var vl = this._vertices$ThreeD85b351$$getter_().length$getter();
+  var vl = this._vertices$ThreeD88754a$$getter_().length$getter();
   {
     var v = 0;
     for (; LT$operator(v, vl); tmp$0 = v , (v = ADD$operator(tmp$0, 1) , tmp$0)) {
-      radius = this._vertices$ThreeD85b351$$getter_().INDEX$operator(v).position$getter().length$named(0, $noargs);
+      radius = this._vertices$ThreeD88754a$$getter_().INDEX$operator(v).position$getter().length$named(0, $noargs);
       if (GT$operator(radius, maxRadius)) {
         maxRadius = radius;
       }
     }
   }
-  this._boundingSphere$ThreeD85b351$$setter_(tmp$2 = (tmp$1 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$1.ASSIGN_INDEX$operator('radius', maxRadius) , tmp$1)) , tmp$2;
+  this._boundingSphere$ThreeD88754a$$setter_(tmp$2 = (tmp$1 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$1.ASSIGN_INDEX$operator('radius', maxRadius) , tmp$1)) , tmp$2;
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.computeBoundingSphere$named = function($n, $o){
+ThreeD88754a$Geometry$Dart.prototype.computeBoundingSphere$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Geometry$Dart.prototype.computeBoundingSphere$member.call(this);
+  return ThreeD88754a$Geometry$Dart.prototype.computeBoundingSphere$member.call(this);
 }
 ;
-ThreeD85b351$Geometry$Dart.prototype.mergeVertices$member = function(){
+ThreeD88754a$Geometry$Dart.prototype.mergeVertices$member = function(){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var verticesMap = (tmp$0 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$0);
   var unique = RTT.setTypeInfo([], Array.$lookupRTT());
@@ -70147,18 +70147,18 @@ ThreeD85b351$Geometry$Dart.prototype.mergeVertices$member = function(){
   var precisionPoints = 4;
   var precision = Math$Dart.pow$member(10, precisionPoints);
   var i = $Dart$Null;
-  var il = this._vertices$ThreeD85b351$$getter_().length$getter();
+  var il = this._vertices$ThreeD88754a$$getter_().length$getter();
   {
     i = 0;
     for (; LT$operator(i, il); tmp$1 = i , (i = ADD$operator(tmp$1, 1) , tmp$1)) {
-      var v = this._vertices$ThreeD85b351$$getter_().INDEX$operator(i).position$getter();
+      var v = this._vertices$ThreeD88754a$$getter_().INDEX$operator(i).position$getter();
       var vx = MUL$operator(v.x$getter(), precision).round$named(0, $noargs);
       var vy = MUL$operator(v.y$getter(), precision).round$named(0, $noargs);
       var vz = MUL$operator(v.z$getter(), precision).round$named(0, $noargs);
       key = '' + $toString(vx) + '_' + $toString(vy) + '_' + $toString(vz) + '';
       if (verticesMap.INDEX$operator(key) == null) {
         verticesMap.ASSIGN_INDEX$operator(key, tmp$2 = i) , tmp$2;
-        unique.add$named(1, $noargs, this._vertices$ThreeD85b351$$getter_().INDEX$operator(i));
+        unique.add$named(1, $noargs, this._vertices$ThreeD88754a$$getter_().INDEX$operator(i));
         changes.add$named(1, $noargs, SUB$operator(unique.length$getter(), 1));
       }
        else {
@@ -70166,18 +70166,18 @@ ThreeD85b351$Geometry$Dart.prototype.mergeVertices$member = function(){
       }
     }
   }
-  il = this._faces$ThreeD85b351$$getter_().length$getter();
+  il = this._faces$ThreeD88754a$$getter_().length$getter();
   {
     i = 0;
     for (; LT$operator(i, il); tmp$3 = i , (i = ADD$operator(tmp$3, 1) , tmp$3)) {
-      var face = this._faces$ThreeD85b351$$getter_().INDEX$operator(i);
-      if (!!(tmp$4 = face , tmp$4 != null && tmp$4.$implements$ThreeD85b351$Face3$Dart)) {
+      var face = this._faces$ThreeD88754a$$getter_().INDEX$operator(i);
+      if (!!(tmp$4 = face , tmp$4 != null && tmp$4.$implements$ThreeD88754a$Face3$Dart)) {
         face.a$setter(tmp$5 = changes.INDEX$operator(face.a$getter())) , tmp$5;
         face.b$setter(tmp$6 = changes.INDEX$operator(face.b$getter())) , tmp$6;
         face.c$setter(tmp$7 = changes.INDEX$operator(face.c$getter())) , tmp$7;
       }
        else {
-        if (!!(tmp$8 = face , tmp$8 != null && tmp$8.$implements$ThreeD85b351$Face4$Dart)) {
+        if (!!(tmp$8 = face , tmp$8 != null && tmp$8.$implements$ThreeD88754a$Face4$Dart)) {
           var face4 = face;
           face4.a$setter(tmp$9 = changes.INDEX$operator(face4.a$getter())) , tmp$9;
           face4.b$setter(tmp$10 = changes.INDEX$operator(face4.b$getter())) , tmp$10;
@@ -70187,538 +70187,538 @@ ThreeD85b351$Geometry$Dart.prototype.mergeVertices$member = function(){
       }
     }
   }
-  this._vertices$ThreeD85b351$$setter_(tmp$13 = unique) , tmp$13;
+  this._vertices$ThreeD88754a$$setter_(tmp$13 = unique) , tmp$13;
 }
 ;
-function ThreeD85b351$IFace3$Dart(){
+function ThreeD88754a$IFace3$Dart(){
 }
-ThreeD85b351$IFace3$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IFace3$Dart'), null, null, named);
+ThreeD88754a$IFace3$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IFace3$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$IFace3$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IFace3$Dart.$lookupRTT();
+ThreeD88754a$IFace3$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IFace3$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-function ThreeD85b351$IFace4$Dart(){
+function ThreeD88754a$IFace4$Dart(){
 }
-ThreeD85b351$IFace4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IFace4$Dart'), ThreeD85b351$IFace4$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$IFace4$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$IFace4$Dart.$addTo(rtt);
+ThreeD88754a$IFace4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IFace4$Dart'), ThreeD88754a$IFace4$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$IFace4$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IFace4$Dart.$lookupRTT();
+ThreeD88754a$IFace4$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$IFace4$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$IFace4$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IFace4$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IFace3$Dart.$addTo(target);
+  ThreeD88754a$IFace3$Dart.$addTo(target);
 }
 ;
-function ThreeD85b351$IVector2$Dart(){
+function ThreeD88754a$IVector2$Dart(){
 }
-ThreeD85b351$IVector2$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IVector2$Dart'), null, null, named);
+ThreeD88754a$IVector2$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IVector2$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$IVector2$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IVector2$Dart.$lookupRTT();
+ThreeD88754a$IVector2$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IVector2$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-function ThreeD85b351$IVector3$Dart(){
+function ThreeD88754a$IVector3$Dart(){
 }
-ThreeD85b351$IVector3$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IVector3$Dart'), ThreeD85b351$IVector3$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$IVector3$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$IVector3$Dart.$addTo(rtt);
+ThreeD88754a$IVector3$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IVector3$Dart'), ThreeD88754a$IVector3$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$IVector3$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IVector3$Dart.$lookupRTT();
+ThreeD88754a$IVector3$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$IVector3$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$IVector3$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IVector3$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IVector2$Dart.$addTo(target);
+  ThreeD88754a$IVector2$Dart.$addTo(target);
 }
 ;
-function ThreeD85b351$IVector4$Dart(){
+function ThreeD88754a$IVector4$Dart(){
 }
-ThreeD85b351$IVector4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IVector4$Dart'), ThreeD85b351$IVector4$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$IVector4$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$IVector4$Dart.$addTo(rtt);
+ThreeD88754a$IVector4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IVector4$Dart'), ThreeD88754a$IVector4$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$IVector4$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IVector4$Dart.$lookupRTT();
+ThreeD88754a$IVector4$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$IVector4$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$IVector4$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IVector4$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IVector3$Dart.$addTo(target);
+  ThreeD88754a$IVector3$Dart.$addTo(target);
 }
 ;
-function ThreeD85b351$Matrix3$Dart(){
+function ThreeD88754a$Matrix3$Dart(){
 }
-ThreeD85b351$Matrix3$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Matrix3$Dart'), null, null, named);
+ThreeD88754a$Matrix3$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Matrix3$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Matrix3$Dart.$Constructor = function(){
+ThreeD88754a$Matrix3$Dart.$Constructor = function(){
   var tmp$0;
-  this._m$ThreeD85b351$$setter_(tmp$0 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$0;
+  this._m$ThreeD88754a$$setter_(tmp$0 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix3$Dart.$Initializer = function(){
+ThreeD88754a$Matrix3$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$Matrix3$Dart.Matrix3$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$Matrix3$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Matrix3$Dart.$lookupRTT();
-  ThreeD85b351$Matrix3$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$Matrix3$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$Matrix3$Dart.Matrix3$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$Matrix3$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Matrix3$Dart.$lookupRTT();
+  ThreeD88754a$Matrix3$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$Matrix3$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$Matrix3$Dart.prototype._m$ThreeD85b351$$setter_ = function(tmp$0){
-  this._m$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix3$Dart.prototype._m$ThreeD88754a$$setter_ = function(tmp$0){
+  this._m$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-function ThreeD85b351$Matrix4$Dart(){
+function ThreeD88754a$Matrix4$Dart(){
 }
-ThreeD85b351$Matrix4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Matrix4$Dart'), null, null, named);
+ThreeD88754a$Matrix4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Matrix4$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Matrix4$Dart.$Constructor = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+ThreeD88754a$Matrix4$Dart.$Constructor = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
   var tmp$5, tmp$6, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   this.setValues$member(n11 != null?n11:1, n12 != null?n12:0, n13 != null?n13:0, n14 != null?n14:0, n21 != null?n21:0, n22 != null?n22:1, n23 != null?n23:0, n24 != null?n24:0, n31 != null?n31:0, n32 != null?n32:0, n33 != null?n33:1, n34 != null?n34:0, n41 != null?n41:0, n42 != null?n42:0, n43 != null?n43:0, n44 != null?n44:1);
-  this._flat$ThreeD85b351$$setter_(tmp$0 = ListFactory$Dart.List$$Factory(null, $Dart$Null)) , tmp$0;
-  this._m33$ThreeD85b351$$setter_(tmp$1 = ThreeD85b351$Matrix3$Dart.Matrix3$$Factory()) , tmp$1;
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$setter_(tmp$2 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$2;
+  this._flat$ThreeD88754a$$setter_(tmp$0 = ListFactory$Dart.List$$Factory(null, $Dart$Null)) , tmp$0;
+  this._m33$ThreeD88754a$$setter_(tmp$1 = ThreeD88754a$Matrix3$Dart.Matrix3$$Factory()) , tmp$1;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$setter_(tmp$2 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$2;
   }
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__v2$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__v2$ThreeD85b351$$setter_(tmp$3 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$3;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__v2$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__v2$ThreeD88754a$$setter_(tmp$3 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$3;
   }
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__v3$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__v3$ThreeD85b351$$setter_(tmp$4 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__v3$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__v3$ThreeD88754a$$setter_(tmp$4 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
   }
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__m1$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__m1$ThreeD85b351$$setter_(tmp$5 = ThreeD85b351$Matrix4$Dart.Matrix4$createMatrices$7$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__m1$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__m1$ThreeD88754a$$setter_(tmp$5 = ThreeD88754a$Matrix4$Dart.Matrix4$createMatrices$7$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
   }
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__m2$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__m2$ThreeD85b351$$setter_(tmp$6 = ThreeD85b351$Matrix4$Dart.Matrix4$createMatrices$7$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$6;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__m2$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__m2$ThreeD88754a$$setter_(tmp$6 = ThreeD88754a$Matrix4$Dart.Matrix4$createMatrices$7$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$6;
   }
 }
 ;
-ThreeD85b351$Matrix4$Dart.$Initializer = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+ThreeD88754a$Matrix4$Dart.$Initializer = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
 }
 ;
-ThreeD85b351$Matrix4$Dart.Matrix4$$Factory = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
-  var tmp$0 = new ThreeD85b351$Matrix4$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Matrix4$Dart.$lookupRTT();
-  ThreeD85b351$Matrix4$Dart.$Initializer.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
-  ThreeD85b351$Matrix4$Dart.$Constructor.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
+ThreeD88754a$Matrix4$Dart.Matrix4$$Factory = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+  var tmp$0 = new ThreeD88754a$Matrix4$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Matrix4$Dart.$lookupRTT();
+  ThreeD88754a$Matrix4$Dart.$Initializer.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
+  ThreeD88754a$Matrix4$Dart.$Constructor.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
   return tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.createMatrices$Constructor = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+ThreeD88754a$Matrix4$Dart.createMatrices$Constructor = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
   var tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   this.setValues$member(n11 != null?n11:1, n12 != null?n12:0, n13 != null?n13:0, n14 != null?n14:0, n21 != null?n21:0, n22 != null?n22:1, n23 != null?n23:0, n24 != null?n24:0, n31 != null?n31:0, n32 != null?n32:0, n33 != null?n33:1, n34 != null?n34:0, n41 != null?n41:0, n42 != null?n42:0, n43 != null?n43:0, n44 != null?n44:1);
-  this._flat$ThreeD85b351$$setter_(tmp$0 = ListFactory$Dart.List$$Factory(null, $Dart$Null)) , tmp$0;
-  this._m33$ThreeD85b351$$setter_(tmp$1 = ThreeD85b351$Matrix3$Dart.Matrix3$$Factory()) , tmp$1;
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$setter_(tmp$2 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$2;
+  this._flat$ThreeD88754a$$setter_(tmp$0 = ListFactory$Dart.List$$Factory(null, $Dart$Null)) , tmp$0;
+  this._m33$ThreeD88754a$$setter_(tmp$1 = ThreeD88754a$Matrix3$Dart.Matrix3$$Factory()) , tmp$1;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$setter_(tmp$2 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$2;
   }
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__v2$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__v2$ThreeD85b351$$setter_(tmp$3 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$3;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__v2$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__v2$ThreeD88754a$$setter_(tmp$3 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$3;
   }
-  if (EQ$operator(ThreeD85b351$Matrix4$Dart.__v3$ThreeD85b351$$getter_(), $Dart$Null)) {
-    ThreeD85b351$Matrix4$Dart.__v3$ThreeD85b351$$setter_(tmp$4 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
+  if (EQ$operator(ThreeD88754a$Matrix4$Dart.__v3$ThreeD88754a$$getter_(), $Dart$Null)) {
+    ThreeD88754a$Matrix4$Dart.__v3$ThreeD88754a$$setter_(tmp$4 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
   }
 }
 ;
-ThreeD85b351$Matrix4$Dart.createMatrices$Initializer = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+ThreeD88754a$Matrix4$Dart.createMatrices$Initializer = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
 }
 ;
-ThreeD85b351$Matrix4$Dart.Matrix4$createMatrices$7$Factory = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
-  var tmp$0 = new ThreeD85b351$Matrix4$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Matrix4$Dart.$lookupRTT();
-  ThreeD85b351$Matrix4$Dart.createMatrices$Initializer.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
-  ThreeD85b351$Matrix4$Dart.createMatrices$Constructor.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
+ThreeD88754a$Matrix4$Dart.Matrix4$createMatrices$7$Factory = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+  var tmp$0 = new ThreeD88754a$Matrix4$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Matrix4$Dart.$lookupRTT();
+  ThreeD88754a$Matrix4$Dart.createMatrices$Initializer.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
+  ThreeD88754a$Matrix4$Dart.createMatrices$Constructor.call(tmp$0, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
   return tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._flat$ThreeD85b351$$setter_ = function(tmp$0){
-  this._flat$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._flat$ThreeD88754a$$setter_ = function(tmp$0){
+  this._flat$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._m33$ThreeD85b351$$setter_ = function(tmp$0){
-  this._m33$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._m33$ThreeD88754a$$setter_ = function(tmp$0){
+  this._m33$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n11$ThreeD85b351$$getter_ = function(){
-  return this._n11$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n11$ThreeD88754a$$getter_ = function(){
+  return this._n11$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n11$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n11$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n11$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n11$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n12$ThreeD85b351$$getter_ = function(){
-  return this._n12$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n12$ThreeD88754a$$getter_ = function(){
+  return this._n12$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n12$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n12$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n12$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n12$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n13$ThreeD85b351$$getter_ = function(){
-  return this._n13$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n13$ThreeD88754a$$getter_ = function(){
+  return this._n13$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n13$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n13$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n13$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n13$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n14$ThreeD85b351$$getter_ = function(){
-  return this._n14$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n14$ThreeD88754a$$getter_ = function(){
+  return this._n14$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n14$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n14$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n14$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n14$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n21$ThreeD85b351$$getter_ = function(){
-  return this._n21$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n21$ThreeD88754a$$getter_ = function(){
+  return this._n21$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n21$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n21$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n21$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n21$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n22$ThreeD85b351$$getter_ = function(){
-  return this._n22$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n22$ThreeD88754a$$getter_ = function(){
+  return this._n22$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n22$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n22$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n22$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n22$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n23$ThreeD85b351$$getter_ = function(){
-  return this._n23$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n23$ThreeD88754a$$getter_ = function(){
+  return this._n23$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n23$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n23$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n23$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n23$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n24$ThreeD85b351$$getter_ = function(){
-  return this._n24$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n24$ThreeD88754a$$getter_ = function(){
+  return this._n24$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n24$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n24$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n24$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n24$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n31$ThreeD85b351$$getter_ = function(){
-  return this._n31$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n31$ThreeD88754a$$getter_ = function(){
+  return this._n31$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n31$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n31$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n31$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n31$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n32$ThreeD85b351$$getter_ = function(){
-  return this._n32$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n32$ThreeD88754a$$getter_ = function(){
+  return this._n32$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n32$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n32$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n32$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n32$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n33$ThreeD85b351$$getter_ = function(){
-  return this._n33$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n33$ThreeD88754a$$getter_ = function(){
+  return this._n33$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n33$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n33$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n33$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n33$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n34$ThreeD85b351$$getter_ = function(){
-  return this._n34$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n34$ThreeD88754a$$getter_ = function(){
+  return this._n34$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n34$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n34$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n34$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n34$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n41$ThreeD85b351$$getter_ = function(){
-  return this._n41$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n41$ThreeD88754a$$getter_ = function(){
+  return this._n41$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n41$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n41$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n41$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n41$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n42$ThreeD85b351$$getter_ = function(){
-  return this._n42$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n42$ThreeD88754a$$getter_ = function(){
+  return this._n42$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n42$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n42$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n42$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n42$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n43$ThreeD85b351$$getter_ = function(){
-  return this._n43$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n43$ThreeD88754a$$getter_ = function(){
+  return this._n43$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n43$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n43$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n43$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n43$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n44$ThreeD85b351$$getter_ = function(){
-  return this._n44$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.prototype._n44$ThreeD88754a$$getter_ = function(){
+  return this._n44$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype._n44$ThreeD85b351$$setter_ = function(tmp$0){
-  this._n44$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.prototype._n44$ThreeD88754a$$setter_ = function(tmp$0){
+  this._n44$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_ = function(){
-  return isolate$current.ThreeD85b351$Matrix4$Dart__v1$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_ = function(){
+  return isolate$current.ThreeD88754a$Matrix4$Dart__v1$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$setter_ = function(tmp$0){
-  isolate$current.ThreeD85b351$Matrix4$Dart__v1$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$setter_ = function(tmp$0){
+  isolate$current.ThreeD88754a$Matrix4$Dart__v1$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__v2$ThreeD85b351$$getter_ = function(){
-  return isolate$current.ThreeD85b351$Matrix4$Dart__v2$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.__v2$ThreeD88754a$$getter_ = function(){
+  return isolate$current.ThreeD88754a$Matrix4$Dart__v2$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__v2$ThreeD85b351$$setter_ = function(tmp$0){
-  isolate$current.ThreeD85b351$Matrix4$Dart__v2$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.__v2$ThreeD88754a$$setter_ = function(tmp$0){
+  isolate$current.ThreeD88754a$Matrix4$Dart__v2$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__v3$ThreeD85b351$$getter_ = function(){
-  return isolate$current.ThreeD85b351$Matrix4$Dart__v3$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.__v3$ThreeD88754a$$getter_ = function(){
+  return isolate$current.ThreeD88754a$Matrix4$Dart__v3$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__v3$ThreeD85b351$$setter_ = function(tmp$0){
-  isolate$current.ThreeD85b351$Matrix4$Dart__v3$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.__v3$ThreeD88754a$$setter_ = function(tmp$0){
+  isolate$current.ThreeD88754a$Matrix4$Dart__v3$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__m1$ThreeD85b351$$getter_ = function(){
-  return isolate$current.ThreeD85b351$Matrix4$Dart__m1$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.__m1$ThreeD88754a$$getter_ = function(){
+  return isolate$current.ThreeD88754a$Matrix4$Dart__m1$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__m1$ThreeD85b351$$setter_ = function(tmp$0){
-  isolate$current.ThreeD85b351$Matrix4$Dart__m1$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.__m1$ThreeD88754a$$setter_ = function(tmp$0){
+  isolate$current.ThreeD88754a$Matrix4$Dart__m1$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__m2$ThreeD85b351$$getter_ = function(){
-  return isolate$current.ThreeD85b351$Matrix4$Dart__m2$ThreeD85b351$$field_;
+ThreeD88754a$Matrix4$Dart.__m2$ThreeD88754a$$getter_ = function(){
+  return isolate$current.ThreeD88754a$Matrix4$Dart__m2$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Matrix4$Dart.__m2$ThreeD85b351$$setter_ = function(tmp$0){
-  isolate$current.ThreeD85b351$Matrix4$Dart__m2$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Matrix4$Dart.__m2$ThreeD88754a$$setter_ = function(tmp$0){
+  isolate$current.ThreeD88754a$Matrix4$Dart__m2$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n11$getter = function(){
-  return this._n11$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n11$getter = function(){
+  return this._n11$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n11$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n11$setter = function(value){
   var tmp$0;
-  this._n11$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n12$getter = function(){
-  return this._n12$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n12$getter = function(){
+  return this._n12$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n12$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n12$setter = function(value){
   var tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n13$getter = function(){
-  return this._n13$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n13$getter = function(){
+  return this._n13$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n13$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n13$setter = function(value){
   var tmp$0;
-  this._n13$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n13$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n14$getter = function(){
-  return this._n14$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n14$getter = function(){
+  return this._n14$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n14$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n14$setter = function(value){
   var tmp$0;
-  this._n14$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n14$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n21$getter = function(){
-  return this._n21$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n21$getter = function(){
+  return this._n21$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n21$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n21$setter = function(value){
   var tmp$0;
-  this._n21$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n21$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n22$getter = function(){
-  return this._n22$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n22$getter = function(){
+  return this._n22$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n22$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n22$setter = function(value){
   var tmp$0;
-  this._n22$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n22$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n23$getter = function(){
-  return this._n23$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n23$getter = function(){
+  return this._n23$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n23$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n23$setter = function(value){
   var tmp$0;
-  this._n23$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n23$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n24$getter = function(){
-  return this._n24$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n24$getter = function(){
+  return this._n24$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n24$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n24$setter = function(value){
   var tmp$0;
-  this._n24$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n24$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n31$getter = function(){
-  return this._n31$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n31$getter = function(){
+  return this._n31$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n31$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n31$setter = function(value){
   var tmp$0;
-  this._n31$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n31$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n32$getter = function(){
-  return this._n32$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n32$getter = function(){
+  return this._n32$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n32$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n32$setter = function(value){
   var tmp$0;
-  this._n32$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n32$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n33$getter = function(){
-  return this._n33$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n33$getter = function(){
+  return this._n33$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n33$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n33$setter = function(value){
   var tmp$0;
-  this._n33$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n33$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n34$getter = function(){
-  return this._n34$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n34$getter = function(){
+  return this._n34$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n34$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n34$setter = function(value){
   var tmp$0;
-  this._n34$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n34$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n41$getter = function(){
-  return this._n41$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n41$getter = function(){
+  return this._n41$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n41$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n41$setter = function(value){
   var tmp$0;
-  this._n41$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n41$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n42$getter = function(){
-  return this._n42$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n42$getter = function(){
+  return this._n42$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n42$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n42$setter = function(value){
   var tmp$0;
-  this._n42$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n42$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n43$getter = function(){
-  return this._n43$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n43$getter = function(){
+  return this._n43$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n43$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n43$setter = function(value){
   var tmp$0;
-  this._n43$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n43$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n44$getter = function(){
-  return this._n44$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.n44$getter = function(){
+  return this._n44$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.n44$setter = function(value){
+ThreeD88754a$Matrix4$Dart.prototype.n44$setter = function(value){
   var tmp$0;
-  this._n44$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._n44$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setValues$member = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+ThreeD88754a$Matrix4$Dart.prototype.setValues$member = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._n11$ThreeD85b351$$setter_(tmp$0 = n11) , tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$1 = n12) , tmp$1;
-  this._n13$ThreeD85b351$$setter_(tmp$2 = n13) , tmp$2;
-  this._n14$ThreeD85b351$$setter_(tmp$3 = n14) , tmp$3;
-  this._n21$ThreeD85b351$$setter_(tmp$4 = n21) , tmp$4;
-  this._n22$ThreeD85b351$$setter_(tmp$5 = n22) , tmp$5;
-  this._n23$ThreeD85b351$$setter_(tmp$6 = n23) , tmp$6;
-  this._n24$ThreeD85b351$$setter_(tmp$7 = n24) , tmp$7;
-  this._n31$ThreeD85b351$$setter_(tmp$8 = n31) , tmp$8;
-  this._n32$ThreeD85b351$$setter_(tmp$9 = n32) , tmp$9;
-  this._n33$ThreeD85b351$$setter_(tmp$10 = n33) , tmp$10;
-  this._n34$ThreeD85b351$$setter_(tmp$11 = n34) , tmp$11;
-  this._n41$ThreeD85b351$$setter_(tmp$12 = n41) , tmp$12;
-  this._n42$ThreeD85b351$$setter_(tmp$13 = n42) , tmp$13;
-  this._n43$ThreeD85b351$$setter_(tmp$14 = n43) , tmp$14;
-  this._n44$ThreeD85b351$$setter_(tmp$15 = n44) , tmp$15;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = n11) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$1 = n12) , tmp$1;
+  this._n13$ThreeD88754a$$setter_(tmp$2 = n13) , tmp$2;
+  this._n14$ThreeD88754a$$setter_(tmp$3 = n14) , tmp$3;
+  this._n21$ThreeD88754a$$setter_(tmp$4 = n21) , tmp$4;
+  this._n22$ThreeD88754a$$setter_(tmp$5 = n22) , tmp$5;
+  this._n23$ThreeD88754a$$setter_(tmp$6 = n23) , tmp$6;
+  this._n24$ThreeD88754a$$setter_(tmp$7 = n24) , tmp$7;
+  this._n31$ThreeD88754a$$setter_(tmp$8 = n31) , tmp$8;
+  this._n32$ThreeD88754a$$setter_(tmp$9 = n32) , tmp$9;
+  this._n33$ThreeD88754a$$setter_(tmp$10 = n33) , tmp$10;
+  this._n34$ThreeD88754a$$setter_(tmp$11 = n34) , tmp$11;
+  this._n41$ThreeD88754a$$setter_(tmp$12 = n41) , tmp$12;
+  this._n42$ThreeD88754a$$setter_(tmp$13 = n42) , tmp$13;
+  this._n43$ThreeD88754a$$setter_(tmp$14 = n43) , tmp$14;
+  this._n44$ThreeD88754a$$setter_(tmp$15 = n44) , tmp$15;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setValues$named = function($n, $o, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
+ThreeD88754a$Matrix4$Dart.prototype.setValues$named = function($n, $o, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44){
   if ($o.count || $n != 16)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.setValues$member.call(this, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
+  return ThreeD88754a$Matrix4$Dart.prototype.setValues$member.call(this, n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.copy$member = function(m){
+ThreeD88754a$Matrix4$Dart.prototype.copy$member = function(m){
   this.setValues$member(m.n11$getter(), m.n12$getter(), m.n13$getter(), m.n14$getter(), m.n21$getter(), m.n22$getter(), m.n23$getter(), m.n24$getter(), m.n31$getter(), m.n32$getter(), m.n33$getter(), m.n34$getter(), m.n41$getter(), m.n42$getter(), m.n43$getter(), m.n44$getter());
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.copy$named = function($n, $o, m){
+ThreeD88754a$Matrix4$Dart.prototype.copy$named = function($n, $o, m){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.copy$member.call(this, m);
+  return ThreeD88754a$Matrix4$Dart.prototype.copy$member.call(this, m);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$Matrix4$Dart.$lookupRTT()], ThreeD85b351$Matrix4$Dart.$lookupRTT());
+ThreeD88754a$Matrix4$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$Matrix4$Dart.$lookupRTT()], ThreeD88754a$Matrix4$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$Matrix4$Dart.prototype.copy$named, ThreeD85b351$Matrix4$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$Matrix4$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$Matrix4$Dart.prototype.copy$named, ThreeD88754a$Matrix4$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiply$member = function(a, b){
+ThreeD88754a$Matrix4$Dart.prototype.multiply$member = function(a, b){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var a11 = a.n11$getter();
   var a12 = a.n12$getter();
@@ -70752,222 +70752,222 @@ ThreeD85b351$Matrix4$Dart.prototype.multiply$member = function(a, b){
   var b42 = b.n42$getter();
   var b43 = b.n43$getter();
   var b44 = b.n44$getter();
-  this._n11$ThreeD85b351$$setter_(tmp$0 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b11), MUL$operator(a12, b21)), MUL$operator(a13, b31)), MUL$operator(a14, b41))) , tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b12), MUL$operator(a12, b22)), MUL$operator(a13, b32)), MUL$operator(a14, b42))) , tmp$1;
-  this._n13$ThreeD85b351$$setter_(tmp$2 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b13), MUL$operator(a12, b23)), MUL$operator(a13, b33)), MUL$operator(a14, b43))) , tmp$2;
-  this._n14$ThreeD85b351$$setter_(tmp$3 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b14), MUL$operator(a12, b24)), MUL$operator(a13, b34)), MUL$operator(a14, b44))) , tmp$3;
-  this._n21$ThreeD85b351$$setter_(tmp$4 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b11), MUL$operator(a22, b21)), MUL$operator(a23, b31)), MUL$operator(a24, b41))) , tmp$4;
-  this._n22$ThreeD85b351$$setter_(tmp$5 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b12), MUL$operator(a22, b22)), MUL$operator(a23, b32)), MUL$operator(a24, b42))) , tmp$5;
-  this._n23$ThreeD85b351$$setter_(tmp$6 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b13), MUL$operator(a22, b23)), MUL$operator(a23, b33)), MUL$operator(a24, b43))) , tmp$6;
-  this._n24$ThreeD85b351$$setter_(tmp$7 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b14), MUL$operator(a22, b24)), MUL$operator(a23, b34)), MUL$operator(a24, b44))) , tmp$7;
-  this._n31$ThreeD85b351$$setter_(tmp$8 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b11), MUL$operator(a32, b21)), MUL$operator(a33, b31)), MUL$operator(a34, b41))) , tmp$8;
-  this._n32$ThreeD85b351$$setter_(tmp$9 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b12), MUL$operator(a32, b22)), MUL$operator(a33, b32)), MUL$operator(a34, b42))) , tmp$9;
-  this._n33$ThreeD85b351$$setter_(tmp$10 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b13), MUL$operator(a32, b23)), MUL$operator(a33, b33)), MUL$operator(a34, b43))) , tmp$10;
-  this._n34$ThreeD85b351$$setter_(tmp$11 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b14), MUL$operator(a32, b24)), MUL$operator(a33, b34)), MUL$operator(a34, b44))) , tmp$11;
-  this._n41$ThreeD85b351$$setter_(tmp$12 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b11), MUL$operator(a42, b21)), MUL$operator(a43, b31)), MUL$operator(a44, b41))) , tmp$12;
-  this._n42$ThreeD85b351$$setter_(tmp$13 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b12), MUL$operator(a42, b22)), MUL$operator(a43, b32)), MUL$operator(a44, b42))) , tmp$13;
-  this._n43$ThreeD85b351$$setter_(tmp$14 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b13), MUL$operator(a42, b23)), MUL$operator(a43, b33)), MUL$operator(a44, b43))) , tmp$14;
-  this._n44$ThreeD85b351$$setter_(tmp$15 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b14), MUL$operator(a42, b24)), MUL$operator(a43, b34)), MUL$operator(a44, b44))) , tmp$15;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b11), MUL$operator(a12, b21)), MUL$operator(a13, b31)), MUL$operator(a14, b41))) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b12), MUL$operator(a12, b22)), MUL$operator(a13, b32)), MUL$operator(a14, b42))) , tmp$1;
+  this._n13$ThreeD88754a$$setter_(tmp$2 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b13), MUL$operator(a12, b23)), MUL$operator(a13, b33)), MUL$operator(a14, b43))) , tmp$2;
+  this._n14$ThreeD88754a$$setter_(tmp$3 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a11, b14), MUL$operator(a12, b24)), MUL$operator(a13, b34)), MUL$operator(a14, b44))) , tmp$3;
+  this._n21$ThreeD88754a$$setter_(tmp$4 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b11), MUL$operator(a22, b21)), MUL$operator(a23, b31)), MUL$operator(a24, b41))) , tmp$4;
+  this._n22$ThreeD88754a$$setter_(tmp$5 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b12), MUL$operator(a22, b22)), MUL$operator(a23, b32)), MUL$operator(a24, b42))) , tmp$5;
+  this._n23$ThreeD88754a$$setter_(tmp$6 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b13), MUL$operator(a22, b23)), MUL$operator(a23, b33)), MUL$operator(a24, b43))) , tmp$6;
+  this._n24$ThreeD88754a$$setter_(tmp$7 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a21, b14), MUL$operator(a22, b24)), MUL$operator(a23, b34)), MUL$operator(a24, b44))) , tmp$7;
+  this._n31$ThreeD88754a$$setter_(tmp$8 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b11), MUL$operator(a32, b21)), MUL$operator(a33, b31)), MUL$operator(a34, b41))) , tmp$8;
+  this._n32$ThreeD88754a$$setter_(tmp$9 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b12), MUL$operator(a32, b22)), MUL$operator(a33, b32)), MUL$operator(a34, b42))) , tmp$9;
+  this._n33$ThreeD88754a$$setter_(tmp$10 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b13), MUL$operator(a32, b23)), MUL$operator(a33, b33)), MUL$operator(a34, b43))) , tmp$10;
+  this._n34$ThreeD88754a$$setter_(tmp$11 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a31, b14), MUL$operator(a32, b24)), MUL$operator(a33, b34)), MUL$operator(a34, b44))) , tmp$11;
+  this._n41$ThreeD88754a$$setter_(tmp$12 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b11), MUL$operator(a42, b21)), MUL$operator(a43, b31)), MUL$operator(a44, b41))) , tmp$12;
+  this._n42$ThreeD88754a$$setter_(tmp$13 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b12), MUL$operator(a42, b22)), MUL$operator(a43, b32)), MUL$operator(a44, b42))) , tmp$13;
+  this._n43$ThreeD88754a$$setter_(tmp$14 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b13), MUL$operator(a42, b23)), MUL$operator(a43, b33)), MUL$operator(a44, b43))) , tmp$14;
+  this._n44$ThreeD88754a$$setter_(tmp$15 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(a41, b14), MUL$operator(a42, b24)), MUL$operator(a43, b34)), MUL$operator(a44, b44))) , tmp$15;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiply$named = function($n, $o, a, b){
+ThreeD88754a$Matrix4$Dart.prototype.multiply$named = function($n, $o, a, b){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.multiply$member.call(this, a, b);
+  return ThreeD88754a$Matrix4$Dart.prototype.multiply$member.call(this, a, b);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiplyScalar$member = function(s){
+ThreeD88754a$Matrix4$Dart.prototype.multiplyScalar$member = function(s){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._n11$ThreeD85b351$$setter_(tmp$0 = MUL$operator(this._n11$ThreeD85b351$$getter_(), s)) , tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$1 = MUL$operator(this._n12$ThreeD85b351$$getter_(), s)) , tmp$1;
-  this._n13$ThreeD85b351$$setter_(tmp$2 = MUL$operator(this._n13$ThreeD85b351$$getter_(), s)) , tmp$2;
-  this._n14$ThreeD85b351$$setter_(tmp$3 = MUL$operator(this._n14$ThreeD85b351$$getter_(), s)) , tmp$3;
-  this._n21$ThreeD85b351$$setter_(tmp$4 = MUL$operator(this._n21$ThreeD85b351$$getter_(), s)) , tmp$4;
-  this._n22$ThreeD85b351$$setter_(tmp$5 = MUL$operator(this._n22$ThreeD85b351$$getter_(), s)) , tmp$5;
-  this._n23$ThreeD85b351$$setter_(tmp$6 = MUL$operator(this._n23$ThreeD85b351$$getter_(), s)) , tmp$6;
-  this._n24$ThreeD85b351$$setter_(tmp$7 = MUL$operator(this._n24$ThreeD85b351$$getter_(), s)) , tmp$7;
-  this._n31$ThreeD85b351$$setter_(tmp$8 = MUL$operator(this._n31$ThreeD85b351$$getter_(), s)) , tmp$8;
-  this._n32$ThreeD85b351$$setter_(tmp$9 = MUL$operator(this._n32$ThreeD85b351$$getter_(), s)) , tmp$9;
-  this._n33$ThreeD85b351$$setter_(tmp$10 = MUL$operator(this._n33$ThreeD85b351$$getter_(), s)) , tmp$10;
-  this._n34$ThreeD85b351$$setter_(tmp$11 = MUL$operator(this._n34$ThreeD85b351$$getter_(), s)) , tmp$11;
-  this._n41$ThreeD85b351$$setter_(tmp$12 = MUL$operator(this._n41$ThreeD85b351$$getter_(), s)) , tmp$12;
-  this._n42$ThreeD85b351$$setter_(tmp$13 = MUL$operator(this._n42$ThreeD85b351$$getter_(), s)) , tmp$13;
-  this._n43$ThreeD85b351$$setter_(tmp$14 = MUL$operator(this._n43$ThreeD85b351$$getter_(), s)) , tmp$14;
-  this._n44$ThreeD85b351$$setter_(tmp$15 = MUL$operator(this._n44$ThreeD85b351$$getter_(), s)) , tmp$15;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = MUL$operator(this._n11$ThreeD88754a$$getter_(), s)) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$1 = MUL$operator(this._n12$ThreeD88754a$$getter_(), s)) , tmp$1;
+  this._n13$ThreeD88754a$$setter_(tmp$2 = MUL$operator(this._n13$ThreeD88754a$$getter_(), s)) , tmp$2;
+  this._n14$ThreeD88754a$$setter_(tmp$3 = MUL$operator(this._n14$ThreeD88754a$$getter_(), s)) , tmp$3;
+  this._n21$ThreeD88754a$$setter_(tmp$4 = MUL$operator(this._n21$ThreeD88754a$$getter_(), s)) , tmp$4;
+  this._n22$ThreeD88754a$$setter_(tmp$5 = MUL$operator(this._n22$ThreeD88754a$$getter_(), s)) , tmp$5;
+  this._n23$ThreeD88754a$$setter_(tmp$6 = MUL$operator(this._n23$ThreeD88754a$$getter_(), s)) , tmp$6;
+  this._n24$ThreeD88754a$$setter_(tmp$7 = MUL$operator(this._n24$ThreeD88754a$$getter_(), s)) , tmp$7;
+  this._n31$ThreeD88754a$$setter_(tmp$8 = MUL$operator(this._n31$ThreeD88754a$$getter_(), s)) , tmp$8;
+  this._n32$ThreeD88754a$$setter_(tmp$9 = MUL$operator(this._n32$ThreeD88754a$$getter_(), s)) , tmp$9;
+  this._n33$ThreeD88754a$$setter_(tmp$10 = MUL$operator(this._n33$ThreeD88754a$$getter_(), s)) , tmp$10;
+  this._n34$ThreeD88754a$$setter_(tmp$11 = MUL$operator(this._n34$ThreeD88754a$$getter_(), s)) , tmp$11;
+  this._n41$ThreeD88754a$$setter_(tmp$12 = MUL$operator(this._n41$ThreeD88754a$$getter_(), s)) , tmp$12;
+  this._n42$ThreeD88754a$$setter_(tmp$13 = MUL$operator(this._n42$ThreeD88754a$$getter_(), s)) , tmp$13;
+  this._n43$ThreeD88754a$$setter_(tmp$14 = MUL$operator(this._n43$ThreeD88754a$$getter_(), s)) , tmp$14;
+  this._n44$ThreeD88754a$$setter_(tmp$15 = MUL$operator(this._n44$ThreeD88754a$$getter_(), s)) , tmp$15;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiplyScalar$named = function($n, $o, s){
+ThreeD88754a$Matrix4$Dart.prototype.multiplyScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.multiplyScalar$member.call(this, s);
+  return ThreeD88754a$Matrix4$Dart.prototype.multiplyScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiplyVector3$member = function(v){
+ThreeD88754a$Matrix4$Dart.prototype.multiplyVector3$member = function(v){
   var tmp$1, tmp$2, tmp$0;
   var vx = v.x$getter();
   var vy = v.y$getter();
   var vz = v.z$getter();
-  var d = DIV$operator(1, ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n41$ThreeD85b351$$getter_(), vx), MUL$operator(this._n42$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n43$ThreeD85b351$$getter_(), vz)), this._n44$ThreeD85b351$$getter_()));
-  v.x$setter(tmp$0 = MUL$operator(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n11$ThreeD85b351$$getter_(), vx), MUL$operator(this._n12$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n13$ThreeD85b351$$getter_(), vz)), this._n14$ThreeD85b351$$getter_()), d)) , tmp$0;
-  v.y$setter(tmp$1 = MUL$operator(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n21$ThreeD85b351$$getter_(), vx), MUL$operator(this._n22$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n23$ThreeD85b351$$getter_(), vz)), this._n24$ThreeD85b351$$getter_()), d)) , tmp$1;
-  v.z$setter(tmp$2 = MUL$operator(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n31$ThreeD85b351$$getter_(), vx), MUL$operator(this._n32$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n33$ThreeD85b351$$getter_(), vz)), this._n34$ThreeD85b351$$getter_()), d)) , tmp$2;
+  var d = DIV$operator(1, ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n41$ThreeD88754a$$getter_(), vx), MUL$operator(this._n42$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n43$ThreeD88754a$$getter_(), vz)), this._n44$ThreeD88754a$$getter_()));
+  v.x$setter(tmp$0 = MUL$operator(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n11$ThreeD88754a$$getter_(), vx), MUL$operator(this._n12$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n13$ThreeD88754a$$getter_(), vz)), this._n14$ThreeD88754a$$getter_()), d)) , tmp$0;
+  v.y$setter(tmp$1 = MUL$operator(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n21$ThreeD88754a$$getter_(), vx), MUL$operator(this._n22$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n23$ThreeD88754a$$getter_(), vz)), this._n24$ThreeD88754a$$getter_()), d)) , tmp$1;
+  v.z$setter(tmp$2 = MUL$operator(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n31$ThreeD88754a$$getter_(), vx), MUL$operator(this._n32$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n33$ThreeD88754a$$getter_(), vz)), this._n34$ThreeD88754a$$getter_()), d)) , tmp$2;
   return v;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiplyVector3$named = function($n, $o, v){
+ThreeD88754a$Matrix4$Dart.prototype.multiplyVector3$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.multiplyVector3$member.call(this, v);
+  return ThreeD88754a$Matrix4$Dart.prototype.multiplyVector3$member.call(this, v);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiplyVector4$member = function(v){
+ThreeD88754a$Matrix4$Dart.prototype.multiplyVector4$member = function(v){
   var tmp$1, tmp$2, tmp$3, tmp$0;
   var vx = v.x$getter();
   var vy = v.y$getter();
   var vz = v.z$getter();
   var vw = v.w$getter();
-  v.x$setter(tmp$0 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n11$ThreeD85b351$$getter_(), vx), MUL$operator(this._n12$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n13$ThreeD85b351$$getter_(), vz)), MUL$operator(this._n14$ThreeD85b351$$getter_(), vw))) , tmp$0;
-  v.y$setter(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n21$ThreeD85b351$$getter_(), vx), MUL$operator(this._n22$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n23$ThreeD85b351$$getter_(), vz)), MUL$operator(this._n24$ThreeD85b351$$getter_(), vw))) , tmp$1;
-  v.z$setter(tmp$2 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n31$ThreeD85b351$$getter_(), vx), MUL$operator(this._n32$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n33$ThreeD85b351$$getter_(), vz)), MUL$operator(this._n34$ThreeD85b351$$getter_(), vw))) , tmp$2;
-  v.w$setter(tmp$3 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n41$ThreeD85b351$$getter_(), vx), MUL$operator(this._n42$ThreeD85b351$$getter_(), vy)), MUL$operator(this._n43$ThreeD85b351$$getter_(), vz)), MUL$operator(this._n44$ThreeD85b351$$getter_(), vw))) , tmp$3;
+  v.x$setter(tmp$0 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n11$ThreeD88754a$$getter_(), vx), MUL$operator(this._n12$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n13$ThreeD88754a$$getter_(), vz)), MUL$operator(this._n14$ThreeD88754a$$getter_(), vw))) , tmp$0;
+  v.y$setter(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n21$ThreeD88754a$$getter_(), vx), MUL$operator(this._n22$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n23$ThreeD88754a$$getter_(), vz)), MUL$operator(this._n24$ThreeD88754a$$getter_(), vw))) , tmp$1;
+  v.z$setter(tmp$2 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n31$ThreeD88754a$$getter_(), vx), MUL$operator(this._n32$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n33$ThreeD88754a$$getter_(), vz)), MUL$operator(this._n34$ThreeD88754a$$getter_(), vw))) , tmp$2;
+  v.w$setter(tmp$3 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n41$ThreeD88754a$$getter_(), vx), MUL$operator(this._n42$ThreeD88754a$$getter_(), vy)), MUL$operator(this._n43$ThreeD88754a$$getter_(), vz)), MUL$operator(this._n44$ThreeD88754a$$getter_(), vw))) , tmp$3;
   return v;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.multiplyVector4$named = function($n, $o, v){
+ThreeD88754a$Matrix4$Dart.prototype.multiplyVector4$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.multiplyVector4$member.call(this, v);
+  return ThreeD88754a$Matrix4$Dart.prototype.multiplyVector4$member.call(this, v);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.rotateAxis$member = function(v){
+ThreeD88754a$Matrix4$Dart.prototype.rotateAxis$member = function(v){
   var tmp$1, tmp$2, tmp$0;
   var vx = v.x$getter();
   var vy = v.y$getter();
   var vz = v.z$getter();
-  v.x$setter(tmp$0 = ADD$operator(ADD$operator(MUL$operator(vx, this._n11$ThreeD85b351$$getter_()), MUL$operator(vy, this._n12$ThreeD85b351$$getter_())), MUL$operator(vz, this._n13$ThreeD85b351$$getter_()))) , tmp$0;
-  v.y$setter(tmp$1 = ADD$operator(ADD$operator(MUL$operator(vx, this._n21$ThreeD85b351$$getter_()), MUL$operator(vy, this._n22$ThreeD85b351$$getter_())), MUL$operator(vz, this._n23$ThreeD85b351$$getter_()))) , tmp$1;
-  v.z$setter(tmp$2 = ADD$operator(ADD$operator(MUL$operator(vx, this._n31$ThreeD85b351$$getter_()), MUL$operator(vy, this._n32$ThreeD85b351$$getter_())), MUL$operator(vz, this._n33$ThreeD85b351$$getter_()))) , tmp$2;
+  v.x$setter(tmp$0 = ADD$operator(ADD$operator(MUL$operator(vx, this._n11$ThreeD88754a$$getter_()), MUL$operator(vy, this._n12$ThreeD88754a$$getter_())), MUL$operator(vz, this._n13$ThreeD88754a$$getter_()))) , tmp$0;
+  v.y$setter(tmp$1 = ADD$operator(ADD$operator(MUL$operator(vx, this._n21$ThreeD88754a$$getter_()), MUL$operator(vy, this._n22$ThreeD88754a$$getter_())), MUL$operator(vz, this._n23$ThreeD88754a$$getter_()))) , tmp$1;
+  v.z$setter(tmp$2 = ADD$operator(ADD$operator(MUL$operator(vx, this._n31$ThreeD88754a$$getter_()), MUL$operator(vy, this._n32$ThreeD88754a$$getter_())), MUL$operator(vz, this._n33$ThreeD88754a$$getter_()))) , tmp$2;
   v.normalize$named(0, $noargs);
   return v;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.rotateAxis$named = function($n, $o, v){
+ThreeD88754a$Matrix4$Dart.prototype.rotateAxis$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.rotateAxis$member.call(this, v);
+  return ThreeD88754a$Matrix4$Dart.prototype.rotateAxis$member.call(this, v);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.determinant$member = function(){
-  var n11 = this._n11$ThreeD85b351$$getter_();
-  var n12 = this._n12$ThreeD85b351$$getter_();
-  var n13 = this._n13$ThreeD85b351$$getter_();
-  var n14 = this._n14$ThreeD85b351$$getter_();
-  var n21 = this._n21$ThreeD85b351$$getter_();
-  var n22 = this._n22$ThreeD85b351$$getter_();
-  var n23 = this._n23$ThreeD85b351$$getter_();
-  var n24 = this._n24$ThreeD85b351$$getter_();
-  var n31 = this._n31$ThreeD85b351$$getter_();
-  var n32 = this._n32$ThreeD85b351$$getter_();
-  var n33 = this._n33$ThreeD85b351$$getter_();
-  var n34 = this._n34$ThreeD85b351$$getter_();
-  var n41 = this._n41$ThreeD85b351$$getter_();
-  var n42 = this._n42$ThreeD85b351$$getter_();
-  var n43 = this._n43$ThreeD85b351$$getter_();
-  var n44 = this._n44$ThreeD85b351$$getter_();
+ThreeD88754a$Matrix4$Dart.prototype.determinant$member = function(){
+  var n11 = this._n11$ThreeD88754a$$getter_();
+  var n12 = this._n12$ThreeD88754a$$getter_();
+  var n13 = this._n13$ThreeD88754a$$getter_();
+  var n14 = this._n14$ThreeD88754a$$getter_();
+  var n21 = this._n21$ThreeD88754a$$getter_();
+  var n22 = this._n22$ThreeD88754a$$getter_();
+  var n23 = this._n23$ThreeD88754a$$getter_();
+  var n24 = this._n24$ThreeD88754a$$getter_();
+  var n31 = this._n31$ThreeD88754a$$getter_();
+  var n32 = this._n32$ThreeD88754a$$getter_();
+  var n33 = this._n33$ThreeD88754a$$getter_();
+  var n34 = this._n34$ThreeD88754a$$getter_();
+  var n41 = this._n41$ThreeD88754a$$getter_();
+  var n42 = this._n42$ThreeD88754a$$getter_();
+  var n43 = this._n43$ThreeD88754a$$getter_();
+  var n44 = this._n44$ThreeD88754a$$getter_();
   return ADD$operator(SUB$operator(SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(MUL$operator(n14, n23), n32), n41), MUL$operator(MUL$operator(MUL$operator(n13, n24), n32), n41)), MUL$operator(MUL$operator(MUL$operator(n14, n22), n33), n41)), MUL$operator(MUL$operator(MUL$operator(n12, n24), n33), n41)), MUL$operator(MUL$operator(MUL$operator(n13, n22), n34), n41)), MUL$operator(MUL$operator(MUL$operator(n12, n23), n34), n41)), MUL$operator(MUL$operator(MUL$operator(n14, n23), n31), n42)), MUL$operator(MUL$operator(MUL$operator(n13, n24), n31), n42)), MUL$operator(MUL$operator(MUL$operator(n14, n21), n33), n42)), MUL$operator(MUL$operator(MUL$operator(n11, n24), n33), n42)), MUL$operator(MUL$operator(MUL$operator(n13, n21), n34), n42)), MUL$operator(MUL$operator(MUL$operator(n11, n23), n34), n42)), MUL$operator(MUL$operator(MUL$operator(n14, n22), n31), n43)), MUL$operator(MUL$operator(MUL$operator(n12, n24), n31), n43)), MUL$operator(MUL$operator(MUL$operator(n14, n21), n32), n43)), MUL$operator(MUL$operator(MUL$operator(n11, n24), n32), n43)), MUL$operator(MUL$operator(MUL$operator(n12, n21), n34), n43)), MUL$operator(MUL$operator(MUL$operator(n11, n22), n34), n43)), MUL$operator(MUL$operator(MUL$operator(n13, n22), n31), n44)), MUL$operator(MUL$operator(MUL$operator(n12, n23), n31), n44)), MUL$operator(MUL$operator(MUL$operator(n13, n21), n32), n44)), MUL$operator(MUL$operator(MUL$operator(n11, n23), n32), n44)), MUL$operator(MUL$operator(MUL$operator(n12, n21), n33), n44)), MUL$operator(MUL$operator(MUL$operator(n11, n22), n33), n44));
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.determinant$named = function($n, $o){
+ThreeD88754a$Matrix4$Dart.prototype.determinant$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.determinant$member.call(this);
+  return ThreeD88754a$Matrix4$Dart.prototype.determinant$member.call(this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.clone$member = function(){
+ThreeD88754a$Matrix4$Dart.prototype.clone$member = function(){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  var m = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null);
-  m.n11$setter(tmp$0 = this._n11$ThreeD85b351$$getter_()) , tmp$0;
-  m.n12$setter(tmp$1 = this._n12$ThreeD85b351$$getter_()) , tmp$1;
-  m.n13$setter(tmp$2 = this._n13$ThreeD85b351$$getter_()) , tmp$2;
-  m.n14$setter(tmp$3 = this._n14$ThreeD85b351$$getter_()) , tmp$3;
-  m.n21$setter(tmp$4 = this._n21$ThreeD85b351$$getter_()) , tmp$4;
-  m.n22$setter(tmp$5 = this._n22$ThreeD85b351$$getter_()) , tmp$5;
-  m.n23$setter(tmp$6 = this._n23$ThreeD85b351$$getter_()) , tmp$6;
-  m.n24$setter(tmp$7 = this._n24$ThreeD85b351$$getter_()) , tmp$7;
-  m.n31$setter(tmp$8 = this._n31$ThreeD85b351$$getter_()) , tmp$8;
-  m.n32$setter(tmp$9 = this._n32$ThreeD85b351$$getter_()) , tmp$9;
-  m.n33$setter(tmp$10 = this._n33$ThreeD85b351$$getter_()) , tmp$10;
-  m.n34$setter(tmp$11 = this._n34$ThreeD85b351$$getter_()) , tmp$11;
-  m.n41$setter(tmp$12 = this._n41$ThreeD85b351$$getter_()) , tmp$12;
-  m.n42$setter(tmp$13 = this._n42$ThreeD85b351$$getter_()) , tmp$13;
-  m.n43$setter(tmp$14 = this._n43$ThreeD85b351$$getter_()) , tmp$14;
-  m.n44$setter(tmp$15 = this._n44$ThreeD85b351$$getter_()) , tmp$15;
+  var m = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null);
+  m.n11$setter(tmp$0 = this._n11$ThreeD88754a$$getter_()) , tmp$0;
+  m.n12$setter(tmp$1 = this._n12$ThreeD88754a$$getter_()) , tmp$1;
+  m.n13$setter(tmp$2 = this._n13$ThreeD88754a$$getter_()) , tmp$2;
+  m.n14$setter(tmp$3 = this._n14$ThreeD88754a$$getter_()) , tmp$3;
+  m.n21$setter(tmp$4 = this._n21$ThreeD88754a$$getter_()) , tmp$4;
+  m.n22$setter(tmp$5 = this._n22$ThreeD88754a$$getter_()) , tmp$5;
+  m.n23$setter(tmp$6 = this._n23$ThreeD88754a$$getter_()) , tmp$6;
+  m.n24$setter(tmp$7 = this._n24$ThreeD88754a$$getter_()) , tmp$7;
+  m.n31$setter(tmp$8 = this._n31$ThreeD88754a$$getter_()) , tmp$8;
+  m.n32$setter(tmp$9 = this._n32$ThreeD88754a$$getter_()) , tmp$9;
+  m.n33$setter(tmp$10 = this._n33$ThreeD88754a$$getter_()) , tmp$10;
+  m.n34$setter(tmp$11 = this._n34$ThreeD88754a$$getter_()) , tmp$11;
+  m.n41$setter(tmp$12 = this._n41$ThreeD88754a$$getter_()) , tmp$12;
+  m.n42$setter(tmp$13 = this._n42$ThreeD88754a$$getter_()) , tmp$13;
+  m.n43$setter(tmp$14 = this._n43$ThreeD88754a$$getter_()) , tmp$14;
+  m.n44$setter(tmp$15 = this._n44$ThreeD88754a$$getter_()) , tmp$15;
   return m;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.clone$named = function($n, $o){
+ThreeD88754a$Matrix4$Dart.prototype.clone$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.clone$member.call(this);
+  return ThreeD88754a$Matrix4$Dart.prototype.clone$member.call(this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setPosition$member = function(v){
+ThreeD88754a$Matrix4$Dart.prototype.setPosition$member = function(v){
   var tmp$1, tmp$2, tmp$0;
-  this._n14$ThreeD85b351$$setter_(tmp$0 = v.x$getter()) , tmp$0;
-  this._n24$ThreeD85b351$$setter_(tmp$1 = v.y$getter()) , tmp$1;
-  this._n34$ThreeD85b351$$setter_(tmp$2 = v.z$getter()) , tmp$2;
+  this._n14$ThreeD88754a$$setter_(tmp$0 = v.x$getter()) , tmp$0;
+  this._n24$ThreeD88754a$$setter_(tmp$1 = v.y$getter()) , tmp$1;
+  this._n34$ThreeD88754a$$setter_(tmp$2 = v.z$getter()) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setPosition$named = function($n, $o, v){
+ThreeD88754a$Matrix4$Dart.prototype.setPosition$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.setPosition$member.call(this, v);
+  return ThreeD88754a$Matrix4$Dart.prototype.setPosition$member.call(this, v);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getPosition$member = function(){
-  return ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_().setValues$named(3, $noargs, this._n14$ThreeD85b351$$getter_(), this._n24$ThreeD85b351$$getter_(), this._n34$ThreeD85b351$$getter_());
+ThreeD88754a$Matrix4$Dart.prototype.getPosition$member = function(){
+  return ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_().setValues$named(3, $noargs, this._n14$ThreeD88754a$$getter_(), this._n24$ThreeD88754a$$getter_(), this._n34$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getPosition$named = function($n, $o){
+ThreeD88754a$Matrix4$Dart.prototype.getPosition$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.getPosition$member.call(this);
+  return ThreeD88754a$Matrix4$Dart.prototype.getPosition$member.call(this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getColumnX$member = function(){
-  return ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_().setValues$named(3, $noargs, this._n11$ThreeD85b351$$getter_(), this._n21$ThreeD85b351$$getter_(), this._n31$ThreeD85b351$$getter_());
+ThreeD88754a$Matrix4$Dart.prototype.getColumnX$member = function(){
+  return ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_().setValues$named(3, $noargs, this._n11$ThreeD88754a$$getter_(), this._n21$ThreeD88754a$$getter_(), this._n31$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getColumnX$named = function($n, $o){
+ThreeD88754a$Matrix4$Dart.prototype.getColumnX$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.getColumnX$member.call(this);
+  return ThreeD88754a$Matrix4$Dart.prototype.getColumnX$member.call(this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getColumnY$member = function(){
-  return ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_().setValues$named(3, $noargs, this._n12$ThreeD85b351$$getter_(), this._n22$ThreeD85b351$$getter_(), this._n32$ThreeD85b351$$getter_());
+ThreeD88754a$Matrix4$Dart.prototype.getColumnY$member = function(){
+  return ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_().setValues$named(3, $noargs, this._n12$ThreeD88754a$$getter_(), this._n22$ThreeD88754a$$getter_(), this._n32$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getColumnY$named = function($n, $o){
+ThreeD88754a$Matrix4$Dart.prototype.getColumnY$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.getColumnY$member.call(this);
+  return ThreeD88754a$Matrix4$Dart.prototype.getColumnY$member.call(this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getColumnZ$member = function(){
-  return ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_().setValues$named(3, $noargs, this._n13$ThreeD85b351$$getter_(), this._n23$ThreeD85b351$$getter_(), this._n33$ThreeD85b351$$getter_());
+ThreeD88754a$Matrix4$Dart.prototype.getColumnZ$member = function(){
+  return ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_().setValues$named(3, $noargs, this._n13$ThreeD88754a$$getter_(), this._n23$ThreeD88754a$$getter_(), this._n33$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getColumnZ$named = function($n, $o){
+ThreeD88754a$Matrix4$Dart.prototype.getColumnZ$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.getColumnZ$member.call(this);
+  return ThreeD88754a$Matrix4$Dart.prototype.getColumnZ$member.call(this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getInverse$member = function(m){
+ThreeD88754a$Matrix4$Dart.prototype.getInverse$member = function(m){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var n11 = m.n11$getter();
   var n12 = m.n12$getter();
@@ -70985,33 +70985,33 @@ ThreeD85b351$Matrix4$Dart.prototype.getInverse$member = function(m){
   var n42 = m.n42$getter();
   var n43 = m.n43$getter();
   var n44 = m.n44$getter();
-  this._n11$ThreeD85b351$$setter_(tmp$0 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n23, n34), n42), MUL$operator(MUL$operator(n24, n33), n42)), MUL$operator(MUL$operator(n24, n32), n43)), MUL$operator(MUL$operator(n22, n34), n43)), MUL$operator(MUL$operator(n23, n32), n44)), MUL$operator(MUL$operator(n22, n33), n44))) , tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$1 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n33), n42), MUL$operator(MUL$operator(n13, n34), n42)), MUL$operator(MUL$operator(n14, n32), n43)), MUL$operator(MUL$operator(n12, n34), n43)), MUL$operator(MUL$operator(n13, n32), n44)), MUL$operator(MUL$operator(n12, n33), n44))) , tmp$1;
-  this._n13$ThreeD85b351$$setter_(tmp$2 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n13, n24), n42), MUL$operator(MUL$operator(n14, n23), n42)), MUL$operator(MUL$operator(n14, n22), n43)), MUL$operator(MUL$operator(n12, n24), n43)), MUL$operator(MUL$operator(n13, n22), n44)), MUL$operator(MUL$operator(n12, n23), n44))) , tmp$2;
-  this._n14$ThreeD85b351$$setter_(tmp$3 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n23), n32), MUL$operator(MUL$operator(n13, n24), n32)), MUL$operator(MUL$operator(n14, n22), n33)), MUL$operator(MUL$operator(n12, n24), n33)), MUL$operator(MUL$operator(n13, n22), n34)), MUL$operator(MUL$operator(n12, n23), n34))) , tmp$3;
-  this._n21$ThreeD85b351$$setter_(tmp$4 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n24, n33), n41), MUL$operator(MUL$operator(n23, n34), n41)), MUL$operator(MUL$operator(n24, n31), n43)), MUL$operator(MUL$operator(n21, n34), n43)), MUL$operator(MUL$operator(n23, n31), n44)), MUL$operator(MUL$operator(n21, n33), n44))) , tmp$4;
-  this._n22$ThreeD85b351$$setter_(tmp$5 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n13, n34), n41), MUL$operator(MUL$operator(n14, n33), n41)), MUL$operator(MUL$operator(n14, n31), n43)), MUL$operator(MUL$operator(n11, n34), n43)), MUL$operator(MUL$operator(n13, n31), n44)), MUL$operator(MUL$operator(n11, n33), n44))) , tmp$5;
-  this._n23$ThreeD85b351$$setter_(tmp$6 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n23), n41), MUL$operator(MUL$operator(n13, n24), n41)), MUL$operator(MUL$operator(n14, n21), n43)), MUL$operator(MUL$operator(n11, n24), n43)), MUL$operator(MUL$operator(n13, n21), n44)), MUL$operator(MUL$operator(n11, n23), n44))) , tmp$6;
-  this._n24$ThreeD85b351$$setter_(tmp$7 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n13, n24), n31), MUL$operator(MUL$operator(n14, n23), n31)), MUL$operator(MUL$operator(n14, n21), n33)), MUL$operator(MUL$operator(n11, n24), n33)), MUL$operator(MUL$operator(n13, n21), n34)), MUL$operator(MUL$operator(n11, n23), n34))) , tmp$7;
-  this._n31$ThreeD85b351$$setter_(tmp$8 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n22, n34), n41), MUL$operator(MUL$operator(n24, n32), n41)), MUL$operator(MUL$operator(n24, n31), n42)), MUL$operator(MUL$operator(n21, n34), n42)), MUL$operator(MUL$operator(n22, n31), n44)), MUL$operator(MUL$operator(n21, n32), n44))) , tmp$8;
-  this._n32$ThreeD85b351$$setter_(tmp$9 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n32), n41), MUL$operator(MUL$operator(n12, n34), n41)), MUL$operator(MUL$operator(n14, n31), n42)), MUL$operator(MUL$operator(n11, n34), n42)), MUL$operator(MUL$operator(n12, n31), n44)), MUL$operator(MUL$operator(n11, n32), n44))) , tmp$9;
-  this._n33$ThreeD85b351$$setter_(tmp$10 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n12, n24), n41), MUL$operator(MUL$operator(n14, n22), n41)), MUL$operator(MUL$operator(n14, n21), n42)), MUL$operator(MUL$operator(n11, n24), n42)), MUL$operator(MUL$operator(n12, n21), n44)), MUL$operator(MUL$operator(n11, n22), n44))) , tmp$10;
-  this._n34$ThreeD85b351$$setter_(tmp$11 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n22), n31), MUL$operator(MUL$operator(n12, n24), n31)), MUL$operator(MUL$operator(n14, n21), n32)), MUL$operator(MUL$operator(n11, n24), n32)), MUL$operator(MUL$operator(n12, n21), n34)), MUL$operator(MUL$operator(n11, n22), n34))) , tmp$11;
-  this._n41$ThreeD85b351$$setter_(tmp$12 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n23, n32), n41), MUL$operator(MUL$operator(n22, n33), n41)), MUL$operator(MUL$operator(n23, n31), n42)), MUL$operator(MUL$operator(n21, n33), n42)), MUL$operator(MUL$operator(n22, n31), n43)), MUL$operator(MUL$operator(n21, n32), n43))) , tmp$12;
-  this._n42$ThreeD85b351$$setter_(tmp$13 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n12, n33), n41), MUL$operator(MUL$operator(n13, n32), n41)), MUL$operator(MUL$operator(n13, n31), n42)), MUL$operator(MUL$operator(n11, n33), n42)), MUL$operator(MUL$operator(n12, n31), n43)), MUL$operator(MUL$operator(n11, n32), n43))) , tmp$13;
-  this._n43$ThreeD85b351$$setter_(tmp$14 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n13, n22), n41), MUL$operator(MUL$operator(n12, n23), n41)), MUL$operator(MUL$operator(n13, n21), n42)), MUL$operator(MUL$operator(n11, n23), n42)), MUL$operator(MUL$operator(n12, n21), n43)), MUL$operator(MUL$operator(n11, n22), n43))) , tmp$14;
-  this._n44$ThreeD85b351$$setter_(tmp$15 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n12, n23), n31), MUL$operator(MUL$operator(n13, n22), n31)), MUL$operator(MUL$operator(n13, n21), n32)), MUL$operator(MUL$operator(n11, n23), n32)), MUL$operator(MUL$operator(n12, n21), n33)), MUL$operator(MUL$operator(n11, n22), n33))) , tmp$15;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n23, n34), n42), MUL$operator(MUL$operator(n24, n33), n42)), MUL$operator(MUL$operator(n24, n32), n43)), MUL$operator(MUL$operator(n22, n34), n43)), MUL$operator(MUL$operator(n23, n32), n44)), MUL$operator(MUL$operator(n22, n33), n44))) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$1 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n33), n42), MUL$operator(MUL$operator(n13, n34), n42)), MUL$operator(MUL$operator(n14, n32), n43)), MUL$operator(MUL$operator(n12, n34), n43)), MUL$operator(MUL$operator(n13, n32), n44)), MUL$operator(MUL$operator(n12, n33), n44))) , tmp$1;
+  this._n13$ThreeD88754a$$setter_(tmp$2 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n13, n24), n42), MUL$operator(MUL$operator(n14, n23), n42)), MUL$operator(MUL$operator(n14, n22), n43)), MUL$operator(MUL$operator(n12, n24), n43)), MUL$operator(MUL$operator(n13, n22), n44)), MUL$operator(MUL$operator(n12, n23), n44))) , tmp$2;
+  this._n14$ThreeD88754a$$setter_(tmp$3 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n23), n32), MUL$operator(MUL$operator(n13, n24), n32)), MUL$operator(MUL$operator(n14, n22), n33)), MUL$operator(MUL$operator(n12, n24), n33)), MUL$operator(MUL$operator(n13, n22), n34)), MUL$operator(MUL$operator(n12, n23), n34))) , tmp$3;
+  this._n21$ThreeD88754a$$setter_(tmp$4 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n24, n33), n41), MUL$operator(MUL$operator(n23, n34), n41)), MUL$operator(MUL$operator(n24, n31), n43)), MUL$operator(MUL$operator(n21, n34), n43)), MUL$operator(MUL$operator(n23, n31), n44)), MUL$operator(MUL$operator(n21, n33), n44))) , tmp$4;
+  this._n22$ThreeD88754a$$setter_(tmp$5 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n13, n34), n41), MUL$operator(MUL$operator(n14, n33), n41)), MUL$operator(MUL$operator(n14, n31), n43)), MUL$operator(MUL$operator(n11, n34), n43)), MUL$operator(MUL$operator(n13, n31), n44)), MUL$operator(MUL$operator(n11, n33), n44))) , tmp$5;
+  this._n23$ThreeD88754a$$setter_(tmp$6 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n23), n41), MUL$operator(MUL$operator(n13, n24), n41)), MUL$operator(MUL$operator(n14, n21), n43)), MUL$operator(MUL$operator(n11, n24), n43)), MUL$operator(MUL$operator(n13, n21), n44)), MUL$operator(MUL$operator(n11, n23), n44))) , tmp$6;
+  this._n24$ThreeD88754a$$setter_(tmp$7 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n13, n24), n31), MUL$operator(MUL$operator(n14, n23), n31)), MUL$operator(MUL$operator(n14, n21), n33)), MUL$operator(MUL$operator(n11, n24), n33)), MUL$operator(MUL$operator(n13, n21), n34)), MUL$operator(MUL$operator(n11, n23), n34))) , tmp$7;
+  this._n31$ThreeD88754a$$setter_(tmp$8 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n22, n34), n41), MUL$operator(MUL$operator(n24, n32), n41)), MUL$operator(MUL$operator(n24, n31), n42)), MUL$operator(MUL$operator(n21, n34), n42)), MUL$operator(MUL$operator(n22, n31), n44)), MUL$operator(MUL$operator(n21, n32), n44))) , tmp$8;
+  this._n32$ThreeD88754a$$setter_(tmp$9 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n32), n41), MUL$operator(MUL$operator(n12, n34), n41)), MUL$operator(MUL$operator(n14, n31), n42)), MUL$operator(MUL$operator(n11, n34), n42)), MUL$operator(MUL$operator(n12, n31), n44)), MUL$operator(MUL$operator(n11, n32), n44))) , tmp$9;
+  this._n33$ThreeD88754a$$setter_(tmp$10 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n12, n24), n41), MUL$operator(MUL$operator(n14, n22), n41)), MUL$operator(MUL$operator(n14, n21), n42)), MUL$operator(MUL$operator(n11, n24), n42)), MUL$operator(MUL$operator(n12, n21), n44)), MUL$operator(MUL$operator(n11, n22), n44))) , tmp$10;
+  this._n34$ThreeD88754a$$setter_(tmp$11 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n14, n22), n31), MUL$operator(MUL$operator(n12, n24), n31)), MUL$operator(MUL$operator(n14, n21), n32)), MUL$operator(MUL$operator(n11, n24), n32)), MUL$operator(MUL$operator(n12, n21), n34)), MUL$operator(MUL$operator(n11, n22), n34))) , tmp$11;
+  this._n41$ThreeD88754a$$setter_(tmp$12 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n23, n32), n41), MUL$operator(MUL$operator(n22, n33), n41)), MUL$operator(MUL$operator(n23, n31), n42)), MUL$operator(MUL$operator(n21, n33), n42)), MUL$operator(MUL$operator(n22, n31), n43)), MUL$operator(MUL$operator(n21, n32), n43))) , tmp$12;
+  this._n42$ThreeD88754a$$setter_(tmp$13 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n12, n33), n41), MUL$operator(MUL$operator(n13, n32), n41)), MUL$operator(MUL$operator(n13, n31), n42)), MUL$operator(MUL$operator(n11, n33), n42)), MUL$operator(MUL$operator(n12, n31), n43)), MUL$operator(MUL$operator(n11, n32), n43))) , tmp$13;
+  this._n43$ThreeD88754a$$setter_(tmp$14 = SUB$operator(ADD$operator(ADD$operator(SUB$operator(SUB$operator(MUL$operator(MUL$operator(n13, n22), n41), MUL$operator(MUL$operator(n12, n23), n41)), MUL$operator(MUL$operator(n13, n21), n42)), MUL$operator(MUL$operator(n11, n23), n42)), MUL$operator(MUL$operator(n12, n21), n43)), MUL$operator(MUL$operator(n11, n22), n43))) , tmp$14;
+  this._n44$ThreeD88754a$$setter_(tmp$15 = ADD$operator(SUB$operator(SUB$operator(ADD$operator(SUB$operator(MUL$operator(MUL$operator(n12, n23), n31), MUL$operator(MUL$operator(n13, n22), n31)), MUL$operator(MUL$operator(n13, n21), n32)), MUL$operator(MUL$operator(n11, n23), n32)), MUL$operator(MUL$operator(n12, n21), n33)), MUL$operator(MUL$operator(n11, n22), n33))) , tmp$15;
   this.multiplyScalar$member(DIV$operator(1, m.determinant$named(0, $noargs)));
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.getInverse$named = function($n, $o, m){
+ThreeD88754a$Matrix4$Dart.prototype.getInverse$named = function($n, $o, m){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.getInverse$member.call(this, m);
+  return ThreeD88754a$Matrix4$Dart.prototype.getInverse$member.call(this, m);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setRotationFromEuler$member = function(v, order){
+ThreeD88754a$Matrix4$Dart.prototype.setRotationFromEuler$member = function(v, order){
   var tmp$48, tmp$47, tmp$49, tmp$9, tmp$43, tmp$44, tmp$45, tmp$46, tmp$5, tmp$6, tmp$40, tmp$7, tmp$41, tmp$8, tmp$42, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$39, tmp$38, tmp$37, tmp$36, tmp$34, tmp$35, tmp$32, tmp$33, tmp$30, tmp$31, tmp$20, tmp$24, tmp$23, tmp$22, tmp$21, tmp$27, tmp$28, tmp$25, tmp$26, tmp$29, tmp$11, tmp$10, tmp$13, tmp$12, tmp$52, tmp$14, tmp$53, tmp$15, tmp$50, tmp$16, tmp$51, tmp$17, tmp$18, tmp$19;
   var x = v.x$getter();
   var y = v.y$getter();
@@ -71028,90 +71028,90 @@ ThreeD85b351$Matrix4$Dart.prototype.setRotationFromEuler$member = function(v, or
       var cf = MUL$operator(c, f);
       var de = MUL$operator(d, e);
       var df = MUL$operator(d, f);
-      this._n11$ThreeD85b351$$setter_(tmp$0 = ADD$operator(ce, MUL$operator(df, b))) , tmp$0;
-      this._n12$ThreeD85b351$$setter_(tmp$1 = SUB$operator(MUL$operator(de, b), cf)) , tmp$1;
-      this._n13$ThreeD85b351$$setter_(tmp$2 = MUL$operator(a, d)) , tmp$2;
-      this._n21$ThreeD85b351$$setter_(tmp$3 = MUL$operator(a, f)) , tmp$3;
-      this._n22$ThreeD85b351$$setter_(tmp$4 = MUL$operator(a, e)) , tmp$4;
-      this._n23$ThreeD85b351$$setter_(tmp$5 = negate$operator(b)) , tmp$5;
-      this._n31$ThreeD85b351$$setter_(tmp$6 = SUB$operator(MUL$operator(cf, b), de)) , tmp$6;
-      this._n32$ThreeD85b351$$setter_(tmp$7 = ADD$operator(df, MUL$operator(ce, b))) , tmp$7;
-      this._n33$ThreeD85b351$$setter_(tmp$8 = MUL$operator(a, c)) , tmp$8;
+      this._n11$ThreeD88754a$$setter_(tmp$0 = ADD$operator(ce, MUL$operator(df, b))) , tmp$0;
+      this._n12$ThreeD88754a$$setter_(tmp$1 = SUB$operator(MUL$operator(de, b), cf)) , tmp$1;
+      this._n13$ThreeD88754a$$setter_(tmp$2 = MUL$operator(a, d)) , tmp$2;
+      this._n21$ThreeD88754a$$setter_(tmp$3 = MUL$operator(a, f)) , tmp$3;
+      this._n22$ThreeD88754a$$setter_(tmp$4 = MUL$operator(a, e)) , tmp$4;
+      this._n23$ThreeD88754a$$setter_(tmp$5 = negate$operator(b)) , tmp$5;
+      this._n31$ThreeD88754a$$setter_(tmp$6 = SUB$operator(MUL$operator(cf, b), de)) , tmp$6;
+      this._n32$ThreeD88754a$$setter_(tmp$7 = ADD$operator(df, MUL$operator(ce, b))) , tmp$7;
+      this._n33$ThreeD88754a$$setter_(tmp$8 = MUL$operator(a, c)) , tmp$8;
       break;
     case 'ZXY':
       var ce_0 = MUL$operator(c, e);
       var cf_0 = MUL$operator(c, f);
       var de_0 = MUL$operator(d, e);
       var df_0 = MUL$operator(d, f);
-      this._n11$ThreeD85b351$$setter_(tmp$9 = SUB$operator(ce_0, MUL$operator(df_0, b))) , tmp$9;
-      this._n12$ThreeD85b351$$setter_(tmp$10 = MUL$operator(negate$operator(a), f)) , tmp$10;
-      this._n13$ThreeD85b351$$setter_(tmp$11 = ADD$operator(de_0, MUL$operator(cf_0, b))) , tmp$11;
-      this._n21$ThreeD85b351$$setter_(tmp$12 = ADD$operator(cf_0, MUL$operator(de_0, b))) , tmp$12;
-      this._n22$ThreeD85b351$$setter_(tmp$13 = MUL$operator(a, e)) , tmp$13;
-      this._n23$ThreeD85b351$$setter_(tmp$14 = SUB$operator(df_0, MUL$operator(ce_0, b))) , tmp$14;
-      this._n31$ThreeD85b351$$setter_(tmp$15 = MUL$operator(negate$operator(a), d)) , tmp$15;
-      this._n32$ThreeD85b351$$setter_(tmp$16 = b) , tmp$16;
-      this._n33$ThreeD85b351$$setter_(tmp$17 = MUL$operator(a, c)) , tmp$17;
+      this._n11$ThreeD88754a$$setter_(tmp$9 = SUB$operator(ce_0, MUL$operator(df_0, b))) , tmp$9;
+      this._n12$ThreeD88754a$$setter_(tmp$10 = MUL$operator(negate$operator(a), f)) , tmp$10;
+      this._n13$ThreeD88754a$$setter_(tmp$11 = ADD$operator(de_0, MUL$operator(cf_0, b))) , tmp$11;
+      this._n21$ThreeD88754a$$setter_(tmp$12 = ADD$operator(cf_0, MUL$operator(de_0, b))) , tmp$12;
+      this._n22$ThreeD88754a$$setter_(tmp$13 = MUL$operator(a, e)) , tmp$13;
+      this._n23$ThreeD88754a$$setter_(tmp$14 = SUB$operator(df_0, MUL$operator(ce_0, b))) , tmp$14;
+      this._n31$ThreeD88754a$$setter_(tmp$15 = MUL$operator(negate$operator(a), d)) , tmp$15;
+      this._n32$ThreeD88754a$$setter_(tmp$16 = b) , tmp$16;
+      this._n33$ThreeD88754a$$setter_(tmp$17 = MUL$operator(a, c)) , tmp$17;
       break;
     case 'ZYX':
       var ae = MUL$operator(a, e);
       var af = MUL$operator(a, f);
       var be = MUL$operator(b, e);
       var bf = MUL$operator(b, f);
-      this._n11$ThreeD85b351$$setter_(tmp$18 = MUL$operator(c, e)) , tmp$18;
-      this._n12$ThreeD85b351$$setter_(tmp$19 = SUB$operator(MUL$operator(be, d), af)) , tmp$19;
-      this._n13$ThreeD85b351$$setter_(tmp$20 = ADD$operator(MUL$operator(ae, d), bf)) , tmp$20;
-      this._n21$ThreeD85b351$$setter_(tmp$21 = MUL$operator(c, f)) , tmp$21;
-      this._n22$ThreeD85b351$$setter_(tmp$22 = ADD$operator(MUL$operator(bf, d), ae)) , tmp$22;
-      this._n23$ThreeD85b351$$setter_(tmp$23 = SUB$operator(MUL$operator(af, d), be)) , tmp$23;
-      this._n31$ThreeD85b351$$setter_(tmp$24 = negate$operator(d)) , tmp$24;
-      this._n32$ThreeD85b351$$setter_(tmp$25 = MUL$operator(b, c)) , tmp$25;
-      this._n33$ThreeD85b351$$setter_(tmp$26 = MUL$operator(a, c)) , tmp$26;
+      this._n11$ThreeD88754a$$setter_(tmp$18 = MUL$operator(c, e)) , tmp$18;
+      this._n12$ThreeD88754a$$setter_(tmp$19 = SUB$operator(MUL$operator(be, d), af)) , tmp$19;
+      this._n13$ThreeD88754a$$setter_(tmp$20 = ADD$operator(MUL$operator(ae, d), bf)) , tmp$20;
+      this._n21$ThreeD88754a$$setter_(tmp$21 = MUL$operator(c, f)) , tmp$21;
+      this._n22$ThreeD88754a$$setter_(tmp$22 = ADD$operator(MUL$operator(bf, d), ae)) , tmp$22;
+      this._n23$ThreeD88754a$$setter_(tmp$23 = SUB$operator(MUL$operator(af, d), be)) , tmp$23;
+      this._n31$ThreeD88754a$$setter_(tmp$24 = negate$operator(d)) , tmp$24;
+      this._n32$ThreeD88754a$$setter_(tmp$25 = MUL$operator(b, c)) , tmp$25;
+      this._n33$ThreeD88754a$$setter_(tmp$26 = MUL$operator(a, c)) , tmp$26;
       break;
     case 'YZX':
       var ac = MUL$operator(a, c);
       var ad = MUL$operator(a, d);
       var bc = MUL$operator(b, c);
       var bd = MUL$operator(b, d);
-      this._n11$ThreeD85b351$$setter_(tmp$27 = MUL$operator(c, e)) , tmp$27;
-      this._n12$ThreeD85b351$$setter_(tmp$28 = SUB$operator(bd, MUL$operator(ac, f))) , tmp$28;
-      this._n13$ThreeD85b351$$setter_(tmp$29 = ADD$operator(MUL$operator(bc, f), ad)) , tmp$29;
-      this._n21$ThreeD85b351$$setter_(tmp$30 = f) , tmp$30;
-      this._n22$ThreeD85b351$$setter_(tmp$31 = MUL$operator(a, e)) , tmp$31;
-      this._n23$ThreeD85b351$$setter_(tmp$32 = MUL$operator(negate$operator(b), e)) , tmp$32;
-      this._n31$ThreeD85b351$$setter_(tmp$33 = MUL$operator(negate$operator(d), e)) , tmp$33;
-      this._n32$ThreeD85b351$$setter_(tmp$34 = ADD$operator(MUL$operator(ad, f), bc)) , tmp$34;
-      this._n33$ThreeD85b351$$setter_(tmp$35 = SUB$operator(ac, MUL$operator(bd, f))) , tmp$35;
+      this._n11$ThreeD88754a$$setter_(tmp$27 = MUL$operator(c, e)) , tmp$27;
+      this._n12$ThreeD88754a$$setter_(tmp$28 = SUB$operator(bd, MUL$operator(ac, f))) , tmp$28;
+      this._n13$ThreeD88754a$$setter_(tmp$29 = ADD$operator(MUL$operator(bc, f), ad)) , tmp$29;
+      this._n21$ThreeD88754a$$setter_(tmp$30 = f) , tmp$30;
+      this._n22$ThreeD88754a$$setter_(tmp$31 = MUL$operator(a, e)) , tmp$31;
+      this._n23$ThreeD88754a$$setter_(tmp$32 = MUL$operator(negate$operator(b), e)) , tmp$32;
+      this._n31$ThreeD88754a$$setter_(tmp$33 = MUL$operator(negate$operator(d), e)) , tmp$33;
+      this._n32$ThreeD88754a$$setter_(tmp$34 = ADD$operator(MUL$operator(ad, f), bc)) , tmp$34;
+      this._n33$ThreeD88754a$$setter_(tmp$35 = SUB$operator(ac, MUL$operator(bd, f))) , tmp$35;
       break;
     case 'XZY':
       var ac_0 = MUL$operator(a, c);
       var ad_0 = MUL$operator(a, d);
       var bc_0 = MUL$operator(b, c);
       var bd_0 = MUL$operator(b, d);
-      this._n11$ThreeD85b351$$setter_(tmp$36 = MUL$operator(c, e)) , tmp$36;
-      this._n12$ThreeD85b351$$setter_(tmp$37 = negate$operator(f)) , tmp$37;
-      this._n13$ThreeD85b351$$setter_(tmp$38 = MUL$operator(d, e)) , tmp$38;
-      this._n21$ThreeD85b351$$setter_(tmp$39 = ADD$operator(MUL$operator(ac_0, f), bd_0)) , tmp$39;
-      this._n22$ThreeD85b351$$setter_(tmp$40 = MUL$operator(a, e)) , tmp$40;
-      this._n23$ThreeD85b351$$setter_(tmp$41 = SUB$operator(MUL$operator(ad_0, f), bc_0)) , tmp$41;
-      this._n31$ThreeD85b351$$setter_(tmp$42 = SUB$operator(MUL$operator(bc_0, f), ad_0)) , tmp$42;
-      this._n32$ThreeD85b351$$setter_(tmp$43 = MUL$operator(b, e)) , tmp$43;
-      this._n33$ThreeD85b351$$setter_(tmp$44 = ADD$operator(MUL$operator(bd_0, f), ac_0)) , tmp$44;
+      this._n11$ThreeD88754a$$setter_(tmp$36 = MUL$operator(c, e)) , tmp$36;
+      this._n12$ThreeD88754a$$setter_(tmp$37 = negate$operator(f)) , tmp$37;
+      this._n13$ThreeD88754a$$setter_(tmp$38 = MUL$operator(d, e)) , tmp$38;
+      this._n21$ThreeD88754a$$setter_(tmp$39 = ADD$operator(MUL$operator(ac_0, f), bd_0)) , tmp$39;
+      this._n22$ThreeD88754a$$setter_(tmp$40 = MUL$operator(a, e)) , tmp$40;
+      this._n23$ThreeD88754a$$setter_(tmp$41 = SUB$operator(MUL$operator(ad_0, f), bc_0)) , tmp$41;
+      this._n31$ThreeD88754a$$setter_(tmp$42 = SUB$operator(MUL$operator(bc_0, f), ad_0)) , tmp$42;
+      this._n32$ThreeD88754a$$setter_(tmp$43 = MUL$operator(b, e)) , tmp$43;
+      this._n33$ThreeD88754a$$setter_(tmp$44 = ADD$operator(MUL$operator(bd_0, f), ac_0)) , tmp$44;
       break;
     default:{
         var ae_0 = MUL$operator(a, e);
         var af_0 = MUL$operator(a, f);
         var be_0 = MUL$operator(b, e);
         var bf_0 = MUL$operator(b, f);
-        this._n11$ThreeD85b351$$setter_(tmp$45 = MUL$operator(c, e)) , tmp$45;
-        this._n12$ThreeD85b351$$setter_(tmp$46 = MUL$operator(negate$operator(c), f)) , tmp$46;
-        this._n13$ThreeD85b351$$setter_(tmp$47 = d) , tmp$47;
-        this._n21$ThreeD85b351$$setter_(tmp$48 = ADD$operator(af_0, MUL$operator(be_0, d))) , tmp$48;
-        this._n22$ThreeD85b351$$setter_(tmp$49 = SUB$operator(ae_0, MUL$operator(bf_0, d))) , tmp$49;
-        this._n23$ThreeD85b351$$setter_(tmp$50 = MUL$operator(negate$operator(b), c)) , tmp$50;
-        this._n31$ThreeD85b351$$setter_(tmp$51 = SUB$operator(bf_0, MUL$operator(ae_0, d))) , tmp$51;
-        this._n32$ThreeD85b351$$setter_(tmp$52 = ADD$operator(be_0, MUL$operator(af_0, d))) , tmp$52;
-        this._n33$ThreeD85b351$$setter_(tmp$53 = MUL$operator(a, c)) , tmp$53;
+        this._n11$ThreeD88754a$$setter_(tmp$45 = MUL$operator(c, e)) , tmp$45;
+        this._n12$ThreeD88754a$$setter_(tmp$46 = MUL$operator(negate$operator(c), f)) , tmp$46;
+        this._n13$ThreeD88754a$$setter_(tmp$47 = d) , tmp$47;
+        this._n21$ThreeD88754a$$setter_(tmp$48 = ADD$operator(af_0, MUL$operator(be_0, d))) , tmp$48;
+        this._n22$ThreeD88754a$$setter_(tmp$49 = SUB$operator(ae_0, MUL$operator(bf_0, d))) , tmp$49;
+        this._n23$ThreeD88754a$$setter_(tmp$50 = MUL$operator(negate$operator(b), c)) , tmp$50;
+        this._n31$ThreeD88754a$$setter_(tmp$51 = SUB$operator(bf_0, MUL$operator(ae_0, d))) , tmp$51;
+        this._n32$ThreeD88754a$$setter_(tmp$52 = ADD$operator(be_0, MUL$operator(af_0, d))) , tmp$52;
+        this._n33$ThreeD88754a$$setter_(tmp$53 = MUL$operator(a, c)) , tmp$53;
         break;
       }
 
@@ -71119,13 +71119,13 @@ ThreeD85b351$Matrix4$Dart.prototype.setRotationFromEuler$member = function(v, or
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setRotationFromEuler$named = function($n, $o, v, order){
+ThreeD88754a$Matrix4$Dart.prototype.setRotationFromEuler$named = function($n, $o, v, order){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.setRotationFromEuler$member.call(this, v, order);
+  return ThreeD88754a$Matrix4$Dart.prototype.setRotationFromEuler$member.call(this, v, order);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setRotationFromQuaternion$member = function(q){
+ThreeD88754a$Matrix4$Dart.prototype.setRotationFromQuaternion$member = function(q){
   var tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var x = q.x$getter();
   var y = q.y$getter();
@@ -71143,101 +71143,101 @@ ThreeD85b351$Matrix4$Dart.prototype.setRotationFromQuaternion$member = function(
   var wx = MUL$operator(w, x2);
   var wy = MUL$operator(w, y2);
   var wz = MUL$operator(w, z2);
-  this._n11$ThreeD85b351$$setter_(tmp$0 = SUB$operator(1, ADD$operator(yy, zz))) , tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$1 = SUB$operator(xy, wz)) , tmp$1;
-  this._n13$ThreeD85b351$$setter_(tmp$2 = ADD$operator(xz, wy)) , tmp$2;
-  this._n21$ThreeD85b351$$setter_(tmp$3 = ADD$operator(xy, wz)) , tmp$3;
-  this._n22$ThreeD85b351$$setter_(tmp$4 = SUB$operator(1, ADD$operator(xx, zz))) , tmp$4;
-  this._n23$ThreeD85b351$$setter_(tmp$5 = SUB$operator(yz, wx)) , tmp$5;
-  this._n31$ThreeD85b351$$setter_(tmp$6 = SUB$operator(xz, wy)) , tmp$6;
-  this._n32$ThreeD85b351$$setter_(tmp$7 = ADD$operator(yz, wx)) , tmp$7;
-  this._n33$ThreeD85b351$$setter_(tmp$8 = SUB$operator(1, ADD$operator(xx, yy))) , tmp$8;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = SUB$operator(1, ADD$operator(yy, zz))) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$1 = SUB$operator(xy, wz)) , tmp$1;
+  this._n13$ThreeD88754a$$setter_(tmp$2 = ADD$operator(xz, wy)) , tmp$2;
+  this._n21$ThreeD88754a$$setter_(tmp$3 = ADD$operator(xy, wz)) , tmp$3;
+  this._n22$ThreeD88754a$$setter_(tmp$4 = SUB$operator(1, ADD$operator(xx, zz))) , tmp$4;
+  this._n23$ThreeD88754a$$setter_(tmp$5 = SUB$operator(yz, wx)) , tmp$5;
+  this._n31$ThreeD88754a$$setter_(tmp$6 = SUB$operator(xz, wy)) , tmp$6;
+  this._n32$ThreeD88754a$$setter_(tmp$7 = ADD$operator(yz, wx)) , tmp$7;
+  this._n33$ThreeD88754a$$setter_(tmp$8 = SUB$operator(1, ADD$operator(xx, yy))) , tmp$8;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.setRotationFromQuaternion$named = function($n, $o, q){
+ThreeD88754a$Matrix4$Dart.prototype.setRotationFromQuaternion$named = function($n, $o, q){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.setRotationFromQuaternion$member.call(this, q);
+  return ThreeD88754a$Matrix4$Dart.prototype.setRotationFromQuaternion$member.call(this, q);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.scale$member = function(v){
+ThreeD88754a$Matrix4$Dart.prototype.scale$member = function(v){
   var tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$11, tmp$10, tmp$0;
   var x = v.x$getter();
   var y = v.y$getter();
   var z = v.z$getter();
-  this._n11$ThreeD85b351$$setter_(tmp$0 = MUL$operator(this._n11$ThreeD85b351$$getter_(), x)) , tmp$0;
-  this._n12$ThreeD85b351$$setter_(tmp$1 = MUL$operator(this._n12$ThreeD85b351$$getter_(), y)) , tmp$1;
-  this._n13$ThreeD85b351$$setter_(tmp$2 = MUL$operator(this._n13$ThreeD85b351$$getter_(), z)) , tmp$2;
-  this._n21$ThreeD85b351$$setter_(tmp$3 = MUL$operator(this._n21$ThreeD85b351$$getter_(), x)) , tmp$3;
-  this._n22$ThreeD85b351$$setter_(tmp$4 = MUL$operator(this._n22$ThreeD85b351$$getter_(), y)) , tmp$4;
-  this._n23$ThreeD85b351$$setter_(tmp$5 = MUL$operator(this._n23$ThreeD85b351$$getter_(), z)) , tmp$5;
-  this._n31$ThreeD85b351$$setter_(tmp$6 = MUL$operator(this._n31$ThreeD85b351$$getter_(), x)) , tmp$6;
-  this._n32$ThreeD85b351$$setter_(tmp$7 = MUL$operator(this._n32$ThreeD85b351$$getter_(), y)) , tmp$7;
-  this._n33$ThreeD85b351$$setter_(tmp$8 = MUL$operator(this._n33$ThreeD85b351$$getter_(), z)) , tmp$8;
-  this._n41$ThreeD85b351$$setter_(tmp$9 = MUL$operator(this._n41$ThreeD85b351$$getter_(), x)) , tmp$9;
-  this._n42$ThreeD85b351$$setter_(tmp$10 = MUL$operator(this._n42$ThreeD85b351$$getter_(), y)) , tmp$10;
-  this._n43$ThreeD85b351$$setter_(tmp$11 = MUL$operator(this._n43$ThreeD85b351$$getter_(), z)) , tmp$11;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = MUL$operator(this._n11$ThreeD88754a$$getter_(), x)) , tmp$0;
+  this._n12$ThreeD88754a$$setter_(tmp$1 = MUL$operator(this._n12$ThreeD88754a$$getter_(), y)) , tmp$1;
+  this._n13$ThreeD88754a$$setter_(tmp$2 = MUL$operator(this._n13$ThreeD88754a$$getter_(), z)) , tmp$2;
+  this._n21$ThreeD88754a$$setter_(tmp$3 = MUL$operator(this._n21$ThreeD88754a$$getter_(), x)) , tmp$3;
+  this._n22$ThreeD88754a$$setter_(tmp$4 = MUL$operator(this._n22$ThreeD88754a$$getter_(), y)) , tmp$4;
+  this._n23$ThreeD88754a$$setter_(tmp$5 = MUL$operator(this._n23$ThreeD88754a$$getter_(), z)) , tmp$5;
+  this._n31$ThreeD88754a$$setter_(tmp$6 = MUL$operator(this._n31$ThreeD88754a$$getter_(), x)) , tmp$6;
+  this._n32$ThreeD88754a$$setter_(tmp$7 = MUL$operator(this._n32$ThreeD88754a$$getter_(), y)) , tmp$7;
+  this._n33$ThreeD88754a$$setter_(tmp$8 = MUL$operator(this._n33$ThreeD88754a$$getter_(), z)) , tmp$8;
+  this._n41$ThreeD88754a$$setter_(tmp$9 = MUL$operator(this._n41$ThreeD88754a$$getter_(), x)) , tmp$9;
+  this._n42$ThreeD88754a$$setter_(tmp$10 = MUL$operator(this._n42$ThreeD88754a$$getter_(), y)) , tmp$10;
+  this._n43$ThreeD88754a$$setter_(tmp$11 = MUL$operator(this._n43$ThreeD88754a$$getter_(), z)) , tmp$11;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.scale$named = function($n, $o, v){
+ThreeD88754a$Matrix4$Dart.prototype.scale$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.scale$member.call(this, v);
+  return ThreeD88754a$Matrix4$Dart.prototype.scale$member.call(this, v);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.scale$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$Vector3$Dart.$lookupRTT()], ThreeD85b351$Matrix4$Dart.$lookupRTT());
+ThreeD88754a$Matrix4$Dart.prototype.scale$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$Vector3$Dart.$lookupRTT()], ThreeD88754a$Matrix4$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.scale$getter = function(){
-  return $bind(ThreeD85b351$Matrix4$Dart.prototype.scale$named, ThreeD85b351$Matrix4$Dart.prototype.scale$named_$lookupRTT, this);
+ThreeD88754a$Matrix4$Dart.prototype.scale$getter = function(){
+  return $bind(ThreeD88754a$Matrix4$Dart.prototype.scale$named, ThreeD88754a$Matrix4$Dart.prototype.scale$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.extractRotation$member = function(m){
+ThreeD88754a$Matrix4$Dart.prototype.extractRotation$member = function(m){
   var tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  var vector = ThreeD85b351$Matrix4$Dart.__v1$ThreeD85b351$$getter_();
+  var vector = ThreeD88754a$Matrix4$Dart.__v1$ThreeD88754a$$getter_();
   var scaleX = DIV$operator(1, vector.setValues$named(3, $noargs, m.n11$getter(), m.n21$getter(), m.n31$getter()).length$named(0, $noargs));
   var scaleY = DIV$operator(1, vector.setValues$named(3, $noargs, m.n12$getter(), m.n22$getter(), m.n32$getter()).length$named(0, $noargs));
   var scaleZ = DIV$operator(1, vector.setValues$named(3, $noargs, m.n13$getter(), m.n23$getter(), m.n33$getter()).length$named(0, $noargs));
-  this._n11$ThreeD85b351$$setter_(tmp$0 = MUL$operator(m.n11$getter(), scaleX)) , tmp$0;
-  this._n21$ThreeD85b351$$setter_(tmp$1 = MUL$operator(m.n21$getter(), scaleX)) , tmp$1;
-  this._n31$ThreeD85b351$$setter_(tmp$2 = MUL$operator(m.n31$getter(), scaleX)) , tmp$2;
-  this._n12$ThreeD85b351$$setter_(tmp$3 = MUL$operator(m.n12$getter(), scaleY)) , tmp$3;
-  this._n22$ThreeD85b351$$setter_(tmp$4 = MUL$operator(m.n22$getter(), scaleY)) , tmp$4;
-  this._n32$ThreeD85b351$$setter_(tmp$5 = MUL$operator(m.n32$getter(), scaleY)) , tmp$5;
-  this._n13$ThreeD85b351$$setter_(tmp$6 = MUL$operator(m.n13$getter(), scaleZ)) , tmp$6;
-  this._n23$ThreeD85b351$$setter_(tmp$7 = MUL$operator(m.n23$getter(), scaleZ)) , tmp$7;
-  this._n33$ThreeD85b351$$setter_(tmp$8 = MUL$operator(m.n33$getter(), scaleZ)) , tmp$8;
+  this._n11$ThreeD88754a$$setter_(tmp$0 = MUL$operator(m.n11$getter(), scaleX)) , tmp$0;
+  this._n21$ThreeD88754a$$setter_(tmp$1 = MUL$operator(m.n21$getter(), scaleX)) , tmp$1;
+  this._n31$ThreeD88754a$$setter_(tmp$2 = MUL$operator(m.n31$getter(), scaleX)) , tmp$2;
+  this._n12$ThreeD88754a$$setter_(tmp$3 = MUL$operator(m.n12$getter(), scaleY)) , tmp$3;
+  this._n22$ThreeD88754a$$setter_(tmp$4 = MUL$operator(m.n22$getter(), scaleY)) , tmp$4;
+  this._n32$ThreeD88754a$$setter_(tmp$5 = MUL$operator(m.n32$getter(), scaleY)) , tmp$5;
+  this._n13$ThreeD88754a$$setter_(tmp$6 = MUL$operator(m.n13$getter(), scaleZ)) , tmp$6;
+  this._n23$ThreeD88754a$$setter_(tmp$7 = MUL$operator(m.n23$getter(), scaleZ)) , tmp$7;
+  this._n33$ThreeD88754a$$setter_(tmp$8 = MUL$operator(m.n33$getter(), scaleZ)) , tmp$8;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.extractRotation$named = function($n, $o, m){
+ThreeD88754a$Matrix4$Dart.prototype.extractRotation$named = function($n, $o, m){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.extractRotation$member.call(this, m);
+  return ThreeD88754a$Matrix4$Dart.prototype.extractRotation$member.call(this, m);
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.translate$member = function(v){
+ThreeD88754a$Matrix4$Dart.prototype.translate$member = function(v){
   var tmp$1, tmp$2, tmp$3, tmp$0;
   var x = v.x$getter();
   var y = v.y$getter();
   var z = v.z$getter();
-  this._n14$ThreeD85b351$$setter_(tmp$0 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n11$ThreeD85b351$$getter_(), x), MUL$operator(this._n12$ThreeD85b351$$getter_(), y)), MUL$operator(this._n13$ThreeD85b351$$getter_(), z)), this._n14$ThreeD85b351$$getter_())) , tmp$0;
-  this._n24$ThreeD85b351$$setter_(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n21$ThreeD85b351$$getter_(), x), MUL$operator(this._n22$ThreeD85b351$$getter_(), y)), MUL$operator(this._n23$ThreeD85b351$$getter_(), z)), this._n24$ThreeD85b351$$getter_())) , tmp$1;
-  this._n34$ThreeD85b351$$setter_(tmp$2 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n31$ThreeD85b351$$getter_(), x), MUL$operator(this._n32$ThreeD85b351$$getter_(), y)), MUL$operator(this._n33$ThreeD85b351$$getter_(), z)), this._n34$ThreeD85b351$$getter_())) , tmp$2;
-  this._n44$ThreeD85b351$$setter_(tmp$3 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n41$ThreeD85b351$$getter_(), x), MUL$operator(this._n42$ThreeD85b351$$getter_(), y)), MUL$operator(this._n43$ThreeD85b351$$getter_(), z)), this._n44$ThreeD85b351$$getter_())) , tmp$3;
+  this._n14$ThreeD88754a$$setter_(tmp$0 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n11$ThreeD88754a$$getter_(), x), MUL$operator(this._n12$ThreeD88754a$$getter_(), y)), MUL$operator(this._n13$ThreeD88754a$$getter_(), z)), this._n14$ThreeD88754a$$getter_())) , tmp$0;
+  this._n24$ThreeD88754a$$setter_(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n21$ThreeD88754a$$getter_(), x), MUL$operator(this._n22$ThreeD88754a$$getter_(), y)), MUL$operator(this._n23$ThreeD88754a$$getter_(), z)), this._n24$ThreeD88754a$$getter_())) , tmp$1;
+  this._n34$ThreeD88754a$$setter_(tmp$2 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n31$ThreeD88754a$$getter_(), x), MUL$operator(this._n32$ThreeD88754a$$getter_(), y)), MUL$operator(this._n33$ThreeD88754a$$getter_(), z)), this._n34$ThreeD88754a$$getter_())) , tmp$2;
+  this._n44$ThreeD88754a$$setter_(tmp$3 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._n41$ThreeD88754a$$getter_(), x), MUL$operator(this._n42$ThreeD88754a$$getter_(), y)), MUL$operator(this._n43$ThreeD88754a$$getter_(), z)), this._n44$ThreeD88754a$$getter_())) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Matrix4$Dart.prototype.translate$named = function($n, $o, v){
+ThreeD88754a$Matrix4$Dart.prototype.translate$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Matrix4$Dart.prototype.translate$member.call(this, v);
+  return ThreeD88754a$Matrix4$Dart.prototype.translate$member.call(this, v);
 }
 ;
-ThreeD85b351$Matrix4$Dart.makeFrustum$member = function(left, right, bottom, top_0, near, far){
+ThreeD88754a$Matrix4$Dart.makeFrustum$member = function(left, right, bottom, top_0, near, far){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var x = $Dart$Null;
   var y = $Dart$Null;
@@ -71245,7 +71245,7 @@ ThreeD85b351$Matrix4$Dart.makeFrustum$member = function(left, right, bottom, top
   var b = $Dart$Null;
   var c = $Dart$Null;
   var d = $Dart$Null;
-  var m = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  var m = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   x = DIV$operator(MUL$operator(2, near), SUB$operator(right, left));
   y = DIV$operator(MUL$operator(2, near), SUB$operator(top_0, bottom));
   a = DIV$operator(ADD$operator(right, left), SUB$operator(right, left));
@@ -71271,7 +71271,7 @@ ThreeD85b351$Matrix4$Dart.makeFrustum$member = function(left, right, bottom, top
   return m;
 }
 ;
-ThreeD85b351$Matrix4$Dart.makePerspective$member = function(fov, aspect, near, far){
+ThreeD88754a$Matrix4$Dart.makePerspective$member = function(fov, aspect, near, far){
   var ymax = $Dart$Null;
   var ymin = $Dart$Null;
   var xmin = $Dart$Null;
@@ -71280,42 +71280,42 @@ ThreeD85b351$Matrix4$Dart.makePerspective$member = function(fov, aspect, near, f
   ymin = negate$operator(ymax);
   xmin = MUL$operator(ymin, aspect);
   xmax = MUL$operator(ymax, aspect);
-  return ThreeD85b351$Matrix4$Dart.makeFrustum$member(xmin, xmax, ymin, ymax, near, far);
+  return ThreeD88754a$Matrix4$Dart.makeFrustum$member(xmin, xmax, ymin, ymax, near, far);
 }
 ;
-function ThreeD85b351$Object3D$Dart(){
+function ThreeD88754a$Object3D$Dart(){
 }
-ThreeD85b351$Object3D$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Object3D$Dart'), null, null, named);
+ThreeD88754a$Object3D$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Object3D$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Object3D$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Object3D$Dart.$lookupRTT();
+ThreeD88754a$Object3D$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Object3D$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-ThreeD85b351$Object3D$Dart.$Constructor = function(){
+ThreeD88754a$Object3D$Dart.$Constructor = function(){
   var tmp$20, tmp$24, tmp$23, tmp$22, tmp$21, tmp$27, tmp$9, tmp$28, tmp$25, tmp$26, tmp$5, tmp$6, tmp$29, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$15, tmp$16, tmp$17, tmp$18, tmp$19;
-  this._name$ThreeD85b351$$setter_(tmp$0 = '') , tmp$0;
-  this.id$setter(tmp$3 = (tmp$1 = ThreeD85b351$Three$Dart.Object3DCount$getter() , (ThreeD85b351$Three$Dart.Object3DCount$setter(tmp$2 = ADD$operator(tmp$1, 1)) , tmp$2 , tmp$1))) , tmp$3;
+  this._name$ThreeD88754a$$setter_(tmp$0 = '') , tmp$0;
+  this.id$setter(tmp$3 = (tmp$1 = ThreeD88754a$Three$Dart.Object3DCount$getter() , (ThreeD88754a$Three$Dart.Object3DCount$setter(tmp$2 = ADD$operator(tmp$1, 1)) , tmp$2 , tmp$1))) , tmp$3;
   this.parent$setter(tmp$4 = $Dart$Null) , tmp$4;
   this.children$setter(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
-  this.up$setter(tmp$6 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$6;
-  this.position$setter(tmp$7 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$7;
-  this.rotation$setter(tmp$8 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$8;
+  this.up$setter(tmp$6 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$6;
+  this.position$setter(tmp$7 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$7;
+  this.rotation$setter(tmp$8 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$8;
   this.eulerOrder$setter(tmp$9 = 'XYZ') , tmp$9;
-  this.scale$setter(tmp$10 = ThreeD85b351$Vector3$Dart.Vector3$$Factory(1, 1, 1)) , tmp$10;
+  this.scale$setter(tmp$10 = ThreeD88754a$Vector3$Dart.Vector3$$Factory(1, 1, 1)) , tmp$10;
   this.dynamic$setter(tmp$11 = false) , tmp$11;
   this.doubleSided$setter(tmp$12 = false) , tmp$12;
   this.flipSided$setter(tmp$13 = false) , tmp$13;
   this.renderDepth$setter(tmp$14 = $Dart$Null) , tmp$14;
   this.rotationAutoUpdate$setter(tmp$15 = true) , tmp$15;
-  this.matrix$setter(tmp$16 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$16;
-  this.matrixWorld$setter(tmp$17 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$17;
-  this.matrixRotationWorld$setter(tmp$18 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$18;
+  this.matrix$setter(tmp$16 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$16;
+  this.matrixWorld$setter(tmp$17 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$17;
+  this.matrixRotationWorld$setter(tmp$18 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$18;
   this.matrixAutoUpdate$setter(tmp$19 = true) , tmp$19;
   this.matrixWorldNeedsUpdate$setter(tmp$20 = true) , tmp$20;
-  this.quaternion$setter(tmp$21 = ThreeD85b351$Quaternion$Dart.Quaternion$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$21;
+  this.quaternion$setter(tmp$21 = ThreeD88754a$Quaternion$Dart.Quaternion$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$21;
   this.useQuaternion$setter(tmp$22 = false) , tmp$22;
   this.boundRadius$setter(tmp$23 = 0) , tmp$23;
   this.boundRadiusScale$setter(tmp$24 = 1) , tmp$24;
@@ -71323,224 +71323,224 @@ ThreeD85b351$Object3D$Dart.$Constructor = function(){
   this.castShadow$setter(tmp$26 = false) , tmp$26;
   this.receiveShadow$setter(tmp$27 = false) , tmp$27;
   this.frustumCulled$setter(tmp$28 = true) , tmp$28;
-  this._vector$ThreeD85b351$$setter_(tmp$29 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$29;
+  this._vector$ThreeD88754a$$setter_(tmp$29 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$29;
 }
 ;
-ThreeD85b351$Object3D$Dart.$Initializer = function(){
+ThreeD88754a$Object3D$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype._name$ThreeD85b351$$getter_ = function(){
-  return this._name$ThreeD85b351$$field_;
+ThreeD88754a$Object3D$Dart.prototype._name$ThreeD88754a$$getter_ = function(){
+  return this._name$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype._name$ThreeD85b351$$setter_ = function(tmp$0){
-  this._name$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Object3D$Dart.prototype._name$ThreeD88754a$$setter_ = function(tmp$0){
+  this._name$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.id$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.id$getter = function(){
   return this.id$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.id$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.id$setter = function(tmp$0){
   this.id$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.parent$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.parent$getter = function(){
   return this.parent$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.parent$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.parent$setter = function(tmp$0){
   this.parent$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.children$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.children$getter = function(){
   return this.children$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.children$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.children$setter = function(tmp$0){
   this.children$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.up$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.up$setter = function(tmp$0){
   this.up$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.position$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.position$getter = function(){
   return this.position$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.position$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.position$setter = function(tmp$0){
   this.position$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.rotation$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.rotation$getter = function(){
   return this.rotation$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.rotation$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.rotation$setter = function(tmp$0){
   this.rotation$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.scale$named = function(){
+ThreeD88754a$Object3D$Dart.prototype.scale$named = function(){
   return this.scale$getter().apply(this, arguments);
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.scale$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.scale$getter = function(){
   return this.scale$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.scale$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.scale$setter = function(tmp$0){
   this.scale$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.eulerOrder$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.eulerOrder$getter = function(){
   return this.eulerOrder$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.eulerOrder$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.eulerOrder$setter = function(tmp$0){
   this.eulerOrder$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.dynamic$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.dynamic$getter = function(){
   return this.dynamic$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.dynamic$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.dynamic$setter = function(tmp$0){
   this.dynamic$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.doubleSided$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.doubleSided$getter = function(){
   return this.doubleSided$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.doubleSided$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.doubleSided$setter = function(tmp$0){
   this.doubleSided$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.flipSided$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.flipSided$getter = function(){
   return this.flipSided$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.flipSided$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.flipSided$setter = function(tmp$0){
   this.flipSided$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.rotationAutoUpdate$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.rotationAutoUpdate$setter = function(tmp$0){
   this.rotationAutoUpdate$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.renderDepth$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.renderDepth$setter = function(tmp$0){
   this.renderDepth$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrix$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.matrix$getter = function(){
   return this.matrix$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrix$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.matrix$setter = function(tmp$0){
   this.matrix$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixWorld$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.matrixWorld$getter = function(){
   return this.matrixWorld$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixWorld$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.matrixWorld$setter = function(tmp$0){
   this.matrixWorld$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixRotationWorld$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.matrixRotationWorld$getter = function(){
   return this.matrixRotationWorld$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixRotationWorld$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.matrixRotationWorld$setter = function(tmp$0){
   this.matrixRotationWorld$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixAutoUpdate$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.matrixAutoUpdate$getter = function(){
   return this.matrixAutoUpdate$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixAutoUpdate$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.matrixAutoUpdate$setter = function(tmp$0){
   this.matrixAutoUpdate$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixWorldNeedsUpdate$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.matrixWorldNeedsUpdate$getter = function(){
   return this.matrixWorldNeedsUpdate$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.matrixWorldNeedsUpdate$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.matrixWorldNeedsUpdate$setter = function(tmp$0){
   this.matrixWorldNeedsUpdate$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.quaternion$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.quaternion$getter = function(){
   return this.quaternion$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.quaternion$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.quaternion$setter = function(tmp$0){
   this.quaternion$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.useQuaternion$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.useQuaternion$getter = function(){
   return this.useQuaternion$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.useQuaternion$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.useQuaternion$setter = function(tmp$0){
   this.useQuaternion$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.boundRadius$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.boundRadius$setter = function(tmp$0){
   this.boundRadius$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.boundRadiusScale$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.boundRadiusScale$setter = function(tmp$0){
   this.boundRadiusScale$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.visible$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.visible$getter = function(){
   return this.visible$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.visible$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.visible$setter = function(tmp$0){
   this.visible$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.castShadow$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.castShadow$setter = function(tmp$0){
   this.castShadow$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.receiveShadow$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.receiveShadow$setter = function(tmp$0){
   this.receiveShadow$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.frustumCulled$getter = function(){
+ThreeD88754a$Object3D$Dart.prototype.frustumCulled$getter = function(){
   return this.frustumCulled$field;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.frustumCulled$setter = function(tmp$0){
+ThreeD88754a$Object3D$Dart.prototype.frustumCulled$setter = function(tmp$0){
   this.frustumCulled$field = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype._vector$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vector$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Object3D$Dart.prototype._vector$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vector$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.name$getter = function(){
-  return this._name$ThreeD85b351$$getter_();
+ThreeD88754a$Object3D$Dart.prototype.name$getter = function(){
+  return this._name$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.translate$member = function(distance, axis){
+ThreeD88754a$Object3D$Dart.prototype.translate$member = function(distance, axis){
   this.matrix$getter().rotateAxis$named(1, $noargs, axis);
   this.position$getter().addSelf$named(1, $noargs, axis.multiplyScalar$named(1, $noargs, distance));
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.translate$named = function($n, $o, distance, axis){
+ThreeD88754a$Object3D$Dart.prototype.translate$named = function($n, $o, distance, axis){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Object3D$Dart.prototype.translate$member.call(this, distance, axis);
+  return ThreeD88754a$Object3D$Dart.prototype.translate$member.call(this, distance, axis);
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.add$member = function(object){
+ThreeD88754a$Object3D$Dart.prototype.add$member = function(object){
   var tmp$1, tmp$0;
   if (this.children$getter().indexOf$named(1, $noargs, object) === negate$operator(1)) {
     if (object.parent$getter() != null) {
@@ -71552,19 +71552,19 @@ ThreeD85b351$Object3D$Dart.prototype.add$member = function(object){
     while (scene.parent$getter() != null) {
       scene = scene.parent$getter();
     }
-    if (scene != null && !!(tmp$1 = scene , tmp$1 != null && tmp$1.$implements$ThreeD85b351$Scene$Dart)) {
+    if (scene != null && !!(tmp$1 = scene , tmp$1 != null && tmp$1.$implements$ThreeD88754a$Scene$Dart)) {
       scene.addObject$named(1, $noargs, object);
     }
   }
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.add$named = function($n, $o, object){
+ThreeD88754a$Object3D$Dart.prototype.add$named = function($n, $o, object){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Object3D$Dart.prototype.add$member.call(this, object);
+  return ThreeD88754a$Object3D$Dart.prototype.add$member.call(this, object);
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.remove$member = function(object){
+ThreeD88754a$Object3D$Dart.prototype.remove$member = function(object){
   var tmp$1, tmp$0;
   var index = this.children$getter().indexOf$named(1, $noargs, object);
   if (index !== negate$operator(1)) {
@@ -71574,19 +71574,19 @@ ThreeD85b351$Object3D$Dart.prototype.remove$member = function(object){
     while (scene.parent$getter() != null) {
       scene = scene.parent$getter();
     }
-    if (scene != null && !!(tmp$1 = scene , tmp$1 != null && tmp$1.$implements$ThreeD85b351$Scene$Dart)) {
+    if (scene != null && !!(tmp$1 = scene , tmp$1 != null && tmp$1.$implements$ThreeD88754a$Scene$Dart)) {
       scene.removeObject$named(1, $noargs, object);
     }
   }
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.remove$named = function($n, $o, object){
+ThreeD88754a$Object3D$Dart.prototype.remove$named = function($n, $o, object){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Object3D$Dart.prototype.remove$member.call(this, object);
+  return ThreeD88754a$Object3D$Dart.prototype.remove$member.call(this, object);
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.updateMatrix$member = function(){
+ThreeD88754a$Object3D$Dart.prototype.updateMatrix$member = function(){
   var tmp$1, tmp$0;
   this.matrix$getter().setPosition$named(1, $noargs, this.position$getter());
   if (this.useQuaternion$getter()) {
@@ -71602,7 +71602,7 @@ ThreeD85b351$Object3D$Dart.prototype.updateMatrix$member = function(){
   this.matrixWorldNeedsUpdate$setter(tmp$1 = true) , tmp$1;
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.updateMatrixWorld$member = function(force){
+ThreeD88754a$Object3D$Dart.prototype.updateMatrixWorld$member = function(force){
   var tmp$1, tmp$0;
   if (this.matrixAutoUpdate$getter()) {
     this.updateMatrix$member();
@@ -71626,7 +71626,7 @@ ThreeD85b351$Object3D$Dart.prototype.updateMatrixWorld$member = function(force){
   }
 }
 ;
-ThreeD85b351$Object3D$Dart.prototype.updateMatrixWorld$named = function($n, $o, force){
+ThreeD88754a$Object3D$Dart.prototype.updateMatrixWorld$named = function($n, $o, force){
   var seen = 0;
   var def = 0;
   switch ($n) {
@@ -71635,459 +71635,459 @@ ThreeD85b351$Object3D$Dart.prototype.updateMatrixWorld$named = function($n, $o, 
   }
   if (seen != $o.count || seen + def + $n != 1)
     $nsme();
-  return ThreeD85b351$Object3D$Dart.prototype.updateMatrixWorld$member.call(this, force);
+  return ThreeD88754a$Object3D$Dart.prototype.updateMatrixWorld$member.call(this, force);
 }
 ;
-function ThreeD85b351$Camera$Dart(){
+function ThreeD88754a$Camera$Dart(){
 }
-$inherits(ThreeD85b351$Camera$Dart, ThreeD85b351$Object3D$Dart);
-ThreeD85b351$Camera$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Camera$Dart'), ThreeD85b351$Camera$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Camera$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Camera$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$Camera$Dart, ThreeD88754a$Object3D$Dart);
+ThreeD88754a$Camera$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Camera$Dart'), ThreeD88754a$Camera$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Camera$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Camera$Dart.$lookupRTT();
+ThreeD88754a$Camera$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Camera$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Camera$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Camera$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Object3D$Dart.$addTo(target);
+  ThreeD88754a$Object3D$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Camera$Dart.prototype.$implements$ThreeD85b351$Camera$Dart = 1;
-ThreeD85b351$Camera$Dart.$Constructor = function(){
-  ThreeD85b351$Object3D$Dart.$Constructor.call(this);
+ThreeD88754a$Camera$Dart.prototype.$implements$ThreeD88754a$Camera$Dart = 1;
+ThreeD88754a$Camera$Dart.$Constructor = function(){
+  ThreeD88754a$Object3D$Dart.$Constructor.call(this);
   var tmp$1, tmp$2, tmp$0;
-  this.matrixWorldInverse$setter(tmp$0 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
-  this.projectionMatrix$setter(tmp$1 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$1;
-  this.projectionMatrixInverse$setter(tmp$2 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$2;
+  this.matrixWorldInverse$setter(tmp$0 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
+  this.projectionMatrix$setter(tmp$1 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$1;
+  this.projectionMatrixInverse$setter(tmp$2 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$2;
 }
 ;
-ThreeD85b351$Camera$Dart.$Initializer = function(){
-  ThreeD85b351$Object3D$Dart.$Initializer.call(this);
+ThreeD88754a$Camera$Dart.$Initializer = function(){
+  ThreeD88754a$Object3D$Dart.$Initializer.call(this);
 }
 ;
-ThreeD85b351$Camera$Dart.prototype.matrixWorldInverse$getter = function(){
+ThreeD88754a$Camera$Dart.prototype.matrixWorldInverse$getter = function(){
   return this.matrixWorldInverse$field;
 }
 ;
-ThreeD85b351$Camera$Dart.prototype.matrixWorldInverse$setter = function(tmp$0){
+ThreeD88754a$Camera$Dart.prototype.matrixWorldInverse$setter = function(tmp$0){
   this.matrixWorldInverse$field = tmp$0;
 }
 ;
-ThreeD85b351$Camera$Dart.prototype.projectionMatrix$getter = function(){
+ThreeD88754a$Camera$Dart.prototype.projectionMatrix$getter = function(){
   return this.projectionMatrix$field;
 }
 ;
-ThreeD85b351$Camera$Dart.prototype.projectionMatrix$setter = function(tmp$0){
+ThreeD88754a$Camera$Dart.prototype.projectionMatrix$setter = function(tmp$0){
   this.projectionMatrix$field = tmp$0;
 }
 ;
-ThreeD85b351$Camera$Dart.prototype.projectionMatrixInverse$setter = function(tmp$0){
+ThreeD88754a$Camera$Dart.prototype.projectionMatrixInverse$setter = function(tmp$0){
   this.projectionMatrixInverse$field = tmp$0;
 }
 ;
-function ThreeD85b351$PerspectiveCamera$Dart(){
+function ThreeD88754a$PerspectiveCamera$Dart(){
 }
-$inherits(ThreeD85b351$PerspectiveCamera$Dart, ThreeD85b351$Camera$Dart);
-ThreeD85b351$PerspectiveCamera$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$PerspectiveCamera$Dart'), ThreeD85b351$PerspectiveCamera$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$PerspectiveCamera$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$PerspectiveCamera$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$PerspectiveCamera$Dart, ThreeD88754a$Camera$Dart);
+ThreeD88754a$PerspectiveCamera$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$PerspectiveCamera$Dart'), ThreeD88754a$PerspectiveCamera$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$PerspectiveCamera$Dart.$lookupRTT();
+ThreeD88754a$PerspectiveCamera$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$PerspectiveCamera$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$PerspectiveCamera$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$PerspectiveCamera$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Camera$Dart.$addTo(target);
+  ThreeD88754a$Camera$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.$Constructor = function(fov, aspect, near, far){
-  ThreeD85b351$Camera$Dart.$Constructor.call(this);
+ThreeD88754a$PerspectiveCamera$Dart.$Constructor = function(fov, aspect, near, far){
+  ThreeD88754a$Camera$Dart.$Constructor.call(this);
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._fov$ThreeD85b351$$setter_(tmp$0 = fov != null?fov:50) , tmp$0;
-  this._aspect$ThreeD85b351$$setter_(tmp$1 = aspect != null?aspect:1) , tmp$1;
-  this._near$ThreeD85b351$$setter_(tmp$2 = near != null?near:0.1) , tmp$2;
-  this._far$ThreeD85b351$$setter_(tmp$3 = far != null?far:2000) , tmp$3;
+  this._fov$ThreeD88754a$$setter_(tmp$0 = fov != null?fov:50) , tmp$0;
+  this._aspect$ThreeD88754a$$setter_(tmp$1 = aspect != null?aspect:1) , tmp$1;
+  this._near$ThreeD88754a$$setter_(tmp$2 = near != null?near:0.1) , tmp$2;
+  this._far$ThreeD88754a$$setter_(tmp$3 = far != null?far:2000) , tmp$3;
   this.updateProjectionMatrix$member();
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.$Initializer = function(fov, aspect, near, far){
-  ThreeD85b351$Camera$Dart.$Initializer.call(this);
+ThreeD88754a$PerspectiveCamera$Dart.$Initializer = function(fov, aspect, near, far){
+  ThreeD88754a$Camera$Dart.$Initializer.call(this);
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.PerspectiveCamera$$Factory = function(fov, aspect, near, far){
-  var tmp$0 = new ThreeD85b351$PerspectiveCamera$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$PerspectiveCamera$Dart.$lookupRTT();
-  ThreeD85b351$PerspectiveCamera$Dart.$Initializer.call(tmp$0, fov, aspect, near, far);
-  ThreeD85b351$PerspectiveCamera$Dart.$Constructor.call(tmp$0, fov, aspect, near, far);
+ThreeD88754a$PerspectiveCamera$Dart.PerspectiveCamera$$Factory = function(fov, aspect, near, far){
+  var tmp$0 = new ThreeD88754a$PerspectiveCamera$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$PerspectiveCamera$Dart.$lookupRTT();
+  ThreeD88754a$PerspectiveCamera$Dart.$Initializer.call(tmp$0, fov, aspect, near, far);
+  ThreeD88754a$PerspectiveCamera$Dart.$Constructor.call(tmp$0, fov, aspect, near, far);
   return tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._fov$ThreeD85b351$$getter_ = function(){
-  return this._fov$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._fov$ThreeD88754a$$getter_ = function(){
+  return this._fov$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._fov$ThreeD85b351$$setter_ = function(tmp$0){
-  this._fov$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._fov$ThreeD88754a$$setter_ = function(tmp$0){
+  this._fov$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._aspect$ThreeD85b351$$getter_ = function(){
-  return this._aspect$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._aspect$ThreeD88754a$$getter_ = function(){
+  return this._aspect$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._aspect$ThreeD85b351$$setter_ = function(tmp$0){
-  this._aspect$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._aspect$ThreeD88754a$$setter_ = function(tmp$0){
+  this._aspect$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._near$ThreeD85b351$$getter_ = function(){
-  return this._near$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._near$ThreeD88754a$$getter_ = function(){
+  return this._near$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._near$ThreeD85b351$$setter_ = function(tmp$0){
-  this._near$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._near$ThreeD88754a$$setter_ = function(tmp$0){
+  this._near$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._far$ThreeD85b351$$getter_ = function(){
-  return this._far$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._far$ThreeD88754a$$getter_ = function(){
+  return this._far$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._far$ThreeD85b351$$setter_ = function(tmp$0){
-  this._far$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._far$ThreeD88754a$$setter_ = function(tmp$0){
+  this._far$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._fullWidth$ThreeD85b351$$getter_ = function(){
-  return this._fullWidth$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._fullWidth$ThreeD88754a$$getter_ = function(){
+  return this._fullWidth$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._fullHeight$ThreeD85b351$$getter_ = function(){
-  return this._fullHeight$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._fullHeight$ThreeD88754a$$getter_ = function(){
+  return this._fullHeight$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._x$ThreeD85b351$$getter_ = function(){
-  return this._x$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._x$ThreeD88754a$$getter_ = function(){
+  return this._x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._y$ThreeD85b351$$getter_ = function(){
-  return this._y$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._y$ThreeD88754a$$getter_ = function(){
+  return this._y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._width$ThreeD85b351$$getter_ = function(){
-  return this._width$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._width$ThreeD88754a$$getter_ = function(){
+  return this._width$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._width$ThreeD85b351$$setter_ = function(tmp$0){
-  this._width$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._width$ThreeD88754a$$setter_ = function(tmp$0){
+  this._width$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._height$ThreeD85b351$$getter_ = function(){
-  return this._height$ThreeD85b351$$field_;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._height$ThreeD88754a$$getter_ = function(){
+  return this._height$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype._height$ThreeD85b351$$setter_ = function(tmp$0){
-  this._height$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$PerspectiveCamera$Dart.prototype._height$ThreeD88754a$$setter_ = function(tmp$0){
+  this._height$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype.near$getter = function(){
-  return this._near$ThreeD85b351$$getter_();
+ThreeD88754a$PerspectiveCamera$Dart.prototype.near$getter = function(){
+  return this._near$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype.far$getter = function(){
-  return this._far$ThreeD85b351$$getter_();
+ThreeD88754a$PerspectiveCamera$Dart.prototype.far$getter = function(){
+  return this._far$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$PerspectiveCamera$Dart.prototype.updateProjectionMatrix$member = function(){
+ThreeD88754a$PerspectiveCamera$Dart.prototype.updateProjectionMatrix$member = function(){
   var tmp$1, tmp$0;
-  if (this._fullWidth$ThreeD85b351$$getter_() != null) {
-    var aspect = DIV$operator(this._fullWidth$ThreeD85b351$$getter_(), this._fullHeight$ThreeD85b351$$getter_());
-    var top_0 = MUL$operator(Math$Dart.tan$member(DIV$operator(MUL$operator(this._fov$ThreeD85b351$$getter_(), Math$Dart.PI$getter()), 360)), this._near$ThreeD85b351$$getter_());
+  if (this._fullWidth$ThreeD88754a$$getter_() != null) {
+    var aspect = DIV$operator(this._fullWidth$ThreeD88754a$$getter_(), this._fullHeight$ThreeD88754a$$getter_());
+    var top_0 = MUL$operator(Math$Dart.tan$member(DIV$operator(MUL$operator(this._fov$ThreeD88754a$$getter_(), Math$Dart.PI$getter()), 360)), this._near$ThreeD88754a$$getter_());
     var bottom = negate$operator(top_0);
     var left = MUL$operator(aspect, bottom);
     var right = MUL$operator(aspect, top_0);
     var width = SUB$operator(right, left).abs$named(0, $noargs);
     var height = SUB$operator(top_0, bottom).abs$named(0, $noargs);
-    this.projectionMatrix$setter(tmp$0 = ThreeD85b351$Matrix4$Dart.makeFrustum$member(ADD$operator(left, DIV$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), width), this._fullWidth$ThreeD85b351$$getter_())), ADD$operator(left, DIV$operator(MUL$operator(ADD$operator(this._x$ThreeD85b351$$getter_(), width), width), this._fullWidth$ThreeD85b351$$getter_())), SUB$operator(top_0, DIV$operator(MUL$operator(ADD$operator(this._y$ThreeD85b351$$getter_(), height), height), this._fullHeight$ThreeD85b351$$getter_())), SUB$operator(top_0, DIV$operator(MUL$operator(this._y$ThreeD85b351$$getter_(), height), this._fullHeight$ThreeD85b351$$getter_())), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_())) , tmp$0;
+    this.projectionMatrix$setter(tmp$0 = ThreeD88754a$Matrix4$Dart.makeFrustum$member(ADD$operator(left, DIV$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), width), this._fullWidth$ThreeD88754a$$getter_())), ADD$operator(left, DIV$operator(MUL$operator(ADD$operator(this._x$ThreeD88754a$$getter_(), width), width), this._fullWidth$ThreeD88754a$$getter_())), SUB$operator(top_0, DIV$operator(MUL$operator(ADD$operator(this._y$ThreeD88754a$$getter_(), height), height), this._fullHeight$ThreeD88754a$$getter_())), SUB$operator(top_0, DIV$operator(MUL$operator(this._y$ThreeD88754a$$getter_(), height), this._fullHeight$ThreeD88754a$$getter_())), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_())) , tmp$0;
   }
    else {
-    this.projectionMatrix$setter(tmp$1 = ThreeD85b351$Matrix4$Dart.makePerspective$member(this._fov$ThreeD85b351$$getter_(), this._aspect$ThreeD85b351$$getter_(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_())) , tmp$1;
+    this.projectionMatrix$setter(tmp$1 = ThreeD88754a$Matrix4$Dart.makePerspective$member(this._fov$ThreeD88754a$$getter_(), this._aspect$ThreeD88754a$$getter_(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_())) , tmp$1;
   }
 }
 ;
-function ThreeD85b351$Projector$Dart(){
+function ThreeD88754a$Projector$Dart(){
 }
-ThreeD85b351$Projector$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Projector$Dart'), null, null, named);
+ThreeD88754a$Projector$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Projector$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Projector$Dart.$Constructor = function(){
+ThreeD88754a$Projector$Dart.$Constructor = function(){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._objectPool$ThreeD85b351$$setter_(tmp$0 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$0;
-  this._vertexPool$ThreeD85b351$$setter_(tmp$1 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$1;
-  this._face3Pool$ThreeD85b351$$setter_(tmp$2 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$2;
-  this._face4Pool$ThreeD85b351$$setter_(tmp$3 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$3;
-  this._linePool$ThreeD85b351$$setter_(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
-  this._particlePool$ThreeD85b351$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
-  this._renderData$ThreeD85b351$$setter_(tmp$6 = ThreeD85b351$RenderData$Dart.RenderData$$Factory()) , tmp$6;
-  this._vector3$ThreeD85b351$$setter_(tmp$7 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$7;
-  this._vector4$ThreeD85b351$$setter_(tmp$8 = ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$8;
-  this._projScreenMatrix$ThreeD85b351$$setter_(tmp$9 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$9;
-  this._projScreenobjectMatrixWorld$ThreeD85b351$$setter_(tmp$10 = ThreeD85b351$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$10;
-  this._frustum$ThreeD85b351$$setter_(tmp$11 = ThreeD85b351$Frustum$Dart.Frustum$$Factory()) , tmp$11;
-  this._clippedVertex1PositionScreen$ThreeD85b351$$setter_(tmp$12 = ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$12;
-  this._clippedVertex2PositionScreen$ThreeD85b351$$setter_(tmp$13 = ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$13;
+  this._objectPool$ThreeD88754a$$setter_(tmp$0 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$0;
+  this._vertexPool$ThreeD88754a$$setter_(tmp$1 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$1;
+  this._face3Pool$ThreeD88754a$$setter_(tmp$2 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$2;
+  this._face4Pool$ThreeD88754a$$setter_(tmp$3 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$3;
+  this._linePool$ThreeD88754a$$setter_(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
+  this._particlePool$ThreeD88754a$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
+  this._renderData$ThreeD88754a$$setter_(tmp$6 = ThreeD88754a$RenderData$Dart.RenderData$$Factory()) , tmp$6;
+  this._vector3$ThreeD88754a$$setter_(tmp$7 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$7;
+  this._vector4$ThreeD88754a$$setter_(tmp$8 = ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$8;
+  this._projScreenMatrix$ThreeD88754a$$setter_(tmp$9 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$9;
+  this._projScreenobjectMatrixWorld$ThreeD88754a$$setter_(tmp$10 = ThreeD88754a$Matrix4$Dart.Matrix4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$10;
+  this._frustum$ThreeD88754a$$setter_(tmp$11 = ThreeD88754a$Frustum$Dart.Frustum$$Factory()) , tmp$11;
+  this._clippedVertex1PositionScreen$ThreeD88754a$$setter_(tmp$12 = ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$12;
+  this._clippedVertex2PositionScreen$ThreeD88754a$$setter_(tmp$13 = ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$13;
   var _face3VertexNormals = $Dart$Null;
 }
 ;
-ThreeD85b351$Projector$Dart.$Initializer = function(){
+ThreeD88754a$Projector$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$Projector$Dart.Projector$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$Projector$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Projector$Dart.$lookupRTT();
-  ThreeD85b351$Projector$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$Projector$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$Projector$Dart.Projector$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$Projector$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Projector$Dart.$lookupRTT();
+  ThreeD88754a$Projector$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$Projector$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._objectPool$ThreeD85b351$$getter_ = function(){
-  return this._objectPool$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._objectPool$ThreeD88754a$$getter_ = function(){
+  return this._objectPool$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._objectPool$ThreeD85b351$$setter_ = function(tmp$0){
-  this._objectPool$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._objectPool$ThreeD88754a$$setter_ = function(tmp$0){
+  this._objectPool$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vertexPool$ThreeD85b351$$getter_ = function(){
-  return this._vertexPool$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._vertexPool$ThreeD88754a$$getter_ = function(){
+  return this._vertexPool$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vertexPool$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexPool$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._vertexPool$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexPool$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face4Pool$ThreeD85b351$$getter_ = function(){
-  return this._face4Pool$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._face4Pool$ThreeD88754a$$getter_ = function(){
+  return this._face4Pool$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face4Pool$ThreeD85b351$$setter_ = function(tmp$0){
-  this._face4Pool$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._face4Pool$ThreeD88754a$$setter_ = function(tmp$0){
+  this._face4Pool$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face3Pool$ThreeD85b351$$getter_ = function(){
-  return this._face3Pool$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._face3Pool$ThreeD88754a$$getter_ = function(){
+  return this._face3Pool$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face3Pool$ThreeD85b351$$setter_ = function(tmp$0){
-  this._face3Pool$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._face3Pool$ThreeD88754a$$setter_ = function(tmp$0){
+  this._face3Pool$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._linePool$ThreeD85b351$$getter_ = function(){
-  return this._linePool$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._linePool$ThreeD88754a$$getter_ = function(){
+  return this._linePool$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._linePool$ThreeD85b351$$setter_ = function(tmp$0){
-  this._linePool$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._linePool$ThreeD88754a$$setter_ = function(tmp$0){
+  this._linePool$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._particlePool$ThreeD85b351$$getter_ = function(){
-  return this._particlePool$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._particlePool$ThreeD88754a$$getter_ = function(){
+  return this._particlePool$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._particlePool$ThreeD85b351$$setter_ = function(tmp$0){
-  this._particlePool$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._particlePool$ThreeD88754a$$setter_ = function(tmp$0){
+  this._particlePool$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._objectCount$ThreeD85b351$$getter_ = function(){
-  return this._objectCount$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._objectCount$ThreeD88754a$$getter_ = function(){
+  return this._objectCount$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._objectCount$ThreeD85b351$$setter_ = function(tmp$0){
-  this._objectCount$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._objectCount$ThreeD88754a$$setter_ = function(tmp$0){
+  this._objectCount$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vertexCount$ThreeD85b351$$getter_ = function(){
-  return this._vertexCount$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._vertexCount$ThreeD88754a$$getter_ = function(){
+  return this._vertexCount$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vertexCount$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexCount$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._vertexCount$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexCount$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face3Count$ThreeD85b351$$getter_ = function(){
-  return this._face3Count$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._face3Count$ThreeD88754a$$getter_ = function(){
+  return this._face3Count$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face3Count$ThreeD85b351$$setter_ = function(tmp$0){
-  this._face3Count$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._face3Count$ThreeD88754a$$setter_ = function(tmp$0){
+  this._face3Count$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face4Count$ThreeD85b351$$getter_ = function(){
-  return this._face4Count$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._face4Count$ThreeD88754a$$getter_ = function(){
+  return this._face4Count$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._face4Count$ThreeD85b351$$setter_ = function(tmp$0){
-  this._face4Count$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._face4Count$ThreeD88754a$$setter_ = function(tmp$0){
+  this._face4Count$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._lineCount$ThreeD85b351$$getter_ = function(){
-  return this._lineCount$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._lineCount$ThreeD88754a$$getter_ = function(){
+  return this._lineCount$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._lineCount$ThreeD85b351$$setter_ = function(tmp$0){
-  this._lineCount$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._lineCount$ThreeD88754a$$setter_ = function(tmp$0){
+  this._lineCount$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._particleCount$ThreeD85b351$$getter_ = function(){
-  return this._particleCount$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._particleCount$ThreeD88754a$$getter_ = function(){
+  return this._particleCount$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._particleCount$ThreeD85b351$$setter_ = function(tmp$0){
-  this._particleCount$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._particleCount$ThreeD88754a$$setter_ = function(tmp$0){
+  this._particleCount$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._object$ThreeD85b351$$getter_ = function(){
-  return this._object$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._object$ThreeD88754a$$getter_ = function(){
+  return this._object$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._object$ThreeD85b351$$setter_ = function(tmp$0){
-  this._object$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._object$ThreeD88754a$$setter_ = function(tmp$0){
+  this._object$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vertex$ThreeD85b351$$getter_ = function(){
-  return this._vertex$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._vertex$ThreeD88754a$$getter_ = function(){
+  return this._vertex$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vertex$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertex$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._vertex$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertex$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._line$ThreeD85b351$$getter_ = function(){
-  return this._line$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._line$ThreeD88754a$$getter_ = function(){
+  return this._line$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._line$ThreeD85b351$$setter_ = function(tmp$0){
-  this._line$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._line$ThreeD88754a$$setter_ = function(tmp$0){
+  this._line$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._particle$ThreeD85b351$$getter_ = function(){
-  return this._particle$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._particle$ThreeD88754a$$getter_ = function(){
+  return this._particle$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._particle$ThreeD85b351$$setter_ = function(tmp$0){
-  this._particle$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._particle$ThreeD88754a$$setter_ = function(tmp$0){
+  this._particle$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vector3$ThreeD85b351$$getter_ = function(){
-  return this._vector3$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._vector3$ThreeD88754a$$getter_ = function(){
+  return this._vector3$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vector3$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vector3$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._vector3$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vector3$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vector4$ThreeD85b351$$getter_ = function(){
-  return this._vector4$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._vector4$ThreeD88754a$$getter_ = function(){
+  return this._vector4$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._vector4$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vector4$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._vector4$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vector4$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._clippedVertex1PositionScreen$ThreeD85b351$$getter_ = function(){
-  return this._clippedVertex1PositionScreen$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._clippedVertex1PositionScreen$ThreeD88754a$$getter_ = function(){
+  return this._clippedVertex1PositionScreen$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._clippedVertex1PositionScreen$ThreeD85b351$$setter_ = function(tmp$0){
-  this._clippedVertex1PositionScreen$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._clippedVertex1PositionScreen$ThreeD88754a$$setter_ = function(tmp$0){
+  this._clippedVertex1PositionScreen$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._clippedVertex2PositionScreen$ThreeD85b351$$getter_ = function(){
-  return this._clippedVertex2PositionScreen$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._clippedVertex2PositionScreen$ThreeD88754a$$getter_ = function(){
+  return this._clippedVertex2PositionScreen$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._clippedVertex2PositionScreen$ThreeD85b351$$setter_ = function(tmp$0){
-  this._clippedVertex2PositionScreen$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._clippedVertex2PositionScreen$ThreeD88754a$$setter_ = function(tmp$0){
+  this._clippedVertex2PositionScreen$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._renderData$ThreeD85b351$$getter_ = function(){
-  return this._renderData$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._renderData$ThreeD88754a$$getter_ = function(){
+  return this._renderData$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._renderData$ThreeD85b351$$setter_ = function(tmp$0){
-  this._renderData$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._renderData$ThreeD88754a$$setter_ = function(tmp$0){
+  this._renderData$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._projScreenMatrix$ThreeD85b351$$getter_ = function(){
-  return this._projScreenMatrix$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._projScreenMatrix$ThreeD88754a$$getter_ = function(){
+  return this._projScreenMatrix$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._projScreenMatrix$ThreeD85b351$$setter_ = function(tmp$0){
-  this._projScreenMatrix$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._projScreenMatrix$ThreeD88754a$$setter_ = function(tmp$0){
+  this._projScreenMatrix$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._projScreenobjectMatrixWorld$ThreeD85b351$$getter_ = function(){
-  return this._projScreenobjectMatrixWorld$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._projScreenobjectMatrixWorld$ThreeD88754a$$getter_ = function(){
+  return this._projScreenobjectMatrixWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._projScreenobjectMatrixWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._projScreenobjectMatrixWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._projScreenobjectMatrixWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._projScreenobjectMatrixWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._frustum$ThreeD85b351$$getter_ = function(){
-  return this._frustum$ThreeD85b351$$field_;
+ThreeD88754a$Projector$Dart.prototype._frustum$ThreeD88754a$$getter_ = function(){
+  return this._frustum$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype._frustum$ThreeD85b351$$setter_ = function(tmp$0){
-  this._frustum$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Projector$Dart.prototype._frustum$ThreeD88754a$$setter_ = function(tmp$0){
+  this._frustum$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.projectGraph$member = function(root, sort){
+ThreeD88754a$Projector$Dart.prototype.projectGraph$member = function(root, sort){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._objectCount$ThreeD85b351$$setter_(tmp$0 = 0) , tmp$0;
-  this._renderData$ThreeD85b351$$getter_().objects$getter().length$setter(tmp$1 = 0) , tmp$1;
-  this._renderData$ThreeD85b351$$getter_().sprites$getter().length$setter(tmp$2 = 0) , tmp$2;
-  this._renderData$ThreeD85b351$$getter_().lights$getter().length$setter(tmp$3 = 0) , tmp$3;
+  this._objectCount$ThreeD88754a$$setter_(tmp$0 = 0) , tmp$0;
+  this._renderData$ThreeD88754a$$getter_().objects$getter().length$setter(tmp$1 = 0) , tmp$1;
+  this._renderData$ThreeD88754a$$getter_().sprites$getter().length$setter(tmp$2 = 0) , tmp$2;
+  this._renderData$ThreeD88754a$$getter_().lights$getter().length$setter(tmp$3 = 0) , tmp$3;
   this.projectObject$member(root);
   if (sort) {
-    this._renderData$ThreeD85b351$$getter_().objects$getter().sort$named(1, $noargs, $bind(ThreeD85b351$Projector$Dart.prototype.painterSort$named, ThreeD85b351$Projector$Dart.prototype.painterSort$named_$lookupRTT, this));
+    this._renderData$ThreeD88754a$$getter_().objects$getter().sort$named(1, $noargs, $bind(ThreeD88754a$Projector$Dart.prototype.painterSort$named, ThreeD88754a$Projector$Dart.prototype.painterSort$named_$lookupRTT, this));
   }
-  return this._renderData$ThreeD85b351$$getter_();
+  return this._renderData$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.projectObject$member = function(object){
+ThreeD88754a$Projector$Dart.prototype.projectObject$member = function(object){
   var tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$11, tmp$10, tmp$0;
   if (object.visible$getter() === false) {
     return $Dart$Null;
   }
-  if ((!!(tmp$1 = object , tmp$1 != null && tmp$1.$implements$ThreeD85b351$Mesh$Dart) || !!(tmp$0 = object , tmp$0 != null && tmp$0.$implements$ThreeD85b351$Line$Dart)) && (object.frustumCulled$getter() === false || this._frustum$ThreeD85b351$$getter_().contains$named(1, $noargs, object))) {
-    this._projScreenMatrix$ThreeD85b351$$getter_().multiplyVector3$named(1, $noargs, this._vector3$ThreeD85b351$$getter_().copy$named(1, $noargs, object.position$getter()));
-    this._object$ThreeD85b351$$setter_(tmp$2 = this.getNextObjectInPool$member()) , tmp$2;
-    this._object$ThreeD85b351$$getter_().object$setter(tmp$3 = object) , tmp$3;
-    this._object$ThreeD85b351$$getter_().z$setter(tmp$4 = this._vector3$ThreeD85b351$$getter_().z$getter()) , tmp$4;
-    this._renderData$ThreeD85b351$$getter_().objects$getter().add$named(1, $noargs, this._object$ThreeD85b351$$getter_());
+  if ((!!(tmp$1 = object , tmp$1 != null && tmp$1.$implements$ThreeD88754a$Mesh$Dart) || !!(tmp$0 = object , tmp$0 != null && tmp$0.$implements$ThreeD88754a$Line$Dart)) && (object.frustumCulled$getter() === false || this._frustum$ThreeD88754a$$getter_().contains$named(1, $noargs, object))) {
+    this._projScreenMatrix$ThreeD88754a$$getter_().multiplyVector3$named(1, $noargs, this._vector3$ThreeD88754a$$getter_().copy$named(1, $noargs, object.position$getter()));
+    this._object$ThreeD88754a$$setter_(tmp$2 = this.getNextObjectInPool$member()) , tmp$2;
+    this._object$ThreeD88754a$$getter_().object$setter(tmp$3 = object) , tmp$3;
+    this._object$ThreeD88754a$$getter_().z$setter(tmp$4 = this._vector3$ThreeD88754a$$getter_().z$getter()) , tmp$4;
+    this._renderData$ThreeD88754a$$getter_().objects$getter().add$named(1, $noargs, this._object$ThreeD88754a$$getter_());
   }
    else {
-    if (!!(tmp$6 = object , tmp$6 != null && tmp$6.$implements$ThreeD85b351$Sprite$Dart) || !!(tmp$5 = object , tmp$5 != null && tmp$5.$implements$ThreeD85b351$Particle$Dart)) {
-      this._projScreenMatrix$ThreeD85b351$$getter_().multiplyVector3$named(1, $noargs, this._vector3$ThreeD85b351$$getter_().copy$named(1, $noargs, object.position$getter()));
-      this._object$ThreeD85b351$$setter_(tmp$7 = this.getNextObjectInPool$member()) , tmp$7;
-      this._object$ThreeD85b351$$getter_().object$setter(tmp$8 = object) , tmp$8;
-      this._object$ThreeD85b351$$getter_().z$setter(tmp$9 = this._vector3$ThreeD85b351$$getter_().z$getter()) , tmp$9;
-      this._renderData$ThreeD85b351$$getter_().sprites$getter().add$named(1, $noargs, this._object$ThreeD85b351$$getter_());
+    if (!!(tmp$6 = object , tmp$6 != null && tmp$6.$implements$ThreeD88754a$Sprite$Dart) || !!(tmp$5 = object , tmp$5 != null && tmp$5.$implements$ThreeD88754a$Particle$Dart)) {
+      this._projScreenMatrix$ThreeD88754a$$getter_().multiplyVector3$named(1, $noargs, this._vector3$ThreeD88754a$$getter_().copy$named(1, $noargs, object.position$getter()));
+      this._object$ThreeD88754a$$setter_(tmp$7 = this.getNextObjectInPool$member()) , tmp$7;
+      this._object$ThreeD88754a$$getter_().object$setter(tmp$8 = object) , tmp$8;
+      this._object$ThreeD88754a$$getter_().z$setter(tmp$9 = this._vector3$ThreeD88754a$$getter_().z$getter()) , tmp$9;
+      this._renderData$ThreeD88754a$$getter_().sprites$getter().add$named(1, $noargs, this._object$ThreeD88754a$$getter_());
     }
      else {
-      if (!!(tmp$10 = object , tmp$10 != null && tmp$10.$implements$ThreeD85b351$Light$Dart)) {
-        this._renderData$ThreeD85b351$$getter_().lights$getter().add$named(1, $noargs, object);
+      if (!!(tmp$10 = object , tmp$10 != null && tmp$10.$implements$ThreeD88754a$Light$Dart)) {
+        this._renderData$ThreeD88754a$$getter_().lights$getter().add$named(1, $noargs, object);
       }
     }
   }
@@ -72101,7 +72101,7 @@ ThreeD85b351$Projector$Dart.prototype.projectObject$member = function(object){
   }
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, camera, sort){
+ThreeD88754a$Projector$Dart.prototype.projectScene$member = function(scene, camera, sort){
   var tmp$20, tmp$24, tmp$23, tmp$22, tmp$21, tmp$27, tmp$9, tmp$28, tmp$25, tmp$26, tmp$5, tmp$40, tmp$6, tmp$41, tmp$29, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$39, tmp$11, tmp$38, tmp$10, tmp$37, tmp$13, tmp$36, tmp$12, tmp$34, tmp$14, tmp$35, tmp$15, tmp$32, tmp$16, tmp$33, tmp$17, tmp$30, tmp$18, tmp$31, tmp$19;
   var near = camera.near$getter();
   var far = camera.far$getter();
@@ -72136,28 +72136,28 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
   var v2 = $Dart$Null;
   var v3 = $Dart$Null;
   var v4 = $Dart$Null;
-  this._face3Count$ThreeD85b351$$setter_(tmp$0 = 0) , tmp$0;
-  this._face4Count$ThreeD85b351$$setter_(tmp$1 = 0) , tmp$1;
-  this._lineCount$ThreeD85b351$$setter_(tmp$2 = 0) , tmp$2;
-  this._particleCount$ThreeD85b351$$setter_(tmp$3 = 0) , tmp$3;
-  this._renderData$ThreeD85b351$$getter_().elements$getter().length$setter(tmp$4 = 0) , tmp$4;
+  this._face3Count$ThreeD88754a$$setter_(tmp$0 = 0) , tmp$0;
+  this._face4Count$ThreeD88754a$$setter_(tmp$1 = 0) , tmp$1;
+  this._lineCount$ThreeD88754a$$setter_(tmp$2 = 0) , tmp$2;
+  this._particleCount$ThreeD88754a$$setter_(tmp$3 = 0) , tmp$3;
+  this._renderData$ThreeD88754a$$getter_().elements$getter().length$setter(tmp$4 = 0) , tmp$4;
   if (camera.parent$getter() == null) {
     scene.add$named(1, $noargs, camera);
   }
   scene.updateMatrixWorld$named(0, $noargs);
   camera.matrixWorldInverse$getter().getInverse$named(1, $noargs, camera.matrixWorld$getter());
-  this._projScreenMatrix$ThreeD85b351$$getter_().multiply$named(2, $noargs, camera.projectionMatrix$getter(), camera.matrixWorldInverse$getter());
-  this._frustum$ThreeD85b351$$getter_().setFromMatrix$named(1, $noargs, this._projScreenMatrix$ThreeD85b351$$getter_());
-  this._renderData$ThreeD85b351$$setter_(tmp$5 = this.projectGraph$member(scene, false)) , tmp$5;
-  ol = this._renderData$ThreeD85b351$$getter_().objects$getter().length$getter();
+  this._projScreenMatrix$ThreeD88754a$$getter_().multiply$named(2, $noargs, camera.projectionMatrix$getter(), camera.matrixWorldInverse$getter());
+  this._frustum$ThreeD88754a$$getter_().setFromMatrix$named(1, $noargs, this._projScreenMatrix$ThreeD88754a$$getter_());
+  this._renderData$ThreeD88754a$$setter_(tmp$5 = this.projectGraph$member(scene, false)) , tmp$5;
+  ol = this._renderData$ThreeD88754a$$getter_().objects$getter().length$getter();
   {
     o = 0;
     for (; LT$operator(o, ol); tmp$6 = o , (o = ADD$operator(tmp$6, 1) , tmp$6)) {
-      object = this._renderData$ThreeD85b351$$getter_().objects$getter().INDEX$operator(o).object$getter();
+      object = this._renderData$ThreeD88754a$$getter_().objects$getter().INDEX$operator(o).object$getter();
       objectMatrixWorld = object.matrixWorld$getter();
       objectMaterial = object.material$getter();
-      this._vertexCount$ThreeD85b351$$setter_(tmp$7 = 0) , tmp$7;
-      if (!!(tmp$8 = object , tmp$8 != null && tmp$8.$implements$ThreeD85b351$Mesh$Dart)) {
+      this._vertexCount$ThreeD88754a$$setter_(tmp$7 = 0) , tmp$7;
+      if (!!(tmp$8 = object , tmp$8 != null && tmp$8.$implements$ThreeD88754a$Mesh$Dart)) {
         geometry = object.geometry$getter();
         geometryMaterials = object.geometry$getter().materials$getter();
         vertices = geometry.vertices$getter();
@@ -72168,14 +72168,14 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
         {
           v = 0;
           for (; LT$operator(v, vl); tmp$9 = v , (v = ADD$operator(tmp$9, 1) , tmp$9)) {
-            this._vertex$ThreeD85b351$$setter_(tmp$10 = this.getNextVertexInPool$member()) , tmp$10;
-            this._vertex$ThreeD85b351$$getter_().positionWorld$getter().copy$named(1, $noargs, vertices.INDEX$operator(v).position$getter());
-            objectMatrixWorld.multiplyVector3$named(1, $noargs, this._vertex$ThreeD85b351$$getter_().positionWorld$getter());
-            this._vertex$ThreeD85b351$$getter_().positionScreen$getter().copy$named(1, $noargs, this._vertex$ThreeD85b351$$getter_().positionWorld$getter());
-            this._projScreenMatrix$ThreeD85b351$$getter_().multiplyVector4$named(1, $noargs, this._vertex$ThreeD85b351$$getter_().positionScreen$getter());
-            tmp$11 = this._vertex$ThreeD85b351$$getter_().positionScreen$getter() , (tmp$11.x$setter(tmp$12 = DIV$operator(tmp$11.x$getter(), this._vertex$ThreeD85b351$$getter_().positionScreen$getter().w$getter())) , tmp$12);
-            tmp$13 = this._vertex$ThreeD85b351$$getter_().positionScreen$getter() , (tmp$13.y$setter(tmp$14 = DIV$operator(tmp$13.y$getter(), this._vertex$ThreeD85b351$$getter_().positionScreen$getter().w$getter())) , tmp$14);
-            this._vertex$ThreeD85b351$$getter_().visible$setter(tmp$15 = GT$operator(this._vertex$ThreeD85b351$$getter_().positionScreen$getter().z$getter(), near) && LT$operator(this._vertex$ThreeD85b351$$getter_().positionScreen$getter().z$getter(), far)) , tmp$15;
+            this._vertex$ThreeD88754a$$setter_(tmp$10 = this.getNextVertexInPool$member()) , tmp$10;
+            this._vertex$ThreeD88754a$$getter_().positionWorld$getter().copy$named(1, $noargs, vertices.INDEX$operator(v).position$getter());
+            objectMatrixWorld.multiplyVector3$named(1, $noargs, this._vertex$ThreeD88754a$$getter_().positionWorld$getter());
+            this._vertex$ThreeD88754a$$getter_().positionScreen$getter().copy$named(1, $noargs, this._vertex$ThreeD88754a$$getter_().positionWorld$getter());
+            this._projScreenMatrix$ThreeD88754a$$getter_().multiplyVector4$named(1, $noargs, this._vertex$ThreeD88754a$$getter_().positionScreen$getter());
+            tmp$11 = this._vertex$ThreeD88754a$$getter_().positionScreen$getter() , (tmp$11.x$setter(tmp$12 = DIV$operator(tmp$11.x$getter(), this._vertex$ThreeD88754a$$getter_().positionScreen$getter().w$getter())) , tmp$12);
+            tmp$13 = this._vertex$ThreeD88754a$$getter_().positionScreen$getter() , (tmp$13.y$setter(tmp$14 = DIV$operator(tmp$13.y$getter(), this._vertex$ThreeD88754a$$getter_().positionScreen$getter().w$getter())) , tmp$14);
+            this._vertex$ThreeD88754a$$getter_().visible$setter(tmp$15 = GT$operator(this._vertex$ThreeD88754a$$getter_().positionScreen$getter().z$getter(), near) && LT$operator(this._vertex$ThreeD88754a$$getter_().positionScreen$getter().z$getter(), far)) , tmp$15;
           }
         }
         fl = faces.length$getter();
@@ -72183,10 +72183,10 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
           f = 0;
           for (; LT$operator(f, fl); tmp$16 = f , (f = ADD$operator(tmp$16, 1) , tmp$16)) {
             face = faces.INDEX$operator(f);
-            if (!!(tmp$17 = face , tmp$17 != null && tmp$17.$implements$ThreeD85b351$Face3$Dart)) {
-              v1 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face.a$getter());
-              v2 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face.b$getter());
-              v3 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face.c$getter());
+            if (!!(tmp$17 = face , tmp$17 != null && tmp$17.$implements$ThreeD88754a$Face3$Dart)) {
+              v1 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face.a$getter());
+              v2 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face.b$getter());
+              v3 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face.c$getter());
               if (v1.visible$getter() && v2.visible$getter() && v3.visible$getter() && (object.doubleSided$getter() || NE$operator(object.flipSided$getter(), LT$operator(SUB$operator(MUL$operator(SUB$operator(v3.positionScreen$getter().x$getter(), v1.positionScreen$getter().x$getter()), SUB$operator(v2.positionScreen$getter().y$getter(), v1.positionScreen$getter().y$getter())), MUL$operator(SUB$operator(v3.positionScreen$getter().y$getter(), v1.positionScreen$getter().y$getter()), SUB$operator(v2.positionScreen$getter().x$getter(), v1.positionScreen$getter().x$getter()))), 0)))) {
                 _face = this.getNextFace3InPool$member();
                 _face.v1$getter().copy$named(1, $noargs, v1);
@@ -72198,12 +72198,12 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
               }
             }
              else {
-              if (!!(tmp$18 = face , tmp$18 != null && tmp$18.$implements$ThreeD85b351$Face4$Dart)) {
+              if (!!(tmp$18 = face , tmp$18 != null && tmp$18.$implements$ThreeD88754a$Face4$Dart)) {
                 var face4 = face;
-                v1 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face4.a$getter());
-                v2 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face4.b$getter());
-                v3 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face4.c$getter());
-                v4 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(face4.d$getter());
+                v1 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face4.a$getter());
+                v2 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face4.b$getter());
+                v3 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face4.c$getter());
+                v4 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(face4.d$getter());
                 if (v1.visible$getter() && v2.visible$getter() && v3.visible$getter() && v4.visible$getter() && (object.doubleSided$getter() || NE$operator(object.flipSided$getter(), LT$operator(SUB$operator(MUL$operator(SUB$operator(v4.positionScreen$getter().x$getter(), v1.positionScreen$getter().x$getter()), SUB$operator(v2.positionScreen$getter().y$getter(), v1.positionScreen$getter().y$getter())), MUL$operator(SUB$operator(v4.positionScreen$getter().y$getter(), v1.positionScreen$getter().y$getter()), SUB$operator(v2.positionScreen$getter().x$getter(), v1.positionScreen$getter().x$getter()))), 0) || LT$operator(SUB$operator(MUL$operator(SUB$operator(v2.positionScreen$getter().x$getter(), v3.positionScreen$getter().x$getter()), SUB$operator(v4.positionScreen$getter().y$getter(), v3.positionScreen$getter().y$getter())), MUL$operator(SUB$operator(v2.positionScreen$getter().y$getter(), v3.positionScreen$getter().y$getter()), SUB$operator(v4.positionScreen$getter().x$getter(), v3.positionScreen$getter().x$getter()))), 0)))) {
                   _face = this.getNextFace4InPool$member();
                   _face.v1$getter().copy$named(1, $noargs, v1);
@@ -72222,7 +72222,7 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
             _face.centroidWorld$getter().copy$named(1, $noargs, face.centroid$getter());
             objectMatrixWorld.multiplyVector3$named(1, $noargs, _face.centroidWorld$getter());
             _face.centroidScreen$getter().copy$named(1, $noargs, _face.centroidWorld$getter());
-            this._projScreenMatrix$ThreeD85b351$$getter_().multiplyVector3$named(1, $noargs, _face.centroidScreen$getter());
+            this._projScreenMatrix$ThreeD88754a$$getter_().multiplyVector3$named(1, $noargs, _face.centroidScreen$getter());
             faceVertexNormals = face.vertexNormals$getter();
             nl = faceVertexNormals.length$getter();
             {
@@ -72255,36 +72255,36 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
             _face.material$setter(tmp$22 = objectMaterial) , tmp$22;
             _face.faceMaterial$setter(tmp$23 = face.materialIndex$getter() != null?geometryMaterials.INDEX$operator(face.materialIndex$getter()):$Dart$Null) , tmp$23;
             _face.z$setter(tmp$24 = _face.centroidScreen$getter().z$getter()) , tmp$24;
-            this._renderData$ThreeD85b351$$getter_().elements$getter().add$named(1, $noargs, _face);
+            this._renderData$ThreeD88754a$$getter_().elements$getter().add$named(1, $noargs, _face);
           }
         }
       }
        else {
-        if (!!(tmp$25 = object , tmp$25 != null && tmp$25.$implements$ThreeD85b351$Line$Dart)) {
-          this._projScreenobjectMatrixWorld$ThreeD85b351$$getter_().multiply$named(2, $noargs, this._projScreenMatrix$ThreeD85b351$$getter_(), objectMatrixWorld);
+        if (!!(tmp$25 = object , tmp$25 != null && tmp$25.$implements$ThreeD88754a$Line$Dart)) {
+          this._projScreenobjectMatrixWorld$ThreeD88754a$$getter_().multiply$named(2, $noargs, this._projScreenMatrix$ThreeD88754a$$getter_(), objectMatrixWorld);
           vertices = object.geometry$getter().vertices$getter();
           v1 = this.getNextVertexInPool$member();
           v1.positionScreen$getter().copy$named(1, $noargs, vertices.INDEX$operator(0).position$getter());
-          this._projScreenobjectMatrixWorld$ThreeD85b351$$getter_().multiplyVector4$named(1, $noargs, v1.positionScreen$getter());
+          this._projScreenobjectMatrixWorld$ThreeD88754a$$getter_().multiplyVector4$named(1, $noargs, v1.positionScreen$getter());
           vl = vertices.length$getter();
           {
             v = 1;
             for (; LT$operator(v, vl); tmp$26 = v , (v = ADD$operator(tmp$26, 1) , tmp$26)) {
               v1 = this.getNextVertexInPool$member();
               v1.positionScreen$getter().copy$named(1, $noargs, vertices.INDEX$operator(v).position$getter());
-              this._projScreenobjectMatrixWorld$ThreeD85b351$$getter_().multiplyVector4$named(1, $noargs, v1.positionScreen$getter());
-              v2 = this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(SUB$operator(this._vertexCount$ThreeD85b351$$getter_(), 2));
-              this._clippedVertex1PositionScreen$ThreeD85b351$$getter_().copy$named(1, $noargs, v1.positionScreen$getter());
-              this._clippedVertex2PositionScreen$ThreeD85b351$$getter_().copy$named(1, $noargs, v2.positionScreen$getter());
-              if (this.clipLine$member(this._clippedVertex1PositionScreen$ThreeD85b351$$getter_(), this._clippedVertex2PositionScreen$ThreeD85b351$$getter_())) {
-                this._clippedVertex1PositionScreen$ThreeD85b351$$getter_().multiplyScalar$named(1, $noargs, DIV$operator(1, this._clippedVertex1PositionScreen$ThreeD85b351$$getter_().w$getter()));
-                this._clippedVertex2PositionScreen$ThreeD85b351$$getter_().multiplyScalar$named(1, $noargs, DIV$operator(1, this._clippedVertex2PositionScreen$ThreeD85b351$$getter_().w$getter()));
-                this._line$ThreeD85b351$$setter_(tmp$27 = this.getNextLineInPool$member()) , tmp$27;
-                this._line$ThreeD85b351$$getter_().v1$getter().positionScreen$getter().copy$named(1, $noargs, this._clippedVertex1PositionScreen$ThreeD85b351$$getter_());
-                this._line$ThreeD85b351$$getter_().v2$getter().positionScreen$getter().copy$named(1, $noargs, this._clippedVertex2PositionScreen$ThreeD85b351$$getter_());
-                this._line$ThreeD85b351$$getter_().z$setter(tmp$28 = Math$Dart.max$member(this._clippedVertex1PositionScreen$ThreeD85b351$$getter_().z$getter(), this._clippedVertex2PositionScreen$ThreeD85b351$$getter_().z$getter())) , tmp$28;
-                this._line$ThreeD85b351$$getter_().material$setter(tmp$29 = objectMaterial) , tmp$29;
-                this._renderData$ThreeD85b351$$getter_().elements$getter().add$named(1, $noargs, this._line$ThreeD85b351$$getter_());
+              this._projScreenobjectMatrixWorld$ThreeD88754a$$getter_().multiplyVector4$named(1, $noargs, v1.positionScreen$getter());
+              v2 = this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(SUB$operator(this._vertexCount$ThreeD88754a$$getter_(), 2));
+              this._clippedVertex1PositionScreen$ThreeD88754a$$getter_().copy$named(1, $noargs, v1.positionScreen$getter());
+              this._clippedVertex2PositionScreen$ThreeD88754a$$getter_().copy$named(1, $noargs, v2.positionScreen$getter());
+              if (this.clipLine$member(this._clippedVertex1PositionScreen$ThreeD88754a$$getter_(), this._clippedVertex2PositionScreen$ThreeD88754a$$getter_())) {
+                this._clippedVertex1PositionScreen$ThreeD88754a$$getter_().multiplyScalar$named(1, $noargs, DIV$operator(1, this._clippedVertex1PositionScreen$ThreeD88754a$$getter_().w$getter()));
+                this._clippedVertex2PositionScreen$ThreeD88754a$$getter_().multiplyScalar$named(1, $noargs, DIV$operator(1, this._clippedVertex2PositionScreen$ThreeD88754a$$getter_().w$getter()));
+                this._line$ThreeD88754a$$setter_(tmp$27 = this.getNextLineInPool$member()) , tmp$27;
+                this._line$ThreeD88754a$$getter_().v1$getter().positionScreen$getter().copy$named(1, $noargs, this._clippedVertex1PositionScreen$ThreeD88754a$$getter_());
+                this._line$ThreeD88754a$$getter_().v2$getter().positionScreen$getter().copy$named(1, $noargs, this._clippedVertex2PositionScreen$ThreeD88754a$$getter_());
+                this._line$ThreeD88754a$$getter_().z$setter(tmp$28 = Math$Dart.max$member(this._clippedVertex1PositionScreen$ThreeD88754a$$getter_().z$getter(), this._clippedVertex2PositionScreen$ThreeD88754a$$getter_().z$getter())) , tmp$28;
+                this._line$ThreeD88754a$$getter_().material$setter(tmp$29 = objectMaterial) , tmp$29;
+                this._renderData$ThreeD88754a$$getter_().elements$getter().add$named(1, $noargs, this._line$ThreeD88754a$$getter_());
               }
             }
           }
@@ -72292,142 +72292,142 @@ ThreeD85b351$Projector$Dart.prototype.projectScene$member = function(scene, came
       }
     }
   }
-  ol = this._renderData$ThreeD85b351$$getter_().sprites$getter().length$getter();
+  ol = this._renderData$ThreeD88754a$$getter_().sprites$getter().length$getter();
   {
     o = 0;
     for (; LT$operator(o, ol); tmp$30 = o , (o = ADD$operator(tmp$30, 1) , tmp$30)) {
-      object = this._renderData$ThreeD85b351$$getter_().sprites$getter().INDEX$operator(o).object$getter();
+      object = this._renderData$ThreeD88754a$$getter_().sprites$getter().INDEX$operator(o).object$getter();
       objectMatrixWorld = object.matrixWorld$getter();
-      if (!!(tmp$31 = object , tmp$31 != null && tmp$31.$implements$ThreeD85b351$Particle$Dart)) {
-        this._vector4$ThreeD85b351$$getter_().setValues$named(4, $noargs, objectMatrixWorld.n14$getter(), objectMatrixWorld.n24$getter(), objectMatrixWorld.n34$getter(), 1);
-        this._projScreenMatrix$ThreeD85b351$$getter_().multiplyVector4$named(1, $noargs, this._vector4$ThreeD85b351$$getter_());
-        tmp$32 = this._vector4$ThreeD85b351$$getter_() , (tmp$32.z$setter(tmp$33 = DIV$operator(tmp$32.z$getter(), this._vector4$ThreeD85b351$$getter_().w$getter())) , tmp$33);
-        if (GT$operator(this._vector4$ThreeD85b351$$getter_().z$getter(), 0) && LT$operator(this._vector4$ThreeD85b351$$getter_().z$getter(), 1)) {
-          this._particle$ThreeD85b351$$setter_(tmp$34 = this.getNextParticleInPool$member()) , tmp$34;
-          this._particle$ThreeD85b351$$getter_().x$setter(tmp$35 = DIV$operator(this._vector4$ThreeD85b351$$getter_().x$getter(), this._vector4$ThreeD85b351$$getter_().w$getter())) , tmp$35;
-          this._particle$ThreeD85b351$$getter_().y$setter(tmp$36 = DIV$operator(this._vector4$ThreeD85b351$$getter_().y$getter(), this._vector4$ThreeD85b351$$getter_().w$getter())) , tmp$36;
-          this._particle$ThreeD85b351$$getter_().z$setter(tmp$37 = this._vector4$ThreeD85b351$$getter_().z$getter()) , tmp$37;
-          this._particle$ThreeD85b351$$getter_().rotation$setter(tmp$38 = object.rotation$getter().z$getter()) , tmp$38;
-          this._particle$ThreeD85b351$$getter_().scale$getter().x$setter(tmp$39 = MUL$operator(object.scale$getter().x$getter(), SUB$operator(this._particle$ThreeD85b351$$getter_().x$getter(), DIV$operator(ADD$operator(this._vector4$ThreeD85b351$$getter_().x$getter(), camera.projectionMatrix$getter().n11$getter()), ADD$operator(this._vector4$ThreeD85b351$$getter_().w$getter(), camera.projectionMatrix$getter().n14$getter()))).abs$named(0, $noargs))) , tmp$39;
-          this._particle$ThreeD85b351$$getter_().scale$getter().y$setter(tmp$40 = MUL$operator(object.scale$getter().y$getter(), SUB$operator(this._particle$ThreeD85b351$$getter_().y$getter(), DIV$operator(ADD$operator(this._vector4$ThreeD85b351$$getter_().y$getter(), camera.projectionMatrix$getter().n22$getter()), ADD$operator(this._vector4$ThreeD85b351$$getter_().w$getter(), camera.projectionMatrix$getter().n24$getter()))).abs$named(0, $noargs))) , tmp$40;
-          this._particle$ThreeD85b351$$getter_().material$setter(tmp$41 = object.material$getter()) , tmp$41;
-          this._renderData$ThreeD85b351$$getter_().elements$getter().add$named(1, $noargs, this._particle$ThreeD85b351$$getter_());
+      if (!!(tmp$31 = object , tmp$31 != null && tmp$31.$implements$ThreeD88754a$Particle$Dart)) {
+        this._vector4$ThreeD88754a$$getter_().setValues$named(4, $noargs, objectMatrixWorld.n14$getter(), objectMatrixWorld.n24$getter(), objectMatrixWorld.n34$getter(), 1);
+        this._projScreenMatrix$ThreeD88754a$$getter_().multiplyVector4$named(1, $noargs, this._vector4$ThreeD88754a$$getter_());
+        tmp$32 = this._vector4$ThreeD88754a$$getter_() , (tmp$32.z$setter(tmp$33 = DIV$operator(tmp$32.z$getter(), this._vector4$ThreeD88754a$$getter_().w$getter())) , tmp$33);
+        if (GT$operator(this._vector4$ThreeD88754a$$getter_().z$getter(), 0) && LT$operator(this._vector4$ThreeD88754a$$getter_().z$getter(), 1)) {
+          this._particle$ThreeD88754a$$setter_(tmp$34 = this.getNextParticleInPool$member()) , tmp$34;
+          this._particle$ThreeD88754a$$getter_().x$setter(tmp$35 = DIV$operator(this._vector4$ThreeD88754a$$getter_().x$getter(), this._vector4$ThreeD88754a$$getter_().w$getter())) , tmp$35;
+          this._particle$ThreeD88754a$$getter_().y$setter(tmp$36 = DIV$operator(this._vector4$ThreeD88754a$$getter_().y$getter(), this._vector4$ThreeD88754a$$getter_().w$getter())) , tmp$36;
+          this._particle$ThreeD88754a$$getter_().z$setter(tmp$37 = this._vector4$ThreeD88754a$$getter_().z$getter()) , tmp$37;
+          this._particle$ThreeD88754a$$getter_().rotation$setter(tmp$38 = object.rotation$getter().z$getter()) , tmp$38;
+          this._particle$ThreeD88754a$$getter_().scale$getter().x$setter(tmp$39 = MUL$operator(object.scale$getter().x$getter(), SUB$operator(this._particle$ThreeD88754a$$getter_().x$getter(), DIV$operator(ADD$operator(this._vector4$ThreeD88754a$$getter_().x$getter(), camera.projectionMatrix$getter().n11$getter()), ADD$operator(this._vector4$ThreeD88754a$$getter_().w$getter(), camera.projectionMatrix$getter().n14$getter()))).abs$named(0, $noargs))) , tmp$39;
+          this._particle$ThreeD88754a$$getter_().scale$getter().y$setter(tmp$40 = MUL$operator(object.scale$getter().y$getter(), SUB$operator(this._particle$ThreeD88754a$$getter_().y$getter(), DIV$operator(ADD$operator(this._vector4$ThreeD88754a$$getter_().y$getter(), camera.projectionMatrix$getter().n22$getter()), ADD$operator(this._vector4$ThreeD88754a$$getter_().w$getter(), camera.projectionMatrix$getter().n24$getter()))).abs$named(0, $noargs))) , tmp$40;
+          this._particle$ThreeD88754a$$getter_().material$setter(tmp$41 = object.material$getter()) , tmp$41;
+          this._renderData$ThreeD88754a$$getter_().elements$getter().add$named(1, $noargs, this._particle$ThreeD88754a$$getter_());
         }
       }
     }
   }
   if (sort) {
-    this._renderData$ThreeD85b351$$getter_().elements$getter().sort$named(1, $noargs, $bind(ThreeD85b351$Projector$Dart.prototype.painterSort$named, ThreeD85b351$Projector$Dart.prototype.painterSort$named_$lookupRTT, this));
+    this._renderData$ThreeD88754a$$getter_().elements$getter().sort$named(1, $noargs, $bind(ThreeD88754a$Projector$Dart.prototype.painterSort$named, ThreeD88754a$Projector$Dart.prototype.painterSort$named_$lookupRTT, this));
   }
-  return this._renderData$ThreeD85b351$$getter_();
+  return this._renderData$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.projectScene$named = function($n, $o, scene, camera, sort){
+ThreeD88754a$Projector$Dart.prototype.projectScene$named = function($n, $o, scene, camera, sort){
   if ($o.count || $n != 3)
     $nsme();
-  return ThreeD85b351$Projector$Dart.prototype.projectScene$member.call(this, scene, camera, sort);
+  return ThreeD88754a$Projector$Dart.prototype.projectScene$member.call(this, scene, camera, sort);
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.getNextObjectInPool$member = function(){
+ThreeD88754a$Projector$Dart.prototype.getNextObjectInPool$member = function(){
   var tmp$1, tmp$0;
   var object = $Dart$Null;
-  if (LT$operator(this._objectCount$ThreeD85b351$$getter_(), this._objectPool$ThreeD85b351$$getter_().length$getter())) {
-    object = NE$operator(this._objectPool$ThreeD85b351$$getter_().INDEX$operator(this._objectCount$ThreeD85b351$$getter_()), $Dart$Null)?this._objectPool$ThreeD85b351$$getter_().INDEX$operator(this._objectCount$ThreeD85b351$$getter_()):ThreeD85b351$RenderableObject$Dart.RenderableObject$$Factory();
+  if (LT$operator(this._objectCount$ThreeD88754a$$getter_(), this._objectPool$ThreeD88754a$$getter_().length$getter())) {
+    object = NE$operator(this._objectPool$ThreeD88754a$$getter_().INDEX$operator(this._objectCount$ThreeD88754a$$getter_()), $Dart$Null)?this._objectPool$ThreeD88754a$$getter_().INDEX$operator(this._objectCount$ThreeD88754a$$getter_()):ThreeD88754a$RenderableObject$Dart.RenderableObject$$Factory();
   }
    else {
-    object = ThreeD85b351$RenderableObject$Dart.RenderableObject$$Factory();
-    this._objectPool$ThreeD85b351$$getter_().add$named(1, $noargs, object);
+    object = ThreeD88754a$RenderableObject$Dart.RenderableObject$$Factory();
+    this._objectPool$ThreeD88754a$$getter_().add$named(1, $noargs, object);
   }
-  tmp$0 = this._objectCount$ThreeD85b351$$getter_() , (this._objectCount$ThreeD85b351$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
+  tmp$0 = this._objectCount$ThreeD88754a$$getter_() , (this._objectCount$ThreeD88754a$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
   return object;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.getNextVertexInPool$member = function(){
+ThreeD88754a$Projector$Dart.prototype.getNextVertexInPool$member = function(){
   var tmp$1, tmp$0;
-  print$getter()(1, $noargs, 'getNextVertexInPool() ' + $toString(this._vertexPool$ThreeD85b351$$getter_().length$getter()) + '');
+  print$getter()(1, $noargs, 'getNextVertexInPool() ' + $toString(this._vertexPool$ThreeD88754a$$getter_().length$getter()) + '');
   var vertex = $Dart$Null;
-  if (LT$operator(this._vertexCount$ThreeD85b351$$getter_(), this._vertexPool$ThreeD85b351$$getter_().length$getter())) {
-    vertex = NE$operator(this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(this._vertexCount$ThreeD85b351$$getter_()), $Dart$Null)?this._vertexPool$ThreeD85b351$$getter_().INDEX$operator(this._vertexCount$ThreeD85b351$$getter_()):ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory();
+  if (LT$operator(this._vertexCount$ThreeD88754a$$getter_(), this._vertexPool$ThreeD88754a$$getter_().length$getter())) {
+    vertex = NE$operator(this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(this._vertexCount$ThreeD88754a$$getter_()), $Dart$Null)?this._vertexPool$ThreeD88754a$$getter_().INDEX$operator(this._vertexCount$ThreeD88754a$$getter_()):ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory();
   }
    else {
-    vertex = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory();
-    this._vertexPool$ThreeD85b351$$getter_().add$named(1, $noargs, vertex);
+    vertex = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory();
+    this._vertexPool$ThreeD88754a$$getter_().add$named(1, $noargs, vertex);
   }
-  tmp$0 = this._vertexCount$ThreeD85b351$$getter_() , (this._vertexCount$ThreeD85b351$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
+  tmp$0 = this._vertexCount$ThreeD88754a$$getter_() , (this._vertexCount$ThreeD88754a$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
   return vertex;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.getNextFace3InPool$member = function(){
+ThreeD88754a$Projector$Dart.prototype.getNextFace3InPool$member = function(){
   var tmp$1, tmp$0;
   var face = $Dart$Null;
-  if (LT$operator(this._face3Count$ThreeD85b351$$getter_(), this._face3Pool$ThreeD85b351$$getter_().length$getter())) {
-    face = NE$operator(this._face3Pool$ThreeD85b351$$getter_().INDEX$operator(this._face3Count$ThreeD85b351$$getter_()), $Dart$Null)?this._face3Pool$ThreeD85b351$$getter_().INDEX$operator(this._face3Count$ThreeD85b351$$getter_()):ThreeD85b351$RenderableFace3$Dart.RenderableFace3$$Factory();
+  if (LT$operator(this._face3Count$ThreeD88754a$$getter_(), this._face3Pool$ThreeD88754a$$getter_().length$getter())) {
+    face = NE$operator(this._face3Pool$ThreeD88754a$$getter_().INDEX$operator(this._face3Count$ThreeD88754a$$getter_()), $Dart$Null)?this._face3Pool$ThreeD88754a$$getter_().INDEX$operator(this._face3Count$ThreeD88754a$$getter_()):ThreeD88754a$RenderableFace3$Dart.RenderableFace3$$Factory();
   }
    else {
-    face = ThreeD85b351$RenderableFace3$Dart.RenderableFace3$$Factory();
-    this._face3Pool$ThreeD85b351$$getter_().add$named(1, $noargs, face);
+    face = ThreeD88754a$RenderableFace3$Dart.RenderableFace3$$Factory();
+    this._face3Pool$ThreeD88754a$$getter_().add$named(1, $noargs, face);
   }
-  tmp$0 = this._face3Count$ThreeD85b351$$getter_() , (this._face3Count$ThreeD85b351$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
+  tmp$0 = this._face3Count$ThreeD88754a$$getter_() , (this._face3Count$ThreeD88754a$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
   return face;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.getNextFace4InPool$member = function(){
+ThreeD88754a$Projector$Dart.prototype.getNextFace4InPool$member = function(){
   var tmp$1, tmp$0;
   var face = $Dart$Null;
-  if (LT$operator(this._face4Count$ThreeD85b351$$getter_(), this._face4Pool$ThreeD85b351$$getter_().length$getter())) {
-    face = NE$operator(this._face4Pool$ThreeD85b351$$getter_().INDEX$operator(this._face4Count$ThreeD85b351$$getter_()), $Dart$Null)?this._face4Pool$ThreeD85b351$$getter_().INDEX$operator(this._face4Count$ThreeD85b351$$getter_()):ThreeD85b351$RenderableFace4$Dart.RenderableFace4$$Factory();
+  if (LT$operator(this._face4Count$ThreeD88754a$$getter_(), this._face4Pool$ThreeD88754a$$getter_().length$getter())) {
+    face = NE$operator(this._face4Pool$ThreeD88754a$$getter_().INDEX$operator(this._face4Count$ThreeD88754a$$getter_()), $Dart$Null)?this._face4Pool$ThreeD88754a$$getter_().INDEX$operator(this._face4Count$ThreeD88754a$$getter_()):ThreeD88754a$RenderableFace4$Dart.RenderableFace4$$Factory();
   }
    else {
-    face = ThreeD85b351$RenderableFace4$Dart.RenderableFace4$$Factory();
-    this._face4Pool$ThreeD85b351$$getter_().add$named(1, $noargs, face);
+    face = ThreeD88754a$RenderableFace4$Dart.RenderableFace4$$Factory();
+    this._face4Pool$ThreeD88754a$$getter_().add$named(1, $noargs, face);
   }
-  tmp$0 = this._face4Count$ThreeD85b351$$getter_() , (this._face4Count$ThreeD85b351$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
+  tmp$0 = this._face4Count$ThreeD88754a$$getter_() , (this._face4Count$ThreeD88754a$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
   return face;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.getNextLineInPool$member = function(){
+ThreeD88754a$Projector$Dart.prototype.getNextLineInPool$member = function(){
   var tmp$1, tmp$0;
   var line = $Dart$Null;
-  if (LT$operator(this._lineCount$ThreeD85b351$$getter_(), this._linePool$ThreeD85b351$$getter_().length$getter())) {
-    line = NE$operator(this._linePool$ThreeD85b351$$getter_().INDEX$operator(this._lineCount$ThreeD85b351$$getter_()), $Dart$Null)?this._linePool$ThreeD85b351$$getter_().INDEX$operator(this._lineCount$ThreeD85b351$$getter_()):ThreeD85b351$RenderableLine$Dart.RenderableLine$$Factory();
+  if (LT$operator(this._lineCount$ThreeD88754a$$getter_(), this._linePool$ThreeD88754a$$getter_().length$getter())) {
+    line = NE$operator(this._linePool$ThreeD88754a$$getter_().INDEX$operator(this._lineCount$ThreeD88754a$$getter_()), $Dart$Null)?this._linePool$ThreeD88754a$$getter_().INDEX$operator(this._lineCount$ThreeD88754a$$getter_()):ThreeD88754a$RenderableLine$Dart.RenderableLine$$Factory();
   }
    else {
-    line = ThreeD85b351$RenderableLine$Dart.RenderableLine$$Factory();
-    this._linePool$ThreeD85b351$$getter_().add$named(1, $noargs, line);
+    line = ThreeD88754a$RenderableLine$Dart.RenderableLine$$Factory();
+    this._linePool$ThreeD88754a$$getter_().add$named(1, $noargs, line);
   }
-  tmp$0 = this._lineCount$ThreeD85b351$$getter_() , (this._lineCount$ThreeD85b351$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
+  tmp$0 = this._lineCount$ThreeD88754a$$getter_() , (this._lineCount$ThreeD88754a$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
   return line;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.getNextParticleInPool$member = function(){
+ThreeD88754a$Projector$Dart.prototype.getNextParticleInPool$member = function(){
   var tmp$1, tmp$0;
   var particle = $Dart$Null;
-  if (LT$operator(this._particleCount$ThreeD85b351$$getter_(), this._particlePool$ThreeD85b351$$getter_().length$getter())) {
-    particle = NE$operator(this._particlePool$ThreeD85b351$$getter_().INDEX$operator(this._particleCount$ThreeD85b351$$getter_()), $Dart$Null)?this._particlePool$ThreeD85b351$$getter_().INDEX$operator(this._particleCount$ThreeD85b351$$getter_()):ThreeD85b351$RenderableParticle$Dart.RenderableParticle$$Factory();
+  if (LT$operator(this._particleCount$ThreeD88754a$$getter_(), this._particlePool$ThreeD88754a$$getter_().length$getter())) {
+    particle = NE$operator(this._particlePool$ThreeD88754a$$getter_().INDEX$operator(this._particleCount$ThreeD88754a$$getter_()), $Dart$Null)?this._particlePool$ThreeD88754a$$getter_().INDEX$operator(this._particleCount$ThreeD88754a$$getter_()):ThreeD88754a$RenderableParticle$Dart.RenderableParticle$$Factory();
   }
    else {
-    particle = ThreeD85b351$RenderableParticle$Dart.RenderableParticle$$Factory();
-    this._particlePool$ThreeD85b351$$getter_().add$named(1, $noargs, particle);
+    particle = ThreeD88754a$RenderableParticle$Dart.RenderableParticle$$Factory();
+    this._particlePool$ThreeD88754a$$getter_().add$named(1, $noargs, particle);
   }
-  tmp$0 = this._particleCount$ThreeD85b351$$getter_() , (this._particleCount$ThreeD85b351$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
+  tmp$0 = this._particleCount$ThreeD88754a$$getter_() , (this._particleCount$ThreeD88754a$$setter_(tmp$1 = ADD$operator(tmp$0, 1)) , tmp$1 , tmp$0);
   return particle;
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.painterSort$member = function(a, b){
+ThreeD88754a$Projector$Dart.prototype.painterSort$member = function(a, b){
   return SUB$operator(b.z$getter(), a.z$getter());
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.painterSort$named = function($n, $o, a, b){
+ThreeD88754a$Projector$Dart.prototype.painterSort$named = function($n, $o, a, b){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Projector$Dart.prototype.painterSort$member.call(this, a, b);
+  return ThreeD88754a$Projector$Dart.prototype.painterSort$member.call(this, a, b);
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.painterSort$named_$lookupRTT = function(){
+ThreeD88754a$Projector$Dart.prototype.painterSort$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT(), RTT.dynamicType.$lookupRTT()], num$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Projector$Dart.prototype.clipLine$member = function(s1, s2){
+ThreeD88754a$Projector$Dart.prototype.clipLine$member = function(s1, s2){
   var alpha1 = 0;
   var alpha2 = 1;
   var bc1near = ADD$operator(s1.z$getter(), s1.w$getter());
@@ -72470,13 +72470,13 @@ ThreeD85b351$Projector$Dart.prototype.clipLine$member = function(s1, s2){
   }
 }
 ;
-function ThreeD85b351$RenderData$Dart(){
+function ThreeD88754a$RenderData$Dart(){
 }
-ThreeD85b351$RenderData$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderData$Dart'), null, null, named);
+ThreeD88754a$RenderData$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderData$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$RenderData$Dart.$Constructor = function(){
+ThreeD88754a$RenderData$Dart.$Constructor = function(){
   var tmp$1, tmp$2, tmp$3, tmp$0;
   this.objects$setter(tmp$0 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$0;
   this.sprites$setter(tmp$1 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$1;
@@ -72484,243 +72484,243 @@ ThreeD85b351$RenderData$Dart.$Constructor = function(){
   this.elements$setter(tmp$3 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$3;
 }
 ;
-ThreeD85b351$RenderData$Dart.$Initializer = function(){
+ThreeD88754a$RenderData$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$RenderData$Dart.RenderData$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderData$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderData$Dart.$lookupRTT();
-  ThreeD85b351$RenderData$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderData$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderData$Dart.RenderData$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderData$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderData$Dart.$lookupRTT();
+  ThreeD88754a$RenderData$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderData$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.objects$getter = function(){
+ThreeD88754a$RenderData$Dart.prototype.objects$getter = function(){
   return this.objects$field;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.objects$setter = function(tmp$0){
+ThreeD88754a$RenderData$Dart.prototype.objects$setter = function(tmp$0){
   this.objects$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.sprites$getter = function(){
+ThreeD88754a$RenderData$Dart.prototype.sprites$getter = function(){
   return this.sprites$field;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.sprites$setter = function(tmp$0){
+ThreeD88754a$RenderData$Dart.prototype.sprites$setter = function(tmp$0){
   this.sprites$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.lights$getter = function(){
+ThreeD88754a$RenderData$Dart.prototype.lights$getter = function(){
   return this.lights$field;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.lights$setter = function(tmp$0){
+ThreeD88754a$RenderData$Dart.prototype.lights$setter = function(tmp$0){
   this.lights$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.elements$getter = function(){
+ThreeD88754a$RenderData$Dart.prototype.elements$getter = function(){
   return this.elements$field;
 }
 ;
-ThreeD85b351$RenderData$Dart.prototype.elements$setter = function(tmp$0){
+ThreeD88754a$RenderData$Dart.prototype.elements$setter = function(tmp$0){
   this.elements$field = tmp$0;
 }
 ;
-function ThreeD85b351$Quaternion$Dart(){
+function ThreeD88754a$Quaternion$Dart(){
 }
-ThreeD85b351$Quaternion$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Quaternion$Dart'), null, null, named);
+ThreeD88754a$Quaternion$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Quaternion$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Quaternion$Dart.$Constructor = function(x, y, z, w){
+ThreeD88754a$Quaternion$Dart.$Constructor = function(x, y, z, w){
   this.setValues$member(x != null?x:0, y != null?y:0, z != null?z:0, w != null?w:1);
 }
 ;
-ThreeD85b351$Quaternion$Dart.$Initializer = function(x, y, z, w){
+ThreeD88754a$Quaternion$Dart.$Initializer = function(x, y, z, w){
 }
 ;
-ThreeD85b351$Quaternion$Dart.Quaternion$$Factory = function(x, y, z, w){
-  var tmp$0 = new ThreeD85b351$Quaternion$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Quaternion$Dart.$lookupRTT();
-  ThreeD85b351$Quaternion$Dart.$Initializer.call(tmp$0, x, y, z, w);
-  ThreeD85b351$Quaternion$Dart.$Constructor.call(tmp$0, x, y, z, w);
+ThreeD88754a$Quaternion$Dart.Quaternion$$Factory = function(x, y, z, w){
+  var tmp$0 = new ThreeD88754a$Quaternion$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Quaternion$Dart.$lookupRTT();
+  ThreeD88754a$Quaternion$Dart.$Initializer.call(tmp$0, x, y, z, w);
+  ThreeD88754a$Quaternion$Dart.$Constructor.call(tmp$0, x, y, z, w);
   return tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._x$ThreeD85b351$$getter_ = function(){
-  return this._x$ThreeD85b351$$field_;
+ThreeD88754a$Quaternion$Dart.prototype._x$ThreeD88754a$$getter_ = function(){
+  return this._x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Quaternion$Dart.prototype._x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._y$ThreeD85b351$$getter_ = function(){
-  return this._y$ThreeD85b351$$field_;
+ThreeD88754a$Quaternion$Dart.prototype._y$ThreeD88754a$$getter_ = function(){
+  return this._y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Quaternion$Dart.prototype._y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._z$ThreeD85b351$$getter_ = function(){
-  return this._z$ThreeD85b351$$field_;
+ThreeD88754a$Quaternion$Dart.prototype._z$ThreeD88754a$$getter_ = function(){
+  return this._z$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._z$ThreeD85b351$$setter_ = function(tmp$0){
-  this._z$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Quaternion$Dart.prototype._z$ThreeD88754a$$setter_ = function(tmp$0){
+  this._z$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._w$ThreeD85b351$$getter_ = function(){
-  return this._w$ThreeD85b351$$field_;
+ThreeD88754a$Quaternion$Dart.prototype._w$ThreeD88754a$$getter_ = function(){
+  return this._w$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype._w$ThreeD85b351$$setter_ = function(tmp$0){
-  this._w$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Quaternion$Dart.prototype._w$ThreeD88754a$$setter_ = function(tmp$0){
+  this._w$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.x$getter = function(){
-  return this._x$ThreeD85b351$$getter_();
+ThreeD88754a$Quaternion$Dart.prototype.x$getter = function(){
+  return this._x$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.x$setter = function(value){
+ThreeD88754a$Quaternion$Dart.prototype.x$setter = function(value){
   var tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._x$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.y$getter = function(){
-  return this._y$ThreeD85b351$$getter_();
+ThreeD88754a$Quaternion$Dart.prototype.y$getter = function(){
+  return this._y$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.y$setter = function(value){
+ThreeD88754a$Quaternion$Dart.prototype.y$setter = function(value){
   var tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.z$getter = function(){
-  return this._z$ThreeD85b351$$getter_();
+ThreeD88754a$Quaternion$Dart.prototype.z$getter = function(){
+  return this._z$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.z$setter = function(value){
+ThreeD88754a$Quaternion$Dart.prototype.z$setter = function(value){
   var tmp$0;
-  this._z$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._z$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.w$getter = function(){
-  return this._w$ThreeD85b351$$getter_();
+ThreeD88754a$Quaternion$Dart.prototype.w$getter = function(){
+  return this._w$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.w$setter = function(value){
+ThreeD88754a$Quaternion$Dart.prototype.w$setter = function(value){
   var tmp$0;
-  this._w$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._w$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.setValues$member = function(x, y, z, w){
+ThreeD88754a$Quaternion$Dart.prototype.setValues$member = function(x, y, z, w){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = x) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = y) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = z) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = w) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = x) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = y) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = z) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = w) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.setValues$named = function($n, $o, x, y, z, w){
+ThreeD88754a$Quaternion$Dart.prototype.setValues$named = function($n, $o, x, y, z, w){
   if ($o.count || $n != 4)
     $nsme();
-  return ThreeD85b351$Quaternion$Dart.prototype.setValues$member.call(this, x, y, z, w);
+  return ThreeD88754a$Quaternion$Dart.prototype.setValues$member.call(this, x, y, z, w);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.copy$member = function(q){
+ThreeD88754a$Quaternion$Dart.prototype.copy$member = function(q){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = q.x$getter()) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = q.y$getter()) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = q.z$getter()) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = q.w$getter()) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = q.x$getter()) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = q.y$getter()) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = q.z$getter()) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = q.w$getter()) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.copy$named = function($n, $o, q){
+ThreeD88754a$Quaternion$Dart.prototype.copy$named = function($n, $o, q){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Quaternion$Dart.prototype.copy$member.call(this, q);
+  return ThreeD88754a$Quaternion$Dart.prototype.copy$member.call(this, q);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$Vector4$Dart.$lookupRTT()], ThreeD85b351$Quaternion$Dart.$lookupRTT());
+ThreeD88754a$Quaternion$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$Vector4$Dart.$lookupRTT()], ThreeD88754a$Quaternion$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$Quaternion$Dart.prototype.copy$named, ThreeD85b351$Quaternion$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$Quaternion$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$Quaternion$Dart.prototype.copy$named, ThreeD88754a$Quaternion$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.length$member = function(){
-  return Math$Dart.sqrt$member(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), this._x$ThreeD85b351$$getter_()), MUL$operator(this._y$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_())), MUL$operator(this._z$ThreeD85b351$$getter_(), this._z$ThreeD85b351$$getter_())), MUL$operator(this._w$ThreeD85b351$$getter_(), this._w$ThreeD85b351$$getter_())));
+ThreeD88754a$Quaternion$Dart.prototype.length$member = function(){
+  return Math$Dart.sqrt$member(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), this._x$ThreeD88754a$$getter_()), MUL$operator(this._y$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_())), MUL$operator(this._z$ThreeD88754a$$getter_(), this._z$ThreeD88754a$$getter_())), MUL$operator(this._w$ThreeD88754a$$getter_(), this._w$ThreeD88754a$$getter_())));
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.length$named = function($n, $o){
+ThreeD88754a$Quaternion$Dart.prototype.length$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Quaternion$Dart.prototype.length$member.call(this);
+  return ThreeD88754a$Quaternion$Dart.prototype.length$member.call(this);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.length$named_$lookupRTT = function(){
+ThreeD88754a$Quaternion$Dart.prototype.length$named_$lookupRTT = function(){
   return RTT.createFunction(null, double$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.length$getter = function(){
-  return $bind(ThreeD85b351$Quaternion$Dart.prototype.length$named, ThreeD85b351$Quaternion$Dart.prototype.length$named_$lookupRTT, this);
+ThreeD88754a$Quaternion$Dart.prototype.length$getter = function(){
+  return $bind(ThreeD88754a$Quaternion$Dart.prototype.length$named, ThreeD88754a$Quaternion$Dart.prototype.length$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.normalize$member = function(){
+ThreeD88754a$Quaternion$Dart.prototype.normalize$member = function(){
   var tmp$5, tmp$6, tmp$7, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  var l = Math$Dart.sqrt$member(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), this._x$ThreeD85b351$$getter_()), MUL$operator(this._y$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_())), MUL$operator(this._z$ThreeD85b351$$getter_(), this._z$ThreeD85b351$$getter_())), MUL$operator(this._w$ThreeD85b351$$getter_(), this._w$ThreeD85b351$$getter_())));
+  var l = Math$Dart.sqrt$member(ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), this._x$ThreeD88754a$$getter_()), MUL$operator(this._y$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_())), MUL$operator(this._z$ThreeD88754a$$getter_(), this._z$ThreeD88754a$$getter_())), MUL$operator(this._w$ThreeD88754a$$getter_(), this._w$ThreeD88754a$$getter_())));
   if (l === 0) {
-    this._x$ThreeD85b351$$setter_(tmp$0 = 0) , tmp$0;
-    this._y$ThreeD85b351$$setter_(tmp$1 = 0) , tmp$1;
-    this._z$ThreeD85b351$$setter_(tmp$2 = 0) , tmp$2;
-    this._w$ThreeD85b351$$setter_(tmp$3 = 0) , tmp$3;
+    this._x$ThreeD88754a$$setter_(tmp$0 = 0) , tmp$0;
+    this._y$ThreeD88754a$$setter_(tmp$1 = 0) , tmp$1;
+    this._z$ThreeD88754a$$setter_(tmp$2 = 0) , tmp$2;
+    this._w$ThreeD88754a$$setter_(tmp$3 = 0) , tmp$3;
   }
    else {
     l = DIV$operator(1, l);
-    this._x$ThreeD85b351$$setter_(tmp$4 = MUL$operator(this._x$ThreeD85b351$$getter_(), l)) , tmp$4;
-    this._y$ThreeD85b351$$setter_(tmp$5 = MUL$operator(this._y$ThreeD85b351$$getter_(), l)) , tmp$5;
-    this._z$ThreeD85b351$$setter_(tmp$6 = MUL$operator(this._z$ThreeD85b351$$getter_(), l)) , tmp$6;
-    this._w$ThreeD85b351$$setter_(tmp$7 = MUL$operator(this._w$ThreeD85b351$$getter_(), l)) , tmp$7;
+    this._x$ThreeD88754a$$setter_(tmp$4 = MUL$operator(this._x$ThreeD88754a$$getter_(), l)) , tmp$4;
+    this._y$ThreeD88754a$$setter_(tmp$5 = MUL$operator(this._y$ThreeD88754a$$getter_(), l)) , tmp$5;
+    this._z$ThreeD88754a$$setter_(tmp$6 = MUL$operator(this._z$ThreeD88754a$$getter_(), l)) , tmp$6;
+    this._w$ThreeD88754a$$setter_(tmp$7 = MUL$operator(this._w$ThreeD88754a$$getter_(), l)) , tmp$7;
   }
   return this;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.normalize$named = function($n, $o){
+ThreeD88754a$Quaternion$Dart.prototype.normalize$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Quaternion$Dart.prototype.normalize$member.call(this);
+  return ThreeD88754a$Quaternion$Dart.prototype.normalize$member.call(this);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.normalize$named_$lookupRTT = function(){
-  return RTT.createFunction(null, ThreeD85b351$Quaternion$Dart.$lookupRTT());
+ThreeD88754a$Quaternion$Dart.prototype.normalize$named_$lookupRTT = function(){
+  return RTT.createFunction(null, ThreeD88754a$Quaternion$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.normalize$getter = function(){
-  return $bind(ThreeD85b351$Quaternion$Dart.prototype.normalize$named, ThreeD85b351$Quaternion$Dart.prototype.normalize$named_$lookupRTT, this);
+ThreeD88754a$Quaternion$Dart.prototype.normalize$getter = function(){
+  return $bind(ThreeD88754a$Quaternion$Dart.prototype.normalize$named, ThreeD88754a$Quaternion$Dart.prototype.normalize$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.multiply$member = function(q1, q2){
+ThreeD88754a$Quaternion$Dart.prototype.multiply$member = function(q1, q2){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(SUB$operator(ADD$operator(MUL$operator(q1.x$getter(), q2.w$getter()), MUL$operator(q1.y$getter(), q2.z$getter())), MUL$operator(q1.z$getter(), q2.y$getter())), MUL$operator(q1.w$getter(), q2.x$getter()))) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(negate$operator(q1.x$getter()), q2.z$getter()), MUL$operator(q1.y$getter(), q2.w$getter())), MUL$operator(q1.z$getter(), q2.x$getter())), MUL$operator(q1.w$getter(), q2.y$getter()))) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = ADD$operator(ADD$operator(SUB$operator(MUL$operator(q1.x$getter(), q2.y$getter()), MUL$operator(q1.y$getter(), q2.x$getter())), MUL$operator(q1.z$getter(), q2.w$getter())), MUL$operator(q1.w$getter(), q2.z$getter()))) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = ADD$operator(SUB$operator(SUB$operator(MUL$operator(negate$operator(q1.x$getter()), q2.x$getter()), MUL$operator(q1.y$getter(), q2.y$getter())), MUL$operator(q1.z$getter(), q2.z$getter())), MUL$operator(q1.w$getter(), q2.w$getter()))) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(SUB$operator(ADD$operator(MUL$operator(q1.x$getter(), q2.w$getter()), MUL$operator(q1.y$getter(), q2.z$getter())), MUL$operator(q1.z$getter(), q2.y$getter())), MUL$operator(q1.w$getter(), q2.x$getter()))) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(ADD$operator(ADD$operator(MUL$operator(negate$operator(q1.x$getter()), q2.z$getter()), MUL$operator(q1.y$getter(), q2.w$getter())), MUL$operator(q1.z$getter(), q2.x$getter())), MUL$operator(q1.w$getter(), q2.y$getter()))) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = ADD$operator(ADD$operator(SUB$operator(MUL$operator(q1.x$getter(), q2.y$getter()), MUL$operator(q1.y$getter(), q2.x$getter())), MUL$operator(q1.z$getter(), q2.w$getter())), MUL$operator(q1.w$getter(), q2.z$getter()))) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = ADD$operator(SUB$operator(SUB$operator(MUL$operator(negate$operator(q1.x$getter()), q2.x$getter()), MUL$operator(q1.y$getter(), q2.y$getter())), MUL$operator(q1.z$getter(), q2.z$getter())), MUL$operator(q1.w$getter(), q2.w$getter()))) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.multiply$named = function($n, $o, q1, q2){
+ThreeD88754a$Quaternion$Dart.prototype.multiply$named = function($n, $o, q1, q2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Quaternion$Dart.prototype.multiply$member.call(this, q1, q2);
+  return ThreeD88754a$Quaternion$Dart.prototype.multiply$member.call(this, q1, q2);
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.multiplyVector3$member = function(vec, dest){
+ThreeD88754a$Quaternion$Dart.prototype.multiplyVector3$member = function(vec, dest){
   var tmp$1, tmp$2, tmp$0;
   if (NE$operator(dest, $Dart$Null)) {
     dest = vec;
@@ -72728,10 +72728,10 @@ ThreeD85b351$Quaternion$Dart.prototype.multiplyVector3$member = function(vec, de
   var x = vec.x$getter();
   var y = vec.y$getter();
   var z = vec.z$getter();
-  var qx = this._x$ThreeD85b351$$getter_();
-  var qy = this._y$ThreeD85b351$$getter_();
-  var qz = this._z$ThreeD85b351$$getter_();
-  var qw = this._w$ThreeD85b351$$getter_();
+  var qx = this._x$ThreeD88754a$$getter_();
+  var qy = this._y$ThreeD88754a$$getter_();
+  var qz = this._z$ThreeD88754a$$getter_();
+  var qw = this._w$ThreeD88754a$$getter_();
   var ix = SUB$operator(ADD$operator(MUL$operator(qw, x), MUL$operator(qy, z)), MUL$operator(qz, y));
   var iy = SUB$operator(ADD$operator(MUL$operator(qw, y), MUL$operator(qz, x)), MUL$operator(qx, z));
   var iz = SUB$operator(ADD$operator(MUL$operator(qw, z), MUL$operator(qx, y)), MUL$operator(qy, x));
@@ -72742,603 +72742,603 @@ ThreeD85b351$Quaternion$Dart.prototype.multiplyVector3$member = function(vec, de
   return dest;
 }
 ;
-ThreeD85b351$Quaternion$Dart.prototype.multiplyVector3$named = function($n, $o, vec, dest){
+ThreeD88754a$Quaternion$Dart.prototype.multiplyVector3$named = function($n, $o, vec, dest){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Quaternion$Dart.prototype.multiplyVector3$member.call(this, vec, dest);
+  return ThreeD88754a$Quaternion$Dart.prototype.multiplyVector3$member.call(this, vec, dest);
 }
 ;
-function ThreeD85b351$Rectangle$Dart(){
+function ThreeD88754a$Rectangle$Dart(){
 }
-ThreeD85b351$Rectangle$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Rectangle$Dart'), null, null, named);
-}
-;
-ThreeD85b351$Rectangle$Dart.$Constructor = function(){
+ThreeD88754a$Rectangle$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Rectangle$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Rectangle$Dart.$Initializer = function(){
-  this._isEmpty$ThreeD85b351$$field_ = true;
+ThreeD88754a$Rectangle$Dart.$Constructor = function(){
 }
 ;
-ThreeD85b351$Rectangle$Dart.Rectangle$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$Rectangle$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Rectangle$Dart.$lookupRTT();
-  ThreeD85b351$Rectangle$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$Rectangle$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$Rectangle$Dart.$Initializer = function(){
+  this._isEmpty$ThreeD88754a$$field_ = true;
+}
+;
+ThreeD88754a$Rectangle$Dart.Rectangle$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$Rectangle$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Rectangle$Dart.$lookupRTT();
+  ThreeD88754a$Rectangle$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$Rectangle$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._left$ThreeD85b351$$getter_ = function(){
-  return this._left$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._left$ThreeD88754a$$getter_ = function(){
+  return this._left$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._left$ThreeD85b351$$setter_ = function(tmp$0){
-  this._left$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._left$ThreeD88754a$$setter_ = function(tmp$0){
+  this._left$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._top$ThreeD85b351$$getter_ = function(){
-  return this._top$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._top$ThreeD88754a$$getter_ = function(){
+  return this._top$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._top$ThreeD85b351$$setter_ = function(tmp$0){
-  this._top$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._top$ThreeD88754a$$setter_ = function(tmp$0){
+  this._top$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._right$ThreeD85b351$$getter_ = function(){
-  return this._right$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._right$ThreeD88754a$$getter_ = function(){
+  return this._right$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._right$ThreeD85b351$$setter_ = function(tmp$0){
-  this._right$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._right$ThreeD88754a$$setter_ = function(tmp$0){
+  this._right$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._bottom$ThreeD85b351$$getter_ = function(){
-  return this._bottom$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._bottom$ThreeD88754a$$getter_ = function(){
+  return this._bottom$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._bottom$ThreeD85b351$$setter_ = function(tmp$0){
-  this._bottom$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._bottom$ThreeD88754a$$setter_ = function(tmp$0){
+  this._bottom$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._width$ThreeD85b351$$getter_ = function(){
-  return this._width$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._width$ThreeD88754a$$getter_ = function(){
+  return this._width$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._width$ThreeD85b351$$setter_ = function(tmp$0){
-  this._width$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._width$ThreeD88754a$$setter_ = function(tmp$0){
+  this._width$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._height$ThreeD85b351$$getter_ = function(){
-  return this._height$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._height$ThreeD88754a$$getter_ = function(){
+  return this._height$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._height$ThreeD85b351$$setter_ = function(tmp$0){
-  this._height$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._height$ThreeD88754a$$setter_ = function(tmp$0){
+  this._height$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._isEmpty$ThreeD85b351$$getter_ = function(){
-  return this._isEmpty$ThreeD85b351$$field_;
+ThreeD88754a$Rectangle$Dart.prototype._isEmpty$ThreeD88754a$$getter_ = function(){
+  return this._isEmpty$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype._isEmpty$ThreeD85b351$$setter_ = function(tmp$0){
-  this._isEmpty$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Rectangle$Dart.prototype._isEmpty$ThreeD88754a$$setter_ = function(tmp$0){
+  this._isEmpty$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.resize$member = function(){
+ThreeD88754a$Rectangle$Dart.prototype.resize$member = function(){
   var tmp$1, tmp$0;
-  this._width$ThreeD85b351$$setter_(tmp$0 = SUB$operator(this._right$ThreeD85b351$$getter_(), this._left$ThreeD85b351$$getter_())) , tmp$0;
-  this._height$ThreeD85b351$$setter_(tmp$1 = SUB$operator(this._bottom$ThreeD85b351$$getter_(), this._top$ThreeD85b351$$getter_())) , tmp$1;
+  this._width$ThreeD88754a$$setter_(tmp$0 = SUB$operator(this._right$ThreeD88754a$$getter_(), this._left$ThreeD88754a$$getter_())) , tmp$0;
+  this._height$ThreeD88754a$$setter_(tmp$1 = SUB$operator(this._bottom$ThreeD88754a$$getter_(), this._top$ThreeD88754a$$getter_())) , tmp$1;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getX$member = function(){
-  return this._left$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getX$member = function(){
+  return this._left$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getX$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getX$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getX$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getX$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getY$member = function(){
-  return this._top$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getY$member = function(){
+  return this._top$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getY$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getY$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getY$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getY$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getWidth$member = function(){
-  return this._width$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getWidth$member = function(){
+  return this._width$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getWidth$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getWidth$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getWidth$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getWidth$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getHeight$member = function(){
-  return this._height$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getHeight$member = function(){
+  return this._height$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getHeight$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getHeight$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getHeight$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getHeight$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getLeft$member = function(){
-  return this._left$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getLeft$member = function(){
+  return this._left$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getLeft$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getLeft$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getLeft$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getLeft$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getTop$member = function(){
-  return this._top$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getTop$member = function(){
+  return this._top$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getTop$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getTop$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getTop$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getTop$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getRight$member = function(){
-  return this._right$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getRight$member = function(){
+  return this._right$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getRight$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getRight$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getRight$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getRight$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getBottom$member = function(){
-  return this._bottom$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.getBottom$member = function(){
+  return this._bottom$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.getBottom$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.getBottom$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.getBottom$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.getBottom$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.setValues$member = function(left, top_0, right, bottom){
+ThreeD88754a$Rectangle$Dart.prototype.setValues$member = function(left, top_0, right, bottom){
   var tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._isEmpty$ThreeD85b351$$setter_(tmp$0 = false) , tmp$0;
-  this._left$ThreeD85b351$$setter_(tmp$1 = left) , tmp$1;
-  this._top$ThreeD85b351$$setter_(tmp$2 = top_0) , tmp$2;
-  this._right$ThreeD85b351$$setter_(tmp$3 = right) , tmp$3;
-  this._bottom$ThreeD85b351$$setter_(tmp$4 = bottom) , tmp$4;
+  this._isEmpty$ThreeD88754a$$setter_(tmp$0 = false) , tmp$0;
+  this._left$ThreeD88754a$$setter_(tmp$1 = left) , tmp$1;
+  this._top$ThreeD88754a$$setter_(tmp$2 = top_0) , tmp$2;
+  this._right$ThreeD88754a$$setter_(tmp$3 = right) , tmp$3;
+  this._bottom$ThreeD88754a$$setter_(tmp$4 = bottom) , tmp$4;
   this.resize$member();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.setValues$named = function($n, $o, left, top_0, right, bottom){
+ThreeD88754a$Rectangle$Dart.prototype.setValues$named = function($n, $o, left, top_0, right, bottom){
   if ($o.count || $n != 4)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.setValues$member.call(this, left, top_0, right, bottom);
+  return ThreeD88754a$Rectangle$Dart.prototype.setValues$member.call(this, left, top_0, right, bottom);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.addPoint$member = function(x, y){
+ThreeD88754a$Rectangle$Dart.prototype.addPoint$member = function(x, y){
   var tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  if (this._isEmpty$ThreeD85b351$$getter_()) {
-    this._isEmpty$ThreeD85b351$$setter_(tmp$0 = false) , tmp$0;
-    this._left$ThreeD85b351$$setter_(tmp$1 = x) , tmp$1;
-    this._top$ThreeD85b351$$setter_(tmp$2 = y) , tmp$2;
-    this._right$ThreeD85b351$$setter_(tmp$3 = x) , tmp$3;
-    this._bottom$ThreeD85b351$$setter_(tmp$4 = y) , tmp$4;
+  if (this._isEmpty$ThreeD88754a$$getter_()) {
+    this._isEmpty$ThreeD88754a$$setter_(tmp$0 = false) , tmp$0;
+    this._left$ThreeD88754a$$setter_(tmp$1 = x) , tmp$1;
+    this._top$ThreeD88754a$$setter_(tmp$2 = y) , tmp$2;
+    this._right$ThreeD88754a$$setter_(tmp$3 = x) , tmp$3;
+    this._bottom$ThreeD88754a$$setter_(tmp$4 = y) , tmp$4;
     this.resize$member();
   }
    else {
-    this._left$ThreeD85b351$$setter_(tmp$5 = LT$operator(this._left$ThreeD85b351$$getter_(), x)?this._left$ThreeD85b351$$getter_():x) , tmp$5;
-    this._top$ThreeD85b351$$setter_(tmp$6 = LT$operator(this._top$ThreeD85b351$$getter_(), y)?this._top$ThreeD85b351$$getter_():y) , tmp$6;
-    this._right$ThreeD85b351$$setter_(tmp$7 = GT$operator(this._right$ThreeD85b351$$getter_(), x)?this._right$ThreeD85b351$$getter_():x) , tmp$7;
-    this._bottom$ThreeD85b351$$setter_(tmp$8 = GT$operator(this._bottom$ThreeD85b351$$getter_(), y)?this._bottom$ThreeD85b351$$getter_():y) , tmp$8;
+    this._left$ThreeD88754a$$setter_(tmp$5 = LT$operator(this._left$ThreeD88754a$$getter_(), x)?this._left$ThreeD88754a$$getter_():x) , tmp$5;
+    this._top$ThreeD88754a$$setter_(tmp$6 = LT$operator(this._top$ThreeD88754a$$getter_(), y)?this._top$ThreeD88754a$$getter_():y) , tmp$6;
+    this._right$ThreeD88754a$$setter_(tmp$7 = GT$operator(this._right$ThreeD88754a$$getter_(), x)?this._right$ThreeD88754a$$getter_():x) , tmp$7;
+    this._bottom$ThreeD88754a$$setter_(tmp$8 = GT$operator(this._bottom$ThreeD88754a$$getter_(), y)?this._bottom$ThreeD88754a$$getter_():y) , tmp$8;
     this.resize$member();
   }
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.addPoint$named = function($n, $o, x, y){
+ThreeD88754a$Rectangle$Dart.prototype.addPoint$named = function($n, $o, x, y){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.addPoint$member.call(this, x, y);
+  return ThreeD88754a$Rectangle$Dart.prototype.addPoint$member.call(this, x, y);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.add3Points$member = function(x1, y1, x2, y2, x3, y3){
+ThreeD88754a$Rectangle$Dart.prototype.add3Points$member = function(x1, y1, x2, y2, x3, y3){
   var tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  if (this._isEmpty$ThreeD85b351$$getter_()) {
-    this._isEmpty$ThreeD85b351$$setter_(tmp$0 = false) , tmp$0;
-    this._left$ThreeD85b351$$setter_(tmp$1 = LT$operator(x1, x2)?LT$operator(x1, x3)?x1:x3:LT$operator(x2, x3)?x2:x3) , tmp$1;
-    this._top$ThreeD85b351$$setter_(tmp$2 = LT$operator(y1, y2)?LT$operator(y1, y3)?y1:y3:LT$operator(y2, y3)?y2:y3) , tmp$2;
-    this._right$ThreeD85b351$$setter_(tmp$3 = GT$operator(x1, x2)?GT$operator(x1, x3)?x1:x3:GT$operator(x2, x3)?x2:x3) , tmp$3;
-    this._bottom$ThreeD85b351$$setter_(tmp$4 = GT$operator(y1, y2)?GT$operator(y1, y3)?y1:y3:GT$operator(y2, y3)?y2:y3) , tmp$4;
+  if (this._isEmpty$ThreeD88754a$$getter_()) {
+    this._isEmpty$ThreeD88754a$$setter_(tmp$0 = false) , tmp$0;
+    this._left$ThreeD88754a$$setter_(tmp$1 = LT$operator(x1, x2)?LT$operator(x1, x3)?x1:x3:LT$operator(x2, x3)?x2:x3) , tmp$1;
+    this._top$ThreeD88754a$$setter_(tmp$2 = LT$operator(y1, y2)?LT$operator(y1, y3)?y1:y3:LT$operator(y2, y3)?y2:y3) , tmp$2;
+    this._right$ThreeD88754a$$setter_(tmp$3 = GT$operator(x1, x2)?GT$operator(x1, x3)?x1:x3:GT$operator(x2, x3)?x2:x3) , tmp$3;
+    this._bottom$ThreeD88754a$$setter_(tmp$4 = GT$operator(y1, y2)?GT$operator(y1, y3)?y1:y3:GT$operator(y2, y3)?y2:y3) , tmp$4;
     this.resize$member();
   }
    else {
-    this._left$ThreeD85b351$$setter_(tmp$5 = LT$operator(x1, x2)?LT$operator(x1, x3)?LT$operator(x1, this._left$ThreeD85b351$$getter_())?x1:this._left$ThreeD85b351$$getter_():LT$operator(x3, this._left$ThreeD85b351$$getter_())?x3:this._left$ThreeD85b351$$getter_():LT$operator(x2, x3)?LT$operator(x2, this._left$ThreeD85b351$$getter_())?x2:this._left$ThreeD85b351$$getter_():LT$operator(x3, this._left$ThreeD85b351$$getter_())?x3:this._left$ThreeD85b351$$getter_()) , tmp$5;
-    this._top$ThreeD85b351$$setter_(tmp$6 = LT$operator(y1, y2)?LT$operator(y1, y3)?LT$operator(y1, this._top$ThreeD85b351$$getter_())?y1:this._top$ThreeD85b351$$getter_():LT$operator(y3, this._top$ThreeD85b351$$getter_())?y3:this._top$ThreeD85b351$$getter_():LT$operator(y2, y3)?LT$operator(y2, this._top$ThreeD85b351$$getter_())?y2:this._top$ThreeD85b351$$getter_():LT$operator(y3, this._top$ThreeD85b351$$getter_())?y3:this._top$ThreeD85b351$$getter_()) , tmp$6;
-    this._right$ThreeD85b351$$setter_(tmp$7 = GT$operator(x1, x2)?GT$operator(x1, x3)?GT$operator(x1, this._right$ThreeD85b351$$getter_())?x1:this._right$ThreeD85b351$$getter_():GT$operator(x3, this._right$ThreeD85b351$$getter_())?x3:this._right$ThreeD85b351$$getter_():GT$operator(x2, x3)?GT$operator(x2, this._right$ThreeD85b351$$getter_())?x2:this._right$ThreeD85b351$$getter_():GT$operator(x3, this._right$ThreeD85b351$$getter_())?x3:this._right$ThreeD85b351$$getter_()) , tmp$7;
-    this._bottom$ThreeD85b351$$setter_(tmp$8 = GT$operator(y1, y2)?GT$operator(y1, y3)?GT$operator(y1, this._bottom$ThreeD85b351$$getter_())?y1:this._bottom$ThreeD85b351$$getter_():GT$operator(y3, this._bottom$ThreeD85b351$$getter_())?y3:this._bottom$ThreeD85b351$$getter_():GT$operator(y2, y3)?GT$operator(y2, this._bottom$ThreeD85b351$$getter_())?y2:this._bottom$ThreeD85b351$$getter_():GT$operator(y3, this._bottom$ThreeD85b351$$getter_())?y3:this._bottom$ThreeD85b351$$getter_()) , tmp$8;
+    this._left$ThreeD88754a$$setter_(tmp$5 = LT$operator(x1, x2)?LT$operator(x1, x3)?LT$operator(x1, this._left$ThreeD88754a$$getter_())?x1:this._left$ThreeD88754a$$getter_():LT$operator(x3, this._left$ThreeD88754a$$getter_())?x3:this._left$ThreeD88754a$$getter_():LT$operator(x2, x3)?LT$operator(x2, this._left$ThreeD88754a$$getter_())?x2:this._left$ThreeD88754a$$getter_():LT$operator(x3, this._left$ThreeD88754a$$getter_())?x3:this._left$ThreeD88754a$$getter_()) , tmp$5;
+    this._top$ThreeD88754a$$setter_(tmp$6 = LT$operator(y1, y2)?LT$operator(y1, y3)?LT$operator(y1, this._top$ThreeD88754a$$getter_())?y1:this._top$ThreeD88754a$$getter_():LT$operator(y3, this._top$ThreeD88754a$$getter_())?y3:this._top$ThreeD88754a$$getter_():LT$operator(y2, y3)?LT$operator(y2, this._top$ThreeD88754a$$getter_())?y2:this._top$ThreeD88754a$$getter_():LT$operator(y3, this._top$ThreeD88754a$$getter_())?y3:this._top$ThreeD88754a$$getter_()) , tmp$6;
+    this._right$ThreeD88754a$$setter_(tmp$7 = GT$operator(x1, x2)?GT$operator(x1, x3)?GT$operator(x1, this._right$ThreeD88754a$$getter_())?x1:this._right$ThreeD88754a$$getter_():GT$operator(x3, this._right$ThreeD88754a$$getter_())?x3:this._right$ThreeD88754a$$getter_():GT$operator(x2, x3)?GT$operator(x2, this._right$ThreeD88754a$$getter_())?x2:this._right$ThreeD88754a$$getter_():GT$operator(x3, this._right$ThreeD88754a$$getter_())?x3:this._right$ThreeD88754a$$getter_()) , tmp$7;
+    this._bottom$ThreeD88754a$$setter_(tmp$8 = GT$operator(y1, y2)?GT$operator(y1, y3)?GT$operator(y1, this._bottom$ThreeD88754a$$getter_())?y1:this._bottom$ThreeD88754a$$getter_():GT$operator(y3, this._bottom$ThreeD88754a$$getter_())?y3:this._bottom$ThreeD88754a$$getter_():GT$operator(y2, y3)?GT$operator(y2, this._bottom$ThreeD88754a$$getter_())?y2:this._bottom$ThreeD88754a$$getter_():GT$operator(y3, this._bottom$ThreeD88754a$$getter_())?y3:this._bottom$ThreeD88754a$$getter_()) , tmp$8;
     this.resize$member();
   }
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.add3Points$named = function($n, $o, x1, y1, x2, y2, x3, y3){
+ThreeD88754a$Rectangle$Dart.prototype.add3Points$named = function($n, $o, x1, y1, x2, y2, x3, y3){
   if ($o.count || $n != 6)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.add3Points$member.call(this, x1, y1, x2, y2, x3, y3);
+  return ThreeD88754a$Rectangle$Dart.prototype.add3Points$member.call(this, x1, y1, x2, y2, x3, y3);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.addRectangle$member = function(r){
+ThreeD88754a$Rectangle$Dart.prototype.addRectangle$member = function(r){
   var tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  if (this._isEmpty$ThreeD85b351$$getter_()) {
-    this._isEmpty$ThreeD85b351$$setter_(tmp$0 = false) , tmp$0;
-    this._left$ThreeD85b351$$setter_(tmp$1 = r.getLeft$named(0, $noargs)) , tmp$1;
-    this._top$ThreeD85b351$$setter_(tmp$2 = r.getTop$named(0, $noargs)) , tmp$2;
-    this._right$ThreeD85b351$$setter_(tmp$3 = r.getRight$named(0, $noargs)) , tmp$3;
-    this._bottom$ThreeD85b351$$setter_(tmp$4 = r.getBottom$named(0, $noargs)) , tmp$4;
+  if (this._isEmpty$ThreeD88754a$$getter_()) {
+    this._isEmpty$ThreeD88754a$$setter_(tmp$0 = false) , tmp$0;
+    this._left$ThreeD88754a$$setter_(tmp$1 = r.getLeft$named(0, $noargs)) , tmp$1;
+    this._top$ThreeD88754a$$setter_(tmp$2 = r.getTop$named(0, $noargs)) , tmp$2;
+    this._right$ThreeD88754a$$setter_(tmp$3 = r.getRight$named(0, $noargs)) , tmp$3;
+    this._bottom$ThreeD88754a$$setter_(tmp$4 = r.getBottom$named(0, $noargs)) , tmp$4;
     this.resize$member();
   }
    else {
-    this._left$ThreeD85b351$$setter_(tmp$5 = LT$operator(this._left$ThreeD85b351$$getter_(), r.getLeft$named(0, $noargs))?this._left$ThreeD85b351$$getter_():r.getLeft$named(0, $noargs)) , tmp$5;
-    this._top$ThreeD85b351$$setter_(tmp$6 = LT$operator(this._top$ThreeD85b351$$getter_(), r.getTop$named(0, $noargs))?this._top$ThreeD85b351$$getter_():r.getTop$named(0, $noargs)) , tmp$6;
-    this._right$ThreeD85b351$$setter_(tmp$7 = GT$operator(this._right$ThreeD85b351$$getter_(), r.getRight$named(0, $noargs))?this._right$ThreeD85b351$$getter_():r.getRight$named(0, $noargs)) , tmp$7;
-    this._bottom$ThreeD85b351$$setter_(tmp$8 = GT$operator(this._bottom$ThreeD85b351$$getter_(), r.getBottom$named(0, $noargs))?this._bottom$ThreeD85b351$$getter_():r.getBottom$named(0, $noargs)) , tmp$8;
+    this._left$ThreeD88754a$$setter_(tmp$5 = LT$operator(this._left$ThreeD88754a$$getter_(), r.getLeft$named(0, $noargs))?this._left$ThreeD88754a$$getter_():r.getLeft$named(0, $noargs)) , tmp$5;
+    this._top$ThreeD88754a$$setter_(tmp$6 = LT$operator(this._top$ThreeD88754a$$getter_(), r.getTop$named(0, $noargs))?this._top$ThreeD88754a$$getter_():r.getTop$named(0, $noargs)) , tmp$6;
+    this._right$ThreeD88754a$$setter_(tmp$7 = GT$operator(this._right$ThreeD88754a$$getter_(), r.getRight$named(0, $noargs))?this._right$ThreeD88754a$$getter_():r.getRight$named(0, $noargs)) , tmp$7;
+    this._bottom$ThreeD88754a$$setter_(tmp$8 = GT$operator(this._bottom$ThreeD88754a$$getter_(), r.getBottom$named(0, $noargs))?this._bottom$ThreeD88754a$$getter_():r.getBottom$named(0, $noargs)) , tmp$8;
     this.resize$member();
   }
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.addRectangle$named = function($n, $o, r){
+ThreeD88754a$Rectangle$Dart.prototype.addRectangle$named = function($n, $o, r){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.addRectangle$member.call(this, r);
+  return ThreeD88754a$Rectangle$Dart.prototype.addRectangle$member.call(this, r);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.inflate$member = function(v){
+ThreeD88754a$Rectangle$Dart.prototype.inflate$member = function(v){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._left$ThreeD85b351$$setter_(tmp$0 = SUB$operator(this._left$ThreeD85b351$$getter_(), v)) , tmp$0;
-  this._top$ThreeD85b351$$setter_(tmp$1 = SUB$operator(this._top$ThreeD85b351$$getter_(), v)) , tmp$1;
-  this._right$ThreeD85b351$$setter_(tmp$2 = ADD$operator(this._right$ThreeD85b351$$getter_(), v)) , tmp$2;
-  this._bottom$ThreeD85b351$$setter_(tmp$3 = ADD$operator(this._bottom$ThreeD85b351$$getter_(), v)) , tmp$3;
+  this._left$ThreeD88754a$$setter_(tmp$0 = SUB$operator(this._left$ThreeD88754a$$getter_(), v)) , tmp$0;
+  this._top$ThreeD88754a$$setter_(tmp$1 = SUB$operator(this._top$ThreeD88754a$$getter_(), v)) , tmp$1;
+  this._right$ThreeD88754a$$setter_(tmp$2 = ADD$operator(this._right$ThreeD88754a$$getter_(), v)) , tmp$2;
+  this._bottom$ThreeD88754a$$setter_(tmp$3 = ADD$operator(this._bottom$ThreeD88754a$$getter_(), v)) , tmp$3;
   this.resize$member();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.inflate$named = function($n, $o, v){
+ThreeD88754a$Rectangle$Dart.prototype.inflate$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.inflate$member.call(this, v);
+  return ThreeD88754a$Rectangle$Dart.prototype.inflate$member.call(this, v);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.minSelf$member = function(r){
+ThreeD88754a$Rectangle$Dart.prototype.minSelf$member = function(r){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._left$ThreeD85b351$$setter_(tmp$0 = GT$operator(this._left$ThreeD85b351$$getter_(), r.getLeft$named(0, $noargs))?this._left$ThreeD85b351$$getter_():r.getLeft$named(0, $noargs)) , tmp$0;
-  this._top$ThreeD85b351$$setter_(tmp$1 = GT$operator(this._top$ThreeD85b351$$getter_(), r.getTop$named(0, $noargs))?this._top$ThreeD85b351$$getter_():r.getTop$named(0, $noargs)) , tmp$1;
-  this._right$ThreeD85b351$$setter_(tmp$2 = LT$operator(this._right$ThreeD85b351$$getter_(), r.getRight$named(0, $noargs))?this._right$ThreeD85b351$$getter_():r.getRight$named(0, $noargs)) , tmp$2;
-  this._bottom$ThreeD85b351$$setter_(tmp$3 = LT$operator(this._bottom$ThreeD85b351$$getter_(), r.getBottom$named(0, $noargs))?this._bottom$ThreeD85b351$$getter_():r.getBottom$named(0, $noargs)) , tmp$3;
+  this._left$ThreeD88754a$$setter_(tmp$0 = GT$operator(this._left$ThreeD88754a$$getter_(), r.getLeft$named(0, $noargs))?this._left$ThreeD88754a$$getter_():r.getLeft$named(0, $noargs)) , tmp$0;
+  this._top$ThreeD88754a$$setter_(tmp$1 = GT$operator(this._top$ThreeD88754a$$getter_(), r.getTop$named(0, $noargs))?this._top$ThreeD88754a$$getter_():r.getTop$named(0, $noargs)) , tmp$1;
+  this._right$ThreeD88754a$$setter_(tmp$2 = LT$operator(this._right$ThreeD88754a$$getter_(), r.getRight$named(0, $noargs))?this._right$ThreeD88754a$$getter_():r.getRight$named(0, $noargs)) , tmp$2;
+  this._bottom$ThreeD88754a$$setter_(tmp$3 = LT$operator(this._bottom$ThreeD88754a$$getter_(), r.getBottom$named(0, $noargs))?this._bottom$ThreeD88754a$$getter_():r.getBottom$named(0, $noargs)) , tmp$3;
   this.resize$member();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.minSelf$named = function($n, $o, r){
+ThreeD88754a$Rectangle$Dart.prototype.minSelf$named = function($n, $o, r){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.minSelf$member.call(this, r);
+  return ThreeD88754a$Rectangle$Dart.prototype.minSelf$member.call(this, r);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.intersects$member = function(r){
-  if (LT$operator(this._right$ThreeD85b351$$getter_(), r.getLeft$named(0, $noargs))) {
+ThreeD88754a$Rectangle$Dart.prototype.intersects$member = function(r){
+  if (LT$operator(this._right$ThreeD88754a$$getter_(), r.getLeft$named(0, $noargs))) {
     return false;
   }
-  if (GT$operator(this._left$ThreeD85b351$$getter_(), r.getRight$named(0, $noargs))) {
+  if (GT$operator(this._left$ThreeD88754a$$getter_(), r.getRight$named(0, $noargs))) {
     return false;
   }
-  if (LT$operator(this._bottom$ThreeD85b351$$getter_(), r.getTop$named(0, $noargs))) {
+  if (LT$operator(this._bottom$ThreeD88754a$$getter_(), r.getTop$named(0, $noargs))) {
     return false;
   }
-  if (GT$operator(this._top$ThreeD85b351$$getter_(), r.getBottom$named(0, $noargs))) {
+  if (GT$operator(this._top$ThreeD88754a$$getter_(), r.getBottom$named(0, $noargs))) {
     return false;
   }
   return true;
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.intersects$named = function($n, $o, r){
+ThreeD88754a$Rectangle$Dart.prototype.intersects$named = function($n, $o, r){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.intersects$member.call(this, r);
+  return ThreeD88754a$Rectangle$Dart.prototype.intersects$member.call(this, r);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.empty$member = function(){
+ThreeD88754a$Rectangle$Dart.prototype.empty$member = function(){
   var tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._isEmpty$ThreeD85b351$$setter_(tmp$0 = true) , tmp$0;
-  this._left$ThreeD85b351$$setter_(tmp$1 = 0) , tmp$1;
-  this._top$ThreeD85b351$$setter_(tmp$2 = 0) , tmp$2;
-  this._right$ThreeD85b351$$setter_(tmp$3 = 0) , tmp$3;
-  this._bottom$ThreeD85b351$$setter_(tmp$4 = 0) , tmp$4;
+  this._isEmpty$ThreeD88754a$$setter_(tmp$0 = true) , tmp$0;
+  this._left$ThreeD88754a$$setter_(tmp$1 = 0) , tmp$1;
+  this._top$ThreeD88754a$$setter_(tmp$2 = 0) , tmp$2;
+  this._right$ThreeD88754a$$setter_(tmp$3 = 0) , tmp$3;
+  this._bottom$ThreeD88754a$$setter_(tmp$4 = 0) , tmp$4;
   this.resize$member();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.empty$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.empty$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.empty$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.empty$member.call(this);
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.isEmpty$member = function(){
-  return this._isEmpty$ThreeD85b351$$getter_();
+ThreeD88754a$Rectangle$Dart.prototype.isEmpty$member = function(){
+  return this._isEmpty$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Rectangle$Dart.prototype.isEmpty$named = function($n, $o){
+ThreeD88754a$Rectangle$Dart.prototype.isEmpty$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Rectangle$Dart.prototype.isEmpty$member.call(this);
+  return ThreeD88754a$Rectangle$Dart.prototype.isEmpty$member.call(this);
 }
 ;
-function ThreeD85b351$UV$Dart(){
+function ThreeD88754a$UV$Dart(){
 }
-ThreeD85b351$UV$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$UV$Dart'), null, null, named);
+ThreeD88754a$UV$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$UV$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$UV$Dart.$Constructor = function(u, v){
+ThreeD88754a$UV$Dart.$Constructor = function(u, v){
   var tmp$1, tmp$0;
-  this._u$ThreeD85b351$$setter_(tmp$0 = NE$operator(u, $Dart$Null)?u:0) , tmp$0;
-  this._v$ThreeD85b351$$setter_(tmp$1 = NE$operator(v, $Dart$Null)?v:0) , tmp$1;
+  this._u$ThreeD88754a$$setter_(tmp$0 = NE$operator(u, $Dart$Null)?u:0) , tmp$0;
+  this._v$ThreeD88754a$$setter_(tmp$1 = NE$operator(v, $Dart$Null)?v:0) , tmp$1;
 }
 ;
-ThreeD85b351$UV$Dart.$Initializer = function(u, v){
+ThreeD88754a$UV$Dart.$Initializer = function(u, v){
 }
 ;
-ThreeD85b351$UV$Dart.UV$$Factory = function(u, v){
-  var tmp$0 = new ThreeD85b351$UV$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$UV$Dart.$lookupRTT();
-  ThreeD85b351$UV$Dart.$Initializer.call(tmp$0, u, v);
-  ThreeD85b351$UV$Dart.$Constructor.call(tmp$0, u, v);
+ThreeD88754a$UV$Dart.UV$$Factory = function(u, v){
+  var tmp$0 = new ThreeD88754a$UV$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$UV$Dart.$lookupRTT();
+  ThreeD88754a$UV$Dart.$Initializer.call(tmp$0, u, v);
+  ThreeD88754a$UV$Dart.$Constructor.call(tmp$0, u, v);
   return tmp$0;
 }
 ;
-ThreeD85b351$UV$Dart.prototype._u$ThreeD85b351$$getter_ = function(){
-  return this._u$ThreeD85b351$$field_;
+ThreeD88754a$UV$Dart.prototype._u$ThreeD88754a$$getter_ = function(){
+  return this._u$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$UV$Dart.prototype._u$ThreeD85b351$$setter_ = function(tmp$0){
-  this._u$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$UV$Dart.prototype._u$ThreeD88754a$$setter_ = function(tmp$0){
+  this._u$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$UV$Dart.prototype._v$ThreeD85b351$$getter_ = function(){
-  return this._v$ThreeD85b351$$field_;
+ThreeD88754a$UV$Dart.prototype._v$ThreeD88754a$$getter_ = function(){
+  return this._v$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$UV$Dart.prototype._v$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$UV$Dart.prototype._v$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$UV$Dart.prototype.u$getter = function(){
-  return this._u$ThreeD85b351$$getter_();
+ThreeD88754a$UV$Dart.prototype.u$getter = function(){
+  return this._u$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$UV$Dart.prototype.v$getter = function(){
-  return this._v$ThreeD85b351$$getter_();
+ThreeD88754a$UV$Dart.prototype.v$getter = function(){
+  return this._v$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$UV$Dart.prototype.setValues$member = function(u, v){
+ThreeD88754a$UV$Dart.prototype.setValues$member = function(u, v){
   var tmp$1, tmp$0;
-  this._u$ThreeD85b351$$setter_(tmp$0 = u) , tmp$0;
-  this._v$ThreeD85b351$$setter_(tmp$1 = v) , tmp$1;
+  this._u$ThreeD88754a$$setter_(tmp$0 = u) , tmp$0;
+  this._v$ThreeD88754a$$setter_(tmp$1 = v) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$UV$Dart.prototype.setValues$named = function($n, $o, u, v){
+ThreeD88754a$UV$Dart.prototype.setValues$named = function($n, $o, u, v){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$UV$Dart.prototype.setValues$member.call(this, u, v);
+  return ThreeD88754a$UV$Dart.prototype.setValues$member.call(this, u, v);
 }
 ;
-ThreeD85b351$UV$Dart.prototype.copy$member = function(uv){
+ThreeD88754a$UV$Dart.prototype.copy$member = function(uv){
   var tmp$1, tmp$0;
-  this._u$ThreeD85b351$$setter_(tmp$0 = uv.u$getter()) , tmp$0;
-  this._v$ThreeD85b351$$setter_(tmp$1 = uv.v$getter()) , tmp$1;
+  this._u$ThreeD88754a$$setter_(tmp$0 = uv.u$getter()) , tmp$0;
+  this._v$ThreeD88754a$$setter_(tmp$1 = uv.v$getter()) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$UV$Dart.prototype.copy$named = function($n, $o, uv){
+ThreeD88754a$UV$Dart.prototype.copy$named = function($n, $o, uv){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$UV$Dart.prototype.copy$member.call(this, uv);
+  return ThreeD88754a$UV$Dart.prototype.copy$member.call(this, uv);
 }
 ;
-ThreeD85b351$UV$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$UV$Dart.$lookupRTT()], ThreeD85b351$UV$Dart.$lookupRTT());
+ThreeD88754a$UV$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$UV$Dart.$lookupRTT()], ThreeD88754a$UV$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$UV$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$UV$Dart.prototype.copy$named, ThreeD85b351$UV$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$UV$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$UV$Dart.prototype.copy$named, ThreeD88754a$UV$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$UV$Dart.prototype.clone$member = function(){
-  return ThreeD85b351$UV$Dart.UV$$Factory(this._u$ThreeD85b351$$getter_(), this._v$ThreeD85b351$$getter_());
+ThreeD88754a$UV$Dart.prototype.clone$member = function(){
+  return ThreeD88754a$UV$Dart.UV$$Factory(this._u$ThreeD88754a$$getter_(), this._v$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$UV$Dart.prototype.clone$named = function($n, $o){
+ThreeD88754a$UV$Dart.prototype.clone$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$UV$Dart.prototype.clone$member.call(this);
+  return ThreeD88754a$UV$Dart.prototype.clone$member.call(this);
 }
 ;
-function ThreeD85b351$Vector2$Dart(){
+function ThreeD88754a$Vector2$Dart(){
 }
-ThreeD85b351$Vector2$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Vector2$Dart'), ThreeD85b351$Vector2$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Vector2$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Vector2$Dart.$addTo(rtt);
+ThreeD88754a$Vector2$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Vector2$Dart'), ThreeD88754a$Vector2$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Vector2$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Vector2$Dart.$lookupRTT();
+ThreeD88754a$Vector2$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Vector2$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Vector2$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Vector2$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IVector2$Dart.$addTo(target);
+  ThreeD88754a$IVector2$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Vector2$Dart.$Constructor = function(x, y){
+ThreeD88754a$Vector2$Dart.$Constructor = function(x, y){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = NE$operator(x, $Dart$Null)?x:0) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = NE$operator(y, $Dart$Null)?y:0) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = NE$operator(x, $Dart$Null)?x:0) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = NE$operator(y, $Dart$Null)?y:0) , tmp$1;
 }
 ;
-ThreeD85b351$Vector2$Dart.$Initializer = function(x, y){
+ThreeD88754a$Vector2$Dart.$Initializer = function(x, y){
 }
 ;
-ThreeD85b351$Vector2$Dart.Vector2$$Factory = function(x, y){
-  var tmp$0 = new ThreeD85b351$Vector2$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Vector2$Dart.$lookupRTT();
-  ThreeD85b351$Vector2$Dart.$Initializer.call(tmp$0, x, y);
-  ThreeD85b351$Vector2$Dart.$Constructor.call(tmp$0, x, y);
+ThreeD88754a$Vector2$Dart.Vector2$$Factory = function(x, y){
+  var tmp$0 = new ThreeD88754a$Vector2$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Vector2$Dart.$lookupRTT();
+  ThreeD88754a$Vector2$Dart.$Initializer.call(tmp$0, x, y);
+  ThreeD88754a$Vector2$Dart.$Constructor.call(tmp$0, x, y);
   return tmp$0;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype._x$ThreeD85b351$$getter_ = function(){
-  return this._x$ThreeD85b351$$field_;
+ThreeD88754a$Vector2$Dart.prototype._x$ThreeD88754a$$getter_ = function(){
+  return this._x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype._x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector2$Dart.prototype._x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype._y$ThreeD85b351$$getter_ = function(){
-  return this._y$ThreeD85b351$$field_;
+ThreeD88754a$Vector2$Dart.prototype._y$ThreeD88754a$$getter_ = function(){
+  return this._y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype._y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector2$Dart.prototype._y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.x$getter = function(){
-  return this._x$ThreeD85b351$$getter_();
+ThreeD88754a$Vector2$Dart.prototype.x$getter = function(){
+  return this._x$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.x$setter = function(value){
+ThreeD88754a$Vector2$Dart.prototype.x$setter = function(value){
   var tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._x$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.y$getter = function(){
-  return this._y$ThreeD85b351$$getter_();
+ThreeD88754a$Vector2$Dart.prototype.y$getter = function(){
+  return this._y$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.y$setter = function(value){
+ThreeD88754a$Vector2$Dart.prototype.y$setter = function(value){
   var tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.setValues$member = function(x, y){
+ThreeD88754a$Vector2$Dart.prototype.setValues$member = function(x, y){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = x) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = y) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = x) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = y) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.setValues$named = function($n, $o, x, y){
+ThreeD88754a$Vector2$Dart.prototype.setValues$named = function($n, $o, x, y){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.setValues$member.call(this, x, y);
+  return ThreeD88754a$Vector2$Dart.prototype.setValues$member.call(this, x, y);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.copy$member = function(v){
+ThreeD88754a$Vector2$Dart.prototype.copy$member = function(v){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = v.x$getter()) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = v.y$getter()) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = v.x$getter()) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = v.y$getter()) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.copy$named = function($n, $o, v){
+ThreeD88754a$Vector2$Dart.prototype.copy$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.copy$member.call(this, v);
+  return ThreeD88754a$Vector2$Dart.prototype.copy$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$Vector2$Dart.$lookupRTT()], ThreeD85b351$Vector2$Dart.$lookupRTT());
+ThreeD88754a$Vector2$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$Vector2$Dart.$lookupRTT()], ThreeD88754a$Vector2$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$Vector2$Dart.prototype.copy$named, ThreeD85b351$Vector2$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$Vector2$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$Vector2$Dart.prototype.copy$named, ThreeD88754a$Vector2$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.clone$member = function(){
-  return ThreeD85b351$Vector2$Dart.Vector2$$Factory(this._x$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_());
+ThreeD88754a$Vector2$Dart.prototype.clone$member = function(){
+  return ThreeD88754a$Vector2$Dart.Vector2$$Factory(this._x$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.clone$named = function($n, $o){
+ThreeD88754a$Vector2$Dart.prototype.clone$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.clone$member.call(this);
+  return ThreeD88754a$Vector2$Dart.prototype.clone$member.call(this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.add$member = function(v1, v2){
+ThreeD88754a$Vector2$Dart.prototype.add$member = function(v1, v2){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.add$named = function($n, $o, v1, v2){
+ThreeD88754a$Vector2$Dart.prototype.add$named = function($n, $o, v1, v2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.add$member.call(this, v1, v2);
+  return ThreeD88754a$Vector2$Dart.prototype.add$member.call(this, v1, v2);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.addSelf$member = function(v){
+ThreeD88754a$Vector2$Dart.prototype.addSelf$member = function(v){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(this._x$ThreeD85b351$$getter_(), v.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(this._y$ThreeD85b351$$getter_(), v.y$getter())) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(this._x$ThreeD88754a$$getter_(), v.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(this._y$ThreeD88754a$$getter_(), v.y$getter())) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.addSelf$named = function($n, $o, v){
+ThreeD88754a$Vector2$Dart.prototype.addSelf$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.addSelf$member.call(this, v);
+  return ThreeD88754a$Vector2$Dart.prototype.addSelf$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.sub$member = function(v1, v2){
+ThreeD88754a$Vector2$Dart.prototype.sub$member = function(v1, v2){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = SUB$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = SUB$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = SUB$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = SUB$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.sub$named = function($n, $o, v1, v2){
+ThreeD88754a$Vector2$Dart.prototype.sub$named = function($n, $o, v1, v2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.sub$member.call(this, v1, v2);
+  return ThreeD88754a$Vector2$Dart.prototype.sub$member.call(this, v1, v2);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.multiplyScalar$member = function(s){
+ThreeD88754a$Vector2$Dart.prototype.multiplyScalar$member = function(s){
   var tmp$1, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = MUL$operator(this._x$ThreeD85b351$$getter_(), s)) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = MUL$operator(this._y$ThreeD85b351$$getter_(), s)) , tmp$1;
+  this._x$ThreeD88754a$$setter_(tmp$0 = MUL$operator(this._x$ThreeD88754a$$getter_(), s)) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = MUL$operator(this._y$ThreeD88754a$$getter_(), s)) , tmp$1;
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.multiplyScalar$named = function($n, $o, s){
+ThreeD88754a$Vector2$Dart.prototype.multiplyScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.multiplyScalar$member.call(this, s);
+  return ThreeD88754a$Vector2$Dart.prototype.multiplyScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.divideScalar$member = function(s){
+ThreeD88754a$Vector2$Dart.prototype.divideScalar$member = function(s){
   var tmp$1, tmp$0;
   if (NE$operator(s, $Dart$Null)) {
-    this._x$ThreeD85b351$$setter_(tmp$0 = DIV$operator(this._x$ThreeD85b351$$getter_(), s)) , tmp$0;
-    this._y$ThreeD85b351$$setter_(tmp$1 = DIV$operator(this._y$ThreeD85b351$$getter_(), s)) , tmp$1;
+    this._x$ThreeD88754a$$setter_(tmp$0 = DIV$operator(this._x$ThreeD88754a$$getter_(), s)) , tmp$0;
+    this._y$ThreeD88754a$$setter_(tmp$1 = DIV$operator(this._y$ThreeD88754a$$getter_(), s)) , tmp$1;
   }
    else {
     this.setValues$member(0, 0);
@@ -73346,738 +73346,738 @@ ThreeD85b351$Vector2$Dart.prototype.divideScalar$member = function(s){
   return this;
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.divideScalar$named = function($n, $o, s){
+ThreeD88754a$Vector2$Dart.prototype.divideScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.divideScalar$member.call(this, s);
+  return ThreeD88754a$Vector2$Dart.prototype.divideScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.dot$member = function(v){
-  return ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), v.x$getter()), MUL$operator(this._y$ThreeD85b351$$getter_(), v.y$getter()));
+ThreeD88754a$Vector2$Dart.prototype.dot$member = function(v){
+  return ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), v.x$getter()), MUL$operator(this._y$ThreeD88754a$$getter_(), v.y$getter()));
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.dot$named = function($n, $o, v){
+ThreeD88754a$Vector2$Dart.prototype.dot$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.dot$member.call(this, v);
+  return ThreeD88754a$Vector2$Dart.prototype.dot$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.lengthSq$member = function(){
-  return ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), this._x$ThreeD85b351$$getter_()), MUL$operator(this._y$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_()));
+ThreeD88754a$Vector2$Dart.prototype.lengthSq$member = function(){
+  return ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), this._x$ThreeD88754a$$getter_()), MUL$operator(this._y$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_()));
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.lengthSq$named = function($n, $o){
+ThreeD88754a$Vector2$Dart.prototype.lengthSq$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.lengthSq$member.call(this);
+  return ThreeD88754a$Vector2$Dart.prototype.lengthSq$member.call(this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.length$member = function(){
+ThreeD88754a$Vector2$Dart.prototype.length$member = function(){
   return Math$Dart.sqrt$member(this.lengthSq$named(0, $noargs));
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.length$named = function($n, $o){
+ThreeD88754a$Vector2$Dart.prototype.length$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.length$member.call(this);
+  return ThreeD88754a$Vector2$Dart.prototype.length$member.call(this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.length$named_$lookupRTT = function(){
+ThreeD88754a$Vector2$Dart.prototype.length$named_$lookupRTT = function(){
   return RTT.createFunction(null, num$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.length$getter = function(){
-  return $bind(ThreeD85b351$Vector2$Dart.prototype.length$named, ThreeD85b351$Vector2$Dart.prototype.length$named_$lookupRTT, this);
+ThreeD88754a$Vector2$Dart.prototype.length$getter = function(){
+  return $bind(ThreeD88754a$Vector2$Dart.prototype.length$named, ThreeD88754a$Vector2$Dart.prototype.length$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.normalize$member = function(){
+ThreeD88754a$Vector2$Dart.prototype.normalize$member = function(){
   return this.divideScalar$member(this.length$member());
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.normalize$named = function($n, $o){
+ThreeD88754a$Vector2$Dart.prototype.normalize$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.normalize$member.call(this);
+  return ThreeD88754a$Vector2$Dart.prototype.normalize$member.call(this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.normalize$named_$lookupRTT = function(){
+ThreeD88754a$Vector2$Dart.prototype.normalize$named_$lookupRTT = function(){
   return RTT.createFunction(null, RTT.dynamicType.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.normalize$getter = function(){
-  return $bind(ThreeD85b351$Vector2$Dart.prototype.normalize$named, ThreeD85b351$Vector2$Dart.prototype.normalize$named_$lookupRTT, this);
+ThreeD88754a$Vector2$Dart.prototype.normalize$getter = function(){
+  return $bind(ThreeD88754a$Vector2$Dart.prototype.normalize$named, ThreeD88754a$Vector2$Dart.prototype.normalize$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.distanceTo$member = function(v){
+ThreeD88754a$Vector2$Dart.prototype.distanceTo$member = function(v){
   return Math$Dart.sqrt$member(this.distanceToSquared$member(v));
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.distanceTo$named = function($n, $o, v){
+ThreeD88754a$Vector2$Dart.prototype.distanceTo$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector2$Dart.prototype.distanceTo$member.call(this, v);
+  return ThreeD88754a$Vector2$Dart.prototype.distanceTo$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector2$Dart.prototype.distanceToSquared$member = function(v){
-  var dx = SUB$operator(this._x$ThreeD85b351$$getter_(), v.x$getter());
-  var dy = SUB$operator(this._y$ThreeD85b351$$getter_(), v.y$getter());
+ThreeD88754a$Vector2$Dart.prototype.distanceToSquared$member = function(v){
+  var dx = SUB$operator(this._x$ThreeD88754a$$getter_(), v.x$getter());
+  var dy = SUB$operator(this._y$ThreeD88754a$$getter_(), v.y$getter());
   return ADD$operator(MUL$operator(dx, dx), MUL$operator(dy, dy));
 }
 ;
-function ThreeD85b351$Vector3$Dart(){
+function ThreeD88754a$Vector3$Dart(){
 }
-ThreeD85b351$Vector3$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Vector3$Dart'), ThreeD85b351$Vector3$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Vector3$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Vector3$Dart.$addTo(rtt);
+ThreeD88754a$Vector3$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Vector3$Dart'), ThreeD88754a$Vector3$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Vector3$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Vector3$Dart.$lookupRTT();
+ThreeD88754a$Vector3$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Vector3$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Vector3$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Vector3$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IVector3$Dart.$addTo(target);
+  ThreeD88754a$IVector3$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.$implements$ThreeD85b351$Vector3$Dart = 1;
-ThreeD85b351$Vector3$Dart.$Constructor = function(x, y, z){
+ThreeD88754a$Vector3$Dart.prototype.$implements$ThreeD88754a$Vector3$Dart = 1;
+ThreeD88754a$Vector3$Dart.$Constructor = function(x, y, z){
   var tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$2 = NE$operator(x, $Dart$Null)?(this._x$ThreeD85b351$$setter_(tmp$0 = x) , tmp$0):(this._x$ThreeD85b351$$setter_(tmp$1 = 0) , tmp$1)) , tmp$2;
-  this._y$ThreeD85b351$$setter_(tmp$5 = NE$operator(y, $Dart$Null)?(this._y$ThreeD85b351$$setter_(tmp$3 = y) , tmp$3):(this._y$ThreeD85b351$$setter_(tmp$4 = 0) , tmp$4)) , tmp$5;
-  this._z$ThreeD85b351$$setter_(tmp$8 = NE$operator(z, $Dart$Null)?(this._z$ThreeD85b351$$setter_(tmp$6 = z) , tmp$6):(this._z$ThreeD85b351$$setter_(tmp$7 = 0) , tmp$7)) , tmp$8;
+  this._x$ThreeD88754a$$setter_(tmp$2 = NE$operator(x, $Dart$Null)?(this._x$ThreeD88754a$$setter_(tmp$0 = x) , tmp$0):(this._x$ThreeD88754a$$setter_(tmp$1 = 0) , tmp$1)) , tmp$2;
+  this._y$ThreeD88754a$$setter_(tmp$5 = NE$operator(y, $Dart$Null)?(this._y$ThreeD88754a$$setter_(tmp$3 = y) , tmp$3):(this._y$ThreeD88754a$$setter_(tmp$4 = 0) , tmp$4)) , tmp$5;
+  this._z$ThreeD88754a$$setter_(tmp$8 = NE$operator(z, $Dart$Null)?(this._z$ThreeD88754a$$setter_(tmp$6 = z) , tmp$6):(this._z$ThreeD88754a$$setter_(tmp$7 = 0) , tmp$7)) , tmp$8;
 }
 ;
-ThreeD85b351$Vector3$Dart.$Initializer = function(x, y, z){
+ThreeD88754a$Vector3$Dart.$Initializer = function(x, y, z){
 }
 ;
-ThreeD85b351$Vector3$Dart.Vector3$$Factory = function(x, y, z){
-  var tmp$0 = new ThreeD85b351$Vector3$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Vector3$Dart.$lookupRTT();
-  ThreeD85b351$Vector3$Dart.$Initializer.call(tmp$0, x, y, z);
-  ThreeD85b351$Vector3$Dart.$Constructor.call(tmp$0, x, y, z);
+ThreeD88754a$Vector3$Dart.Vector3$$Factory = function(x, y, z){
+  var tmp$0 = new ThreeD88754a$Vector3$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Vector3$Dart.$lookupRTT();
+  ThreeD88754a$Vector3$Dart.$Initializer.call(tmp$0, x, y, z);
+  ThreeD88754a$Vector3$Dart.$Constructor.call(tmp$0, x, y, z);
   return tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype._x$ThreeD85b351$$getter_ = function(){
-  return this._x$ThreeD85b351$$field_;
+ThreeD88754a$Vector3$Dart.prototype._x$ThreeD88754a$$getter_ = function(){
+  return this._x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype._x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector3$Dart.prototype._x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype._y$ThreeD85b351$$getter_ = function(){
-  return this._y$ThreeD85b351$$field_;
+ThreeD88754a$Vector3$Dart.prototype._y$ThreeD88754a$$getter_ = function(){
+  return this._y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype._y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector3$Dart.prototype._y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype._z$ThreeD85b351$$getter_ = function(){
-  return this._z$ThreeD85b351$$field_;
+ThreeD88754a$Vector3$Dart.prototype._z$ThreeD88754a$$getter_ = function(){
+  return this._z$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype._z$ThreeD85b351$$setter_ = function(tmp$0){
-  this._z$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector3$Dart.prototype._z$ThreeD88754a$$setter_ = function(tmp$0){
+  this._z$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.x$getter = function(){
-  return this._x$ThreeD85b351$$getter_();
+ThreeD88754a$Vector3$Dart.prototype.x$getter = function(){
+  return this._x$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.x$setter = function(value){
+ThreeD88754a$Vector3$Dart.prototype.x$setter = function(value){
   var tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._x$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.y$getter = function(){
-  return this._y$ThreeD85b351$$getter_();
+ThreeD88754a$Vector3$Dart.prototype.y$getter = function(){
+  return this._y$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.y$setter = function(value){
+ThreeD88754a$Vector3$Dart.prototype.y$setter = function(value){
   var tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.z$getter = function(){
-  return this._z$ThreeD85b351$$getter_();
+ThreeD88754a$Vector3$Dart.prototype.z$getter = function(){
+  return this._z$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.z$setter = function(value){
+ThreeD88754a$Vector3$Dart.prototype.z$setter = function(value){
   var tmp$0;
-  this._z$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._z$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.setValues$member = function(x, y, z){
+ThreeD88754a$Vector3$Dart.prototype.setValues$member = function(x, y, z){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = x) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = y) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = z) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = x) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = y) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = z) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.setValues$named = function($n, $o, x, y, z){
+ThreeD88754a$Vector3$Dart.prototype.setValues$named = function($n, $o, x, y, z){
   if ($o.count || $n != 3)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.setValues$member.call(this, x, y, z);
+  return ThreeD88754a$Vector3$Dart.prototype.setValues$member.call(this, x, y, z);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.copy$member = function(v){
+ThreeD88754a$Vector3$Dart.prototype.copy$member = function(v){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = v.x$getter()) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = v.y$getter()) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = v.z$getter()) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = v.x$getter()) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = v.y$getter()) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = v.z$getter()) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.copy$named = function($n, $o, v){
+ThreeD88754a$Vector3$Dart.prototype.copy$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.copy$member.call(this, v);
+  return ThreeD88754a$Vector3$Dart.prototype.copy$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$Vector3$Dart.$lookupRTT()], ThreeD85b351$Vector3$Dart.$lookupRTT());
+ThreeD88754a$Vector3$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$Vector3$Dart.$lookupRTT()], ThreeD88754a$Vector3$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$Vector3$Dart.prototype.copy$named, ThreeD85b351$Vector3$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$Vector3$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$Vector3$Dart.prototype.copy$named, ThreeD88754a$Vector3$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.clone$member = function(){
-  return ThreeD85b351$Vector3$Dart.Vector3$$Factory(this._x$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_(), this._z$ThreeD85b351$$getter_());
+ThreeD88754a$Vector3$Dart.prototype.clone$member = function(){
+  return ThreeD88754a$Vector3$Dart.Vector3$$Factory(this._x$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_(), this._z$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.clone$named = function($n, $o){
+ThreeD88754a$Vector3$Dart.prototype.clone$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.clone$member.call(this);
+  return ThreeD88754a$Vector3$Dart.prototype.clone$member.call(this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.add$member = function(v1, v2){
+ThreeD88754a$Vector3$Dart.prototype.add$member = function(v1, v2){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = ADD$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = ADD$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.add$named = function($n, $o, v1, v2){
+ThreeD88754a$Vector3$Dart.prototype.add$named = function($n, $o, v1, v2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.add$member.call(this, v1, v2);
+  return ThreeD88754a$Vector3$Dart.prototype.add$member.call(this, v1, v2);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.addSelf$member = function(v){
+ThreeD88754a$Vector3$Dart.prototype.addSelf$member = function(v){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(this._x$ThreeD85b351$$getter_(), v.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(this._y$ThreeD85b351$$getter_(), v.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = ADD$operator(this._z$ThreeD85b351$$getter_(), v.z$getter())) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(this._x$ThreeD88754a$$getter_(), v.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(this._y$ThreeD88754a$$getter_(), v.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = ADD$operator(this._z$ThreeD88754a$$getter_(), v.z$getter())) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.addSelf$named = function($n, $o, v){
+ThreeD88754a$Vector3$Dart.prototype.addSelf$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.addSelf$member.call(this, v);
+  return ThreeD88754a$Vector3$Dart.prototype.addSelf$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.sub$member = function(v1, v2){
+ThreeD88754a$Vector3$Dart.prototype.sub$member = function(v1, v2){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = SUB$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = SUB$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = SUB$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = SUB$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = SUB$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = SUB$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.sub$named = function($n, $o, v1, v2){
+ThreeD88754a$Vector3$Dart.prototype.sub$named = function($n, $o, v1, v2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.sub$member.call(this, v1, v2);
+  return ThreeD88754a$Vector3$Dart.prototype.sub$member.call(this, v1, v2);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.multiply$member = function(a, b){
+ThreeD88754a$Vector3$Dart.prototype.multiply$member = function(a, b){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = MUL$operator(a.x$getter(), b.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = MUL$operator(a.y$getter(), b.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = MUL$operator(a.z$getter(), b.z$getter())) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = MUL$operator(a.x$getter(), b.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = MUL$operator(a.y$getter(), b.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = MUL$operator(a.z$getter(), b.z$getter())) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.multiply$named = function($n, $o, a, b){
+ThreeD88754a$Vector3$Dart.prototype.multiply$named = function($n, $o, a, b){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.multiply$member.call(this, a, b);
+  return ThreeD88754a$Vector3$Dart.prototype.multiply$member.call(this, a, b);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.multiplyScalar$member = function(s){
+ThreeD88754a$Vector3$Dart.prototype.multiplyScalar$member = function(s){
   var tmp$1, tmp$2, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = MUL$operator(this._x$ThreeD85b351$$getter_(), s)) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = MUL$operator(this._y$ThreeD85b351$$getter_(), s)) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = MUL$operator(this._z$ThreeD85b351$$getter_(), s)) , tmp$2;
+  this._x$ThreeD88754a$$setter_(tmp$0 = MUL$operator(this._x$ThreeD88754a$$getter_(), s)) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = MUL$operator(this._y$ThreeD88754a$$getter_(), s)) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = MUL$operator(this._z$ThreeD88754a$$getter_(), s)) , tmp$2;
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.multiplyScalar$named = function($n, $o, s){
+ThreeD88754a$Vector3$Dart.prototype.multiplyScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.multiplyScalar$member.call(this, s);
+  return ThreeD88754a$Vector3$Dart.prototype.multiplyScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.divideScalar$member = function(s){
+ThreeD88754a$Vector3$Dart.prototype.divideScalar$member = function(s){
   var tmp$5, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   if (s != null) {
-    this._x$ThreeD85b351$$setter_(tmp$0 = DIV$operator(this._x$ThreeD85b351$$getter_(), s)) , tmp$0;
-    this._y$ThreeD85b351$$setter_(tmp$1 = DIV$operator(this._y$ThreeD85b351$$getter_(), s)) , tmp$1;
-    this._z$ThreeD85b351$$setter_(tmp$2 = DIV$operator(this._z$ThreeD85b351$$getter_(), s)) , tmp$2;
+    this._x$ThreeD88754a$$setter_(tmp$0 = DIV$operator(this._x$ThreeD88754a$$getter_(), s)) , tmp$0;
+    this._y$ThreeD88754a$$setter_(tmp$1 = DIV$operator(this._y$ThreeD88754a$$getter_(), s)) , tmp$1;
+    this._z$ThreeD88754a$$setter_(tmp$2 = DIV$operator(this._z$ThreeD88754a$$getter_(), s)) , tmp$2;
   }
    else {
-    this._x$ThreeD85b351$$setter_(tmp$3 = 0) , tmp$3;
-    this._y$ThreeD85b351$$setter_(tmp$4 = 0) , tmp$4;
-    this._z$ThreeD85b351$$setter_(tmp$5 = 0) , tmp$5;
+    this._x$ThreeD88754a$$setter_(tmp$3 = 0) , tmp$3;
+    this._y$ThreeD88754a$$setter_(tmp$4 = 0) , tmp$4;
+    this._z$ThreeD88754a$$setter_(tmp$5 = 0) , tmp$5;
   }
   return this;
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.divideScalar$named = function($n, $o, s){
+ThreeD88754a$Vector3$Dart.prototype.divideScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.divideScalar$member.call(this, s);
+  return ThreeD88754a$Vector3$Dart.prototype.divideScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.dot$member = function(v){
-  return ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), v.x$getter()), MUL$operator(this._y$ThreeD85b351$$getter_(), v.y$getter())), MUL$operator(this._z$ThreeD85b351$$getter_(), v.z$getter()));
+ThreeD88754a$Vector3$Dart.prototype.dot$member = function(v){
+  return ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), v.x$getter()), MUL$operator(this._y$ThreeD88754a$$getter_(), v.y$getter())), MUL$operator(this._z$ThreeD88754a$$getter_(), v.z$getter()));
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.dot$named = function($n, $o, v){
+ThreeD88754a$Vector3$Dart.prototype.dot$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.dot$member.call(this, v);
+  return ThreeD88754a$Vector3$Dart.prototype.dot$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.lengthSq$member = function(){
-  return ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), this._x$ThreeD85b351$$getter_()), MUL$operator(this._y$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_())), MUL$operator(this._z$ThreeD85b351$$getter_(), this._z$ThreeD85b351$$getter_()));
+ThreeD88754a$Vector3$Dart.prototype.lengthSq$member = function(){
+  return ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), this._x$ThreeD88754a$$getter_()), MUL$operator(this._y$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_())), MUL$operator(this._z$ThreeD88754a$$getter_(), this._z$ThreeD88754a$$getter_()));
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.lengthSq$named = function($n, $o){
+ThreeD88754a$Vector3$Dart.prototype.lengthSq$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.lengthSq$member.call(this);
+  return ThreeD88754a$Vector3$Dart.prototype.lengthSq$member.call(this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.length$member = function(){
+ThreeD88754a$Vector3$Dart.prototype.length$member = function(){
   return Math$Dart.sqrt$member(this.lengthSq$member());
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.length$named = function($n, $o){
+ThreeD88754a$Vector3$Dart.prototype.length$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.length$member.call(this);
+  return ThreeD88754a$Vector3$Dart.prototype.length$member.call(this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.length$named_$lookupRTT = function(){
+ThreeD88754a$Vector3$Dart.prototype.length$named_$lookupRTT = function(){
   return RTT.createFunction(null, num$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.length$getter = function(){
-  return $bind(ThreeD85b351$Vector3$Dart.prototype.length$named, ThreeD85b351$Vector3$Dart.prototype.length$named_$lookupRTT, this);
+ThreeD88754a$Vector3$Dart.prototype.length$getter = function(){
+  return $bind(ThreeD88754a$Vector3$Dart.prototype.length$named, ThreeD88754a$Vector3$Dart.prototype.length$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.normalize$member = function(){
+ThreeD88754a$Vector3$Dart.prototype.normalize$member = function(){
   return this.divideScalar$member(this.length$member());
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.normalize$named = function($n, $o){
+ThreeD88754a$Vector3$Dart.prototype.normalize$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.normalize$member.call(this);
+  return ThreeD88754a$Vector3$Dart.prototype.normalize$member.call(this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.normalize$named_$lookupRTT = function(){
-  return RTT.createFunction(null, ThreeD85b351$Vector3$Dart.$lookupRTT());
+ThreeD88754a$Vector3$Dart.prototype.normalize$named_$lookupRTT = function(){
+  return RTT.createFunction(null, ThreeD88754a$Vector3$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.normalize$getter = function(){
-  return $bind(ThreeD85b351$Vector3$Dart.prototype.normalize$named, ThreeD85b351$Vector3$Dart.prototype.normalize$named_$lookupRTT, this);
+ThreeD88754a$Vector3$Dart.prototype.normalize$getter = function(){
+  return $bind(ThreeD88754a$Vector3$Dart.prototype.normalize$named, ThreeD88754a$Vector3$Dart.prototype.normalize$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.distanceTo$member = function(v){
+ThreeD88754a$Vector3$Dart.prototype.distanceTo$member = function(v){
   return Math$Dart.sqrt$member(this.distanceToSquared$member(v));
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.distanceTo$named = function($n, $o, v){
+ThreeD88754a$Vector3$Dart.prototype.distanceTo$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector3$Dart.prototype.distanceTo$member.call(this, v);
+  return ThreeD88754a$Vector3$Dart.prototype.distanceTo$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector3$Dart.prototype.distanceToSquared$member = function(v){
-  return ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null).sub$named(2, $noargs, this, v).lengthSq$named(0, $noargs);
+ThreeD88754a$Vector3$Dart.prototype.distanceToSquared$member = function(v){
+  return ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null).sub$named(2, $noargs, this, v).lengthSq$named(0, $noargs);
 }
 ;
-function ThreeD85b351$Vector4$Dart(){
+function ThreeD88754a$Vector4$Dart(){
 }
-ThreeD85b351$Vector4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Vector4$Dart'), ThreeD85b351$Vector4$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Vector4$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Vector4$Dart.$addTo(rtt);
+ThreeD88754a$Vector4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Vector4$Dart'), ThreeD88754a$Vector4$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Vector4$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Vector4$Dart.$lookupRTT();
+ThreeD88754a$Vector4$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Vector4$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Vector4$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Vector4$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IVector4$Dart.$addTo(target);
+  ThreeD88754a$IVector4$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.$implements$ThreeD85b351$IVector4$Dart = 1;
-ThreeD85b351$Vector4$Dart.$Constructor = function(x, y, z, w){
+ThreeD88754a$Vector4$Dart.prototype.$implements$ThreeD88754a$IVector4$Dart = 1;
+ThreeD88754a$Vector4$Dart.$Constructor = function(x, y, z, w){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = x != null?x:0) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = y != null?y:0) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = z != null?z:0) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = w != null?w:1) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = x != null?x:0) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = y != null?y:0) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = z != null?z:0) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = w != null?w:1) , tmp$3;
 }
 ;
-ThreeD85b351$Vector4$Dart.$Initializer = function(x, y, z, w){
+ThreeD88754a$Vector4$Dart.$Initializer = function(x, y, z, w){
 }
 ;
-ThreeD85b351$Vector4$Dart.Vector4$$Factory = function(x, y, z, w){
-  var tmp$0 = new ThreeD85b351$Vector4$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Vector4$Dart.$lookupRTT();
-  ThreeD85b351$Vector4$Dart.$Initializer.call(tmp$0, x, y, z, w);
-  ThreeD85b351$Vector4$Dart.$Constructor.call(tmp$0, x, y, z, w);
+ThreeD88754a$Vector4$Dart.Vector4$$Factory = function(x, y, z, w){
+  var tmp$0 = new ThreeD88754a$Vector4$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Vector4$Dart.$lookupRTT();
+  ThreeD88754a$Vector4$Dart.$Initializer.call(tmp$0, x, y, z, w);
+  ThreeD88754a$Vector4$Dart.$Constructor.call(tmp$0, x, y, z, w);
   return tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._x$ThreeD85b351$$getter_ = function(){
-  return this._x$ThreeD85b351$$field_;
+ThreeD88754a$Vector4$Dart.prototype._x$ThreeD88754a$$getter_ = function(){
+  return this._x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector4$Dart.prototype._x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._y$ThreeD85b351$$getter_ = function(){
-  return this._y$ThreeD85b351$$field_;
+ThreeD88754a$Vector4$Dart.prototype._y$ThreeD88754a$$getter_ = function(){
+  return this._y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector4$Dart.prototype._y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._z$ThreeD85b351$$getter_ = function(){
-  return this._z$ThreeD85b351$$field_;
+ThreeD88754a$Vector4$Dart.prototype._z$ThreeD88754a$$getter_ = function(){
+  return this._z$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._z$ThreeD85b351$$setter_ = function(tmp$0){
-  this._z$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector4$Dart.prototype._z$ThreeD88754a$$setter_ = function(tmp$0){
+  this._z$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._w$ThreeD85b351$$getter_ = function(){
-  return this._w$ThreeD85b351$$field_;
+ThreeD88754a$Vector4$Dart.prototype._w$ThreeD88754a$$getter_ = function(){
+  return this._w$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype._w$ThreeD85b351$$setter_ = function(tmp$0){
-  this._w$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vector4$Dart.prototype._w$ThreeD88754a$$setter_ = function(tmp$0){
+  this._w$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.x$getter = function(){
-  return this._x$ThreeD85b351$$getter_();
+ThreeD88754a$Vector4$Dart.prototype.x$getter = function(){
+  return this._x$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.x$setter = function(value){
+ThreeD88754a$Vector4$Dart.prototype.x$setter = function(value){
   var tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._x$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.y$getter = function(){
-  return this._y$ThreeD85b351$$getter_();
+ThreeD88754a$Vector4$Dart.prototype.y$getter = function(){
+  return this._y$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.y$setter = function(value){
+ThreeD88754a$Vector4$Dart.prototype.y$setter = function(value){
   var tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.z$getter = function(){
-  return this._z$ThreeD85b351$$getter_();
+ThreeD88754a$Vector4$Dart.prototype.z$getter = function(){
+  return this._z$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.z$setter = function(value){
+ThreeD88754a$Vector4$Dart.prototype.z$setter = function(value){
   var tmp$0;
-  this._z$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._z$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.w$getter = function(){
-  return this._w$ThreeD85b351$$getter_();
+ThreeD88754a$Vector4$Dart.prototype.w$getter = function(){
+  return this._w$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.w$setter = function(value){
+ThreeD88754a$Vector4$Dart.prototype.w$setter = function(value){
   var tmp$0;
-  this._w$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._w$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.setValues$member = function(x, y, z, w){
+ThreeD88754a$Vector4$Dart.prototype.setValues$member = function(x, y, z, w){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = x) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = y) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = z) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = w) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = x) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = y) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = z) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = w) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.setValues$named = function($n, $o, x, y, z, w){
+ThreeD88754a$Vector4$Dart.prototype.setValues$named = function($n, $o, x, y, z, w){
   if ($o.count || $n != 4)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.setValues$member.call(this, x, y, z, w);
+  return ThreeD88754a$Vector4$Dart.prototype.setValues$member.call(this, x, y, z, w);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.copy$member = function(v){
+ThreeD88754a$Vector4$Dart.prototype.copy$member = function(v){
   var tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = v.x$getter()) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = v.y$getter()) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = v.z$getter()) , tmp$2;
-  if (!!(tmp$3 = v , tmp$3 != null && tmp$3.$implements$ThreeD85b351$IVector4$Dart)) {
+  this._x$ThreeD88754a$$setter_(tmp$0 = v.x$getter()) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = v.y$getter()) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = v.z$getter()) , tmp$2;
+  if (!!(tmp$3 = v , tmp$3 != null && tmp$3.$implements$ThreeD88754a$IVector4$Dart)) {
     var v4 = v;
-    this._w$ThreeD85b351$$setter_(tmp$4 = v4.w$getter() != null?v4.w$getter():1) , tmp$4;
+    this._w$ThreeD88754a$$setter_(tmp$4 = v4.w$getter() != null?v4.w$getter():1) , tmp$4;
   }
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.copy$named = function($n, $o, v){
+ThreeD88754a$Vector4$Dart.prototype.copy$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.copy$member.call(this, v);
+  return ThreeD88754a$Vector4$Dart.prototype.copy$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$IVector3$Dart.$lookupRTT()], RTT.dynamicType.$lookupRTT());
+ThreeD88754a$Vector4$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$IVector3$Dart.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$Vector4$Dart.prototype.copy$named, ThreeD85b351$Vector4$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$Vector4$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$Vector4$Dart.prototype.copy$named, ThreeD88754a$Vector4$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.clone$member = function(){
-  return ThreeD85b351$Vector4$Dart.Vector4$$Factory(this._x$ThreeD85b351$$getter_(), this._y$ThreeD85b351$$getter_(), this._z$ThreeD85b351$$getter_(), this._w$ThreeD85b351$$getter_());
+ThreeD88754a$Vector4$Dart.prototype.clone$member = function(){
+  return ThreeD88754a$Vector4$Dart.Vector4$$Factory(this._x$ThreeD88754a$$getter_(), this._y$ThreeD88754a$$getter_(), this._z$ThreeD88754a$$getter_(), this._w$ThreeD88754a$$getter_());
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.clone$named = function($n, $o){
+ThreeD88754a$Vector4$Dart.prototype.clone$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.clone$member.call(this);
+  return ThreeD88754a$Vector4$Dart.prototype.clone$member.call(this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.add$member = function(v1, v2){
+ThreeD88754a$Vector4$Dart.prototype.add$member = function(v1, v2){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = ADD$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = ADD$operator(v1.w$getter(), v2.w$getter())) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = ADD$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = ADD$operator(v1.w$getter(), v2.w$getter())) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.add$named = function($n, $o, v1, v2){
+ThreeD88754a$Vector4$Dart.prototype.add$named = function($n, $o, v1, v2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.add$member.call(this, v1, v2);
+  return ThreeD88754a$Vector4$Dart.prototype.add$member.call(this, v1, v2);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.addSelf$member = function(v){
+ThreeD88754a$Vector4$Dart.prototype.addSelf$member = function(v){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(this._x$ThreeD85b351$$getter_(), v.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(this._y$ThreeD85b351$$getter_(), v.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = ADD$operator(this._z$ThreeD85b351$$getter_(), v.z$getter())) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = ADD$operator(this._w$ThreeD85b351$$getter_(), v.w$getter())) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(this._x$ThreeD88754a$$getter_(), v.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(this._y$ThreeD88754a$$getter_(), v.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = ADD$operator(this._z$ThreeD88754a$$getter_(), v.z$getter())) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = ADD$operator(this._w$ThreeD88754a$$getter_(), v.w$getter())) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.addSelf$named = function($n, $o, v){
+ThreeD88754a$Vector4$Dart.prototype.addSelf$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.addSelf$member.call(this, v);
+  return ThreeD88754a$Vector4$Dart.prototype.addSelf$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.sub$member = function(v1, v2){
+ThreeD88754a$Vector4$Dart.prototype.sub$member = function(v1, v2){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = SUB$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = SUB$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = SUB$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = SUB$operator(v1.w$getter(), v2.w$getter())) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = SUB$operator(v1.x$getter(), v2.x$getter())) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = SUB$operator(v1.y$getter(), v2.y$getter())) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = SUB$operator(v1.z$getter(), v2.z$getter())) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = SUB$operator(v1.w$getter(), v2.w$getter())) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.sub$named = function($n, $o, v1, v2){
+ThreeD88754a$Vector4$Dart.prototype.sub$named = function($n, $o, v1, v2){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.sub$member.call(this, v1, v2);
+  return ThreeD88754a$Vector4$Dart.prototype.sub$member.call(this, v1, v2);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.multiplyScalar$member = function(s){
+ThreeD88754a$Vector4$Dart.prototype.multiplyScalar$member = function(s){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = MUL$operator(this._x$ThreeD85b351$$getter_(), s)) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = MUL$operator(this._y$ThreeD85b351$$getter_(), s)) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = MUL$operator(this._z$ThreeD85b351$$getter_(), s)) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = MUL$operator(this._w$ThreeD85b351$$getter_(), s)) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = MUL$operator(this._x$ThreeD88754a$$getter_(), s)) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = MUL$operator(this._y$ThreeD88754a$$getter_(), s)) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = MUL$operator(this._z$ThreeD88754a$$getter_(), s)) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = MUL$operator(this._w$ThreeD88754a$$getter_(), s)) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.multiplyScalar$named = function($n, $o, s){
+ThreeD88754a$Vector4$Dart.prototype.multiplyScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.multiplyScalar$member.call(this, s);
+  return ThreeD88754a$Vector4$Dart.prototype.multiplyScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.divideScalar$member = function(s){
+ThreeD88754a$Vector4$Dart.prototype.divideScalar$member = function(s){
   var tmp$5, tmp$6, tmp$7, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   if (s != null) {
-    this._x$ThreeD85b351$$setter_(tmp$0 = DIV$operator(this._x$ThreeD85b351$$getter_(), s)) , tmp$0;
-    this._y$ThreeD85b351$$setter_(tmp$1 = DIV$operator(this._y$ThreeD85b351$$getter_(), s)) , tmp$1;
-    this._z$ThreeD85b351$$setter_(tmp$2 = DIV$operator(this._z$ThreeD85b351$$getter_(), s)) , tmp$2;
-    this._w$ThreeD85b351$$setter_(tmp$3 = DIV$operator(this._w$ThreeD85b351$$getter_(), s)) , tmp$3;
+    this._x$ThreeD88754a$$setter_(tmp$0 = DIV$operator(this._x$ThreeD88754a$$getter_(), s)) , tmp$0;
+    this._y$ThreeD88754a$$setter_(tmp$1 = DIV$operator(this._y$ThreeD88754a$$getter_(), s)) , tmp$1;
+    this._z$ThreeD88754a$$setter_(tmp$2 = DIV$operator(this._z$ThreeD88754a$$getter_(), s)) , tmp$2;
+    this._w$ThreeD88754a$$setter_(tmp$3 = DIV$operator(this._w$ThreeD88754a$$getter_(), s)) , tmp$3;
   }
    else {
-    this._x$ThreeD85b351$$setter_(tmp$4 = 0) , tmp$4;
-    this._y$ThreeD85b351$$setter_(tmp$5 = 0) , tmp$5;
-    this._z$ThreeD85b351$$setter_(tmp$6 = 0) , tmp$6;
-    this._w$ThreeD85b351$$setter_(tmp$7 = 1) , tmp$7;
+    this._x$ThreeD88754a$$setter_(tmp$4 = 0) , tmp$4;
+    this._y$ThreeD88754a$$setter_(tmp$5 = 0) , tmp$5;
+    this._z$ThreeD88754a$$setter_(tmp$6 = 0) , tmp$6;
+    this._w$ThreeD88754a$$setter_(tmp$7 = 1) , tmp$7;
   }
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.divideScalar$named = function($n, $o, s){
+ThreeD88754a$Vector4$Dart.prototype.divideScalar$named = function($n, $o, s){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.divideScalar$member.call(this, s);
+  return ThreeD88754a$Vector4$Dart.prototype.divideScalar$member.call(this, s);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.dot$member = function(v){
-  return ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD85b351$$getter_(), v.x$getter()), MUL$operator(this._y$ThreeD85b351$$getter_(), v.y$getter())), MUL$operator(this._z$ThreeD85b351$$getter_(), v.z$getter())), MUL$operator(this._w$ThreeD85b351$$getter_(), v.w$getter()));
+ThreeD88754a$Vector4$Dart.prototype.dot$member = function(v){
+  return ADD$operator(ADD$operator(ADD$operator(MUL$operator(this._x$ThreeD88754a$$getter_(), v.x$getter()), MUL$operator(this._y$ThreeD88754a$$getter_(), v.y$getter())), MUL$operator(this._z$ThreeD88754a$$getter_(), v.z$getter())), MUL$operator(this._w$ThreeD88754a$$getter_(), v.w$getter()));
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.dot$named = function($n, $o, v){
+ThreeD88754a$Vector4$Dart.prototype.dot$named = function($n, $o, v){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.dot$member.call(this, v);
+  return ThreeD88754a$Vector4$Dart.prototype.dot$member.call(this, v);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.lengthSq$member = function(){
+ThreeD88754a$Vector4$Dart.prototype.lengthSq$member = function(){
   return this.dot$member(this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.lengthSq$named = function($n, $o){
+ThreeD88754a$Vector4$Dart.prototype.lengthSq$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.lengthSq$member.call(this);
+  return ThreeD88754a$Vector4$Dart.prototype.lengthSq$member.call(this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.length$member = function(){
+ThreeD88754a$Vector4$Dart.prototype.length$member = function(){
   return Math$Dart.sqrt$member(this.lengthSq$member());
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.length$named = function($n, $o){
+ThreeD88754a$Vector4$Dart.prototype.length$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.length$member.call(this);
+  return ThreeD88754a$Vector4$Dart.prototype.length$member.call(this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.length$named_$lookupRTT = function(){
+ThreeD88754a$Vector4$Dart.prototype.length$named_$lookupRTT = function(){
   return RTT.createFunction(null, num$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.length$getter = function(){
-  return $bind(ThreeD85b351$Vector4$Dart.prototype.length$named, ThreeD85b351$Vector4$Dart.prototype.length$named_$lookupRTT, this);
+ThreeD88754a$Vector4$Dart.prototype.length$getter = function(){
+  return $bind(ThreeD88754a$Vector4$Dart.prototype.length$named, ThreeD88754a$Vector4$Dart.prototype.length$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.normalize$member = function(){
+ThreeD88754a$Vector4$Dart.prototype.normalize$member = function(){
   return this.divideScalar$member(this.length$member());
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.normalize$named = function($n, $o){
+ThreeD88754a$Vector4$Dart.prototype.normalize$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.normalize$member.call(this);
+  return ThreeD88754a$Vector4$Dart.prototype.normalize$member.call(this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.normalize$named_$lookupRTT = function(){
-  return RTT.createFunction(null, ThreeD85b351$Vector4$Dart.$lookupRTT());
+ThreeD88754a$Vector4$Dart.prototype.normalize$named_$lookupRTT = function(){
+  return RTT.createFunction(null, ThreeD88754a$Vector4$Dart.$lookupRTT());
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.normalize$getter = function(){
-  return $bind(ThreeD85b351$Vector4$Dart.prototype.normalize$named, ThreeD85b351$Vector4$Dart.prototype.normalize$named_$lookupRTT, this);
+ThreeD88754a$Vector4$Dart.prototype.normalize$getter = function(){
+  return $bind(ThreeD88754a$Vector4$Dart.prototype.normalize$named, ThreeD88754a$Vector4$Dart.prototype.normalize$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.lerpSelf$member = function(v, alpha){
+ThreeD88754a$Vector4$Dart.prototype.lerpSelf$member = function(v, alpha){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  this._x$ThreeD85b351$$setter_(tmp$0 = ADD$operator(this._x$ThreeD85b351$$getter_(), MUL$operator(SUB$operator(v.x$getter(), this._x$ThreeD85b351$$getter_()), alpha))) , tmp$0;
-  this._y$ThreeD85b351$$setter_(tmp$1 = ADD$operator(this._y$ThreeD85b351$$getter_(), MUL$operator(SUB$operator(v.y$getter(), this._y$ThreeD85b351$$getter_()), alpha))) , tmp$1;
-  this._z$ThreeD85b351$$setter_(tmp$2 = ADD$operator(this._z$ThreeD85b351$$getter_(), MUL$operator(SUB$operator(v.z$getter(), this._z$ThreeD85b351$$getter_()), alpha))) , tmp$2;
-  this._w$ThreeD85b351$$setter_(tmp$3 = ADD$operator(this._w$ThreeD85b351$$getter_(), MUL$operator(SUB$operator(v.w$getter(), this._w$ThreeD85b351$$getter_()), alpha))) , tmp$3;
+  this._x$ThreeD88754a$$setter_(tmp$0 = ADD$operator(this._x$ThreeD88754a$$getter_(), MUL$operator(SUB$operator(v.x$getter(), this._x$ThreeD88754a$$getter_()), alpha))) , tmp$0;
+  this._y$ThreeD88754a$$setter_(tmp$1 = ADD$operator(this._y$ThreeD88754a$$getter_(), MUL$operator(SUB$operator(v.y$getter(), this._y$ThreeD88754a$$getter_()), alpha))) , tmp$1;
+  this._z$ThreeD88754a$$setter_(tmp$2 = ADD$operator(this._z$ThreeD88754a$$getter_(), MUL$operator(SUB$operator(v.z$getter(), this._z$ThreeD88754a$$getter_()), alpha))) , tmp$2;
+  this._w$ThreeD88754a$$setter_(tmp$3 = ADD$operator(this._w$ThreeD88754a$$getter_(), MUL$operator(SUB$operator(v.w$getter(), this._w$ThreeD88754a$$getter_()), alpha))) , tmp$3;
   return this;
 }
 ;
-ThreeD85b351$Vector4$Dart.prototype.lerpSelf$named = function($n, $o, v, alpha){
+ThreeD88754a$Vector4$Dart.prototype.lerpSelf$named = function($n, $o, v, alpha){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$Vector4$Dart.prototype.lerpSelf$member.call(this, v, alpha);
+  return ThreeD88754a$Vector4$Dart.prototype.lerpSelf$member.call(this, v, alpha);
 }
 ;
-function ThreeD85b351$Vertex$Dart(){
+function ThreeD88754a$Vertex$Dart(){
 }
-ThreeD85b351$Vertex$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Vertex$Dart'), null, null, named);
+ThreeD88754a$Vertex$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Vertex$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Vertex$Dart.$Constructor = function(position){
+ThreeD88754a$Vertex$Dart.$Constructor = function(position){
   var tmp$0;
-  this._position$ThreeD85b351$$setter_(tmp$0 = NE$operator(position, $Dart$Null)?position:ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
+  this._position$ThreeD88754a$$setter_(tmp$0 = NE$operator(position, $Dart$Null)?position:ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
 }
 ;
-ThreeD85b351$Vertex$Dart.$Initializer = function(position){
+ThreeD88754a$Vertex$Dart.$Initializer = function(position){
 }
 ;
-ThreeD85b351$Vertex$Dart.Vertex$$Factory = function(position){
-  var tmp$0 = new ThreeD85b351$Vertex$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Vertex$Dart.$lookupRTT();
-  ThreeD85b351$Vertex$Dart.$Initializer.call(tmp$0, position);
-  ThreeD85b351$Vertex$Dart.$Constructor.call(tmp$0, position);
+ThreeD88754a$Vertex$Dart.Vertex$$Factory = function(position){
+  var tmp$0 = new ThreeD88754a$Vertex$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Vertex$Dart.$lookupRTT();
+  ThreeD88754a$Vertex$Dart.$Initializer.call(tmp$0, position);
+  ThreeD88754a$Vertex$Dart.$Constructor.call(tmp$0, position);
   return tmp$0;
 }
 ;
-ThreeD85b351$Vertex$Dart.prototype._position$ThreeD85b351$$getter_ = function(){
-  return this._position$ThreeD85b351$$field_;
+ThreeD88754a$Vertex$Dart.prototype._position$ThreeD88754a$$getter_ = function(){
+  return this._position$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Vertex$Dart.prototype._position$ThreeD85b351$$setter_ = function(tmp$0){
-  this._position$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Vertex$Dart.prototype._position$ThreeD88754a$$setter_ = function(tmp$0){
+  this._position$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Vertex$Dart.prototype.position$getter = function(){
-  return this._position$ThreeD85b351$$getter_();
+ThreeD88754a$Vertex$Dart.prototype.position$getter = function(){
+  return this._position$ThreeD88754a$$getter_();
 }
 ;
-function ThreeD85b351$CubeGeometry$Dart(){
+function ThreeD88754a$CubeGeometry$Dart(){
 }
-$inherits(ThreeD85b351$CubeGeometry$Dart, ThreeD85b351$Geometry$Dart);
-ThreeD85b351$CubeGeometry$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$CubeGeometry$Dart'), ThreeD85b351$CubeGeometry$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$CubeGeometry$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$CubeGeometry$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$CubeGeometry$Dart, ThreeD88754a$Geometry$Dart);
+ThreeD88754a$CubeGeometry$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$CubeGeometry$Dart'), ThreeD88754a$CubeGeometry$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$CubeGeometry$Dart.$lookupRTT();
+ThreeD88754a$CubeGeometry$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$CubeGeometry$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$CubeGeometry$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$CubeGeometry$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Geometry$Dart.$addTo(target);
+  ThreeD88754a$Geometry$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.$Constructor = function(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides){
-  ThreeD85b351$Geometry$Dart.$Constructor.call(this);
+ThreeD88754a$CubeGeometry$Dart.$Constructor = function(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides){
+  ThreeD88754a$Geometry$Dart.$Constructor.call(this);
   var tmp$5, tmp$6, tmp$7, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var width_half = DIV$operator(width, 2);
   var height_half = DIV$operator(height, 2);
@@ -74090,14 +74090,14 @@ ThreeD85b351$CubeGeometry$Dart.$Constructor = function(width, height, depth, seg
   var mnz = $Dart$Null;
   if (materials != null) {
     if (!!(tmp$0 = materials , tmp$0 != null && tmp$0.$implements$List$Dart)) {
-      this._materials$ThreeD85b351$$setter_(tmp$1 = materials) , tmp$1;
+      this._materials$ThreeD88754a$$setter_(tmp$1 = materials) , tmp$1;
     }
      else {
-      this._materials$ThreeD85b351$$setter_(tmp$2 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$2;
+      this._materials$ThreeD88754a$$setter_(tmp$2 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$2;
       {
         var i = 0;
         for (; LT$operator(i, 6); tmp$3 = i , (i = ADD$operator(tmp$3, 1) , tmp$3)) {
-          this._materials$ThreeD85b351$$getter_().add$named(1, $noargs, materials);
+          this._materials$ThreeD88754a$$getter_().add$named(1, $noargs, materials);
         }
       }
     }
@@ -74109,73 +74109,73 @@ ThreeD85b351$CubeGeometry$Dart.$Constructor = function(width, height, depth, seg
     mnz = 5;
   }
    else {
-    this._materials$ThreeD85b351$$setter_(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
+    this._materials$ThreeD88754a$$setter_(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
   }
-  this._sides$ThreeD85b351$$setter_(tmp$6 = (tmp$5 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$5.ASSIGN_INDEX$operator('px', true) , tmp$5.ASSIGN_INDEX$operator('nx', true) , tmp$5.ASSIGN_INDEX$operator('py', true) , tmp$5.ASSIGN_INDEX$operator('ny', true) , tmp$5.ASSIGN_INDEX$operator('pz', true) , tmp$5.ASSIGN_INDEX$operator('nz', true) , tmp$5)) , tmp$6;
+  this._sides$ThreeD88754a$$setter_(tmp$6 = (tmp$5 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$5.ASSIGN_INDEX$operator('px', true) , tmp$5.ASSIGN_INDEX$operator('nx', true) , tmp$5.ASSIGN_INDEX$operator('py', true) , tmp$5.ASSIGN_INDEX$operator('ny', true) , tmp$5.ASSIGN_INDEX$operator('pz', true) , tmp$5.ASSIGN_INDEX$operator('nz', true) , tmp$5)) , tmp$6;
   if (NE$operator(sides, $Dart$Null)) {
     {
       var $1 = sides.iterator$named(0, $noargs);
       while ($1.hasNext$named(0, $noargs)) {
         var s = $1.next$named(0, $noargs);
         {
-          if (this._sides$ThreeD85b351$$getter_().INDEX$operator(s) != null) {
-            this._sides$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(s, tmp$7 = sides.INDEX$operator(s)) , tmp$7;
+          if (this._sides$ThreeD88754a$$getter_().INDEX$operator(s) != null) {
+            this._sides$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(s, tmp$7 = sides.INDEX$operator(s)) , tmp$7;
           }
         }
       }
     }
   }
-  this._sides$ThreeD85b351$$getter_().INDEX$operator('px') && this.buildPlane$member('z', 'y', negate$operator(1), negate$operator(1), depth, height, width_half, mpx);
-  this._sides$ThreeD85b351$$getter_().INDEX$operator('nx') && this.buildPlane$member('z', 'y', 1, negate$operator(1), depth, height, negate$operator(width_half), mnx);
-  this._sides$ThreeD85b351$$getter_().INDEX$operator('py') && this.buildPlane$member('x', 'z', 1, 1, width, depth, height_half, mpy);
-  this._sides$ThreeD85b351$$getter_().INDEX$operator('ny') && this.buildPlane$member('x', 'z', 1, negate$operator(1), width, depth, negate$operator(height_half), mny);
-  this._sides$ThreeD85b351$$getter_().INDEX$operator('pz') && this.buildPlane$member('x', 'y', 1, negate$operator(1), width, height, depth_half, mpz);
-  this._sides$ThreeD85b351$$getter_().INDEX$operator('nz') && this.buildPlane$member('x', 'y', negate$operator(1), negate$operator(1), width, height, negate$operator(depth_half), mnz);
+  this._sides$ThreeD88754a$$getter_().INDEX$operator('px') && this.buildPlane$member('z', 'y', negate$operator(1), negate$operator(1), depth, height, width_half, mpx);
+  this._sides$ThreeD88754a$$getter_().INDEX$operator('nx') && this.buildPlane$member('z', 'y', 1, negate$operator(1), depth, height, negate$operator(width_half), mnx);
+  this._sides$ThreeD88754a$$getter_().INDEX$operator('py') && this.buildPlane$member('x', 'z', 1, 1, width, depth, height_half, mpy);
+  this._sides$ThreeD88754a$$getter_().INDEX$operator('ny') && this.buildPlane$member('x', 'z', 1, negate$operator(1), width, depth, negate$operator(height_half), mny);
+  this._sides$ThreeD88754a$$getter_().INDEX$operator('pz') && this.buildPlane$member('x', 'y', 1, negate$operator(1), width, height, depth_half, mpz);
+  this._sides$ThreeD88754a$$getter_().INDEX$operator('nz') && this.buildPlane$member('x', 'y', negate$operator(1), negate$operator(1), width, height, negate$operator(depth_half), mnz);
   this.computeCentroids$member();
   this.mergeVertices$member();
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.$Initializer = function(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides){
-  ThreeD85b351$Geometry$Dart.$Initializer.call(this);
+ThreeD88754a$CubeGeometry$Dart.$Initializer = function(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides){
+  ThreeD88754a$Geometry$Dart.$Initializer.call(this);
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.CubeGeometry$$Factory = function(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides){
-  var tmp$0 = new ThreeD85b351$CubeGeometry$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$CubeGeometry$Dart.$lookupRTT();
-  ThreeD85b351$CubeGeometry$Dart.$Initializer.call(tmp$0, width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides);
-  ThreeD85b351$CubeGeometry$Dart.$Constructor.call(tmp$0, width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides);
+ThreeD88754a$CubeGeometry$Dart.CubeGeometry$$Factory = function(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides){
+  var tmp$0 = new ThreeD88754a$CubeGeometry$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$CubeGeometry$Dart.$lookupRTT();
+  ThreeD88754a$CubeGeometry$Dart.$Initializer.call(tmp$0, width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides);
+  ThreeD88754a$CubeGeometry$Dart.$Constructor.call(tmp$0, width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides);
   return tmp$0;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype._materials$ThreeD85b351$$getter_ = function(){
-  return this._materials$ThreeD85b351$$field_;
+ThreeD88754a$CubeGeometry$Dart.prototype._materials$ThreeD88754a$$getter_ = function(){
+  return this._materials$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype._materials$ThreeD85b351$$setter_ = function(tmp$0){
-  this._materials$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CubeGeometry$Dart.prototype._materials$ThreeD88754a$$setter_ = function(tmp$0){
+  this._materials$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype._sides$ThreeD85b351$$getter_ = function(){
-  return this._sides$ThreeD85b351$$field_;
+ThreeD88754a$CubeGeometry$Dart.prototype._sides$ThreeD88754a$$getter_ = function(){
+  return this._sides$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype._sides$ThreeD85b351$$setter_ = function(tmp$0){
-  this._sides$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CubeGeometry$Dart.prototype._sides$ThreeD88754a$$setter_ = function(tmp$0){
+  this._sides$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype.segmentsWidth$getter = function(){
+ThreeD88754a$CubeGeometry$Dart.prototype.segmentsWidth$getter = function(){
   return this.segmentsWidth$field;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype.segmentsHeight$getter = function(){
+ThreeD88754a$CubeGeometry$Dart.prototype.segmentsHeight$getter = function(){
   return this.segmentsHeight$field;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype.segmentsDepth$getter = function(){
+ThreeD88754a$CubeGeometry$Dart.prototype.segmentsDepth$getter = function(){
   return this.segmentsDepth$field;
 }
 ;
-ThreeD85b351$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir, vdir, width, height, depth, material){
+ThreeD88754a$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir, vdir, width, height, depth, material){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$16, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var w = $Dart$Null;
   var ix = $Dart$Null;
@@ -74204,7 +74204,7 @@ ThreeD85b351$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir
   var gridY1 = ADD$operator(gridY, 1);
   var segment_width = DIV$operator(width, gridX);
   var segment_height = DIV$operator(height, gridY);
-  var normal = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null);
+  var normal = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null);
   if (EQ$operator(w, 'x')) {
     normal.x$setter(tmp$0 = GT$operator(depth, 0)?1:negate$operator(1)) , tmp$0;
   }
@@ -74224,7 +74224,7 @@ ThreeD85b351$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir
       {
         ix = 0;
         for (; LT$operator(ix, gridX1); tmp$4 = ix , (ix = ADD$operator(tmp$4, 1) , tmp$4)) {
-          var vector = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null);
+          var vector = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null);
           if (EQ$operator(u, 'x')) {
             vector.x$setter(tmp$5 = MUL$operator(SUB$operator(MUL$operator(ix, segment_width), width_half), udir)) , tmp$5;
           }
@@ -74264,7 +74264,7 @@ ThreeD85b351$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir
               }
             }
           }
-          this.vertices$getter().add$named(1, $noargs, ThreeD85b351$Vertex$Dart.Vertex$$Factory(vector));
+          this.vertices$getter().add$named(1, $noargs, ThreeD88754a$Vertex$Dart.Vertex$$Factory(vector));
         }
       }
     }
@@ -74279,14 +74279,14 @@ ThreeD85b351$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir
           var b = ADD$operator(ix, MUL$operator(gridX1, ADD$operator(iy, 1)));
           var c = ADD$operator(ADD$operator(ix, 1), MUL$operator(gridX1, ADD$operator(iy, 1)));
           var d = ADD$operator(ADD$operator(ix, 1), MUL$operator(gridX1, iy));
-          var face = ThreeD85b351$Face4$Dart.Face4$$Factory(ADD$operator(a, offset), ADD$operator(b, offset), ADD$operator(c, offset), ADD$operator(d, offset), $Dart$Null, $Dart$Null, $Dart$Null);
+          var face = ThreeD88754a$Face4$Dart.Face4$$Factory(ADD$operator(a, offset), ADD$operator(b, offset), ADD$operator(c, offset), ADD$operator(d, offset), $Dart$Null, $Dart$Null, $Dart$Null);
           face.normal$getter().copy$named(1, $noargs, normal);
           face.vertexNormals$getter().addAll$named(1, $noargs, RTT.setTypeInfo([normal.clone$named(0, $noargs), normal.clone$named(0, $noargs), normal.clone$named(0, $noargs), normal.clone$named(0, $noargs)], Array.$lookupRTT()));
           face.materialIndex$setter(tmp$16 = material) , tmp$16;
           this.faces$getter().add$named(1, $noargs, face);
           var faceVertexUV = this.faceVertexUvs$getter().INDEX$operator(0);
           var newUVs = ListFactory$Dart.List$$Factory(null, $Dart$Null);
-          newUVs.addAll$named(1, $noargs, RTT.setTypeInfo([ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(iy, gridY)), ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(iy, gridY))], Array.$lookupRTT()));
+          newUVs.addAll$named(1, $noargs, RTT.setTypeInfo([ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(iy, gridY)), ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(iy, gridY))], Array.$lookupRTT()));
           faceVertexUV.add$named(1, $noargs, newUVs);
         }
       }
@@ -74294,25 +74294,25 @@ ThreeD85b351$CubeGeometry$Dart.prototype.buildPlane$member = function(u, v, udir
   }
 }
 ;
-function ThreeD85b351$PlaneGeometry$Dart(){
+function ThreeD88754a$PlaneGeometry$Dart(){
 }
-$inherits(ThreeD85b351$PlaneGeometry$Dart, ThreeD85b351$Geometry$Dart);
-ThreeD85b351$PlaneGeometry$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$PlaneGeometry$Dart'), ThreeD85b351$PlaneGeometry$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$PlaneGeometry$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$PlaneGeometry$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$PlaneGeometry$Dart, ThreeD88754a$Geometry$Dart);
+ThreeD88754a$PlaneGeometry$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$PlaneGeometry$Dart'), ThreeD88754a$PlaneGeometry$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$PlaneGeometry$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$PlaneGeometry$Dart.$lookupRTT();
+ThreeD88754a$PlaneGeometry$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$PlaneGeometry$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$PlaneGeometry$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$PlaneGeometry$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Geometry$Dart.$addTo(target);
+  ThreeD88754a$Geometry$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$PlaneGeometry$Dart.$Constructor = function(width, height, segmentsWidth, segmentsHeight){
-  ThreeD85b351$Geometry$Dart.$Constructor.call(this);
+ThreeD88754a$PlaneGeometry$Dart.$Constructor = function(width, height, segmentsWidth, segmentsHeight){
+  ThreeD88754a$Geometry$Dart.$Constructor.call(this);
   var tmp$1, tmp$2, tmp$3, tmp$0;
   var ix = $Dart$Null;
   var iy = $Dart$Null;
@@ -74324,7 +74324,7 @@ ThreeD85b351$PlaneGeometry$Dart.$Constructor = function(width, height, segmentsW
   var gridY1 = ADD$operator(gridY, 1);
   var segment_width = DIV$operator(width, gridX);
   var segment_height = DIV$operator(height, gridY);
-  var normal = ThreeD85b351$Vector3$Dart.Vector3$$Factory(0, 0, 1);
+  var normal = ThreeD88754a$Vector3$Dart.Vector3$$Factory(0, 0, 1);
   {
     iy = 0;
     for (; LT$operator(iy, gridY1); tmp$0 = iy , (iy = ADD$operator(tmp$0, 1) , tmp$0)) {
@@ -74333,7 +74333,7 @@ ThreeD85b351$PlaneGeometry$Dart.$Constructor = function(width, height, segmentsW
         for (; LT$operator(ix, gridX1); tmp$1 = ix , (ix = ADD$operator(tmp$1, 1) , tmp$1)) {
           var x = SUB$operator(MUL$operator(ix, segment_width), width_half);
           var y = SUB$operator(MUL$operator(iy, segment_height), height_half);
-          this.vertices$getter().add$named(1, $noargs, ThreeD85b351$Vertex$Dart.Vertex$$Factory(ThreeD85b351$Vector3$Dart.Vector3$$Factory(x, negate$operator(y), 0)));
+          this.vertices$getter().add$named(1, $noargs, ThreeD88754a$Vertex$Dart.Vertex$$Factory(ThreeD88754a$Vector3$Dart.Vector3$$Factory(x, negate$operator(y), 0)));
         }
       }
     }
@@ -74348,12 +74348,12 @@ ThreeD85b351$PlaneGeometry$Dart.$Constructor = function(width, height, segmentsW
           var b = ADD$operator(ix, MUL$operator(gridX1, ADD$operator(iy, 1)));
           var c = ADD$operator(ADD$operator(ix, 1), MUL$operator(gridX1, ADD$operator(iy, 1)));
           var d = ADD$operator(ADD$operator(ix, 1), MUL$operator(gridX1, iy));
-          var face = ThreeD85b351$Face4$Dart.Face4$$Factory(a, b, c, d, $Dart$Null, $Dart$Null, $Dart$Null);
+          var face = ThreeD88754a$Face4$Dart.Face4$$Factory(a, b, c, d, $Dart$Null, $Dart$Null, $Dart$Null);
           face.normal$getter().copy$named(1, $noargs, normal);
           face.vertexNormals$getter().addAll$named(1, $noargs, RTT.setTypeInfo([normal.clone$named(0, $noargs), normal.clone$named(0, $noargs), normal.clone$named(0, $noargs), normal.clone$named(0, $noargs)], Array.$lookupRTT()));
           this.faces$getter().add$named(1, $noargs, face);
           var faceVertexUv = this.faceVertexUvs$getter().INDEX$operator(0);
-          faceVertexUv.addAll$named(1, $noargs, RTT.setTypeInfo([ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(iy, gridY)), ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD85b351$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(iy, gridY))], Array.$lookupRTT()));
+          faceVertexUv.addAll$named(1, $noargs, RTT.setTypeInfo([ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(iy, gridY)), ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ix, gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(ADD$operator(iy, 1), gridY)), ThreeD88754a$UV$Dart.UV$$Factory(DIV$operator(ADD$operator(ix, 1), gridX), DIV$operator(iy, gridY))], Array.$lookupRTT()));
         }
       }
     }
@@ -74361,1291 +74361,1291 @@ ThreeD85b351$PlaneGeometry$Dart.$Constructor = function(width, height, segmentsW
   this.computeCentroids$member();
 }
 ;
-ThreeD85b351$PlaneGeometry$Dart.$Initializer = function(width, height, segmentsWidth, segmentsHeight){
-  ThreeD85b351$Geometry$Dart.$Initializer.call(this);
+ThreeD88754a$PlaneGeometry$Dart.$Initializer = function(width, height, segmentsWidth, segmentsHeight){
+  ThreeD88754a$Geometry$Dart.$Initializer.call(this);
 }
 ;
-ThreeD85b351$PlaneGeometry$Dart.PlaneGeometry$$Factory = function(width, height, segmentsWidth, segmentsHeight){
-  var tmp$0 = new ThreeD85b351$PlaneGeometry$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$PlaneGeometry$Dart.$lookupRTT();
-  ThreeD85b351$PlaneGeometry$Dart.$Initializer.call(tmp$0, width, height, segmentsWidth, segmentsHeight);
-  ThreeD85b351$PlaneGeometry$Dart.$Constructor.call(tmp$0, width, height, segmentsWidth, segmentsHeight);
+ThreeD88754a$PlaneGeometry$Dart.PlaneGeometry$$Factory = function(width, height, segmentsWidth, segmentsHeight){
+  var tmp$0 = new ThreeD88754a$PlaneGeometry$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$PlaneGeometry$Dart.$lookupRTT();
+  ThreeD88754a$PlaneGeometry$Dart.$Initializer.call(tmp$0, width, height, segmentsWidth, segmentsHeight);
+  ThreeD88754a$PlaneGeometry$Dart.$Constructor.call(tmp$0, width, height, segmentsWidth, segmentsHeight);
   return tmp$0;
 }
 ;
-function ThreeD85b351$ITextureMapMaterial$Dart(){
+function ThreeD88754a$ITextureMapMaterial$Dart(){
 }
-ThreeD85b351$ITextureMapMaterial$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$ITextureMapMaterial$Dart'), null, null, named);
+ThreeD88754a$ITextureMapMaterial$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$ITextureMapMaterial$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$ITextureMapMaterial$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$ITextureMapMaterial$Dart.$lookupRTT();
+ThreeD88754a$ITextureMapMaterial$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$ITextureMapMaterial$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-function ThreeD85b351$Material$Dart(){
+function ThreeD88754a$Material$Dart(){
 }
-ThreeD85b351$Material$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Material$Dart'), null, null, named);
+ThreeD88754a$Material$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Material$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$Material$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Material$Dart.$lookupRTT();
+ThreeD88754a$Material$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Material$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-ThreeD85b351$Material$Dart.$Constructor = function(parameters){
+ThreeD88754a$Material$Dart.$Constructor = function(parameters){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   parameters = NE$operator(parameters, $Dart$Null)?parameters:(tmp$0 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$0);
-  this._name$ThreeD85b351$$setter_(tmp$1 = '') , tmp$1;
-  this._id$ThreeD85b351$$setter_(tmp$4 = (tmp$2 = ThreeD85b351$Three$Dart.MaterialCount$getter() , (ThreeD85b351$Three$Dart.MaterialCount$setter(tmp$3 = ADD$operator(tmp$2, 1)) , tmp$3 , tmp$2))) , tmp$4;
-  this._opacity$ThreeD85b351$$setter_(tmp$5 = parameters.INDEX$operator('opacity') != null?parameters.INDEX$operator('opacity'):1) , tmp$5;
-  this._transparent$ThreeD85b351$$setter_(tmp$6 = parameters.INDEX$operator('transparent') != null?parameters.INDEX$operator('transparent'):false) , tmp$6;
-  this._blending$ThreeD85b351$$setter_(tmp$7 = parameters.INDEX$operator('blending') != null?parameters.INDEX$operator('blending'):ThreeD85b351$Three$Dart.NormalBlending$getter()) , tmp$7;
-  this._depthTest$ThreeD85b351$$setter_(tmp$8 = parameters.INDEX$operator('depthTest') != null?parameters.INDEX$operator('depthTest'):true) , tmp$8;
-  this._depthWrite$ThreeD85b351$$setter_(tmp$9 = parameters.INDEX$operator('depthWrite') != null?parameters.INDEX$operator('depthWrite'):true) , tmp$9;
-  this._polygonOffset$ThreeD85b351$$setter_(tmp$10 = parameters.INDEX$operator('polygonOffset') != null?parameters.INDEX$operator('polygonOffset'):false) , tmp$10;
-  this._polygonOffsetFactor$ThreeD85b351$$setter_(tmp$11 = parameters.INDEX$operator('polygonOffsetFactor') != null?parameters.INDEX$operator('polygonOffsetFactor'):0) , tmp$11;
-  this._polygonOffsetUnits$ThreeD85b351$$setter_(tmp$12 = parameters.INDEX$operator('polygonOffsetUnits') != null?parameters.INDEX$operator('polygonOffsetUnits'):0) , tmp$12;
-  this._alphaTest$ThreeD85b351$$setter_(tmp$13 = parameters.INDEX$operator('alphaTest') != null?parameters.INDEX$operator('alphaTest'):0) , tmp$13;
-  this._overdraw$ThreeD85b351$$setter_(tmp$14 = parameters.INDEX$operator('overdraw') != null?parameters.INDEX$operator('overdraw'):false) , tmp$14;
+  this._name$ThreeD88754a$$setter_(tmp$1 = '') , tmp$1;
+  this._id$ThreeD88754a$$setter_(tmp$4 = (tmp$2 = ThreeD88754a$Three$Dart.MaterialCount$getter() , (ThreeD88754a$Three$Dart.MaterialCount$setter(tmp$3 = ADD$operator(tmp$2, 1)) , tmp$3 , tmp$2))) , tmp$4;
+  this._opacity$ThreeD88754a$$setter_(tmp$5 = parameters.INDEX$operator('opacity') != null?parameters.INDEX$operator('opacity'):1) , tmp$5;
+  this._transparent$ThreeD88754a$$setter_(tmp$6 = parameters.INDEX$operator('transparent') != null?parameters.INDEX$operator('transparent'):false) , tmp$6;
+  this._blending$ThreeD88754a$$setter_(tmp$7 = parameters.INDEX$operator('blending') != null?parameters.INDEX$operator('blending'):ThreeD88754a$Three$Dart.NormalBlending$getter()) , tmp$7;
+  this._depthTest$ThreeD88754a$$setter_(tmp$8 = parameters.INDEX$operator('depthTest') != null?parameters.INDEX$operator('depthTest'):true) , tmp$8;
+  this._depthWrite$ThreeD88754a$$setter_(tmp$9 = parameters.INDEX$operator('depthWrite') != null?parameters.INDEX$operator('depthWrite'):true) , tmp$9;
+  this._polygonOffset$ThreeD88754a$$setter_(tmp$10 = parameters.INDEX$operator('polygonOffset') != null?parameters.INDEX$operator('polygonOffset'):false) , tmp$10;
+  this._polygonOffsetFactor$ThreeD88754a$$setter_(tmp$11 = parameters.INDEX$operator('polygonOffsetFactor') != null?parameters.INDEX$operator('polygonOffsetFactor'):0) , tmp$11;
+  this._polygonOffsetUnits$ThreeD88754a$$setter_(tmp$12 = parameters.INDEX$operator('polygonOffsetUnits') != null?parameters.INDEX$operator('polygonOffsetUnits'):0) , tmp$12;
+  this._alphaTest$ThreeD88754a$$setter_(tmp$13 = parameters.INDEX$operator('alphaTest') != null?parameters.INDEX$operator('alphaTest'):0) , tmp$13;
+  this._overdraw$ThreeD88754a$$setter_(tmp$14 = parameters.INDEX$operator('overdraw') != null?parameters.INDEX$operator('overdraw'):false) , tmp$14;
 }
 ;
-ThreeD85b351$Material$Dart.$Initializer = function(parameters){
+ThreeD88754a$Material$Dart.$Initializer = function(parameters){
 }
 ;
-ThreeD85b351$Material$Dart.prototype._name$ThreeD85b351$$getter_ = function(){
-  return this._name$ThreeD85b351$$field_;
+ThreeD88754a$Material$Dart.prototype._name$ThreeD88754a$$getter_ = function(){
+  return this._name$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._name$ThreeD85b351$$setter_ = function(tmp$0){
-  this._name$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._name$ThreeD88754a$$setter_ = function(tmp$0){
+  this._name$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._id$ThreeD85b351$$setter_ = function(tmp$0){
-  this._id$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._id$ThreeD88754a$$setter_ = function(tmp$0){
+  this._id$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._opacity$ThreeD85b351$$getter_ = function(){
-  return this._opacity$ThreeD85b351$$field_;
+ThreeD88754a$Material$Dart.prototype._opacity$ThreeD88754a$$getter_ = function(){
+  return this._opacity$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._opacity$ThreeD85b351$$setter_ = function(tmp$0){
-  this._opacity$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._opacity$ThreeD88754a$$setter_ = function(tmp$0){
+  this._opacity$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._blending$ThreeD85b351$$getter_ = function(){
-  return this._blending$ThreeD85b351$$field_;
+ThreeD88754a$Material$Dart.prototype._blending$ThreeD88754a$$getter_ = function(){
+  return this._blending$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._blending$ThreeD85b351$$setter_ = function(tmp$0){
-  this._blending$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._blending$ThreeD88754a$$setter_ = function(tmp$0){
+  this._blending$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._alphaTest$ThreeD85b351$$setter_ = function(tmp$0){
-  this._alphaTest$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._alphaTest$ThreeD88754a$$setter_ = function(tmp$0){
+  this._alphaTest$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._polygonOffsetFactor$ThreeD85b351$$setter_ = function(tmp$0){
-  this._polygonOffsetFactor$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._polygonOffsetFactor$ThreeD88754a$$setter_ = function(tmp$0){
+  this._polygonOffsetFactor$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._polygonOffsetUnits$ThreeD85b351$$setter_ = function(tmp$0){
-  this._polygonOffsetUnits$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._polygonOffsetUnits$ThreeD88754a$$setter_ = function(tmp$0){
+  this._polygonOffsetUnits$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._transparent$ThreeD85b351$$setter_ = function(tmp$0){
-  this._transparent$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._transparent$ThreeD88754a$$setter_ = function(tmp$0){
+  this._transparent$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._depthTest$ThreeD85b351$$setter_ = function(tmp$0){
-  this._depthTest$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._depthTest$ThreeD88754a$$setter_ = function(tmp$0){
+  this._depthTest$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._depthWrite$ThreeD85b351$$setter_ = function(tmp$0){
-  this._depthWrite$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._depthWrite$ThreeD88754a$$setter_ = function(tmp$0){
+  this._depthWrite$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._polygonOffset$ThreeD85b351$$setter_ = function(tmp$0){
-  this._polygonOffset$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._polygonOffset$ThreeD88754a$$setter_ = function(tmp$0){
+  this._polygonOffset$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._overdraw$ThreeD85b351$$getter_ = function(){
-  return this._overdraw$ThreeD85b351$$field_;
+ThreeD88754a$Material$Dart.prototype._overdraw$ThreeD88754a$$getter_ = function(){
+  return this._overdraw$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Material$Dart.prototype._overdraw$ThreeD85b351$$setter_ = function(tmp$0){
-  this._overdraw$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Material$Dart.prototype._overdraw$ThreeD88754a$$setter_ = function(tmp$0){
+  this._overdraw$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Material$Dart.prototype.opacity$getter = function(){
-  return this._opacity$ThreeD85b351$$getter_();
+ThreeD88754a$Material$Dart.prototype.opacity$getter = function(){
+  return this._opacity$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Material$Dart.prototype.overdraw$getter = function(){
-  return this._overdraw$ThreeD85b351$$getter_();
+ThreeD88754a$Material$Dart.prototype.overdraw$getter = function(){
+  return this._overdraw$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Material$Dart.prototype.blending$getter = function(){
-  return this._blending$ThreeD85b351$$getter_();
+ThreeD88754a$Material$Dart.prototype.blending$getter = function(){
+  return this._blending$ThreeD88754a$$getter_();
 }
 ;
-function ThreeD85b351$MeshBasicMaterial$Dart(){
+function ThreeD88754a$MeshBasicMaterial$Dart(){
 }
-$inherits(ThreeD85b351$MeshBasicMaterial$Dart, ThreeD85b351$Material$Dart);
-ThreeD85b351$MeshBasicMaterial$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$MeshBasicMaterial$Dart'), ThreeD85b351$MeshBasicMaterial$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$MeshBasicMaterial$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$MeshBasicMaterial$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$MeshBasicMaterial$Dart, ThreeD88754a$Material$Dart);
+ThreeD88754a$MeshBasicMaterial$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$MeshBasicMaterial$Dart'), ThreeD88754a$MeshBasicMaterial$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$MeshBasicMaterial$Dart.$lookupRTT();
+ThreeD88754a$MeshBasicMaterial$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$MeshBasicMaterial$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$MeshBasicMaterial$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$MeshBasicMaterial$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Material$Dart.$addTo(target);
-  ThreeD85b351$ITextureMapMaterial$Dart.$addTo(target);
+  ThreeD88754a$Material$Dart.$addTo(target);
+  ThreeD88754a$ITextureMapMaterial$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.$implements$ThreeD85b351$MeshBasicMaterial$Dart = 1;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.$implements$ThreeD85b351$ITextureMapMaterial$Dart = 1;
-ThreeD85b351$MeshBasicMaterial$Dart.$Constructor = function(parameters){
-  ThreeD85b351$Material$Dart.$Constructor.call(this, parameters);
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.$implements$ThreeD88754a$MeshBasicMaterial$Dart = 1;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.$implements$ThreeD88754a$ITextureMapMaterial$Dart = 1;
+ThreeD88754a$MeshBasicMaterial$Dart.$Constructor = function(parameters){
+  ThreeD88754a$Material$Dart.$Constructor.call(this, parameters);
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$16, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   parameters = NE$operator(parameters, $Dart$Null)?parameters:(tmp$0 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$0);
-  this._color$ThreeD85b351$$setter_(tmp$1 = parameters.INDEX$operator('color') != null?ThreeD85b351$Color$Dart.Color$$Factory(parameters.INDEX$operator('color')):ThreeD85b351$Color$Dart.Color$$Factory(16777215)) , tmp$1;
-  this._map$ThreeD85b351$$setter_(tmp$2 = parameters.INDEX$operator('map') != null?parameters.INDEX$operator('map'):$Dart$Null) , tmp$2;
-  this._lightMap$ThreeD85b351$$setter_(tmp$3 = parameters.INDEX$operator('lightMap') != null?parameters.INDEX$operator('lightMap'):$Dart$Null) , tmp$3;
-  this._envMap$ThreeD85b351$$setter_(tmp$4 = parameters.INDEX$operator('envMap') != null?parameters.INDEX$operator('envMap'):$Dart$Null) , tmp$4;
-  this._combine$ThreeD85b351$$setter_(tmp$5 = parameters.INDEX$operator('combine') != null?parameters.INDEX$operator('combine'):ThreeD85b351$Three$Dart.MultiplyOperation$getter()) , tmp$5;
-  this._reflectivity$ThreeD85b351$$setter_(tmp$6 = parameters.INDEX$operator('reflectivity') != null?parameters.INDEX$operator('reflectivity'):1) , tmp$6;
-  this._refractionRatio$ThreeD85b351$$setter_(tmp$7 = parameters.INDEX$operator('refractionRatio') != null?parameters.INDEX$operator('refractionRatio'):0.98) , tmp$7;
-  this._fog$ThreeD85b351$$setter_(tmp$8 = parameters.INDEX$operator('fog') != null?parameters.INDEX$operator('fog'):true) , tmp$8;
-  this._shading$ThreeD85b351$$setter_(tmp$9 = parameters.INDEX$operator('shading') != null?parameters.INDEX$operator('shading'):ThreeD85b351$Three$Dart.SmoothShading$getter()) , tmp$9;
-  this._wireframe$ThreeD85b351$$setter_(tmp$10 = parameters.INDEX$operator('wireframe') != null?parameters.INDEX$operator('wireframe'):false) , tmp$10;
-  this._wireframeLinewidth$ThreeD85b351$$setter_(tmp$11 = parameters.INDEX$operator('wireframeLinewidth') != null?parameters.INDEX$operator('wireframeLinewidth'):1) , tmp$11;
-  this._wireframeLinecap$ThreeD85b351$$setter_(tmp$12 = parameters.INDEX$operator('wireframeLinecap') != null?parameters.INDEX$operator('wireframeLinecap'):'round') , tmp$12;
-  this._wireframeLinejoin$ThreeD85b351$$setter_(tmp$13 = parameters.INDEX$operator('wireframeLinejoin') != null?parameters.INDEX$operator('wireframeLinejoin'):'round') , tmp$13;
-  this._vertexColors$ThreeD85b351$$setter_(tmp$14 = parameters.INDEX$operator('vertexColors') != null?parameters.INDEX$operator('vertexColors'):false) , tmp$14;
-  this._skinning$ThreeD85b351$$setter_(tmp$15 = parameters.INDEX$operator('skinning') != null?parameters.INDEX$operator('skinning'):false) , tmp$15;
-  this._morphTargets$ThreeD85b351$$setter_(tmp$16 = parameters.INDEX$operator('morphTargets') != null?parameters.INDEX$operator('morphTargets'):false) , tmp$16;
+  this._color$ThreeD88754a$$setter_(tmp$1 = parameters.INDEX$operator('color') != null?ThreeD88754a$Color$Dart.Color$$Factory(parameters.INDEX$operator('color')):ThreeD88754a$Color$Dart.Color$$Factory(16777215)) , tmp$1;
+  this._map$ThreeD88754a$$setter_(tmp$2 = parameters.INDEX$operator('map') != null?parameters.INDEX$operator('map'):$Dart$Null) , tmp$2;
+  this._lightMap$ThreeD88754a$$setter_(tmp$3 = parameters.INDEX$operator('lightMap') != null?parameters.INDEX$operator('lightMap'):$Dart$Null) , tmp$3;
+  this._envMap$ThreeD88754a$$setter_(tmp$4 = parameters.INDEX$operator('envMap') != null?parameters.INDEX$operator('envMap'):$Dart$Null) , tmp$4;
+  this._combine$ThreeD88754a$$setter_(tmp$5 = parameters.INDEX$operator('combine') != null?parameters.INDEX$operator('combine'):ThreeD88754a$Three$Dart.MultiplyOperation$getter()) , tmp$5;
+  this._reflectivity$ThreeD88754a$$setter_(tmp$6 = parameters.INDEX$operator('reflectivity') != null?parameters.INDEX$operator('reflectivity'):1) , tmp$6;
+  this._refractionRatio$ThreeD88754a$$setter_(tmp$7 = parameters.INDEX$operator('refractionRatio') != null?parameters.INDEX$operator('refractionRatio'):0.98) , tmp$7;
+  this._fog$ThreeD88754a$$setter_(tmp$8 = parameters.INDEX$operator('fog') != null?parameters.INDEX$operator('fog'):true) , tmp$8;
+  this._shading$ThreeD88754a$$setter_(tmp$9 = parameters.INDEX$operator('shading') != null?parameters.INDEX$operator('shading'):ThreeD88754a$Three$Dart.SmoothShading$getter()) , tmp$9;
+  this._wireframe$ThreeD88754a$$setter_(tmp$10 = parameters.INDEX$operator('wireframe') != null?parameters.INDEX$operator('wireframe'):false) , tmp$10;
+  this._wireframeLinewidth$ThreeD88754a$$setter_(tmp$11 = parameters.INDEX$operator('wireframeLinewidth') != null?parameters.INDEX$operator('wireframeLinewidth'):1) , tmp$11;
+  this._wireframeLinecap$ThreeD88754a$$setter_(tmp$12 = parameters.INDEX$operator('wireframeLinecap') != null?parameters.INDEX$operator('wireframeLinecap'):'round') , tmp$12;
+  this._wireframeLinejoin$ThreeD88754a$$setter_(tmp$13 = parameters.INDEX$operator('wireframeLinejoin') != null?parameters.INDEX$operator('wireframeLinejoin'):'round') , tmp$13;
+  this._vertexColors$ThreeD88754a$$setter_(tmp$14 = parameters.INDEX$operator('vertexColors') != null?parameters.INDEX$operator('vertexColors'):false) , tmp$14;
+  this._skinning$ThreeD88754a$$setter_(tmp$15 = parameters.INDEX$operator('skinning') != null?parameters.INDEX$operator('skinning'):false) , tmp$15;
+  this._morphTargets$ThreeD88754a$$setter_(tmp$16 = parameters.INDEX$operator('morphTargets') != null?parameters.INDEX$operator('morphTargets'):false) , tmp$16;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.$Initializer = function(parameters){
-  ThreeD85b351$Material$Dart.$Initializer.call(this, parameters);
+ThreeD88754a$MeshBasicMaterial$Dart.$Initializer = function(parameters){
+  ThreeD88754a$Material$Dart.$Initializer.call(this, parameters);
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.MeshBasicMaterial$$Factory = function(parameters){
-  var tmp$0 = new ThreeD85b351$MeshBasicMaterial$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$MeshBasicMaterial$Dart.$lookupRTT();
-  ThreeD85b351$MeshBasicMaterial$Dart.$Initializer.call(tmp$0, parameters);
-  ThreeD85b351$MeshBasicMaterial$Dart.$Constructor.call(tmp$0, parameters);
+ThreeD88754a$MeshBasicMaterial$Dart.MeshBasicMaterial$$Factory = function(parameters){
+  var tmp$0 = new ThreeD88754a$MeshBasicMaterial$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$MeshBasicMaterial$Dart.$lookupRTT();
+  ThreeD88754a$MeshBasicMaterial$Dart.$Initializer.call(tmp$0, parameters);
+  ThreeD88754a$MeshBasicMaterial$Dart.$Constructor.call(tmp$0, parameters);
   return tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._color$ThreeD85b351$$getter_ = function(){
-  return this._color$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._color$ThreeD88754a$$getter_ = function(){
+  return this._color$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._color$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._color$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._map$ThreeD85b351$$getter_ = function(){
-  return this._map$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._map$ThreeD88754a$$getter_ = function(){
+  return this._map$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._map$ThreeD85b351$$setter_ = function(tmp$0){
-  this._map$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._map$ThreeD88754a$$setter_ = function(tmp$0){
+  this._map$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._lightMap$ThreeD85b351$$setter_ = function(tmp$0){
-  this._lightMap$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._lightMap$ThreeD88754a$$setter_ = function(tmp$0){
+  this._lightMap$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._envMap$ThreeD85b351$$getter_ = function(){
-  return this._envMap$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._envMap$ThreeD88754a$$getter_ = function(){
+  return this._envMap$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._envMap$ThreeD85b351$$setter_ = function(tmp$0){
-  this._envMap$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._envMap$ThreeD88754a$$setter_ = function(tmp$0){
+  this._envMap$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._combine$ThreeD85b351$$setter_ = function(tmp$0){
-  this._combine$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._combine$ThreeD88754a$$setter_ = function(tmp$0){
+  this._combine$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._reflectivity$ThreeD85b351$$setter_ = function(tmp$0){
-  this._reflectivity$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._reflectivity$ThreeD88754a$$setter_ = function(tmp$0){
+  this._reflectivity$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._refractionRatio$ThreeD85b351$$setter_ = function(tmp$0){
-  this._refractionRatio$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._refractionRatio$ThreeD88754a$$setter_ = function(tmp$0){
+  this._refractionRatio$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._fog$ThreeD85b351$$setter_ = function(tmp$0){
-  this._fog$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._fog$ThreeD88754a$$setter_ = function(tmp$0){
+  this._fog$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._shading$ThreeD85b351$$setter_ = function(tmp$0){
-  this._shading$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._shading$ThreeD88754a$$setter_ = function(tmp$0){
+  this._shading$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframe$ThreeD85b351$$getter_ = function(){
-  return this._wireframe$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframe$ThreeD88754a$$getter_ = function(){
+  return this._wireframe$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframe$ThreeD85b351$$setter_ = function(tmp$0){
-  this._wireframe$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframe$ThreeD88754a$$setter_ = function(tmp$0){
+  this._wireframe$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframeLinewidth$ThreeD85b351$$getter_ = function(){
-  return this._wireframeLinewidth$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframeLinewidth$ThreeD88754a$$getter_ = function(){
+  return this._wireframeLinewidth$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframeLinewidth$ThreeD85b351$$setter_ = function(tmp$0){
-  this._wireframeLinewidth$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframeLinewidth$ThreeD88754a$$setter_ = function(tmp$0){
+  this._wireframeLinewidth$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframeLinecap$ThreeD85b351$$getter_ = function(){
-  return this._wireframeLinecap$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframeLinecap$ThreeD88754a$$getter_ = function(){
+  return this._wireframeLinecap$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframeLinecap$ThreeD85b351$$setter_ = function(tmp$0){
-  this._wireframeLinecap$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframeLinecap$ThreeD88754a$$setter_ = function(tmp$0){
+  this._wireframeLinecap$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframeLinejoin$ThreeD85b351$$getter_ = function(){
-  return this._wireframeLinejoin$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframeLinejoin$ThreeD88754a$$getter_ = function(){
+  return this._wireframeLinejoin$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._wireframeLinejoin$ThreeD85b351$$setter_ = function(tmp$0){
-  this._wireframeLinejoin$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._wireframeLinejoin$ThreeD88754a$$setter_ = function(tmp$0){
+  this._wireframeLinejoin$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._vertexColors$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexColors$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._vertexColors$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexColors$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._skinning$ThreeD85b351$$setter_ = function(tmp$0){
-  this._skinning$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._skinning$ThreeD88754a$$setter_ = function(tmp$0){
+  this._skinning$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._morphTargets$ThreeD85b351$$getter_ = function(){
-  return this._morphTargets$ThreeD85b351$$field_;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._morphTargets$ThreeD88754a$$getter_ = function(){
+  return this._morphTargets$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype._morphTargets$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphTargets$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$MeshBasicMaterial$Dart.prototype._morphTargets$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphTargets$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.map$named = function(){
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.map$named = function(){
   return this.map$getter().apply(this, arguments);
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.map$getter = function(){
-  return this._map$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.map$getter = function(){
+  return this._map$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.envMap$getter = function(){
-  return this._envMap$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.envMap$getter = function(){
+  return this._envMap$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.color$getter = function(){
-  return this._color$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.color$getter = function(){
+  return this._color$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.wireframe$getter = function(){
-  return this._wireframe$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.wireframe$getter = function(){
+  return this._wireframe$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.wireframeLinewidth$getter = function(){
-  return this._wireframeLinewidth$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.wireframeLinewidth$getter = function(){
+  return this._wireframeLinewidth$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.wireframeLinecap$getter = function(){
-  return this._wireframeLinecap$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.wireframeLinecap$getter = function(){
+  return this._wireframeLinecap$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$MeshBasicMaterial$Dart.prototype.wireframeLinejoin$getter = function(){
-  return this._wireframeLinejoin$ThreeD85b351$$getter_();
+ThreeD88754a$MeshBasicMaterial$Dart.prototype.wireframeLinejoin$getter = function(){
+  return this._wireframeLinejoin$ThreeD88754a$$getter_();
 }
 ;
-function ThreeD85b351$MeshFaceMaterial$Dart(){
+function ThreeD88754a$MeshFaceMaterial$Dart(){
 }
-ThreeD85b351$MeshFaceMaterial$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$MeshFaceMaterial$Dart'), null, null, named);
-}
-;
-ThreeD85b351$MeshFaceMaterial$Dart.prototype.$implements$ThreeD85b351$MeshFaceMaterial$Dart = 1;
-ThreeD85b351$MeshFaceMaterial$Dart.$Constructor = function(){
+ThreeD88754a$MeshFaceMaterial$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$MeshFaceMaterial$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$MeshFaceMaterial$Dart.$Initializer = function(){
+ThreeD88754a$MeshFaceMaterial$Dart.prototype.$implements$ThreeD88754a$MeshFaceMaterial$Dart = 1;
+ThreeD88754a$MeshFaceMaterial$Dart.$Constructor = function(){
 }
 ;
-ThreeD85b351$MeshFaceMaterial$Dart.MeshFaceMaterial$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$MeshFaceMaterial$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$MeshFaceMaterial$Dart.$lookupRTT();
-  ThreeD85b351$MeshFaceMaterial$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$MeshFaceMaterial$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$MeshFaceMaterial$Dart.$Initializer = function(){
+}
+;
+ThreeD88754a$MeshFaceMaterial$Dart.MeshFaceMaterial$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$MeshFaceMaterial$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$MeshFaceMaterial$Dart.$lookupRTT();
+  ThreeD88754a$MeshFaceMaterial$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$MeshFaceMaterial$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-function ThreeD85b351$Mesh$Dart(){
+function ThreeD88754a$Mesh$Dart(){
 }
-$inherits(ThreeD85b351$Mesh$Dart, ThreeD85b351$Object3D$Dart);
-ThreeD85b351$Mesh$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Mesh$Dart'), ThreeD85b351$Mesh$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Mesh$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Mesh$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$Mesh$Dart, ThreeD88754a$Object3D$Dart);
+ThreeD88754a$Mesh$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Mesh$Dart'), ThreeD88754a$Mesh$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Mesh$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Mesh$Dart.$lookupRTT();
+ThreeD88754a$Mesh$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Mesh$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Mesh$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Mesh$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Object3D$Dart.$addTo(target);
+  ThreeD88754a$Object3D$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype.$implements$ThreeD85b351$Mesh$Dart = 1;
-ThreeD85b351$Mesh$Dart.$Constructor = function(geometry, material){
-  ThreeD85b351$Object3D$Dart.$Constructor.call(this);
+ThreeD88754a$Mesh$Dart.prototype.$implements$ThreeD88754a$Mesh$Dart = 1;
+ThreeD88754a$Mesh$Dart.$Constructor = function(geometry, material){
+  ThreeD88754a$Object3D$Dart.$Constructor.call(this);
   var tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$10, tmp$0;
-  this._geometry$ThreeD85b351$$setter_(tmp$0 = geometry) , tmp$0;
-  this._material$ThreeD85b351$$setter_(tmp$1 = material) , tmp$1;
+  this._geometry$ThreeD88754a$$setter_(tmp$0 = geometry) , tmp$0;
+  this._material$ThreeD88754a$$setter_(tmp$1 = material) , tmp$1;
   if (!!(tmp$2 = material , tmp$2 != null && tmp$2.$implements$List$Dart)) {
   }
-  if (NE$operator(this._geometry$ThreeD85b351$$getter_(), $Dart$Null)) {
-    if (EQ$operator(this._geometry$ThreeD85b351$$getter_().boundingSphere$getter(), $Dart$Null)) {
-      this._geometry$ThreeD85b351$$getter_().computeBoundingSphere$named(0, $noargs);
+  if (NE$operator(this._geometry$ThreeD88754a$$getter_(), $Dart$Null)) {
+    if (EQ$operator(this._geometry$ThreeD88754a$$getter_().boundingSphere$getter(), $Dart$Null)) {
+      this._geometry$ThreeD88754a$$getter_().computeBoundingSphere$named(0, $noargs);
     }
-    this._boundRadius$ThreeD85b351$$setter_(tmp$3 = geometry.boundingSphere$getter().INDEX$operator('radius')) , tmp$3;
-    if (NE$operator(this._geometry$ThreeD85b351$$getter_().morphTargets$getter().length$getter(), 0)) {
-      this._morphTargetBase$ThreeD85b351$$setter_(tmp$4 = negate$operator(1)) , tmp$4;
-      this._morphTargetForcedOrder$ThreeD85b351$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
-      this._morphTargetInfluences$ThreeD85b351$$setter_(tmp$6 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$6;
-      this._morphTargetDictionary$ThreeD85b351$$setter_(tmp$8 = (tmp$7 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$7)) , tmp$8;
+    this._boundRadius$ThreeD88754a$$setter_(tmp$3 = geometry.boundingSphere$getter().INDEX$operator('radius')) , tmp$3;
+    if (NE$operator(this._geometry$ThreeD88754a$$getter_().morphTargets$getter().length$getter(), 0)) {
+      this._morphTargetBase$ThreeD88754a$$setter_(tmp$4 = negate$operator(1)) , tmp$4;
+      this._morphTargetForcedOrder$ThreeD88754a$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
+      this._morphTargetInfluences$ThreeD88754a$$setter_(tmp$6 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$6;
+      this._morphTargetDictionary$ThreeD88754a$$setter_(tmp$8 = (tmp$7 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$7)) , tmp$8;
       {
         var m = 0;
-        for (; LT$operator(m, this._geometry$ThreeD85b351$$getter_().morphTargets$getter().length$getter()); tmp$9 = m , (m = ADD$operator(tmp$9, 1) , tmp$9)) {
-          this._morphTargetInfluences$ThreeD85b351$$getter_().add$named(1, $noargs, 0);
-          this._morphTargetDictionary$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(this._geometry$ThreeD85b351$$getter_().morphTargets$getter().INDEX$operator(m).name$getter(), tmp$10 = m) , tmp$10;
+        for (; LT$operator(m, this._geometry$ThreeD88754a$$getter_().morphTargets$getter().length$getter()); tmp$9 = m , (m = ADD$operator(tmp$9, 1) , tmp$9)) {
+          this._morphTargetInfluences$ThreeD88754a$$getter_().add$named(1, $noargs, 0);
+          this._morphTargetDictionary$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(this._geometry$ThreeD88754a$$getter_().morphTargets$getter().INDEX$operator(m).name$getter(), tmp$10 = m) , tmp$10;
         }
       }
     }
   }
 }
 ;
-ThreeD85b351$Mesh$Dart.$Initializer = function(geometry, material){
-  ThreeD85b351$Object3D$Dart.$Initializer.call(this);
+ThreeD88754a$Mesh$Dart.$Initializer = function(geometry, material){
+  ThreeD88754a$Object3D$Dart.$Initializer.call(this);
 }
 ;
-ThreeD85b351$Mesh$Dart.Mesh$$Factory = function(geometry, material){
-  var tmp$0 = new ThreeD85b351$Mesh$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Mesh$Dart.$lookupRTT();
-  ThreeD85b351$Mesh$Dart.$Initializer.call(tmp$0, geometry, material);
-  ThreeD85b351$Mesh$Dart.$Constructor.call(tmp$0, geometry, material);
+ThreeD88754a$Mesh$Dart.Mesh$$Factory = function(geometry, material){
+  var tmp$0 = new ThreeD88754a$Mesh$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Mesh$Dart.$lookupRTT();
+  ThreeD88754a$Mesh$Dart.$Initializer.call(tmp$0, geometry, material);
+  ThreeD88754a$Mesh$Dart.$Constructor.call(tmp$0, geometry, material);
   return tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._geometry$ThreeD85b351$$getter_ = function(){
-  return this._geometry$ThreeD85b351$$field_;
+ThreeD88754a$Mesh$Dart.prototype._geometry$ThreeD88754a$$getter_ = function(){
+  return this._geometry$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._geometry$ThreeD85b351$$setter_ = function(tmp$0){
-  this._geometry$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._geometry$ThreeD88754a$$setter_ = function(tmp$0){
+  this._geometry$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._material$ThreeD85b351$$getter_ = function(){
-  return this._material$ThreeD85b351$$field_;
+ThreeD88754a$Mesh$Dart.prototype._material$ThreeD88754a$$getter_ = function(){
+  return this._material$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._material$ThreeD85b351$$setter_ = function(tmp$0){
-  this._material$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._material$ThreeD88754a$$setter_ = function(tmp$0){
+  this._material$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._boundRadius$ThreeD85b351$$setter_ = function(tmp$0){
-  this._boundRadius$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._boundRadius$ThreeD88754a$$setter_ = function(tmp$0){
+  this._boundRadius$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._morphTargetBase$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphTargetBase$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._morphTargetBase$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphTargetBase$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._morphTargetForcedOrder$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphTargetForcedOrder$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._morphTargetForcedOrder$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphTargetForcedOrder$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._morphTargetInfluences$ThreeD85b351$$getter_ = function(){
-  return this._morphTargetInfluences$ThreeD85b351$$field_;
+ThreeD88754a$Mesh$Dart.prototype._morphTargetInfluences$ThreeD88754a$$getter_ = function(){
+  return this._morphTargetInfluences$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._morphTargetInfluences$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphTargetInfluences$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._morphTargetInfluences$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphTargetInfluences$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._morphTargetDictionary$ThreeD85b351$$getter_ = function(){
-  return this._morphTargetDictionary$ThreeD85b351$$field_;
+ThreeD88754a$Mesh$Dart.prototype._morphTargetDictionary$ThreeD88754a$$getter_ = function(){
+  return this._morphTargetDictionary$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype._morphTargetDictionary$ThreeD85b351$$setter_ = function(tmp$0){
-  this._morphTargetDictionary$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Mesh$Dart.prototype._morphTargetDictionary$ThreeD88754a$$setter_ = function(tmp$0){
+  this._morphTargetDictionary$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype.geometry$getter = function(){
-  return this._geometry$ThreeD85b351$$getter_();
+ThreeD88754a$Mesh$Dart.prototype.geometry$getter = function(){
+  return this._geometry$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$Mesh$Dart.prototype.material$getter = function(){
-  return this._material$ThreeD85b351$$getter_();
+ThreeD88754a$Mesh$Dart.prototype.material$getter = function(){
+  return this._material$ThreeD88754a$$getter_();
 }
 ;
-function ThreeD85b351$CanvasRenderer$Dart(){
+function ThreeD88754a$CanvasRenderer$Dart(){
 }
-ThreeD85b351$CanvasRenderer$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$CanvasRenderer$Dart'), null, null, named);
+ThreeD88754a$CanvasRenderer$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$CanvasRenderer$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.$Constructor = function(parameters){
+ThreeD88754a$CanvasRenderer$Dart.$Constructor = function(parameters){
   var tmp$48, tmp$47, tmp$49, tmp$9, tmp$43, tmp$44, tmp$45, tmp$46, tmp$5, tmp$6, tmp$40, tmp$7, tmp$41, tmp$8, tmp$42, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$39, tmp$38, tmp$37, tmp$36, tmp$34, tmp$35, tmp$32, tmp$33, tmp$30, tmp$31, tmp$20, tmp$24, tmp$23, tmp$22, tmp$21, tmp$27, tmp$28, tmp$25, tmp$26, tmp$29, tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$15, tmp$50, tmp$16, tmp$17, tmp$18, tmp$19;
   parameters = NE$operator(parameters, $Dart$Null)?parameters:(tmp$0 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$0);
-  this._projector$ThreeD85b351$$setter_(tmp$1 = ThreeD85b351$Projector$Dart.Projector$$Factory()) , tmp$1;
-  this._canvas$ThreeD85b351$$setter_(tmp$2 = NE$operator(parameters.INDEX$operator('canvas'), $Dart$Null)?parameters.INDEX$operator('canvas'):htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas')) , tmp$2;
-  this._context$ThreeD85b351$$setter_(tmp$3 = this._canvas$ThreeD85b351$$getter_().getContext$named(1, $noargs, '2d')) , tmp$3;
-  this._clearColor$ThreeD85b351$$setter_(tmp$4 = ThreeD85b351$Color$Dart.Color$$Factory(0)) , tmp$4;
-  this._clearOpacity$ThreeD85b351$$setter_(tmp$5 = 0) , tmp$5;
-  this._contextGlobalAlpha$ThreeD85b351$$setter_(tmp$6 = 1) , tmp$6;
-  this._contextGlobalCompositeOperation$ThreeD85b351$$setter_(tmp$7 = 0) , tmp$7;
-  this._contextStrokeStyle$ThreeD85b351$$setter_(tmp$8 = $Dart$Null) , tmp$8;
-  this._contextFillStyle$ThreeD85b351$$setter_(tmp$9 = $Dart$Null) , tmp$9;
-  this._contextLineWidth$ThreeD85b351$$setter_(tmp$10 = $Dart$Null) , tmp$10;
-  this._contextLineCap$ThreeD85b351$$setter_(tmp$11 = $Dart$Null) , tmp$11;
-  this._contextLineJoin$ThreeD85b351$$setter_(tmp$12 = $Dart$Null) , tmp$12;
-  this._v5$ThreeD85b351$$setter_(tmp$13 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$13;
-  this._v6$ThreeD85b351$$setter_(tmp$14 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$14;
-  this._color$ThreeD85b351$$setter_(tmp$15 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$15;
-  this._color1$ThreeD85b351$$setter_(tmp$16 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$16;
-  this._color2$ThreeD85b351$$setter_(tmp$17 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$17;
-  this._color3$ThreeD85b351$$setter_(tmp$18 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$18;
-  this._color4$ThreeD85b351$$setter_(tmp$19 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$19;
-  this._patterns$ThreeD85b351$$setter_(tmp$20 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$20;
-  this._imagedatas$ThreeD85b351$$setter_(tmp$21 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$21;
-  this._clipRect$ThreeD85b351$$setter_(tmp$22 = ThreeD85b351$Rectangle$Dart.Rectangle$$Factory()) , tmp$22;
-  this._clearRect$ThreeD85b351$$setter_(tmp$23 = ThreeD85b351$Rectangle$Dart.Rectangle$$Factory()) , tmp$23;
-  this._bboxRect$ThreeD85b351$$setter_(tmp$24 = ThreeD85b351$Rectangle$Dart.Rectangle$$Factory()) , tmp$24;
-  this._enableLighting$ThreeD85b351$$setter_(tmp$25 = false) , tmp$25;
-  this._ambientLight$ThreeD85b351$$setter_(tmp$26 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$26;
-  this._directionalLights$ThreeD85b351$$setter_(tmp$27 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$27;
-  this._pointLights$ThreeD85b351$$setter_(tmp$28 = ThreeD85b351$Color$Dart.Color$$Factory($Dart$Null)) , tmp$28;
-  this._vector3$ThreeD85b351$$setter_(tmp$29 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$29;
-  this._gradientMapQuality$ThreeD85b351$$setter_(tmp$30 = 16) , tmp$30;
-  this._pixelMap$ThreeD85b351$$setter_(tmp$31 = htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas')) , tmp$31;
-  this._pixelMap$ThreeD85b351$$getter_().width$setter(tmp$33 = (this._pixelMap$ThreeD85b351$$getter_().height$setter(tmp$32 = 2) , tmp$32)) , tmp$33;
-  this._pixelMapContext$ThreeD85b351$$setter_(tmp$34 = this._pixelMap$ThreeD85b351$$getter_().getContext$named(1, $noargs, '2d')) , tmp$34;
-  this._pixelMapContext$ThreeD85b351$$getter_().fillStyle$setter(tmp$35 = 'rgba(0,0,0,1)') , tmp$35;
-  this._pixelMapContext$ThreeD85b351$$getter_().fillRect$named(4, $noargs, 0, 0, 2, 2);
-  this._pixelMapImage$ThreeD85b351$$setter_(tmp$36 = this._pixelMapContext$ThreeD85b351$$getter_().getImageData$named(4, $noargs, 0, 0, 2, 2)) , tmp$36;
-  this._pixelMapData$ThreeD85b351$$setter_(tmp$37 = this._pixelMapImage$ThreeD85b351$$getter_().data$getter()) , tmp$37;
-  this._gradientMap$ThreeD85b351$$setter_(tmp$38 = htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas')) , tmp$38;
-  this._gradientMap$ThreeD85b351$$getter_().width$setter(tmp$40 = (this._gradientMap$ThreeD85b351$$getter_().height$setter(tmp$39 = this._gradientMapQuality$ThreeD85b351$$getter_()) , tmp$39)) , tmp$40;
-  this._gradientMapContext$ThreeD85b351$$setter_(tmp$41 = this._gradientMap$ThreeD85b351$$getter_().getContext$named(1, $noargs, '2d')) , tmp$41;
-  this._gradientMapContext$ThreeD85b351$$getter_().translate$named(2, $noargs, DIV$operator(negate$operator(this._gradientMapQuality$ThreeD85b351$$getter_()), 2), DIV$operator(negate$operator(this._gradientMapQuality$ThreeD85b351$$getter_()), 2));
-  this._gradientMapContext$ThreeD85b351$$getter_().scale$named(2, $noargs, this._gradientMapQuality$ThreeD85b351$$getter_(), this._gradientMapQuality$ThreeD85b351$$getter_());
-  tmp$42 = this._gradientMapQuality$ThreeD85b351$$getter_() , (this._gradientMapQuality$ThreeD85b351$$setter_(tmp$43 = SUB$operator(tmp$42, 1)) , tmp$43 , tmp$42);
-  this.domElement$setter(tmp$44 = this._canvas$ThreeD85b351$$getter_()) , tmp$44;
-  this._autoClear$ThreeD85b351$$setter_(tmp$45 = true) , tmp$45;
-  this._sortObjects$ThreeD85b351$$setter_(tmp$46 = true) , tmp$46;
-  this._sortElements$ThreeD85b351$$setter_(tmp$47 = true) , tmp$47;
-  this._info$ThreeD85b351$$setter_(tmp$50 = (tmp$48 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$48.ASSIGN_INDEX$operator('render', (tmp$49 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$49.ASSIGN_INDEX$operator('vertices', 0) , tmp$49.ASSIGN_INDEX$operator('faces', 0) , tmp$49)) , tmp$48)) , tmp$50;
+  this._projector$ThreeD88754a$$setter_(tmp$1 = ThreeD88754a$Projector$Dart.Projector$$Factory()) , tmp$1;
+  this._canvas$ThreeD88754a$$setter_(tmp$2 = NE$operator(parameters.INDEX$operator('canvas'), $Dart$Null)?parameters.INDEX$operator('canvas'):htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas')) , tmp$2;
+  this._context$ThreeD88754a$$setter_(tmp$3 = this._canvas$ThreeD88754a$$getter_().getContext$named(1, $noargs, '2d')) , tmp$3;
+  this._clearColor$ThreeD88754a$$setter_(tmp$4 = ThreeD88754a$Color$Dart.Color$$Factory(0)) , tmp$4;
+  this._clearOpacity$ThreeD88754a$$setter_(tmp$5 = 0) , tmp$5;
+  this._contextGlobalAlpha$ThreeD88754a$$setter_(tmp$6 = 1) , tmp$6;
+  this._contextGlobalCompositeOperation$ThreeD88754a$$setter_(tmp$7 = 0) , tmp$7;
+  this._contextStrokeStyle$ThreeD88754a$$setter_(tmp$8 = $Dart$Null) , tmp$8;
+  this._contextFillStyle$ThreeD88754a$$setter_(tmp$9 = $Dart$Null) , tmp$9;
+  this._contextLineWidth$ThreeD88754a$$setter_(tmp$10 = $Dart$Null) , tmp$10;
+  this._contextLineCap$ThreeD88754a$$setter_(tmp$11 = $Dart$Null) , tmp$11;
+  this._contextLineJoin$ThreeD88754a$$setter_(tmp$12 = $Dart$Null) , tmp$12;
+  this._v5$ThreeD88754a$$setter_(tmp$13 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$13;
+  this._v6$ThreeD88754a$$setter_(tmp$14 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$14;
+  this._color$ThreeD88754a$$setter_(tmp$15 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$15;
+  this._color1$ThreeD88754a$$setter_(tmp$16 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$16;
+  this._color2$ThreeD88754a$$setter_(tmp$17 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$17;
+  this._color3$ThreeD88754a$$setter_(tmp$18 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$18;
+  this._color4$ThreeD88754a$$setter_(tmp$19 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$19;
+  this._patterns$ThreeD88754a$$setter_(tmp$20 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$20;
+  this._imagedatas$ThreeD88754a$$setter_(tmp$21 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$21;
+  this._clipRect$ThreeD88754a$$setter_(tmp$22 = ThreeD88754a$Rectangle$Dart.Rectangle$$Factory()) , tmp$22;
+  this._clearRect$ThreeD88754a$$setter_(tmp$23 = ThreeD88754a$Rectangle$Dart.Rectangle$$Factory()) , tmp$23;
+  this._bboxRect$ThreeD88754a$$setter_(tmp$24 = ThreeD88754a$Rectangle$Dart.Rectangle$$Factory()) , tmp$24;
+  this._enableLighting$ThreeD88754a$$setter_(tmp$25 = false) , tmp$25;
+  this._ambientLight$ThreeD88754a$$setter_(tmp$26 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$26;
+  this._directionalLights$ThreeD88754a$$setter_(tmp$27 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$27;
+  this._pointLights$ThreeD88754a$$setter_(tmp$28 = ThreeD88754a$Color$Dart.Color$$Factory($Dart$Null)) , tmp$28;
+  this._vector3$ThreeD88754a$$setter_(tmp$29 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$29;
+  this._gradientMapQuality$ThreeD88754a$$setter_(tmp$30 = 16) , tmp$30;
+  this._pixelMap$ThreeD88754a$$setter_(tmp$31 = htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas')) , tmp$31;
+  this._pixelMap$ThreeD88754a$$getter_().width$setter(tmp$33 = (this._pixelMap$ThreeD88754a$$getter_().height$setter(tmp$32 = 2) , tmp$32)) , tmp$33;
+  this._pixelMapContext$ThreeD88754a$$setter_(tmp$34 = this._pixelMap$ThreeD88754a$$getter_().getContext$named(1, $noargs, '2d')) , tmp$34;
+  this._pixelMapContext$ThreeD88754a$$getter_().fillStyle$setter(tmp$35 = 'rgba(0,0,0,1)') , tmp$35;
+  this._pixelMapContext$ThreeD88754a$$getter_().fillRect$named(4, $noargs, 0, 0, 2, 2);
+  this._pixelMapImage$ThreeD88754a$$setter_(tmp$36 = this._pixelMapContext$ThreeD88754a$$getter_().getImageData$named(4, $noargs, 0, 0, 2, 2)) , tmp$36;
+  this._pixelMapData$ThreeD88754a$$setter_(tmp$37 = this._pixelMapImage$ThreeD88754a$$getter_().data$getter()) , tmp$37;
+  this._gradientMap$ThreeD88754a$$setter_(tmp$38 = htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas')) , tmp$38;
+  this._gradientMap$ThreeD88754a$$getter_().width$setter(tmp$40 = (this._gradientMap$ThreeD88754a$$getter_().height$setter(tmp$39 = this._gradientMapQuality$ThreeD88754a$$getter_()) , tmp$39)) , tmp$40;
+  this._gradientMapContext$ThreeD88754a$$setter_(tmp$41 = this._gradientMap$ThreeD88754a$$getter_().getContext$named(1, $noargs, '2d')) , tmp$41;
+  this._gradientMapContext$ThreeD88754a$$getter_().translate$named(2, $noargs, DIV$operator(negate$operator(this._gradientMapQuality$ThreeD88754a$$getter_()), 2), DIV$operator(negate$operator(this._gradientMapQuality$ThreeD88754a$$getter_()), 2));
+  this._gradientMapContext$ThreeD88754a$$getter_().scale$named(2, $noargs, this._gradientMapQuality$ThreeD88754a$$getter_(), this._gradientMapQuality$ThreeD88754a$$getter_());
+  tmp$42 = this._gradientMapQuality$ThreeD88754a$$getter_() , (this._gradientMapQuality$ThreeD88754a$$setter_(tmp$43 = SUB$operator(tmp$42, 1)) , tmp$43 , tmp$42);
+  this.domElement$setter(tmp$44 = this._canvas$ThreeD88754a$$getter_()) , tmp$44;
+  this._autoClear$ThreeD88754a$$setter_(tmp$45 = true) , tmp$45;
+  this._sortObjects$ThreeD88754a$$setter_(tmp$46 = true) , tmp$46;
+  this._sortElements$ThreeD88754a$$setter_(tmp$47 = true) , tmp$47;
+  this._info$ThreeD88754a$$setter_(tmp$50 = (tmp$48 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$48.ASSIGN_INDEX$operator('render', (tmp$49 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$49.ASSIGN_INDEX$operator('vertices', 0) , tmp$49.ASSIGN_INDEX$operator('faces', 0) , tmp$49)) , tmp$48)) , tmp$50;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.$Initializer = function(parameters){
-  this._pi2$ThreeD85b351$$field_ = MUL$operator(Math$Dart.PI$getter(), 2);
+ThreeD88754a$CanvasRenderer$Dart.$Initializer = function(parameters){
+  this._pi2$ThreeD88754a$$field_ = MUL$operator(Math$Dart.PI$getter(), 2);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.CanvasRenderer$$Factory = function(parameters){
-  var tmp$0 = new ThreeD85b351$CanvasRenderer$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$CanvasRenderer$Dart.$lookupRTT();
-  ThreeD85b351$CanvasRenderer$Dart.$Initializer.call(tmp$0, parameters);
-  ThreeD85b351$CanvasRenderer$Dart.$Constructor.call(tmp$0, parameters);
+ThreeD88754a$CanvasRenderer$Dart.CanvasRenderer$$Factory = function(parameters){
+  var tmp$0 = new ThreeD88754a$CanvasRenderer$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$CanvasRenderer$Dart.$lookupRTT();
+  ThreeD88754a$CanvasRenderer$Dart.$Initializer.call(tmp$0, parameters);
+  ThreeD88754a$CanvasRenderer$Dart.$Constructor.call(tmp$0, parameters);
   return tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.domElement$getter = function(){
+ThreeD88754a$CanvasRenderer$Dart.prototype.domElement$getter = function(){
   return this.domElement$field;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.domElement$setter = function(tmp$0){
+ThreeD88754a$CanvasRenderer$Dart.prototype.domElement$setter = function(tmp$0){
   this.domElement$field = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._autoClear$ThreeD85b351$$getter_ = function(){
-  return this._autoClear$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._autoClear$ThreeD88754a$$getter_ = function(){
+  return this._autoClear$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._autoClear$ThreeD85b351$$setter_ = function(tmp$0){
-  this._autoClear$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._autoClear$ThreeD88754a$$setter_ = function(tmp$0){
+  this._autoClear$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._sortObjects$ThreeD85b351$$setter_ = function(tmp$0){
-  this._sortObjects$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._sortObjects$ThreeD88754a$$setter_ = function(tmp$0){
+  this._sortObjects$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._sortElements$ThreeD85b351$$getter_ = function(){
-  return this._sortElements$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._sortElements$ThreeD88754a$$getter_ = function(){
+  return this._sortElements$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._sortElements$ThreeD85b351$$setter_ = function(tmp$0){
-  this._sortElements$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._sortElements$ThreeD88754a$$setter_ = function(tmp$0){
+  this._sortElements$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasWidth$ThreeD85b351$$getter_ = function(){
-  return this._canvasWidth$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasWidth$ThreeD88754a$$getter_ = function(){
+  return this._canvasWidth$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasWidth$ThreeD85b351$$setter_ = function(tmp$0){
-  this._canvasWidth$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasWidth$ThreeD88754a$$setter_ = function(tmp$0){
+  this._canvasWidth$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasHeight$ThreeD85b351$$getter_ = function(){
-  return this._canvasHeight$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasHeight$ThreeD88754a$$getter_ = function(){
+  return this._canvasHeight$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasHeight$ThreeD85b351$$setter_ = function(tmp$0){
-  this._canvasHeight$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasHeight$ThreeD88754a$$setter_ = function(tmp$0){
+  this._canvasHeight$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasWidthHalf$ThreeD85b351$$getter_ = function(){
-  return this._canvasWidthHalf$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasWidthHalf$ThreeD88754a$$getter_ = function(){
+  return this._canvasWidthHalf$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasWidthHalf$ThreeD85b351$$setter_ = function(tmp$0){
-  this._canvasWidthHalf$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasWidthHalf$ThreeD88754a$$setter_ = function(tmp$0){
+  this._canvasWidthHalf$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasHeightHalf$ThreeD85b351$$getter_ = function(){
-  return this._canvasHeightHalf$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasHeightHalf$ThreeD88754a$$getter_ = function(){
+  return this._canvasHeightHalf$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvasHeightHalf$ThreeD85b351$$setter_ = function(tmp$0){
-  this._canvasHeightHalf$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvasHeightHalf$ThreeD88754a$$setter_ = function(tmp$0){
+  this._canvasHeightHalf$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clearColor$ThreeD85b351$$getter_ = function(){
-  return this._clearColor$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clearColor$ThreeD88754a$$getter_ = function(){
+  return this._clearColor$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clearColor$ThreeD85b351$$setter_ = function(tmp$0){
-  this._clearColor$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clearColor$ThreeD88754a$$setter_ = function(tmp$0){
+  this._clearColor$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clearOpacity$ThreeD85b351$$getter_ = function(){
-  return this._clearOpacity$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clearOpacity$ThreeD88754a$$getter_ = function(){
+  return this._clearOpacity$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clearOpacity$ThreeD85b351$$setter_ = function(tmp$0){
-  this._clearOpacity$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clearOpacity$ThreeD88754a$$setter_ = function(tmp$0){
+  this._clearOpacity$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._camera$ThreeD85b351$$getter_ = function(){
-  return this._camera$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._camera$ThreeD88754a$$getter_ = function(){
+  return this._camera$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._camera$ThreeD85b351$$setter_ = function(tmp$0){
-  this._camera$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._camera$ThreeD88754a$$setter_ = function(tmp$0){
+  this._camera$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvas$ThreeD85b351$$getter_ = function(){
-  return this._canvas$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvas$ThreeD88754a$$getter_ = function(){
+  return this._canvas$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._canvas$ThreeD85b351$$setter_ = function(tmp$0){
-  this._canvas$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._canvas$ThreeD88754a$$setter_ = function(tmp$0){
+  this._canvas$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._context$ThreeD85b351$$getter_ = function(){
-  return this._context$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._context$ThreeD88754a$$getter_ = function(){
+  return this._context$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._context$ThreeD85b351$$setter_ = function(tmp$0){
-  this._context$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._context$ThreeD88754a$$setter_ = function(tmp$0){
+  this._context$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextGlobalAlpha$ThreeD85b351$$getter_ = function(){
-  return this._contextGlobalAlpha$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextGlobalAlpha$ThreeD88754a$$getter_ = function(){
+  return this._contextGlobalAlpha$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextGlobalAlpha$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextGlobalAlpha$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextGlobalAlpha$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextGlobalAlpha$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextGlobalCompositeOperation$ThreeD85b351$$getter_ = function(){
-  return this._contextGlobalCompositeOperation$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextGlobalCompositeOperation$ThreeD88754a$$getter_ = function(){
+  return this._contextGlobalCompositeOperation$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextGlobalCompositeOperation$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextGlobalCompositeOperation$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextGlobalCompositeOperation$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextGlobalCompositeOperation$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextStrokeStyle$ThreeD85b351$$getter_ = function(){
-  return this._contextStrokeStyle$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextStrokeStyle$ThreeD88754a$$getter_ = function(){
+  return this._contextStrokeStyle$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextStrokeStyle$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextStrokeStyle$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextStrokeStyle$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextStrokeStyle$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextFillStyle$ThreeD85b351$$getter_ = function(){
-  return this._contextFillStyle$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextFillStyle$ThreeD88754a$$getter_ = function(){
+  return this._contextFillStyle$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextFillStyle$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextFillStyle$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextFillStyle$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextFillStyle$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextLineCap$ThreeD85b351$$getter_ = function(){
-  return this._contextLineCap$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextLineCap$ThreeD88754a$$getter_ = function(){
+  return this._contextLineCap$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextLineCap$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextLineCap$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextLineCap$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextLineCap$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextLineJoin$ThreeD85b351$$getter_ = function(){
-  return this._contextLineJoin$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextLineJoin$ThreeD88754a$$getter_ = function(){
+  return this._contextLineJoin$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextLineJoin$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextLineJoin$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextLineJoin$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextLineJoin$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextLineWidth$ThreeD85b351$$getter_ = function(){
-  return this._contextLineWidth$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextLineWidth$ThreeD88754a$$getter_ = function(){
+  return this._contextLineWidth$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._contextLineWidth$ThreeD85b351$$setter_ = function(tmp$0){
-  this._contextLineWidth$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._contextLineWidth$ThreeD88754a$$setter_ = function(tmp$0){
+  this._contextLineWidth$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clipRect$ThreeD85b351$$getter_ = function(){
-  return this._clipRect$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clipRect$ThreeD88754a$$getter_ = function(){
+  return this._clipRect$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clipRect$ThreeD85b351$$setter_ = function(tmp$0){
-  this._clipRect$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clipRect$ThreeD88754a$$setter_ = function(tmp$0){
+  this._clipRect$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clearRect$ThreeD85b351$$getter_ = function(){
-  return this._clearRect$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clearRect$ThreeD88754a$$getter_ = function(){
+  return this._clearRect$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._clearRect$ThreeD85b351$$setter_ = function(tmp$0){
-  this._clearRect$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._clearRect$ThreeD88754a$$setter_ = function(tmp$0){
+  this._clearRect$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._bboxRect$ThreeD85b351$$getter_ = function(){
-  return this._bboxRect$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._bboxRect$ThreeD88754a$$getter_ = function(){
+  return this._bboxRect$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._bboxRect$ThreeD85b351$$setter_ = function(tmp$0){
-  this._bboxRect$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._bboxRect$ThreeD88754a$$setter_ = function(tmp$0){
+  this._bboxRect$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._info$ThreeD85b351$$getter_ = function(){
-  return this._info$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._info$ThreeD88754a$$getter_ = function(){
+  return this._info$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._info$ThreeD85b351$$setter_ = function(tmp$0){
-  this._info$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._info$ThreeD88754a$$setter_ = function(tmp$0){
+  this._info$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._renderData$ThreeD85b351$$getter_ = function(){
-  return this._renderData$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._renderData$ThreeD88754a$$getter_ = function(){
+  return this._renderData$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._renderData$ThreeD85b351$$setter_ = function(tmp$0){
-  this._renderData$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._renderData$ThreeD88754a$$setter_ = function(tmp$0){
+  this._renderData$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._elements$ThreeD85b351$$getter_ = function(){
-  return this._elements$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._elements$ThreeD88754a$$getter_ = function(){
+  return this._elements$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._elements$ThreeD85b351$$setter_ = function(tmp$0){
-  this._elements$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._elements$ThreeD88754a$$setter_ = function(tmp$0){
+  this._elements$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._lights$ThreeD85b351$$getter_ = function(){
-  return this._lights$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._lights$ThreeD88754a$$getter_ = function(){
+  return this._lights$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._lights$ThreeD85b351$$setter_ = function(tmp$0){
-  this._lights$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._lights$ThreeD88754a$$setter_ = function(tmp$0){
+  this._lights$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._projector$ThreeD85b351$$getter_ = function(){
-  return this._projector$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._projector$ThreeD88754a$$getter_ = function(){
+  return this._projector$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._projector$ThreeD85b351$$setter_ = function(tmp$0){
-  this._projector$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._projector$ThreeD88754a$$setter_ = function(tmp$0){
+  this._projector$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v5$ThreeD85b351$$getter_ = function(){
-  return this._v5$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v5$ThreeD88754a$$getter_ = function(){
+  return this._v5$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v5$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v5$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v5$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v5$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v6$ThreeD85b351$$getter_ = function(){
-  return this._v6$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v6$ThreeD88754a$$getter_ = function(){
+  return this._v6$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v6$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v6$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v6$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v6$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v1x$ThreeD85b351$$getter_ = function(){
-  return this._v1x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v1x$ThreeD88754a$$getter_ = function(){
+  return this._v1x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v1x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v1x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v1x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v1x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v1y$ThreeD85b351$$getter_ = function(){
-  return this._v1y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v1y$ThreeD88754a$$getter_ = function(){
+  return this._v1y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v1y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v1y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v1y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v1y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v2x$ThreeD85b351$$getter_ = function(){
-  return this._v2x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v2x$ThreeD88754a$$getter_ = function(){
+  return this._v2x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v2x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v2x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v2x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v2x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v2y$ThreeD85b351$$getter_ = function(){
-  return this._v2y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v2y$ThreeD88754a$$getter_ = function(){
+  return this._v2y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v2y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v2y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v2y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v2y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v3x$ThreeD85b351$$getter_ = function(){
-  return this._v3x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v3x$ThreeD88754a$$getter_ = function(){
+  return this._v3x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v3x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v3x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v3x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v3x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v3y$ThreeD85b351$$getter_ = function(){
-  return this._v3y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v3y$ThreeD88754a$$getter_ = function(){
+  return this._v3y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v3y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v3y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v3y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v3y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v4x$ThreeD85b351$$getter_ = function(){
-  return this._v4x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v4x$ThreeD88754a$$getter_ = function(){
+  return this._v4x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v4x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v4x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v4x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v4x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v4y$ThreeD85b351$$getter_ = function(){
-  return this._v4y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v4y$ThreeD88754a$$getter_ = function(){
+  return this._v4y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v4y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v4y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v4y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v4y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v5x$ThreeD85b351$$getter_ = function(){
-  return this._v5x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v5x$ThreeD88754a$$getter_ = function(){
+  return this._v5x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v5x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v5x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v5x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v5x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v5y$ThreeD85b351$$getter_ = function(){
-  return this._v5y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v5y$ThreeD88754a$$getter_ = function(){
+  return this._v5y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v5y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v5y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v5y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v5y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v6x$ThreeD85b351$$getter_ = function(){
-  return this._v6x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v6x$ThreeD88754a$$getter_ = function(){
+  return this._v6x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v6x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v6x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v6x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v6x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v6y$ThreeD85b351$$getter_ = function(){
-  return this._v6y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v6y$ThreeD88754a$$getter_ = function(){
+  return this._v6y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._v6y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v6y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._v6y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v6y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color$ThreeD85b351$$getter_ = function(){
-  return this._color$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color$ThreeD88754a$$getter_ = function(){
+  return this._color$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color1$ThreeD85b351$$getter_ = function(){
-  return this._color1$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color1$ThreeD88754a$$getter_ = function(){
+  return this._color1$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color1$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color1$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color1$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color1$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color2$ThreeD85b351$$getter_ = function(){
-  return this._color2$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color2$ThreeD88754a$$getter_ = function(){
+  return this._color2$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color2$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color2$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color2$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color2$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color3$ThreeD85b351$$getter_ = function(){
-  return this._color3$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color3$ThreeD88754a$$getter_ = function(){
+  return this._color3$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color3$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color3$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color3$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color3$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color4$ThreeD85b351$$getter_ = function(){
-  return this._color4$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color4$ThreeD88754a$$getter_ = function(){
+  return this._color4$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._color4$ThreeD85b351$$setter_ = function(tmp$0){
-  this._color4$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._color4$ThreeD88754a$$setter_ = function(tmp$0){
+  this._color4$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._patterns$ThreeD85b351$$getter_ = function(){
-  return this._patterns$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._patterns$ThreeD88754a$$getter_ = function(){
+  return this._patterns$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._patterns$ThreeD85b351$$setter_ = function(tmp$0){
-  this._patterns$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._patterns$ThreeD88754a$$setter_ = function(tmp$0){
+  this._patterns$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._imagedatas$ThreeD85b351$$getter_ = function(){
-  return this._imagedatas$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._imagedatas$ThreeD88754a$$getter_ = function(){
+  return this._imagedatas$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._imagedatas$ThreeD85b351$$setter_ = function(tmp$0){
-  this._imagedatas$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._imagedatas$ThreeD88754a$$setter_ = function(tmp$0){
+  this._imagedatas$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._near$ThreeD85b351$$getter_ = function(){
-  return this._near$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._near$ThreeD88754a$$getter_ = function(){
+  return this._near$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._near$ThreeD85b351$$setter_ = function(tmp$0){
-  this._near$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._near$ThreeD88754a$$setter_ = function(tmp$0){
+  this._near$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._far$ThreeD85b351$$getter_ = function(){
-  return this._far$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._far$ThreeD88754a$$getter_ = function(){
+  return this._far$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._far$ThreeD85b351$$setter_ = function(tmp$0){
-  this._far$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._far$ThreeD88754a$$setter_ = function(tmp$0){
+  this._far$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._image$ThreeD85b351$$getter_ = function(){
-  return this._image$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._image$ThreeD88754a$$getter_ = function(){
+  return this._image$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._image$ThreeD85b351$$setter_ = function(tmp$0){
-  this._image$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._image$ThreeD88754a$$setter_ = function(tmp$0){
+  this._image$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uvs$ThreeD85b351$$getter_ = function(){
-  return this._uvs$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uvs$ThreeD88754a$$getter_ = function(){
+  return this._uvs$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uvs$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uvs$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uvs$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uvs$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv1x$ThreeD85b351$$getter_ = function(){
-  return this._uv1x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv1x$ThreeD88754a$$getter_ = function(){
+  return this._uv1x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv1x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uv1x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv1x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uv1x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv1y$ThreeD85b351$$getter_ = function(){
-  return this._uv1y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv1y$ThreeD88754a$$getter_ = function(){
+  return this._uv1y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv1y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uv1y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv1y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uv1y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv2x$ThreeD85b351$$getter_ = function(){
-  return this._uv2x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv2x$ThreeD88754a$$getter_ = function(){
+  return this._uv2x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv2x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uv2x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv2x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uv2x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv2y$ThreeD85b351$$getter_ = function(){
-  return this._uv2y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv2y$ThreeD88754a$$getter_ = function(){
+  return this._uv2y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv2y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uv2y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv2y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uv2y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv3x$ThreeD85b351$$getter_ = function(){
-  return this._uv3x$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv3x$ThreeD88754a$$getter_ = function(){
+  return this._uv3x$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv3x$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uv3x$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv3x$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uv3x$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv3y$ThreeD85b351$$getter_ = function(){
-  return this._uv3y$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv3y$ThreeD88754a$$getter_ = function(){
+  return this._uv3y$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._uv3y$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uv3y$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._uv3y$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uv3y$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._enableLighting$ThreeD85b351$$getter_ = function(){
-  return this._enableLighting$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._enableLighting$ThreeD88754a$$getter_ = function(){
+  return this._enableLighting$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._enableLighting$ThreeD85b351$$setter_ = function(tmp$0){
-  this._enableLighting$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._enableLighting$ThreeD88754a$$setter_ = function(tmp$0){
+  this._enableLighting$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._ambientLight$ThreeD85b351$$getter_ = function(){
-  return this._ambientLight$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._ambientLight$ThreeD88754a$$getter_ = function(){
+  return this._ambientLight$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._ambientLight$ThreeD85b351$$setter_ = function(tmp$0){
-  this._ambientLight$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._ambientLight$ThreeD88754a$$setter_ = function(tmp$0){
+  this._ambientLight$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._directionalLights$ThreeD85b351$$getter_ = function(){
-  return this._directionalLights$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._directionalLights$ThreeD88754a$$getter_ = function(){
+  return this._directionalLights$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._directionalLights$ThreeD85b351$$setter_ = function(tmp$0){
-  this._directionalLights$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._directionalLights$ThreeD88754a$$setter_ = function(tmp$0){
+  this._directionalLights$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pointLights$ThreeD85b351$$getter_ = function(){
-  return this._pointLights$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pointLights$ThreeD88754a$$getter_ = function(){
+  return this._pointLights$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pointLights$ThreeD85b351$$setter_ = function(tmp$0){
-  this._pointLights$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pointLights$ThreeD88754a$$setter_ = function(tmp$0){
+  this._pointLights$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._vector3$ThreeD85b351$$getter_ = function(){
-  return this._vector3$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._vector3$ThreeD88754a$$getter_ = function(){
+  return this._vector3$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._vector3$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vector3$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._vector3$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vector3$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMapImage$ThreeD85b351$$getter_ = function(){
-  return this._pixelMapImage$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMapImage$ThreeD88754a$$getter_ = function(){
+  return this._pixelMapImage$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMapImage$ThreeD85b351$$setter_ = function(tmp$0){
-  this._pixelMapImage$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMapImage$ThreeD88754a$$setter_ = function(tmp$0){
+  this._pixelMapImage$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMapData$ThreeD85b351$$getter_ = function(){
-  return this._pixelMapData$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMapData$ThreeD88754a$$getter_ = function(){
+  return this._pixelMapData$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMapData$ThreeD85b351$$setter_ = function(tmp$0){
-  this._pixelMapData$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMapData$ThreeD88754a$$setter_ = function(tmp$0){
+  this._pixelMapData$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._gradientMapQuality$ThreeD85b351$$getter_ = function(){
-  return this._gradientMapQuality$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._gradientMapQuality$ThreeD88754a$$getter_ = function(){
+  return this._gradientMapQuality$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._gradientMapQuality$ThreeD85b351$$setter_ = function(tmp$0){
-  this._gradientMapQuality$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._gradientMapQuality$ThreeD88754a$$setter_ = function(tmp$0){
+  this._gradientMapQuality$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMap$ThreeD85b351$$getter_ = function(){
-  return this._pixelMap$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMap$ThreeD88754a$$getter_ = function(){
+  return this._pixelMap$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMap$ThreeD85b351$$setter_ = function(tmp$0){
-  this._pixelMap$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMap$ThreeD88754a$$setter_ = function(tmp$0){
+  this._pixelMap$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMapContext$ThreeD85b351$$getter_ = function(){
-  return this._pixelMapContext$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMapContext$ThreeD88754a$$getter_ = function(){
+  return this._pixelMapContext$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._pixelMapContext$ThreeD85b351$$setter_ = function(tmp$0){
-  this._pixelMapContext$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._pixelMapContext$ThreeD88754a$$setter_ = function(tmp$0){
+  this._pixelMapContext$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._gradientMap$ThreeD85b351$$getter_ = function(){
-  return this._gradientMap$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._gradientMap$ThreeD88754a$$getter_ = function(){
+  return this._gradientMap$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._gradientMap$ThreeD85b351$$setter_ = function(tmp$0){
-  this._gradientMap$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._gradientMap$ThreeD88754a$$setter_ = function(tmp$0){
+  this._gradientMap$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._gradientMapContext$ThreeD85b351$$getter_ = function(){
-  return this._gradientMapContext$ThreeD85b351$$field_;
+ThreeD88754a$CanvasRenderer$Dart.prototype._gradientMapContext$ThreeD88754a$$getter_ = function(){
+  return this._gradientMapContext$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype._gradientMapContext$ThreeD85b351$$setter_ = function(tmp$0){
-  this._gradientMapContext$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$CanvasRenderer$Dart.prototype._gradientMapContext$ThreeD88754a$$setter_ = function(tmp$0){
+  this._gradientMapContext$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setSize$member = function(width, height){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setSize$member = function(width, height){
   var tmp$11, tmp$10, tmp$12, tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
-  this._canvasWidth$ThreeD85b351$$setter_(tmp$0 = width) , tmp$0;
-  this._canvasHeight$ThreeD85b351$$setter_(tmp$1 = height) , tmp$1;
-  this._canvasWidthHalf$ThreeD85b351$$setter_(tmp$2 = DIV$operator(this._canvasWidth$ThreeD85b351$$getter_(), 2).floor$named(0, $noargs)) , tmp$2;
-  this._canvasHeightHalf$ThreeD85b351$$setter_(tmp$3 = DIV$operator(this._canvasHeight$ThreeD85b351$$getter_(), 2).floor$named(0, $noargs)) , tmp$3;
-  this._canvas$ThreeD85b351$$getter_().width$setter(tmp$4 = this._canvasWidth$ThreeD85b351$$getter_()) , tmp$4;
-  this._canvas$ThreeD85b351$$getter_().height$setter(tmp$5 = this._canvasHeight$ThreeD85b351$$getter_()) , tmp$5;
-  this._clipRect$ThreeD85b351$$getter_().setValues$named(4, $noargs, negate$operator(this._canvasWidthHalf$ThreeD85b351$$getter_()), negate$operator(this._canvasHeightHalf$ThreeD85b351$$getter_()), this._canvasWidthHalf$ThreeD85b351$$getter_(), this._canvasHeightHalf$ThreeD85b351$$getter_());
-  this._clearRect$ThreeD85b351$$getter_().setValues$named(4, $noargs, negate$operator(this._canvasWidthHalf$ThreeD85b351$$getter_()), negate$operator(this._canvasHeightHalf$ThreeD85b351$$getter_()), this._canvasWidthHalf$ThreeD85b351$$getter_(), this._canvasHeightHalf$ThreeD85b351$$getter_());
-  this._contextGlobalAlpha$ThreeD85b351$$setter_(tmp$6 = 1) , tmp$6;
-  this._contextGlobalCompositeOperation$ThreeD85b351$$setter_(tmp$7 = 0) , tmp$7;
-  this._contextStrokeStyle$ThreeD85b351$$setter_(tmp$8 = $Dart$Null) , tmp$8;
-  this._contextFillStyle$ThreeD85b351$$setter_(tmp$9 = $Dart$Null) , tmp$9;
-  this._contextLineWidth$ThreeD85b351$$setter_(tmp$10 = $Dart$Null) , tmp$10;
-  this._contextLineCap$ThreeD85b351$$setter_(tmp$11 = $Dart$Null) , tmp$11;
-  this._contextLineJoin$ThreeD85b351$$setter_(tmp$12 = $Dart$Null) , tmp$12;
+  this._canvasWidth$ThreeD88754a$$setter_(tmp$0 = width) , tmp$0;
+  this._canvasHeight$ThreeD88754a$$setter_(tmp$1 = height) , tmp$1;
+  this._canvasWidthHalf$ThreeD88754a$$setter_(tmp$2 = DIV$operator(this._canvasWidth$ThreeD88754a$$getter_(), 2).floor$named(0, $noargs)) , tmp$2;
+  this._canvasHeightHalf$ThreeD88754a$$setter_(tmp$3 = DIV$operator(this._canvasHeight$ThreeD88754a$$getter_(), 2).floor$named(0, $noargs)) , tmp$3;
+  this._canvas$ThreeD88754a$$getter_().width$setter(tmp$4 = this._canvasWidth$ThreeD88754a$$getter_()) , tmp$4;
+  this._canvas$ThreeD88754a$$getter_().height$setter(tmp$5 = this._canvasHeight$ThreeD88754a$$getter_()) , tmp$5;
+  this._clipRect$ThreeD88754a$$getter_().setValues$named(4, $noargs, negate$operator(this._canvasWidthHalf$ThreeD88754a$$getter_()), negate$operator(this._canvasHeightHalf$ThreeD88754a$$getter_()), this._canvasWidthHalf$ThreeD88754a$$getter_(), this._canvasHeightHalf$ThreeD88754a$$getter_());
+  this._clearRect$ThreeD88754a$$getter_().setValues$named(4, $noargs, negate$operator(this._canvasWidthHalf$ThreeD88754a$$getter_()), negate$operator(this._canvasHeightHalf$ThreeD88754a$$getter_()), this._canvasWidthHalf$ThreeD88754a$$getter_(), this._canvasHeightHalf$ThreeD88754a$$getter_());
+  this._contextGlobalAlpha$ThreeD88754a$$setter_(tmp$6 = 1) , tmp$6;
+  this._contextGlobalCompositeOperation$ThreeD88754a$$setter_(tmp$7 = 0) , tmp$7;
+  this._contextStrokeStyle$ThreeD88754a$$setter_(tmp$8 = $Dart$Null) , tmp$8;
+  this._contextFillStyle$ThreeD88754a$$setter_(tmp$9 = $Dart$Null) , tmp$9;
+  this._contextLineWidth$ThreeD88754a$$setter_(tmp$10 = $Dart$Null) , tmp$10;
+  this._contextLineCap$ThreeD88754a$$setter_(tmp$11 = $Dart$Null) , tmp$11;
+  this._contextLineJoin$ThreeD88754a$$setter_(tmp$12 = $Dart$Null) , tmp$12;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setSize$named = function($n, $o, width, height){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setSize$named = function($n, $o, width, height){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$CanvasRenderer$Dart.prototype.setSize$member.call(this, width, height);
+  return ThreeD88754a$CanvasRenderer$Dart.prototype.setSize$member.call(this, width, height);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.clear$member = function(){
-  this._context$ThreeD85b351$$getter_().setTransform$named(6, $noargs, 1, 0, 0, negate$operator(1), this._canvasWidthHalf$ThreeD85b351$$getter_(), this._canvasHeightHalf$ThreeD85b351$$getter_());
-  if (!this._clearRect$ThreeD85b351$$getter_().isEmpty$named(0, $noargs)) {
-    this._clearRect$ThreeD85b351$$getter_().minSelf$named(1, $noargs, this._clipRect$ThreeD85b351$$getter_());
-    this._clearRect$ThreeD85b351$$getter_().inflate$named(1, $noargs, 2);
-    if (LT$operator(this._clearOpacity$ThreeD85b351$$getter_(), 1)) {
-      this._context$ThreeD85b351$$getter_().clearRect$named(4, $noargs, this._clearRect$ThreeD85b351$$getter_().getX$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD85b351$$getter_().getY$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD85b351$$getter_().getWidth$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD85b351$$getter_().getHeight$named(0, $noargs).floor$named(0, $noargs));
+ThreeD88754a$CanvasRenderer$Dart.prototype.clear$member = function(){
+  this._context$ThreeD88754a$$getter_().setTransform$named(6, $noargs, 1, 0, 0, negate$operator(1), this._canvasWidthHalf$ThreeD88754a$$getter_(), this._canvasHeightHalf$ThreeD88754a$$getter_());
+  if (!this._clearRect$ThreeD88754a$$getter_().isEmpty$named(0, $noargs)) {
+    this._clearRect$ThreeD88754a$$getter_().minSelf$named(1, $noargs, this._clipRect$ThreeD88754a$$getter_());
+    this._clearRect$ThreeD88754a$$getter_().inflate$named(1, $noargs, 2);
+    if (LT$operator(this._clearOpacity$ThreeD88754a$$getter_(), 1)) {
+      this._context$ThreeD88754a$$getter_().clearRect$named(4, $noargs, this._clearRect$ThreeD88754a$$getter_().getX$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD88754a$$getter_().getY$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD88754a$$getter_().getWidth$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD88754a$$getter_().getHeight$named(0, $noargs).floor$named(0, $noargs));
     }
-    if (GT$operator(this._clearOpacity$ThreeD85b351$$getter_(), 0)) {
-      this.setBlending$member(ThreeD85b351$Three$Dart.NormalBlending$getter());
+    if (GT$operator(this._clearOpacity$ThreeD88754a$$getter_(), 0)) {
+      this.setBlending$member(ThreeD88754a$Three$Dart.NormalBlending$getter());
       this.setOpacity$member(1);
-      this.setFillStyle$member(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator('rgba(', MUL$operator(this._clearColor$ThreeD85b351$$getter_().r$getter(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._clearColor$ThreeD85b351$$getter_().g$getter(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._clearColor$ThreeD85b351$$getter_().b$getter(), 255).floor$named(0, $noargs)), ','), this._clearOpacity$ThreeD85b351$$getter_()), ')'));
-      this._context$ThreeD85b351$$getter_().fillRect$named(4, $noargs, this._clearRect$ThreeD85b351$$getter_().getX$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD85b351$$getter_().getY$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD85b351$$getter_().getWidth$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD85b351$$getter_().getHeight$named(0, $noargs).floor$named(0, $noargs));
+      this.setFillStyle$member(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator(ADD$operator('rgba(', MUL$operator(this._clearColor$ThreeD88754a$$getter_().r$getter(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._clearColor$ThreeD88754a$$getter_().g$getter(), 255).floor$named(0, $noargs)), ','), MUL$operator(this._clearColor$ThreeD88754a$$getter_().b$getter(), 255).floor$named(0, $noargs)), ','), this._clearOpacity$ThreeD88754a$$getter_()), ')'));
+      this._context$ThreeD88754a$$getter_().fillRect$named(4, $noargs, this._clearRect$ThreeD88754a$$getter_().getX$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD88754a$$getter_().getY$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD88754a$$getter_().getWidth$named(0, $noargs).floor$named(0, $noargs), this._clearRect$ThreeD88754a$$getter_().getHeight$named(0, $noargs).floor$named(0, $noargs));
     }
-    this._clearRect$ThreeD85b351$$getter_().empty$named(0, $noargs);
+    this._clearRect$ThreeD88754a$$getter_().empty$named(0, $noargs);
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.clear$named = function($n, $o){
+ThreeD88754a$CanvasRenderer$Dart.prototype.clear$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return ThreeD85b351$CanvasRenderer$Dart.prototype.clear$member.call(this);
+  return ThreeD88754a$CanvasRenderer$Dart.prototype.clear$member.call(this);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.clear$named_$lookupRTT = function(){
+ThreeD88754a$CanvasRenderer$Dart.prototype.clear$named_$lookupRTT = function(){
   return RTT.createFunction(null, RTT.dynamicType.$lookupRTT());
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.clear$getter = function(){
-  return $bind(ThreeD85b351$CanvasRenderer$Dart.prototype.clear$named, ThreeD85b351$CanvasRenderer$Dart.prototype.clear$named_$lookupRTT, this);
+ThreeD88754a$CanvasRenderer$Dart.prototype.clear$getter = function(){
+  return $bind(ThreeD88754a$CanvasRenderer$Dart.prototype.clear$named, ThreeD88754a$CanvasRenderer$Dart.prototype.clear$named_$lookupRTT, this);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.render$member = function(scene, camera){
+ThreeD88754a$CanvasRenderer$Dart.prototype.render$member = function(scene, camera){
   var tmp$48, tmp$47, tmp$49, tmp$9, tmp$43, tmp$44, tmp$45, tmp$46, tmp$5, tmp$6, tmp$40, tmp$7, tmp$41, tmp$8, tmp$42, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$39, tmp$38, tmp$37, tmp$36, tmp$34, tmp$35, tmp$32, tmp$33, tmp$30, tmp$31, tmp$20, tmp$24, tmp$23, tmp$22, tmp$21, tmp$27, tmp$28, tmp$25, tmp$26, tmp$29, tmp$11, tmp$10, tmp$13, tmp$12, tmp$52, tmp$14, tmp$15, tmp$50, tmp$16, tmp$51, tmp$17, tmp$18, tmp$19;
   var e = $Dart$Null;
   var el = $Dart$Null;
   var element = $Dart$Null;
   var material = $Dart$Null;
-  this._camera$ThreeD85b351$$setter_(tmp$0 = camera) , tmp$0;
-  this._autoClear$ThreeD85b351$$getter_()?this.clear$member():this._context$ThreeD85b351$$getter_().setTransform$named(6, $noargs, 1, 0, 0, negate$operator(1), this._canvasWidthHalf$ThreeD85b351$$getter_(), this._canvasHeightHalf$ThreeD85b351$$getter_());
-  this._info$ThreeD85b351$$getter_().INDEX$operator('render').ASSIGN_INDEX$operator('vertices', tmp$1 = 0) , tmp$1;
-  this._info$ThreeD85b351$$getter_().INDEX$operator('render').ASSIGN_INDEX$operator('faces', tmp$2 = 0) , tmp$2;
-  this._renderData$ThreeD85b351$$setter_(tmp$3 = this._projector$ThreeD85b351$$getter_().projectScene$named(3, $noargs, scene, camera, this._sortElements$ThreeD85b351$$getter_())) , tmp$3;
-  this._elements$ThreeD85b351$$setter_(tmp$4 = this._renderData$ThreeD85b351$$getter_().elements$getter()) , tmp$4;
-  this._lights$ThreeD85b351$$setter_(tmp$5 = this._renderData$ThreeD85b351$$getter_().lights$getter()) , tmp$5;
-  this._enableLighting$ThreeD85b351$$setter_(tmp$6 = GT$operator(this._lights$ThreeD85b351$$getter_().length$getter(), 0)) , tmp$6;
-  if (this._enableLighting$ThreeD85b351$$getter_()) {
-    this.calculateLights$member(this._lights$ThreeD85b351$$getter_());
+  this._camera$ThreeD88754a$$setter_(tmp$0 = camera) , tmp$0;
+  this._autoClear$ThreeD88754a$$getter_()?this.clear$member():this._context$ThreeD88754a$$getter_().setTransform$named(6, $noargs, 1, 0, 0, negate$operator(1), this._canvasWidthHalf$ThreeD88754a$$getter_(), this._canvasHeightHalf$ThreeD88754a$$getter_());
+  this._info$ThreeD88754a$$getter_().INDEX$operator('render').ASSIGN_INDEX$operator('vertices', tmp$1 = 0) , tmp$1;
+  this._info$ThreeD88754a$$getter_().INDEX$operator('render').ASSIGN_INDEX$operator('faces', tmp$2 = 0) , tmp$2;
+  this._renderData$ThreeD88754a$$setter_(tmp$3 = this._projector$ThreeD88754a$$getter_().projectScene$named(3, $noargs, scene, camera, this._sortElements$ThreeD88754a$$getter_())) , tmp$3;
+  this._elements$ThreeD88754a$$setter_(tmp$4 = this._renderData$ThreeD88754a$$getter_().elements$getter()) , tmp$4;
+  this._lights$ThreeD88754a$$setter_(tmp$5 = this._renderData$ThreeD88754a$$getter_().lights$getter()) , tmp$5;
+  this._enableLighting$ThreeD88754a$$setter_(tmp$6 = GT$operator(this._lights$ThreeD88754a$$getter_().length$getter(), 0)) , tmp$6;
+  if (this._enableLighting$ThreeD88754a$$getter_()) {
+    this.calculateLights$member(this._lights$ThreeD88754a$$getter_());
   }
-  el = this._elements$ThreeD85b351$$getter_().length$getter();
+  el = this._elements$ThreeD88754a$$getter_().length$getter();
   {
     e = 0;
     for (; LT$operator(e, el); tmp$7 = e , (e = ADD$operator(tmp$7, 1) , tmp$7)) {
-      element = this._elements$ThreeD85b351$$getter_().INDEX$operator(e);
+      element = this._elements$ThreeD88754a$$getter_().INDEX$operator(e);
       material = element.material$getter();
-      material = !!(tmp$8 = material , tmp$8 != null && tmp$8.$implements$ThreeD85b351$MeshFaceMaterial$Dart)?element.faceMaterial$getter():material;
+      material = !!(tmp$8 = material , tmp$8 != null && tmp$8.$implements$ThreeD88754a$MeshFaceMaterial$Dart)?element.faceMaterial$getter():material;
       if (EQ$operator(material, $Dart$Null) || EQ$operator(material.opacity$getter(), 0)) {
         continue;
       }
-      this._bboxRect$ThreeD85b351$$getter_().empty$named(0, $noargs);
+      this._bboxRect$ThreeD88754a$$getter_().empty$named(0, $noargs);
       var _v1 = $Dart$Null;
       var _v2 = $Dart$Null;
       var _v3 = $Dart$Null;
       var _v4 = $Dart$Null;
-      if (!!(tmp$9 = element , tmp$9 != null && tmp$9.$implements$ThreeD85b351$RenderableParticle$Dart)) {
+      if (!!(tmp$9 = element , tmp$9 != null && tmp$9.$implements$ThreeD88754a$RenderableParticle$Dart)) {
         var rp = element;
-        tmp$10 = rp , (tmp$10.x$setter(tmp$11 = MUL$operator(tmp$10.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$11);
-        tmp$12 = rp , (tmp$12.y$setter(tmp$13 = MUL$operator(tmp$12.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$13);
+        tmp$10 = rp , (tmp$10.x$setter(tmp$11 = MUL$operator(tmp$10.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$11);
+        tmp$12 = rp , (tmp$12.y$setter(tmp$13 = MUL$operator(tmp$12.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$13);
         this.renderParticle$member(rp, element, material, scene);
       }
        else {
-        if (!!(tmp$14 = element , tmp$14 != null && tmp$14.$implements$ThreeD85b351$RenderableLine$Dart)) {
+        if (!!(tmp$14 = element , tmp$14 != null && tmp$14.$implements$ThreeD88754a$RenderableLine$Dart)) {
           _v1 = element.v1$getter();
           _v2 = element.v2$getter();
-          tmp$15 = _v1.positionScreen$getter() , (tmp$15.x$setter(tmp$16 = MUL$operator(tmp$15.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$16);
-          tmp$17 = _v1.positionScreen$getter() , (tmp$17.y$setter(tmp$18 = MUL$operator(tmp$17.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$18);
-          tmp$19 = _v2.positionScreen$getter() , (tmp$19.x$setter(tmp$20 = MUL$operator(tmp$19.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$20);
-          tmp$21 = _v2.positionScreen$getter() , (tmp$21.y$setter(tmp$22 = MUL$operator(tmp$21.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$22);
-          this._bboxRect$ThreeD85b351$$getter_().addPoint$named(2, $noargs, _v1.positionScreen$getter().x$getter(), _v1.positionScreen$getter().y$getter());
-          this._bboxRect$ThreeD85b351$$getter_().addPoint$named(2, $noargs, _v2.positionScreen$getter().x$getter(), _v2.positionScreen$getter().y$getter());
-          if (this._clipRect$ThreeD85b351$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD85b351$$getter_())) {
+          tmp$15 = _v1.positionScreen$getter() , (tmp$15.x$setter(tmp$16 = MUL$operator(tmp$15.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$16);
+          tmp$17 = _v1.positionScreen$getter() , (tmp$17.y$setter(tmp$18 = MUL$operator(tmp$17.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$18);
+          tmp$19 = _v2.positionScreen$getter() , (tmp$19.x$setter(tmp$20 = MUL$operator(tmp$19.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$20);
+          tmp$21 = _v2.positionScreen$getter() , (tmp$21.y$setter(tmp$22 = MUL$operator(tmp$21.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$22);
+          this._bboxRect$ThreeD88754a$$getter_().addPoint$named(2, $noargs, _v1.positionScreen$getter().x$getter(), _v1.positionScreen$getter().y$getter());
+          this._bboxRect$ThreeD88754a$$getter_().addPoint$named(2, $noargs, _v2.positionScreen$getter().x$getter(), _v2.positionScreen$getter().y$getter());
+          if (this._clipRect$ThreeD88754a$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD88754a$$getter_())) {
             this.renderLine$member(_v1, _v2, element, material, scene);
           }
         }
          else {
-          if (!!(tmp$23 = element , tmp$23 != null && tmp$23.$implements$ThreeD85b351$RenderableFace3$Dart)) {
+          if (!!(tmp$23 = element , tmp$23 != null && tmp$23.$implements$ThreeD88754a$RenderableFace3$Dart)) {
             _v1 = element.v1$getter();
             _v2 = element.v2$getter();
             _v3 = element.v3$getter();
-            tmp$24 = _v1.positionScreen$getter() , (tmp$24.x$setter(tmp$25 = MUL$operator(tmp$24.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$25);
-            tmp$26 = _v1.positionScreen$getter() , (tmp$26.y$setter(tmp$27 = MUL$operator(tmp$26.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$27);
-            tmp$28 = _v2.positionScreen$getter() , (tmp$28.x$setter(tmp$29 = MUL$operator(tmp$28.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$29);
-            tmp$30 = _v2.positionScreen$getter() , (tmp$30.y$setter(tmp$31 = MUL$operator(tmp$30.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$31);
-            tmp$32 = _v3.positionScreen$getter() , (tmp$32.x$setter(tmp$33 = MUL$operator(tmp$32.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$33);
-            tmp$34 = _v3.positionScreen$getter() , (tmp$34.y$setter(tmp$35 = MUL$operator(tmp$34.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$35);
+            tmp$24 = _v1.positionScreen$getter() , (tmp$24.x$setter(tmp$25 = MUL$operator(tmp$24.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$25);
+            tmp$26 = _v1.positionScreen$getter() , (tmp$26.y$setter(tmp$27 = MUL$operator(tmp$26.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$27);
+            tmp$28 = _v2.positionScreen$getter() , (tmp$28.x$setter(tmp$29 = MUL$operator(tmp$28.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$29);
+            tmp$30 = _v2.positionScreen$getter() , (tmp$30.y$setter(tmp$31 = MUL$operator(tmp$30.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$31);
+            tmp$32 = _v3.positionScreen$getter() , (tmp$32.x$setter(tmp$33 = MUL$operator(tmp$32.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$33);
+            tmp$34 = _v3.positionScreen$getter() , (tmp$34.y$setter(tmp$35 = MUL$operator(tmp$34.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$35);
             if (material.overdraw$getter()) {
               this.expand$member(_v1.positionScreen$getter(), _v2.positionScreen$getter());
               this.expand$member(_v2.positionScreen$getter(), _v3.positionScreen$getter());
               this.expand$member(_v3.positionScreen$getter(), _v1.positionScreen$getter());
             }
-            this._bboxRect$ThreeD85b351$$getter_().add3Points$named(6, $noargs, _v1.positionScreen$getter().x$getter(), _v1.positionScreen$getter().y$getter(), _v2.positionScreen$getter().x$getter(), _v2.positionScreen$getter().y$getter(), _v3.positionScreen$getter().x$getter(), _v3.positionScreen$getter().y$getter());
-            if (this._clipRect$ThreeD85b351$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD85b351$$getter_())) {
+            this._bboxRect$ThreeD88754a$$getter_().add3Points$named(6, $noargs, _v1.positionScreen$getter().x$getter(), _v1.positionScreen$getter().y$getter(), _v2.positionScreen$getter().x$getter(), _v2.positionScreen$getter().y$getter(), _v3.positionScreen$getter().x$getter(), _v3.positionScreen$getter().y$getter());
+            if (this._clipRect$ThreeD88754a$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD88754a$$getter_())) {
               this.renderFace3$member(_v1, _v2, _v3, 0, 1, 2, element, material, scene);
             }
           }
            else {
-            if (!!(tmp$36 = element , tmp$36 != null && tmp$36.$implements$ThreeD85b351$RenderableFace4$Dart)) {
+            if (!!(tmp$36 = element , tmp$36 != null && tmp$36.$implements$ThreeD88754a$RenderableFace4$Dart)) {
               _v1 = element.v1$getter();
               _v2 = element.v2$getter();
               _v3 = element.v3$getter();
               _v4 = element.v4$getter();
-              tmp$37 = _v1.positionScreen$getter() , (tmp$37.x$setter(tmp$38 = MUL$operator(tmp$37.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$38);
-              tmp$39 = _v1.positionScreen$getter() , (tmp$39.y$setter(tmp$40 = MUL$operator(tmp$39.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$40);
-              tmp$41 = _v2.positionScreen$getter() , (tmp$41.x$setter(tmp$42 = MUL$operator(tmp$41.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$42);
-              tmp$43 = _v2.positionScreen$getter() , (tmp$43.y$setter(tmp$44 = MUL$operator(tmp$43.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$44);
-              tmp$45 = _v3.positionScreen$getter() , (tmp$45.x$setter(tmp$46 = MUL$operator(tmp$45.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$46);
-              tmp$47 = _v3.positionScreen$getter() , (tmp$47.y$setter(tmp$48 = MUL$operator(tmp$47.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$48);
-              tmp$49 = _v4.positionScreen$getter() , (tmp$49.x$setter(tmp$50 = MUL$operator(tmp$49.x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_())) , tmp$50);
-              tmp$51 = _v4.positionScreen$getter() , (tmp$51.y$setter(tmp$52 = MUL$operator(tmp$51.y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_())) , tmp$52);
-              this._v5$ThreeD85b351$$getter_().positionScreen$getter().copy$named(1, $noargs, _v2.positionScreen$getter());
-              this._v6$ThreeD85b351$$getter_().positionScreen$getter().copy$named(1, $noargs, _v4.positionScreen$getter());
+              tmp$37 = _v1.positionScreen$getter() , (tmp$37.x$setter(tmp$38 = MUL$operator(tmp$37.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$38);
+              tmp$39 = _v1.positionScreen$getter() , (tmp$39.y$setter(tmp$40 = MUL$operator(tmp$39.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$40);
+              tmp$41 = _v2.positionScreen$getter() , (tmp$41.x$setter(tmp$42 = MUL$operator(tmp$41.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$42);
+              tmp$43 = _v2.positionScreen$getter() , (tmp$43.y$setter(tmp$44 = MUL$operator(tmp$43.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$44);
+              tmp$45 = _v3.positionScreen$getter() , (tmp$45.x$setter(tmp$46 = MUL$operator(tmp$45.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$46);
+              tmp$47 = _v3.positionScreen$getter() , (tmp$47.y$setter(tmp$48 = MUL$operator(tmp$47.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$48);
+              tmp$49 = _v4.positionScreen$getter() , (tmp$49.x$setter(tmp$50 = MUL$operator(tmp$49.x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_())) , tmp$50);
+              tmp$51 = _v4.positionScreen$getter() , (tmp$51.y$setter(tmp$52 = MUL$operator(tmp$51.y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_())) , tmp$52);
+              this._v5$ThreeD88754a$$getter_().positionScreen$getter().copy$named(1, $noargs, _v2.positionScreen$getter());
+              this._v6$ThreeD88754a$$getter_().positionScreen$getter().copy$named(1, $noargs, _v4.positionScreen$getter());
               if (material.overdraw$getter()) {
                 this.expand$member(_v1.positionScreen$getter(), _v2.positionScreen$getter());
                 this.expand$member(_v2.positionScreen$getter(), _v4.positionScreen$getter());
                 this.expand$member(_v4.positionScreen$getter(), _v1.positionScreen$getter());
-                this.expand$member(_v3.positionScreen$getter(), this._v5$ThreeD85b351$$getter_().positionScreen$getter());
-                this.expand$member(_v3.positionScreen$getter(), this._v6$ThreeD85b351$$getter_().positionScreen$getter());
+                this.expand$member(_v3.positionScreen$getter(), this._v5$ThreeD88754a$$getter_().positionScreen$getter());
+                this.expand$member(_v3.positionScreen$getter(), this._v6$ThreeD88754a$$getter_().positionScreen$getter());
               }
-              this._bboxRect$ThreeD85b351$$getter_().addPoint$named(2, $noargs, _v1.positionScreen$getter().x$getter(), _v1.positionScreen$getter().y$getter());
-              this._bboxRect$ThreeD85b351$$getter_().addPoint$named(2, $noargs, _v2.positionScreen$getter().x$getter(), _v2.positionScreen$getter().y$getter());
-              this._bboxRect$ThreeD85b351$$getter_().addPoint$named(2, $noargs, _v3.positionScreen$getter().x$getter(), _v3.positionScreen$getter().y$getter());
-              this._bboxRect$ThreeD85b351$$getter_().addPoint$named(2, $noargs, _v4.positionScreen$getter().x$getter(), _v4.positionScreen$getter().y$getter());
-              if (this._clipRect$ThreeD85b351$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD85b351$$getter_())) {
-                this.renderFace4$member(_v1, _v2, _v3, _v4, this._v5$ThreeD85b351$$getter_(), this._v6$ThreeD85b351$$getter_(), element, material, scene);
+              this._bboxRect$ThreeD88754a$$getter_().addPoint$named(2, $noargs, _v1.positionScreen$getter().x$getter(), _v1.positionScreen$getter().y$getter());
+              this._bboxRect$ThreeD88754a$$getter_().addPoint$named(2, $noargs, _v2.positionScreen$getter().x$getter(), _v2.positionScreen$getter().y$getter());
+              this._bboxRect$ThreeD88754a$$getter_().addPoint$named(2, $noargs, _v3.positionScreen$getter().x$getter(), _v3.positionScreen$getter().y$getter());
+              this._bboxRect$ThreeD88754a$$getter_().addPoint$named(2, $noargs, _v4.positionScreen$getter().x$getter(), _v4.positionScreen$getter().y$getter());
+              if (this._clipRect$ThreeD88754a$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD88754a$$getter_())) {
+                this.renderFace4$member(_v1, _v2, _v3, _v4, this._v5$ThreeD88754a$$getter_(), this._v6$ThreeD88754a$$getter_(), element, material, scene);
               }
             }
           }
         }
       }
-      this._clearRect$ThreeD85b351$$getter_().addRectangle$named(1, $noargs, this._bboxRect$ThreeD85b351$$getter_());
+      this._clearRect$ThreeD88754a$$getter_().addRectangle$named(1, $noargs, this._bboxRect$ThreeD88754a$$getter_());
     }
   }
-  this._context$ThreeD85b351$$getter_().setTransform$named(6, $noargs, 1, 0, 0, 1, 0, 0);
+  this._context$ThreeD88754a$$getter_().setTransform$named(6, $noargs, 1, 0, 0, 1, 0, 0);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.render$named = function($n, $o, scene, camera){
+ThreeD88754a$CanvasRenderer$Dart.prototype.render$named = function($n, $o, scene, camera){
   if ($o.count || $n != 2)
     $nsme();
-  return ThreeD85b351$CanvasRenderer$Dart.prototype.render$member.call(this, scene, camera);
+  return ThreeD88754a$CanvasRenderer$Dart.prototype.render$member.call(this, scene, camera);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.calculateLights$member = function(lights){
+ThreeD88754a$CanvasRenderer$Dart.prototype.calculateLights$member = function(lights){
   var tmp$20, tmp$11, tmp$10, tmp$13, tmp$21, tmp$12, tmp$14, tmp$9, tmp$15, tmp$16, tmp$17, tmp$18, tmp$5, tmp$19, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var l = $Dart$Null;
   var ll = $Dart$Null;
   var light = $Dart$Null;
   var lightColor = $Dart$Null;
-  this._ambientLight$ThreeD85b351$$getter_().setRGB$named(3, $noargs, 0, 0, 0);
-  this._directionalLights$ThreeD85b351$$getter_().setRGB$named(3, $noargs, 0, 0, 0);
-  this._pointLights$ThreeD85b351$$getter_().setRGB$named(3, $noargs, 0, 0, 0);
+  this._ambientLight$ThreeD88754a$$getter_().setRGB$named(3, $noargs, 0, 0, 0);
+  this._directionalLights$ThreeD88754a$$getter_().setRGB$named(3, $noargs, 0, 0, 0);
+  this._pointLights$ThreeD88754a$$getter_().setRGB$named(3, $noargs, 0, 0, 0);
   ll = lights.length$getter();
   {
     l = 0;
     for (; LT$operator(l, ll); tmp$0 = l , (l = ADD$operator(tmp$0, 1) , tmp$0)) {
       light = lights.INDEX$operator(l);
       lightColor = light.color$getter();
-      if (!!(tmp$1 = light , tmp$1 != null && tmp$1.$implements$ThreeD85b351$AmbientLight$Dart)) {
-        tmp$2 = this._ambientLight$ThreeD85b351$$getter_() , (tmp$2.r$setter(tmp$3 = ADD$operator(tmp$2.r$getter(), lightColor.r$getter())) , tmp$3);
-        tmp$4 = this._ambientLight$ThreeD85b351$$getter_() , (tmp$4.g$setter(tmp$5 = ADD$operator(tmp$4.g$getter(), lightColor.g$getter())) , tmp$5);
-        tmp$6 = this._ambientLight$ThreeD85b351$$getter_() , (tmp$6.b$setter(tmp$7 = ADD$operator(tmp$6.b$getter(), lightColor.b$getter())) , tmp$7);
+      if (!!(tmp$1 = light , tmp$1 != null && tmp$1.$implements$ThreeD88754a$AmbientLight$Dart)) {
+        tmp$2 = this._ambientLight$ThreeD88754a$$getter_() , (tmp$2.r$setter(tmp$3 = ADD$operator(tmp$2.r$getter(), lightColor.r$getter())) , tmp$3);
+        tmp$4 = this._ambientLight$ThreeD88754a$$getter_() , (tmp$4.g$setter(tmp$5 = ADD$operator(tmp$4.g$getter(), lightColor.g$getter())) , tmp$5);
+        tmp$6 = this._ambientLight$ThreeD88754a$$getter_() , (tmp$6.b$setter(tmp$7 = ADD$operator(tmp$6.b$getter(), lightColor.b$getter())) , tmp$7);
       }
        else {
-        if (!!(tmp$8 = light , tmp$8 != null && tmp$8.$implements$ThreeD85b351$DirectionalLight$Dart)) {
-          tmp$9 = this._directionalLights$ThreeD85b351$$getter_() , (tmp$9.r$setter(tmp$10 = ADD$operator(tmp$9.r$getter(), lightColor.r$getter())) , tmp$10);
-          tmp$11 = this._directionalLights$ThreeD85b351$$getter_() , (tmp$11.g$setter(tmp$12 = ADD$operator(tmp$11.g$getter(), lightColor.g$getter())) , tmp$12);
-          tmp$13 = this._directionalLights$ThreeD85b351$$getter_() , (tmp$13.b$setter(tmp$14 = ADD$operator(tmp$13.b$getter(), lightColor.b$getter())) , tmp$14);
+        if (!!(tmp$8 = light , tmp$8 != null && tmp$8.$implements$ThreeD88754a$DirectionalLight$Dart)) {
+          tmp$9 = this._directionalLights$ThreeD88754a$$getter_() , (tmp$9.r$setter(tmp$10 = ADD$operator(tmp$9.r$getter(), lightColor.r$getter())) , tmp$10);
+          tmp$11 = this._directionalLights$ThreeD88754a$$getter_() , (tmp$11.g$setter(tmp$12 = ADD$operator(tmp$11.g$getter(), lightColor.g$getter())) , tmp$12);
+          tmp$13 = this._directionalLights$ThreeD88754a$$getter_() , (tmp$13.b$setter(tmp$14 = ADD$operator(tmp$13.b$getter(), lightColor.b$getter())) , tmp$14);
         }
          else {
-          if (!!(tmp$15 = light , tmp$15 != null && tmp$15.$implements$ThreeD85b351$PointLight$Dart)) {
-            tmp$16 = this._pointLights$ThreeD85b351$$getter_() , (tmp$16.r$setter(tmp$17 = ADD$operator(tmp$16.r$getter(), lightColor.r$getter())) , tmp$17);
-            tmp$18 = this._pointLights$ThreeD85b351$$getter_() , (tmp$18.g$setter(tmp$19 = ADD$operator(tmp$18.g$getter(), lightColor.g$getter())) , tmp$19);
-            tmp$20 = this._pointLights$ThreeD85b351$$getter_() , (tmp$20.b$setter(tmp$21 = ADD$operator(tmp$20.b$getter(), lightColor.b$getter())) , tmp$21);
+          if (!!(tmp$15 = light , tmp$15 != null && tmp$15.$implements$ThreeD88754a$PointLight$Dart)) {
+            tmp$16 = this._pointLights$ThreeD88754a$$getter_() , (tmp$16.r$setter(tmp$17 = ADD$operator(tmp$16.r$getter(), lightColor.r$getter())) , tmp$17);
+            tmp$18 = this._pointLights$ThreeD88754a$$getter_() , (tmp$18.g$setter(tmp$19 = ADD$operator(tmp$18.g$getter(), lightColor.g$getter())) , tmp$19);
+            tmp$20 = this._pointLights$ThreeD88754a$$getter_() , (tmp$20.b$setter(tmp$21 = ADD$operator(tmp$20.b$getter(), lightColor.b$getter())) , tmp$21);
           }
         }
       }
@@ -75653,7 +75653,7 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.calculateLights$member = function(lig
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.calculateLight$member = function(lights, position, normal, color){
+ThreeD88754a$CanvasRenderer$Dart.prototype.calculateLight$member = function(lights, position, normal, color){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var l = $Dart$Null;
   var ll = $Dart$Null;
@@ -75667,7 +75667,7 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.calculateLight$member = function(ligh
     for (; LT$operator(l, ll); tmp$0 = l , (l = ADD$operator(tmp$0, 1) , tmp$0)) {
       light = lights.INDEX$operator(l);
       lightColor = light.color$getter();
-      if (!!(tmp$1 = light , tmp$1 != null && tmp$1.$implements$ThreeD85b351$DirectionalLight$Dart)) {
+      if (!!(tmp$1 = light , tmp$1 != null && tmp$1.$implements$ThreeD88754a$DirectionalLight$Dart)) {
         var dLight = light;
         lightPosition = light.matrixWorld$getter().getPosition$named(0, $noargs);
         amount = normal.dot$named(1, $noargs, lightPosition);
@@ -75680,10 +75680,10 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.calculateLight$member = function(ligh
         tmp$6 = color , (tmp$6.b$setter(tmp$7 = ADD$operator(tmp$6.b$getter(), MUL$operator(lightColor.b$getter(), amount))) , tmp$7);
       }
        else {
-        if (!!(tmp$8 = light , tmp$8 != null && tmp$8.$implements$ThreeD85b351$PointLight$Dart)) {
+        if (!!(tmp$8 = light , tmp$8 != null && tmp$8.$implements$ThreeD88754a$PointLight$Dart)) {
           var pLight = light;
           lightPosition = light.matrixWorld$getter().getPosition$named(0, $noargs);
-          amount = normal.dot$named(1, $noargs, this._vector3$ThreeD85b351$$getter_().sub$named(2, $noargs, lightPosition, position).normalize$named(0, $noargs));
+          amount = normal.dot$named(1, $noargs, this._vector3$ThreeD88754a$$getter_().sub$named(2, $noargs, lightPosition, position).normalize$named(0, $noargs));
           if (LTE$operator(amount, 0)) {
             continue;
           }
@@ -75701,7 +75701,7 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.calculateLight$member = function(ligh
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.renderParticle$member = function(v1, element, material, scene){
+ThreeD88754a$CanvasRenderer$Dart.prototype.renderParticle$member = function(v1, element, material, scene){
   var tmp$1, tmp$0;
   this.setOpacity$member(material.opacity$getter());
   this.setBlending$member(material.blending$getter());
@@ -75712,102 +75712,102 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.renderParticle$member = function(v1, 
   var bitmapWidth = $Dart$Null;
   var bitmapHeight = $Dart$Null;
   var bitmap = $Dart$Null;
-  if (!!(tmp$0 = material , tmp$0 != null && tmp$0.$implements$ThreeD85b351$ParticleBasicMaterial$Dart)) {
+  if (!!(tmp$0 = material , tmp$0 != null && tmp$0.$implements$ThreeD88754a$ParticleBasicMaterial$Dart)) {
     if (material.map$getter()) {
       bitmap = material.map$getter().image$getter();
       bitmapWidth = SAR$operator(bitmap.width$getter(), 1);
       bitmapHeight = SAR$operator(bitmap.height$getter(), 1);
-      scaleX = MUL$operator(element.scale$getter().x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_());
-      scaleY = MUL$operator(element.scale$getter().y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_());
+      scaleX = MUL$operator(element.scale$getter().x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_());
+      scaleY = MUL$operator(element.scale$getter().y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_());
       width = MUL$operator(scaleX, bitmapWidth);
       height = MUL$operator(scaleY, bitmapHeight);
-      this._bboxRect$ThreeD85b351$$getter_().setValues$named(4, $noargs, SUB$operator(v1.x$getter(), width), SUB$operator(v1.y$getter(), height), ADD$operator(v1.x$getter(), width), ADD$operator(v1.y$getter(), height));
-      if (!this._clipRect$ThreeD85b351$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD85b351$$getter_())) {
+      this._bboxRect$ThreeD88754a$$getter_().setValues$named(4, $noargs, SUB$operator(v1.x$getter(), width), SUB$operator(v1.y$getter(), height), ADD$operator(v1.x$getter(), width), ADD$operator(v1.y$getter(), height));
+      if (!this._clipRect$ThreeD88754a$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD88754a$$getter_())) {
         return;
       }
-      this._context$ThreeD85b351$$getter_().save$named(0, $noargs);
-      this._context$ThreeD85b351$$getter_().translate$named(2, $noargs, v1.x$getter(), v1.y$getter());
-      this._context$ThreeD85b351$$getter_().rotate$named(1, $noargs, negate$operator(element.rotation$getter()));
-      this._context$ThreeD85b351$$getter_().scale$named(2, $noargs, scaleX, negate$operator(scaleY));
-      this._context$ThreeD85b351$$getter_().translate$named(2, $noargs, negate$operator(bitmapWidth), negate$operator(bitmapHeight));
-      this._context$ThreeD85b351$$getter_().drawImage$named(3, $noargs, bitmap, 0, 0);
-      this._context$ThreeD85b351$$getter_().restore$named(0, $noargs);
+      this._context$ThreeD88754a$$getter_().save$named(0, $noargs);
+      this._context$ThreeD88754a$$getter_().translate$named(2, $noargs, v1.x$getter(), v1.y$getter());
+      this._context$ThreeD88754a$$getter_().rotate$named(1, $noargs, negate$operator(element.rotation$getter()));
+      this._context$ThreeD88754a$$getter_().scale$named(2, $noargs, scaleX, negate$operator(scaleY));
+      this._context$ThreeD88754a$$getter_().translate$named(2, $noargs, negate$operator(bitmapWidth), negate$operator(bitmapHeight));
+      this._context$ThreeD88754a$$getter_().drawImage$named(3, $noargs, bitmap, 0, 0);
+      this._context$ThreeD88754a$$getter_().restore$named(0, $noargs);
     }
   }
    else {
-    if (!!(tmp$1 = material , tmp$1 != null && tmp$1.$implements$ThreeD85b351$ParticleCanvasMaterial$Dart)) {
-      width = MUL$operator(element.scale$getter().x$getter(), this._canvasWidthHalf$ThreeD85b351$$getter_());
-      height = MUL$operator(element.scale$getter().y$getter(), this._canvasHeightHalf$ThreeD85b351$$getter_());
-      this._bboxRect$ThreeD85b351$$getter_().setValues$named(4, $noargs, SUB$operator(v1.x$getter(), width), SUB$operator(v1.y$getter(), height), ADD$operator(v1.x$getter(), width), ADD$operator(v1.y$getter(), height));
-      if (!this._clipRect$ThreeD85b351$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD85b351$$getter_())) {
+    if (!!(tmp$1 = material , tmp$1 != null && tmp$1.$implements$ThreeD88754a$ParticleCanvasMaterial$Dart)) {
+      width = MUL$operator(element.scale$getter().x$getter(), this._canvasWidthHalf$ThreeD88754a$$getter_());
+      height = MUL$operator(element.scale$getter().y$getter(), this._canvasHeightHalf$ThreeD88754a$$getter_());
+      this._bboxRect$ThreeD88754a$$getter_().setValues$named(4, $noargs, SUB$operator(v1.x$getter(), width), SUB$operator(v1.y$getter(), height), ADD$operator(v1.x$getter(), width), ADD$operator(v1.y$getter(), height));
+      if (!this._clipRect$ThreeD88754a$$getter_().intersects$named(1, $noargs, this._bboxRect$ThreeD88754a$$getter_())) {
         return;
       }
       this.setStrokeStyle$member(material.color$getter().getContextStyle$named(0, $noargs));
       this.setFillStyle$member(material.color$getter().getContextStyle$named(0, $noargs));
-      this._context$ThreeD85b351$$getter_().save$named(0, $noargs);
-      this._context$ThreeD85b351$$getter_().translate$named(2, $noargs, v1.x$getter(), v1.y$getter());
-      this._context$ThreeD85b351$$getter_().rotate$named(1, $noargs, negate$operator(element.rotation$getter()));
-      this._context$ThreeD85b351$$getter_().scale$named(2, $noargs, width, height);
-      material.program$named(1, $noargs, this._context$ThreeD85b351$$getter_());
-      this._context$ThreeD85b351$$getter_().restore$named(0, $noargs);
+      this._context$ThreeD88754a$$getter_().save$named(0, $noargs);
+      this._context$ThreeD88754a$$getter_().translate$named(2, $noargs, v1.x$getter(), v1.y$getter());
+      this._context$ThreeD88754a$$getter_().rotate$named(1, $noargs, negate$operator(element.rotation$getter()));
+      this._context$ThreeD88754a$$getter_().scale$named(2, $noargs, width, height);
+      material.program$named(1, $noargs, this._context$ThreeD88754a$$getter_());
+      this._context$ThreeD88754a$$getter_().restore$named(0, $noargs);
     }
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.renderLine$member = function(v1, v2, element, material, scene){
+ThreeD88754a$CanvasRenderer$Dart.prototype.renderLine$member = function(v1, v2, element, material, scene){
   var tmp$0;
   this.setOpacity$member(material.opacity$getter());
   this.setBlending$member(material.blending$getter());
-  this._context$ThreeD85b351$$getter_().beginPath$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().moveTo$named(2, $noargs, v1.positionScreen$getter().x$getter(), v1.positionScreen$getter().y$getter());
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, v2.positionScreen$getter().x$getter(), v2.positionScreen$getter().y$getter());
-  this._context$ThreeD85b351$$getter_().closePath$named(0, $noargs);
-  if (!!(tmp$0 = material , tmp$0 != null && tmp$0.$implements$ThreeD85b351$LineBasicMaterial$Dart)) {
+  this._context$ThreeD88754a$$getter_().beginPath$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().moveTo$named(2, $noargs, v1.positionScreen$getter().x$getter(), v1.positionScreen$getter().y$getter());
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, v2.positionScreen$getter().x$getter(), v2.positionScreen$getter().y$getter());
+  this._context$ThreeD88754a$$getter_().closePath$named(0, $noargs);
+  if (!!(tmp$0 = material , tmp$0 != null && tmp$0.$implements$ThreeD88754a$LineBasicMaterial$Dart)) {
     var lbMaterial = material;
     this.setLineWidth$member(lbMaterial.linewidth$getter());
     this.setLineCap$member(lbMaterial.linecap$getter());
     this.setLineJoin$member(lbMaterial.linejoin$getter());
     this.setStrokeStyle$member(lbMaterial.color$getter().getContextStyle$named(0, $noargs));
-    this._context$ThreeD85b351$$getter_().stroke$named(0, $noargs);
-    this._bboxRect$ThreeD85b351$$getter_().inflate$named(1, $noargs, MUL$operator(lbMaterial.linewidth$getter(), 2));
+    this._context$ThreeD88754a$$getter_().stroke$named(0, $noargs);
+    this._bboxRect$ThreeD88754a$$getter_().inflate$named(1, $noargs, MUL$operator(lbMaterial.linewidth$getter(), 2));
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.renderFace3$member = function(v1, v2, v3, uv1, uv2, uv3, element, material, scene){
+ThreeD88754a$CanvasRenderer$Dart.prototype.renderFace3$member = function(v1, v2, v3, uv1, uv2, uv3, element, material, scene){
   var tmp$48, tmp$47, tmp$49, tmp$9, tmp$43, tmp$44, tmp$45, tmp$46, tmp$5, tmp$6, tmp$40, tmp$7, tmp$41, tmp$8, tmp$42, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$39, tmp$38, tmp$37, tmp$36, tmp$71, tmp$34, tmp$70, tmp$35, tmp$32, tmp$33, tmp$30, tmp$31, tmp$73, tmp$72, tmp$20, tmp$69, tmp$24, tmp$23, tmp$22, tmp$21, tmp$61, tmp$27, tmp$62, tmp$28, tmp$63, tmp$25, tmp$64, tmp$26, tmp$65, tmp$66, tmp$67, tmp$29, tmp$68, tmp$60, tmp$59, tmp$58, tmp$11, tmp$10, tmp$13, tmp$12, tmp$52, tmp$14, tmp$53, tmp$15, tmp$50, tmp$16, tmp$51, tmp$17, tmp$56, tmp$18, tmp$57, tmp$19, tmp$54, tmp$55;
-  tmp$0 = this._info$ThreeD85b351$$getter_().INDEX$operator('render') , (tmp$1 = 'vertices' , (tmp$0.ASSIGN_INDEX$operator(tmp$1, tmp$2 = ADD$operator(tmp$0.INDEX$operator(tmp$1), 3)) , tmp$2));
-  tmp$3 = this._info$ThreeD85b351$$getter_().INDEX$operator('render') , (tmp$4 = 'faces' , (tmp$5 = tmp$3.INDEX$operator(tmp$4) , (tmp$3.ASSIGN_INDEX$operator(tmp$4, tmp$6 = ADD$operator(tmp$5, 1)) , tmp$6 , tmp$5)));
+  tmp$0 = this._info$ThreeD88754a$$getter_().INDEX$operator('render') , (tmp$1 = 'vertices' , (tmp$0.ASSIGN_INDEX$operator(tmp$1, tmp$2 = ADD$operator(tmp$0.INDEX$operator(tmp$1), 3)) , tmp$2));
+  tmp$3 = this._info$ThreeD88754a$$getter_().INDEX$operator('render') , (tmp$4 = 'faces' , (tmp$5 = tmp$3.INDEX$operator(tmp$4) , (tmp$3.ASSIGN_INDEX$operator(tmp$4, tmp$6 = ADD$operator(tmp$5, 1)) , tmp$6 , tmp$5)));
   this.setOpacity$member(material.opacity$getter());
   this.setBlending$member(material.blending$getter());
-  this._v1x$ThreeD85b351$$setter_(tmp$7 = v1.positionScreen$getter().x$getter()) , tmp$7;
-  this._v1y$ThreeD85b351$$setter_(tmp$8 = v1.positionScreen$getter().y$getter()) , tmp$8;
-  this._v2x$ThreeD85b351$$setter_(tmp$9 = v2.positionScreen$getter().x$getter()) , tmp$9;
-  this._v2y$ThreeD85b351$$setter_(tmp$10 = v2.positionScreen$getter().y$getter()) , tmp$10;
-  this._v3x$ThreeD85b351$$setter_(tmp$11 = v3.positionScreen$getter().x$getter()) , tmp$11;
-  this._v3y$ThreeD85b351$$setter_(tmp$12 = v3.positionScreen$getter().y$getter()) , tmp$12;
-  this.drawTriangle$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_());
-  if (!!(tmp$13 = material , tmp$13 != null && tmp$13.$implements$ThreeD85b351$MeshBasicMaterial$Dart)) {
+  this._v1x$ThreeD88754a$$setter_(tmp$7 = v1.positionScreen$getter().x$getter()) , tmp$7;
+  this._v1y$ThreeD88754a$$setter_(tmp$8 = v1.positionScreen$getter().y$getter()) , tmp$8;
+  this._v2x$ThreeD88754a$$setter_(tmp$9 = v2.positionScreen$getter().x$getter()) , tmp$9;
+  this._v2y$ThreeD88754a$$setter_(tmp$10 = v2.positionScreen$getter().y$getter()) , tmp$10;
+  this._v3x$ThreeD88754a$$setter_(tmp$11 = v3.positionScreen$getter().x$getter()) , tmp$11;
+  this._v3y$ThreeD88754a$$setter_(tmp$12 = v3.positionScreen$getter().y$getter()) , tmp$12;
+  this.drawTriangle$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_());
+  if (!!(tmp$13 = material , tmp$13 != null && tmp$13.$implements$ThreeD88754a$MeshBasicMaterial$Dart)) {
     var mbMaterial = material;
     if (NE$operator(mbMaterial.map$getter(), $Dart$Null)) {
-      if (!!(tmp$14 = mbMaterial.map$getter().mapping$getter() , tmp$14 != null && tmp$14.$implements$ThreeD85b351$UVMapping$Dart)) {
-        this._uvs$ThreeD85b351$$setter_(tmp$15 = element.uvs$getter().INDEX$operator(0)) , tmp$15;
-        this.patternPath$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv1).u$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv1).v$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv2).u$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv2).v$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv3).u$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv3).v$getter(), mbMaterial.map$getter());
+      if (!!(tmp$14 = mbMaterial.map$getter().mapping$getter() , tmp$14 != null && tmp$14.$implements$ThreeD88754a$UVMapping$Dart)) {
+        this._uvs$ThreeD88754a$$setter_(tmp$15 = element.uvs$getter().INDEX$operator(0)) , tmp$15;
+        this.patternPath$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv1).u$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv1).v$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv2).u$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv2).v$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv3).u$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv3).v$getter(), mbMaterial.map$getter());
       }
     }
      else {
       if (mbMaterial.envMap$getter()) {
-        if (!!(tmp$16 = mbMaterial.envMap$getter().mapping$getter() , tmp$16 != null && tmp$16.$implements$ThreeD85b351$SphericalReflectionMapping$Dart)) {
-          var cameraMatrix = this._camera$ThreeD85b351$$getter_().matrixWorldInverse$getter();
-          this._vector3$ThreeD85b351$$getter_().copy$named(1, $noargs, element.vertexNormalsWorld$getter().INDEX$operator(uv1));
-          this._uv1x$ThreeD85b351$$setter_(tmp$17 = ADD$operator(MUL$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD85b351$$getter_().x$getter(), cameraMatrix.n11$getter()), MUL$operator(this._vector3$ThreeD85b351$$getter_().y$getter(), cameraMatrix.n12$getter())), MUL$operator(this._vector3$ThreeD85b351$$getter_().z$getter(), cameraMatrix.n13$getter())), 0.5), 0.5)) , tmp$17;
-          this._uv1y$ThreeD85b351$$setter_(tmp$18 = ADD$operator(MUL$operator(negate$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD85b351$$getter_().x$getter(), cameraMatrix.n21$getter()), MUL$operator(this._vector3$ThreeD85b351$$getter_().y$getter(), cameraMatrix.n22$getter())), MUL$operator(this._vector3$ThreeD85b351$$getter_().z$getter(), cameraMatrix.n23$getter()))), 0.5), 0.5)) , tmp$18;
-          this._vector3$ThreeD85b351$$getter_().copy$named(1, $noargs, element.vertexNormalsWorld$getter().INDEX$operator(uv2));
-          this._uv2x$ThreeD85b351$$setter_(tmp$19 = ADD$operator(MUL$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD85b351$$getter_().x$getter(), cameraMatrix.n11$getter()), MUL$operator(this._vector3$ThreeD85b351$$getter_().y$getter(), cameraMatrix.n12$getter())), MUL$operator(this._vector3$ThreeD85b351$$getter_().z$getter(), cameraMatrix.n13$getter())), 0.5), 0.5)) , tmp$19;
-          this._uv2y$ThreeD85b351$$setter_(tmp$20 = ADD$operator(MUL$operator(negate$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD85b351$$getter_().x$getter(), cameraMatrix.n21$getter()), MUL$operator(this._vector3$ThreeD85b351$$getter_().y$getter(), cameraMatrix.n22$getter())), MUL$operator(this._vector3$ThreeD85b351$$getter_().z$getter(), cameraMatrix.n23$getter()))), 0.5), 0.5)) , tmp$20;
-          this._vector3$ThreeD85b351$$getter_().copy$named(1, $noargs, element.vertexNormalsWorld$getter().INDEX$operator(uv3));
-          this._uv3x$ThreeD85b351$$setter_(tmp$21 = ADD$operator(MUL$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD85b351$$getter_().x$getter(), cameraMatrix.n11$getter()), MUL$operator(this._vector3$ThreeD85b351$$getter_().y$getter(), cameraMatrix.n12$getter())), MUL$operator(this._vector3$ThreeD85b351$$getter_().z$getter(), cameraMatrix.n13$getter())), 0.5), 0.5)) , tmp$21;
-          this._uv3y$ThreeD85b351$$setter_(tmp$22 = ADD$operator(MUL$operator(negate$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD85b351$$getter_().x$getter(), cameraMatrix.n21$getter()), MUL$operator(this._vector3$ThreeD85b351$$getter_().y$getter(), cameraMatrix.n22$getter())), MUL$operator(this._vector3$ThreeD85b351$$getter_().z$getter(), cameraMatrix.n23$getter()))), 0.5), 0.5)) , tmp$22;
-          this.patternPath$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._uv1x$ThreeD85b351$$getter_(), this._uv1y$ThreeD85b351$$getter_(), this._uv2x$ThreeD85b351$$getter_(), this._uv2y$ThreeD85b351$$getter_(), this._uv3x$ThreeD85b351$$getter_(), this._uv3y$ThreeD85b351$$getter_(), mbMaterial.envMap$getter());
+        if (!!(tmp$16 = mbMaterial.envMap$getter().mapping$getter() , tmp$16 != null && tmp$16.$implements$ThreeD88754a$SphericalReflectionMapping$Dart)) {
+          var cameraMatrix = this._camera$ThreeD88754a$$getter_().matrixWorldInverse$getter();
+          this._vector3$ThreeD88754a$$getter_().copy$named(1, $noargs, element.vertexNormalsWorld$getter().INDEX$operator(uv1));
+          this._uv1x$ThreeD88754a$$setter_(tmp$17 = ADD$operator(MUL$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD88754a$$getter_().x$getter(), cameraMatrix.n11$getter()), MUL$operator(this._vector3$ThreeD88754a$$getter_().y$getter(), cameraMatrix.n12$getter())), MUL$operator(this._vector3$ThreeD88754a$$getter_().z$getter(), cameraMatrix.n13$getter())), 0.5), 0.5)) , tmp$17;
+          this._uv1y$ThreeD88754a$$setter_(tmp$18 = ADD$operator(MUL$operator(negate$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD88754a$$getter_().x$getter(), cameraMatrix.n21$getter()), MUL$operator(this._vector3$ThreeD88754a$$getter_().y$getter(), cameraMatrix.n22$getter())), MUL$operator(this._vector3$ThreeD88754a$$getter_().z$getter(), cameraMatrix.n23$getter()))), 0.5), 0.5)) , tmp$18;
+          this._vector3$ThreeD88754a$$getter_().copy$named(1, $noargs, element.vertexNormalsWorld$getter().INDEX$operator(uv2));
+          this._uv2x$ThreeD88754a$$setter_(tmp$19 = ADD$operator(MUL$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD88754a$$getter_().x$getter(), cameraMatrix.n11$getter()), MUL$operator(this._vector3$ThreeD88754a$$getter_().y$getter(), cameraMatrix.n12$getter())), MUL$operator(this._vector3$ThreeD88754a$$getter_().z$getter(), cameraMatrix.n13$getter())), 0.5), 0.5)) , tmp$19;
+          this._uv2y$ThreeD88754a$$setter_(tmp$20 = ADD$operator(MUL$operator(negate$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD88754a$$getter_().x$getter(), cameraMatrix.n21$getter()), MUL$operator(this._vector3$ThreeD88754a$$getter_().y$getter(), cameraMatrix.n22$getter())), MUL$operator(this._vector3$ThreeD88754a$$getter_().z$getter(), cameraMatrix.n23$getter()))), 0.5), 0.5)) , tmp$20;
+          this._vector3$ThreeD88754a$$getter_().copy$named(1, $noargs, element.vertexNormalsWorld$getter().INDEX$operator(uv3));
+          this._uv3x$ThreeD88754a$$setter_(tmp$21 = ADD$operator(MUL$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD88754a$$getter_().x$getter(), cameraMatrix.n11$getter()), MUL$operator(this._vector3$ThreeD88754a$$getter_().y$getter(), cameraMatrix.n12$getter())), MUL$operator(this._vector3$ThreeD88754a$$getter_().z$getter(), cameraMatrix.n13$getter())), 0.5), 0.5)) , tmp$21;
+          this._uv3y$ThreeD88754a$$setter_(tmp$22 = ADD$operator(MUL$operator(negate$operator(ADD$operator(ADD$operator(MUL$operator(this._vector3$ThreeD88754a$$getter_().x$getter(), cameraMatrix.n21$getter()), MUL$operator(this._vector3$ThreeD88754a$$getter_().y$getter(), cameraMatrix.n22$getter())), MUL$operator(this._vector3$ThreeD88754a$$getter_().z$getter(), cameraMatrix.n23$getter()))), 0.5), 0.5)) , tmp$22;
+          this.patternPath$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._uv1x$ThreeD88754a$$getter_(), this._uv1y$ThreeD88754a$$getter_(), this._uv2x$ThreeD88754a$$getter_(), this._uv2y$ThreeD88754a$$getter_(), this._uv3x$ThreeD88754a$$getter_(), this._uv3y$ThreeD88754a$$getter_(), mbMaterial.envMap$getter());
         }
       }
        else {
@@ -75816,47 +75816,47 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.renderFace3$member = function(v1, v2,
     }
   }
    else {
-    if (!!(tmp$23 = material , tmp$23 != null && tmp$23.$implements$ThreeD85b351$MeshLambertMaterial$Dart)) {
+    if (!!(tmp$23 = material , tmp$23 != null && tmp$23.$implements$ThreeD88754a$MeshLambertMaterial$Dart)) {
       var mlMaterial = material;
       if (NE$operator(mlMaterial.map$getter(), $Dart$Null) && !mlMaterial.wireframe$getter()) {
-        if (!!(tmp$24 = mlMaterial.map$getter().mapping$getter() , tmp$24 != null && tmp$24.$implements$ThreeD85b351$UVMapping$Dart)) {
-          this._uvs$ThreeD85b351$$setter_(tmp$25 = element.uvs$getter().INDEX$operator(0)) , tmp$25;
-          this.patternPath$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv1).u$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv1).v$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv2).u$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv2).v$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv3).u$getter(), this._uvs$ThreeD85b351$$getter_().INDEX$operator(uv3).v$getter(), mlMaterial.map$getter());
+        if (!!(tmp$24 = mlMaterial.map$getter().mapping$getter() , tmp$24 != null && tmp$24.$implements$ThreeD88754a$UVMapping$Dart)) {
+          this._uvs$ThreeD88754a$$setter_(tmp$25 = element.uvs$getter().INDEX$operator(0)) , tmp$25;
+          this.patternPath$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv1).u$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv1).v$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv2).u$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv2).v$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv3).u$getter(), this._uvs$ThreeD88754a$$getter_().INDEX$operator(uv3).v$getter(), mlMaterial.map$getter());
         }
-        this.setBlending$member(ThreeD85b351$Three$Dart.SubtractiveBlending$getter());
+        this.setBlending$member(ThreeD88754a$Three$Dart.SubtractiveBlending$getter());
       }
-      if (this._enableLighting$ThreeD85b351$$getter_()) {
-        if (!mlMaterial.wireframe$getter() && EQ$operator(mlMaterial.shading$getter(), ThreeD85b351$Three$Dart.SmoothShading$getter()) && EQ$operator(element.vertexNormalsWorld$getter().length$getter(), 3)) {
-          this._color1$ThreeD85b351$$getter_().r$setter(tmp$28 = (this._color2$ThreeD85b351$$getter_().r$setter(tmp$27 = (this._color3$ThreeD85b351$$getter_().r$setter(tmp$26 = this._ambientLight$ThreeD85b351$$getter_().r$getter()) , tmp$26)) , tmp$27)) , tmp$28;
-          this._color1$ThreeD85b351$$getter_().g$setter(tmp$31 = (this._color2$ThreeD85b351$$getter_().g$setter(tmp$30 = (this._color3$ThreeD85b351$$getter_().g$setter(tmp$29 = this._ambientLight$ThreeD85b351$$getter_().g$getter()) , tmp$29)) , tmp$30)) , tmp$31;
-          this._color1$ThreeD85b351$$getter_().b$setter(tmp$34 = (this._color2$ThreeD85b351$$getter_().b$setter(tmp$33 = (this._color3$ThreeD85b351$$getter_().b$setter(tmp$32 = this._ambientLight$ThreeD85b351$$getter_().b$getter()) , tmp$32)) , tmp$33)) , tmp$34;
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v1$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(0), this._color1$ThreeD85b351$$getter_());
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v2$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(1), this._color2$ThreeD85b351$$getter_());
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v3$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(2), this._color3$ThreeD85b351$$getter_());
-          this._color1$ThreeD85b351$$getter_().r$setter(tmp$35 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color1$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$35;
-          this._color1$ThreeD85b351$$getter_().g$setter(tmp$36 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color1$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$36;
-          this._color1$ThreeD85b351$$getter_().b$setter(tmp$37 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color1$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$37;
-          this._color2$ThreeD85b351$$getter_().r$setter(tmp$38 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color2$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$38;
-          this._color2$ThreeD85b351$$getter_().g$setter(tmp$39 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color2$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$39;
-          this._color2$ThreeD85b351$$getter_().b$setter(tmp$40 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color2$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$40;
-          this._color3$ThreeD85b351$$getter_().r$setter(tmp$41 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color3$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$41;
-          this._color3$ThreeD85b351$$getter_().g$setter(tmp$42 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color3$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$42;
-          this._color3$ThreeD85b351$$getter_().b$setter(tmp$43 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color3$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$43;
-          this._color4$ThreeD85b351$$getter_().r$setter(tmp$44 = MUL$operator(ADD$operator(this._color2$ThreeD85b351$$getter_().r$getter(), this._color3$ThreeD85b351$$getter_().r$getter()), 0.5)) , tmp$44;
-          this._color4$ThreeD85b351$$getter_().g$setter(tmp$45 = MUL$operator(ADD$operator(this._color2$ThreeD85b351$$getter_().g$getter(), this._color3$ThreeD85b351$$getter_().g$getter()), 0.5)) , tmp$45;
-          this._color4$ThreeD85b351$$getter_().b$setter(tmp$46 = MUL$operator(ADD$operator(this._color2$ThreeD85b351$$getter_().b$getter(), this._color3$ThreeD85b351$$getter_().b$getter()), 0.5)) , tmp$46;
-          this._image$ThreeD85b351$$setter_(tmp$47 = this.getGradientTexture$member(this._color1$ThreeD85b351$$getter_(), this._color2$ThreeD85b351$$getter_(), this._color3$ThreeD85b351$$getter_(), this._color4$ThreeD85b351$$getter_())) , tmp$47;
-          this.clipImage$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD85b351$$getter_());
+      if (this._enableLighting$ThreeD88754a$$getter_()) {
+        if (!mlMaterial.wireframe$getter() && EQ$operator(mlMaterial.shading$getter(), ThreeD88754a$Three$Dart.SmoothShading$getter()) && EQ$operator(element.vertexNormalsWorld$getter().length$getter(), 3)) {
+          this._color1$ThreeD88754a$$getter_().r$setter(tmp$28 = (this._color2$ThreeD88754a$$getter_().r$setter(tmp$27 = (this._color3$ThreeD88754a$$getter_().r$setter(tmp$26 = this._ambientLight$ThreeD88754a$$getter_().r$getter()) , tmp$26)) , tmp$27)) , tmp$28;
+          this._color1$ThreeD88754a$$getter_().g$setter(tmp$31 = (this._color2$ThreeD88754a$$getter_().g$setter(tmp$30 = (this._color3$ThreeD88754a$$getter_().g$setter(tmp$29 = this._ambientLight$ThreeD88754a$$getter_().g$getter()) , tmp$29)) , tmp$30)) , tmp$31;
+          this._color1$ThreeD88754a$$getter_().b$setter(tmp$34 = (this._color2$ThreeD88754a$$getter_().b$setter(tmp$33 = (this._color3$ThreeD88754a$$getter_().b$setter(tmp$32 = this._ambientLight$ThreeD88754a$$getter_().b$getter()) , tmp$32)) , tmp$33)) , tmp$34;
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v1$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(0), this._color1$ThreeD88754a$$getter_());
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v2$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(1), this._color2$ThreeD88754a$$getter_());
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v3$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(2), this._color3$ThreeD88754a$$getter_());
+          this._color1$ThreeD88754a$$getter_().r$setter(tmp$35 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color1$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$35;
+          this._color1$ThreeD88754a$$getter_().g$setter(tmp$36 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color1$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$36;
+          this._color1$ThreeD88754a$$getter_().b$setter(tmp$37 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color1$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$37;
+          this._color2$ThreeD88754a$$getter_().r$setter(tmp$38 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color2$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$38;
+          this._color2$ThreeD88754a$$getter_().g$setter(tmp$39 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color2$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$39;
+          this._color2$ThreeD88754a$$getter_().b$setter(tmp$40 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color2$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$40;
+          this._color3$ThreeD88754a$$getter_().r$setter(tmp$41 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color3$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$41;
+          this._color3$ThreeD88754a$$getter_().g$setter(tmp$42 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color3$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$42;
+          this._color3$ThreeD88754a$$getter_().b$setter(tmp$43 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color3$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$43;
+          this._color4$ThreeD88754a$$getter_().r$setter(tmp$44 = MUL$operator(ADD$operator(this._color2$ThreeD88754a$$getter_().r$getter(), this._color3$ThreeD88754a$$getter_().r$getter()), 0.5)) , tmp$44;
+          this._color4$ThreeD88754a$$getter_().g$setter(tmp$45 = MUL$operator(ADD$operator(this._color2$ThreeD88754a$$getter_().g$getter(), this._color3$ThreeD88754a$$getter_().g$getter()), 0.5)) , tmp$45;
+          this._color4$ThreeD88754a$$getter_().b$setter(tmp$46 = MUL$operator(ADD$operator(this._color2$ThreeD88754a$$getter_().b$getter(), this._color3$ThreeD88754a$$getter_().b$getter()), 0.5)) , tmp$46;
+          this._image$ThreeD88754a$$setter_(tmp$47 = this.getGradientTexture$member(this._color1$ThreeD88754a$$getter_(), this._color2$ThreeD88754a$$getter_(), this._color3$ThreeD88754a$$getter_(), this._color4$ThreeD88754a$$getter_())) , tmp$47;
+          this.clipImage$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD88754a$$getter_());
         }
          else {
-          this._color$ThreeD85b351$$getter_().r$setter(tmp$48 = this._ambientLight$ThreeD85b351$$getter_().r$getter()) , tmp$48;
-          this._color$ThreeD85b351$$getter_().g$setter(tmp$49 = this._ambientLight$ThreeD85b351$$getter_().g$getter()) , tmp$49;
-          this._color$ThreeD85b351$$getter_().b$setter(tmp$50 = this._ambientLight$ThreeD85b351$$getter_().b$getter()) , tmp$50;
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.centroidWorld$getter(), element.normalWorld$getter(), this._color$ThreeD85b351$$getter_());
-          this._color$ThreeD85b351$$getter_().r$setter(tmp$51 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$51;
-          this._color$ThreeD85b351$$getter_().g$setter(tmp$52 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$52;
-          this._color$ThreeD85b351$$getter_().b$setter(tmp$53 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$53;
-          mlMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD85b351$$getter_(), mlMaterial.wireframeLinewidth$getter(), mlMaterial.wireframeLinecap$getter(), mlMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD85b351$$getter_());
+          this._color$ThreeD88754a$$getter_().r$setter(tmp$48 = this._ambientLight$ThreeD88754a$$getter_().r$getter()) , tmp$48;
+          this._color$ThreeD88754a$$getter_().g$setter(tmp$49 = this._ambientLight$ThreeD88754a$$getter_().g$getter()) , tmp$49;
+          this._color$ThreeD88754a$$getter_().b$setter(tmp$50 = this._ambientLight$ThreeD88754a$$getter_().b$getter()) , tmp$50;
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.centroidWorld$getter(), element.normalWorld$getter(), this._color$ThreeD88754a$$getter_());
+          this._color$ThreeD88754a$$getter_().r$setter(tmp$51 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$51;
+          this._color$ThreeD88754a$$getter_().g$setter(tmp$52 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$52;
+          this._color$ThreeD88754a$$getter_().b$setter(tmp$53 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$53;
+          mlMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD88754a$$getter_(), mlMaterial.wireframeLinewidth$getter(), mlMaterial.wireframeLinecap$getter(), mlMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD88754a$$getter_());
         }
       }
        else {
@@ -75864,180 +75864,180 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.renderFace3$member = function(v1, v2,
       }
     }
      else {
-      if (!!(tmp$54 = material , tmp$54 != null && tmp$54.$implements$ThreeD85b351$MeshDepthMaterial$Dart)) {
-        this._near$ThreeD85b351$$setter_(tmp$55 = this._camera$ThreeD85b351$$getter_().near$getter()) , tmp$55;
-        this._far$ThreeD85b351$$setter_(tmp$56 = this._camera$ThreeD85b351$$getter_().far$getter()) , tmp$56;
-        this._color1$ThreeD85b351$$getter_().r$setter(tmp$59 = (this._color1$ThreeD85b351$$getter_().g$setter(tmp$58 = (this._color1$ThreeD85b351$$getter_().b$setter(tmp$57 = SUB$operator(1, this.smoothstep$member(v1.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$57)) , tmp$58)) , tmp$59;
-        this._color2$ThreeD85b351$$getter_().r$setter(tmp$62 = (this._color2$ThreeD85b351$$getter_().g$setter(tmp$61 = (this._color2$ThreeD85b351$$getter_().b$setter(tmp$60 = SUB$operator(1, this.smoothstep$member(v2.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$60)) , tmp$61)) , tmp$62;
-        this._color3$ThreeD85b351$$getter_().r$setter(tmp$65 = (this._color3$ThreeD85b351$$getter_().g$setter(tmp$64 = (this._color3$ThreeD85b351$$getter_().b$setter(tmp$63 = SUB$operator(1, this.smoothstep$member(v3.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$63)) , tmp$64)) , tmp$65;
-        this._color4$ThreeD85b351$$getter_().r$setter(tmp$66 = MUL$operator(ADD$operator(this._color2$ThreeD85b351$$getter_().r$getter(), this._color3$ThreeD85b351$$getter_().r$getter()), 0.5)) , tmp$66;
-        this._color4$ThreeD85b351$$getter_().g$setter(tmp$67 = MUL$operator(ADD$operator(this._color2$ThreeD85b351$$getter_().g$getter(), this._color3$ThreeD85b351$$getter_().g$getter()), 0.5)) , tmp$67;
-        this._color4$ThreeD85b351$$getter_().b$setter(tmp$68 = MUL$operator(ADD$operator(this._color2$ThreeD85b351$$getter_().b$getter(), this._color3$ThreeD85b351$$getter_().b$getter()), 0.5)) , tmp$68;
-        this._image$ThreeD85b351$$setter_(tmp$69 = this.getGradientTexture$member(this._color1$ThreeD85b351$$getter_(), this._color2$ThreeD85b351$$getter_(), this._color3$ThreeD85b351$$getter_(), this._color4$ThreeD85b351$$getter_())) , tmp$69;
-        this.clipImage$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD85b351$$getter_());
+      if (!!(tmp$54 = material , tmp$54 != null && tmp$54.$implements$ThreeD88754a$MeshDepthMaterial$Dart)) {
+        this._near$ThreeD88754a$$setter_(tmp$55 = this._camera$ThreeD88754a$$getter_().near$getter()) , tmp$55;
+        this._far$ThreeD88754a$$setter_(tmp$56 = this._camera$ThreeD88754a$$getter_().far$getter()) , tmp$56;
+        this._color1$ThreeD88754a$$getter_().r$setter(tmp$59 = (this._color1$ThreeD88754a$$getter_().g$setter(tmp$58 = (this._color1$ThreeD88754a$$getter_().b$setter(tmp$57 = SUB$operator(1, this.smoothstep$member(v1.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$57)) , tmp$58)) , tmp$59;
+        this._color2$ThreeD88754a$$getter_().r$setter(tmp$62 = (this._color2$ThreeD88754a$$getter_().g$setter(tmp$61 = (this._color2$ThreeD88754a$$getter_().b$setter(tmp$60 = SUB$operator(1, this.smoothstep$member(v2.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$60)) , tmp$61)) , tmp$62;
+        this._color3$ThreeD88754a$$getter_().r$setter(tmp$65 = (this._color3$ThreeD88754a$$getter_().g$setter(tmp$64 = (this._color3$ThreeD88754a$$getter_().b$setter(tmp$63 = SUB$operator(1, this.smoothstep$member(v3.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$63)) , tmp$64)) , tmp$65;
+        this._color4$ThreeD88754a$$getter_().r$setter(tmp$66 = MUL$operator(ADD$operator(this._color2$ThreeD88754a$$getter_().r$getter(), this._color3$ThreeD88754a$$getter_().r$getter()), 0.5)) , tmp$66;
+        this._color4$ThreeD88754a$$getter_().g$setter(tmp$67 = MUL$operator(ADD$operator(this._color2$ThreeD88754a$$getter_().g$getter(), this._color3$ThreeD88754a$$getter_().g$getter()), 0.5)) , tmp$67;
+        this._color4$ThreeD88754a$$getter_().b$setter(tmp$68 = MUL$operator(ADD$operator(this._color2$ThreeD88754a$$getter_().b$getter(), this._color3$ThreeD88754a$$getter_().b$getter()), 0.5)) , tmp$68;
+        this._image$ThreeD88754a$$setter_(tmp$69 = this.getGradientTexture$member(this._color1$ThreeD88754a$$getter_(), this._color2$ThreeD88754a$$getter_(), this._color3$ThreeD88754a$$getter_(), this._color4$ThreeD88754a$$getter_())) , tmp$69;
+        this.clipImage$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD88754a$$getter_());
       }
        else {
-        if (!!(tmp$70 = material , tmp$70 != null && tmp$70.$implements$ThreeD85b351$MeshNormalMaterial$Dart)) {
+        if (!!(tmp$70 = material , tmp$70 != null && tmp$70.$implements$ThreeD88754a$MeshNormalMaterial$Dart)) {
           var mnMaterial = material;
-          this._color$ThreeD85b351$$getter_().r$setter(tmp$71 = this.normalToComponent$member(element.normalWorld$getter().x$getter())) , tmp$71;
-          this._color$ThreeD85b351$$getter_().g$setter(tmp$72 = this.normalToComponent$member(element.normalWorld$getter().y$getter())) , tmp$72;
-          this._color$ThreeD85b351$$getter_().b$setter(tmp$73 = this.normalToComponent$member(element.normalWorld$getter().z$getter())) , tmp$73;
-          mnMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD85b351$$getter_(), mnMaterial.wireframeLinewidth$getter(), mnMaterial.wireframeLinecap$getter(), mnMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD85b351$$getter_());
+          this._color$ThreeD88754a$$getter_().r$setter(tmp$71 = this.normalToComponent$member(element.normalWorld$getter().x$getter())) , tmp$71;
+          this._color$ThreeD88754a$$getter_().g$setter(tmp$72 = this.normalToComponent$member(element.normalWorld$getter().y$getter())) , tmp$72;
+          this._color$ThreeD88754a$$getter_().b$setter(tmp$73 = this.normalToComponent$member(element.normalWorld$getter().z$getter())) , tmp$73;
+          mnMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD88754a$$getter_(), mnMaterial.wireframeLinewidth$getter(), mnMaterial.wireframeLinecap$getter(), mnMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD88754a$$getter_());
         }
       }
     }
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.renderFace4$member = function(v1, v2, v3, v4, v5, v6, element, material, scene){
+ThreeD88754a$CanvasRenderer$Dart.prototype.renderFace4$member = function(v1, v2, v3, v4, v5, v6, element, material, scene){
   var tmp$48, tmp$47, tmp$49, tmp$9, tmp$43, tmp$44, tmp$45, tmp$46, tmp$5, tmp$6, tmp$40, tmp$7, tmp$41, tmp$8, tmp$42, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0, tmp$39, tmp$38, tmp$37, tmp$36, tmp$71, tmp$34, tmp$70, tmp$35, tmp$32, tmp$33, tmp$30, tmp$31, tmp$72, tmp$20, tmp$69, tmp$24, tmp$23, tmp$22, tmp$21, tmp$61, tmp$27, tmp$62, tmp$28, tmp$63, tmp$25, tmp$64, tmp$26, tmp$65, tmp$66, tmp$67, tmp$29, tmp$68, tmp$60, tmp$59, tmp$58, tmp$11, tmp$10, tmp$13, tmp$12, tmp$52, tmp$14, tmp$53, tmp$15, tmp$50, tmp$16, tmp$51, tmp$17, tmp$56, tmp$18, tmp$57, tmp$19, tmp$54, tmp$55;
-  tmp$0 = this._info$ThreeD85b351$$getter_().INDEX$operator('render') , (tmp$1 = 'vertices' , (tmp$0.ASSIGN_INDEX$operator(tmp$1, tmp$2 = ADD$operator(tmp$0.INDEX$operator(tmp$1), 4)) , tmp$2));
-  tmp$3 = this._info$ThreeD85b351$$getter_().INDEX$operator('render') , (tmp$4 = 'faces' , (tmp$5 = tmp$3.INDEX$operator(tmp$4) , (tmp$3.ASSIGN_INDEX$operator(tmp$4, tmp$6 = ADD$operator(tmp$5, 1)) , tmp$6 , tmp$5)));
+  tmp$0 = this._info$ThreeD88754a$$getter_().INDEX$operator('render') , (tmp$1 = 'vertices' , (tmp$0.ASSIGN_INDEX$operator(tmp$1, tmp$2 = ADD$operator(tmp$0.INDEX$operator(tmp$1), 4)) , tmp$2));
+  tmp$3 = this._info$ThreeD88754a$$getter_().INDEX$operator('render') , (tmp$4 = 'faces' , (tmp$5 = tmp$3.INDEX$operator(tmp$4) , (tmp$3.ASSIGN_INDEX$operator(tmp$4, tmp$6 = ADD$operator(tmp$5, 1)) , tmp$6 , tmp$5)));
   this.setOpacity$member(material.opacity$getter());
   this.setBlending$member(material.blending$getter());
-  if (!!(tmp$7 = material , tmp$7 != null && tmp$7.$implements$ThreeD85b351$ITextureMapMaterial$Dart)) {
+  if (!!(tmp$7 = material , tmp$7 != null && tmp$7.$implements$ThreeD88754a$ITextureMapMaterial$Dart)) {
     this.renderFace3$member(v1, v2, v4, 0, 1, 3, element, material, scene);
     this.renderFace3$member(v5, v3, v6, 1, 2, 3, element, material, scene);
     return;
   }
-  this._v1x$ThreeD85b351$$setter_(tmp$8 = v1.positionScreen$getter().x$getter()) , tmp$8;
-  this._v1y$ThreeD85b351$$setter_(tmp$9 = v1.positionScreen$getter().y$getter()) , tmp$9;
-  this._v2x$ThreeD85b351$$setter_(tmp$10 = v2.positionScreen$getter().x$getter()) , tmp$10;
-  this._v2y$ThreeD85b351$$setter_(tmp$11 = v2.positionScreen$getter().y$getter()) , tmp$11;
-  this._v3x$ThreeD85b351$$setter_(tmp$12 = v3.positionScreen$getter().x$getter()) , tmp$12;
-  this._v3y$ThreeD85b351$$setter_(tmp$13 = v3.positionScreen$getter().y$getter()) , tmp$13;
-  this._v4x$ThreeD85b351$$setter_(tmp$14 = v4.positionScreen$getter().x$getter()) , tmp$14;
-  this._v4y$ThreeD85b351$$setter_(tmp$15 = v4.positionScreen$getter().y$getter()) , tmp$15;
-  this._v5x$ThreeD85b351$$setter_(tmp$16 = v5.positionScreen$getter().x$getter()) , tmp$16;
-  this._v5y$ThreeD85b351$$setter_(tmp$17 = v5.positionScreen$getter().y$getter()) , tmp$17;
-  this._v6x$ThreeD85b351$$setter_(tmp$18 = v6.positionScreen$getter().x$getter()) , tmp$18;
-  this._v6y$ThreeD85b351$$setter_(tmp$19 = v6.positionScreen$getter().y$getter()) , tmp$19;
-  if (!!(tmp$20 = material , tmp$20 != null && tmp$20.$implements$ThreeD85b351$MeshBasicMaterial$Dart)) {
+  this._v1x$ThreeD88754a$$setter_(tmp$8 = v1.positionScreen$getter().x$getter()) , tmp$8;
+  this._v1y$ThreeD88754a$$setter_(tmp$9 = v1.positionScreen$getter().y$getter()) , tmp$9;
+  this._v2x$ThreeD88754a$$setter_(tmp$10 = v2.positionScreen$getter().x$getter()) , tmp$10;
+  this._v2y$ThreeD88754a$$setter_(tmp$11 = v2.positionScreen$getter().y$getter()) , tmp$11;
+  this._v3x$ThreeD88754a$$setter_(tmp$12 = v3.positionScreen$getter().x$getter()) , tmp$12;
+  this._v3y$ThreeD88754a$$setter_(tmp$13 = v3.positionScreen$getter().y$getter()) , tmp$13;
+  this._v4x$ThreeD88754a$$setter_(tmp$14 = v4.positionScreen$getter().x$getter()) , tmp$14;
+  this._v4y$ThreeD88754a$$setter_(tmp$15 = v4.positionScreen$getter().y$getter()) , tmp$15;
+  this._v5x$ThreeD88754a$$setter_(tmp$16 = v5.positionScreen$getter().x$getter()) , tmp$16;
+  this._v5y$ThreeD88754a$$setter_(tmp$17 = v5.positionScreen$getter().y$getter()) , tmp$17;
+  this._v6x$ThreeD88754a$$setter_(tmp$18 = v6.positionScreen$getter().x$getter()) , tmp$18;
+  this._v6y$ThreeD88754a$$setter_(tmp$19 = v6.positionScreen$getter().y$getter()) , tmp$19;
+  if (!!(tmp$20 = material , tmp$20 != null && tmp$20.$implements$ThreeD88754a$MeshBasicMaterial$Dart)) {
     var mbMaterial = material;
-    this.drawQuad$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_());
+    this.drawQuad$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_());
     mbMaterial.wireframe$getter()?this.strokePath$member(mbMaterial.color$getter(), mbMaterial.wireframeLinewidth$getter(), mbMaterial.wireframeLinecap$getter(), mbMaterial.wireframeLinejoin$getter()):this.fillPath$member(mbMaterial.color$getter());
   }
    else {
-    if (!!(tmp$21 = material , tmp$21 != null && tmp$21.$implements$ThreeD85b351$MeshLambertMaterial$Dart)) {
+    if (!!(tmp$21 = material , tmp$21 != null && tmp$21.$implements$ThreeD88754a$MeshLambertMaterial$Dart)) {
       var mlMaterial = material;
-      if (this._enableLighting$ThreeD85b351$$getter_()) {
-        if (!mlMaterial.wireframe$getter() && EQ$operator(mlMaterial.shading$getter(), ThreeD85b351$Three$Dart.SmoothShading$getter()) && EQ$operator(element.vertexNormalsWorld$getter().length$getter(), 4)) {
-          this._color1$ThreeD85b351$$getter_().r$setter(tmp$25 = (this._color2$ThreeD85b351$$getter_().r$setter(tmp$24 = (this._color3$ThreeD85b351$$getter_().r$setter(tmp$23 = (this._color4$ThreeD85b351$$getter_().r$setter(tmp$22 = this._ambientLight$ThreeD85b351$$getter_().r$getter()) , tmp$22)) , tmp$23)) , tmp$24)) , tmp$25;
-          this._color1$ThreeD85b351$$getter_().g$setter(tmp$29 = (this._color2$ThreeD85b351$$getter_().g$setter(tmp$28 = (this._color3$ThreeD85b351$$getter_().g$setter(tmp$27 = (this._color4$ThreeD85b351$$getter_().g$setter(tmp$26 = this._ambientLight$ThreeD85b351$$getter_().g$getter()) , tmp$26)) , tmp$27)) , tmp$28)) , tmp$29;
-          this._color1$ThreeD85b351$$getter_().b$setter(tmp$33 = (this._color2$ThreeD85b351$$getter_().b$setter(tmp$32 = (this._color3$ThreeD85b351$$getter_().b$setter(tmp$31 = (this._color4$ThreeD85b351$$getter_().b$setter(tmp$30 = this._ambientLight$ThreeD85b351$$getter_().b$getter()) , tmp$30)) , tmp$31)) , tmp$32)) , tmp$33;
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v1$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(0), this._color1$ThreeD85b351$$getter_());
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v2$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(1), this._color2$ThreeD85b351$$getter_());
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v4$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(3), this._color3$ThreeD85b351$$getter_());
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.v3$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(2), this._color4$ThreeD85b351$$getter_());
-          this._color1$ThreeD85b351$$getter_().r$setter(tmp$34 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color1$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$34;
-          this._color1$ThreeD85b351$$getter_().g$setter(tmp$35 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color1$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$35;
-          this._color1$ThreeD85b351$$getter_().b$setter(tmp$36 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color1$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$36;
-          this._color2$ThreeD85b351$$getter_().r$setter(tmp$37 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color2$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$37;
-          this._color2$ThreeD85b351$$getter_().g$setter(tmp$38 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color2$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$38;
-          this._color2$ThreeD85b351$$getter_().b$setter(tmp$39 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color2$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$39;
-          this._color3$ThreeD85b351$$getter_().r$setter(tmp$40 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color3$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$40;
-          this._color3$ThreeD85b351$$getter_().g$setter(tmp$41 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color3$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$41;
-          this._color3$ThreeD85b351$$getter_().b$setter(tmp$42 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color3$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$42;
-          this._color4$ThreeD85b351$$getter_().r$setter(tmp$43 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color4$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$43;
-          this._color4$ThreeD85b351$$getter_().g$setter(tmp$44 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color4$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$44;
-          this._color4$ThreeD85b351$$getter_().b$setter(tmp$45 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color4$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$45;
-          this._image$ThreeD85b351$$setter_(tmp$46 = this.getGradientTexture$member(this._color1$ThreeD85b351$$getter_(), this._color2$ThreeD85b351$$getter_(), this._color3$ThreeD85b351$$getter_(), this._color4$ThreeD85b351$$getter_())) , tmp$46;
-          this.drawTriangle$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_());
-          this.clipImage$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD85b351$$getter_());
-          this.drawTriangle$member(this._v5x$ThreeD85b351$$getter_(), this._v5y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v6x$ThreeD85b351$$getter_(), this._v6y$ThreeD85b351$$getter_());
-          this.clipImage$member(this._v5x$ThreeD85b351$$getter_(), this._v5y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v6x$ThreeD85b351$$getter_(), this._v6y$ThreeD85b351$$getter_(), 1, 0, 1, 1, 0, 1, this._image$ThreeD85b351$$getter_());
+      if (this._enableLighting$ThreeD88754a$$getter_()) {
+        if (!mlMaterial.wireframe$getter() && EQ$operator(mlMaterial.shading$getter(), ThreeD88754a$Three$Dart.SmoothShading$getter()) && EQ$operator(element.vertexNormalsWorld$getter().length$getter(), 4)) {
+          this._color1$ThreeD88754a$$getter_().r$setter(tmp$25 = (this._color2$ThreeD88754a$$getter_().r$setter(tmp$24 = (this._color3$ThreeD88754a$$getter_().r$setter(tmp$23 = (this._color4$ThreeD88754a$$getter_().r$setter(tmp$22 = this._ambientLight$ThreeD88754a$$getter_().r$getter()) , tmp$22)) , tmp$23)) , tmp$24)) , tmp$25;
+          this._color1$ThreeD88754a$$getter_().g$setter(tmp$29 = (this._color2$ThreeD88754a$$getter_().g$setter(tmp$28 = (this._color3$ThreeD88754a$$getter_().g$setter(tmp$27 = (this._color4$ThreeD88754a$$getter_().g$setter(tmp$26 = this._ambientLight$ThreeD88754a$$getter_().g$getter()) , tmp$26)) , tmp$27)) , tmp$28)) , tmp$29;
+          this._color1$ThreeD88754a$$getter_().b$setter(tmp$33 = (this._color2$ThreeD88754a$$getter_().b$setter(tmp$32 = (this._color3$ThreeD88754a$$getter_().b$setter(tmp$31 = (this._color4$ThreeD88754a$$getter_().b$setter(tmp$30 = this._ambientLight$ThreeD88754a$$getter_().b$getter()) , tmp$30)) , tmp$31)) , tmp$32)) , tmp$33;
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v1$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(0), this._color1$ThreeD88754a$$getter_());
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v2$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(1), this._color2$ThreeD88754a$$getter_());
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v4$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(3), this._color3$ThreeD88754a$$getter_());
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.v3$getter().positionWorld$getter(), element.vertexNormalsWorld$getter().INDEX$operator(2), this._color4$ThreeD88754a$$getter_());
+          this._color1$ThreeD88754a$$getter_().r$setter(tmp$34 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color1$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$34;
+          this._color1$ThreeD88754a$$getter_().g$setter(tmp$35 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color1$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$35;
+          this._color1$ThreeD88754a$$getter_().b$setter(tmp$36 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color1$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$36;
+          this._color2$ThreeD88754a$$getter_().r$setter(tmp$37 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color2$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$37;
+          this._color2$ThreeD88754a$$getter_().g$setter(tmp$38 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color2$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$38;
+          this._color2$ThreeD88754a$$getter_().b$setter(tmp$39 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color2$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$39;
+          this._color3$ThreeD88754a$$getter_().r$setter(tmp$40 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color3$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$40;
+          this._color3$ThreeD88754a$$getter_().g$setter(tmp$41 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color3$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$41;
+          this._color3$ThreeD88754a$$getter_().b$setter(tmp$42 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color3$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$42;
+          this._color4$ThreeD88754a$$getter_().r$setter(tmp$43 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color4$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$43;
+          this._color4$ThreeD88754a$$getter_().g$setter(tmp$44 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color4$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$44;
+          this._color4$ThreeD88754a$$getter_().b$setter(tmp$45 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color4$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$45;
+          this._image$ThreeD88754a$$setter_(tmp$46 = this.getGradientTexture$member(this._color1$ThreeD88754a$$getter_(), this._color2$ThreeD88754a$$getter_(), this._color3$ThreeD88754a$$getter_(), this._color4$ThreeD88754a$$getter_())) , tmp$46;
+          this.drawTriangle$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_());
+          this.clipImage$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD88754a$$getter_());
+          this.drawTriangle$member(this._v5x$ThreeD88754a$$getter_(), this._v5y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v6x$ThreeD88754a$$getter_(), this._v6y$ThreeD88754a$$getter_());
+          this.clipImage$member(this._v5x$ThreeD88754a$$getter_(), this._v5y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v6x$ThreeD88754a$$getter_(), this._v6y$ThreeD88754a$$getter_(), 1, 0, 1, 1, 0, 1, this._image$ThreeD88754a$$getter_());
         }
          else {
-          this._color$ThreeD85b351$$getter_().r$setter(tmp$47 = this._ambientLight$ThreeD85b351$$getter_().r$getter()) , tmp$47;
-          this._color$ThreeD85b351$$getter_().g$setter(tmp$48 = this._ambientLight$ThreeD85b351$$getter_().g$getter()) , tmp$48;
-          this._color$ThreeD85b351$$getter_().b$setter(tmp$49 = this._ambientLight$ThreeD85b351$$getter_().b$getter()) , tmp$49;
-          this.calculateLight$member(this._lights$ThreeD85b351$$getter_(), element.centroidWorld$getter(), element.normalWorld$getter(), this._color$ThreeD85b351$$getter_());
-          this._color$ThreeD85b351$$getter_().r$setter(tmp$50 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color$ThreeD85b351$$getter_().r$getter()), 1))) , tmp$50;
-          this._color$ThreeD85b351$$getter_().g$setter(tmp$51 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color$ThreeD85b351$$getter_().g$getter()), 1))) , tmp$51;
-          this._color$ThreeD85b351$$getter_().b$setter(tmp$52 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color$ThreeD85b351$$getter_().b$getter()), 1))) , tmp$52;
-          this.drawQuad$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_());
-          mlMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD85b351$$getter_(), mlMaterial.wireframeLinewidth$getter(), mlMaterial.wireframeLinecap$getter(), mlMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD85b351$$getter_());
+          this._color$ThreeD88754a$$getter_().r$setter(tmp$47 = this._ambientLight$ThreeD88754a$$getter_().r$getter()) , tmp$47;
+          this._color$ThreeD88754a$$getter_().g$setter(tmp$48 = this._ambientLight$ThreeD88754a$$getter_().g$getter()) , tmp$48;
+          this._color$ThreeD88754a$$getter_().b$setter(tmp$49 = this._ambientLight$ThreeD88754a$$getter_().b$getter()) , tmp$49;
+          this.calculateLight$member(this._lights$ThreeD88754a$$getter_(), element.centroidWorld$getter(), element.normalWorld$getter(), this._color$ThreeD88754a$$getter_());
+          this._color$ThreeD88754a$$getter_().r$setter(tmp$50 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().r$getter(), this._color$ThreeD88754a$$getter_().r$getter()), 1))) , tmp$50;
+          this._color$ThreeD88754a$$getter_().g$setter(tmp$51 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().g$getter(), this._color$ThreeD88754a$$getter_().g$getter()), 1))) , tmp$51;
+          this._color$ThreeD88754a$$getter_().b$setter(tmp$52 = Math$Dart.max$member(0, Math$Dart.min$member(MUL$operator(mlMaterial.color$getter().b$getter(), this._color$ThreeD88754a$$getter_().b$getter()), 1))) , tmp$52;
+          this.drawQuad$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_());
+          mlMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD88754a$$getter_(), mlMaterial.wireframeLinewidth$getter(), mlMaterial.wireframeLinecap$getter(), mlMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD88754a$$getter_());
         }
       }
        else {
-        this.drawQuad$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_());
+        this.drawQuad$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_());
         mlMaterial.wireframe$getter()?this.strokePath$member(mlMaterial.color$getter(), mlMaterial.wireframeLinewidth$getter(), mlMaterial.wireframeLinecap$getter(), mlMaterial.wireframeLinejoin$getter()):this.fillPath$member(mlMaterial.color$getter());
       }
     }
      else {
-      if (!!(tmp$53 = material , tmp$53 != null && tmp$53.$implements$ThreeD85b351$MeshNormalMaterial$Dart)) {
+      if (!!(tmp$53 = material , tmp$53 != null && tmp$53.$implements$ThreeD88754a$MeshNormalMaterial$Dart)) {
         var mnMaterial = material;
-        this._color$ThreeD85b351$$getter_().r$setter(tmp$54 = this.normalToComponent$member(element.normalWorld$getter().x$getter())) , tmp$54;
-        this._color$ThreeD85b351$$getter_().g$setter(tmp$55 = this.normalToComponent$member(element.normalWorld$getter().y$getter())) , tmp$55;
-        this._color$ThreeD85b351$$getter_().b$setter(tmp$56 = this.normalToComponent$member(element.normalWorld$getter().z$getter())) , tmp$56;
-        this.drawQuad$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_());
-        mnMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD85b351$$getter_(), mnMaterial.wireframeLinewidth$getter(), mnMaterial.wireframeLinecap$getter(), mnMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD85b351$$getter_());
+        this._color$ThreeD88754a$$getter_().r$setter(tmp$54 = this.normalToComponent$member(element.normalWorld$getter().x$getter())) , tmp$54;
+        this._color$ThreeD88754a$$getter_().g$setter(tmp$55 = this.normalToComponent$member(element.normalWorld$getter().y$getter())) , tmp$55;
+        this._color$ThreeD88754a$$getter_().b$setter(tmp$56 = this.normalToComponent$member(element.normalWorld$getter().z$getter())) , tmp$56;
+        this.drawQuad$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_());
+        mnMaterial.wireframe$getter()?this.strokePath$member(this._color$ThreeD88754a$$getter_(), mnMaterial.wireframeLinewidth$getter(), mnMaterial.wireframeLinecap$getter(), mnMaterial.wireframeLinejoin$getter()):this.fillPath$member(this._color$ThreeD88754a$$getter_());
       }
        else {
-        if (!!(tmp$57 = material , tmp$57 != null && tmp$57.$implements$ThreeD85b351$MeshDepthMaterial$Dart)) {
+        if (!!(tmp$57 = material , tmp$57 != null && tmp$57.$implements$ThreeD88754a$MeshDepthMaterial$Dart)) {
           var mdMaterial = material;
-          this._near$ThreeD85b351$$setter_(tmp$58 = this._camera$ThreeD85b351$$getter_().near$getter()) , tmp$58;
-          this._far$ThreeD85b351$$setter_(tmp$59 = this._camera$ThreeD85b351$$getter_().far$getter()) , tmp$59;
-          this._color1$ThreeD85b351$$getter_().r$setter(tmp$62 = (this._color1$ThreeD85b351$$getter_().g$setter(tmp$61 = (this._color1$ThreeD85b351$$getter_().b$setter(tmp$60 = SUB$operator(1, this.smoothstep$member(v1.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$60)) , tmp$61)) , tmp$62;
-          this._color2$ThreeD85b351$$getter_().r$setter(tmp$65 = (this._color2$ThreeD85b351$$getter_().g$setter(tmp$64 = (this._color2$ThreeD85b351$$getter_().b$setter(tmp$63 = SUB$operator(1, this.smoothstep$member(v2.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$63)) , tmp$64)) , tmp$65;
-          this._color3$ThreeD85b351$$getter_().r$setter(tmp$68 = (this._color3$ThreeD85b351$$getter_().g$setter(tmp$67 = (this._color3$ThreeD85b351$$getter_().b$setter(tmp$66 = SUB$operator(1, this.smoothstep$member(v4.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$66)) , tmp$67)) , tmp$68;
-          this._color4$ThreeD85b351$$getter_().r$setter(tmp$71 = (this._color4$ThreeD85b351$$getter_().g$setter(tmp$70 = (this._color4$ThreeD85b351$$getter_().b$setter(tmp$69 = SUB$operator(1, this.smoothstep$member(v3.positionScreen$getter().z$getter(), this._near$ThreeD85b351$$getter_(), this._far$ThreeD85b351$$getter_()))) , tmp$69)) , tmp$70)) , tmp$71;
-          this._image$ThreeD85b351$$setter_(tmp$72 = this.getGradientTexture$member(this._color1$ThreeD85b351$$getter_(), this._color2$ThreeD85b351$$getter_(), this._color3$ThreeD85b351$$getter_(), this._color4$ThreeD85b351$$getter_())) , tmp$72;
-          this.drawTriangle$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_());
-          this.clipImage$member(this._v1x$ThreeD85b351$$getter_(), this._v1y$ThreeD85b351$$getter_(), this._v2x$ThreeD85b351$$getter_(), this._v2y$ThreeD85b351$$getter_(), this._v4x$ThreeD85b351$$getter_(), this._v4y$ThreeD85b351$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD85b351$$getter_());
-          this.drawTriangle$member(this._v5x$ThreeD85b351$$getter_(), this._v5y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v6x$ThreeD85b351$$getter_(), this._v6y$ThreeD85b351$$getter_());
-          this.clipImage$member(this._v5x$ThreeD85b351$$getter_(), this._v5y$ThreeD85b351$$getter_(), this._v3x$ThreeD85b351$$getter_(), this._v3y$ThreeD85b351$$getter_(), this._v6x$ThreeD85b351$$getter_(), this._v6y$ThreeD85b351$$getter_(), 1, 0, 1, 1, 0, 1, this._image$ThreeD85b351$$getter_());
+          this._near$ThreeD88754a$$setter_(tmp$58 = this._camera$ThreeD88754a$$getter_().near$getter()) , tmp$58;
+          this._far$ThreeD88754a$$setter_(tmp$59 = this._camera$ThreeD88754a$$getter_().far$getter()) , tmp$59;
+          this._color1$ThreeD88754a$$getter_().r$setter(tmp$62 = (this._color1$ThreeD88754a$$getter_().g$setter(tmp$61 = (this._color1$ThreeD88754a$$getter_().b$setter(tmp$60 = SUB$operator(1, this.smoothstep$member(v1.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$60)) , tmp$61)) , tmp$62;
+          this._color2$ThreeD88754a$$getter_().r$setter(tmp$65 = (this._color2$ThreeD88754a$$getter_().g$setter(tmp$64 = (this._color2$ThreeD88754a$$getter_().b$setter(tmp$63 = SUB$operator(1, this.smoothstep$member(v2.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$63)) , tmp$64)) , tmp$65;
+          this._color3$ThreeD88754a$$getter_().r$setter(tmp$68 = (this._color3$ThreeD88754a$$getter_().g$setter(tmp$67 = (this._color3$ThreeD88754a$$getter_().b$setter(tmp$66 = SUB$operator(1, this.smoothstep$member(v4.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$66)) , tmp$67)) , tmp$68;
+          this._color4$ThreeD88754a$$getter_().r$setter(tmp$71 = (this._color4$ThreeD88754a$$getter_().g$setter(tmp$70 = (this._color4$ThreeD88754a$$getter_().b$setter(tmp$69 = SUB$operator(1, this.smoothstep$member(v3.positionScreen$getter().z$getter(), this._near$ThreeD88754a$$getter_(), this._far$ThreeD88754a$$getter_()))) , tmp$69)) , tmp$70)) , tmp$71;
+          this._image$ThreeD88754a$$setter_(tmp$72 = this.getGradientTexture$member(this._color1$ThreeD88754a$$getter_(), this._color2$ThreeD88754a$$getter_(), this._color3$ThreeD88754a$$getter_(), this._color4$ThreeD88754a$$getter_())) , tmp$72;
+          this.drawTriangle$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_());
+          this.clipImage$member(this._v1x$ThreeD88754a$$getter_(), this._v1y$ThreeD88754a$$getter_(), this._v2x$ThreeD88754a$$getter_(), this._v2y$ThreeD88754a$$getter_(), this._v4x$ThreeD88754a$$getter_(), this._v4y$ThreeD88754a$$getter_(), 0, 0, 1, 0, 0, 1, this._image$ThreeD88754a$$getter_());
+          this.drawTriangle$member(this._v5x$ThreeD88754a$$getter_(), this._v5y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v6x$ThreeD88754a$$getter_(), this._v6y$ThreeD88754a$$getter_());
+          this.clipImage$member(this._v5x$ThreeD88754a$$getter_(), this._v5y$ThreeD88754a$$getter_(), this._v3x$ThreeD88754a$$getter_(), this._v3y$ThreeD88754a$$getter_(), this._v6x$ThreeD88754a$$getter_(), this._v6y$ThreeD88754a$$getter_(), 1, 0, 1, 1, 0, 1, this._image$ThreeD88754a$$getter_());
         }
       }
     }
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.drawTriangle$member = function(x0, y0, x1, y1, x2, y2){
-  this._context$ThreeD85b351$$getter_().beginPath$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().moveTo$named(2, $noargs, x0, y0);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x1, y1);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x2, y2);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x0, y0);
-  this._context$ThreeD85b351$$getter_().closePath$named(0, $noargs);
+ThreeD88754a$CanvasRenderer$Dart.prototype.drawTriangle$member = function(x0, y0, x1, y1, x2, y2){
+  this._context$ThreeD88754a$$getter_().beginPath$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().moveTo$named(2, $noargs, x0, y0);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x1, y1);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x2, y2);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x0, y0);
+  this._context$ThreeD88754a$$getter_().closePath$named(0, $noargs);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.drawQuad$member = function(x0, y0, x1, y1, x2, y2, x3, y3){
-  this._context$ThreeD85b351$$getter_().beginPath$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().moveTo$named(2, $noargs, x0, y0);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x1, y1);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x2, y2);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x3, y3);
-  this._context$ThreeD85b351$$getter_().lineTo$named(2, $noargs, x0, y0);
-  this._context$ThreeD85b351$$getter_().closePath$named(0, $noargs);
+ThreeD88754a$CanvasRenderer$Dart.prototype.drawQuad$member = function(x0, y0, x1, y1, x2, y2, x3, y3){
+  this._context$ThreeD88754a$$getter_().beginPath$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().moveTo$named(2, $noargs, x0, y0);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x1, y1);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x2, y2);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x3, y3);
+  this._context$ThreeD88754a$$getter_().lineTo$named(2, $noargs, x0, y0);
+  this._context$ThreeD88754a$$getter_().closePath$named(0, $noargs);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.strokePath$member = function(color, linewidth, linecap, linejoin){
+ThreeD88754a$CanvasRenderer$Dart.prototype.strokePath$member = function(color, linewidth, linecap, linejoin){
   this.setLineWidth$member(linewidth);
   this.setLineCap$member(linecap);
   this.setLineJoin$member(linejoin);
   this.setStrokeStyle$member(color.getContextStyle$named(0, $noargs));
-  this._context$ThreeD85b351$$getter_().stroke$named(0, $noargs);
-  this._bboxRect$ThreeD85b351$$getter_().inflate$named(1, $noargs, MUL$operator(linewidth, 2));
+  this._context$ThreeD88754a$$getter_().stroke$named(0, $noargs);
+  this._bboxRect$ThreeD88754a$$getter_().inflate$named(1, $noargs, MUL$operator(linewidth, 2));
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.fillPath$member = function(color){
+ThreeD88754a$CanvasRenderer$Dart.prototype.fillPath$member = function(color){
   this.setFillStyle$member(color.getContextStyle$named(0, $noargs));
-  this._context$ThreeD85b351$$getter_().fill$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().fill$named(0, $noargs);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.patternPath$member = function(x0, y0, x1, y1, x2, y2, u0, v0, u1, v1, u2, v2, texture){
+ThreeD88754a$CanvasRenderer$Dart.prototype.patternPath$member = function(x0, y0, x1, y1, x2, y2, u0, v0, u1, v1, u2, v2, texture){
   var tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   if (EQ$operator(texture.image$getter().width$getter(), 0)) {
     return;
   }
-  if (EQ$operator(texture.needsUpdate$getter(), true) || EQ$operator(this._patterns$ThreeD85b351$$getter_().INDEX$operator(texture.id$getter()), $Dart$Null)) {
-    var repeatX = EQ$operator(texture.wrapS$getter(), ThreeD85b351$Three$Dart.RepeatWrapping$getter());
-    var repeatY = EQ$operator(texture.wrapT$getter(), ThreeD85b351$Three$Dart.RepeatWrapping$getter());
-    this._patterns$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(texture.id$getter(), tmp$0 = this._context$ThreeD85b351$$getter_().createPattern$named(2, $noargs, texture.image$getter(), repeatX && repeatY?'repeat':repeatX && !repeatY?'repeat-x':!repeatX && repeatY?'repeat-y':'no-repeat')) , tmp$0;
+  if (EQ$operator(texture.needsUpdate$getter(), true) || EQ$operator(this._patterns$ThreeD88754a$$getter_().INDEX$operator(texture.id$getter()), $Dart$Null)) {
+    var repeatX = EQ$operator(texture.wrapS$getter(), ThreeD88754a$Three$Dart.RepeatWrapping$getter());
+    var repeatY = EQ$operator(texture.wrapT$getter(), ThreeD88754a$Three$Dart.RepeatWrapping$getter());
+    this._patterns$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(texture.id$getter(), tmp$0 = this._context$ThreeD88754a$$getter_().createPattern$named(2, $noargs, texture.image$getter(), repeatX && repeatY?'repeat':repeatX && !repeatY?'repeat-x':!repeatX && repeatY?'repeat-y':'no-repeat')) , tmp$0;
     texture.needsUpdate$setter(tmp$1 = false) , tmp$1;
   }
-  this.setFillStyle$member(this._patterns$ThreeD85b351$$getter_().INDEX$operator(texture.id$getter()));
+  this.setFillStyle$member(this._patterns$ThreeD88754a$$getter_().INDEX$operator(texture.id$getter()));
   var a = $Dart$Null;
   var b = $Dart$Null;
   var c = $Dart$Null;
@@ -76066,18 +76066,18 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.patternPath$member = function(x0, y0,
   v2 = SUB$operator(v2, v0);
   det = SUB$operator(MUL$operator(u1, v2), MUL$operator(u2, v1));
   if (EQ$operator(det, 0)) {
-    if (this._imagedatas$ThreeD85b351$$getter_().INDEX$operator(texture.id$getter()) == null) {
+    if (this._imagedatas$ThreeD88754a$$getter_().INDEX$operator(texture.id$getter()) == null) {
       var canvas = htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('canvas');
       canvas.width$setter(tmp$2 = texture.image$getter().width$getter()) , tmp$2;
       canvas.height$setter(tmp$3 = texture.image$getter().height$getter()) , tmp$3;
       var context = canvas.getContext$named(1, $noargs, '2d');
       context.drawImage$named(3, $noargs, texture.image$getter(), 0, 0);
-      this._imagedatas$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(texture.id$getter(), tmp$4 = context.getImageData$named(4, $noargs, 0, 0, texture.image$getter().width$getter(), texture.image$getter().height$getter()).data$getter()) , tmp$4;
+      this._imagedatas$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(texture.id$getter(), tmp$4 = context.getImageData$named(4, $noargs, 0, 0, texture.image$getter().width$getter(), texture.image$getter().height$getter()).data$getter()) , tmp$4;
     }
-    var data = this._imagedatas$ThreeD85b351$$getter_().INDEX$operator(texture.id$getter());
+    var data = this._imagedatas$ThreeD88754a$$getter_().INDEX$operator(texture.id$getter());
     var index = MUL$operator(ADD$operator(u0.floor$named(0, $noargs), MUL$operator(v0.floor$named(0, $noargs), texture.image$getter().width$getter())), 4);
-    this._color$ThreeD85b351$$getter_().setRGB$named(3, $noargs, DIV$operator(data.INDEX$operator(index), 255), DIV$operator(data.INDEX$operator(ADD$operator(index, 1)), 255), DIV$operator(data.INDEX$operator(ADD$operator(index, 2)), 255));
-    this.fillPath$member(this._color$ThreeD85b351$$getter_());
+    this._color$ThreeD88754a$$getter_().setRGB$named(3, $noargs, DIV$operator(data.INDEX$operator(index), 255), DIV$operator(data.INDEX$operator(ADD$operator(index, 1)), 255), DIV$operator(data.INDEX$operator(ADD$operator(index, 2)), 255));
+    this.fillPath$member(this._color$ThreeD88754a$$getter_());
     return;
   }
   idet = DIV$operator(1, det);
@@ -76087,13 +76087,13 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.patternPath$member = function(x0, y0,
   d = MUL$operator(SUB$operator(MUL$operator(u1, y2), MUL$operator(u2, y1)), idet);
   e = SUB$operator(SUB$operator(x0, MUL$operator(a, u0)), MUL$operator(c, v0));
   f = SUB$operator(SUB$operator(y0, MUL$operator(b, u0)), MUL$operator(d, v0));
-  this._context$ThreeD85b351$$getter_().save$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().transform$named(6, $noargs, a, b, c, d, e, f);
-  this._context$ThreeD85b351$$getter_().fill$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().restore$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().save$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().transform$named(6, $noargs, a, b, c, d, e, f);
+  this._context$ThreeD88754a$$getter_().fill$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().restore$named(0, $noargs);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.clipImage$member = function(x0, y0, x1, y1, x2, y2, u0, v0, u1, v1, u2, v2, image){
+ThreeD88754a$CanvasRenderer$Dart.prototype.clipImage$member = function(x0, y0, x1, y1, x2, y2, u0, v0, u1, v1, u2, v2, image){
   var a = $Dart$Null;
   var b = $Dart$Null;
   var c = $Dart$Null;
@@ -76126,14 +76126,14 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.clipImage$member = function(x0, y0, x
   d = MUL$operator(SUB$operator(MUL$operator(u1, y2), MUL$operator(u2, y1)), idet);
   e = SUB$operator(SUB$operator(x0, MUL$operator(a, u0)), MUL$operator(c, v0));
   f = SUB$operator(SUB$operator(y0, MUL$operator(b, u0)), MUL$operator(d, v0));
-  this._context$ThreeD85b351$$getter_().save$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().transform$named(6, $noargs, a, b, c, d, e, f);
-  this._context$ThreeD85b351$$getter_().clip$named(0, $noargs);
-  this._context$ThreeD85b351$$getter_().drawImage$named(3, $noargs, image, 0, 0);
-  this._context$ThreeD85b351$$getter_().restore$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().save$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().transform$named(6, $noargs, a, b, c, d, e, f);
+  this._context$ThreeD88754a$$getter_().clip$named(0, $noargs);
+  this._context$ThreeD88754a$$getter_().drawImage$named(3, $noargs, image, 0, 0);
+  this._context$ThreeD88754a$$getter_().restore$named(0, $noargs);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.getGradientTexture$member = function(color1, color2, color3, color4){
+ThreeD88754a$CanvasRenderer$Dart.prototype.getGradientTexture$member = function(color1, color2, color3, color4){
   var tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$11, tmp$10, tmp$0;
   var c1r = BIT_NOT$operator(BIT_NOT$operator(MUL$operator(color1.r$getter(), 255)));
   var c1g = BIT_NOT$operator(BIT_NOT$operator(MUL$operator(color1.g$getter(), 255)));
@@ -76147,34 +76147,34 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.getGradientTexture$member = function(
   var c4r = BIT_NOT$operator(BIT_NOT$operator(MUL$operator(color4.r$getter(), 255)));
   var c4g = BIT_NOT$operator(BIT_NOT$operator(MUL$operator(color4.g$getter(), 255)));
   var c4b = BIT_NOT$operator(BIT_NOT$operator(MUL$operator(color4.b$getter(), 255)));
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(0, tmp$0 = LT$operator(c1r, 0)?0:GT$operator(c1r, 255)?255:c1r) , tmp$0;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(1, tmp$1 = LT$operator(c1g, 0)?0:GT$operator(c1g, 255)?255:c1g) , tmp$1;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(2, tmp$2 = LT$operator(c1b, 0)?0:GT$operator(c1b, 255)?255:c1b) , tmp$2;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(4, tmp$3 = LT$operator(c2r, 0)?0:GT$operator(c2r, 255)?255:c2r) , tmp$3;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(5, tmp$4 = LT$operator(c2g, 0)?0:GT$operator(c2g, 255)?255:c2g) , tmp$4;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(6, tmp$5 = LT$operator(c2b, 0)?0:GT$operator(c2b, 255)?255:c2b) , tmp$5;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(8, tmp$6 = LT$operator(c3r, 0)?0:GT$operator(c3r, 255)?255:c3r) , tmp$6;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(9, tmp$7 = LT$operator(c3g, 0)?0:GT$operator(c3g, 255)?255:c3g) , tmp$7;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(10, tmp$8 = LT$operator(c3b, 0)?0:GT$operator(c3b, 255)?255:c3b) , tmp$8;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(12, tmp$9 = LT$operator(c4r, 0)?0:GT$operator(c4r, 255)?255:c4r) , tmp$9;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(13, tmp$10 = LT$operator(c4g, 0)?0:GT$operator(c4g, 255)?255:c4g) , tmp$10;
-  this._pixelMapData$ThreeD85b351$$getter_().ASSIGN_INDEX$operator(14, tmp$11 = LT$operator(c4b, 0)?0:GT$operator(c4b, 255)?255:c4b) , tmp$11;
-  this._pixelMapContext$ThreeD85b351$$getter_().putImageData$named(3, $noargs, this._pixelMapImage$ThreeD85b351$$getter_(), 0, 0);
-  this._gradientMapContext$ThreeD85b351$$getter_().drawImage$named(3, $noargs, this._pixelMap$ThreeD85b351$$getter_(), 0, 0);
-  return this._gradientMap$ThreeD85b351$$getter_();
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(0, tmp$0 = LT$operator(c1r, 0)?0:GT$operator(c1r, 255)?255:c1r) , tmp$0;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(1, tmp$1 = LT$operator(c1g, 0)?0:GT$operator(c1g, 255)?255:c1g) , tmp$1;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(2, tmp$2 = LT$operator(c1b, 0)?0:GT$operator(c1b, 255)?255:c1b) , tmp$2;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(4, tmp$3 = LT$operator(c2r, 0)?0:GT$operator(c2r, 255)?255:c2r) , tmp$3;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(5, tmp$4 = LT$operator(c2g, 0)?0:GT$operator(c2g, 255)?255:c2g) , tmp$4;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(6, tmp$5 = LT$operator(c2b, 0)?0:GT$operator(c2b, 255)?255:c2b) , tmp$5;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(8, tmp$6 = LT$operator(c3r, 0)?0:GT$operator(c3r, 255)?255:c3r) , tmp$6;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(9, tmp$7 = LT$operator(c3g, 0)?0:GT$operator(c3g, 255)?255:c3g) , tmp$7;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(10, tmp$8 = LT$operator(c3b, 0)?0:GT$operator(c3b, 255)?255:c3b) , tmp$8;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(12, tmp$9 = LT$operator(c4r, 0)?0:GT$operator(c4r, 255)?255:c4r) , tmp$9;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(13, tmp$10 = LT$operator(c4g, 0)?0:GT$operator(c4g, 255)?255:c4g) , tmp$10;
+  this._pixelMapData$ThreeD88754a$$getter_().ASSIGN_INDEX$operator(14, tmp$11 = LT$operator(c4b, 0)?0:GT$operator(c4b, 255)?255:c4b) , tmp$11;
+  this._pixelMapContext$ThreeD88754a$$getter_().putImageData$named(3, $noargs, this._pixelMapImage$ThreeD88754a$$getter_(), 0, 0);
+  this._gradientMapContext$ThreeD88754a$$getter_().drawImage$named(3, $noargs, this._pixelMap$ThreeD88754a$$getter_(), 0, 0);
+  return this._gradientMap$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.smoothstep$member = function(value, min, max){
+ThreeD88754a$CanvasRenderer$Dart.prototype.smoothstep$member = function(value, min, max){
   var x = DIV$operator(SUB$operator(value, min), SUB$operator(max, min));
   return MUL$operator(MUL$operator(x, x), SUB$operator(3, MUL$operator(2, x)));
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.normalToComponent$member = function(normal){
+ThreeD88754a$CanvasRenderer$Dart.prototype.normalToComponent$member = function(normal){
   var component = MUL$operator(ADD$operator(normal, 1), 0.5);
   return LT$operator(component, 0)?0:GT$operator(component, 1)?1:component;
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.expand$member = function(v1, v2){
+ThreeD88754a$CanvasRenderer$Dart.prototype.expand$member = function(v1, v2){
   var tmp$5, tmp$6, tmp$7, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   var x = SUB$operator(v2.x$getter(), v1.x$getter());
   var y = SUB$operator(v2.y$getter(), v1.y$getter());
@@ -76192,543 +76192,543 @@ ThreeD85b351$CanvasRenderer$Dart.prototype.expand$member = function(v1, v2){
   tmp$6 = v1 , (tmp$6.y$setter(tmp$7 = SUB$operator(tmp$6.y$getter(), y)) , tmp$7);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setOpacity$member = function(value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setOpacity$member = function(value){
   var tmp$1, tmp$0;
-  if (NE$operator(this._contextGlobalAlpha$ThreeD85b351$$getter_(), value)) {
-    this._context$ThreeD85b351$$getter_().globalAlpha$setter(tmp$1 = (this._contextGlobalAlpha$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
+  if (NE$operator(this._contextGlobalAlpha$ThreeD88754a$$getter_(), value)) {
+    this._context$ThreeD88754a$$getter_().globalAlpha$setter(tmp$1 = (this._contextGlobalAlpha$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setBlending$member = function(value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setBlending$member = function(value){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  if (NE$operator(this._contextGlobalCompositeOperation$ThreeD85b351$$getter_(), value)) {
+  if (NE$operator(this._contextGlobalCompositeOperation$ThreeD88754a$$getter_(), value)) {
     switch (value) {
-      case ThreeD85b351$Three$Dart.NormalBlending$getter():
-        this._context$ThreeD85b351$$getter_().globalCompositeOperation$setter(tmp$0 = 'source-over') , tmp$0;
+      case ThreeD88754a$Three$Dart.NormalBlending$getter():
+        this._context$ThreeD88754a$$getter_().globalCompositeOperation$setter(tmp$0 = 'source-over') , tmp$0;
         break;
-      case ThreeD85b351$Three$Dart.AdditiveBlending$getter():
-        this._context$ThreeD85b351$$getter_().globalCompositeOperation$setter(tmp$1 = 'lighter') , tmp$1;
+      case ThreeD88754a$Three$Dart.AdditiveBlending$getter():
+        this._context$ThreeD88754a$$getter_().globalCompositeOperation$setter(tmp$1 = 'lighter') , tmp$1;
         break;
-      case ThreeD85b351$Three$Dart.SubtractiveBlending$getter():
-        this._context$ThreeD85b351$$getter_().globalCompositeOperation$setter(tmp$2 = 'darker') , tmp$2;
+      case ThreeD88754a$Three$Dart.SubtractiveBlending$getter():
+        this._context$ThreeD88754a$$getter_().globalCompositeOperation$setter(tmp$2 = 'darker') , tmp$2;
         break;
     }
-    this._contextGlobalCompositeOperation$ThreeD85b351$$setter_(tmp$3 = value) , tmp$3;
+    this._contextGlobalCompositeOperation$ThreeD88754a$$setter_(tmp$3 = value) , tmp$3;
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setLineWidth$member = function(value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setLineWidth$member = function(value){
   var tmp$1, tmp$0;
-  if (NE$operator(this._contextLineWidth$ThreeD85b351$$getter_(), value)) {
-    this._context$ThreeD85b351$$getter_().lineWidth$setter(tmp$1 = (this._contextLineWidth$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
+  if (NE$operator(this._contextLineWidth$ThreeD88754a$$getter_(), value)) {
+    this._context$ThreeD88754a$$getter_().lineWidth$setter(tmp$1 = (this._contextLineWidth$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setLineWidth$named = function($n, $o, value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setLineWidth$named = function($n, $o, value){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$CanvasRenderer$Dart.prototype.setLineWidth$member.call(this, value);
+  return ThreeD88754a$CanvasRenderer$Dart.prototype.setLineWidth$member.call(this, value);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setLineCap$member = function(value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setLineCap$member = function(value){
   var tmp$1, tmp$0;
-  if (NE$operator(this._contextLineCap$ThreeD85b351$$getter_(), value)) {
-    this._context$ThreeD85b351$$getter_().lineCap$setter(tmp$1 = (this._contextLineCap$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
+  if (NE$operator(this._contextLineCap$ThreeD88754a$$getter_(), value)) {
+    this._context$ThreeD88754a$$getter_().lineCap$setter(tmp$1 = (this._contextLineCap$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setLineCap$named = function($n, $o, value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setLineCap$named = function($n, $o, value){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$CanvasRenderer$Dart.prototype.setLineCap$member.call(this, value);
+  return ThreeD88754a$CanvasRenderer$Dart.prototype.setLineCap$member.call(this, value);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setLineJoin$member = function(value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setLineJoin$member = function(value){
   var tmp$1, tmp$0;
-  if (NE$operator(this._contextLineJoin$ThreeD85b351$$getter_(), value)) {
-    this._context$ThreeD85b351$$getter_().lineJoin$setter(tmp$1 = (this._contextLineJoin$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
+  if (NE$operator(this._contextLineJoin$ThreeD88754a$$getter_(), value)) {
+    this._context$ThreeD88754a$$getter_().lineJoin$setter(tmp$1 = (this._contextLineJoin$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0)) , tmp$1;
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setLineJoin$named = function($n, $o, value){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setLineJoin$named = function($n, $o, value){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$CanvasRenderer$Dart.prototype.setLineJoin$member.call(this, value);
+  return ThreeD88754a$CanvasRenderer$Dart.prototype.setLineJoin$member.call(this, value);
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setStrokeStyle$member = function(style){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setStrokeStyle$member = function(style){
   var tmp$1, tmp$0;
-  if (NE$operator(this._contextStrokeStyle$ThreeD85b351$$getter_(), style)) {
-    this._context$ThreeD85b351$$getter_().strokeStyle$setter(tmp$1 = (this._contextStrokeStyle$ThreeD85b351$$setter_(tmp$0 = style) , tmp$0)) , tmp$1;
+  if (NE$operator(this._contextStrokeStyle$ThreeD88754a$$getter_(), style)) {
+    this._context$ThreeD88754a$$getter_().strokeStyle$setter(tmp$1 = (this._contextStrokeStyle$ThreeD88754a$$setter_(tmp$0 = style) , tmp$0)) , tmp$1;
   }
 }
 ;
-ThreeD85b351$CanvasRenderer$Dart.prototype.setFillStyle$member = function(style){
+ThreeD88754a$CanvasRenderer$Dart.prototype.setFillStyle$member = function(style){
   var tmp$1, tmp$0;
-  if (NE$operator(this._contextFillStyle$ThreeD85b351$$getter_(), style)) {
-    this._context$ThreeD85b351$$getter_().fillStyle$setter(tmp$1 = (this._contextFillStyle$ThreeD85b351$$setter_(tmp$0 = style) , tmp$0)) , tmp$1;
+  if (NE$operator(this._contextFillStyle$ThreeD88754a$$getter_(), style)) {
+    this._context$ThreeD88754a$$getter_().fillStyle$setter(tmp$1 = (this._contextFillStyle$ThreeD88754a$$setter_(tmp$0 = style) , tmp$0)) , tmp$1;
   }
 }
 ;
-function ThreeD85b351$IRenderableFace3$Dart(){
+function ThreeD88754a$IRenderableFace3$Dart(){
 }
-ThreeD85b351$IRenderableFace3$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IRenderableFace3$Dart'), ThreeD85b351$IRenderableFace3$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$IRenderableFace3$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$IRenderableFace3$Dart.$addTo(rtt);
+ThreeD88754a$IRenderableFace3$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IRenderableFace3$Dart'), ThreeD88754a$IRenderableFace3$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$IRenderableFace3$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IRenderableFace3$Dart.$lookupRTT();
+ThreeD88754a$IRenderableFace3$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$IRenderableFace3$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$IRenderableFace3$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IRenderableFace3$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableObj$Dart.$addTo(target);
+  ThreeD88754a$IRenderableObj$Dart.$addTo(target);
 }
 ;
-function ThreeD85b351$IRenderableFace4$Dart(){
+function ThreeD88754a$IRenderableFace4$Dart(){
 }
-ThreeD85b351$IRenderableFace4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IRenderableFace4$Dart'), ThreeD85b351$IRenderableFace4$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$IRenderableFace4$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$IRenderableFace4$Dart.$addTo(rtt);
+ThreeD88754a$IRenderableFace4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IRenderableFace4$Dart'), ThreeD88754a$IRenderableFace4$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$IRenderableFace4$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IRenderableFace4$Dart.$lookupRTT();
+ThreeD88754a$IRenderableFace4$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$IRenderableFace4$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$IRenderableFace4$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IRenderableFace4$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableFace3$Dart.$addTo(target);
+  ThreeD88754a$IRenderableFace3$Dart.$addTo(target);
 }
 ;
-function ThreeD85b351$IRenderableObj$Dart(){
+function ThreeD88754a$IRenderableObj$Dart(){
 }
-ThreeD85b351$IRenderableObj$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$IRenderableObj$Dart'), null, null, named);
+ThreeD88754a$IRenderableObj$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$IRenderableObj$Dart'), null, null, named);
 }
 ;
-ThreeD85b351$IRenderableObj$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$IRenderableObj$Dart.$lookupRTT();
+ThreeD88754a$IRenderableObj$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$IRenderableObj$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
 }
 ;
-function ThreeD85b351$RenderableFace3$Dart(){
+function ThreeD88754a$RenderableFace3$Dart(){
 }
-ThreeD85b351$RenderableFace3$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderableFace3$Dart'), ThreeD85b351$RenderableFace3$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$RenderableFace3$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$RenderableFace3$Dart.$addTo(rtt);
+ThreeD88754a$RenderableFace3$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderableFace3$Dart'), ThreeD88754a$RenderableFace3$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$RenderableFace3$Dart.$lookupRTT();
+ThreeD88754a$RenderableFace3$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$RenderableFace3$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$RenderableFace3$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$RenderableFace3$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableFace3$Dart.$addTo(target);
+  ThreeD88754a$IRenderableFace3$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.$implements$ThreeD85b351$RenderableFace3$Dart = 1;
-ThreeD85b351$RenderableFace3$Dart.$Constructor = function(){
+ThreeD88754a$RenderableFace3$Dart.prototype.$implements$ThreeD88754a$RenderableFace3$Dart = 1;
+ThreeD88754a$RenderableFace3$Dart.$Constructor = function(){
   var tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$10, tmp$0;
-  this._v1$ThreeD85b351$$setter_(tmp$0 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$0;
-  this._v2$ThreeD85b351$$setter_(tmp$1 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$1;
-  this._v3$ThreeD85b351$$setter_(tmp$2 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$2;
-  this._centroidWorld$ThreeD85b351$$setter_(tmp$3 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$3;
-  this._centroidScreen$ThreeD85b351$$setter_(tmp$4 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
-  this._normalWorld$ThreeD85b351$$setter_(tmp$5 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
-  this._vertexNormalsWorld$ThreeD85b351$$setter_(tmp$6 = RTT.setTypeInfo([ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)], Array.$lookupRTT())) , tmp$6;
-  this._material$ThreeD85b351$$setter_(tmp$7 = $Dart$Null) , tmp$7;
-  this._faceMaterial$ThreeD85b351$$setter_(tmp$8 = $Dart$Null) , tmp$8;
-  this._uvs$ThreeD85b351$$setter_(tmp$9 = RTT.setTypeInfo([RTT.setTypeInfo([], Array.$lookupRTT())], Array.$lookupRTT())) , tmp$9;
-  this._z$ThreeD85b351$$setter_(tmp$10 = $Dart$Null) , tmp$10;
+  this._v1$ThreeD88754a$$setter_(tmp$0 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$0;
+  this._v2$ThreeD88754a$$setter_(tmp$1 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$1;
+  this._v3$ThreeD88754a$$setter_(tmp$2 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$2;
+  this._centroidWorld$ThreeD88754a$$setter_(tmp$3 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$3;
+  this._centroidScreen$ThreeD88754a$$setter_(tmp$4 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
+  this._normalWorld$ThreeD88754a$$setter_(tmp$5 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
+  this._vertexNormalsWorld$ThreeD88754a$$setter_(tmp$6 = RTT.setTypeInfo([ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)], Array.$lookupRTT())) , tmp$6;
+  this._material$ThreeD88754a$$setter_(tmp$7 = $Dart$Null) , tmp$7;
+  this._faceMaterial$ThreeD88754a$$setter_(tmp$8 = $Dart$Null) , tmp$8;
+  this._uvs$ThreeD88754a$$setter_(tmp$9 = RTT.setTypeInfo([RTT.setTypeInfo([], Array.$lookupRTT())], Array.$lookupRTT())) , tmp$9;
+  this._z$ThreeD88754a$$setter_(tmp$10 = $Dart$Null) , tmp$10;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.$Initializer = function(){
+ThreeD88754a$RenderableFace3$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.RenderableFace3$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderableFace3$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderableFace3$Dart.$lookupRTT();
-  ThreeD85b351$RenderableFace3$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderableFace3$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderableFace3$Dart.RenderableFace3$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderableFace3$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderableFace3$Dart.$lookupRTT();
+  ThreeD88754a$RenderableFace3$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderableFace3$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._v1$ThreeD85b351$$getter_ = function(){
-  return this._v1$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._v1$ThreeD88754a$$getter_ = function(){
+  return this._v1$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._v1$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v1$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._v1$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v1$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._v2$ThreeD85b351$$getter_ = function(){
-  return this._v2$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._v2$ThreeD88754a$$getter_ = function(){
+  return this._v2$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._v2$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v2$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._v2$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v2$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._v3$ThreeD85b351$$getter_ = function(){
-  return this._v3$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._v3$ThreeD88754a$$getter_ = function(){
+  return this._v3$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._v3$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v3$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._v3$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v3$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._centroidWorld$ThreeD85b351$$getter_ = function(){
-  return this._centroidWorld$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._centroidWorld$ThreeD88754a$$getter_ = function(){
+  return this._centroidWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._centroidWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._centroidWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._centroidWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._centroidWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._centroidScreen$ThreeD85b351$$getter_ = function(){
-  return this._centroidScreen$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._centroidScreen$ThreeD88754a$$getter_ = function(){
+  return this._centroidScreen$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._centroidScreen$ThreeD85b351$$setter_ = function(tmp$0){
-  this._centroidScreen$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._centroidScreen$ThreeD88754a$$setter_ = function(tmp$0){
+  this._centroidScreen$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._normalWorld$ThreeD85b351$$getter_ = function(){
-  return this._normalWorld$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._normalWorld$ThreeD88754a$$getter_ = function(){
+  return this._normalWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._normalWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._normalWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._normalWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._normalWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._vertexNormalsWorld$ThreeD85b351$$getter_ = function(){
-  return this._vertexNormalsWorld$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._vertexNormalsWorld$ThreeD88754a$$getter_ = function(){
+  return this._vertexNormalsWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._vertexNormalsWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexNormalsWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._vertexNormalsWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexNormalsWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._uvs$ThreeD85b351$$getter_ = function(){
-  return this._uvs$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._uvs$ThreeD88754a$$getter_ = function(){
+  return this._uvs$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._uvs$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uvs$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._uvs$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uvs$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._material$ThreeD85b351$$getter_ = function(){
-  return this._material$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._material$ThreeD88754a$$getter_ = function(){
+  return this._material$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._material$ThreeD85b351$$setter_ = function(tmp$0){
-  this._material$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._material$ThreeD88754a$$setter_ = function(tmp$0){
+  this._material$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._faceMaterial$ThreeD85b351$$getter_ = function(){
-  return this._faceMaterial$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._faceMaterial$ThreeD88754a$$getter_ = function(){
+  return this._faceMaterial$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._faceMaterial$ThreeD85b351$$setter_ = function(tmp$0){
-  this._faceMaterial$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._faceMaterial$ThreeD88754a$$setter_ = function(tmp$0){
+  this._faceMaterial$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._z$ThreeD85b351$$getter_ = function(){
-  return this._z$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace3$Dart.prototype._z$ThreeD88754a$$getter_ = function(){
+  return this._z$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype._z$ThreeD85b351$$setter_ = function(tmp$0){
-  this._z$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace3$Dart.prototype._z$ThreeD88754a$$setter_ = function(tmp$0){
+  this._z$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.v1$getter = function(){
-  return this._v1$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.v1$getter = function(){
+  return this._v1$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.v2$getter = function(){
-  return this._v2$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.v2$getter = function(){
+  return this._v2$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.v3$getter = function(){
-  return this._v3$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.v3$getter = function(){
+  return this._v3$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.normalWorld$getter = function(){
-  return this._normalWorld$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.normalWorld$getter = function(){
+  return this._normalWorld$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.centroidWorld$getter = function(){
-  return this._centroidWorld$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.centroidWorld$getter = function(){
+  return this._centroidWorld$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.centroidScreen$getter = function(){
-  return this._centroidScreen$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.centroidScreen$getter = function(){
+  return this._centroidScreen$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.vertexNormalsWorld$getter = function(){
-  return this._vertexNormalsWorld$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.vertexNormalsWorld$getter = function(){
+  return this._vertexNormalsWorld$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.uvs$getter = function(){
-  return this._uvs$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.uvs$getter = function(){
+  return this._uvs$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.material$getter = function(){
-  return this._material$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.material$getter = function(){
+  return this._material$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.faceMaterial$getter = function(){
-  return this._faceMaterial$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.faceMaterial$getter = function(){
+  return this._faceMaterial$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace3$Dart.prototype.z$getter = function(){
-  return this._z$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace3$Dart.prototype.z$getter = function(){
+  return this._z$ThreeD88754a$$getter_();
 }
 ;
-function ThreeD85b351$RenderableFace4$Dart(){
+function ThreeD88754a$RenderableFace4$Dart(){
 }
-ThreeD85b351$RenderableFace4$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderableFace4$Dart'), ThreeD85b351$RenderableFace4$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$RenderableFace4$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$RenderableFace4$Dart.$addTo(rtt);
+ThreeD88754a$RenderableFace4$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderableFace4$Dart'), ThreeD88754a$RenderableFace4$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$RenderableFace4$Dart.$lookupRTT();
+ThreeD88754a$RenderableFace4$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$RenderableFace4$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$RenderableFace4$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$RenderableFace4$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableFace4$Dart.$addTo(target);
+  ThreeD88754a$IRenderableFace4$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.$implements$ThreeD85b351$RenderableFace4$Dart = 1;
-ThreeD85b351$RenderableFace4$Dart.$Constructor = function(){
+ThreeD88754a$RenderableFace4$Dart.prototype.$implements$ThreeD88754a$RenderableFace4$Dart = 1;
+ThreeD88754a$RenderableFace4$Dart.$Constructor = function(){
   var tmp$9, tmp$5, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$11, tmp$10, tmp$0;
-  this._v1$ThreeD85b351$$setter_(tmp$0 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$0;
-  this._v2$ThreeD85b351$$setter_(tmp$1 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$1;
-  this._v3$ThreeD85b351$$setter_(tmp$2 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$2;
-  this._v4$ThreeD85b351$$setter_(tmp$3 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$3;
-  this._centroidWorld$ThreeD85b351$$setter_(tmp$4 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
-  this._centroidScreen$ThreeD85b351$$setter_(tmp$5 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
-  this._normalWorld$ThreeD85b351$$setter_(tmp$6 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$6;
-  this._vertexNormalsWorld$ThreeD85b351$$setter_(tmp$7 = RTT.setTypeInfo([ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)], Array.$lookupRTT())) , tmp$7;
-  this._material$ThreeD85b351$$setter_(tmp$8 = $Dart$Null) , tmp$8;
-  this._faceMaterial$ThreeD85b351$$setter_(tmp$9 = $Dart$Null) , tmp$9;
-  this._uvs$ThreeD85b351$$setter_(tmp$10 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$10;
-  this._uvs$ThreeD85b351$$getter_().add$named(1, $noargs, ListFactory$Dart.List$$Factory(null, $Dart$Null));
-  this._z$ThreeD85b351$$setter_(tmp$11 = $Dart$Null) , tmp$11;
+  this._v1$ThreeD88754a$$setter_(tmp$0 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$0;
+  this._v2$ThreeD88754a$$setter_(tmp$1 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$1;
+  this._v3$ThreeD88754a$$setter_(tmp$2 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$2;
+  this._v4$ThreeD88754a$$setter_(tmp$3 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$3;
+  this._centroidWorld$ThreeD88754a$$setter_(tmp$4 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$4;
+  this._centroidScreen$ThreeD88754a$$setter_(tmp$5 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$5;
+  this._normalWorld$ThreeD88754a$$setter_(tmp$6 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$6;
+  this._vertexNormalsWorld$ThreeD88754a$$setter_(tmp$7 = RTT.setTypeInfo([ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null), ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)], Array.$lookupRTT())) , tmp$7;
+  this._material$ThreeD88754a$$setter_(tmp$8 = $Dart$Null) , tmp$8;
+  this._faceMaterial$ThreeD88754a$$setter_(tmp$9 = $Dart$Null) , tmp$9;
+  this._uvs$ThreeD88754a$$setter_(tmp$10 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$10;
+  this._uvs$ThreeD88754a$$getter_().add$named(1, $noargs, ListFactory$Dart.List$$Factory(null, $Dart$Null));
+  this._z$ThreeD88754a$$setter_(tmp$11 = $Dart$Null) , tmp$11;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.$Initializer = function(){
+ThreeD88754a$RenderableFace4$Dart.$Initializer = function(){
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.RenderableFace4$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderableFace4$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderableFace4$Dart.$lookupRTT();
-  ThreeD85b351$RenderableFace4$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderableFace4$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderableFace4$Dart.RenderableFace4$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderableFace4$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderableFace4$Dart.$lookupRTT();
+  ThreeD88754a$RenderableFace4$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderableFace4$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v1$ThreeD85b351$$getter_ = function(){
-  return this._v1$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._v1$ThreeD88754a$$getter_ = function(){
+  return this._v1$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v1$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v1$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._v1$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v1$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v2$ThreeD85b351$$getter_ = function(){
-  return this._v2$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._v2$ThreeD88754a$$getter_ = function(){
+  return this._v2$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v2$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v2$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._v2$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v2$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v3$ThreeD85b351$$getter_ = function(){
-  return this._v3$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._v3$ThreeD88754a$$getter_ = function(){
+  return this._v3$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v3$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v3$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._v3$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v3$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v4$ThreeD85b351$$getter_ = function(){
-  return this._v4$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._v4$ThreeD88754a$$getter_ = function(){
+  return this._v4$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._v4$ThreeD85b351$$setter_ = function(tmp$0){
-  this._v4$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._v4$ThreeD88754a$$setter_ = function(tmp$0){
+  this._v4$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._centroidWorld$ThreeD85b351$$getter_ = function(){
-  return this._centroidWorld$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._centroidWorld$ThreeD88754a$$getter_ = function(){
+  return this._centroidWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._centroidWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._centroidWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._centroidWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._centroidWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._centroidScreen$ThreeD85b351$$getter_ = function(){
-  return this._centroidScreen$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._centroidScreen$ThreeD88754a$$getter_ = function(){
+  return this._centroidScreen$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._centroidScreen$ThreeD85b351$$setter_ = function(tmp$0){
-  this._centroidScreen$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._centroidScreen$ThreeD88754a$$setter_ = function(tmp$0){
+  this._centroidScreen$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._normalWorld$ThreeD85b351$$getter_ = function(){
-  return this._normalWorld$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._normalWorld$ThreeD88754a$$getter_ = function(){
+  return this._normalWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._normalWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._normalWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._normalWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._normalWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._vertexNormalsWorld$ThreeD85b351$$getter_ = function(){
-  return this._vertexNormalsWorld$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._vertexNormalsWorld$ThreeD88754a$$getter_ = function(){
+  return this._vertexNormalsWorld$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._vertexNormalsWorld$ThreeD85b351$$setter_ = function(tmp$0){
-  this._vertexNormalsWorld$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._vertexNormalsWorld$ThreeD88754a$$setter_ = function(tmp$0){
+  this._vertexNormalsWorld$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._uvs$ThreeD85b351$$getter_ = function(){
-  return this._uvs$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._uvs$ThreeD88754a$$getter_ = function(){
+  return this._uvs$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._uvs$ThreeD85b351$$setter_ = function(tmp$0){
-  this._uvs$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._uvs$ThreeD88754a$$setter_ = function(tmp$0){
+  this._uvs$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._material$ThreeD85b351$$getter_ = function(){
-  return this._material$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._material$ThreeD88754a$$getter_ = function(){
+  return this._material$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._material$ThreeD85b351$$setter_ = function(tmp$0){
-  this._material$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._material$ThreeD88754a$$setter_ = function(tmp$0){
+  this._material$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._faceMaterial$ThreeD85b351$$getter_ = function(){
-  return this._faceMaterial$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._faceMaterial$ThreeD88754a$$getter_ = function(){
+  return this._faceMaterial$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._faceMaterial$ThreeD85b351$$setter_ = function(tmp$0){
-  this._faceMaterial$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._faceMaterial$ThreeD88754a$$setter_ = function(tmp$0){
+  this._faceMaterial$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._z$ThreeD85b351$$getter_ = function(){
-  return this._z$ThreeD85b351$$field_;
+ThreeD88754a$RenderableFace4$Dart.prototype._z$ThreeD88754a$$getter_ = function(){
+  return this._z$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype._z$ThreeD85b351$$setter_ = function(tmp$0){
-  this._z$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$RenderableFace4$Dart.prototype._z$ThreeD88754a$$setter_ = function(tmp$0){
+  this._z$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.v1$getter = function(){
-  return this._v1$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.v1$getter = function(){
+  return this._v1$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.v2$getter = function(){
-  return this._v2$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.v2$getter = function(){
+  return this._v2$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.v3$getter = function(){
-  return this._v3$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.v3$getter = function(){
+  return this._v3$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.v4$getter = function(){
-  return this._v4$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.v4$getter = function(){
+  return this._v4$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.normalWorld$getter = function(){
-  return this._normalWorld$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.normalWorld$getter = function(){
+  return this._normalWorld$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.centroidWorld$getter = function(){
-  return this._centroidWorld$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.centroidWorld$getter = function(){
+  return this._centroidWorld$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.centroidScreen$getter = function(){
-  return this._centroidScreen$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.centroidScreen$getter = function(){
+  return this._centroidScreen$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.vertexNormalsWorld$getter = function(){
-  return this._vertexNormalsWorld$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.vertexNormalsWorld$getter = function(){
+  return this._vertexNormalsWorld$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.uvs$getter = function(){
-  return this._uvs$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.uvs$getter = function(){
+  return this._uvs$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.material$getter = function(){
-  return this._material$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.material$getter = function(){
+  return this._material$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.material$setter = function(value){
+ThreeD88754a$RenderableFace4$Dart.prototype.material$setter = function(value){
   var tmp$0;
-  this._material$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._material$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.faceMaterial$getter = function(){
-  return this._faceMaterial$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.faceMaterial$getter = function(){
+  return this._faceMaterial$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.faceMaterial$setter = function(value){
+ThreeD88754a$RenderableFace4$Dart.prototype.faceMaterial$setter = function(value){
   var tmp$0;
-  this._faceMaterial$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._faceMaterial$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.z$getter = function(){
-  return this._z$ThreeD85b351$$getter_();
+ThreeD88754a$RenderableFace4$Dart.prototype.z$getter = function(){
+  return this._z$ThreeD88754a$$getter_();
 }
 ;
-ThreeD85b351$RenderableFace4$Dart.prototype.z$setter = function(value){
+ThreeD88754a$RenderableFace4$Dart.prototype.z$setter = function(value){
   var tmp$0;
-  this._z$ThreeD85b351$$setter_(tmp$0 = value) , tmp$0;
+  this._z$ThreeD88754a$$setter_(tmp$0 = value) , tmp$0;
 }
 ;
-function ThreeD85b351$RenderableLine$Dart(){
+function ThreeD88754a$RenderableLine$Dart(){
 }
-ThreeD85b351$RenderableLine$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderableLine$Dart'), ThreeD85b351$RenderableLine$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$RenderableLine$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$RenderableLine$Dart.$addTo(rtt);
+ThreeD88754a$RenderableLine$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderableLine$Dart'), ThreeD88754a$RenderableLine$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$RenderableLine$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$RenderableLine$Dart.$lookupRTT();
+ThreeD88754a$RenderableLine$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$RenderableLine$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$RenderableLine$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$RenderableLine$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableObj$Dart.$addTo(target);
+  ThreeD88754a$IRenderableObj$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.$implements$ThreeD85b351$RenderableLine$Dart = 1;
-ThreeD85b351$RenderableLine$Dart.$Constructor = function(){
+ThreeD88754a$RenderableLine$Dart.prototype.$implements$ThreeD88754a$RenderableLine$Dart = 1;
+ThreeD88754a$RenderableLine$Dart.$Constructor = function(){
   var tmp$1, tmp$0;
-  this.v1$setter(tmp$0 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$0;
-  this.v2$setter(tmp$1 = ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$1;
+  this.v1$setter(tmp$0 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$0;
+  this.v2$setter(tmp$1 = ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory()) , tmp$1;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.$Initializer = function(){
+ThreeD88754a$RenderableLine$Dart.$Initializer = function(){
   this.z$field = $Dart$Null;
   this.material$field = $Dart$Null;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.RenderableLine$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderableLine$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderableLine$Dart.$lookupRTT();
-  ThreeD85b351$RenderableLine$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderableLine$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderableLine$Dart.RenderableLine$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderableLine$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderableLine$Dart.$lookupRTT();
+  ThreeD88754a$RenderableLine$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderableLine$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.z$getter = function(){
+ThreeD88754a$RenderableLine$Dart.prototype.z$getter = function(){
   var tmp$0 = this.z$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76741,27 +76741,27 @@ ThreeD85b351$RenderableLine$Dart.prototype.z$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.z$setter = function(tmp$0){
+ThreeD88754a$RenderableLine$Dart.prototype.z$setter = function(tmp$0){
   this.z$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.v1$getter = function(){
+ThreeD88754a$RenderableLine$Dart.prototype.v1$getter = function(){
   return this.v1$field;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.v1$setter = function(tmp$0){
+ThreeD88754a$RenderableLine$Dart.prototype.v1$setter = function(tmp$0){
   this.v1$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.v2$getter = function(){
+ThreeD88754a$RenderableLine$Dart.prototype.v2$getter = function(){
   return this.v2$field;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.v2$setter = function(tmp$0){
+ThreeD88754a$RenderableLine$Dart.prototype.v2$setter = function(tmp$0){
   this.v2$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.material$getter = function(){
+ThreeD88754a$RenderableLine$Dart.prototype.material$getter = function(){
   var tmp$0 = this.material$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76774,27 +76774,27 @@ ThreeD85b351$RenderableLine$Dart.prototype.material$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableLine$Dart.prototype.material$setter = function(tmp$0){
+ThreeD88754a$RenderableLine$Dart.prototype.material$setter = function(tmp$0){
   this.material$field = tmp$0;
 }
 ;
-function ThreeD85b351$RenderableObject$Dart(){
+function ThreeD88754a$RenderableObject$Dart(){
 }
-ThreeD85b351$RenderableObject$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderableObject$Dart'), ThreeD85b351$RenderableObject$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$RenderableObject$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$RenderableObject$Dart.$addTo(rtt);
+ThreeD88754a$RenderableObject$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderableObject$Dart'), ThreeD88754a$RenderableObject$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$RenderableObject$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$RenderableObject$Dart.$lookupRTT();
+ThreeD88754a$RenderableObject$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$RenderableObject$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$RenderableObject$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$RenderableObject$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableObj$Dart.$addTo(target);
+  ThreeD88754a$IRenderableObj$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$RenderableObject$Dart.prototype.object$getter = function(){
+ThreeD88754a$RenderableObject$Dart.prototype.object$getter = function(){
   var tmp$0 = this.object$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76807,11 +76807,11 @@ ThreeD85b351$RenderableObject$Dart.prototype.object$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableObject$Dart.prototype.object$setter = function(tmp$0){
+ThreeD88754a$RenderableObject$Dart.prototype.object$setter = function(tmp$0){
   this.object$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableObject$Dart.prototype.z$getter = function(){
+ThreeD88754a$RenderableObject$Dart.prototype.z$getter = function(){
   var tmp$0 = this.z$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76824,49 +76824,49 @@ ThreeD85b351$RenderableObject$Dart.prototype.z$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableObject$Dart.prototype.z$setter = function(tmp$0){
+ThreeD88754a$RenderableObject$Dart.prototype.z$setter = function(tmp$0){
   this.z$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableObject$Dart.$Constructor = function(){
+ThreeD88754a$RenderableObject$Dart.$Constructor = function(){
 }
 ;
-ThreeD85b351$RenderableObject$Dart.$Initializer = function(){
+ThreeD88754a$RenderableObject$Dart.$Initializer = function(){
   this.object$field = $Dart$Null;
   this.z$field = $Dart$Null;
 }
 ;
-ThreeD85b351$RenderableObject$Dart.RenderableObject$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderableObject$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderableObject$Dart.$lookupRTT();
-  ThreeD85b351$RenderableObject$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderableObject$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderableObject$Dart.RenderableObject$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderableObject$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderableObject$Dart.$lookupRTT();
+  ThreeD88754a$RenderableObject$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderableObject$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-function ThreeD85b351$RenderableParticle$Dart(){
+function ThreeD88754a$RenderableParticle$Dart(){
 }
-ThreeD85b351$RenderableParticle$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderableParticle$Dart'), ThreeD85b351$RenderableParticle$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$RenderableParticle$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$RenderableParticle$Dart.$addTo(rtt);
+ThreeD88754a$RenderableParticle$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderableParticle$Dart'), ThreeD88754a$RenderableParticle$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$RenderableParticle$Dart.$lookupRTT();
+ThreeD88754a$RenderableParticle$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$RenderableParticle$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$RenderableParticle$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$RenderableParticle$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableObj$Dart.$addTo(target);
+  ThreeD88754a$IRenderableObj$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.$implements$ThreeD85b351$RenderableParticle$Dart = 1;
-ThreeD85b351$RenderableParticle$Dart.$Constructor = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.$implements$ThreeD88754a$RenderableParticle$Dart = 1;
+ThreeD88754a$RenderableParticle$Dart.$Constructor = function(){
   var tmp$0;
-  this.scale$setter(tmp$0 = ThreeD85b351$Vector2$Dart.Vector2$$Factory($Dart$Null, $Dart$Null)) , tmp$0;
+  this.scale$setter(tmp$0 = ThreeD88754a$Vector2$Dart.Vector2$$Factory($Dart$Null, $Dart$Null)) , tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.$Initializer = function(){
+ThreeD88754a$RenderableParticle$Dart.$Initializer = function(){
   this.x$field = $Dart$Null;
   this.y$field = $Dart$Null;
   this.z$field = $Dart$Null;
@@ -76874,15 +76874,15 @@ ThreeD85b351$RenderableParticle$Dart.$Initializer = function(){
   this.material$field = $Dart$Null;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.RenderableParticle$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderableParticle$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderableParticle$Dart.$lookupRTT();
-  ThreeD85b351$RenderableParticle$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderableParticle$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderableParticle$Dart.RenderableParticle$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderableParticle$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderableParticle$Dart.$lookupRTT();
+  ThreeD88754a$RenderableParticle$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderableParticle$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.x$getter = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.x$getter = function(){
   var tmp$0 = this.x$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76895,11 +76895,11 @@ ThreeD85b351$RenderableParticle$Dart.prototype.x$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.x$setter = function(tmp$0){
+ThreeD88754a$RenderableParticle$Dart.prototype.x$setter = function(tmp$0){
   this.x$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.y$getter = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.y$getter = function(){
   var tmp$0 = this.y$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76912,11 +76912,11 @@ ThreeD85b351$RenderableParticle$Dart.prototype.y$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.y$setter = function(tmp$0){
+ThreeD88754a$RenderableParticle$Dart.prototype.y$setter = function(tmp$0){
   this.y$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.z$getter = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.z$getter = function(){
   var tmp$0 = this.z$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76929,11 +76929,11 @@ ThreeD85b351$RenderableParticle$Dart.prototype.z$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.z$setter = function(tmp$0){
+ThreeD88754a$RenderableParticle$Dart.prototype.z$setter = function(tmp$0){
   this.z$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.rotation$getter = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.rotation$getter = function(){
   var tmp$0 = this.rotation$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76946,23 +76946,23 @@ ThreeD85b351$RenderableParticle$Dart.prototype.rotation$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.rotation$setter = function(tmp$0){
+ThreeD88754a$RenderableParticle$Dart.prototype.rotation$setter = function(tmp$0){
   this.rotation$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.scale$named = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.scale$named = function(){
   return this.scale$getter().apply(this, arguments);
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.scale$getter = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.scale$getter = function(){
   return this.scale$field;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.scale$setter = function(tmp$0){
+ThreeD88754a$RenderableParticle$Dart.prototype.scale$setter = function(tmp$0){
   this.scale$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.material$getter = function(){
+ThreeD88754a$RenderableParticle$Dart.prototype.material$getter = function(){
   var tmp$0 = this.material$field;
   var tmp$1 = static$initializing;
   if (tmp$0 === tmp$1)
@@ -76975,192 +76975,192 @@ ThreeD85b351$RenderableParticle$Dart.prototype.material$getter = function(){
   return tmp$2;
 }
 ;
-ThreeD85b351$RenderableParticle$Dart.prototype.material$setter = function(tmp$0){
+ThreeD88754a$RenderableParticle$Dart.prototype.material$setter = function(tmp$0){
   this.material$field = tmp$0;
 }
 ;
-function ThreeD85b351$RenderableVertex$Dart(){
+function ThreeD88754a$RenderableVertex$Dart(){
 }
-ThreeD85b351$RenderableVertex$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$RenderableVertex$Dart'), ThreeD85b351$RenderableVertex$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$RenderableVertex$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$RenderableVertex$Dart.$addTo(rtt);
+ThreeD88754a$RenderableVertex$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$RenderableVertex$Dart'), ThreeD88754a$RenderableVertex$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$RenderableVertex$Dart.$lookupRTT();
+ThreeD88754a$RenderableVertex$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$RenderableVertex$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$RenderableVertex$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$RenderableVertex$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$IRenderableObj$Dart.$addTo(target);
+  ThreeD88754a$IRenderableObj$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.$Constructor = function(){
+ThreeD88754a$RenderableVertex$Dart.$Constructor = function(){
   var tmp$1, tmp$0;
-  this.positionWorld$setter(tmp$0 = ThreeD85b351$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
-  this.positionScreen$setter(tmp$1 = ThreeD85b351$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$1;
+  this.positionWorld$setter(tmp$0 = ThreeD88754a$Vector3$Dart.Vector3$$Factory($Dart$Null, $Dart$Null, $Dart$Null)) , tmp$0;
+  this.positionScreen$setter(tmp$1 = ThreeD88754a$Vector4$Dart.Vector4$$Factory($Dart$Null, $Dart$Null, $Dart$Null, $Dart$Null)) , tmp$1;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.$Initializer = function(){
+ThreeD88754a$RenderableVertex$Dart.$Initializer = function(){
   this.visible$field = true;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.RenderableVertex$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$RenderableVertex$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$RenderableVertex$Dart.$lookupRTT();
-  ThreeD85b351$RenderableVertex$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$RenderableVertex$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$RenderableVertex$Dart.RenderableVertex$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$RenderableVertex$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$RenderableVertex$Dart.$lookupRTT();
+  ThreeD88754a$RenderableVertex$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$RenderableVertex$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.positionWorld$getter = function(){
+ThreeD88754a$RenderableVertex$Dart.prototype.positionWorld$getter = function(){
   return this.positionWorld$field;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.positionWorld$setter = function(tmp$0){
+ThreeD88754a$RenderableVertex$Dart.prototype.positionWorld$setter = function(tmp$0){
   this.positionWorld$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.positionScreen$getter = function(){
+ThreeD88754a$RenderableVertex$Dart.prototype.positionScreen$getter = function(){
   return this.positionScreen$field;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.positionScreen$setter = function(tmp$0){
+ThreeD88754a$RenderableVertex$Dart.prototype.positionScreen$setter = function(tmp$0){
   this.positionScreen$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.visible$getter = function(){
+ThreeD88754a$RenderableVertex$Dart.prototype.visible$getter = function(){
   return this.visible$field;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.visible$setter = function(tmp$0){
+ThreeD88754a$RenderableVertex$Dart.prototype.visible$setter = function(tmp$0){
   this.visible$field = tmp$0;
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.copy$member = function(vertex){
+ThreeD88754a$RenderableVertex$Dart.prototype.copy$member = function(vertex){
   this.positionWorld$getter().copy$named(1, $noargs, vertex.positionWorld$getter());
   this.positionScreen$getter().copy$named(1, $noargs, vertex.positionScreen$getter());
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.copy$named = function($n, $o, vertex){
+ThreeD88754a$RenderableVertex$Dart.prototype.copy$named = function($n, $o, vertex){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$RenderableVertex$Dart.prototype.copy$member.call(this, vertex);
+  return ThreeD88754a$RenderableVertex$Dart.prototype.copy$member.call(this, vertex);
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.copy$named_$lookupRTT = function(){
-  return RTT.createFunction([ThreeD85b351$RenderableVertex$Dart.$lookupRTT()], RTT.dynamicType.$lookupRTT());
+ThreeD88754a$RenderableVertex$Dart.prototype.copy$named_$lookupRTT = function(){
+  return RTT.createFunction([ThreeD88754a$RenderableVertex$Dart.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-ThreeD85b351$RenderableVertex$Dart.prototype.copy$getter = function(){
-  return $bind(ThreeD85b351$RenderableVertex$Dart.prototype.copy$named, ThreeD85b351$RenderableVertex$Dart.prototype.copy$named_$lookupRTT, this);
+ThreeD88754a$RenderableVertex$Dart.prototype.copy$getter = function(){
+  return $bind(ThreeD88754a$RenderableVertex$Dart.prototype.copy$named, ThreeD88754a$RenderableVertex$Dart.prototype.copy$named_$lookupRTT, this);
 }
 ;
-function ThreeD85b351$Scene$Dart(){
+function ThreeD88754a$Scene$Dart(){
 }
-$inherits(ThreeD85b351$Scene$Dart, ThreeD85b351$Object3D$Dart);
-ThreeD85b351$Scene$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('ThreeD85b351$Scene$Dart'), ThreeD85b351$Scene$Dart.$RTTimplements, null, named);
-}
-;
-ThreeD85b351$Scene$Dart.$RTTimplements = function(rtt){
-  ThreeD85b351$Scene$Dart.$addTo(rtt);
+$inherits(ThreeD88754a$Scene$Dart, ThreeD88754a$Object3D$Dart);
+ThreeD88754a$Scene$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('ThreeD88754a$Scene$Dart'), ThreeD88754a$Scene$Dart.$RTTimplements, null, named);
 }
 ;
-ThreeD85b351$Scene$Dart.$addTo = function(target){
-  var rtt = ThreeD85b351$Scene$Dart.$lookupRTT();
+ThreeD88754a$Scene$Dart.$RTTimplements = function(rtt){
+  ThreeD88754a$Scene$Dart.$addTo(rtt);
+}
+;
+ThreeD88754a$Scene$Dart.$addTo = function(target){
+  var rtt = ThreeD88754a$Scene$Dart.$lookupRTT();
   target.implementedTypes[rtt.classKey] = rtt;
-  ThreeD85b351$Object3D$Dart.$addTo(target);
+  ThreeD88754a$Object3D$Dart.$addTo(target);
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.$implements$ThreeD85b351$Scene$Dart = 1;
-ThreeD85b351$Scene$Dart.$Constructor = function(){
-  ThreeD85b351$Object3D$Dart.$Constructor.call(this);
+ThreeD88754a$Scene$Dart.prototype.$implements$ThreeD88754a$Scene$Dart = 1;
+ThreeD88754a$Scene$Dart.$Constructor = function(){
+  ThreeD88754a$Object3D$Dart.$Constructor.call(this);
   var tmp$5, tmp$6, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   this.fog$setter(tmp$0 = $Dart$Null) , tmp$0;
   this.overrideMaterial$setter(tmp$1 = $Dart$Null) , tmp$1;
   this.matrixAutoUpdate$setter(tmp$2 = false) , tmp$2;
   this.objects$setter(tmp$3 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$3;
   this.lights$setter(tmp$4 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$4;
-  this.__objectsAdded$ThreeD85b351$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
-  this.__objectsRemoved$ThreeD85b351$$setter_(tmp$6 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$6;
+  this.__objectsAdded$ThreeD88754a$$setter_(tmp$5 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$5;
+  this.__objectsRemoved$ThreeD88754a$$setter_(tmp$6 = RTT.setTypeInfo([], Array.$lookupRTT())) , tmp$6;
 }
 ;
-ThreeD85b351$Scene$Dart.$Initializer = function(){
-  ThreeD85b351$Object3D$Dart.$Initializer.call(this);
+ThreeD88754a$Scene$Dart.$Initializer = function(){
+  ThreeD88754a$Object3D$Dart.$Initializer.call(this);
 }
 ;
-ThreeD85b351$Scene$Dart.Scene$$Factory = function(){
-  var tmp$0 = new ThreeD85b351$Scene$Dart;
-  tmp$0.$typeInfo = ThreeD85b351$Scene$Dart.$lookupRTT();
-  ThreeD85b351$Scene$Dart.$Initializer.call(tmp$0);
-  ThreeD85b351$Scene$Dart.$Constructor.call(tmp$0);
+ThreeD88754a$Scene$Dart.Scene$$Factory = function(){
+  var tmp$0 = new ThreeD88754a$Scene$Dart;
+  tmp$0.$typeInfo = ThreeD88754a$Scene$Dart.$lookupRTT();
+  ThreeD88754a$Scene$Dart.$Initializer.call(tmp$0);
+  ThreeD88754a$Scene$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.fog$setter = function(tmp$0){
+ThreeD88754a$Scene$Dart.prototype.fog$setter = function(tmp$0){
   this.fog$field = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.overrideMaterial$setter = function(tmp$0){
+ThreeD88754a$Scene$Dart.prototype.overrideMaterial$setter = function(tmp$0){
   this.overrideMaterial$field = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.matrixAutoUpdate$getter = function(){
+ThreeD88754a$Scene$Dart.prototype.matrixAutoUpdate$getter = function(){
   return this.matrixAutoUpdate$field;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.matrixAutoUpdate$setter = function(tmp$0){
+ThreeD88754a$Scene$Dart.prototype.matrixAutoUpdate$setter = function(tmp$0){
   this.matrixAutoUpdate$field = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.objects$getter = function(){
+ThreeD88754a$Scene$Dart.prototype.objects$getter = function(){
   return this.objects$field;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.objects$setter = function(tmp$0){
+ThreeD88754a$Scene$Dart.prototype.objects$setter = function(tmp$0){
   this.objects$field = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.lights$getter = function(){
+ThreeD88754a$Scene$Dart.prototype.lights$getter = function(){
   return this.lights$field;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.lights$setter = function(tmp$0){
+ThreeD88754a$Scene$Dart.prototype.lights$setter = function(tmp$0){
   this.lights$field = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.__objectsAdded$ThreeD85b351$$getter_ = function(){
-  return this.__objectsAdded$ThreeD85b351$$field_;
+ThreeD88754a$Scene$Dart.prototype.__objectsAdded$ThreeD88754a$$getter_ = function(){
+  return this.__objectsAdded$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.__objectsAdded$ThreeD85b351$$setter_ = function(tmp$0){
-  this.__objectsAdded$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Scene$Dart.prototype.__objectsAdded$ThreeD88754a$$setter_ = function(tmp$0){
+  this.__objectsAdded$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.__objectsRemoved$ThreeD85b351$$getter_ = function(){
-  return this.__objectsRemoved$ThreeD85b351$$field_;
+ThreeD88754a$Scene$Dart.prototype.__objectsRemoved$ThreeD88754a$$getter_ = function(){
+  return this.__objectsRemoved$ThreeD88754a$$field_;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.__objectsRemoved$ThreeD85b351$$setter_ = function(tmp$0){
-  this.__objectsRemoved$ThreeD85b351$$field_ = tmp$0;
+ThreeD88754a$Scene$Dart.prototype.__objectsRemoved$ThreeD88754a$$setter_ = function(tmp$0){
+  this.__objectsRemoved$ThreeD88754a$$field_ = tmp$0;
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.addObject$member = function(object){
+ThreeD88754a$Scene$Dart.prototype.addObject$member = function(object){
   var tmp$1, tmp$2, tmp$3, tmp$0;
-  if (!!(tmp$0 = object , tmp$0 != null && tmp$0.$implements$ThreeD85b351$Light$Dart)) {
+  if (!!(tmp$0 = object , tmp$0 != null && tmp$0.$implements$ThreeD88754a$Light$Dart)) {
     if (this.lights$getter().indexOf$named(1, $noargs, object) === negate$operator(1)) {
       this.lights$getter().add$named(1, $noargs, object);
     }
   }
    else {
-    if (!(!!(tmp$2 = object , tmp$2 != null && tmp$2.$implements$ThreeD85b351$Camera$Dart) || !!(tmp$1 = object , tmp$1 != null && tmp$1.$implements$ThreeD85b351$Bone$Dart))) {
+    if (!(!!(tmp$2 = object , tmp$2 != null && tmp$2.$implements$ThreeD88754a$Camera$Dart) || !!(tmp$1 = object , tmp$1 != null && tmp$1.$implements$ThreeD88754a$Bone$Dart))) {
       if (this.objects$getter().indexOf$named(1, $noargs, object) === negate$operator(1)) {
         this.objects$getter().add$named(1, $noargs, object);
-        this.__objectsAdded$ThreeD85b351$$getter_().add$named(1, $noargs, object);
-        var i = this.__objectsRemoved$ThreeD85b351$$getter_().indexOf$named(1, $noargs, object);
+        this.__objectsAdded$ThreeD88754a$$getter_().add$named(1, $noargs, object);
+        var i = this.__objectsRemoved$ThreeD88754a$$getter_().indexOf$named(1, $noargs, object);
         if (i !== negate$operator(1)) {
-          this.__objectsRemoved$ThreeD85b351$$getter_().removeRange$named(2, $noargs, i, 1);
+          this.__objectsRemoved$ThreeD88754a$$getter_().removeRange$named(2, $noargs, i, 1);
         }
       }
     }
@@ -77173,29 +77173,29 @@ ThreeD85b351$Scene$Dart.prototype.addObject$member = function(object){
   }
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.addObject$named = function($n, $o, object){
+ThreeD88754a$Scene$Dart.prototype.addObject$named = function($n, $o, object){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Scene$Dart.prototype.addObject$member.call(this, object);
+  return ThreeD88754a$Scene$Dart.prototype.addObject$member.call(this, object);
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.removeObject$member = function(object){
+ThreeD88754a$Scene$Dart.prototype.removeObject$member = function(object){
   var tmp$1, tmp$2, tmp$0;
-  if (!!(tmp$0 = object , tmp$0 != null && tmp$0.$implements$ThreeD85b351$Light$Dart)) {
+  if (!!(tmp$0 = object , tmp$0 != null && tmp$0.$implements$ThreeD88754a$Light$Dart)) {
     var i = this.lights$getter().indexOf$named(1, $noargs, object);
     if (i !== negate$operator(1)) {
       this.lights$getter().removeRange$named(2, $noargs, i, 1);
     }
   }
    else {
-    if (!!!(tmp$1 = object , tmp$1 != null && tmp$1.$implements$ThreeD85b351$Camera$Dart)) {
+    if (!!!(tmp$1 = object , tmp$1 != null && tmp$1.$implements$ThreeD88754a$Camera$Dart)) {
       var i_0 = this.objects$getter().indexOf$named(1, $noargs, object);
       if (i_0 !== negate$operator(1)) {
         this.objects$getter().removeRange$named(2, $noargs, i_0, 1);
-        this.__objectsRemoved$ThreeD85b351$$getter_().add$named(1, $noargs, object);
-        var ai = this.__objectsAdded$ThreeD85b351$$getter_().indexOf$named(1, $noargs, object);
+        this.__objectsRemoved$ThreeD88754a$$getter_().add$named(1, $noargs, object);
+        var ai = this.__objectsAdded$ThreeD88754a$$getter_().indexOf$named(1, $noargs, object);
         if (ai !== negate$operator(1)) {
-          this.__objectsAdded$ThreeD85b351$$getter_().removeRange$named(2, $noargs, ai, 1);
+          this.__objectsAdded$ThreeD88754a$$getter_().removeRange$named(2, $noargs, ai, 1);
         }
       }
     }
@@ -77208,136 +77208,136 @@ ThreeD85b351$Scene$Dart.prototype.removeObject$member = function(object){
   }
 }
 ;
-ThreeD85b351$Scene$Dart.prototype.removeObject$named = function($n, $o, object){
+ThreeD88754a$Scene$Dart.prototype.removeObject$named = function($n, $o, object){
   if ($o.count || $n != 1)
     $nsme();
-  return ThreeD85b351$Scene$Dart.prototype.removeObject$member.call(this, object);
+  return ThreeD88754a$Scene$Dart.prototype.removeObject$member.call(this, object);
 }
 ;
-function unnamed2523c9$Canvas_Geometry_Cube$Dart(){
+function unnamed128175$Canvas_Geometry_Cube$Dart(){
 }
-unnamed2523c9$Canvas_Geometry_Cube$Dart.$lookupRTT = function(typeArgs, named){
-  return RTT.create($cls('unnamed2523c9$Canvas_Geometry_Cube$Dart'), null, null, named);
-}
-;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.$Constructor = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.$lookupRTT = function(typeArgs, named){
+  return RTT.create($cls('unnamed128175$Canvas_Geometry_Cube$Dart'), null, null, named);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.$Initializer = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.$Constructor = function(){
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.Canvas_Geometry_Cube$$Factory = function(){
-  var tmp$0 = new unnamed2523c9$Canvas_Geometry_Cube$Dart;
-  tmp$0.$typeInfo = unnamed2523c9$Canvas_Geometry_Cube$Dart.$lookupRTT();
-  unnamed2523c9$Canvas_Geometry_Cube$Dart.$Initializer.call(tmp$0);
-  unnamed2523c9$Canvas_Geometry_Cube$Dart.$Constructor.call(tmp$0);
+unnamed128175$Canvas_Geometry_Cube$Dart.$Initializer = function(){
+}
+;
+unnamed128175$Canvas_Geometry_Cube$Dart.Canvas_Geometry_Cube$$Factory = function(){
+  var tmp$0 = new unnamed128175$Canvas_Geometry_Cube$Dart;
+  tmp$0.$typeInfo = unnamed128175$Canvas_Geometry_Cube$Dart.$lookupRTT();
+  unnamed128175$Canvas_Geometry_Cube$Dart.$Initializer.call(tmp$0);
+  unnamed128175$Canvas_Geometry_Cube$Dart.$Constructor.call(tmp$0);
   return tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.container$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.container$getter = function(){
   return this.container$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.container$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.container$setter = function(tmp$0){
   this.container$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.camera$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.camera$getter = function(){
   return this.camera$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.camera$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.camera$setter = function(tmp$0){
   this.camera$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.scene$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.scene$getter = function(){
   return this.scene$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.scene$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.scene$setter = function(tmp$0){
   this.scene$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.renderer$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.renderer$getter = function(){
   return this.renderer$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.renderer$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.renderer$setter = function(tmp$0){
   this.renderer$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.cube$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.cube$getter = function(){
   return this.cube$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.cube$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.cube$setter = function(tmp$0){
   this.cube$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.plane$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.plane$getter = function(){
   return this.plane$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.plane$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.plane$setter = function(tmp$0){
   this.plane$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.targetRotation$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.targetRotation$getter = function(){
   return this.targetRotation$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.targetRotation$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.targetRotation$setter = function(tmp$0){
   this.targetRotation$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.targetRotationOnMouseDown$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.targetRotationOnMouseDown$getter = function(){
   return this.targetRotationOnMouseDown$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.targetRotationOnMouseDown$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.targetRotationOnMouseDown$setter = function(tmp$0){
   this.targetRotationOnMouseDown$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.mouseX$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.mouseX$getter = function(){
   return this.mouseX$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.mouseX$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.mouseX$setter = function(tmp$0){
   this.mouseX$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.mouseXOnMouseDown$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.mouseXOnMouseDown$getter = function(){
   return this.mouseXOnMouseDown$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.mouseXOnMouseDown$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.mouseXOnMouseDown$setter = function(tmp$0){
   this.mouseXOnMouseDown$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.windowHalfX$getter = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.windowHalfX$getter = function(){
   return this.windowHalfX$field;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.windowHalfX$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.windowHalfX$setter = function(tmp$0){
   this.windowHalfX$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.windowHalfY$setter = function(tmp$0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.windowHalfY$setter = function(tmp$0){
   this.windowHalfY$field = tmp$0;
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.run$member = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.run$member = function(){
   this.init$member();
   this.animate$member();
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.run$named = function($n, $o){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.run$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.run$member.call(this);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.run$member.call(this);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.init$member = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.init$member = function(){
   var tmp$11, tmp$10, tmp$13, tmp$12, tmp$14, tmp$9, tmp$15, tmp$16, tmp$17, tmp$18, tmp$5, tmp$19, tmp$6, tmp$7, tmp$8, tmp$1, tmp$2, tmp$3, tmp$4, tmp$0;
   this.targetRotation$setter(tmp$0 = 0) , tmp$0;
   this.targetRotationOnMouseDown$setter(tmp$1 = 0) , tmp$1;
@@ -77347,8 +77347,8 @@ unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.init$member = function(){
   this.windowHalfY$setter(tmp$5 = DIV$operator(htmld071c1$window$getter().innerHeight$getter(), 2)) , tmp$5;
   this.container$setter(tmp$6 = htmlimpl0a8e4b$ElementWrappingImplementation$Dart.ElementWrappingImplementation$tag$29$Factory('div')) , tmp$6;
   htmld071c1$document$getter().body$getter().nodes$getter().add$named(1, $noargs, this.container$getter());
-  this.scene$setter(tmp$7 = ThreeD85b351$Scene$Dart.Scene$$Factory()) , tmp$7;
-  this.camera$setter(tmp$8 = ThreeD85b351$PerspectiveCamera$Dart.PerspectiveCamera$$Factory(70, DIV$operator(htmld071c1$window$getter().innerWidth$getter(), htmld071c1$window$getter().innerHeight$getter()), 1, 1000)) , tmp$8;
+  this.scene$setter(tmp$7 = ThreeD88754a$Scene$Dart.Scene$$Factory()) , tmp$7;
+  this.camera$setter(tmp$8 = ThreeD88754a$PerspectiveCamera$Dart.PerspectiveCamera$$Factory(70, DIV$operator(htmld071c1$window$getter().innerWidth$getter(), htmld071c1$window$getter().innerHeight$getter()), 1, 1000)) , tmp$8;
   this.camera$getter().position$getter().x$setter(tmp$9 = 250) , tmp$9;
   this.camera$getter().position$getter().y$setter(tmp$10 = negate$operator(50)) , tmp$10;
   this.camera$getter().position$getter().z$setter(tmp$11 = 600) , tmp$11;
@@ -77357,94 +77357,94 @@ unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.init$member = function(){
   {
     var i = 0;
     for (; LT$operator(i, 6); tmp$12 = i , (i = ADD$operator(tmp$12, 1) , tmp$12)) {
-      materials.add$named(1, $noargs, ThreeD85b351$MeshBasicMaterial$Dart.MeshBasicMaterial$$Factory((tmp$13 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$13.ASSIGN_INDEX$operator('color', MUL$operator(Math$Dart.random$member(), 16777215)) , tmp$13)));
+      materials.add$named(1, $noargs, ThreeD88754a$MeshBasicMaterial$Dart.MeshBasicMaterial$$Factory((tmp$13 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$13.ASSIGN_INDEX$operator('color', MUL$operator(Math$Dart.random$member(), 16777215)) , tmp$13)));
     }
   }
-  this.cube$setter(tmp$14 = ThreeD85b351$Mesh$Dart.Mesh$$Factory(ThreeD85b351$CubeGeometry$Dart.CubeGeometry$$Factory(200, 200, 200, 1, 1, 1, materials, $Dart$Null), ThreeD85b351$MeshFaceMaterial$Dart.MeshFaceMaterial$$Factory())) , tmp$14;
+  this.cube$setter(tmp$14 = ThreeD88754a$Mesh$Dart.Mesh$$Factory(ThreeD88754a$CubeGeometry$Dart.CubeGeometry$$Factory(200, 200, 200, 1, 1, 1, materials, $Dart$Null), ThreeD88754a$MeshFaceMaterial$Dart.MeshFaceMaterial$$Factory())) , tmp$14;
   this.cube$getter().position$getter().y$setter(tmp$15 = 150) , tmp$15;
   this.scene$getter().add$named(1, $noargs, this.cube$getter());
-  this.plane$setter(tmp$17 = ThreeD85b351$Mesh$Dart.Mesh$$Factory(ThreeD85b351$PlaneGeometry$Dart.PlaneGeometry$$Factory(200, 200, $Dart$Null, $Dart$Null), ThreeD85b351$MeshBasicMaterial$Dart.MeshBasicMaterial$$Factory((tmp$16 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$16.ASSIGN_INDEX$operator('color', 14737632) , tmp$16.ASSIGN_INDEX$operator('overdraw', true) , tmp$16)))) , tmp$17;
+  this.plane$setter(tmp$17 = ThreeD88754a$Mesh$Dart.Mesh$$Factory(ThreeD88754a$PlaneGeometry$Dart.PlaneGeometry$$Factory(200, 200, $Dart$Null, $Dart$Null), ThreeD88754a$MeshBasicMaterial$Dart.MeshBasicMaterial$$Factory((tmp$16 = LinkedHashMapImplementation$Dart.LinkedHashMapImplementation$$Factory(LinkedHashMapImplementation$Dart.$lookupRTT()) , tmp$16.ASSIGN_INDEX$operator('color', 14737632) , tmp$16.ASSIGN_INDEX$operator('overdraw', true) , tmp$16)))) , tmp$17;
   this.plane$getter().rotation$getter().x$setter(tmp$18 = MUL$operator(negate$operator(90), DIV$operator(Math$Dart.PI$getter(), 180))) , tmp$18;
   this.scene$getter().add$named(1, $noargs, this.plane$getter());
-  this.renderer$setter(tmp$19 = ThreeD85b351$CanvasRenderer$Dart.CanvasRenderer$$Factory($Dart$Null)) , tmp$19;
+  this.renderer$setter(tmp$19 = ThreeD88754a$CanvasRenderer$Dart.CanvasRenderer$$Factory($Dart$Null)) , tmp$19;
   this.renderer$getter().setSize$named(2, $noargs, htmld071c1$window$getter().innerWidth$getter(), htmld071c1$window$getter().innerHeight$getter());
   this.container$getter().nodes$getter().add$named(1, $noargs, this.renderer$getter().domElement$getter());
-  htmld071c1$document$getter().on$getter().mouseDown$getter().add$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().touchStart$getter().add$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().touchMove$getter().add$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseDown$getter().add$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().touchStart$getter().add$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().touchMove$getter().add$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named_$lookupRTT, this));
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$member = function(event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$member = function(event_0){
   var tmp$1, tmp$0;
   event_0.preventDefault$named(0, $noargs);
-  htmld071c1$document$getter().on$getter().mouseMove$getter().add$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().mouseUp$getter().add$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().mouseOut$getter().add$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseMove$getter().add$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseUp$getter().add$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseOut$getter().add$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT, this));
   this.mouseXOnMouseDown$setter(tmp$0 = SUB$operator(event_0.clientX$getter(), this.windowHalfX$getter())) , tmp$0;
   this.targetRotationOnMouseDown$setter(tmp$1 = this.targetRotation$getter()) , tmp$1;
   print$getter()(1, $noargs, 'onMouseDown mouseX = ' + $toString(this.mouseXOnMouseDown$getter()) + ' targRot = ' + $toString(this.targetRotationOnMouseDown$getter()) + '');
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named = function($n, $o, event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named = function($n, $o, event_0){
   if ($o.count || $n != 1)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$member.call(this, event_0);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$member.call(this, event_0);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named_$lookupRTT = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseDown$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$member = function(event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$member = function(event_0){
   var tmp$1, tmp$0;
   this.mouseX$setter(tmp$0 = SUB$operator(event_0.clientX$getter(), this.windowHalfX$getter())) , tmp$0;
   this.targetRotation$setter(tmp$1 = ADD$operator(this.targetRotationOnMouseDown$getter(), MUL$operator(SUB$operator(this.mouseX$getter(), this.mouseXOnMouseDown$getter()), 0.02))) , tmp$1;
   print$getter()(1, $noargs, 'onMouseMove mouseX = ' + $toString(this.mouseX$getter()) + ' targRot = ' + $toString(this.targetRotation$getter()) + '');
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named = function($n, $o, event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named = function($n, $o, event_0){
   if ($o.count || $n != 1)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$member.call(this, event_0);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$member.call(this, event_0);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$member = function(event_0){
-  htmld071c1$document$getter().on$getter().mouseMove$getter().remove$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().mouseUp$getter().remove$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().mouseOut$getter().remove$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT, this));
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$member = function(event_0){
+  htmld071c1$document$getter().on$getter().mouseMove$getter().remove$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseUp$getter().remove$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseOut$getter().remove$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT, this));
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named = function($n, $o, event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named = function($n, $o, event_0){
   if ($o.count || $n != 1)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$member.call(this, event_0);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$member.call(this, event_0);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$member = function(event_0){
-  htmld071c1$document$getter().on$getter().mouseMove$getter().remove$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().mouseUp$getter().remove$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT, this));
-  htmld071c1$document$getter().on$getter().mouseOut$getter().remove$named(1, $noargs, $bind(unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named, unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT, this));
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$member = function(event_0){
+  htmld071c1$document$getter().on$getter().mouseMove$getter().remove$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseMove$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseUp$getter().remove$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseUp$named_$lookupRTT, this));
+  htmld071c1$document$getter().on$getter().mouseOut$getter().remove$named(1, $noargs, $bind(unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named, unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT, this));
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named = function($n, $o, event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named = function($n, $o, event_0){
   if ($o.count || $n != 1)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$member.call(this, event_0);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$member.call(this, event_0);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentMouseOut$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$member = function(event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$member = function(event_0){
   var tmp$1, tmp$0;
   if (EQ$operator(event_0.touches$getter().length$getter(), 1)) {
     event_0.preventDefault$named(0, $noargs);
@@ -77453,17 +77453,17 @@ unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$member = 
   }
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named = function($n, $o, event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named = function($n, $o, event_0){
   if ($o.count || $n != 1)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$member.call(this, event_0);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$member.call(this, event_0);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named_$lookupRTT = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchStart$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$member = function(event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$member = function(event_0){
   var tmp$1, tmp$0;
   if (EQ$operator(event_0.touches$getter().length$getter(), 1)) {
     event_0.preventDefault$named(0, $noargs);
@@ -77472,32 +77472,32 @@ unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$member = f
   }
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named = function($n, $o, event_0){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named = function($n, $o, event_0){
   if ($o.count || $n != 1)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$member.call(this, event_0);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$member.call(this, event_0);
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named_$lookupRTT = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.onDocumentTouchMove$named_$lookupRTT = function(){
   return RTT.createFunction([RTT.dynamicType.$lookupRTT()], RTT.dynamicType.$lookupRTT());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.animate$member = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.animate$member = function(){
   this.render$member();
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.render$member = function(){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.render$member = function(){
   this.renderer$getter().render$named(2, $noargs, this.scene$getter(), this.camera$getter());
 }
 ;
-unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.render$named = function($n, $o){
+unnamed128175$Canvas_Geometry_Cube$Dart.prototype.render$named = function($n, $o){
   if ($o.count || $n != 0)
     $nsme();
-  return unnamed2523c9$Canvas_Geometry_Cube$Dart.prototype.render$member.call(this);
+  return unnamed128175$Canvas_Geometry_Cube$Dart.prototype.render$member.call(this);
 }
 ;
-function unnamed2523c9$main$member(){
-  unnamed2523c9$Canvas_Geometry_Cube$Dart.Canvas_Geometry_Cube$$Factory().run$named(0, $noargs);
+function unnamed128175$main$member(){
+  unnamed128175$Canvas_Geometry_Cube$Dart.Canvas_Geometry_Cube$$Factory().run$named(0, $noargs);
 }
 isolate$inits.push(function(){
   this._callback$$field_ = static$uninitialized;
@@ -77576,52 +77576,52 @@ isolate$inits.push(function(){
 }
 );
 isolate$inits.push(function(){
-  isolate$current.ThreeD85b351$Three$DartGeometryCount$field = 0;
-  isolate$current.ThreeD85b351$Three$DartObject3DCount$field = 0;
-  isolate$current.ThreeD85b351$Three$DartMaterialCount$field = 0;
-  isolate$current.ThreeD85b351$Three$DartNoShading$field = 0;
-  isolate$current.ThreeD85b351$Three$DartFlatShading$field = 1;
-  isolate$current.ThreeD85b351$Three$DartSmoothShading$field = 2;
-  isolate$current.ThreeD85b351$Three$DartNoColors$field = 0;
-  isolate$current.ThreeD85b351$Three$DartFaceColors$field = 1;
-  isolate$current.ThreeD85b351$Three$DartVertexColors$field = 2;
-  isolate$current.ThreeD85b351$Three$DartNormalBlending$field = 0;
-  isolate$current.ThreeD85b351$Three$DartAdditiveBlending$field = 1;
-  isolate$current.ThreeD85b351$Three$DartSubtractiveBlending$field = 2;
-  isolate$current.ThreeD85b351$Three$DartMultiplyBlending$field = 3;
-  isolate$current.ThreeD85b351$Three$DartAdditiveAlphaBlending$field = 4;
-  isolate$current.ThreeD85b351$Three$DartTextureCount$field = 0;
-  isolate$current.ThreeD85b351$Three$DartMultiplyOperation$field = 0;
-  isolate$current.ThreeD85b351$Three$DartMixOperation$field = 1;
-  isolate$current.ThreeD85b351$Three$DartRepeatWrapping$field = 0;
-  isolate$current.ThreeD85b351$Three$DartClampToEdgeWrapping$field = 1;
-  isolate$current.ThreeD85b351$Three$DartMirroredRepeatWrapping$field = 2;
-  isolate$current.ThreeD85b351$Three$DartNearestFilter$field = 3;
-  isolate$current.ThreeD85b351$Three$DartNearestMipMapNearestFilter$field = 4;
-  isolate$current.ThreeD85b351$Three$DartNearestMipMapLinearFilter$field = 5;
-  isolate$current.ThreeD85b351$Three$DartLinearFilter$field = 6;
-  isolate$current.ThreeD85b351$Three$DartLinearMipMapNearestFilter$field = 7;
-  isolate$current.ThreeD85b351$Three$DartLinearMipMapLinearFilter$field = 8;
-  isolate$current.ThreeD85b351$Three$DartByteType$field = 9;
-  isolate$current.ThreeD85b351$Three$DartUnsignedByteType$field = 10;
-  isolate$current.ThreeD85b351$Three$DartShortType$field = 11;
-  isolate$current.ThreeD85b351$Three$DartUnsignedShortType$field = 12;
-  isolate$current.ThreeD85b351$Three$DartIntType$field = 13;
-  isolate$current.ThreeD85b351$Three$DartUnsignedIntType$field = 14;
-  isolate$current.ThreeD85b351$Three$DartFloatType$field = 15;
-  isolate$current.ThreeD85b351$Three$DartAlphaFormat$field = 16;
-  isolate$current.ThreeD85b351$Three$DartRGBFormat$field = 17;
-  isolate$current.ThreeD85b351$Three$DartRGBAFormat$field = 18;
-  isolate$current.ThreeD85b351$Three$DartLuminanceFormat$field = 19;
-  isolate$current.ThreeD85b351$Three$DartLuminanceAlphaFormat$field = 20;
+  isolate$current.ThreeD88754a$Three$DartGeometryCount$field = 0;
+  isolate$current.ThreeD88754a$Three$DartObject3DCount$field = 0;
+  isolate$current.ThreeD88754a$Three$DartMaterialCount$field = 0;
+  isolate$current.ThreeD88754a$Three$DartNoShading$field = 0;
+  isolate$current.ThreeD88754a$Three$DartFlatShading$field = 1;
+  isolate$current.ThreeD88754a$Three$DartSmoothShading$field = 2;
+  isolate$current.ThreeD88754a$Three$DartNoColors$field = 0;
+  isolate$current.ThreeD88754a$Three$DartFaceColors$field = 1;
+  isolate$current.ThreeD88754a$Three$DartVertexColors$field = 2;
+  isolate$current.ThreeD88754a$Three$DartNormalBlending$field = 0;
+  isolate$current.ThreeD88754a$Three$DartAdditiveBlending$field = 1;
+  isolate$current.ThreeD88754a$Three$DartSubtractiveBlending$field = 2;
+  isolate$current.ThreeD88754a$Three$DartMultiplyBlending$field = 3;
+  isolate$current.ThreeD88754a$Three$DartAdditiveAlphaBlending$field = 4;
+  isolate$current.ThreeD88754a$Three$DartTextureCount$field = 0;
+  isolate$current.ThreeD88754a$Three$DartMultiplyOperation$field = 0;
+  isolate$current.ThreeD88754a$Three$DartMixOperation$field = 1;
+  isolate$current.ThreeD88754a$Three$DartRepeatWrapping$field = 0;
+  isolate$current.ThreeD88754a$Three$DartClampToEdgeWrapping$field = 1;
+  isolate$current.ThreeD88754a$Three$DartMirroredRepeatWrapping$field = 2;
+  isolate$current.ThreeD88754a$Three$DartNearestFilter$field = 3;
+  isolate$current.ThreeD88754a$Three$DartNearestMipMapNearestFilter$field = 4;
+  isolate$current.ThreeD88754a$Three$DartNearestMipMapLinearFilter$field = 5;
+  isolate$current.ThreeD88754a$Three$DartLinearFilter$field = 6;
+  isolate$current.ThreeD88754a$Three$DartLinearMipMapNearestFilter$field = 7;
+  isolate$current.ThreeD88754a$Three$DartLinearMipMapLinearFilter$field = 8;
+  isolate$current.ThreeD88754a$Three$DartByteType$field = 9;
+  isolate$current.ThreeD88754a$Three$DartUnsignedByteType$field = 10;
+  isolate$current.ThreeD88754a$Three$DartShortType$field = 11;
+  isolate$current.ThreeD88754a$Three$DartUnsignedShortType$field = 12;
+  isolate$current.ThreeD88754a$Three$DartIntType$field = 13;
+  isolate$current.ThreeD88754a$Three$DartUnsignedIntType$field = 14;
+  isolate$current.ThreeD88754a$Three$DartFloatType$field = 15;
+  isolate$current.ThreeD88754a$Three$DartAlphaFormat$field = 16;
+  isolate$current.ThreeD88754a$Three$DartRGBFormat$field = 17;
+  isolate$current.ThreeD88754a$Three$DartRGBAFormat$field = 18;
+  isolate$current.ThreeD88754a$Three$DartLuminanceFormat$field = 19;
+  isolate$current.ThreeD88754a$Three$DartLuminanceAlphaFormat$field = 20;
 }
 );
 isolate$inits.push(function(){
-  this._isEmpty$ThreeD85b351$$field_ = true;
+  this._isEmpty$ThreeD88754a$$field_ = true;
 }
 );
 isolate$inits.push(function(){
-  this._pi2$ThreeD85b351$$field_ = static$uninitialized;
+  this._pi2$ThreeD88754a$$field_ = static$uninitialized;
 }
 );
 isolate$inits.push(function(){
@@ -77646,4 +77646,4 @@ isolate$inits.push(function(){
   this.visible$field = true;
 }
 );
-RunEntry(unnamed2523c9$main$member, this.arguments ? (this.arguments.slice ? [].concat(this.arguments.slice()) : this.arguments) : []);
+RunEntry(unnamed128175$main$member, this.arguments ? (this.arguments.slice ? [].concat(this.arguments.slice()) : this.arguments) : []);
