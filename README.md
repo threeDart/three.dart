@@ -11,7 +11,7 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 2012 02 11 - **r1**
 
-* Pre-alpha release (I can see a cube!! :D)
-* This code is not currently ready to be used in a project, it has been released to gauge interest in it's further development.
+* Pre-alpha release (I can see a cube!! :D - Tested in Google Chrome Browser on Windows 7)
+* This code is not currently ready to be used in a project
 * Canvas_Geometry_Cube example partially implemented
 * Only code essential to Canvas_Geometry_Cube has been ported (e.g. CanvasRenderer, but not WebGLRenderer)
