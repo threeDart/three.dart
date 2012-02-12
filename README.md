@@ -5,7 +5,7 @@ three.dart
 
 This project aims to port the [three.js](https://github.com/mrdoob/three.js) JavaScript 3D engine to [Dart](http://www.dartlang.org/).
 
-Starting at three.js revision 47.0, the aim is to recreate all of the existing three.js [examples](https://github.com/mrdoob/three.js/tree/master/examples), until parity is reached with this version. Beyond this point, further revisions to three.js will be closely followed and matched in three.dart.
+Starting at three.js revision 47.0, the aim is to recreate all of the existing three.js [examples](http://mrdoob.github.com/three.js/), until parity is reached with this version. Beyond this point, further revisions to three.js will be closely followed and matched in three.dart.
 
 ### Change Log ###
 
