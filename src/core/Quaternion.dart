@@ -22,14 +22,14 @@ class Quaternion
   get w() {  return _w;  }
   set w( num value ) {  _w = value;  }
   
-  Quaternion( [num x, num y, num z, num w] ) 
+  Quaternion( [num this._x=0, num this._y=0, num this._z=0, num this._w=1] ) 
   {
-    setValues(
-      ( x !== null ) ? x : 0,
-      ( y !== null ) ? y : 0,
-      ( z !== null ) ? z : 0,
-      ( w !== null ) ? w : 1,
-    );
+    //setValues(
+    //  ( x !== null ) ? x : 0,
+    //  ( y !== null ) ? y : 0,
+    //  ( z !== null ) ? z : 0,
+    //  ( w !== null ) ? w : 1
+    //);
   }
 
   Quaternion setValues( x, y, z, w ) 
