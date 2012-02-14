@@ -23,11 +23,11 @@ class Vector3 implements IVector3
   set y(num value) {  _y = value;  }
   set z(num value) {  _z = value;  }
   
-  Vector3( [num x, num y, num z] )
+  Vector3( [num this._x=0, num this._y=0, num this._z=0] )
   {
-    _x = x != null ? _x = x : _x = 0;
-    _y = y != null ? _y = y : _y = 0;
-    _z = z != null ? _z = z : _z = 0;
+    //_x = x != null ? _x = x : _x = 0;
+    //_y = y != null ? _y = y : _y = 0;
+    //_z = z != null ? _z = z : _z = 0;
   }
   
   // changed "set" to "setValues" as "set" is reserved.
