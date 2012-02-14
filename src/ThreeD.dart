@@ -57,7 +57,6 @@
 #source('objects/Sprite.dart');
 
 #source('renderers/renderables/RenderableObject.dart');
-#source('renderers/renderables/RenderableObject.dart');
 #source('renderers/renderables/RenderableVertex.dart');
 #source('renderers/renderables/RenderableFace3.dart');
 #source('renderers/renderables/RenderableFace4.dart');

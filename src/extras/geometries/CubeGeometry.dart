@@ -8,7 +8,7 @@
 
 class CubeGeometry extends Geometry
 {
-  List _materials;
+  //List _materials;
   Map _sides;
   num segmentsWidth;
   num segmentsHeight;
