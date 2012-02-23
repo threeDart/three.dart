@@ -24,12 +24,12 @@ class Vector4 implements IVector4
   num get w() {  return _w;  }
   set w( num value ) {  _w = value;  }
   
-  Vector4( [num x, num y, num z, num w] ) 
+  Vector4( [num this._x = 0, num this._y = 0, num this._z = 0, num this._w = 1] ) 
   {
-    _x = ( x !== null ) ? x : 0;
-    _y = ( y !== null ) ? y : 0;
-    _z = ( z !== null ) ? z : 0;
-    _w = ( w !== null ) ? w : 1;
+//    _x = ( x !== null ) ? x : 0;
+//    _y = ( y !== null ) ? y : 0;
+//    _z = ( z !== null ) ? z : 0;
+//    _w = ( w !== null ) ? w : 1;
   }
 
   setValues( num x, num y, num z, num w ) 
@@ -56,7 +56,10 @@ class Vector4 implements IVector4
     
     if ( v is IVector4 ) {
      Vector4 v4 = v;
-     _w = ( v4.w !== null ) ? v4.w : 1;
+     //_w = ( v4.w !== null ) ? v4.w : 1;
+     _w = v4.w;
+    } else {
+      _w = 1;
     }
   }
 

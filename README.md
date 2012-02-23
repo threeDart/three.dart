@@ -9,13 +9,21 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 ### Change Log ###
 
-2012 02 12 - **r1.1**
+2012 02 23 - **v 0.0.3**
 
-Project restructuring:
-  - "ThreeD" renamed to "src"
-  - "examples" folder introduced
+* Multiple frame rendering bug fixed!
+* Canvas_Geometry_Cube example now draggable
+* Default values added to Quaternion, Vector2, Vector4
+* Change Log updated from "revision" to "version" numbers (where "version 1" will demonstrate all of the functionality of three.js revision 47.0)
 
-2012 02 11 - **r1**
+
+2012 02 12 - **v 0.0.2**
+
+* Project restructuring:
+  * "ThreeD" renamed to "src"
+  * "examples" folder introduced
+
+2012 02 11 - **v 0.0.1**
 
 * Pre-alpha release (I can see a cube!! :D - Tested in Google Chrome Browser on Windows 7)
 * This code is not currently ready to be used in a project

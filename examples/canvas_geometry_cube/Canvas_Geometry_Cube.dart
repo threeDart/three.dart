@@ -10,7 +10,7 @@ class Canvas_Geometry_Cube
   CanvasRenderer renderer;
 
   Mesh cube;
-  Mesh plane;
+//  Mesh plane;
 
   num targetRotation;
   num targetRotationOnMouseDown;
@@ -46,7 +46,7 @@ class Canvas_Geometry_Cube
     container = new Element.tag('div');
     //document.body.appendChild( container );
     document.body.nodes.add( container );
-/*
+
     Element info = new Element.tag('div');
     info.style.position = 'absolute';
     info.style.top = '10px';
@@ -55,13 +55,13 @@ class Canvas_Geometry_Cube
     info.innerHTML = 'Drag to spin the cube';
     //container.appendChild( info );
     container.nodes.add( info );
-*/
+
     scene = new Scene();
 
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.x = 250;
-    camera.position.y = -50;////150;
-    camera.position.z = 600;//500;
+    //camera.position.x = 250;
+    camera.position.y = 150;
+    camera.position.z = 500;
     scene.add( camera );
 
     // Cube
@@ -79,10 +79,10 @@ class Canvas_Geometry_Cube
 
     // Plane
 
-    plane = new Mesh( new PlaneGeometry( 200, 200 ), new MeshBasicMaterial( { 'color': 0xe0e0e0, 'overdraw' : true } ) );
-    plane.rotation.x = - 90 * ( Math.PI / 180 );
-    //plane.overdraw = true; //TODO where is this prop?
-    scene.add( plane );
+//    plane = new Mesh( new PlaneGeometry( 200, 200 ), new MeshBasicMaterial( { 'color': 0xe0e0e0, 'overdraw' : true } ) );
+//    plane.rotation.x = - 90 * ( Math.PI / 180 );
+//    //plane.overdraw = true; //TODO where is this prop?
+//    scene.add( plane );
 
     renderer = new CanvasRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -95,7 +95,7 @@ class Canvas_Geometry_Cube
     document.on.touchStart.add(onDocumentTouchStart);
     document.on.touchMove.add(onDocumentTouchMove);
 
-//    window.setInterval(f() => animate(), 500);
+    window.setInterval(f() => animate(), 10);
   }
 
   void onDocumentMouseDown( event )
@@ -122,7 +122,8 @@ class Canvas_Geometry_Cube
   }
 
   void onDocumentMouseUp( event )
-  {    
+  {
+    print('onDocumentMouseUp');
     document.on.mouseMove.remove(onDocumentMouseMove);
     document.on.mouseUp.remove(onDocumentMouseUp);
     document.on.mouseOut.remove(onDocumentMouseOut);    
@@ -173,7 +174,8 @@ class Canvas_Geometry_Cube
 
   void render()
   {
-//    plane.rotation.z = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
+//    plane.rotation.z = 
+    cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
     renderer.render( scene, camera );
   }
 }

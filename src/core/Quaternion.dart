@@ -8,21 +8,21 @@
 
 class Quaternion 
 {
-  num _x;
-  num _y;
-  num _z;
-  num _w;
+  num x;
+  num y;
+  num z;
+  num w;
   
-  get x() {  return _x;  }
-  set x( num value ) {  _x = value;  }
-  get y() {  return _y;  }
-  set y( num value ) {  _y = value;  }
-  get z() {  return _z;  }
-  set z( num value ) {  _z = value;  }
-  get w() {  return _w;  }
-  set w( num value ) {  _w = value;  }
+//  get x() {  return _x;  }
+//  set x( num value ) {  _x = value;  }
+//  get y() {  return _y;  }
+//  set y( num value ) {  _y = value;  }
+//  get z() {  return _z;  }
+//  set z( num value ) {  _z = value;  }
+//  get w() {  return _w;  }
+//  set w( num value ) {  _w = value;  }
   
-  Quaternion( [num this._x=0, num this._y=0, num this._z=0, num this._w=1] ) 
+  Quaternion( [num this.x=0, num this.y=0, num this.z=0, num this.w=1] ) 
   {
     //setValues(
     //  ( x !== null ) ? x : 0,
@@ -34,20 +34,20 @@ class Quaternion
 
   Quaternion setValues( x, y, z, w ) 
   {
-    _x = x;
-    _y = y;
-    _z = z;
-    _w = w;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.w = w;
 
     return this;
   }
 
   Quaternion copy( Vector4 q ) 
   {
-    _x = q.x;
-    _y = q.y;
-    _z = q.z;
-    _w = q.w;
+    this.x = q.x;
+    this.y = q.y;
+    this.z = q.z;
+    this.w = q.w;
 
     return this;
   }
@@ -69,10 +69,10 @@ class Quaternion
     c1c2 = c1 * c2,
     s1s2 = s1 * s2;
 
-    _w = c1c2 * c3  - s1s2 * s3;
-    _x = c1c2 * s3  + s1s2 * c3;
-    _y = s1 * c2 * c3 + c1 * s2 * s3;
-    _z = c1 * s2 * c3 - s1 * c2 * s3;
+    this.w = c1c2 * c3  - s1s2 * s3;
+    this.x = c1c2 * s3  + s1s2 * c3;
+    this.y = s1 * c2 * c3 + c1 * s2 * s3;
+    this.z = c1 * s2 * c3 - s1 * c2 * s3;
 
     return this;
   }
@@ -85,10 +85,10 @@ class Quaternion
     num halfAngle = angle / 2,
       s = Math.sin( halfAngle );
 
-    _x = axis.x * s;
-    _y = axis.y * s;
-    _z = axis.z * s;
-    _w = Math.cos( halfAngle );
+    this.x = axis.x * s;
+    this.y = axis.y * s;
+    this.z = axis.z * s;
+    this.w = Math.cos( halfAngle );
 
     return this;
   }
@@ -96,13 +96,13 @@ class Quaternion
   Quaternion setFromRotationMatrix( Matrix4 m ) 
   {
     num absQ = Math.pow(m.determinant(), 1.0 / 3.0);
-    _w = Math.sqrt( Math.max( 0, absQ + m.n11 + m.n22 + m.n33 ) ) / 2;
-    _x = Math.sqrt( Math.max( 0, absQ + m.n11 - m.n22 - m.n33 ) ) / 2;
-    _y = Math.sqrt( Math.max( 0, absQ - m.n11 + m.n22 - m.n33 ) ) / 2;
-    _z = Math.sqrt( Math.max( 0, absQ - m.n11 - m.n22 + m.n33 ) ) / 2;
-    _x = copySign( _x, ( m.n32 - m.n23 ) );
-    _y = copySign( _y, ( m.n13 - m.n31 ) );
-    _z = copySign( _z, ( m.n21 - m.n12 ) );
+    this.w = Math.sqrt( Math.max( 0, absQ + m.n11 + m.n22 + m.n33 ) ) / 2;
+    this.x = Math.sqrt( Math.max( 0, absQ + m.n11 - m.n22 - m.n33 ) ) / 2;
+    this.y = Math.sqrt( Math.max( 0, absQ - m.n11 + m.n22 - m.n33 ) ) / 2;
+    this.z = Math.sqrt( Math.max( 0, absQ - m.n11 - m.n22 + m.n33 ) ) / 2;
+    this.x = copySign( _x, ( m.n32 - m.n23 ) );
+    this.y = copySign( _y, ( m.n13 - m.n31 ) );
+    this.z = copySign( _z, ( m.n21 - m.n12 ) );
     normalize();
     return this;
   }
@@ -114,16 +114,16 @@ class Quaternion
 
   Quaternion calculateW() 
   {
-    _w = - Math.sqrt( ( 1.0 - _x * _x - _y * _y - _z * _z ).abs() );
+    this.w = - Math.sqrt( ( 1.0 - _x * _x - _y * _y - _z * _z ).abs() );
 
     return this;
   }
 
   Quaternion inverse() 
   {
-    _x *= -1;
-    _y *= -1;
-    _z *= -1;
+    this.x *= -1;
+    this.y *= -1;
+    this.z *= -1;
 
     return this;
   }
@@ -138,17 +138,17 @@ class Quaternion
     num l = Math.sqrt( _x * _x + _y * _y + _z * _z + _w * _w );
 
     if ( l === 0 ) {
-      _x = 0;
-      _y = 0;
-      _z = 0;
-      _w = 0;
+      this.x = 0;
+      this.y = 0;
+      this.z = 0;
+      this.w = 0;
     } else {
       l = 1 / l;
 
-      _x = _x * l;
-      _y = _y * l;
-      _z = _z * l;
-      _w = _w * l;
+      this.x = _x * l;
+      this.y = _y * l;
+      this.z = _z * l;
+      this.w = _w * l;
     }
 
     return this;
@@ -159,10 +159,10 @@ class Quaternion
     num qax = _x,  qay = _y,  qaz = _z,  qaw = _w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
 
-    _x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
-    _y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
-    _z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
-    _w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
+    this.x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
+    this.y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
+    this.z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
+    this.w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
 
     return this;
   }
@@ -171,10 +171,10 @@ class Quaternion
   {
     // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
-    _x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
-    _y = -q1.x * q2.z + q1.y * q2.w + q1.z * q2.x + q1.w * q2.y;
-    _z =  q1.x * q2.y - q1.y * q2.x + q1.z * q2.w + q1.w * q2.z;
-    _w = -q1.x * q2.x - q1.y * q2.y - q1.z * q2.z + q1.w * q2.w;
+    this.x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
+    this.y = -q1.x * q2.z + q1.y * q2.w + q1.z * q2.x + q1.w * q2.y;
+    this.z =  q1.x * q2.y - q1.y * q2.x + q1.z * q2.w + q1.w * q2.z;
+    this.w = -q1.x * q2.x - q1.y * q2.y - q1.z * q2.z + q1.w * q2.w;
 
     return this;
   }

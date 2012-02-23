@@ -28,7 +28,7 @@ class Projector
   
   Vector4 _clippedVertex1PositionScreen, _clippedVertex2PositionScreen;
   
-  RenderData _renderData;
+  ProjectorRenderData _renderData;
   
   Matrix4 _projScreenMatrix, _projScreenobjectMatrixWorld;
   
@@ -44,7 +44,7 @@ class Projector
     _particlePool = [];
 
     //_renderData = { "objects": [], "sprites": [], "lights": [], "elements": [] };
-    _renderData = new RenderData();
+    _renderData = new ProjectorRenderData();
 
     _vector3 = new Vector3();
     _vector4 = new Vector4();
@@ -104,14 +104,17 @@ class Projector
     return new Ray( vector, end );
   }
 
-  RenderData projectGraph( Object3D root, bool sort )
+  ProjectorRenderData projectGraph( Object3D root, bool sort )
   {
     _objectCount = 0;
     
     //TODO: does this clear the Lists in Dart?
-    _renderData.objects.length = 0;
-    _renderData.sprites.length = 0;
-    _renderData.lights.length = 0;
+//    _renderData.objects.length = 0;
+//    _renderData.sprites.length = 0;
+//    _renderData.lights.length = 0;
+      _renderData.objects = [];
+      _renderData.sprites = [];
+      _renderData.lights = [];
 
     projectObject( root );
 
@@ -125,7 +128,7 @@ class Projector
     return _renderData;
   }
   
-  RenderData projectObject( Object3D object ) 
+  ProjectorRenderData projectObject( Object3D object ) 
   {
     if ( object.visible === false ) return null;
     
@@ -163,7 +166,7 @@ class Projector
   }
 
   //TODO: check logic of using PerspectiveCamera here, seems odd.
-  RenderData projectScene( Scene scene, PerspectiveCamera camera, bool sort )
+  ProjectorRenderData projectScene( Scene scene, PerspectiveCamera camera, bool sort )
   {
     num near = camera.near, far = camera.far;
     int o, ol, v, vl, f, fl, n, nl, c, cl, u, ul;
@@ -171,13 +174,15 @@ class Projector
     Matrix4 objectMatrixWorld, objectMatrixWorldRotation;
     Material objectMaterial;
     Geometry geometry;
-    List geometryMaterials, vertices; 
+    List geometryMaterials;
+    List<Vertex> vertices; 
     Vertex vertex; 
     Vector3 vertexPositionScreen, normal;
-    List faces;
+    List<IFace3> faces;
     IFace3 face;
     IRenderableFace3 _face;
-    List faceVertexNormals, faceVertexUvs;
+    List faceVertexNormals;
+    List<List> faceVertexUvs;
     RenderableVertex v1, v2, v3, v4;
 
     _face3Count = 0;
@@ -186,7 +191,8 @@ class Projector
     _particleCount = 0;
 
     //TODO: does this clear a List in Dart?
-    _renderData.elements.length = 0;
+    //_renderData.elements.length = 0;
+    _renderData.elements = [];
 
     if ( camera.parent === null ) {
 //      console.warn( 'DEPRECATED: Camera hasn\'t been added to a Scene. Adding it...' );
@@ -204,6 +210,7 @@ class Projector
     _renderData = projectGraph( scene, false );
 
     ol = _renderData.objects.length;
+    
     for ( o = 0; o < ol; o++ ) 
     {
       object = _renderData.objects[ o ].object;
@@ -224,16 +231,15 @@ class Projector
         objectMatrixWorldRotation = object.matrixRotationWorld.extractRotation( objectMatrixWorld );
 
         vl = vertices.length;
+        
         for ( v = 0; v < vl; v ++ ) 
         {
           _vertex = getNextVertexInPool();
           _vertex.positionWorld.copy( vertices[ v ].position );
 
           objectMatrixWorld.multiplyVector3( _vertex.positionWorld );
-
           _vertex.positionScreen.copy( _vertex.positionWorld );
           _projScreenMatrix.multiplyVector4( _vertex.positionScreen );
-
           _vertex.positionScreen.x /= _vertex.positionScreen.w;
           _vertex.positionScreen.y /= _vertex.positionScreen.w;
 
@@ -267,20 +273,21 @@ class Projector
             }
           }
           else if ( face is Face4 )
-          {            
+          {
             Face4 face4 = face;
             v1 = _vertexPool[ face4.a ];
             v2 = _vertexPool[ face4.b ];
             v3 = _vertexPool[ face4.c ];
             v4 = _vertexPool[ face4.d ];
             
-            if ( v1.visible && v2.visible && v3.visible && v4.visible &&
-              ( object.doubleSided || ( object.flipSided !=
-              ( ( v4.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
-              ( v4.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0 ||
-              ( v2.positionScreen.x - v3.positionScreen.x ) * ( v4.positionScreen.y - v3.positionScreen.y ) -
-              ( v2.positionScreen.y - v3.positionScreen.y ) * ( v4.positionScreen.x - v3.positionScreen.x ) < 0 ) ) ) ) {
-
+            bool bool1  = ( v4.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
+                ( v4.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0;
+            bool bool2 = ( v2.positionScreen.x - v3.positionScreen.x ) * ( v4.positionScreen.y - v3.positionScreen.y ) -
+                ( v2.positionScreen.y - v3.positionScreen.y ) * ( v4.positionScreen.x - v3.positionScreen.x ) < 0;
+            bool bool3 = bool1 || bool2; 
+            
+            if ( v1.visible && v2.visible && v3.visible && v4.visible && ( object.doubleSided || ( object.flipSided != bool3 ) ) )
+            {
               _face = getNextFace4InPool();
 
               _face.v1.copy( v1 );
@@ -319,8 +326,6 @@ class Projector
             List<UV> uvs = faceVertexUvs[ c ][ f ];
 
             if ( uvs == null ) continue;
-       
-            print('UVs ${uvs.length}');
             
             //TODO: interpreting this code as dynamically creating arrays.
             ul = uvs.length;
@@ -444,7 +449,6 @@ class Projector
 
   RenderableVertex getNextVertexInPool() 
   {
-    print('getNextVertexInPool() ${_vertexPool.length}');
     //TODO: make sure I've interpreted this logic correctly
     // var vertex = _vertexPool[ _vertexCount ] = _vertexPool[ _vertexCount ] || new THREE.RenderableVertex();
     RenderableVertex vertex;
@@ -586,11 +590,11 @@ class Projector
 }
 
 // _renderData = { "objects": [], "sprites": [], "lights": [], "elements": [] };
-class RenderData
+class ProjectorRenderData
 {
   List objects, sprites, lights, elements;
   
-  RenderData()
+  ProjectorRenderData()
   {
     objects = [];
     sprites = [];

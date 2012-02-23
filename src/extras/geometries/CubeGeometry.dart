@@ -64,7 +64,7 @@ class CubeGeometry extends Geometry
     mergeVertices();
   }
   
-  buildPlane( String u, String v, num udir, num vdir, num width, num height, num depth, num material )
+  void buildPlane( String u, String v, num udir, num vdir, num width, num height, num depth, num material )
   {
     String w; 
     num ix, iy,

@@ -27,9 +27,9 @@ class CanvasRenderer
 
   Rectangle _clipRect, _clearRect, _bboxRect;
   
-  Map _info;
+  CanvasRenderData _info;
   
-  RenderData _renderData;
+  ProjectorRenderData _renderData;
   List _elements, _lights;
   Projector _projector;
   
@@ -141,12 +141,15 @@ class CanvasRenderer
     _sortObjects = true;
     _sortElements = true;
 
+    _info = new CanvasRenderData();
+    /*
     _info = {
       "render": {
         "vertices": 0,
         "faces": 0
       }
     };
+    */
   }
   
   void setSize( num width, num height ) 
@@ -214,7 +217,7 @@ class CanvasRenderer
   }
 
   void render( Scene scene, Camera camera ) 
-  {
+  {  
     num e, el;
     var element;
     Material material;
@@ -223,13 +226,14 @@ class CanvasRenderer
     
     _autoClear ? clear() : _context.setTransform( 1, 0, 0, - 1, _canvasWidthHalf, _canvasHeightHalf );
     //TODO: these are ints not lists?
-    _info['render']['vertices'] = 0;
-    _info['render']['faces'] = 0;
-
+    //_info['render']['vertices'] = 0;
+    //_info['render']['faces'] = 0;
+    _info.render.reset();
+    
     _renderData = _projector.projectScene( scene, camera, _sortElements );
     _elements = _renderData.elements;
     _lights = _renderData.lights;
-
+    
     /* DEBUG
     _context.fillStyle = 'rgba( 0, 255, 255, 0.5 )';
     _context.fillRect( _clipRect.getX(), _clipRect.getY(), _clipRect.getWidth(), _clipRect.getHeight() );
@@ -550,8 +554,10 @@ class CanvasRenderer
   
   void renderFace3( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, num uv1, num uv2, num uv3, Dynamic element, Material material, Scene scene )
   {
-    _info['render']['vertices'] += 3;
-    _info['render']['faces'] ++;
+    //_info['render']['vertices'] += 3;
+    //_info['render']['faces'] ++;
+    _info.render.vertices += 3;
+    _info.render.faces ++;
   
     setOpacity( material.opacity );
     setBlending( material.blending );
@@ -703,8 +709,10 @@ class CanvasRenderer
   void renderFace4( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, RenderableVertex v4, RenderableVertex v5, RenderableVertex v6, Dynamic element, Material material, Scene scene ) 
   {
     
-    _info['render']['vertices'] += 4;
-    _info['render']['faces'] ++;
+    //_info['render']['vertices'] += 4;
+    //_info['render']['faces'] ++;
+    _info.render.vertices += 4;
+    _info.render.faces ++;
   
     setOpacity( material.opacity );
     setBlending( material.blending );
@@ -1141,3 +1149,40 @@ class CanvasRenderer
     }
   }
 }
+
+// Data obj class to replace Map _info
+class CanvasRenderData
+{
+  RenderInts render;
+  
+  CanvasRenderData()
+  {
+    render = new RenderInts();
+  }
+}
+class RenderInts
+{
+  int vertices;
+  int faces;
+  
+  RenderInts()
+  {
+    reset();
+  }
+  
+  void reset()
+  {
+    vertices = 0;
+    faces = 0;
+  }
+}
+/*
+_info = {
+         "render": {
+           "vertices": 0,
+           "faces": 0
+         }
+*/
+
+
+
