@@ -117,27 +117,27 @@ class Matrix4
 
   // TODO: a good candidate for strict typing
   Matrix4 lookAt( Vector3 eye, Vector3 center, Vector3 up ) 
-  {
-//    Vector3 x = __v1, y = __v2, z = __v3;
-//
-//    z.sub( eye, center ).normalize();
-//
-//    if ( z.length() === 0 ) {
-//      z.z = 1;
-//    }
-//
-//    x.cross( up, z ).normalize();
-//
-//    if ( x.length() === 0 ) {
-//      z.x += 0.0001;
-//      x.cross( up, z ).normalize();
-//    }
-//
-//    y.cross( z, x ).normalize();
-//
-//    n11 = x.x; n12 = y.x; n13 = z.x;
-//    n21 = x.y; n22 = y.y; n23 = z.y;
-//    n31 = x.z; n32 = y.z; n33 = z.z;
+  {    
+      Vector3 x = __v1, y = __v2, z = __v3;
+      
+      z.sub( eye, center ).normalize();
+      
+      if ( z.length() === 0 ) {
+        z.z = 1;
+      }
+  
+      x.cross( up, z ).normalize();
+      
+      if ( x.length() === 0 ) {
+        z.x += 0.0001;
+        x.cross( up, z ).normalize();
+      }
+  
+      y.cross( z, x ).normalize();
+  
+      n11 = x.x; n12 = y.x; n13 = z.x;
+      n21 = x.y; n22 = y.y; n23 = z.y;
+      n31 = x.z; n32 = y.z; n33 = z.z;
 
     return this;
   }

@@ -45,11 +45,9 @@ class Canvas_Geometry_Heirarchy
     scene = new Scene();
 
     camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.y = 150;  
     camera.position.z = 500;
   
-    //TODO: No such property?
-    //camera.target = new Vector3(); 
+    //camera.target = new Vector3(); //TODO: No such property?
     scene.add( camera );
 
     List materials = [];
@@ -57,20 +55,17 @@ class Canvas_Geometry_Heirarchy
     for ( int i = 0; i < 6; i ++ ) {
       materials.add( new MeshBasicMaterial( { 'color' : Math.random() * 0xffffff } ) );
     }
-
-    Mesh cube = new Mesh( new CubeGeometry( 200, 200, 200, 1, 1, 1, materials ), new MeshFaceMaterial());
-
-    /*
+    
+    
     geometry = new CubeGeometry( 100, 100, 100 );
     MeshNormalMaterial material = new MeshNormalMaterial();
-*/
+    
     group = new Object3D();
 
     for ( var i = 0; i < 200; i ++ ) 
     {
-      //Mesh mesh = new Mesh( geometry, material );
-      Mesh mesh = new Mesh( new CubeGeometry( 100, 100, 100, 1, 1, 1, materials ), new MeshFaceMaterial());
-      //mesh.overdraw = true;
+      Mesh mesh = new Mesh( geometry, material );
+      //mesh.overdraw = true; //TODO: No such property?
       mesh.position.x = Math.random() * 2000 - 1000;
       mesh.position.y = Math.random() * 2000 - 1000;
       mesh.position.z = Math.random() * 2000 - 1000;
@@ -81,8 +76,6 @@ class Canvas_Geometry_Heirarchy
       group.add( mesh );
     }
     
-    
-    group.add( cube );
     scene.add( group );
 
     renderer = new CanvasRenderer();
@@ -106,12 +99,15 @@ class Canvas_Geometry_Heirarchy
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
 
-  void animate() 
+  bool animate() 
   {
     //requestAnimationFrame( animate );
-
+   //window.webkitRequestAnimationFrame(callback)
+    
     render();
     //stats.update();
+    
+    return true;
   }
 
   void render() 

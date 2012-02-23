@@ -25,9 +25,7 @@ class Vector3 implements IVector3
   
   Vector3( [num this._x=0, num this._y=0, num this._z=0] )
   {
-    //_x = x != null ? _x = x : _x = 0;
-    //_y = y != null ? _y = y : _y = 0;
-    //_z = z != null ? _z = z : _z = 0;
+    
   }
   
   // changed "set" to "setValues" as "set" is reserved.
@@ -158,12 +156,11 @@ class Vector3 implements IVector3
 
   Vector3 divideScalar( num s ) 
   {
-    if ( s !== null ) 
+    if ( s !== 0 ) 
     {
       _x /= s;
       _y /= s;
       _z /= s;
-
     } else {
       _x = 0;
       _y = 0;
@@ -213,11 +210,11 @@ class Vector3 implements IVector3
 
 
   Vector3 cross( Vector3 a, Vector3 b )
-  {
+  {    
     _x = a.y * b.z - a.z * b.y;
     _y = a.z * b.x - a.x * b.z;
     _z = a.x * b.y - a.y * b.x;
-
+   
     return this;
   }
 
