@@ -50,14 +50,15 @@ class PlaneGeometry extends Geometry
 
         faces.add( face );
         
-        List faceVertexUv = faceVertexUvs[ 0 ];
-        faceVertexUv.addAll( [
-              new UV( ix / gridX, iy / gridY ),
-              new UV( ix / gridX, ( iy + 1 ) / gridY ),
-              new UV( ( ix + 1 ) / gridX, ( iy + 1 ) / gridY ),
-              new UV( ( ix + 1 ) / gridX, iy / gridY )
-            ] );
-
+        List faceVertexUV = faceVertexUvs[ 0 ];
+        List newUVs = new List();
+        newUVs.addAll([
+                       new UV( ix / gridX, iy / gridY ),
+                       new UV( ix / gridX, ( iy + 1 ) / gridY ),
+                       new UV( ( ix + 1 ) / gridX, ( iy + 1 ) / gridY ),
+                       new UV( ( ix + 1 ) / gridX, iy / gridY )
+                     ]);
+        faceVertexUV.add( newUVs );        
       }
     }
 

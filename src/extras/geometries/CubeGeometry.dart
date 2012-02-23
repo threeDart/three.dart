@@ -9,7 +9,7 @@
 class CubeGeometry extends Geometry
 {
   //List _materials;
-  Map _sides;
+  CubeGeomSides _sides;
   num segmentsWidth;
   num segmentsHeight;
   num segmentsDepth;
@@ -42,8 +42,8 @@ class CubeGeometry extends Geometry
       _materials = [];
     }
 
-    _sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
-    //_sides = new Sides(true, true, true, true, true, true);
+    //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
+    _sides = new CubeGeomSides();
     
     if ( sides != null ) {
       for ( var s in sides ) {
@@ -53,12 +53,12 @@ class CubeGeometry extends Geometry
       }
     }
 
-    _sides["px"] && buildPlane( 'z', 'y', - 1, - 1, depth, height, width_half, mpx ); // px
-    _sides["nx"] && buildPlane( 'z', 'y',   1, - 1, depth, height, - width_half, mnx ); // nx
-    _sides["py"] && buildPlane( 'x', 'z',   1,   1, width, depth, height_half, mpy ); // py
-    _sides["ny"] && buildPlane( 'x', 'z',   1, - 1, width, depth, - height_half, mny ); // ny
-    _sides["pz"] && buildPlane( 'x', 'y',   1, - 1, width, height, depth_half, mpz ); // pz
-    _sides["nz"] && buildPlane( 'x', 'y', - 1, - 1, width, height, - depth_half, mnz ); // nz
+    if (_sides.px)  buildPlane( 'z', 'y', - 1, - 1, depth, height, width_half, mpx ); // px
+    if (_sides.nx)  buildPlane( 'z', 'y',   1, - 1, depth, height, - width_half, mnx ); // nx
+    if (_sides.py)  buildPlane( 'x', 'z',   1,   1, width, depth, height_half, mpy ); // py
+    if (_sides.ny)  buildPlane( 'x', 'z',   1, - 1, width, depth, - height_half, mny ); // ny
+    if (_sides.pz)  buildPlane( 'x', 'y',   1, - 1, width, height, depth_half, mpz ); // pz
+    if (_sides.nz)  buildPlane( 'x', 'y', - 1, - 1, width, height, - depth_half, mnz ); // nz
 
     computeCentroids();
     mergeVertices();
@@ -152,29 +152,17 @@ class CubeGeometry extends Geometry
     }
   }  
 }
-/*
+
 //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
-class Sides
+class CubeGeomSides
 {
-  bool _px, _nx, _py, _ny, _pz, _nz;
+  bool px, nx, py, ny, pz, nz;
   
-  get px() {  return _px;  }
-  get nx() {  return _nx;  }
-  get py() {  return _py;  }
-  get ny() {  return _ny;  }
-  get pz() {  return _pz;  }
-  get nz() {  return _nz;  }
-  
-  Sides( bool px, bool nx, bool py, bool ny, bool pz, bool nz )
+  CubeGeomSides( [bool this.px = true, bool this.nx = true, bool this.py = true, bool this.ny = true, bool this.pz = true, bool this.nz = true] )
   {
-    _px = px;
-    _nx = nx;
-    _py = py;
-    _ny = ny;
-    _pz = pz;
-    _nz = nz;
+    
   }
 }
-*/
+
 
 

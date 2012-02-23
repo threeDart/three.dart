@@ -10,7 +10,7 @@ class Canvas_Geometry_Cube
   CanvasRenderer renderer;
 
   Mesh cube;
-//  Mesh plane;
+  Mesh plane;
 
   num targetRotation;
   num targetRotationOnMouseDown;
@@ -59,7 +59,6 @@ class Canvas_Geometry_Cube
     scene = new Scene();
 
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    //camera.position.x = 250;
     camera.position.y = 150;
     camera.position.z = 500;
     scene.add( camera );
@@ -79,10 +78,10 @@ class Canvas_Geometry_Cube
 
     // Plane
 
-//    plane = new Mesh( new PlaneGeometry( 200, 200 ), new MeshBasicMaterial( { 'color': 0xe0e0e0, 'overdraw' : true } ) );
-//    plane.rotation.x = - 90 * ( Math.PI / 180 );
-//    //plane.overdraw = true; //TODO where is this prop?
-//    scene.add( plane );
+    plane = new Mesh( new PlaneGeometry( 200, 200 ), new MeshBasicMaterial( { 'color': 0xe0e0e0, 'overdraw' : true } ) );
+    plane.rotation.x = - 90 * ( Math.PI / 180 );
+    //plane.overdraw = true; //TODO where is this prop?
+    scene.add( plane );
 
     renderer = new CanvasRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -157,9 +156,6 @@ class Canvas_Geometry_Cube
       targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
     }
   }
-
-  //
-
   
   
   void animate()
@@ -174,8 +170,7 @@ class Canvas_Geometry_Cube
 
   void render()
   {
-//    plane.rotation.z = 
-    cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
+    plane.rotation.z = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
     renderer.render( scene, camera );
   }
 }
