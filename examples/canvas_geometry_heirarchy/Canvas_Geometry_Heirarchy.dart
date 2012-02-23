@@ -99,15 +99,13 @@ class Canvas_Geometry_Heirarchy
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
 
-  bool animate() 
+  void animate() 
   {
     //requestAnimationFrame( animate );
    //window.webkitRequestAnimationFrame(callback)
     
     render();
     //stats.update();
-    
-    return true;
   }
 
   void render() 
