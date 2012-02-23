@@ -10,6 +10,7 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 ### Change Log ###
 
 2012 02 23 - **v 0.0.4**
+
 * Canvas_Geometry_Heirarchy example implemented
 * Color: r,g,b getters and setters removed for brevity (properties are read/write)
 * Vector3: divideScalar()  "if ( s !== null )" error resolved
