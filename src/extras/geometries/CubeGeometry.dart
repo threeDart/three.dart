@@ -14,7 +14,7 @@ class CubeGeometry extends Geometry
   num segmentsHeight;
   num segmentsDepth;
   
-  CubeGeometry( num width, num height, num depth, num segmentsWidth, num segmentsHeight, num segmentsDepth, [List materials, List sides] ) : super()
+  CubeGeometry( num width, num height, num depth, [num segmentsWidth, num segmentsHeight, num segmentsDepth, List materials, List sides] ) : super()
   {
     //THREE.Geometry.call( this );
 

@@ -68,6 +68,8 @@ class CanvasRenderer
   
 //  get domElement() {  _domElement;  }
   
+  set sortObjects( bool value ) {  _sortObjects = value;  }
+  
   CanvasRenderer( [Map parameters] ) 
   {
     parameters = parameters != null ? parameters : {};

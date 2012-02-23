@@ -1,0 +1,133 @@
+#import('dart:html');
+#import('../../src/ThreeD.dart');
+
+class Canvas_Geometry_Heirarchy 
+{
+  Element container;// stats;
+
+  PerspectiveCamera camera;
+  Scene scene;
+  CanvasRenderer renderer;
+
+  CubeGeometry geometry;
+  Object3D group;
+
+  num mouseX = 0, mouseY = 0;
+
+  num windowHalfX;
+  num windowHalfY;
+  
+  Canvas_Geometry_Heirarchy() 
+  {
+    
+  }
+
+  void run() 
+  {
+    document.on.mouseMove.add( onDocumentMouseMove, false );
+
+    init();
+    animate();
+  }
+  
+
+  void init()
+  {
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+    
+//    container = document.createElement( 'div' );
+//    document.body.appendChild( container );
+
+    container = new Element.tag('div');
+    document.body.nodes.add( container );
+    
+    scene = new Scene();
+
+    camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.y = 150;  
+    camera.position.z = 500;
+  
+    //TODO: No such property?
+    //camera.target = new Vector3(); 
+    scene.add( camera );
+
+    List materials = [];
+
+    for ( int i = 0; i < 6; i ++ ) {
+      materials.add( new MeshBasicMaterial( { 'color' : Math.random() * 0xffffff } ) );
+    }
+
+    Mesh cube = new Mesh( new CubeGeometry( 200, 200, 200, 1, 1, 1, materials ), new MeshFaceMaterial());
+
+    /*
+    geometry = new CubeGeometry( 100, 100, 100 );
+    MeshNormalMaterial material = new MeshNormalMaterial();
+*/
+    group = new Object3D();
+
+    for ( var i = 0; i < 200; i ++ ) 
+    {
+      //Mesh mesh = new Mesh( geometry, material );
+      Mesh mesh = new Mesh( new CubeGeometry( 100, 100, 100, 1, 1, 1, materials ), new MeshFaceMaterial());
+      //mesh.overdraw = true;
+      mesh.position.x = Math.random() * 2000 - 1000;
+      mesh.position.y = Math.random() * 2000 - 1000;
+      mesh.position.z = Math.random() * 2000 - 1000;
+      mesh.rotation.x = Math.random() * 360 * ( Math.PI / 180 );
+      mesh.rotation.y = Math.random() * 360 * ( Math.PI / 180 );
+      mesh.matrixAutoUpdate = false;
+      mesh.updateMatrix();
+      group.add( mesh );
+    }
+    
+    
+    group.add( cube );
+    scene.add( group );
+
+    renderer = new CanvasRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.sortObjects = false;
+    //container.appendChild( renderer.domElement );
+    container.nodes.add( renderer.domElement );
+
+//    stats = new Stats();
+//    stats.domElement.style.position = 'absolute';
+//    stats.domElement.style.top = '0px';
+//    stats.domElement.style.zIndex = 100;
+//    container.appendChild( stats.domElement );
+
+    window.setInterval(f() => animate(), 10);
+  }
+
+  void onDocumentMouseMove(event) 
+  {
+    mouseX = ( event.clientX - windowHalfX ) * 10;
+    mouseY = ( event.clientY - windowHalfY ) * 10;
+  }
+
+  void animate() 
+  {
+    //requestAnimationFrame( animate );
+
+    render();
+    //stats.update();
+  }
+
+  void render() 
+  {
+    camera.position.x += ( mouseX - camera.position.x ) * .05;
+    camera.position.y += ( - mouseY - camera.position.y ) * .05;
+    camera.lookAt( scene.position );
+
+    group.rotation.x = Math.sin( new Date.now().value * 0.0007 ) * 0.5;
+    group.rotation.y = Math.sin( new Date.now().value * 0.0003 ) * 0.5;
+    group.rotation.z = Math.sin( new Date.now().value * 0.0002 ) * 0.5;
+
+    renderer.render( scene, camera );
+  }
+}
+
+void main() {
+  new Canvas_Geometry_Heirarchy().run();
+}

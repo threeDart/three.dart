@@ -17,7 +17,7 @@
  */
 class MeshNormalMaterial extends Material
 {
-  Map _parameters;
+  //Map _parameters;
   int _shading;
   bool _wireframe;
   num _wireframeLinewidth;
@@ -30,16 +30,16 @@ class MeshNormalMaterial extends Material
   String get wireframeLinejoin() {  return _wireframeLinejoin;  }
   int get shading() {  return _shading;  }
   
-  MeshNormalMaterial( Map parameters ) : super( parameters )
+  MeshNormalMaterial( [Map parameters] ) : super( parameters )
   {
     //THREE.Material.call( this, parameters );
 
-    _parameters = parameters != null ? parameters : {};
+    Map _parameters = parameters != null ? parameters : {};
 
-    _shading = parameters['shading'] ? parameters['shading'] : Three.FlatShading;
+    _shading = _parameters['shading'] ? _parameters['shading'] : Three.FlatShading;
 
-    _wireframe = parameters['wireframe'] ? parameters['wireframe'] : false;
-    _wireframeLinewidth = parameters['wireframeLinewidth'] ? parameters['wireframeLinewidth'] : 1;
+    _wireframe = _parameters['wireframe'] ? _parameters['wireframe'] : false;
+    _wireframeLinewidth = _parameters['wireframeLinewidth'] ? _parameters['wireframeLinewidth'] : 1;
 
   }
 }
