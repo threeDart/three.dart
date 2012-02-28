@@ -16,7 +16,7 @@ class Ray
     _direction = ( direction != null ) ? direction : new Vector3();
   }
   
-  List intersectObject( Object3D object ) 
+  List<Intersect> intersectObject( Object3D object ) 
   {
     Vector3 a = new Vector3();
     Vector3 b = new Vector3();
@@ -163,14 +163,14 @@ class Ray
     return intersects;
   } 
   
-  List intersectScene( Scene scene ) {
+  List<Intersect> intersectScene( Scene scene ) {
     return intersectObjects( scene.children );
   }
 
-  List intersectObjects( List objects )
+  List<Intersect> intersectObjects( List<Object3D> objects )
   {
     int l = objects.length;
-    List intersects = [];
+    List<Intersect> intersects = [];
 
     //TODO: not sure this is equivalent logic..
     for ( int i = 0; i < l; i ++ ) {
@@ -227,14 +227,14 @@ class Ray
 class Intersect 
 {
   num distance;
-  Vector3 intersectPoint;
+  Vector3 point;
   IFace3 face;
   Object3D object;
   
   Intersect(num d, Vector3 iPoint, IFace3 f, Object3D obj )
   {
     distance = d;
-    intersectPoint = iPoint;
+    point = iPoint;
     face = f;
     object = obj;
   }

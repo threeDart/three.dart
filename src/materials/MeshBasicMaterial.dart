@@ -50,7 +50,10 @@ class MeshBasicMaterial extends Material implements ITextureMapMaterial
   
   Texture get map() {  return _map;  }
   Dynamic get envMap() {  return _envMap;  }
+  
   Color get color() {  return _color;  }
+  set color( Color value ) { _color = value;  }
+  
   bool get wireframe() {  return _wireframe;  }
   num get wireframeLinewidth() {  return _wireframeLinewidth;  }
   String get wireframeLinecap() {  return _wireframeLinecap;  }

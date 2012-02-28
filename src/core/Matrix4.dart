@@ -78,10 +78,10 @@ class Matrix4
   }
   
   // "set" changed to "setM" as "set" is reserved
-  Matrix4 setValues( num n11, num n12, num n13, num n14, 
-                     num n21, num n22, num n23, num n24, 
-                     num n31, num n32, num n33, num n34, 
-                     num n41, num n42, num n43, num n44 ) 
+  Matrix4 setValues( num m11, num m12, num m13, num m14, 
+                     num m21, num m22, num m23, num m24, 
+                     num m31, num m32, num m33, num m34, 
+                     num m41, num m42, num m43, num m44 ) 
   {
     this.n11 = n11; this.n12 = n12; this.n13 = n13; this.n14 = n14;
     this.n21 = n21; this.n22 = n22; this.n23 = n23; this.n24 = n24;

@@ -49,6 +49,8 @@
 #source('materials/MeshDepthMaterial.dart');
 #source('materials/MeshNormalMaterial.dart');
 #source('materials/ITextureMapMaterial.dart');
+#source('materials/IParticleMaterial.dart');
+#source('materials/IMaterial.dart');
 
 #source('objects/Bone.dart');
 #source('objects/Mesh.dart');

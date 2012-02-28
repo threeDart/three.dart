@@ -24,20 +24,15 @@ class Quaternion
   
   Quaternion( [num this.x=0, num this.y=0, num this.z=0, num this.w=1] ) 
   {
-    //setValues(
-    //  ( x !== null ) ? x : 0,
-    //  ( y !== null ) ? y : 0,
-    //  ( z !== null ) ? z : 0,
-    //  ( w !== null ) ? w : 1
-    //);
+    
   }
 
-  Quaternion setValues( x, y, z, w ) 
+  Quaternion setValues( num newX, num newY, num newZ, num newW ) 
   {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.w = w;
+    this.x = newX;
+    this.y = newY;
+    this.z = newZ;
+    this.w = newW;
 
     return this;
   }
@@ -55,16 +50,16 @@ class Quaternion
   Quaternion setFromEuler( Vector3 vec3 ) 
   {
     num c = Math.PI / 360, // 0.5 * Math.PI / 360, // 0.5 is an optimization
-    x = vec3.x * c,
-    y = vec3.y * c,
-    z = vec3.z * c,
+    _x = vec3.x * c,
+    _y = vec3.y * c,
+    _z = vec3.z * c,
 
-    c1 = Math.cos( y  ),
-    s1 = Math.sin( y  ),
-    c2 = Math.cos( -z ),
-    s2 = Math.sin( -z ),
-    c3 = Math.cos( x  ),
-    s3 = Math.sin( x  ),
+    c1 = Math.cos( _y  ),
+    s1 = Math.sin( _y  ),
+    c2 = Math.cos( -_z ),
+    s2 = Math.sin( -_z ),
+    c3 = Math.cos( _x  ),
+    s3 = Math.sin( _x  ),
 
     c1c2 = c1 * c2,
     s1s2 = s1 * s2;
@@ -100,9 +95,9 @@ class Quaternion
     this.x = Math.sqrt( Math.max( 0, absQ + m.n11 - m.n22 - m.n33 ) ) / 2;
     this.y = Math.sqrt( Math.max( 0, absQ - m.n11 + m.n22 - m.n33 ) ) / 2;
     this.z = Math.sqrt( Math.max( 0, absQ - m.n11 - m.n22 + m.n33 ) ) / 2;
-    this.x = copySign( _x, ( m.n32 - m.n23 ) );
-    this.y = copySign( _y, ( m.n13 - m.n31 ) );
-    this.z = copySign( _z, ( m.n21 - m.n12 ) );
+    this.x = copySign( x, ( m.n32 - m.n23 ) );
+    this.y = copySign( y, ( m.n13 - m.n31 ) );
+    this.z = copySign( z, ( m.n21 - m.n12 ) );
     normalize();
     return this;
   }
@@ -114,7 +109,7 @@ class Quaternion
 
   Quaternion calculateW() 
   {
-    this.w = - Math.sqrt( ( 1.0 - _x * _x - _y * _y - _z * _z ).abs() );
+    this.w = - Math.sqrt( ( 1.0 - x * x - y * y - z * z ).abs() );
 
     return this;
   }
@@ -130,12 +125,12 @@ class Quaternion
 
   double length() 
   {
-    return Math.sqrt( _x * _x + _y * _y + _z * _z + _w * _w );
+    return Math.sqrt( x * x + y * y + z * z + w * w );
   }
 
   Quaternion normalize()
   {
-    num l = Math.sqrt( _x * _x + _y * _y + _z * _z + _w * _w );
+    num l = Math.sqrt( x * x + y * y + z * z + w * w );
 
     if ( l === 0 ) {
       this.x = 0;
@@ -145,10 +140,10 @@ class Quaternion
     } else {
       l = 1 / l;
 
-      this.x = _x * l;
-      this.y = _y * l;
-      this.z = _z * l;
-      this.w = _w * l;
+      this.x = x * l;
+      this.y = y * l;
+      this.z = z * l;
+      this.w = w * l;
     }
 
     return this;
@@ -156,7 +151,7 @@ class Quaternion
 
   Quaternion multiplySelf( Vector4 quat2 ) 
   {
-    num qax = _x,  qay = _y,  qaz = _z,  qaw = _w,
+    num qax = x,  qay = y,  qaz = z,  qaw = w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
 
     this.x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
@@ -183,15 +178,15 @@ class Quaternion
   {
     if( dest != null ) { dest = vec; }
 
-    num x    = vec.x,  y  = vec.y,  z  = vec.z,
-      qx   = _x, qy = _y, qz = _z, qw = _w;
+    num _x    = vec.x,  _y  = vec.y,  _z  = vec.z,
+      qx   = x, qy = y, qz = z, qw = w;
 
     // calculate quat * vec
 
-    num ix =  qw * x + qy * z - qz * y,
-      iy =  qw * y + qz * x - qx * z,
-      iz =  qw * z + qx * y - qy * x,
-      iw = -qx * x - qy * y - qz * z;
+    num ix =  qw * _x + qy * _z - qz * _y,
+      iy =  qw * _y + qz * _x - qx * _z,
+      iz =  qw * _z + qx * _y - qy * _x,
+      iw = -qx * _x - qy * _y - qz * _z;
 
     // calculate result * inverse quat
 

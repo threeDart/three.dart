@@ -1,0 +1,4 @@
+interface IParticleMaterial extends IMaterial
+{
+
+}

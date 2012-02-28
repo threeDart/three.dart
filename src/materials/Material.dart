@@ -5,7 +5,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Material
+class Material implements IMaterial
 {
   String _name;
   int _id;
@@ -18,27 +18,27 @@ class Material
   
   Material( [Map parameters] ) 
   {
-    parameters = parameters != null ? parameters : {};
+    Map _parameters = parameters != null ? parameters : {};
 
     _name = '';
 
     _id = Three.MaterialCount ++;
 
-    _opacity = parameters['opacity'] !== null ? parameters['opacity'] : 1;
-    _transparent = parameters['transparent'] !== null ? parameters['transparent'] : false;
+    _opacity = _parameters['opacity'] !== null ? _parameters['opacity'] : 1;
+    _transparent = _parameters['transparent'] !== null ? _parameters['transparent'] : false;
 
-    _blending = parameters['blending'] !== null ? parameters['blending'] : Three.NormalBlending;
+    _blending = _parameters['blending'] !== null ? _parameters['blending'] : Three.NormalBlending;
 
-    _depthTest = parameters['depthTest'] !== null ? parameters['depthTest'] : true;
-    _depthWrite = parameters['depthWrite'] !== null ? parameters['depthWrite'] : true;
+    _depthTest = _parameters['depthTest'] !== null ? _parameters['depthTest'] : true;
+    _depthWrite = _parameters['depthWrite'] !== null ? _parameters['depthWrite'] : true;
 
-    _polygonOffset = parameters['polygonOffset'] !== null ? parameters['polygonOffset'] : false;
-    _polygonOffsetFactor = parameters['polygonOffsetFactor'] !== null ? parameters['polygonOffsetFactor'] : 0;
-    _polygonOffsetUnits = parameters['polygonOffsetUnits'] !== null ? parameters['polygonOffsetUnits'] : 0;
+    _polygonOffset = _parameters['polygonOffset'] !== null ? _parameters['polygonOffset'] : false;
+    _polygonOffsetFactor = _parameters['polygonOffsetFactor'] !== null ? _parameters['polygonOffsetFactor'] : 0;
+    _polygonOffsetUnits = _parameters['polygonOffsetUnits'] !== null ? _parameters['polygonOffsetUnits'] : 0;
 
-    _alphaTest = parameters['alphaTest'] !== null ? parameters['alphaTest'] : 0;
+    _alphaTest = _parameters['alphaTest'] !== null ? _parameters['alphaTest'] : 0;
 
-    _overdraw = parameters['overdraw'] !== null ? parameters['overdraw'] : false; // Boolean for fixing antialiasing gaps in CanvasRenderer
+    _overdraw = _parameters['overdraw'] !== null ? _parameters['overdraw'] : false; // Boolean for fixing antialiasing gaps in CanvasRenderer
 
   }
 /*

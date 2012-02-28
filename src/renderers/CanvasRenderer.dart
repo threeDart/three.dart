@@ -68,6 +68,8 @@ class CanvasRenderer
   
 //  get domElement() {  _domElement;  }
   
+  bool debug;
+  
   set sortObjects( bool value ) {  _sortObjects = value;  }
   
   CanvasRenderer( [Map parameters] ) 
@@ -80,6 +82,8 @@ class CanvasRenderer
     _canvas = parameters['canvas'] != null ? parameters['canvas'] : new Element.tag('canvas');
     _context = _canvas.getContext( '2d' );
 
+    debug = parameters['debug'] != null ? parameters['debug'] : false;
+    
     _clearColor = new Color( 0x000000 );
     _clearOpacity = 0;
 
@@ -196,8 +200,8 @@ class CanvasRenderer
   {
     _context.setTransform( 1, 0, 0, - 1, _canvasWidthHalf, _canvasHeightHalf );
 
-    if ( !_clearRect.isEmpty() ) {
-
+    if ( !_clearRect.isEmpty() ) 
+    {
       _clearRect.minSelf( _clipRect );
       _clearRect.inflate( 2 );
 
@@ -236,10 +240,11 @@ class CanvasRenderer
     _elements = _renderData.elements;
     _lights = _renderData.lights;
     
-    /* DEBUG
-    _context.fillStyle = 'rgba( 0, 255, 255, 0.5 )';
-    _context.fillRect( _clipRect.getX(), _clipRect.getY(), _clipRect.getWidth(), _clipRect.getHeight() );
-    */
+    if ( debug ) 
+    {
+      _context.fillStyle = 'rgba( 0, 255, 255, 0.5 )';
+      _context.fillRect( _clipRect.getX(), _clipRect.getY(), _clipRect.getWidth(), _clipRect.getHeight() );
+    }
 
     _enableLighting = _lights.length > 0;
 
@@ -269,7 +274,6 @@ class CanvasRenderer
         rp.x *= _canvasWidthHalf; rp.y *= _canvasHeightHalf;
 
         renderParticle( rp, element, material, scene );
-
       }
       else if ( element is RenderableLine ) 
       {
@@ -339,20 +343,22 @@ class CanvasRenderer
         }
       }
       
-      /*
-      _context.lineWidth = 1;
-      _context.strokeStyle = 'rgba( 0, 255, 0, 0.5 )';
-      _context.strokeRect( _bboxRect.getX(), _bboxRect.getY(), _bboxRect.getWidth(), _bboxRect.getHeight() );
-      */
+      if ( debug )
+      {
+        _context.lineWidth = 1;
+        _context.strokeStyle = 'rgba( 0, 255, 0, 0.5 )';
+        _context.strokeRect( _bboxRect.getX(), _bboxRect.getY(), _bboxRect.getWidth(), _bboxRect.getHeight() );
+      }
 
       _clearRect.addRectangle( _bboxRect );
     }
 
-    /* DEBUG
-    _context.lineWidth = 1;
-    _context.strokeStyle = 'rgba( 255, 0, 0, 0.5 )';
-    _context.strokeRect( _clearRect.getX(), _clearRect.getY(), _clearRect.getWidth(), _clearRect.getHeight() );
-    */
+    if ( debug )
+    {
+      _context.lineWidth = 1;
+      _context.strokeStyle = 'rgba( 255, 0, 0, 0.5 )';
+      _context.strokeRect( _clearRect.getX(), _clearRect.getY(), _clearRect.getWidth(), _clearRect.getHeight() );
+    }
 
     _context.setTransform( 1, 0, 0, 1, 0, 0 );
 
@@ -447,18 +453,18 @@ class CanvasRenderer
   
   }
   
-  void renderParticle ( RenderableParticle v1, Dynamic element, material, scene ) {
-  
+  void renderParticle ( RenderableParticle v1, Element element, IMaterial material, Scene scene ) 
+  {
     setOpacity( material.opacity );
     setBlending( material.blending );
   
     num width, height, scaleX, scaleY, bitmapWidth, bitmapHeight;
     var bitmap;
   
-    if ( material is ParticleBasicMaterial ) {
-  
-      if ( material.map ) {
-  
+    if ( material is ParticleBasicMaterial ) 
+    {
+      if ( material.map )
+      {
         bitmap = material.map.image;
         bitmapWidth = bitmap.width >> 1;
         bitmapHeight = bitmap.height >> 1;
@@ -473,9 +479,7 @@ class CanvasRenderer
         _bboxRect.setValues( v1.x - width, v1.y - height, v1.x  + width, v1.y + height );
   
         if ( !_clipRect.intersects( _bboxRect ) ) {
-  
           return;
-  
         }
   
         _context.save();
@@ -487,33 +491,32 @@ class CanvasRenderer
         _context.drawImage( bitmap, 0, 0 );
   
         _context.restore();
-  
       }
   
-      /* DEBUG
-      _context.beginPath();
-      _context.moveTo( v1.x - 10, v1.y );
-      _context.lineTo( v1.x + 10, v1.y );
-      _context.moveTo( v1.x, v1.y - 10 );
-      _context.lineTo( v1.x, v1.y + 10 );
-      _context.closePath();
-      _context.strokeStyle = 'rgb(255,255,0)';
-      _context.stroke();
-      */
+      if ( debug )
+      {
+        _context.beginPath();
+        _context.moveTo( v1.x - 10, v1.y );
+        _context.lineTo( v1.x + 10, v1.y );
+        _context.moveTo( v1.x, v1.y - 10 );
+        _context.lineTo( v1.x, v1.y + 10 );
+        _context.closePath();
+        _context.strokeStyle = 'rgb(255,255,0)';
+        _context.stroke();
+      }
   
-    } else if ( material is ParticleCanvasMaterial ) {
-  
+    } 
+    else if ( material is ParticleCanvasMaterial ) 
+    {
       width = element.scale.x * _canvasWidthHalf;
       height = element.scale.y * _canvasHeightHalf;
   
       _bboxRect.setValues( v1.x - width, v1.y - height, v1.x + width, v1.y + height );
   
       if ( !_clipRect.intersects( _bboxRect ) ) {
-  
         return;
-  
       }
-  
+      
       setStrokeStyle( material.color.getContextStyle() );
       setFillStyle( material.color.getContextStyle() );
   
@@ -525,9 +528,7 @@ class CanvasRenderer
       material.program( _context );
   
       _context.restore();
-  
     }
-  
   }
   
   void renderLine( RenderableVertex v1, RenderableVertex v2, RenderableLine element, Material material, Scene scene ) 

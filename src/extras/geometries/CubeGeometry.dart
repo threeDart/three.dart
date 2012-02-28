@@ -45,10 +45,11 @@ class CubeGeometry extends Geometry
     //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
     _sides = new CubeGeomSides();
     
+    //TODO: not sure if this is the correct use of "dynamic"
     if ( sides != null ) {
       for ( var s in sides ) {
-        if ( _sides[ s ] !== null ) {
-          _sides[ s ] = sides[ s ];
+        if ( _sides.dynamic[ s ] !== null ) {
+          _sides.dynamic[ s ] = sides[ s ];
         }
       }
     }

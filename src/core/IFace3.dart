@@ -2,7 +2,10 @@ interface IFace3
 {
   Vector3 get centroid();
   Vector3 get normal();
+  
   List get vertexNormals();
+  set vertexNormals( List value );
+  
   List get vertexTangents();
   num get materialIndex();
   num get a();

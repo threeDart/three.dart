@@ -256,9 +256,6 @@ $defProp(Object.prototype, "putImageData$3", function($0, $1, $2) {
 $defProp(Object.prototype, "remove$0", function() {
   return this.noSuchMethod("remove", []);
 });
-$defProp(Object.prototype, "removeEventListener$3", function($0, $1, $2) {
-  return this.noSuchMethod("removeEventListener", [$0, $1, $2]);
-});
 $defProp(Object.prototype, "rotate$1", function($0) {
   return this.noSuchMethod("rotate", [$0]);
 });
@@ -436,18 +433,6 @@ Math.max = function(a, b) {
   return (a >= b) ? a : b;
 }
 // ********** Code for top level **************
-function print$(obj) {
-  return _print(obj);
-}
-function _print(obj) {
-  if (typeof console == 'object') {
-    if (obj) obj = obj.toString();
-    console.log(obj);
-  } else if (typeof write === 'function') {
-    write(obj);
-    write('\n');
-  }
-}
 function _toDartException(e) {
   function attachStack(dartEx) {
     // TODO(jmesserly): setting the stack property is not a long term solution.
@@ -1399,18 +1384,9 @@ $dynamic("addEventListener$3").EventTarget = function($0, $1, $2) {
   }
   return Object.prototype.addEventListener$3.call(this, $0, $1, $2);
 };
-$dynamic("removeEventListener$3").EventTarget = function($0, $1, $2) {
-  if (Object.getPrototypeOf(this).hasOwnProperty("removeEventListener$3")) {
-    return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-  }
-  return Object.prototype.removeEventListener$3.call(this, $0, $1, $2);
-};
 // ********** Code for _AbstractWorkerJs **************
 $dynamic("addEventListener$3").AbstractWorker = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").AbstractWorker = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _ArrayBufferJs **************
 // ********** Code for _ArrayBufferViewJs **************
@@ -1422,9 +1398,6 @@ $dynamic("get$parentNode").Node = function() { return this.parentNode; };
 $dynamic("set$textContent").Node = function(value) { return this.textContent = value; };
 $dynamic("addEventListener$3").Node = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").Node = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _AttrJs **************
 $dynamic("get$name").Attr = function() { return this.name; };
@@ -1593,7 +1566,6 @@ $dynamic("get$length").ClientRectList = function() { return this.length; };
 // ********** Code for _CloseEventJs **************
 // ********** Code for _CommentJs **************
 // ********** Code for _UIEventJs **************
-$dynamic("get$pageX").UIEvent = function() { return this.pageX; };
 // ********** Code for _CompositionEventJs **************
 $dynamic("get$data").CompositionEvent = function() { return this.data; };
 // ********** Code for _ConsoleJs **************
@@ -1608,9 +1580,6 @@ _ConsoleJs.set$dartObjectLocalStorage = function(value) { return this.dartObject
 // ********** Code for _DOMApplicationCacheJs **************
 $dynamic("addEventListener$3").DOMApplicationCache = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").DOMApplicationCache = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _DOMExceptionJs **************
 $dynamic("get$name").DOMException = function() { return this.name; };
@@ -1650,9 +1619,6 @@ $dynamic("addEventListener$3").DOMWindow = function($0, $1, $2) {
 $dynamic("moveTo$2").DOMWindow = function($0, $1) {
   return this.moveTo($0, $1);
 };
-$dynamic("removeEventListener$3").DOMWindow = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 $dynamic("setInterval$2").DOMWindow = function($0, $1) {
   return this.setInterval($wrap_call$0(to$call$0($0)), $1);
 };
@@ -1671,9 +1637,6 @@ $dynamic("clear$0").DataTransferItemList = function() {
 // ********** Code for _WorkerContextJs **************
 $dynamic("addEventListener$3").WorkerContext = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").WorkerContext = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 $dynamic("setInterval$2").WorkerContext = function($0, $1) {
   return this.setInterval($wrap_call$0(to$call$0($0)), $1);
@@ -1727,9 +1690,6 @@ $dynamic("get$name").EventException = function() { return this.name; };
 $dynamic("addEventListener$3").EventSource = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").EventSource = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _FileJs **************
 $dynamic("get$name").File = function() { return this.name; };
 // ********** Code for _FileEntryJs **************
@@ -1742,9 +1702,6 @@ $dynamic("get$length").FileList = function() { return this.length; };
 // ********** Code for _FileReaderJs **************
 $dynamic("addEventListener$3").FileReader = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").FileReader = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _FileReaderSyncJs **************
 // ********** Code for _FileWriterJs **************
@@ -2149,9 +2106,6 @@ $dynamic("get$name").IDBDatabase = function() { return this.name; };
 $dynamic("addEventListener$3").IDBDatabase = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").IDBDatabase = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _IDBDatabaseErrorJs **************
 // ********** Code for _IDBDatabaseExceptionJs **************
 $dynamic("get$name").IDBDatabaseException = function() { return this.name; };
@@ -2172,15 +2126,9 @@ $dynamic("clear$0").IDBObjectStore = function() {
 $dynamic("addEventListener$3").IDBRequest = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").IDBRequest = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _IDBTransactionJs **************
 $dynamic("addEventListener$3").IDBTransaction = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").IDBTransaction = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _IDBVersionChangeEventJs **************
 // ********** Code for _IDBVersionChangeRequestJs **************
@@ -2390,18 +2338,12 @@ $dynamic("sort$1").Int8Array = function($0) {
 $dynamic("addEventListener$3").MediaStream = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").MediaStream = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _LocalMediaStreamJs **************
 // ********** Code for _LocationJs **************
 // ********** Code for _LowPass2FilterNodeJs **************
 // ********** Code for _MediaControllerJs **************
 $dynamic("addEventListener$3").MediaController = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").MediaController = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _MediaElementAudioSourceNodeJs **************
 // ********** Code for _MediaErrorJs **************
@@ -2485,12 +2427,10 @@ $dynamic("get$data").MessageEvent = function() { return this.data; };
 $dynamic("addEventListener$3").MessagePort = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").MessagePort = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _MetadataJs **************
 // ********** Code for _MouseEventJs **************
 $dynamic("get$clientX").MouseEvent = function() { return this.clientX; };
+$dynamic("get$clientY").MouseEvent = function() { return this.clientY; };
 $dynamic("get$x").MouseEvent = function() { return this.x; };
 $dynamic("get$y").MouseEvent = function() { return this.y; };
 // ********** Code for _MutationEventJs **************
@@ -2632,9 +2572,6 @@ $dynamic("sort$1").NodeList = function($0) {
 $dynamic("addEventListener$3").Notification = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").Notification = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _NotificationCenterJs **************
 // ********** Code for _OESStandardDerivativesJs **************
 // ********** Code for _OESTextureFloatJs **************
@@ -2647,9 +2584,6 @@ $dynamic("get$name").OperationNotAllowedException = function() { return this.nam
 // ********** Code for _PeerConnectionJs **************
 $dynamic("addEventListener$3").PeerConnection = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").PeerConnection = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _PerformanceJs **************
 // ********** Code for _PerformanceNavigationJs **************
@@ -2720,9 +2654,6 @@ $dynamic("get$lastChild").SVGElementInstance = function() { return this.lastChil
 $dynamic("get$parentNode").SVGElementInstance = function() { return this.parentNode; };
 $dynamic("addEventListener$3").SVGElementInstance = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").SVGElementInstance = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _SVGElementInstanceListJs **************
 $dynamic("get$length").SVGElementInstanceList = function() { return this.length; };
@@ -3140,16 +3071,10 @@ $dynamic("get$width").TextMetrics = function() { return this.width; };
 $dynamic("addEventListener$3").TextTrack = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").TextTrack = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _TextTrackCueJs **************
 $dynamic("get$id").TextTrackCue = function() { return this.id; };
 $dynamic("addEventListener$3").TextTrackCue = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").TextTrackCue = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _TextTrackCueListJs **************
 $dynamic("get$length").TextTrackCueList = function() { return this.length; };
@@ -3158,16 +3083,12 @@ $dynamic("get$length").TextTrackList = function() { return this.length; };
 $dynamic("addEventListener$3").TextTrackList = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").TextTrackList = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _TimeRangesJs **************
 $dynamic("get$length").TimeRanges = function() { return this.length; };
 // ********** Code for _TouchJs **************
 $dynamic("get$clientX").Touch = function() { return this.clientX; };
-$dynamic("get$pageX").Touch = function() { return this.pageX; };
+$dynamic("get$clientY").Touch = function() { return this.clientY; };
 // ********** Code for _TouchEventJs **************
-$dynamic("get$touches").TouchEvent = function() { return this.touches; };
 // ********** Code for _TouchListJs **************
 $dynamic("is$List").TouchList = function(){return true};
 $dynamic("is$Collection").TouchList = function(){return true};
@@ -3486,11 +3407,9 @@ $dynamic("get$y").WebKitPoint = function() { return this.y; };
 $dynamic("addEventListener$3").WebSocket = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").WebSocket = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _WheelEventJs **************
 $dynamic("get$clientX").WheelEvent = function() { return this.clientX; };
+$dynamic("get$clientY").WheelEvent = function() { return this.clientY; };
 $dynamic("get$x").WheelEvent = function() { return this.x; };
 $dynamic("get$y").WheelEvent = function() { return this.y; };
 // ********** Code for _WorkerJs **************
@@ -3500,9 +3419,6 @@ $dynamic("get$y").WheelEvent = function() { return this.y; };
 $dynamic("addEventListener$3").XMLHttpRequest = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
-$dynamic("removeEventListener$3").XMLHttpRequest = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
 // ********** Code for _XMLHttpRequestExceptionJs **************
 $dynamic("get$name").XMLHttpRequestException = function() { return this.name; };
 // ********** Code for _XMLHttpRequestProgressEventJs **************
@@ -3510,9 +3426,6 @@ $dynamic("get$position").XMLHttpRequestProgressEvent = function() { return this.
 // ********** Code for _XMLHttpRequestUploadJs **************
 $dynamic("addEventListener$3").XMLHttpRequestUpload = function($0, $1, $2) {
   return this.addEventListener($0, $wrap_call$1(to$call$1($1)), $2);
-};
-$dynamic("removeEventListener$3").XMLHttpRequestUpload = function($0, $1, $2) {
-  return this.removeEventListener($0, $wrap_call$1(to$call$1($1)), $2);
 };
 // ********** Code for _XMLSerializerJs **************
 // ********** Code for _XPathEvaluatorJs **************
@@ -4059,6 +3972,10 @@ CanvasRenderingContext2DWrappingImplementation.prototype.set$lineWidth = functio
 }
 CanvasRenderingContext2DWrappingImplementation.prototype.set$strokeStyle = function(value) {
   this._ptr.set$strokeStyle(LevelDom.unwrapMaybePrimitive(value));
+}
+CanvasRenderingContext2DWrappingImplementation.prototype.arc = function(x, y, radius, startAngle, endAngle, anticlockwise) {
+  this._ptr.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+  return;
 }
 CanvasRenderingContext2DWrappingImplementation.prototype.beginPath = function() {
   this._ptr.beginPath();
@@ -5877,9 +5794,6 @@ UIEventWrappingImplementation._wrap$ctor = function(ptr) {
 }
 UIEventWrappingImplementation._wrap$ctor.prototype = UIEventWrappingImplementation.prototype;
 function UIEventWrappingImplementation() {}
-UIEventWrappingImplementation.prototype.get$pageX = function() {
-  return this._ptr.get$pageX();
-}
 // ********** Code for SVGZoomEventWrappingImplementation **************
 $inherits(SVGZoomEventWrappingImplementation, UIEventWrappingImplementation);
 SVGZoomEventWrappingImplementation._wrap$ctor = function(ptr) {
@@ -6046,99 +5960,6 @@ TitleElementWrappingImplementation._wrap$ctor = function(ptr) {
 TitleElementWrappingImplementation._wrap$ctor.prototype = TitleElementWrappingImplementation.prototype;
 function TitleElementWrappingImplementation() {}
 TitleElementWrappingImplementation.prototype.is$html_Element = function(){return true};
-// ********** Code for TouchListWrappingImplementation **************
-$inherits(TouchListWrappingImplementation, DOMWrapperBase);
-TouchListWrappingImplementation._wrap$ctor = function(ptr) {
-  DOMWrapperBase._wrap$ctor.call(this, ptr);
-}
-TouchListWrappingImplementation._wrap$ctor.prototype = TouchListWrappingImplementation.prototype;
-function TouchListWrappingImplementation() {}
-TouchListWrappingImplementation.prototype.is$List = function(){return true};
-TouchListWrappingImplementation.prototype.is$Collection = function(){return true};
-TouchListWrappingImplementation.prototype.get$length = function() {
-  return this._ptr.get$length();
-}
-TouchListWrappingImplementation.prototype.$index = function(index) {
-  return LevelDom.wrapTouch(this._ptr.$index(index));
-}
-TouchListWrappingImplementation.prototype.$setindex = function(index, value) {
-  this._ptr.$setindex(index, LevelDom.unwrap(value));
-}
-TouchListWrappingImplementation.prototype.add = function(value) {
-  $throw(new UnsupportedOperationException("Cannot add to immutable List."));
-}
-TouchListWrappingImplementation.prototype.addAll = function(collection) {
-  $throw(new UnsupportedOperationException("Cannot add to immutable List."));
-}
-TouchListWrappingImplementation.prototype.sort = function(compare) {
-  $throw(new UnsupportedOperationException("Cannot sort immutable List."));
-}
-TouchListWrappingImplementation.prototype.indexOf = function(element, start) {
-  return Lists.indexOf(this, element, start, this.get$length());
-}
-TouchListWrappingImplementation.prototype.clear = function() {
-  $throw(new UnsupportedOperationException("Cannot clear immutable List."));
-}
-TouchListWrappingImplementation.prototype.removeLast = function() {
-  $throw(new UnsupportedOperationException("Cannot removeLast on immutable List."));
-}
-TouchListWrappingImplementation.prototype.last = function() {
-  return this.$index(this.get$length() - (1));
-}
-TouchListWrappingImplementation.prototype.forEach = function(f) {
-  htmlimpl__Collections.forEach(this, f);
-}
-TouchListWrappingImplementation.prototype.map = function(f) {
-  return htmlimpl__Collections.map(this, [], f);
-}
-TouchListWrappingImplementation.prototype.get$map = function() {
-  return this.map.bind(this);
-}
-TouchListWrappingImplementation.prototype.filter = function(f) {
-  return htmlimpl__Collections.filter(this, new Array(), f);
-}
-TouchListWrappingImplementation.prototype.removeRange = function(start, length) {
-  $throw(new UnsupportedOperationException("Cannot removeRange on immutable List."));
-}
-TouchListWrappingImplementation.prototype.getRange = function(start, length) {
-  $throw(new NotImplementedException());
-}
-TouchListWrappingImplementation.prototype.iterator = function() {
-  return new htmlimpl__FixedSizeListIterator_html_Touch(this);
-}
-TouchListWrappingImplementation.prototype.item = function(index) {
-  return LevelDom.wrapTouch(this._ptr.item(index));
-}
-TouchListWrappingImplementation.prototype.add$1 = TouchListWrappingImplementation.prototype.add;
-TouchListWrappingImplementation.prototype.clear$0 = TouchListWrappingImplementation.prototype.clear;
-TouchListWrappingImplementation.prototype.filter$1 = function($0) {
-  return this.filter(to$call$1($0));
-};
-TouchListWrappingImplementation.prototype.forEach$1 = function($0) {
-  return this.forEach(to$call$1($0));
-};
-TouchListWrappingImplementation.prototype.indexOf$1 = function($0) {
-  return this.indexOf($0, (0));
-};
-TouchListWrappingImplementation.prototype.map$1 = function($0) {
-  return this.map(to$call$1($0));
-};
-TouchListWrappingImplementation.prototype.sort$1 = function($0) {
-  return this.sort(to$call$2($0));
-};
-// ********** Code for TouchWrappingImplementation **************
-$inherits(TouchWrappingImplementation, DOMWrapperBase);
-TouchWrappingImplementation._wrap$ctor = function(ptr) {
-  DOMWrapperBase._wrap$ctor.call(this, ptr);
-}
-TouchWrappingImplementation._wrap$ctor.prototype = TouchWrappingImplementation.prototype;
-function TouchWrappingImplementation() {}
-TouchWrappingImplementation.prototype.get$clientX = function() {
-  return this._ptr.get$clientX();
-}
-TouchWrappingImplementation.prototype.get$pageX = function() {
-  return this._ptr.get$pageX();
-}
 // ********** Code for TrackElementWrappingImplementation **************
 $inherits(TrackElementWrappingImplementation, ElementWrappingImplementation);
 TrackElementWrappingImplementation._wrap$ctor = function(ptr) {
@@ -7658,12 +7479,6 @@ LevelDom.wrapSVGAnimatedLengthList = function(raw) {
 LevelDom.wrapSVGAnimatedNumber = function(raw) {
   return null == raw ? null : null != raw.get$dartObjectLocalStorage() ? raw.get$dartObjectLocalStorage() : new SVGAnimatedNumberWrappingImplementation._wrap$ctor(raw);
 }
-LevelDom.wrapTouch = function(raw) {
-  return null == raw ? null : null != raw.get$dartObjectLocalStorage() ? raw.get$dartObjectLocalStorage() : new TouchWrappingImplementation._wrap$ctor(raw);
-}
-LevelDom.wrapTouchList = function(raw) {
-  return null == raw ? null : null != raw.get$dartObjectLocalStorage() ? raw.get$dartObjectLocalStorage() : new TouchListWrappingImplementation._wrap$ctor(raw);
-}
 LevelDom.wrapWindow = function(raw) {
   return null == raw ? null : null != raw.get$dartObjectLocalStorage() ? raw.get$dartObjectLocalStorage() : new WindowWrappingImplementation._wrap$ctor(raw);
 }
@@ -7727,18 +7542,6 @@ $inherits(htmlimpl__FixedSizeListIterator_int, htmlimpl__FixedSizeListIterator);
 function htmlimpl__FixedSizeListIterator_int(list) {
   this._htmlimpl_length = list.get$length();
   htmlimpl__VariableSizeListIterator_int.call(this, list);
-}
-// ********** Code for htmlimpl__VariableSizeListIterator_html_Touch **************
-$inherits(htmlimpl__VariableSizeListIterator_html_Touch, htmlimpl__VariableSizeListIterator);
-function htmlimpl__VariableSizeListIterator_html_Touch(list) {
-  this._htmlimpl_list = list;
-  this._htmlimpl_pos = (0);
-}
-// ********** Code for htmlimpl__FixedSizeListIterator_html_Touch **************
-$inherits(htmlimpl__FixedSizeListIterator_html_Touch, htmlimpl__FixedSizeListIterator);
-function htmlimpl__FixedSizeListIterator_html_Touch(list) {
-  this._htmlimpl_length = list.get$length();
-  htmlimpl__VariableSizeListIterator_html_Touch.call(this, list);
 }
 // ********** Code for Lists **************
 function Lists() {}
@@ -8068,21 +7871,6 @@ function ElementEventsImplementation() {}
 ElementEventsImplementation.prototype.get$mouseDown = function() {
   return this._get("mousedown");
 }
-ElementEventsImplementation.prototype.get$mouseMove = function() {
-  return this._get("mousemove");
-}
-ElementEventsImplementation.prototype.get$mouseOut = function() {
-  return this._get("mouseout");
-}
-ElementEventsImplementation.prototype.get$mouseUp = function() {
-  return this._get("mouseup");
-}
-ElementEventsImplementation.prototype.get$touchMove = function() {
-  return this._get("touchmove");
-}
-ElementEventsImplementation.prototype.get$touchStart = function() {
-  return this._get("touchstart");
-}
 // ********** Code for DocumentEventsImplementation **************
 $inherits(DocumentEventsImplementation, ElementEventsImplementation);
 DocumentEventsImplementation._wrap$ctor = function(_ptr) {
@@ -8348,38 +8136,8 @@ EventListenerListImplementation.prototype.add = function(listener, useCapture) {
   this._add(listener, useCapture);
   return this;
 }
-EventListenerListImplementation.prototype.remove = function(listener, useCapture) {
-  this._remove(listener, useCapture);
-  return this;
-}
 EventListenerListImplementation.prototype._add = function(listener, useCapture) {
   this._ptr.addEventListener$3(this._htmlimpl_type, this._findOrAddWrapper(listener, useCapture), useCapture);
-}
-EventListenerListImplementation.prototype._remove = function(listener, useCapture) {
-  var wrapper = this._removeWrapper(listener, useCapture);
-  if (null != wrapper) {
-    this._ptr.removeEventListener$3(this._htmlimpl_type, wrapper, useCapture);
-  }
-}
-EventListenerListImplementation.prototype._removeWrapper = function(listener, useCapture) {
-  var $0;
-  if (null == this._wrappers) {
-    return null;
-  }
-  for (var i = (0);
-   i < this._wrappers.get$length(); i++) {
-    var wrapper = this._wrappers.$index(i);
-    if ((($0 = wrapper.raw) == null ? null == (listener) : $0 === listener) && $eq$(wrapper.useCapture, useCapture)) {
-      if (i + (1) != this._wrappers.get$length()) {
-        this._wrappers.$setindex(i, this._wrappers.removeLast());
-      }
-      else {
-        this._wrappers.removeLast();
-      }
-      return wrapper.wrapped;
-    }
-  }
-  return null;
 }
 EventListenerListImplementation.prototype._findOrAddWrapper = function(listener, useCapture) {
   var $0;
@@ -8438,6 +8196,9 @@ MouseEventWrappingImplementation._wrap$ctor.prototype = MouseEventWrappingImplem
 function MouseEventWrappingImplementation() {}
 MouseEventWrappingImplementation.prototype.get$clientX = function() {
   return this._ptr.get$clientX();
+}
+MouseEventWrappingImplementation.prototype.get$clientY = function() {
+  return this._ptr.get$clientY();
 }
 MouseEventWrappingImplementation.prototype.get$x = function() {
   return this._ptr.get$x();
@@ -8701,9 +8462,6 @@ TouchEventWrappingImplementation._wrap$ctor = function(ptr) {
 }
 TouchEventWrappingImplementation._wrap$ctor.prototype = TouchEventWrappingImplementation.prototype;
 function TouchEventWrappingImplementation() {}
-TouchEventWrappingImplementation.prototype.get$touches = function() {
-  return LevelDom.wrapTouchList(this._ptr.get$touches());
-}
 // ********** Code for TransitionEventWrappingImplementation **************
 $inherits(TransitionEventWrappingImplementation, EventWrappingImplementation);
 TransitionEventWrappingImplementation._wrap$ctor = function(ptr) {
@@ -8720,6 +8478,9 @@ WheelEventWrappingImplementation._wrap$ctor.prototype = WheelEventWrappingImplem
 function WheelEventWrappingImplementation() {}
 WheelEventWrappingImplementation.prototype.get$clientX = function() {
   return this._ptr.get$clientX();
+}
+WheelEventWrappingImplementation.prototype.get$clientY = function() {
+  return this._ptr.get$clientY();
 }
 WheelEventWrappingImplementation.prototype.get$x = function() {
   return this._ptr.get$x();
@@ -8906,6 +8667,12 @@ function Camera() {
   this.projectionMatrix = new Matrix4((1), (0), (0), (0), (0), (1), (0), (0), (0), (0), (1), (0), (0), (0), (0), (1));
   this.projectionMatrixInverse = new Matrix4((1), (0), (0), (0), (0), (1), (0), (0), (0), (0), (1), (0), (0), (0), (0), (1));
 }
+Camera.prototype.lookAt = function(vector) {
+  this.matrix.lookAt(this.position, vector, this.up);
+  if (this.rotationAutoUpdate) {
+    this.rotation.setRotationFromMatrix(this.matrix);
+  }
+}
 // ********** Code for PerspectiveCamera **************
 $inherits(PerspectiveCamera, Camera);
 function PerspectiveCamera(fov, aspect, near, far) {
@@ -8976,6 +8743,12 @@ Vector3.prototype.copy = function(v) {
 Vector3.prototype.clone = function() {
   return new Vector3(this._x, this._y, this._z);
 }
+Vector3.prototype.add = function(v1, v2) {
+  this._x = v1.get$x() + v2.get$x();
+  this._y = v1.get$y() + v2.get$y();
+  this._z = v1.get$z() + v2.get$z();
+  return this;
+}
 Vector3.prototype.addSelf = function(v) {
   this._x = this._x + v.get$x();
   this._y = this._y + v.get$y();
@@ -8986,6 +8759,12 @@ Vector3.prototype.sub = function(v1, v2) {
   this._x = v1.get$x() - v2.get$x();
   this._y = v1.get$y() - v2.get$y();
   this._z = v1.get$z() - v2.get$z();
+  return this;
+}
+Vector3.prototype.subSelf = function(v) {
+  this._x = this._x - v.get$x();
+  this._y = this._y - v.get$y();
+  this._z = this._z - v.get$z();
   return this;
 }
 Vector3.prototype.multiplyScalar = function(s) {
@@ -9022,11 +8801,29 @@ Vector3.prototype.get$length = function() {
 Vector3.prototype.normalize = function() {
   return this.divideScalar(this.length());
 }
+Vector3.prototype.cross = function(a, b) {
+  this._x = a.get$y() * b.get$z() - a.get$z() * b.get$y();
+  this._y = a.get$z() * b.get$x() - a.get$x() * b.get$z();
+  this._z = a.get$x() * b.get$y() - a.get$y() * b.get$x();
+  return this;
+}
 Vector3.prototype.distanceTo = function(v) {
   return Math.sqrt(this.distanceToSquared(v));
 }
 Vector3.prototype.distanceToSquared = function(v) {
   return new Vector3((0), (0), (0)).sub(this, v).lengthSq();
+}
+Vector3.prototype.setRotationFromMatrix = function(m) {
+  var cosY = Math.cos(this._y);
+  this._y = Math.asin(m.get$n13());
+  if (cosY.abs() > (0.00001)) {
+    this._x = Math.atan2(-m.get$n23() / cosY, m.get$n33() / cosY);
+    this._z = Math.atan2(-m.get$n12() / cosY, m.get$n11() / cosY);
+  }
+  else {
+    this._x = (0);
+    this._z = Math.atan2(m.get$n21(), m.get$n22());
+  }
 }
 // ********** Code for Matrix3 **************
 function Matrix3() {
@@ -9079,6 +8876,13 @@ Matrix4.createMatrices$ctor = function(n11, n12, n13, n14, n21, n22, n23, n24, n
   this._m33 = new Matrix3();
 }
 Matrix4.createMatrices$ctor.prototype = Matrix4.prototype;
+Matrix4.prototype.get$n11 = function() { return this.n11; };
+Matrix4.prototype.get$n12 = function() { return this.n12; };
+Matrix4.prototype.get$n13 = function() { return this.n13; };
+Matrix4.prototype.get$n21 = function() { return this.n21; };
+Matrix4.prototype.get$n22 = function() { return this.n22; };
+Matrix4.prototype.get$n23 = function() { return this.n23; };
+Matrix4.prototype.get$n33 = function() { return this.n33; };
 Matrix4.prototype.setValues = function(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44) {
   this.n11 = this.n11;
   this.n12 = this.n12;
@@ -9100,6 +8904,30 @@ Matrix4.prototype.setValues = function(m11, m12, m13, m14, m21, m22, m23, m24, m
 }
 Matrix4.prototype.copy = function(m) {
   this.setValues(m.n11, m.n12, m.n13, m.n14, m.n21, m.n22, m.n23, m.n24, m.n31, m.n32, m.n33, m.n34, m.n41, m.n42, m.n43, m.n44);
+  return this;
+}
+Matrix4.prototype.lookAt = function(eye, center, up) {
+  var $0, $1;
+  var x = $globals.Matrix4___v1, y = $globals.Matrix4___v2, z = $globals.Matrix4___v3;
+  z.sub(eye, center).normalize();
+  if ((($0 = z.length()) == null ? null == ((0)) : $0 === (0))) {
+    z.set$z((1));
+  }
+  x.cross(up, z).normalize();
+  if ((($1 = x.length()) == null ? null == ((0)) : $1 === (0))) {
+    z.set$x(z.get$x() + (0.0001));
+    x.cross(up, z).normalize();
+  }
+  y.cross(z, x).normalize();
+  this.n11 = x.get$x();
+  this.n12 = y.get$x();
+  this.n13 = z.get$x();
+  this.n21 = x.get$y();
+  this.n22 = y.get$y();
+  this.n23 = z.get$y();
+  this.n31 = x.get$z();
+  this.n32 = y.get$z();
+  this.n33 = z.get$z();
   return this;
 }
 Matrix4.prototype.multiply = function(a, b) {
@@ -9771,6 +9599,12 @@ function Projector() {
   this._clippedVertex2PositionScreen = new Vector4((0), (0), (0), (1));
   var _face3VertexNormals;
 }
+Projector.prototype.unprojectVector = function(vector, camera) {
+  camera.projectionMatrixInverse.getInverse(camera.projectionMatrix);
+  this._projScreenMatrix.multiply(camera.matrixWorld, camera.projectionMatrixInverse);
+  this._projScreenMatrix.multiplyVector3(vector);
+  return vector;
+}
 Projector.prototype.projectGraph = function(root, sort) {
   this._objectCount = (0);
   this._renderData.objects = [];
@@ -10109,6 +9943,137 @@ function ProjectorRenderData() {
   this.elements = [];
 }
 ProjectorRenderData.prototype.get$elements = function() { return this.elements; };
+// ********** Code for Ray **************
+function Ray(origin, direction) {
+  this._origin = (origin != null) ? origin : new Vector3((0), (0), (0));
+  this._direction = (direction != null) ? direction : new Vector3((0), (0), (0));
+}
+Ray.prototype.intersectObject = function(object) {
+  var a = new Vector3((0), (0), (0));
+  var b = new Vector3((0), (0), (0));
+  var c = new Vector3((0), (0), (0));
+  var d = new Vector3((0), (0), (0));
+  var originCopy = new Vector3((0), (0), (0));
+  var directionCopy = new Vector3((0), (0), (0));
+  var vector = new Vector3((0), (0), (0));
+  var normal = new Vector3((0), (0), (0));
+  var intersectPoint = new Vector3((0), (0), (0));
+  var intersect;
+  var intersects = [];
+  var l = object.children.get$length();
+  for (var i = (0);
+   i < l; i++) {
+    intersects.addAll(this.intersectObject(object.children.$index(i)));
+  }
+  if ((object instanceof Particle)) {
+    var distance = this.distanceFromIntersection(this._origin, this._direction, object.matrixWorld.getPosition());
+    if (distance > object.scale.get$x()) {
+      return [];
+    }
+    intersect = new Intersect(distance, object.position, null, object);
+    intersects.add(intersect);
+  }
+  else if ((object instanceof Mesh)) {
+    var mesh = object;
+    var distance = this.distanceFromIntersection(this._origin, this._direction, object.matrixWorld.getPosition());
+    var scale = $globals.Frustum___v1.setValues(object.matrixWorld.getColumnX().length(), object.matrixWorld.getColumnY().length(), object.matrixWorld.getColumnZ().length());
+    if (distance > $mul$(mesh.get$geometry().get$boundingSphere().$index("radius"), Math.max(scale.get$x(), Math.max(scale.get$y(), scale.get$z())))) {
+      return intersects;
+    }
+    var f;
+    var face;
+    var dot, scalar;
+    var geometry = mesh.get$geometry();
+    var vertices = geometry.get$vertices();
+    var objMatrix;
+    var fl = geometry.get$faces().get$length();
+    object.matrixRotationWorld.extractRotation(object.matrixWorld);
+    for (f = (0);
+     f < fl; f++) {
+      face = geometry.get$faces().$index(f);
+      originCopy.copy(this._origin);
+      directionCopy.copy(this._direction);
+      objMatrix = object.matrixWorld;
+      vector = objMatrix.multiplyVector3(vector.copy(face.get$centroid())).subSelf(originCopy);
+      normal = object.matrixRotationWorld.multiplyVector3(normal.copy(face.get$normal()));
+      dot = directionCopy.dot(normal);
+      if (dot.abs() < (0.0001)) continue;
+      scalar = normal.dot(vector) / dot;
+      if (scalar < (0)) continue;
+      if (object.doubleSided || (object.flipSided ? dot > (0) : dot < (0))) {
+        intersectPoint.add(originCopy, directionCopy.multiplyScalar(scalar));
+        if ((face instanceof Face3)) {
+          a = objMatrix.multiplyVector3(a.copy(vertices.$index(face.get$a()).get$position()));
+          b = objMatrix.multiplyVector3(b.copy(vertices.$index(face.get$b()).get$position()));
+          c = objMatrix.multiplyVector3(c.copy(vertices.$index(face.get$c()).get$position()));
+          if (this.pointInFace3(intersectPoint, a, b, c)) {
+            intersect = new Intersect(originCopy.distanceTo(intersectPoint), intersectPoint.clone(), face, object);
+            intersects.add(intersect);
+          }
+        }
+        else if ((face instanceof Face4)) {
+          var face4 = face;
+          a = objMatrix.multiplyVector3(a.copy(vertices.$index(face4.get$a()).get$position()));
+          b = objMatrix.multiplyVector3(b.copy(vertices.$index(face4.get$b()).get$position()));
+          c = objMatrix.multiplyVector3(c.copy(vertices.$index(face4.get$c()).get$position()));
+          d = objMatrix.multiplyVector3(d.copy(vertices.$index(face4.get$d()).get$position()));
+          if (this.pointInFace3(intersectPoint, a, b, d) || this.pointInFace3(intersectPoint, b, c, d)) {
+            intersect = new Intersect(originCopy.distanceTo(intersectPoint), intersectPoint.clone(), face, object);
+            intersects.add(intersect);
+          }
+        }
+      }
+    }
+  }
+  return intersects;
+}
+Ray.prototype.intersectObjects = function(objects) {
+  var l = objects.get$length();
+  var intersects = [];
+  for (var i = (0);
+   i < l; i++) {
+    intersects.addAll(this.intersectObject(objects.$index(i)));
+  }
+  intersects.sort(function function_(a, b) {
+    return a.get$distance() - b.get$distance();
+  }
+  );
+  return intersects;
+}
+Ray.prototype.distanceFromIntersection = function(origin, direction, position) {
+  var v0 = new Vector3((0), (0), (0)), v1 = new Vector3((0), (0), (0)), v2 = new Vector3((0), (0), (0));
+  var dot, intersect, distance;
+  v0.sub(position, origin);
+  dot = v0.dot(direction);
+  intersect = v1.add(origin, v2.copy(direction).multiplyScalar(dot));
+  distance = position.distanceTo(intersect);
+  return distance;
+}
+Ray.prototype.pointInFace3 = function(p, a, b, c) {
+  var v0 = new Vector3((0), (0), (0)), v1 = new Vector3((0), (0), (0)), v2 = new Vector3((0), (0), (0));
+  var dot00, dot01, dot02, dot11, dot12, invDenom, u, v;
+  v0.sub(c, a);
+  v1.sub(b, a);
+  v2.sub(p, a);
+  dot00 = v0.dot(v0);
+  dot01 = v0.dot(v1);
+  dot02 = v0.dot(v2);
+  dot11 = v1.dot(v1);
+  dot12 = v1.dot(v2);
+  invDenom = (1) / (dot00 * dot11 - dot01 * dot01);
+  u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+  v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+  return (u >= (0)) && (v >= (0)) && (u + v < (1));
+}
+// ********** Code for Intersect **************
+function Intersect(d, iPoint, f, obj) {
+  this.distance = d;
+  this.point = iPoint;
+  this.face = f;
+  this.object = obj;
+}
+Intersect.prototype.get$distance = function() { return this.distance; };
+Intersect.prototype.get$object = function() { return this.object; };
 // ********** Code for Vector2 **************
 function Vector2(_x, _y) {
   this._x = _x;
@@ -10379,42 +10344,6 @@ function CubeGeomSides(px, nx, py, ny, pz, nz) {
   this.py = py;
   this.pz = pz;
 }
-// ********** Code for PlaneGeometry **************
-$inherits(PlaneGeometry, Geometry);
-function PlaneGeometry(width, height, segmentsWidth, segmentsHeight) {
-  Geometry.call(this);
-  var ix, iy;
-  var width_half = width / (2), height_half = height / (2), gridX = segmentsWidth != null ? segmentsWidth : (1), gridY = segmentsHeight != null ? segmentsHeight : (1), gridX1 = gridX + (1), gridY1 = gridY + (1), segment_width = width / gridX, segment_height = height / gridY;
-  var normal = new Vector3((0), (0), (1));
-  for (iy = (0);
-   iy < gridY1; iy++) {
-    for (ix = (0);
-     ix < gridX1; ix++) {
-      var x = ix * segment_width - width_half;
-      var y = iy * segment_height - height_half;
-      this.get$vertices().add(new Vertex(new Vector3(x, -y, (0))));
-    }
-  }
-  for (iy = (0);
-   iy < gridY; iy++) {
-    for (ix = (0);
-     ix < gridX; ix++) {
-      var a = ix + gridX1 * iy;
-      var b = ix + gridX1 * (iy + (1));
-      var c = (ix + (1)) + gridX1 * (iy + (1));
-      var d = (ix + (1)) + gridX1 * iy;
-      var face = new Face4(a, b, c, d);
-      face.get$normal().copy(normal);
-      face.get$vertexNormals().addAll([normal.clone(), normal.clone(), normal.clone(), normal.clone()]);
-      this.get$faces().add(face);
-      var faceVertexUV = this.get$faceVertexUvs().$index((0));
-      var newUVs = new Array();
-      newUVs.addAll([new UV(ix / gridX, iy / gridY), new UV(ix / gridX, (iy + (1)) / gridY), new UV((ix + (1)) / gridX, (iy + (1)) / gridY), new UV((ix + (1)) / gridX, iy / gridY)]);
-      faceVertexUV.add(newUVs);
-    }
-  }
-  this.computeCentroids();
-}
 // ********** Code for AmbientLight **************
 function AmbientLight() {}
 // ********** Code for Light **************
@@ -10507,15 +10436,21 @@ MeshBasicMaterial.prototype.get$wireframeLinejoin = function() {
   return this._wireframeLinejoin;
 }
 // ********** Code for MeshFaceMaterial **************
-function MeshFaceMaterial() {
-
-}
+function MeshFaceMaterial() {}
 // ********** Code for ParticleBasicMaterial **************
 $inherits(ParticleBasicMaterial, Material);
 function ParticleBasicMaterial() {}
 // ********** Code for ParticleCanvasMaterial **************
 $inherits(ParticleCanvasMaterial, Material);
-function ParticleCanvasMaterial() {}
+function ParticleCanvasMaterial(parameters) {
+  Material.call(this, parameters);
+  var _parameters = null != parameters ? parameters : new HashMapImplementation();
+  this.color = null != _parameters.$index("color") ? new Color(_parameters.$index("color")) : new Color((16777215));
+  this.program = null != _parameters.$index("program") ? _parameters.$index("program") : function function_(context, newColor) {
+
+  }
+  ;
+}
 ParticleCanvasMaterial.prototype.get$color = function() { return this.color; };
 ParticleCanvasMaterial.prototype.program$1 = function($0) {
   return this.program.call$1($0);
@@ -10616,7 +10551,10 @@ Mesh.prototype.get$material = function() {
 function Line() {}
 // ********** Code for Particle **************
 $inherits(Particle, Object3D);
-function Particle() {}
+function Particle(material) {
+  Object3D.call(this);
+  this.material = material;
+}
 Particle.prototype.get$material = function() { return this.material; };
 // ********** Code for Sprite **************
 function Sprite() {}
@@ -11592,23 +11530,20 @@ function UVMapping() {}
 // ********** Code for SphericalReflectionMapping **************
 function SphericalReflectionMapping() {}
 // ********** Code for top level **************
-//  ********** Library C:\Users\Rob\ThreeD\examples\canvas_geometry_cube\Canvas_Geometry_Cube **************
-// ********** Code for Canvas_Geometry_Cube **************
-function Canvas_Geometry_Cube() {
-
+//  ********** Library C:\Users\Rob\ThreeD\examples\canvas_interactive_cubes\Canvas_Interactive_Cubes **************
+// ********** Code for Canvas_Interactive_Cubes **************
+function Canvas_Interactive_Cubes() {
+  this.radius = (600);
+  this.theta = (0);
 }
-Canvas_Geometry_Cube.prototype.run = function() {
+Canvas_Interactive_Cubes.prototype.run = function() {
   this.init();
   this.animate();
 }
-Canvas_Geometry_Cube.prototype.init = function() {
+Canvas_Interactive_Cubes.prototype.init = function() {
   var $this = this; // closure support
-  this.targetRotation = (0);
-  this.targetRotationOnMouseDown = (0);
-  this.mouseX = (0);
-  this.mouseXOnMouseDown = (0);
-  this.windowHalfX = html_get$$window().get$innerWidth() / (2);
-  this.windowHalfY = html_get$$window().get$innerHeight() / (2);
+  var $0;
+  this.objects = [];
   this.container = ElementWrappingImplementation.ElementWrappingImplementation$tag$factory("div");
   html_get$$document().get$body().get$nodes().add(this.container);
   var info = ElementWrappingImplementation.ElementWrappingImplementation$tag$factory("div");
@@ -11616,105 +11551,88 @@ Canvas_Geometry_Cube.prototype.init = function() {
   info.get$style().set$top("10px");
   info.get$style().set$width("100%");
   info.get$style().set$textAlign("center");
-  info.set$innerHTML("Drag to spin the cube");
+  info.set$innerHTML("<a href=\"http://github.com/robsilv/three.dart\" target=\"_blank\">three.dart</a> - clickable objects");
   this.container.get$nodes().add(info);
+  this.camera = new PerspectiveCamera((70), html_get$$window().get$innerWidth() / html_get$$window().get$innerHeight(), (1), (10000));
+  this.camera.position.setValues((0), (300), (500));
   this.scene = new Scene();
-  this.camera = new PerspectiveCamera((70), html_get$$window().get$innerWidth() / html_get$$window().get$innerHeight(), (1), (1000));
-  this.camera.position.set$y((150));
-  this.camera.position.set$z((500));
   this.scene.add(this.camera);
-  var materials = [];
+  var geometry = new CubeGeometry((100), (100), (100));
   for (var i = (0);
-   i < (6); i++) {
-    materials.add(new MeshBasicMaterial(_map(["color", Math.random() * (16777215)])));
+   i < (10); i++) {
+    var particle = new Particle(this.particleMaterial);
+    particle.position.set$x(Math.random() * (800) - (400));
+    particle.position.set$y(Math.random() * (800) - (400));
+    particle.position.set$z(Math.random() * (800) - (400));
+    particle.scale.set$x((particle.scale.set$y(($0 = (8))), $0));
+    this.scene.add(particle);
+    var object = new Mesh(geometry, new MeshBasicMaterial(_map(["color", Math.random() * (16777215), "opacity", (0.5)])));
+    object.position.set$x(Math.random() * (800) - (400));
+    object.position.set$y(Math.random() * (800) - (400));
+    object.position.set$z(Math.random() * (800) - (400));
+    object.scale.set$x(Math.random() * (2) + (1));
+    object.scale.set$y(Math.random() * (2) + (1));
+    object.scale.set$z(Math.random() * (2) + (1));
+    object.rotation.set$x((Math.random() * (360)) * (3.141593) / (180));
+    object.rotation.set$y((Math.random() * (360)) * (3.141593) / (180));
+    object.rotation.set$z((Math.random() * (360)) * (3.141593) / (180));
+    this.scene.add(object);
+    this.objects.add(object);
   }
-  this.cube = new Mesh(new CubeGeometry((200), (200), (200), (1), (1), (1), materials), new MeshFaceMaterial());
-  this.cube.position.set$y((150));
-  this.scene.add(this.cube);
-  this.plane = new Mesh(new PlaneGeometry((200), (200)), new MeshBasicMaterial(_map(["color", (14737632), "overdraw", true])));
-  this.plane.rotation.set$x((-1.570796));
-  this.scene.add(this.plane);
+  this.particleMaterial = new ParticleCanvasMaterial(_map(["color", (0), "program", function function_(context) {
+    context.beginPath();
+    context.arc((0), (0), (1), (0), (6.283185), false);
+    context.closePath();
+    context.fill();
+  }
+  ]));
+  this.projector = new Projector();
   this.renderer = new CanvasRenderer();
   this.renderer.setSize(html_get$$window().get$innerWidth(), html_get$$window().get$innerHeight());
   this.container.get$nodes().add(this.renderer.domElement);
   html_get$$document().get$on().get$mouseDown().add(this.get$onDocumentMouseDown(), false);
-  html_get$$document().get$on().get$touchStart().add(this.get$onDocumentTouchStart(), false);
-  html_get$$document().get$on().get$touchMove().add(this.get$onDocumentTouchMove(), false);
   html_get$$window().setInterval(function f() {
     return $this.animate();
   }
   , (10));
 }
-Canvas_Geometry_Cube.prototype.onDocumentMouseDown = function(event) {
+Canvas_Interactive_Cubes.prototype.onDocumentMouseDown = function(event) {
+  var $0;
   event.preventDefault();
-  html_get$$document().get$on().get$mouseMove().add(this.get$onDocumentMouseMove(), false);
-  html_get$$document().get$on().get$mouseUp().add(this.get$onDocumentMouseUp(), false);
-  html_get$$document().get$on().get$mouseOut().add(this.get$onDocumentMouseOut(), false);
-  this.mouseXOnMouseDown = event.get$clientX() - this.windowHalfX;
-  this.targetRotationOnMouseDown = this.targetRotation;
-  print$(("onMouseDown mouseX = " + this.mouseXOnMouseDown + " targRot = " + this.targetRotationOnMouseDown));
+  var vector = new Vector3((event.get$clientX() / html_get$$window().get$innerWidth()) * (2) - (1), -(event.get$clientY() / html_get$$window().get$innerHeight()) * (2) + (1), (0.5));
+  this.projector.unprojectVector(vector, this.camera);
+  var ray = new Ray(this.camera.position, vector.subSelf(this.camera.position).normalize());
+  var intersects = ray.intersectObjects(this.objects);
+  if (intersects.get$length() > (0)) {
+    var intersect = intersects.$index((0));
+    var mesh = intersect.object;
+    var material = mesh.get$material();
+    material.get$color().setHex(Math.random() * (16777215));
+    var particle = new Particle(this.particleMaterial);
+    particle.position = intersect.point;
+    particle.scale.set$x((particle.scale.set$y(($0 = (8))), $0));
+    this.scene.add(particle);
+  }
 }
-Canvas_Geometry_Cube.prototype.get$onDocumentMouseDown = function() {
+Canvas_Interactive_Cubes.prototype.get$onDocumentMouseDown = function() {
   return this.onDocumentMouseDown.bind(this);
 }
-Canvas_Geometry_Cube.prototype.onDocumentMouseMove = function(event) {
-  this.mouseX = event.get$clientX() - this.windowHalfX;
-  this.targetRotation = this.targetRotationOnMouseDown + (this.mouseX - this.mouseXOnMouseDown) * (0.02);
-  print$(("onMouseMove mouseX = " + this.mouseX + " targRot = " + this.targetRotation));
-}
-Canvas_Geometry_Cube.prototype.get$onDocumentMouseMove = function() {
-  return this.onDocumentMouseMove.bind(this);
-}
-Canvas_Geometry_Cube.prototype.onDocumentMouseUp = function(event) {
-  print$("onDocumentMouseUp");
-  html_get$$document().get$on().get$mouseMove().remove(this.get$onDocumentMouseMove(), false);
-  html_get$$document().get$on().get$mouseUp().remove(this.get$onDocumentMouseUp(), false);
-  html_get$$document().get$on().get$mouseOut().remove(this.get$onDocumentMouseOut(), false);
-}
-Canvas_Geometry_Cube.prototype.get$onDocumentMouseUp = function() {
-  return this.onDocumentMouseUp.bind(this);
-}
-Canvas_Geometry_Cube.prototype.onDocumentMouseOut = function(event) {
-  html_get$$document().get$on().get$mouseMove().remove(this.get$onDocumentMouseMove(), false);
-  html_get$$document().get$on().get$mouseUp().remove(this.get$onDocumentMouseUp(), false);
-  html_get$$document().get$on().get$mouseOut().remove(this.get$onDocumentMouseOut(), false);
-}
-Canvas_Geometry_Cube.prototype.get$onDocumentMouseOut = function() {
-  return this.onDocumentMouseOut.bind(this);
-}
-Canvas_Geometry_Cube.prototype.onDocumentTouchStart = function(event) {
-  if ($eq$(event.get$touches().get$length(), (1))) {
-    event.preventDefault();
-    this.mouseXOnMouseDown = event.get$touches().$index((0)).get$pageX() - this.windowHalfX;
-    this.targetRotationOnMouseDown = this.targetRotation;
-  }
-}
-Canvas_Geometry_Cube.prototype.get$onDocumentTouchStart = function() {
-  return this.onDocumentTouchStart.bind(this);
-}
-Canvas_Geometry_Cube.prototype.onDocumentTouchMove = function(event) {
-  if ($eq$(event.get$touches().get$length(), (1))) {
-    event.preventDefault();
-    this.mouseX = event.get$touches().$index((0)).get$pageX() - this.windowHalfX;
-    this.targetRotation = this.targetRotationOnMouseDown + (this.mouseX - this.mouseXOnMouseDown) * (0.05);
-  }
-}
-Canvas_Geometry_Cube.prototype.get$onDocumentTouchMove = function() {
-  return this.onDocumentTouchMove.bind(this);
-}
-Canvas_Geometry_Cube.prototype.animate = function() {
+Canvas_Interactive_Cubes.prototype.animate = function() {
   this.render();
 }
-Canvas_Geometry_Cube.prototype.render = function() {
-  var $0, $1;
-  this.plane.rotation.set$z((($0 = this.cube.rotation).set$y(($1 = $0.get$y() + ((this.targetRotation - this.cube.rotation.get$y()) * (0.05)))), $1));
+Canvas_Interactive_Cubes.prototype.render = function() {
+  this.theta = this.theta + (0.2);
+  this.camera.position.set$x(this.radius * Math.sin(this.theta * (3.141593) / (360)));
+  this.camera.position.set$y(this.radius * Math.sin(this.theta * (3.141593) / (360)));
+  this.camera.position.set$z(this.radius * Math.cos(this.theta * (3.141593) / (360)));
+  this.camera.lookAt(this.scene.position);
   this.renderer.render(this.scene, this.camera);
 }
 // ********** Code for top level **************
 function main() {
-  new Canvas_Geometry_Cube().run();
+  new Canvas_Interactive_Cubes().run();
 }
-// 218 dynamic types.
+// 216 dynamic types.
 // 505 types
 // 44 !leaf
 function $dynamicSetMetadata(inputTable) {
@@ -11748,13 +11666,12 @@ function $dynamicSetMetadata(inputTable) {
   var v12/*DOMTokenList*/ = 'DOMTokenList|DOMSettableTokenList';
   var v13/*Entry*/ = 'Entry|DirectoryEntry|FileEntry';
   var v14/*EntrySync*/ = 'EntrySync|DirectoryEntrySync|FileEntrySync';
-  var v15/*UIEvent*/ = 'UIEvent|CompositionEvent|KeyboardEvent|MouseEvent|SVGZoomEvent|TextEvent|TouchEvent|WheelEvent';
-  var v16/*EventTarget*/ = [v7/*AbstractWorker*/,v8/*Node*/,'EventTarget|DOMApplicationCache|DOMWindow|EventSource|MessagePort|Notification|SVGElementInstance|WebSocket|XMLHttpRequest|XMLHttpRequestUpload'].join('|');
-  var v17/*HTMLCollection*/ = 'HTMLCollection|HTMLOptionsCollection';
-  var v18/*IDBRequest*/ = 'IDBRequest|IDBVersionChangeRequest';
-  var v19/*MediaStream*/ = 'MediaStream|LocalMediaStream';
-  var v20/*SVGStylable*/ = 'SVGStylable|SVGFilterPrimitiveStandardAttributes';
-  var v21/*WorkerContext*/ = 'WorkerContext|DedicatedWorkerContext|SharedWorkerContext';
+  var v15/*EventTarget*/ = [v7/*AbstractWorker*/,v8/*Node*/,'EventTarget|DOMApplicationCache|DOMWindow|EventSource|MessagePort|Notification|SVGElementInstance|WebSocket|XMLHttpRequest|XMLHttpRequestUpload'].join('|');
+  var v16/*HTMLCollection*/ = 'HTMLCollection|HTMLOptionsCollection';
+  var v17/*IDBRequest*/ = 'IDBRequest|IDBVersionChangeRequest';
+  var v18/*MediaStream*/ = 'MediaStream|LocalMediaStream';
+  var v19/*SVGStylable*/ = 'SVGStylable|SVGFilterPrimitiveStandardAttributes';
+  var v20/*WorkerContext*/ = 'WorkerContext|DedicatedWorkerContext|SharedWorkerContext';
   var table = [
     // [dynamic-dispatch-tag, tags of classes implementing dynamic-dispatch-tag]
     ['AbstractWorker', v7/*AbstractWorker*/]
@@ -11771,15 +11688,14 @@ function $dynamicSetMetadata(inputTable) {
     , ['Entry', v13/*Entry*/]
     , ['EntrySync', v14/*EntrySync*/]
     , ['Node', v8/*Node*/]
-    , ['EventTarget', v16/*EventTarget*/]
-    , ['HTMLCollection', v17/*HTMLCollection*/]
-    , ['IDBRequest', v18/*IDBRequest*/]
-    , ['MediaStream', v19/*MediaStream*/]
-    , ['SVGStylable', v20/*SVGStylable*/]
-    , ['UIEvent', v15/*UIEvent*/]
+    , ['EventTarget', v15/*EventTarget*/]
+    , ['HTMLCollection', v16/*HTMLCollection*/]
+    , ['IDBRequest', v17/*IDBRequest*/]
+    , ['MediaStream', v18/*MediaStream*/]
+    , ['SVGStylable', v19/*SVGStylable*/]
     , ['Uint8Array', v9/*Uint8Array*/]
-    , ['WorkerContext', v21/*WorkerContext*/]
-    , ['DOMType', [v9/*Uint8Array*/,v10/*AudioParam*/,v11/*CSSValueList*/,v12/*DOMTokenList*/,v13/*Entry*/,v14/*EntrySync*/,v15/*UIEvent*/,v16/*EventTarget*/,v17/*HTMLCollection*/,v18/*IDBRequest*/,v19/*MediaStream*/,v20/*SVGStylable*/,v21/*WorkerContext*/,'DOMType|ArrayBuffer|ArrayBufferView|DataView|Float32Array|Float64Array|Int16Array|Int32Array|Int8Array|Uint16Array|Uint32Array|AudioBuffer|AudioContext|AudioListener|AudioNode|AudioChannelMerger|AudioChannelSplitter|AudioDestinationNode|AudioGainNode|AudioPannerNode|AudioSourceNode|AudioBufferSourceNode|MediaElementAudioSourceNode|BiquadFilterNode|ConvolverNode|DelayNode|DynamicsCompressorNode|HighPass2FilterNode|JavaScriptAudioNode|LowPass2FilterNode|RealtimeAnalyserNode|WaveShaperNode|BarInfo|Blob|File|CSSRule|CSSCharsetRule|CSSFontFaceRule|CSSImportRule|CSSMediaRule|CSSPageRule|CSSStyleRule|CSSUnknownRule|WebKitCSSKeyframeRule|WebKitCSSKeyframesRule|WebKitCSSRegionRule|CSSRuleList|CSSStyleDeclaration|CSSValue|CSSPrimitiveValue|SVGColor|SVGPaint|CanvasGradient|CanvasPattern|CanvasPixelArray|CanvasRenderingContext|CanvasRenderingContext2D|WebGLRenderingContext|ClientRect|ClientRectList|Clipboard|Coordinates|Counter|Crypto|DOMException|DOMFileSystem|DOMFileSystemSync|DOMFormData|DOMImplementation|DOMMimeType|DOMMimeTypeArray|DOMParser|DOMPlugin|DOMPluginArray|DOMSelection|DOMURL|DataTransferItem|DataTransferItemList|Database|DatabaseSync|DirectoryReader|DirectoryReaderSync|ElementTimeControl|ElementTraversal|EntryArray|EntryArraySync|Event|AudioProcessingEvent|BeforeLoadEvent|CloseEvent|CustomEvent|DeviceMotionEvent|DeviceOrientationEvent|ErrorEvent|HashChangeEvent|IDBVersionChangeEvent|MediaStreamEvent|MessageEvent|MutationEvent|OfflineAudioCompletionEvent|OverflowEvent|PageTransitionEvent|PopStateEvent|ProgressEvent|XMLHttpRequestProgressEvent|SpeechInputEvent|StorageEvent|TrackEvent|WebGLContextEvent|WebKitAnimationEvent|WebKitTransitionEvent|EventException|FileError|FileException|FileList|FileReader|FileReaderSync|FileWriter|FileWriterSync|Geolocation|Geoposition|HTMLAllCollection|History|IDBAny|IDBCursor|IDBCursorWithValue|IDBDatabase|IDBDatabaseError|IDBDatabaseException|IDBFactory|IDBIndex|IDBKey|IDBKeyRange|IDBObjectStore|IDBTransaction|ImageData|JavaScriptCallFrame|Location|MediaController|MediaError|MediaList|MediaQueryList|MediaQueryListListener|MediaStreamList|MediaStreamTrack|MediaStreamTrackList|MemoryInfo|MessageChannel|Metadata|NamedNodeMap|Navigator|NavigatorUserMediaError|NodeFilter|NodeIterator|NodeList|NodeSelector|NotificationCenter|OESStandardDerivatives|OESTextureFloat|OESVertexArrayObject|OperationNotAllowedException|PeerConnection|Performance|PerformanceNavigation|PerformanceTiming|PositionError|RGBColor|Range|RangeException|Rect|SQLError|SQLException|SQLResultSet|SQLResultSetRowList|SQLTransaction|SQLTransactionSync|SVGAngle|SVGAnimatedAngle|SVGAnimatedBoolean|SVGAnimatedEnumeration|SVGAnimatedInteger|SVGAnimatedLength|SVGAnimatedLengthList|SVGAnimatedNumber|SVGAnimatedNumberList|SVGAnimatedPreserveAspectRatio|SVGAnimatedRect|SVGAnimatedString|SVGAnimatedTransformList|SVGElementInstanceList|SVGException|SVGExternalResourcesRequired|SVGFitToViewBox|SVGLangSpace|SVGLength|SVGLengthList|SVGLocatable|SVGTransformable|SVGMatrix|SVGNumber|SVGNumberList|SVGPathSeg|SVGPathSegArcAbs|SVGPathSegArcRel|SVGPathSegClosePath|SVGPathSegCurvetoCubicAbs|SVGPathSegCurvetoCubicRel|SVGPathSegCurvetoCubicSmoothAbs|SVGPathSegCurvetoCubicSmoothRel|SVGPathSegCurvetoQuadraticAbs|SVGPathSegCurvetoQuadraticRel|SVGPathSegCurvetoQuadraticSmoothAbs|SVGPathSegCurvetoQuadraticSmoothRel|SVGPathSegLinetoAbs|SVGPathSegLinetoHorizontalAbs|SVGPathSegLinetoHorizontalRel|SVGPathSegLinetoRel|SVGPathSegLinetoVerticalAbs|SVGPathSegLinetoVerticalRel|SVGPathSegMovetoAbs|SVGPathSegMovetoRel|SVGPathSegList|SVGPoint|SVGPointList|SVGPreserveAspectRatio|SVGRect|SVGRenderingIntent|SVGStringList|SVGTests|SVGTransform|SVGTransformList|SVGURIReference|SVGUnitTypes|SVGZoomAndPan|SVGViewSpec|Screen|ScriptProfile|ScriptProfileNode|SpeechInputResult|SpeechInputResultList|Storage|StorageInfo|StyleMedia|StyleSheet|CSSStyleSheet|StyleSheetList|TextMetrics|TextTrack|TextTrackCue|TextTrackCueList|TextTrackList|TimeRanges|Touch|TouchList|TreeWalker|ValidityState|WebGLActiveInfo|WebGLBuffer|WebGLCompressedTextureS3TC|WebGLContextAttributes|WebGLDebugRendererInfo|WebGLDebugShaders|WebGLFramebuffer|WebGLLoseContext|WebGLProgram|WebGLRenderbuffer|WebGLShader|WebGLTexture|WebGLUniformLocation|WebGLVertexArrayObjectOES|WebKitAnimation|WebKitAnimationList|WebKitBlobBuilder|WebKitCSSMatrix|WebKitNamedFlow|WebKitPoint|WorkerLocation|WorkerNavigator|XMLHttpRequestException|XMLSerializer|XPathEvaluator|XPathException|XPathExpression|XPathNSResolver|XPathResult|XSLTProcessor'].join('|')]
+    , ['WorkerContext', v20/*WorkerContext*/]
+    , ['DOMType', [v9/*Uint8Array*/,v10/*AudioParam*/,v11/*CSSValueList*/,v12/*DOMTokenList*/,v13/*Entry*/,v14/*EntrySync*/,v15/*EventTarget*/,v16/*HTMLCollection*/,v17/*IDBRequest*/,v18/*MediaStream*/,v19/*SVGStylable*/,v20/*WorkerContext*/,'DOMType|ArrayBuffer|ArrayBufferView|DataView|Float32Array|Float64Array|Int16Array|Int32Array|Int8Array|Uint16Array|Uint32Array|AudioBuffer|AudioContext|AudioListener|AudioNode|AudioChannelMerger|AudioChannelSplitter|AudioDestinationNode|AudioGainNode|AudioPannerNode|AudioSourceNode|AudioBufferSourceNode|MediaElementAudioSourceNode|BiquadFilterNode|ConvolverNode|DelayNode|DynamicsCompressorNode|HighPass2FilterNode|JavaScriptAudioNode|LowPass2FilterNode|RealtimeAnalyserNode|WaveShaperNode|BarInfo|Blob|File|CSSRule|CSSCharsetRule|CSSFontFaceRule|CSSImportRule|CSSMediaRule|CSSPageRule|CSSStyleRule|CSSUnknownRule|WebKitCSSKeyframeRule|WebKitCSSKeyframesRule|WebKitCSSRegionRule|CSSRuleList|CSSStyleDeclaration|CSSValue|CSSPrimitiveValue|SVGColor|SVGPaint|CanvasGradient|CanvasPattern|CanvasPixelArray|CanvasRenderingContext|CanvasRenderingContext2D|WebGLRenderingContext|ClientRect|ClientRectList|Clipboard|Coordinates|Counter|Crypto|DOMException|DOMFileSystem|DOMFileSystemSync|DOMFormData|DOMImplementation|DOMMimeType|DOMMimeTypeArray|DOMParser|DOMPlugin|DOMPluginArray|DOMSelection|DOMURL|DataTransferItem|DataTransferItemList|Database|DatabaseSync|DirectoryReader|DirectoryReaderSync|ElementTimeControl|ElementTraversal|EntryArray|EntryArraySync|Event|AudioProcessingEvent|BeforeLoadEvent|CloseEvent|CustomEvent|DeviceMotionEvent|DeviceOrientationEvent|ErrorEvent|HashChangeEvent|IDBVersionChangeEvent|MediaStreamEvent|MessageEvent|MutationEvent|OfflineAudioCompletionEvent|OverflowEvent|PageTransitionEvent|PopStateEvent|ProgressEvent|XMLHttpRequestProgressEvent|SpeechInputEvent|StorageEvent|TrackEvent|UIEvent|CompositionEvent|KeyboardEvent|MouseEvent|SVGZoomEvent|TextEvent|TouchEvent|WheelEvent|WebGLContextEvent|WebKitAnimationEvent|WebKitTransitionEvent|EventException|FileError|FileException|FileList|FileReader|FileReaderSync|FileWriter|FileWriterSync|Geolocation|Geoposition|HTMLAllCollection|History|IDBAny|IDBCursor|IDBCursorWithValue|IDBDatabase|IDBDatabaseError|IDBDatabaseException|IDBFactory|IDBIndex|IDBKey|IDBKeyRange|IDBObjectStore|IDBTransaction|ImageData|JavaScriptCallFrame|Location|MediaController|MediaError|MediaList|MediaQueryList|MediaQueryListListener|MediaStreamList|MediaStreamTrack|MediaStreamTrackList|MemoryInfo|MessageChannel|Metadata|NamedNodeMap|Navigator|NavigatorUserMediaError|NodeFilter|NodeIterator|NodeList|NodeSelector|NotificationCenter|OESStandardDerivatives|OESTextureFloat|OESVertexArrayObject|OperationNotAllowedException|PeerConnection|Performance|PerformanceNavigation|PerformanceTiming|PositionError|RGBColor|Range|RangeException|Rect|SQLError|SQLException|SQLResultSet|SQLResultSetRowList|SQLTransaction|SQLTransactionSync|SVGAngle|SVGAnimatedAngle|SVGAnimatedBoolean|SVGAnimatedEnumeration|SVGAnimatedInteger|SVGAnimatedLength|SVGAnimatedLengthList|SVGAnimatedNumber|SVGAnimatedNumberList|SVGAnimatedPreserveAspectRatio|SVGAnimatedRect|SVGAnimatedString|SVGAnimatedTransformList|SVGElementInstanceList|SVGException|SVGExternalResourcesRequired|SVGFitToViewBox|SVGLangSpace|SVGLength|SVGLengthList|SVGLocatable|SVGTransformable|SVGMatrix|SVGNumber|SVGNumberList|SVGPathSeg|SVGPathSegArcAbs|SVGPathSegArcRel|SVGPathSegClosePath|SVGPathSegCurvetoCubicAbs|SVGPathSegCurvetoCubicRel|SVGPathSegCurvetoCubicSmoothAbs|SVGPathSegCurvetoCubicSmoothRel|SVGPathSegCurvetoQuadraticAbs|SVGPathSegCurvetoQuadraticRel|SVGPathSegCurvetoQuadraticSmoothAbs|SVGPathSegCurvetoQuadraticSmoothRel|SVGPathSegLinetoAbs|SVGPathSegLinetoHorizontalAbs|SVGPathSegLinetoHorizontalRel|SVGPathSegLinetoRel|SVGPathSegLinetoVerticalAbs|SVGPathSegLinetoVerticalRel|SVGPathSegMovetoAbs|SVGPathSegMovetoRel|SVGPathSegList|SVGPoint|SVGPointList|SVGPreserveAspectRatio|SVGRect|SVGRenderingIntent|SVGStringList|SVGTests|SVGTransform|SVGTransformList|SVGURIReference|SVGUnitTypes|SVGZoomAndPan|SVGViewSpec|Screen|ScriptProfile|ScriptProfileNode|SpeechInputResult|SpeechInputResultList|Storage|StorageInfo|StyleMedia|StyleSheet|CSSStyleSheet|StyleSheetList|TextMetrics|TextTrack|TextTrackCue|TextTrackCueList|TextTrackList|TimeRanges|Touch|TouchList|TreeWalker|ValidityState|WebGLActiveInfo|WebGLBuffer|WebGLCompressedTextureS3TC|WebGLContextAttributes|WebGLDebugRendererInfo|WebGLDebugShaders|WebGLFramebuffer|WebGLLoseContext|WebGLProgram|WebGLRenderbuffer|WebGLShader|WebGLTexture|WebGLUniformLocation|WebGLVertexArrayObjectOES|WebKitAnimation|WebKitAnimationList|WebKitBlobBuilder|WebKitCSSMatrix|WebKitNamedFlow|WebKitPoint|WorkerLocation|WorkerNavigator|XMLHttpRequestException|XMLSerializer|XPathEvaluator|XPathException|XPathExpression|XPathNSResolver|XPathResult|XSLTProcessor'].join('|')]
   ];
   $dynamicSetMetadata(table);
 })();

@@ -72,11 +72,11 @@ class Color
     return this;
   }
 
-  Color setRGB( num r, num g, num b ) 
+  Color setRGB( num newR, num newG, num newB ) 
   {
-    this.r = r;
-    this.g = g;
-    this.b = b;
+    r = newR;
+    g = newG;
+    b = newB;
 
     return this;
   }

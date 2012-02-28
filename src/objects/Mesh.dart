@@ -19,7 +19,7 @@ class Mesh extends Object3D
   Map _morphTargetDictionary;
  
   Geometry get geometry() {  return _geometry;  }
-  Material get material() {  return _material;  }
+  IMaterial get material() {  return _material;  }
   
   //TODO: material currently set to Dynamic due to MeshFaceMaterial
   Mesh( Geometry geometry, Dynamic material ) : super()
