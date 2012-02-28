@@ -13,9 +13,19 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 <a href="http://robsilv.github.com/three.dart/examples/canvas_geometry_cube/Canvas_Geometry_Cube.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_geometry_cube/thumb_small.png" width="104" height="78" alt="canvas_geometry_cube"></a>
 <a href="http://robsilv.github.com/three.dart/examples/canvas_geometry_heirarchy/Canvas_Geometry_Heirarchy.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_geometry_heirarchy/thumb_small.png" width="104" height="78" alt="canvas_geometry_heirarchy"></a>
-
+<a href="http://robsilv.github.com/three.dart/examples/canvas_interactive_cubes/Canvas_Interactive_Cubes.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_interactive_cubes/thumb_small.png" width="104" height="78" alt="canvas_interactive_cubes"></a>
 
 ### Change Log ###
+
+2012 02 28 - **v 0.1.0**
+
+* Project upgraded to run with DartBuild 4577 (compile-time errors resolved)
+* All HTML examples now use Dart -> JS dynamic replacement code
+* Canvas_Interactive_Cubes example implemented
+* IMaterial and IParticleMaterial interfaces introduced
+* Particle and ParticleCanvasMaterial classes implemented
+* Debug mode flag introduced for CanvasRenderer
+
 
 2012 02 23 - **v 0.0.4**
 
