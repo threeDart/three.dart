@@ -112,6 +112,19 @@ function $add$(x, y) {
   if (typeof(x) == 'number' && typeof(y) == 'number') return x + y;
   return $add$complex$(x, y);
 }
+function $bit_and$complex$(x, y) {
+  if (typeof(x) == 'number') {
+    $throw(new IllegalArgumentException(y));
+  } else if (typeof(x) == 'object') {
+    return x.$bit_and(y);
+  } else {
+    $throw(new NoSuchMethodException(x, "operator &", [y]));
+  }
+}
+function $bit_and$(x, y) {
+  if (typeof(x) == 'number' && typeof(y) == 'number') return x & y;
+  return $bit_and$complex$(x, y);
+}
 function $div$complex$(x, y) {
   if (typeof(x) == 'number') {
     $throw(new IllegalArgumentException(y));
@@ -350,6 +363,13 @@ IllegalArgumentException.prototype.is$IllegalArgumentException = function(){retu
 IllegalArgumentException.prototype.toString = function() {
   return ("Illegal argument(s): " + this._arg);
 }
+// ********** Code for BadNumberFormatException **************
+function BadNumberFormatException(_s) {
+  this._s = _s;
+}
+BadNumberFormatException.prototype.toString = function() {
+  return ("BadNumberFormatException: '" + this._s + "'");
+}
 // ********** Code for NoMoreElementsException **************
 function NoMoreElementsException() {
 
@@ -421,6 +441,18 @@ Math.max = function(a, b) {
   return (a >= b) ? a : b;
 }
 // ********** Code for top level **************
+function print$(obj) {
+  return _print(obj);
+}
+function _print(obj) {
+  if (typeof console == 'object') {
+    if (obj) obj = obj.toString();
+    console.log(obj);
+  } else if (typeof write === 'function') {
+    write(obj);
+    write('\n');
+  }
+}
 //  ********** Library dart:coreimpl **************
 // ********** Code for ListFactory **************
 ListFactory = Array;
@@ -546,6 +578,19 @@ NumImplementation.prototype.floor = function() {
 }
 NumImplementation.prototype.hashCode = function() {
   'use strict'; return this & 0x1FFFFFFF;
+}
+NumImplementation.prototype.toInt = function() {
+    'use strict';
+    if (isNaN(this)) $throw(new BadNumberFormatException("NaN"));
+    if ((this == Infinity) || (this == -Infinity)) {
+      $throw(new BadNumberFormatException("Infinity"));
+    }
+    var truncated = (this < 0) ? Math.ceil(this) : Math.floor(this);
+    if (truncated == -0.0) return 0;
+    return truncated;
+}
+NumImplementation.prototype.toRadixString = function(radix) {
+  'use strict'; return this.toString(radix)
 }
 // ********** Code for Collections **************
 function Collections() {}
@@ -6921,7 +6966,7 @@ function _EventListenerWrapper(raw, wrapped, useCapture) {
 // ********** Code for EventListenerListImplementation **************
 function EventListenerListImplementation(_ptr, _type) {
   this._ptr = _ptr;
-  this._type = _type;
+  this._htmlimpl_type = _type;
   this._wrappers = new Array();
 }
 EventListenerListImplementation.prototype.get$_ptr = function() { return this._ptr; };
@@ -6930,7 +6975,7 @@ EventListenerListImplementation.prototype.add = function(listener, useCapture) {
   return this;
 }
 EventListenerListImplementation.prototype._add = function(listener, useCapture) {
-  this._ptr.addEventListener$3(this._type, this._findOrAddWrapper(listener, useCapture), useCapture);
+  this._ptr.addEventListener$3(this._htmlimpl_type, this._findOrAddWrapper(listener, useCapture), useCapture);
 }
 EventListenerListImplementation.prototype._findOrAddWrapper = function(listener, useCapture) {
   var $0;
@@ -8111,23 +8156,38 @@ function Color(hex) {
   this.r = (1);
   this.g = (1);
   this.b = (1);
-  if (null != hex) this.setHex(hex);
+  if ((typeof(hex) == 'number')) this.setHex(hex);
 }
 Color.prototype.setRGB = function(newR, newG, newB) {
+  print$(("setRGB(" + newR + "," + newG + "," + newB));
+  $throw(("setRGB(" + newR + "," + newG + "," + newB));
   this.r = newR;
   this.g = newG;
   this.b = newB;
   return this;
 }
 Color.prototype.setHex = function(hex) {
-  hex = hex.floor();
-  this.r = (hex >> (16) & (255)) / (255);
-  this.g = (hex >> (8) & (255)) / (255);
-  this.b = (hex & (255)) / (255);
+  var h = hex.floor().toInt();
+  this.r = ($bit_and$(h, (16711680))) >> (16);
+  this.g = ($bit_and$(h, (65280))) >> (8);
+  this.b = ($bit_and$(h, (255)));
+  print$(("r=" + this.r.toRadixString((16))));
+  print$(("g=" + this.g.toRadixString((16))));
+  print$(("b=" + this.b.toRadixString((16))));
   return this;
 }
 Color.prototype.getContextStyle = function() {
-  return $add$($add$($add$("rgb(" + (this.r * (255)).floor(), ",") + (this.g * (255)).floor(), ",") + (this.b * (255)).floor(), ")");
+  var rr = this.r, bb = this.b, gg = this.g;
+  if ((typeof(this.r) == 'number') && this.r < (1)) {
+    rr = (this.r * (255)).toInt();
+  }
+  if ((typeof(this.g) == 'number') && this.g < (1)) {
+    gg = (this.g * (255)).toInt();
+  }
+  if ((typeof(this.b) == 'number') && this.b < (1)) {
+    bb = (this.b * (255)).toInt();
+  }
+  return ("rgb(" + rr + "," + gg + "," + bb + ")");
 }
 // ********** Code for Face3 **************
 function Face3() {}
@@ -9460,7 +9520,7 @@ CanvasRenderer.prototype.render = function(scene, camera) {
   this._autoClear ? this.clear() : this._context.setTransform((1), (0), (0), (-1), this._canvasWidthHalf, this._canvasHeightHalf);
   this._info.render.reset();
   this._renderData = this._projector.projectScene(scene, camera, this._sortElements);
-  this._ThreeD_elements = this._renderData.elements;
+  this._elements = this._renderData.elements;
   this._lights = this._renderData.lights;
   if (this.debug) {
     this._context.set$fillStyle("rgba( 0, 255, 255, 0.5 )");
@@ -9470,10 +9530,10 @@ CanvasRenderer.prototype.render = function(scene, camera) {
   if (this._enableLighting) {
     this.calculateLights(this._lights);
   }
-  el = this._ThreeD_elements.get$length();
+  el = this._elements.get$length();
   for (e = (0);
    e < el; e++) {
-    element = this._ThreeD_elements.$index(e);
+    element = this._elements.$index(e);
     material = element.get$material();
     material = (material instanceof MeshFaceMaterial) ? element.get$faceMaterial() : material;
     if (material == null || material.get$opacity() == (0)) continue;
@@ -10103,9 +10163,9 @@ CanvasRenderer.prototype.setStrokeStyle = function(style) {
   }
 }
 CanvasRenderer.prototype.setFillStyle = function(style) {
-  var $0;
   if (this._contextFillStyle != style) {
-    this._context.set$fillStyle((this._contextFillStyle = ($0 = style), $0));
+    this._contextFillStyle = style;
+    this._context.set$fillStyle(this._contextFillStyle);
   }
 }
 CanvasRenderer.prototype.set$sortObjects = function(value) {
