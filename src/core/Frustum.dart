@@ -60,8 +60,12 @@ class Frustum
       plane.divideScalar( Math.sqrt( plane.x * plane.x + plane.y * plane.y + plane.z * plane.z ) );
     }
   }
-
-  bool contains( Mesh object )
+  
+  // TODO: removed type annotation for now, mesh is no the only class that could be passed.
+  // If we type annotate it as a Mesh, then when something like object.geometry gets called
+  // the JS or Dart code will barf. Proper class and interface hierarchy should fix this issue. 
+  
+  bool contains( /*Mesh*/ object )
   {
     num distance;
     List planes = _planes;
