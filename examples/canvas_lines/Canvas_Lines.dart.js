@@ -382,6 +382,13 @@ function StackOverflowException() {
 StackOverflowException.prototype.toString = function() {
   return "Stack Overflow";
 }
+// ********** Code for BadNumberFormatException **************
+function BadNumberFormatException(_s) {
+  this._s = _s;
+}
+BadNumberFormatException.prototype.toString = function() {
+  return ("BadNumberFormatException: '" + this._s + "'");
+}
 // ********** Code for NullPointerException **************
 function NullPointerException() {
 
@@ -647,13 +654,13 @@ ImmutableMap.prototype.containsKey = function(key) {
   return this._internal.containsKey(key);
 }
 ImmutableMap.prototype.$setindex = function(key, value) {
-  $throw(const$0012);
+  $throw(const$0010);
 }
 ImmutableMap.prototype.putIfAbsent = function(key, ifAbsent) {
-  $throw(const$0012);
+  $throw(const$0010);
 }
 ImmutableMap.prototype.clear = function() {
-  $throw(const$0012);
+  $throw(const$0010);
 }
 ImmutableMap.prototype.toString = function() {
   return Maps.mapToString(this);
@@ -670,14 +677,21 @@ NumImplementation.prototype.$negate = function() {
 NumImplementation.prototype.abs = function() {
   'use strict'; return Math.abs(this);
 }
-NumImplementation.prototype.round = function() {
-  'use strict'; return Math.round(this);
-}
 NumImplementation.prototype.floor = function() {
   'use strict'; return Math.floor(this);
 }
 NumImplementation.prototype.hashCode = function() {
   'use strict'; return this & 0x1FFFFFFF;
+}
+NumImplementation.prototype.toInt = function() {
+    'use strict';
+    if (isNaN(this)) $throw(new BadNumberFormatException("NaN"));
+    if ((this == Infinity) || (this == -Infinity)) {
+      $throw(new BadNumberFormatException("Infinity"));
+    }
+    var truncated = (this < 0) ? Math.ceil(this) : Math.floor(this);
+    if (truncated == -0.0) return 0;
+    return truncated;
 }
 // ********** Code for Collections **************
 function Collections() {}
@@ -3845,10 +3859,6 @@ EventWrappingImplementation._wrap$ctor = function(ptr) {
 }
 EventWrappingImplementation._wrap$ctor.prototype = EventWrappingImplementation.prototype;
 function EventWrappingImplementation() {}
-EventWrappingImplementation.prototype.preventDefault = function() {
-  this._ptr.preventDefault();
-  return;
-}
 // ********** Code for AudioProcessingEventWrappingImplementation **************
 $inherits(AudioProcessingEventWrappingImplementation, EventWrappingImplementation);
 AudioProcessingEventWrappingImplementation._wrap$ctor = function(ptr) {
@@ -7830,7 +7840,7 @@ FilteredElementList.prototype.get$first = function() {
   return null;
 }
 FilteredElementList.prototype.forEach = function(f) {
-  this.get$_filtered().forEach$1(f);
+  this.get$_filtered().forEach(f);
 }
 FilteredElementList.prototype.$setindex = function(index, value) {
   this.$index(index).replaceWith(value);
@@ -7845,7 +7855,7 @@ FilteredElementList.prototype.addAll = function(collection) {
   collection.forEach(this.get$add());
 }
 FilteredElementList.prototype.sort = function(compare) {
-  $throw(const$0011);
+  $throw(const$0009);
 }
 FilteredElementList.prototype.removeRange = function(start, length) {
   this.get$_filtered().getRange(start, length).forEach$1((function (el) {
@@ -7949,7 +7959,7 @@ DocumentFragmentWrappingImplementation.prototype.get$lastElementChild = function
   return this.get$elements().last();
 }
 DocumentFragmentWrappingImplementation.prototype.get$attributes = function() {
-  return const$0013;
+  return const$0011;
 }
 DocumentFragmentWrappingImplementation.prototype.get$style = function() {
   return new EmptyStyleDeclaration();
@@ -7979,8 +7989,14 @@ ElementEventsImplementation._wrap$ctor = function(_ptr) {
 }
 ElementEventsImplementation._wrap$ctor.prototype = ElementEventsImplementation.prototype;
 function ElementEventsImplementation() {}
-ElementEventsImplementation.prototype.get$mouseDown = function() {
-  return this._get("mousedown");
+ElementEventsImplementation.prototype.get$mouseMove = function() {
+  return this._get("mousemove");
+}
+ElementEventsImplementation.prototype.get$touchMove = function() {
+  return this._get("touchmove");
+}
+ElementEventsImplementation.prototype.get$touchStart = function() {
+  return this._get("touchstart");
 }
 // ********** Code for DocumentEventsImplementation **************
 $inherits(DocumentEventsImplementation, ElementEventsImplementation);
@@ -8063,7 +8079,7 @@ _ChildrenElementList.prototype.addAll = function(collection) {
   }
 }
 _ChildrenElementList.prototype.sort = function(compare) {
-  $throw(const$0011);
+  $throw(const$0009);
 }
 _ChildrenElementList.prototype.removeRange = function(start, length) {
   var $this = this; // closure support
@@ -8417,7 +8433,7 @@ _ChildrenNodeList.prototype.addAll = function(collection) {
   }
 }
 _ChildrenNodeList.prototype.sort = function(compare) {
-  $throw(const$0011);
+  $throw(const$0009);
 }
 _ChildrenNodeList.prototype.removeRange = function(start, length) {
   var $this = this; // closure support
@@ -8942,15 +8958,6 @@ Vector3.prototype.copy = function(v) {
   this._z = v.get$z();
   return this;
 }
-Vector3.prototype.clone = function() {
-  return new Vector3(this._x, this._y, this._z);
-}
-Vector3.prototype.add = function(v1, v2) {
-  this._x = v1.get$x() + v2.get$x();
-  this._y = v1.get$y() + v2.get$y();
-  this._z = v1.get$z() + v2.get$z();
-  return this;
-}
 Vector3.prototype.addSelf = function(v) {
   this._x = this._x + v.get$x();
   this._y = this._y + v.get$y();
@@ -8961,12 +8968,6 @@ Vector3.prototype.sub = function(v1, v2) {
   this._x = v1.get$x() - v2.get$x();
   this._y = v1.get$y() - v2.get$y();
   this._z = v1.get$z() - v2.get$z();
-  return this;
-}
-Vector3.prototype.subSelf = function(v) {
-  this._x = this._x - v.get$x();
-  this._y = this._y - v.get$y();
-  this._z = this._z - v.get$z();
   return this;
 }
 Vector3.prototype.multiplyScalar = function(s) {
@@ -9566,19 +9567,7 @@ Face3.prototype.get$c = function() {
   return this._c;
 }
 // ********** Code for Face4 **************
-function Face4(a, b, c, d, normal, color, materialIndex) {
-  this._a = a;
-  this._b = b;
-  this._c = c;
-  this._d = d;
-  this._normal = (normal instanceof Vector3) ? normal : new Vector3((0), (0), (0));
-  this._vertexNormals = !!(normal && normal.is$List()) ? normal : [];
-  this._color = (color instanceof Color) ? color : new Color();
-  this._vertexColors = !!(color && color.is$List()) ? color : [];
-  this._vertexTangents = [];
-  this._materialIndex = materialIndex;
-  this._centroid = new Vector3((0), (0), (0));
-}
+function Face4() {}
 Face4.prototype.get$centroid = function() {
   return this._centroid;
 }
@@ -9591,32 +9580,17 @@ Face4.prototype.get$vertexNormals = function() {
 Face4.prototype.get$materialIndex = function() {
   return this._materialIndex;
 }
-Face4.prototype.set$materialIndex = function(value) {
-  this._materialIndex = value;
-}
 Face4.prototype.get$a = function() {
   return this._a;
-}
-Face4.prototype.set$a = function(value) {
-  this._a = value;
 }
 Face4.prototype.get$b = function() {
   return this._b;
 }
-Face4.prototype.set$b = function(value) {
-  this._b = value;
-}
 Face4.prototype.get$c = function() {
   return this._c;
 }
-Face4.prototype.set$c = function(value) {
-  this._c = value;
-}
 Face4.prototype.get$d = function() {
   return this._d;
-}
-Face4.prototype.set$d = function(value) {
-  this._d = value;
 }
 // ********** Code for Frustum **************
 function Frustum() {
@@ -9683,9 +9657,6 @@ function Geometry() {
 Geometry.prototype.get$boundingSphere = function() {
   return this._boundingSphere;
 }
-Geometry.prototype.get$morphTargets = function() {
-  return this._morphTargets;
-}
 Geometry.prototype.get$faces = function() {
   return this._faces;
 }
@@ -9698,30 +9669,6 @@ Geometry.prototype.get$vertices = function() {
 Geometry.prototype.get$faceVertexUvs = function() {
   return this._faceVertexUvs;
 }
-Geometry.prototype.computeCentroids = function() {
-  var f;
-  var fl = this._faces.get$length();
-  var face;
-  for (f = (0);
-   f < fl; f++) {
-    face = this._faces.$index(f);
-    face.get$centroid().setValues((0), (0), (0));
-    if ((face instanceof Face3)) {
-      face.get$centroid().addSelf(this._vertices.$index(face.get$a()).get$position());
-      face.get$centroid().addSelf(this._vertices.$index(face.get$b()).get$position());
-      face.get$centroid().addSelf(this._vertices.$index(face.get$c()).get$position());
-      face.get$centroid().divideScalar((3));
-    }
-    else if ((face instanceof Face4)) {
-      var face4 = face;
-      face4.get$centroid().addSelf(this._vertices.$index(face4.get$a()).get$position());
-      face4.get$centroid().addSelf(this._vertices.$index(face4.get$b()).get$position());
-      face4.get$centroid().addSelf(this._vertices.$index(face4.get$c()).get$position());
-      face4.get$centroid().addSelf(this._vertices.$index(face4.get$d()).get$position());
-      face4.get$centroid().divideScalar((4));
-    }
-  }
-}
 Geometry.prototype.computeBoundingSphere = function() {
   var radius, maxRadius = (0);
   var vl = this._vertices.get$length();
@@ -9731,50 +9678,6 @@ Geometry.prototype.computeBoundingSphere = function() {
     if (radius > maxRadius) maxRadius = radius;
   }
   this._boundingSphere = _map(["radius", maxRadius]);
-}
-Geometry.prototype.mergeVertices = function() {
-  var verticesMap = new HashMapImplementation();
-  var unique = [];
-  var changes = [];
-  var key;
-  var precisionPoints = (4);
-  var precision = Math.pow((10), precisionPoints);
-  var i;
-  var il = this._vertices.get$length();
-  for (i = (0);
-   i < il; i++) {
-    var v = this._vertices.$index(i).get$position();
-    var vx = (v.get$x() * precision).round();
-    var vy = (v.get$y() * precision).round();
-    var vz = (v.get$z() * precision).round();
-    key = ("" + vx + "_" + vy + "_" + vz);
-    if (null == verticesMap.$index(key)) {
-      verticesMap.$setindex(key, i);
-      unique.add(this._vertices.$index(i));
-      changes.add(unique.get$length() - (1));
-    }
-    else {
-      changes.add(changes.$index(verticesMap.$index(key)));
-    }
-  }
-  il = this._faces.get$length();
-  for (i = (0);
-   i < il; i++) {
-    var face = this._faces.$index(i);
-    if ((face instanceof Face3)) {
-      face.set$a(changes.$index(face.get$a()));
-      face.set$b(changes.$index(face.get$b()));
-      face.set$c(changes.$index(face.get$c()));
-    }
-    else if ((face instanceof Face4)) {
-      var face4 = face;
-      face4.set$a(changes.$index(face4.get$a()));
-      face4.set$b(changes.$index(face4.get$b()));
-      face4.set$c(changes.$index(face4.get$c()));
-      face4.set$d(changes.$index(face4.get$d()));
-    }
-  }
-  this._vertices = unique;
 }
 // ********** Code for Vertex **************
 function Vertex(position) {
@@ -9800,12 +9703,6 @@ function Projector() {
   this._clippedVertex1PositionScreen = new Vector4((0), (0), (0), (1));
   this._clippedVertex2PositionScreen = new Vector4((0), (0), (0), (1));
   var _face3VertexNormals;
-}
-Projector.prototype.unprojectVector = function(vector, camera) {
-  camera.projectionMatrixInverse.getInverse(camera.projectionMatrix);
-  this._projScreenMatrix.multiply(camera.matrixWorld, camera.projectionMatrixInverse);
-  this._projScreenMatrix.multiplyVector3(vector);
-  return vector;
 }
 Projector.prototype.projectGraph = function(root, sort) {
   this._objectCount = (0);
@@ -10145,137 +10042,6 @@ function ProjectorRenderData() {
   this.elements = [];
 }
 ProjectorRenderData.prototype.get$elements = function() { return this.elements; };
-// ********** Code for Ray **************
-function Ray(origin, direction) {
-  this._origin = (origin != null) ? origin : new Vector3((0), (0), (0));
-  this._direction = (direction != null) ? direction : new Vector3((0), (0), (0));
-}
-Ray.prototype.intersectObject = function(object) {
-  var a = new Vector3((0), (0), (0));
-  var b = new Vector3((0), (0), (0));
-  var c = new Vector3((0), (0), (0));
-  var d = new Vector3((0), (0), (0));
-  var originCopy = new Vector3((0), (0), (0));
-  var directionCopy = new Vector3((0), (0), (0));
-  var vector = new Vector3((0), (0), (0));
-  var normal = new Vector3((0), (0), (0));
-  var intersectPoint = new Vector3((0), (0), (0));
-  var intersect;
-  var intersects = [];
-  var l = object.children.get$length();
-  for (var i = (0);
-   i < l; i++) {
-    intersects.addAll(this.intersectObject(object.children.$index(i)));
-  }
-  if ((object instanceof Particle)) {
-    var distance = this.distanceFromIntersection(this._origin, this._direction, object.matrixWorld.getPosition());
-    if (distance > object.scale.get$x()) {
-      return [];
-    }
-    intersect = new Intersect(distance, object.position, null, object);
-    intersects.add(intersect);
-  }
-  else if ((object instanceof Mesh)) {
-    var mesh = object;
-    var distance = this.distanceFromIntersection(this._origin, this._direction, object.matrixWorld.getPosition());
-    var scale = $globals.Frustum___v1.setValues(object.matrixWorld.getColumnX().length(), object.matrixWorld.getColumnY().length(), object.matrixWorld.getColumnZ().length());
-    if (distance > $mul$(mesh.get$geometry().get$boundingSphere().$index("radius"), Math.max(scale.get$x(), Math.max(scale.get$y(), scale.get$z())))) {
-      return intersects;
-    }
-    var f;
-    var face;
-    var dot, scalar;
-    var geometry = mesh.get$geometry();
-    var vertices = geometry.get$vertices();
-    var objMatrix;
-    var fl = geometry.get$faces().get$length();
-    object.matrixRotationWorld.extractRotation(object.matrixWorld);
-    for (f = (0);
-     f < fl; f++) {
-      face = geometry.get$faces().$index(f);
-      originCopy.copy(this._origin);
-      directionCopy.copy(this._direction);
-      objMatrix = object.matrixWorld;
-      vector = objMatrix.multiplyVector3(vector.copy(face.get$centroid())).subSelf(originCopy);
-      normal = object.matrixRotationWorld.multiplyVector3(normal.copy(face.get$normal()));
-      dot = directionCopy.dot(normal);
-      if (dot.abs() < (0.0001)) continue;
-      scalar = normal.dot(vector) / dot;
-      if (scalar < (0)) continue;
-      if (object.doubleSided || (object.flipSided ? dot > (0) : dot < (0))) {
-        intersectPoint.add(originCopy, directionCopy.multiplyScalar(scalar));
-        if ((face instanceof Face3)) {
-          a = objMatrix.multiplyVector3(a.copy(vertices.$index(face.get$a()).get$position()));
-          b = objMatrix.multiplyVector3(b.copy(vertices.$index(face.get$b()).get$position()));
-          c = objMatrix.multiplyVector3(c.copy(vertices.$index(face.get$c()).get$position()));
-          if (this.pointInFace3(intersectPoint, a, b, c)) {
-            intersect = new Intersect(originCopy.distanceTo(intersectPoint), intersectPoint.clone(), face, object);
-            intersects.add(intersect);
-          }
-        }
-        else if ((face instanceof Face4)) {
-          var face4 = face;
-          a = objMatrix.multiplyVector3(a.copy(vertices.$index(face4.get$a()).get$position()));
-          b = objMatrix.multiplyVector3(b.copy(vertices.$index(face4.get$b()).get$position()));
-          c = objMatrix.multiplyVector3(c.copy(vertices.$index(face4.get$c()).get$position()));
-          d = objMatrix.multiplyVector3(d.copy(vertices.$index(face4.get$d()).get$position()));
-          if (this.pointInFace3(intersectPoint, a, b, d) || this.pointInFace3(intersectPoint, b, c, d)) {
-            intersect = new Intersect(originCopy.distanceTo(intersectPoint), intersectPoint.clone(), face, object);
-            intersects.add(intersect);
-          }
-        }
-      }
-    }
-  }
-  return intersects;
-}
-Ray.prototype.intersectObjects = function(objects) {
-  var l = objects.get$length();
-  var intersects = [];
-  for (var i = (0);
-   i < l; i++) {
-    intersects.addAll(this.intersectObject(objects.$index(i)));
-  }
-  intersects.sort(function function_(a, b) {
-    return a.get$distance() - b.get$distance();
-  }
-  );
-  return intersects;
-}
-Ray.prototype.distanceFromIntersection = function(origin, direction, position) {
-  var v0 = new Vector3((0), (0), (0)), v1 = new Vector3((0), (0), (0)), v2 = new Vector3((0), (0), (0));
-  var dot, intersect, distance;
-  v0.sub(position, origin);
-  dot = v0.dot(direction);
-  intersect = v1.add(origin, v2.copy(direction).multiplyScalar(dot));
-  distance = position.distanceTo(intersect);
-  return distance;
-}
-Ray.prototype.pointInFace3 = function(p, a, b, c) {
-  var v0 = new Vector3((0), (0), (0)), v1 = new Vector3((0), (0), (0)), v2 = new Vector3((0), (0), (0));
-  var dot00, dot01, dot02, dot11, dot12, invDenom, u, v;
-  v0.sub(c, a);
-  v1.sub(b, a);
-  v2.sub(p, a);
-  dot00 = v0.dot(v0);
-  dot01 = v0.dot(v1);
-  dot02 = v0.dot(v2);
-  dot11 = v1.dot(v1);
-  dot12 = v1.dot(v2);
-  invDenom = (1) / (dot00 * dot11 - dot01 * dot01);
-  u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-  v = (dot00 * dot12 - dot01 * dot02) * invDenom;
-  return (u >= (0)) && (v >= (0)) && (u + v < (1));
-}
-// ********** Code for Intersect **************
-function Intersect(d, iPoint, f, obj) {
-  this.distance = d;
-  this.point = iPoint;
-  this.face = f;
-  this.object = obj;
-}
-Intersect.prototype.get$distance = function() { return this.distance; };
-Intersect.prototype.get$object = function() { return this.object; };
 // ********** Code for Vector2 **************
 function Vector2(_x, _y) {
   this._y = _y;
@@ -10301,17 +10067,6 @@ Vector2.prototype.length = function() {
 }
 Vector2.prototype.get$length = function() {
   return this.length.bind(this);
-}
-// ********** Code for UV **************
-function UV(u, v) {
-  this._u = (u != null) ? u : (0);
-  this._v = (v != null) ? v : (0);
-}
-UV.prototype.get$u = function() {
-  return this._u;
-}
-UV.prototype.get$v = function() {
-  return this._v;
 }
 // ********** Code for Rectangle **************
 function Rectangle() {
@@ -10436,116 +10191,6 @@ Rectangle.prototype.empty = function() {
 Rectangle.prototype.isEmpty = function() {
   return this._isEmpty;
 }
-// ********** Code for CubeGeometry **************
-$inherits(CubeGeometry, Geometry);
-function CubeGeometry(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides) {
-  Geometry.call(this);
-  var width_half = width / (2), height_half = height / (2), depth_half = depth / (2);
-  var mpx, mpy, mpz, mnx, mny, mnz;
-  if (null != materials) {
-    if (!!(materials && materials.is$List())) {
-      this._materials = materials;
-    }
-    else {
-      this._materials = [];
-      for (var i = (0);
-       i < (6); i++) {
-        this._materials.add(materials);
-      }
-    }
-    mpx = (0);
-    mnx = (1);
-    mpy = (2);
-    mny = (3);
-    mpz = (4);
-    mnz = (5);
-  }
-  else {
-    this._materials = [];
-  }
-  this._sides = new CubeGeomSides(true, true, true, true, true, true);
-  if (sides != null) {
-    for (var $$i = sides.iterator(); $$i.hasNext(); ) {
-      var s = $$i.next();
-      if (null != this._sides.get$dynamic().$index(s)) {
-        this._sides.get$dynamic().$setindex(s, sides.$index(s));
-      }
-    }
-  }
-  if (this._sides.px) this.buildPlane("z", "y", (-1), (-1), depth, height, width_half, mpx);
-  if (this._sides.nx) this.buildPlane("z", "y", (1), (-1), depth, height, -width_half, mnx);
-  if (this._sides.py) this.buildPlane("x", "z", (1), (1), width, depth, height_half, mpy);
-  if (this._sides.ny) this.buildPlane("x", "z", (1), (-1), width, depth, -height_half, mny);
-  if (this._sides.pz) this.buildPlane("x", "y", (1), (-1), width, height, depth_half, mpz);
-  if (this._sides.nz) this.buildPlane("x", "y", (-1), (-1), width, height, -depth_half, mnz);
-  this.computeCentroids();
-  this.mergeVertices();
-}
-CubeGeometry.prototype.buildPlane = function(u, v, udir, vdir, width, height, depth, material) {
-  var w;
-  var ix, iy, gridX = (this.segmentsWidth != null) ? this.segmentsWidth : (1), gridY = (this.segmentsHeight != null) ? this.segmentsHeight : (1), width_half = width / (2), height_half = height / (2), offset = this.get$vertices().get$length();
-  if (((null == u ? null == ("x") : u === "x") && (null == v ? null == ("y") : v === "y")) || ((null == u ? null == ("y") : u === "y") && (null == v ? null == ("x") : v === "x"))) {
-    w = "z";
-  }
-  else if (((null == u ? null == ("x") : u === "x") && (null == v ? null == ("z") : v === "z")) || ((null == u ? null == ("z") : u === "z") && (null == v ? null == ("x") : v === "x"))) {
-    w = "y";
-    gridY = (this.segmentsDepth != null) ? this.segmentsDepth : (1);
-  }
-  else if (((null == u ? null == ("z") : u === "z") && (null == v ? null == ("y") : v === "y")) || ((null == u ? null == ("y") : u === "y") && (null == v ? null == ("z") : v === "z"))) {
-    w = "x";
-    gridX = (this.segmentsDepth != null) ? this.segmentsDepth : (1);
-  }
-  var gridX1 = gridX + (1), gridY1 = gridY + (1), segment_width = width / gridX, segment_height = height / gridY;
-  var normal = new Vector3((0), (0), (0));
-  if (w == "x") normal.set$x(depth > (0) ? (1) : (-1));
-  else if (w == "y") normal.set$y(depth > (0) ? (1) : (-1));
-  else if (w == "z") normal.set$z(depth > (0) ? (1) : (-1));
-  for (iy = (0);
-   iy < gridY1; iy++) {
-    for (ix = (0);
-     ix < gridX1; ix++) {
-      var vector = new Vector3((0), (0), (0));
-      if (u == "x") vector.set$x((ix * segment_width - width_half) * udir);
-      else if (u == "y") vector.set$y((ix * segment_width - width_half) * udir);
-      else if (u == "z") vector.set$z((ix * segment_width - width_half) * udir);
-      if (v == "x") vector.set$x((iy * segment_height - height_half) * vdir);
-      else if (v == "y") vector.set$y((iy * segment_height - height_half) * vdir);
-      else if (v == "z") vector.set$z((iy * segment_height - height_half) * vdir);
-      if (w == "x") vector.set$x(depth);
-      else if (w == "y") vector.set$y(depth);
-      else if (w == "z") vector.set$z(depth);
-      this.get$vertices().add(new Vertex(vector));
-    }
-  }
-  for (iy = (0);
-   iy < gridY; iy++) {
-    for (ix = (0);
-     ix < gridX; ix++) {
-      var a = ix + gridX1 * iy;
-      var b = ix + gridX1 * (iy + (1));
-      var c = (ix + (1)) + gridX1 * (iy + (1));
-      var d = (ix + (1)) + gridX1 * iy;
-      var face = new Face4(a + offset, b + offset, c + offset, d + offset);
-      face.get$normal().copy(normal);
-      face.get$vertexNormals().addAll([normal.clone(), normal.clone(), normal.clone(), normal.clone()]);
-      face.set$materialIndex(material);
-      this.get$faces().add(face);
-      var faceVertexUV = this.get$faceVertexUvs().$index((0));
-      var newUVs = new Array();
-      newUVs.addAll([new UV(ix / gridX, iy / gridY), new UV(ix / gridX, (iy + (1)) / gridY), new UV((ix + (1)) / gridX, (iy + (1)) / gridY), new UV((ix + (1)) / gridX, iy / gridY)]);
-      faceVertexUV.add(newUVs);
-    }
-  }
-}
-// ********** Code for CubeGeomSides **************
-function CubeGeomSides(px, nx, py, ny, pz, nz) {
-  this.pz = pz;
-  this.nx = nx;
-  this.ny = ny;
-  this.py = py;
-  this.nz = nz;
-  this.px = px;
-}
 // ********** Code for AmbientLight **************
 function AmbientLight() {}
 // ********** Code for Light **************
@@ -10595,26 +10240,7 @@ Material.prototype.get$blending = function() {
 }
 // ********** Code for MeshBasicMaterial **************
 $inherits(MeshBasicMaterial, Material);
-function MeshBasicMaterial(parameters) {
-  Material.call(this, parameters);
-  parameters = parameters != null ? parameters : new HashMapImplementation();
-  this._color = null != parameters.$index("color") ? new Color(parameters.$index("color")) : new Color((16777215));
-  this._ThreeD_map = null != parameters.$index("map") ? parameters.$index("map") : null;
-  this._lightMap = null != parameters.$index("lightMap") ? parameters.$index("lightMap") : null;
-  this._envMap = null != parameters.$index("envMap") ? parameters.$index("envMap") : null;
-  this._combine = null != parameters.$index("combine") ? parameters.$index("combine") : $globals.Three_MultiplyOperation;
-  this._reflectivity = null != parameters.$index("reflectivity") ? parameters.$index("reflectivity") : (1);
-  this._refractionRatio = null != parameters.$index("refractionRatio") ? parameters.$index("refractionRatio") : (0.98);
-  this._fog = null != parameters.$index("fog") ? parameters.$index("fog") : true;
-  this._shading = null != parameters.$index("shading") ? parameters.$index("shading") : $globals.Three_SmoothShading;
-  this._wireframe = null != parameters.$index("wireframe") ? parameters.$index("wireframe") : false;
-  this._wireframeLinewidth = null != parameters.$index("wireframeLinewidth") ? parameters.$index("wireframeLinewidth") : (1);
-  this._wireframeLinecap = null != parameters.$index("wireframeLinecap") ? parameters.$index("wireframeLinecap") : "round";
-  this._wireframeLinejoin = null != parameters.$index("wireframeLinejoin") ? parameters.$index("wireframeLinejoin") : "round";
-  this._vertexColors = null != parameters.$index("vertexColors") ? parameters.$index("vertexColors") : false;
-  this._skinning = null != parameters.$index("skinning") ? parameters.$index("skinning") : false;
-  this._morphTargets = null != parameters.$index("morphTargets") ? parameters.$index("morphTargets") : false;
-}
+function MeshBasicMaterial() {}
 MeshBasicMaterial.prototype.is$ITextureMapMaterial = function(){return true};
 MeshBasicMaterial.prototype.get$map = function() {
   return this._ThreeD_map;
@@ -10659,7 +10285,16 @@ ParticleCanvasMaterial.prototype.program$1 = function($0) {
 };
 // ********** Code for LineBasicMaterial **************
 $inherits(LineBasicMaterial, Material);
-function LineBasicMaterial() {}
+function LineBasicMaterial(parameters) {
+  Material.call(this, parameters);
+  parameters = parameters != null ? parameters : new HashMapImplementation();
+  this._color = null != parameters.$index("color") ? new Color(parameters.$index("color")) : new Color((16777215));
+  this._linewidth = null != parameters.$index("linewidth") ? parameters.$index("linewidth") : (1);
+  this._linecap = null != parameters.$index("linecap") ? parameters.$index("linecap") : "round";
+  this._linejoin = null != parameters.$index("linejoin") ? parameters.$index("linejoin") : "round";
+  this._vertexColors = parameters.$index("vertexColors") ? parameters.$index("vertexColors") : false;
+  this._fog = null != parameters.$index("fog") ? parameters.$index("fog") : true;
+}
 LineBasicMaterial.prototype.get$linewidth = function() {
   return this._linewidth;
 }
@@ -10719,30 +10354,7 @@ MeshNormalMaterial.prototype.get$wireframeLinejoin = function() {
 function Bone() {}
 // ********** Code for Mesh **************
 $inherits(Mesh, Object3D);
-function Mesh(geometry, material) {
-  Object3D.call(this);
-  this._geometry = geometry;
-  this._material = material;
-  if (!!(material && material.is$List())) {
-  }
-  if (this._geometry != null) {
-    if (this._geometry.get$boundingSphere() == null) {
-      this._geometry.computeBoundingSphere();
-    }
-    this._boundRadius = geometry.get$boundingSphere().$index("radius");
-    if (this._geometry.get$morphTargets().get$length() != (0)) {
-      this._morphTargetBase = (-1);
-      this._morphTargetForcedOrder = [];
-      this._morphTargetInfluences = [];
-      this._morphTargetDictionary = new HashMapImplementation();
-      for (var m = (0);
-       m < this._geometry.get$morphTargets().get$length(); m++) {
-        this._morphTargetInfluences.add((0));
-        this._morphTargetDictionary.$setindex(this._geometry.get$morphTargets().$index(m).get$name(), m);
-      }
-    }
-  }
-}
+function Mesh() {}
 Mesh.prototype.get$geometry = function() {
   return this._geometry;
 }
@@ -10751,7 +10363,18 @@ Mesh.prototype.get$material = function() {
 }
 // ********** Code for Line **************
 $inherits(Line, Object3D);
-function Line() {}
+function Line(geometry, material, ltype) {
+  this._ThreeD_type = (0);
+  Object3D.call(this);
+  this._geometry = geometry;
+  this._material = material;
+  this._ThreeD_type = ltype;
+  if (this._geometry != null) {
+    if (this._geometry.get$boundingSphere() == null) {
+      this._geometry.computeBoundingSphere();
+    }
+  }
+}
 Line.prototype.get$geometry = function() {
   return this._geometry;
 }
@@ -11739,20 +11362,22 @@ function UVMapping() {}
 // ********** Code for SphericalReflectionMapping **************
 function SphericalReflectionMapping() {}
 // ********** Code for top level **************
-//  ********** Library Canvas_Interactive_Cubes **************
-// ********** Code for Canvas_Interactive_Cubes **************
-function Canvas_Interactive_Cubes() {
-  this.radius = (600);
-  this.theta = (0);
+//  ********** Library Canvas_Lines **************
+// ********** Code for Canvas_Lines **************
+function Canvas_Lines() {
+  this.mouseX = (0);
+  this.mouseY = (0);
+  this.windowHalfX = (0);
+  this.windowHalfY = (0);
 }
-Canvas_Interactive_Cubes.prototype.run = function() {
-  this.init();
-  this.animate();
-}
-Canvas_Interactive_Cubes.prototype.init = function() {
+Canvas_Lines.prototype.get$material = function() { return this.material; };
+Canvas_Lines.prototype.get$geometry = function() { return this.geometry; };
+Canvas_Lines.prototype.init = function() {
   var $this = this; // closure support
   var $0;
-  this.objects = [];
+  var particle;
+  this.windowHalfX = (html_get$$window().get$innerWidth() / (2)).toInt();
+  this.windowHalfY = (html_get$$window().get$innerHeight() / (2)).toInt();
   this.container = ElementWrappingImplementation.ElementWrappingImplementation$tag$factory("div");
   html_get$$document().get$body().get$nodes().add(this.container);
   var info = ElementWrappingImplementation.ElementWrappingImplementation$tag$factory("div");
@@ -11762,84 +11387,80 @@ Canvas_Interactive_Cubes.prototype.init = function() {
   info.get$style().set$textAlign("center");
   info.set$innerHTML("<a href=\"http://github.com/robsilv/three.dart\" target=\"_blank\">three.dart</a> - clickable objects");
   this.container.get$nodes().add(info);
-  this.camera = new PerspectiveCamera((70), html_get$$window().get$innerWidth() / html_get$$window().get$innerHeight(), (1), (10000));
-  this.camera.position.setValues((0), (300), (500));
+  this.camera = new PerspectiveCamera((75), html_get$$window().get$innerWidth() / html_get$$window().get$innerHeight(), (1), (10000));
+  this.camera.position.set$z((100));
   this.scene = new Scene();
   this.scene.add(this.camera);
-  var geometry = new CubeGeometry((100), (100), (100));
-  for (var i = (0);
-   i < (10); i++) {
-    var particle = new Particle(this.particleMaterial);
-    particle.position.set$x(Math.random() * (800) - (400));
-    particle.position.set$y(Math.random() * (800) - (400));
-    particle.position.set$z(Math.random() * (800) - (400));
-    particle.scale.set$x((particle.scale.set$y(($0 = (8))), $0));
-    this.scene.add(particle);
-    var object = new Mesh(geometry, new MeshBasicMaterial(_map(["color", Math.random() * (16777215), "opacity", (0.5)])));
-    object.position.set$x(Math.random() * (800) - (400));
-    object.position.set$y(Math.random() * (800) - (400));
-    object.position.set$z(Math.random() * (800) - (400));
-    object.scale.set$x(Math.random() * (2) + (1));
-    object.scale.set$y(Math.random() * (2) + (1));
-    object.scale.set$z(Math.random() * (2) + (1));
-    object.rotation.set$x((Math.random() * (360)) * (3.141592653589793) / (180));
-    object.rotation.set$y((Math.random() * (360)) * (3.141592653589793) / (180));
-    object.rotation.set$z((Math.random() * (360)) * (3.141592653589793) / (180));
-    this.scene.add(object);
-    this.objects.add(object);
-  }
-  this.particleMaterial = new ParticleCanvasMaterial(_map(["color", (0), "program", function function_(context) {
+  this.renderer = new CanvasRenderer();
+  this.renderer.setSize(html_get$$window().get$innerWidth(), html_get$$window().get$innerHeight());
+  this.container.get$nodes().add(this.renderer.domElement);
+  var PI2 = (6.283185307179586);
+  this.material = new ParticleCanvasMaterial(_map(["color", (16777215), "program", function function_(context) {
     context.beginPath();
-    context.arc((0), (0), (1), (0), (6.283185307179586), false);
+    context.arc((0), (0), (1), (0), PI2, true);
     context.closePath();
     context.fill();
   }
   ]));
-  this.projector = new Projector();
-  this.renderer = new CanvasRenderer();
-  this.renderer.setSize(html_get$$window().get$innerWidth(), html_get$$window().get$innerHeight());
-  this.container.get$nodes().add(this.renderer.domElement);
-  html_get$$document().get$on().get$mouseDown().add(this.get$onDocumentMouseDown(), false);
+  this.geometry = new Geometry();
+  for (var i = (0);
+   $lt$(i, (100)); i = $add$(i, (1))) {
+    particle = new Particle(this.material);
+    particle.position.set$x(Math.random() * (2) - (1));
+    particle.position.set$y(Math.random() * (2) - (1));
+    particle.position.set$z(Math.random() * (2) - (1));
+    particle.position.normalize();
+    particle.position.multiplyScalar(Math.random() * (10) + (450));
+    particle.scale.set$x((particle.scale.set$y(($0 = (5))), $0));
+    this.scene.add(particle);
+    this.geometry.get$vertices().add(new Vertex(particle.position));
+  }
+  var line = new Line(this.geometry, new LineBasicMaterial(_map(["color", (16777215), "opacity", (0.5)])), (0));
+  this.scene.add(line);
+  html_get$$document().get$on().get$mouseMove().add(this.get$onDocumentMouseMove(), false);
+  html_get$$document().get$on().get$touchStart().add(this.get$onDocumentTouchStart(), false);
+  html_get$$document().get$on().get$touchMove().add(this.get$onDocumentTouchMove(), false);
   html_get$$window().setInterval(function f() {
     return $this.animate();
   }
   , (10));
 }
-Canvas_Interactive_Cubes.prototype.onDocumentMouseDown = function(event) {
-  var $0;
-  event.preventDefault();
-  var vector = new Vector3((event.get$clientX() / html_get$$window().get$innerWidth()) * (2) - (1), -(event.get$clientY() / html_get$$window().get$innerHeight()) * (2) + (1), (0.5));
-  this.projector.unprojectVector(vector, this.camera);
-  var ray = new Ray(this.camera.position, vector.subSelf(this.camera.position).normalize());
-  var intersects = ray.intersectObjects(this.objects);
-  if (intersects.get$length() > (0)) {
-    var intersect = intersects.$index((0));
-    var mesh = intersect.object;
-    var material = mesh.get$material();
-    material.get$color().setHex(Math.random() * (16777215));
-    var particle = new Particle(this.particleMaterial);
-    particle.position = intersect.point;
-    particle.scale.set$x((particle.scale.set$y(($0 = (8))), $0));
-    this.scene.add(particle);
-  }
+Canvas_Lines.prototype.onDocumentMouseMove = function(event) {
+  this.mouseX = $sub$(event.get$clientX(), this.windowHalfX);
+  this.mouseY = $sub$(event.get$clientY(), this.windowHalfY);
 }
-Canvas_Interactive_Cubes.prototype.get$onDocumentMouseDown = function() {
-  return this.onDocumentMouseDown.bind(this);
+Canvas_Lines.prototype.get$onDocumentMouseMove = function() {
+  return this.onDocumentMouseMove.bind(this);
 }
-Canvas_Interactive_Cubes.prototype.animate = function() {
+Canvas_Lines.prototype.onDocumentTouchStart = function(event) {
+
+}
+Canvas_Lines.prototype.get$onDocumentTouchStart = function() {
+  return this.onDocumentTouchStart.bind(this);
+}
+Canvas_Lines.prototype.onDocumentTouchMove = function(event) {
+
+}
+Canvas_Lines.prototype.get$onDocumentTouchMove = function() {
+  return this.onDocumentTouchMove.bind(this);
+}
+Canvas_Lines.prototype.animate = function() {
   this.render();
 }
-Canvas_Interactive_Cubes.prototype.render = function() {
-  this.theta = this.theta + (0.2);
-  this.camera.position.set$x(this.radius * Math.sin(this.theta * (3.141592653589793) / (360)));
-  this.camera.position.set$y(this.radius * Math.sin(this.theta * (3.141592653589793) / (360)));
-  this.camera.position.set$z(this.radius * Math.cos(this.theta * (3.141592653589793) / (360)));
+Canvas_Lines.prototype.render = function() {
+  var $0, $1;
+  ($0 = this.camera.position).set$x($0.get$x() + (($sub$(this.mouseX, this.camera.position.get$x())) * (0.05)));
+  ($1 = this.camera.position).set$y($1.get$y() + (($negate$(this.mouseY) + (200) - this.camera.position.get$y()) * (0.05)));
   this.camera.lookAt(this.scene.position);
   this.renderer.render(this.scene, this.camera);
 }
+Canvas_Lines.prototype.run = function() {
+  this.init();
+  this.animate();
+}
 // ********** Code for top level **************
 function main() {
-  new Canvas_Interactive_Cubes().run();
+  new Canvas_Lines().run();
 }
 // 215 dynamic types.
 // 504 types
@@ -11913,7 +11534,6 @@ function $static_init(){
   $globals.Three_AdditiveBlending = (1);
   $globals.Three_GeometryCount = (0);
   $globals.Three_MaterialCount = (0);
-  $globals.Three_MultiplyOperation = (0);
   $globals.Three_NormalBlending = (0);
   $globals.Three_Object3DCount = (0);
   $globals.Three_RepeatWrapping = (0);
@@ -11923,9 +11543,9 @@ function $static_init(){
 var const$0000 = Object.create(_DeletedKeySentinel.prototype, {});
 var const$0001 = Object.create(NoMoreElementsException.prototype, {});
 var const$0002 = Object.create(EmptyQueueException.prototype, {});
-var const$0011 = Object.create(UnsupportedOperationException.prototype, {_message: {"value": "TODO(jacobr): should we impl?", writeable: false}});
-var const$0012 = Object.create(IllegalAccessException.prototype, {});
-var const$0013 = _constMap([]);
+var const$0009 = Object.create(UnsupportedOperationException.prototype, {_message: {"value": "TODO(jacobr): should we impl?", writeable: false}});
+var const$0010 = Object.create(IllegalAccessException.prototype, {});
+var const$0011 = _constMap([]);
 var $globals = {};
 $static_init();
 main();
