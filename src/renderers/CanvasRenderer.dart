@@ -1148,7 +1148,8 @@ class CanvasRenderer
   void setFillStyle( String style ) 
   {
     if ( _contextFillStyle != style ) {
-      _context.fillStyle = _contextFillStyle = style;
+      _contextFillStyle = style;
+      _context.fillStyle = _contextFillStyle;
     }
   }
 }

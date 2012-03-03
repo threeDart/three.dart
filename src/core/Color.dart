@@ -18,7 +18,7 @@ class Color
     g = 1;
     b = 1;
     
-    if ( hex !== null ) setHex( hex );
+    if ( hex is num ) setHex( hex );
     //TODO: Work out how pivotal this odd return statement is.
     //return this;
   }
@@ -28,7 +28,7 @@ class Color
     r = color.r;
     g = color.g;
     b = color.b;
-
+    
     return this;
   }
 
@@ -59,7 +59,7 @@ class Color
     r = _r * _r;
     g = _g * _g;
     b = _b * _b;
-
+    
     return this;
   }
 
@@ -68,7 +68,6 @@ class Color
     r = Math.sqrt( r );
     g = Math.sqrt( g );
     b = Math.sqrt( b );
-
     return this;
   }
 
@@ -84,8 +83,7 @@ class Color
   Color setHSV( num h, num s, num v )
   {
     // based on MochiKit implementation by Bob Ippolito
-    // h,s,v ranges are < 0.0 - 1.0 >
-
+    // h,s,v ranges are < 0.0 - 1.0 >  
     num i, f, p, q, t;
 
     if ( v === 0 ) {
@@ -113,23 +111,40 @@ class Color
 
   Color setHex( num hex )
   {
-    hex = hex.floor();
-
-    r = ( hex >> 16 & 255 ) / 255;
-    g = ( hex >> 8 & 255 ) / 255;
-    b = ( hex & 255 ) / 255;
-
+    var h = hex.floor().toInt();    
+    r = (h&0xFF0000)>>16; 
+    g = (h&0x00FF00)>>8;
+    b = (h&0x0000FF);
     return this;
   }
 
   num getHex()
   {
-    return ( r * 255 ).floor() << 16 ^ ( g * 255 ).floor() << 8 ^ ( b * 255 ).floor();
+    num h = (r<<16)^(g<<8)^(b);
+    return h;
   }
 
   String getContextStyle()
   {
-    return 'rgb(' + ( r * 255 ).floor() + ',' + ( g * 255 ).floor() + ',' + ( b * 255 ).floor() + ')';
+    // TODO: this is a little bit of a mess. We should stay consistent between
+    // how r,g,b is set. Something in CanvasRender is setting them to doubles
+    // when they should be int's. We could add setter/getter's to handle this
+    
+    int rr=r,bb=b,gg=g;
+    
+    if (r is double && r < 1) {
+      rr = (r*0xff).toInt();
+    }
+    
+    if (g is double && g < 1) {
+      gg = (g*0xff).toInt();
+    }
+    
+    if (b is double && b < 1) {
+      bb = (b*0xff).toInt();
+    }
+    
+    return 'rgb(${rr},${gg},${bb})';
   }
 
   Color clone() 
