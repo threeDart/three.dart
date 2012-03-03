@@ -4,28 +4,55 @@ function $defProp(obj, prop, value) {
   Object.defineProperty(obj, prop,
       {value: value, enumerable: false, writable: true, configurable: true});
 }
-$defProp(Object.prototype, '$typeNameOf', function() {
-  var constructor = this.constructor;
-  if (typeof(constructor) == 'function') {
-    // The constructor isn't null or undefined at this point. Try
-    // to grab hold of its name.
-    var name = constructor.name;
-    // If the name is a non-empty string, we use that as the type
-    // name of this object. On Firefox, we often get 'Object' as
-    // the constructor name even for more specialized objects so
-    // we have to fall through to the toString() based implementation
-    // below in that case.
-    if (name && typeof(name) == 'string' && name != 'Object') return name;
+$defProp(Object.prototype, '$typeNameOf', (function() {
+  function constructorNameWithFallback(obj) {
+    var constructor = obj.constructor;
+    if (typeof(constructor) == 'function') {
+      // The constructor isn't null or undefined at this point. Try
+      // to grab hold of its name.
+      var name = constructor.name;
+      // If the name is a non-empty string, we use that as the type
+      // name of this object. On Firefox, we often get 'Object' as
+      // the constructor name even for more specialized objects so
+      // we have to fall through to the toString() based implementation
+      // below in that case.
+      if (typeof(name) == 'string' && name && name != 'Object') return name;
+    }
+    var string = Object.prototype.toString.call(obj);
+    return string.substring(8, string.length - 1);
   }
-  var string = Object.prototype.toString.call(this);
-  var name = string.substring(8, string.length - 1);
-  if (name == 'Window') {
-    name = 'DOMWindow';
-  } else if (name == 'Document') {
-    name = 'HTMLDocument';
+
+  function chrome$typeNameOf() {
+    return this.constructor.name;
   }
-  return name;
-});
+
+  function firefox$typeNameOf() {
+    var name = constructorNameWithFallback(this);
+    if (name == 'Window') return 'DOMWindow';
+    if (name == 'Document') return 'HTMLDocument';
+    if (name == 'XMLDocument') return 'Document';
+    return name;
+  }
+
+  function ie$typeNameOf() {
+    var name = constructorNameWithFallback(this);
+    if (name == 'Window') return 'DOMWindow';
+    // IE calls both HTML and XML documents 'Document', so we check for the
+    // xmlVersion property, which is the empty string on HTML documents.
+    if (name == 'Document' && this.xmlVersion) return 'Document';
+    if (name == 'Document') return 'HTMLDocument';
+    return name;
+  }
+
+  // If we're not in the browser, we're almost certainly running on v8.
+  if (typeof(navigator) != 'object') return chrome$typeNameOf;
+
+  var userAgent = navigator.userAgent;
+  if (/Chrome/.test(userAgent)) return chrome$typeNameOf;
+  if (/Firefox/.test(userAgent)) return firefox$typeNameOf;
+  if (/MSIE/.test(userAgent)) return ie$typeNameOf;
+  return function() { return constructorNameWithFallback(this); };
+})());
 function $throw(e) {
   // If e is not a value, we can use V8's captureStackTrace utility method.
   // TODO(jmesserly): capture the stack trace on other JS engines.
@@ -288,12 +315,19 @@ IndexOutOfRangeException.prototype.is$IndexOutOfRangeException = function(){retu
 IndexOutOfRangeException.prototype.toString = function() {
   return ("IndexOutOfRangeException: " + this._index);
 }
+// ********** Code for IllegalAccessException **************
+function IllegalAccessException() {
+
+}
+IllegalAccessException.prototype.toString = function() {
+  return "Attempt to modify an immutable object";
+}
 // ********** Code for NoSuchMethodException **************
 function NoSuchMethodException(_receiver, _functionName, _arguments, _existingArgumentNames) {
+  this._existingArgumentNames = _existingArgumentNames;
   this._receiver = _receiver;
   this._functionName = _functionName;
   this._arguments = _arguments;
-  this._existingArgumentNames = _existingArgumentNames;
 }
 NoSuchMethodException.prototype.is$NoSuchMethodException = function(){return true};
 NoSuchMethodException.prototype.toString = function() {
@@ -534,7 +568,6 @@ $defProp(ListFactory.prototype, "last", function() {
   return this.$index(this.get$length() - (1));
 });
 $defProp(ListFactory.prototype, "getRange", function(start, length) {
-  
       if (length == 0) return [];
       if (length < 0) throw new IllegalArgumentException('length');
       if (start < 0 || start + length > this.length)
@@ -543,7 +576,6 @@ $defProp(ListFactory.prototype, "getRange", function(start, length) {
     
 });
 $defProp(ListFactory.prototype, "removeRange", function(start, length) {
-  
       if (length == 0) return;
       if (length < 0) throw new IllegalArgumentException('length');
       if (start < 0 || start + length > this.length)
@@ -557,18 +589,24 @@ $defProp(ListFactory.prototype, "get$map", function() {
 Function.prototype.bind = Function.prototype.bind ||
   function(thisObj) {
     var func = this;
-    if (arguments.length > 1) {
+    var funcLength = func.$length || func.length;
+    var argsLength = arguments.length;
+    if (argsLength > 1) {
       var boundArgs = Array.prototype.slice.call(arguments, 1);
-      return function() {
+      var bound = function() {
         // Prepend the bound arguments to the current arguments.
         var newArgs = Array.prototype.slice.call(arguments);
         Array.prototype.unshift.apply(newArgs, boundArgs);
         return func.apply(thisObj, newArgs);
       };
+      bound.$length = Math.max(0, funcLength - (argsLength - 1));
+      return bound;
     } else {
-      return function() {
+      var bound = function() {
         return func.apply(thisObj, arguments);
       };
+      bound.$length = funcLength;
+      return bound;
     }
   };
 $defProp(ListFactory.prototype, "iterator", function() {
@@ -606,6 +644,39 @@ ListIterator.prototype.next = function() {
   }
   return this._array.$index(this._pos++);
 }
+// ********** Code for ImmutableMap **************
+function ImmutableMap(keyValuePairs) {
+  this._internal = _map(keyValuePairs);
+}
+ImmutableMap.prototype.is$Map = function(){return true};
+ImmutableMap.prototype.$index = function(key) {
+  return this._internal.$index(key);
+}
+ImmutableMap.prototype.get$length = function() {
+  return this._internal.get$length();
+}
+ImmutableMap.prototype.forEach = function(f) {
+  this._internal.forEach(f);
+}
+ImmutableMap.prototype.containsKey = function(key) {
+  return this._internal.containsKey(key);
+}
+ImmutableMap.prototype.$setindex = function(key, value) {
+  $throw(const$0012);
+}
+ImmutableMap.prototype.putIfAbsent = function(key, ifAbsent) {
+  $throw(const$0012);
+}
+ImmutableMap.prototype.clear = function() {
+  $throw(const$0012);
+}
+ImmutableMap.prototype.toString = function() {
+  return Maps.mapToString(this);
+}
+ImmutableMap.prototype.clear$0 = ImmutableMap.prototype.clear;
+ImmutableMap.prototype.forEach$1 = function($0) {
+  return this.forEach(to$call$2($0));
+};
 // ********** Code for NumImplementation **************
 NumImplementation = Number;
 NumImplementation.prototype.$negate = function() {
@@ -939,8 +1010,8 @@ function _DeletedKeySentinel() {
 }
 // ********** Code for KeyValuePair **************
 function KeyValuePair(key, value) {
-  this.key = key;
   this.value = value;
+  this.key = key;
 }
 KeyValuePair.prototype.get$value = function() { return this.value; };
 KeyValuePair.prototype.set$value = function(value) { return this.value = value; };
@@ -1252,6 +1323,9 @@ StringImplementation.prototype.get$length = function() { return this.length; };
 StringImplementation.prototype.isEmpty = function() {
   return this.length == (0);
 }
+StringImplementation.prototype.contains = function(pattern, startIndex) {
+  'use strict'; return this.indexOf(pattern, startIndex) >= 0;
+}
 StringImplementation.prototype.hashCode = function() {
       'use strict';
       var hash = 0;
@@ -1266,44 +1340,6 @@ StringImplementation.prototype.hashCode = function() {
       return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
 }
 StringImplementation.prototype.indexOf$1 = StringImplementation.prototype.indexOf;
-// ********** Code for _Worker **************
-function $dynamic(name) {
-  var f = Object.prototype[name];
-  if (f && f.methods) return f.methods;
-
-  var methods = {};
-  if (f) methods.Object = f;
-  function $dynamicBind() {
-    // Find the target method
-    var obj = this;
-    var tag = obj.$typeNameOf();
-    var method = methods[tag];
-    if (!method) {
-      var table = $dynamicMetadata;
-      for (var i = 0; i < table.length; i++) {
-        var entry = table[i];
-        if (entry.map.hasOwnProperty(tag)) {
-          method = methods[entry.tag];
-          if (method) break;
-        }
-      }
-    }
-    method = method || methods.Object;
-    var proto = Object.getPrototypeOf(obj);
-    if (!proto.hasOwnProperty(name)) {
-      $defProp(proto, name, method);
-    }
-
-    return method.apply(this, Array.prototype.slice.call(arguments));
-  };
-  $dynamicBind.methods = methods;
-  $defProp(Object.prototype, name, $dynamicBind);
-  return methods;
-}
-if (typeof $dynamicMetadata == 'undefined') $dynamicMetadata = [];
-$dynamic("get$id").Worker = function() {
-  return this.id;
-}
 // ********** Code for _ArgumentMismatchException **************
 $inherits(_ArgumentMismatchException, ClosureArgumentMismatchException);
 function _ArgumentMismatchException(_message) {
@@ -1316,18 +1352,19 @@ _ArgumentMismatchException.prototype.toString = function() {
 // ********** Code for _FunctionImplementation **************
 _FunctionImplementation = Function;
 _FunctionImplementation.prototype._genStub = function(argsLength, names) {
-      // Fast path #1: if no named arguments and arg count matches
-      if (this.length == argsLength && !names) {
+      // Fast path #1: if no named arguments and arg count matches.
+      var thisLength = this.$length || this.length;
+      if (thisLength == argsLength && !names) {
         return this;
       }
 
       var paramsNamed = this.$optional ? (this.$optional.length / 2) : 0;
-      var paramsBare = this.length - paramsNamed;
+      var paramsBare = thisLength - paramsNamed;
       var argsNamed = names ? names.length : 0;
       var argsBare = argsLength - argsNamed;
 
       // Check we got the right number of arguments
-      if (argsBare < paramsBare || argsLength > this.length ||
+      if (argsBare < paramsBare || argsLength > thisLength ||
           argsNamed > paramsNamed) {
         return function() {
           $throw(new _ArgumentMismatchException(
@@ -1368,7 +1405,7 @@ _FunctionImplementation.prototype._genStub = function(argsLength, names) {
         lastParameterIndex = j;
       }
 
-      if (this.length == argsLength && namesInOrder) {
+      if (thisLength == argsLength && namesInOrder) {
         // Fast path #2: named arguments, but they're in order and all supplied.
         return this;
       }
@@ -1388,8 +1425,45 @@ function _map(itemsAndKeys) {
   }
   return ret;
 }
+function _constMap(itemsAndKeys) {
+  return new ImmutableMap(itemsAndKeys);
+}
 //  ********** Library dom **************
 // ********** Code for _DOMTypeJs **************
+function $dynamic(name) {
+  var f = Object.prototype[name];
+  if (f && f.methods) return f.methods;
+
+  var methods = {};
+  if (f) methods.Object = f;
+  function $dynamicBind() {
+    // Find the target method
+    var obj = this;
+    var tag = obj.$typeNameOf();
+    var method = methods[tag];
+    if (!method) {
+      var table = $dynamicMetadata;
+      for (var i = 0; i < table.length; i++) {
+        var entry = table[i];
+        if (entry.map.hasOwnProperty(tag)) {
+          method = methods[entry.tag];
+          if (method) break;
+        }
+      }
+    }
+    method = method || methods.Object;
+    var proto = Object.getPrototypeOf(obj);
+    if (!proto.hasOwnProperty(name)) {
+      $defProp(proto, name, method);
+    }
+
+    return method.apply(this, Array.prototype.slice.call(arguments));
+  };
+  $dynamicBind.methods = methods;
+  $defProp(Object.prototype, name, $dynamicBind);
+  return methods;
+}
+if (typeof $dynamicMetadata == 'undefined') $dynamicMetadata = [];
 $dynamic("get$dartObjectLocalStorage").DOMType = function() { return this.dartObjectLocalStorage; };
 $dynamic("set$dartObjectLocalStorage").DOMType = function(value) { return this.dartObjectLocalStorage = value; };
 // ********** Code for _EventTargetJs **************
@@ -1415,6 +1489,7 @@ $dynamic("removeEventListener$3").AbstractWorker = function($0, $1, $2) {
 // ********** Code for _ArrayBufferJs **************
 // ********** Code for _ArrayBufferViewJs **************
 // ********** Code for _NodeJs **************
+$dynamic("get$attributes").Node = function() { return this.attributes; };
 $dynamic("get$childNodes").Node = function() { return this.childNodes; };
 $dynamic("get$firstChild").Node = function() { return this.firstChild; };
 $dynamic("get$lastChild").Node = function() { return this.lastChild; };
@@ -1492,7 +1567,7 @@ $dynamic("$setindex").CanvasPixelArray = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").CanvasPixelArray = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").CanvasPixelArray = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -1501,16 +1576,16 @@ $dynamic("addAll").CanvasPixelArray = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").CanvasPixelArray = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").CanvasPixelArray = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").CanvasPixelArray = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").CanvasPixelArray = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").CanvasPixelArray = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -1765,7 +1840,7 @@ $dynamic("$setindex").Float32Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Float32Array = function() {
-  return new _FixedSizeListIterator_num(this);
+  return new dom__FixedSizeListIterator_num(this);
 }
 $dynamic("add").Float32Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -1774,16 +1849,16 @@ $dynamic("addAll").Float32Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Float32Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Float32Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Float32Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Float32Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Float32Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -1830,7 +1905,7 @@ $dynamic("$setindex").Float64Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Float64Array = function() {
-  return new _FixedSizeListIterator_num(this);
+  return new dom__FixedSizeListIterator_num(this);
 }
 $dynamic("add").Float64Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -1839,16 +1914,16 @@ $dynamic("addAll").Float64Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Float64Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Float64Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Float64Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Float64Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Float64Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -1928,7 +2003,7 @@ $dynamic("$setindex").HTMLCollection = function(index, value) {
   $throw(new UnsupportedOperationException("Cannot assign element of immutable List."));
 }
 $dynamic("iterator").HTMLCollection = function() {
-  return new _FixedSizeListIterator_dom_Node(this);
+  return new dom__FixedSizeListIterator_dom_Node(this);
 }
 $dynamic("add").HTMLCollection = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -1937,16 +2012,16 @@ $dynamic("addAll").HTMLCollection = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").HTMLCollection = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").HTMLCollection = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").HTMLCollection = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").HTMLCollection = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").HTMLCollection = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -2020,16 +2095,6 @@ $dynamic("set$height").HTMLIFrameElement = function(value) { return this.height 
 $dynamic("get$name").HTMLIFrameElement = function() { return this.name; };
 $dynamic("get$width").HTMLIFrameElement = function() { return this.width; };
 $dynamic("set$width").HTMLIFrameElement = function(value) { return this.width = value; };
-// ********** Code for _DOMWindowCrossFrameImpl **************
-function _DOMWindowCrossFrameImpl() {}
-_DOMWindowCrossFrameImpl.prototype.get$dartObjectLocalStorage = function() { return this.dartObjectLocalStorage; };
-_DOMWindowCrossFrameImpl.prototype.set$dartObjectLocalStorage = function(value) { return this.dartObjectLocalStorage = value; };
-_DOMWindowCrossFrameImpl.prototype.get$typeName = function() {
-  return "DOMWindow";
-}
-_DOMWindowCrossFrameImpl.prototype.get$length = function() {
-  return this._window.length;
-}
 // ********** Code for _HTMLImageElementJs **************
 $dynamic("get$height").HTMLImageElement = function() { return this.height; };
 $dynamic("set$height").HTMLImageElement = function(value) { return this.height = value; };
@@ -2200,7 +2265,7 @@ $dynamic("$setindex").Int16Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Int16Array = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").Int16Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -2209,16 +2274,16 @@ $dynamic("addAll").Int16Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Int16Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Int16Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Int16Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Int16Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Int16Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -2265,7 +2330,7 @@ $dynamic("$setindex").Int32Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Int32Array = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").Int32Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -2274,16 +2339,16 @@ $dynamic("addAll").Int32Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Int32Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Int32Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Int32Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Int32Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Int32Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -2330,7 +2395,7 @@ $dynamic("$setindex").Int8Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Int8Array = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").Int8Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -2339,16 +2404,16 @@ $dynamic("addAll").Int8Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Int8Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Int8Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Int8Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Int8Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Int8Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -2416,7 +2481,7 @@ $dynamic("$setindex").MediaList = function(index, value) {
   $throw(new UnsupportedOperationException("Cannot assign element of immutable List."));
 }
 $dynamic("iterator").MediaList = function() {
-  return new _FixedSizeListIterator_dart_core_String(this);
+  return new dom__FixedSizeListIterator_dart_core_String(this);
 }
 $dynamic("add").MediaList = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -2425,16 +2490,16 @@ $dynamic("addAll").MediaList = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").MediaList = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").MediaList = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").MediaList = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").MediaList = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").MediaList = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -2505,7 +2570,7 @@ $dynamic("$setindex").NamedNodeMap = function(index, value) {
   $throw(new UnsupportedOperationException("Cannot assign element of immutable List."));
 }
 $dynamic("iterator").NamedNodeMap = function() {
-  return new _FixedSizeListIterator_dom_Node(this);
+  return new dom__FixedSizeListIterator_dom_Node(this);
 }
 $dynamic("add").NamedNodeMap = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -2514,16 +2579,16 @@ $dynamic("addAll").NamedNodeMap = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").NamedNodeMap = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").NamedNodeMap = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").NamedNodeMap = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").NamedNodeMap = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").NamedNodeMap = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -2573,7 +2638,7 @@ $dynamic("$setindex").NodeList = function(index, value) {
   $throw(new UnsupportedOperationException("Cannot assign element of immutable List."));
 }
 $dynamic("iterator").NodeList = function() {
-  return new _FixedSizeListIterator_dom_Node(this);
+  return new dom__FixedSizeListIterator_dom_Node(this);
 }
 $dynamic("add").NodeList = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -2582,16 +2647,16 @@ $dynamic("addAll").NodeList = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").NodeList = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").NodeList = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").NodeList = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").NodeList = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").NodeList = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -3079,7 +3144,7 @@ $dynamic("$setindex").StyleSheetList = function(index, value) {
   $throw(new UnsupportedOperationException("Cannot assign element of immutable List."));
 }
 $dynamic("iterator").StyleSheetList = function() {
-  return new _FixedSizeListIterator_dom_StyleSheet(this);
+  return new dom__FixedSizeListIterator_dom_StyleSheet(this);
 }
 $dynamic("add").StyleSheetList = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -3088,16 +3153,16 @@ $dynamic("addAll").StyleSheetList = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").StyleSheetList = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").StyleSheetList = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").StyleSheetList = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").StyleSheetList = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").StyleSheetList = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -3179,7 +3244,7 @@ $dynamic("$setindex").TouchList = function(index, value) {
   $throw(new UnsupportedOperationException("Cannot assign element of immutable List."));
 }
 $dynamic("iterator").TouchList = function() {
-  return new _FixedSizeListIterator_dom_Touch(this);
+  return new dom__FixedSizeListIterator_dom_Touch(this);
 }
 $dynamic("add").TouchList = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -3188,16 +3253,16 @@ $dynamic("addAll").TouchList = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").TouchList = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").TouchList = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").TouchList = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").TouchList = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").TouchList = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -3255,7 +3320,7 @@ $dynamic("$setindex").Uint16Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Uint16Array = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").Uint16Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -3264,16 +3329,16 @@ $dynamic("addAll").Uint16Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Uint16Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Uint16Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Uint16Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Uint16Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Uint16Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -3320,7 +3385,7 @@ $dynamic("$setindex").Uint32Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Uint32Array = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").Uint32Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -3329,16 +3394,16 @@ $dynamic("addAll").Uint32Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Uint32Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Uint32Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Uint32Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Uint32Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Uint32Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -3385,7 +3450,7 @@ $dynamic("$setindex").Uint8Array = function(index, value) {
   this[index] = value
 }
 $dynamic("iterator").Uint8Array = function() {
-  return new _FixedSizeListIterator_int(this);
+  return new dom__FixedSizeListIterator_int(this);
 }
 $dynamic("add").Uint8Array = function(value) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
@@ -3394,16 +3459,16 @@ $dynamic("addAll").Uint8Array = function(collection) {
   $throw(new UnsupportedOperationException("Cannot add to immutable List."));
 }
 $dynamic("forEach").Uint8Array = function(f) {
-  return _Collections.forEach(this, f);
+  return dom__Collections.forEach(this, f);
 }
 $dynamic("map").Uint8Array = function(f) {
-  return _Collections.map(this, [], f);
+  return dom__Collections.map(this, [], f);
 }
 $dynamic("get$map").Uint8Array = function() {
   return this.map.bind(this);
 }
 $dynamic("filter").Uint8Array = function(f) {
-  return _Collections.filter(this, [], f);
+  return dom__Collections.filter(this, [], f);
 }
 $dynamic("sort").Uint8Array = function(compare) {
   $throw(new UnsupportedOperationException("Cannot sort immutable List."));
@@ -3524,6 +3589,9 @@ $dynamic("get$name").XPathException = function() { return this.name; };
 // ********** Code for _XSLTProcessorJs **************
 // ********** Code for _DOMParserFactoryProvider **************
 function _DOMParserFactoryProvider() {}
+_DOMParserFactoryProvider.DOMParser$factory = function() {
+  return new DOMParser();
+}
 // ********** Code for _DOMURLFactoryProvider **************
 function _DOMURLFactoryProvider() {}
 // ********** Code for _EventSourceFactoryProvider **************
@@ -3564,27 +3632,37 @@ function _XMLSerializerFactoryProvider() {}
 function _XPathEvaluatorFactoryProvider() {}
 // ********** Code for _XSLTProcessorFactoryProvider **************
 function _XSLTProcessorFactoryProvider() {}
-// ********** Code for _Collections **************
-function _Collections() {}
-_Collections.forEach = function(iterable, f) {
+// ********** Code for dom__Collections **************
+function dom__Collections() {}
+dom__Collections.forEach = function(iterable, f) {
   for (var $$i = iterable.iterator(); $$i.hasNext(); ) {
     var e = $$i.next();
     f(e);
   }
 }
-_Collections.map = function(source, destination, f) {
+dom__Collections.map = function(source, destination, f) {
   for (var $$i = source.iterator(); $$i.hasNext(); ) {
     var e = $$i.next();
     destination.add(f(e));
   }
   return destination;
 }
-_Collections.filter = function(source, destination, f) {
+dom__Collections.filter = function(source, destination, f) {
   for (var $$i = source.iterator(); $$i.hasNext(); ) {
     var e = $$i.next();
     if (f(e)) destination.add(e);
   }
   return destination;
+}
+// ********** Code for _DOMWindowCrossFrameImpl **************
+function _DOMWindowCrossFrameImpl() {}
+_DOMWindowCrossFrameImpl.prototype.get$dartObjectLocalStorage = function() { return this.dartObjectLocalStorage; };
+_DOMWindowCrossFrameImpl.prototype.set$dartObjectLocalStorage = function(value) { return this.dartObjectLocalStorage = value; };
+_DOMWindowCrossFrameImpl.prototype.get$typeName = function() {
+  return "DOMWindow";
+}
+_DOMWindowCrossFrameImpl.prototype.get$length = function() {
+  return this._window.length;
 }
 // ********** Code for _AudioContextFactoryProvider **************
 function _AudioContextFactoryProvider() {}
@@ -3594,94 +3672,94 @@ function _TypedArrayFactoryProvider() {}
 function _WebKitPointFactoryProvider() {}
 // ********** Code for _WebSocketFactoryProvider **************
 function _WebSocketFactoryProvider() {}
-// ********** Code for _VariableSizeListIterator **************
-function _VariableSizeListIterator() {}
-_VariableSizeListIterator.prototype.hasNext = function() {
+// ********** Code for dom__VariableSizeListIterator **************
+function dom__VariableSizeListIterator() {}
+dom__VariableSizeListIterator.prototype.hasNext = function() {
   return this._dom_array.get$length() > this._dom_pos;
 }
-_VariableSizeListIterator.prototype.next = function() {
+dom__VariableSizeListIterator.prototype.next = function() {
   if (!this.hasNext()) {
     $throw(const$0001);
   }
   return this._dom_array.$index(this._dom_pos++);
 }
-// ********** Code for _FixedSizeListIterator **************
-$inherits(_FixedSizeListIterator, _VariableSizeListIterator);
-function _FixedSizeListIterator() {}
-_FixedSizeListIterator.prototype.hasNext = function() {
+// ********** Code for dom__FixedSizeListIterator **************
+$inherits(dom__FixedSizeListIterator, dom__VariableSizeListIterator);
+function dom__FixedSizeListIterator() {}
+dom__FixedSizeListIterator.prototype.hasNext = function() {
   return this._dom_length > this._dom_pos;
 }
-// ********** Code for _VariableSizeListIterator_dart_core_String **************
-$inherits(_VariableSizeListIterator_dart_core_String, _VariableSizeListIterator);
-function _VariableSizeListIterator_dart_core_String(array) {
+// ********** Code for dom__VariableSizeListIterator_dart_core_String **************
+$inherits(dom__VariableSizeListIterator_dart_core_String, dom__VariableSizeListIterator);
+function dom__VariableSizeListIterator_dart_core_String(array) {
   this._dom_array = array;
   this._dom_pos = (0);
 }
-// ********** Code for _FixedSizeListIterator_dart_core_String **************
-$inherits(_FixedSizeListIterator_dart_core_String, _FixedSizeListIterator);
-function _FixedSizeListIterator_dart_core_String(array) {
+// ********** Code for dom__FixedSizeListIterator_dart_core_String **************
+$inherits(dom__FixedSizeListIterator_dart_core_String, dom__FixedSizeListIterator);
+function dom__FixedSizeListIterator_dart_core_String(array) {
   this._dom_length = array.get$length();
-  _VariableSizeListIterator_dart_core_String.call(this, array);
+  dom__VariableSizeListIterator_dart_core_String.call(this, array);
 }
-// ********** Code for _VariableSizeListIterator_int **************
-$inherits(_VariableSizeListIterator_int, _VariableSizeListIterator);
-function _VariableSizeListIterator_int(array) {
+// ********** Code for dom__VariableSizeListIterator_int **************
+$inherits(dom__VariableSizeListIterator_int, dom__VariableSizeListIterator);
+function dom__VariableSizeListIterator_int(array) {
   this._dom_array = array;
   this._dom_pos = (0);
 }
-// ********** Code for _FixedSizeListIterator_int **************
-$inherits(_FixedSizeListIterator_int, _FixedSizeListIterator);
-function _FixedSizeListIterator_int(array) {
+// ********** Code for dom__FixedSizeListIterator_int **************
+$inherits(dom__FixedSizeListIterator_int, dom__FixedSizeListIterator);
+function dom__FixedSizeListIterator_int(array) {
   this._dom_length = array.get$length();
-  _VariableSizeListIterator_int.call(this, array);
+  dom__VariableSizeListIterator_int.call(this, array);
 }
-// ********** Code for _VariableSizeListIterator_num **************
-$inherits(_VariableSizeListIterator_num, _VariableSizeListIterator);
-function _VariableSizeListIterator_num(array) {
+// ********** Code for dom__VariableSizeListIterator_num **************
+$inherits(dom__VariableSizeListIterator_num, dom__VariableSizeListIterator);
+function dom__VariableSizeListIterator_num(array) {
   this._dom_array = array;
   this._dom_pos = (0);
 }
-// ********** Code for _FixedSizeListIterator_num **************
-$inherits(_FixedSizeListIterator_num, _FixedSizeListIterator);
-function _FixedSizeListIterator_num(array) {
+// ********** Code for dom__FixedSizeListIterator_num **************
+$inherits(dom__FixedSizeListIterator_num, dom__FixedSizeListIterator);
+function dom__FixedSizeListIterator_num(array) {
   this._dom_length = array.get$length();
-  _VariableSizeListIterator_num.call(this, array);
+  dom__VariableSizeListIterator_num.call(this, array);
 }
-// ********** Code for _VariableSizeListIterator_dom_Node **************
-$inherits(_VariableSizeListIterator_dom_Node, _VariableSizeListIterator);
-function _VariableSizeListIterator_dom_Node(array) {
+// ********** Code for dom__VariableSizeListIterator_dom_Node **************
+$inherits(dom__VariableSizeListIterator_dom_Node, dom__VariableSizeListIterator);
+function dom__VariableSizeListIterator_dom_Node(array) {
   this._dom_array = array;
   this._dom_pos = (0);
 }
-// ********** Code for _FixedSizeListIterator_dom_Node **************
-$inherits(_FixedSizeListIterator_dom_Node, _FixedSizeListIterator);
-function _FixedSizeListIterator_dom_Node(array) {
+// ********** Code for dom__FixedSizeListIterator_dom_Node **************
+$inherits(dom__FixedSizeListIterator_dom_Node, dom__FixedSizeListIterator);
+function dom__FixedSizeListIterator_dom_Node(array) {
   this._dom_length = array.get$length();
-  _VariableSizeListIterator_dom_Node.call(this, array);
+  dom__VariableSizeListIterator_dom_Node.call(this, array);
 }
-// ********** Code for _VariableSizeListIterator_dom_StyleSheet **************
-$inherits(_VariableSizeListIterator_dom_StyleSheet, _VariableSizeListIterator);
-function _VariableSizeListIterator_dom_StyleSheet(array) {
+// ********** Code for dom__VariableSizeListIterator_dom_StyleSheet **************
+$inherits(dom__VariableSizeListIterator_dom_StyleSheet, dom__VariableSizeListIterator);
+function dom__VariableSizeListIterator_dom_StyleSheet(array) {
   this._dom_array = array;
   this._dom_pos = (0);
 }
-// ********** Code for _FixedSizeListIterator_dom_StyleSheet **************
-$inherits(_FixedSizeListIterator_dom_StyleSheet, _FixedSizeListIterator);
-function _FixedSizeListIterator_dom_StyleSheet(array) {
+// ********** Code for dom__FixedSizeListIterator_dom_StyleSheet **************
+$inherits(dom__FixedSizeListIterator_dom_StyleSheet, dom__FixedSizeListIterator);
+function dom__FixedSizeListIterator_dom_StyleSheet(array) {
   this._dom_length = array.get$length();
-  _VariableSizeListIterator_dom_StyleSheet.call(this, array);
+  dom__VariableSizeListIterator_dom_StyleSheet.call(this, array);
 }
-// ********** Code for _VariableSizeListIterator_dom_Touch **************
-$inherits(_VariableSizeListIterator_dom_Touch, _VariableSizeListIterator);
-function _VariableSizeListIterator_dom_Touch(array) {
+// ********** Code for dom__VariableSizeListIterator_dom_Touch **************
+$inherits(dom__VariableSizeListIterator_dom_Touch, dom__VariableSizeListIterator);
+function dom__VariableSizeListIterator_dom_Touch(array) {
   this._dom_array = array;
   this._dom_pos = (0);
 }
-// ********** Code for _FixedSizeListIterator_dom_Touch **************
-$inherits(_FixedSizeListIterator_dom_Touch, _FixedSizeListIterator);
-function _FixedSizeListIterator_dom_Touch(array) {
+// ********** Code for dom__FixedSizeListIterator_dom_Touch **************
+$inherits(dom__FixedSizeListIterator_dom_Touch, dom__FixedSizeListIterator);
+function dom__FixedSizeListIterator_dom_Touch(array) {
   this._dom_length = array.get$length();
-  _VariableSizeListIterator_dom_Touch.call(this, array);
+  dom__VariableSizeListIterator_dom_Touch.call(this, array);
 }
 // ********** Code for _Lists **************
 function _Lists() {}
@@ -3748,6 +3826,11 @@ NodeWrappingImplementation.prototype.get$nodes = function() {
   }
   return this._nodes;
 }
+NodeWrappingImplementation.prototype.set$nodes = function(value) {
+  var copy = ListFactory.ListFactory$from$factory(value);
+  this.get$nodes().clear();
+  this.get$nodes().addAll(copy);
+}
 NodeWrappingImplementation.prototype.replaceWith = function(otherNode) {
   try {
     this._ptr.get$parentNode().replaceChild(LevelDom.unwrap(otherNode), this._ptr);
@@ -3774,6 +3857,12 @@ ElementWrappingImplementation.prototype.is$html_Element = function(){return true
 ElementWrappingImplementation.ElementWrappingImplementation$tag$factory = function(tag) {
   return LevelDom.wrapElement(get$$document().createElement(tag));
 }
+ElementWrappingImplementation.prototype.get$attributes = function() {
+  if (null == this._elementAttributeMap) {
+    this._elementAttributeMap = new ElementAttributeMap._wrap$ctor(this._ptr);
+  }
+  return this._elementAttributeMap;
+}
 ElementWrappingImplementation.prototype.get$elements = function() {
   if (this._elements == null) {
     this._elements = new _ChildrenElementList._wrap$ctor(this._ptr);
@@ -3794,6 +3883,9 @@ ElementWrappingImplementation.prototype.get$lastElementChild = function() {
 }
 ElementWrappingImplementation.prototype.get$style = function() {
   return LevelDom.wrapCSSStyleDeclaration(this._ptr.get$style());
+}
+ElementWrappingImplementation.prototype.query = function(selectors) {
+  return LevelDom.wrapElement(this._ptr.querySelector(selectors));
 }
 // ********** Code for AnchorElementWrappingImplementation **************
 $inherits(AnchorElementWrappingImplementation, ElementWrappingImplementation);
@@ -3988,16 +4080,16 @@ CanvasPixelArrayWrappingImplementation.prototype.last = function() {
   return this.$index(this.get$length() - (1));
 }
 CanvasPixelArrayWrappingImplementation.prototype.forEach = function(f) {
-  htmlimpl__Collections.forEach(this, f);
+  _Collections.forEach(this, f);
 }
 CanvasPixelArrayWrappingImplementation.prototype.map = function(f) {
-  return htmlimpl__Collections.map(this, [], f);
+  return _Collections.map(this, [], f);
 }
 CanvasPixelArrayWrappingImplementation.prototype.get$map = function() {
   return this.map.bind(this);
 }
 CanvasPixelArrayWrappingImplementation.prototype.filter = function(f) {
-  return htmlimpl__Collections.filter(this, new Array(), f);
+  return _Collections.filter(this, new Array(), f);
 }
 CanvasPixelArrayWrappingImplementation.prototype.removeRange = function(start, length) {
   $throw(new UnsupportedOperationException("Cannot removeRange on immutable List."));
@@ -4006,7 +4098,7 @@ CanvasPixelArrayWrappingImplementation.prototype.getRange = function(start, leng
   $throw(new NotImplementedException());
 }
 CanvasPixelArrayWrappingImplementation.prototype.iterator = function() {
-  return new htmlimpl__FixedSizeListIterator_int(this);
+  return new _FixedSizeListIterator_int(this);
 }
 CanvasPixelArrayWrappingImplementation.prototype.add$1 = CanvasPixelArrayWrappingImplementation.prototype.add;
 CanvasPixelArrayWrappingImplementation.prototype.clear$0 = CanvasPixelArrayWrappingImplementation.prototype.clear;
@@ -6086,16 +6178,16 @@ TouchListWrappingImplementation.prototype.last = function() {
   return this.$index(this.get$length() - (1));
 }
 TouchListWrappingImplementation.prototype.forEach = function(f) {
-  htmlimpl__Collections.forEach(this, f);
+  _Collections.forEach(this, f);
 }
 TouchListWrappingImplementation.prototype.map = function(f) {
-  return htmlimpl__Collections.map(this, [], f);
+  return _Collections.map(this, [], f);
 }
 TouchListWrappingImplementation.prototype.get$map = function() {
   return this.map.bind(this);
 }
 TouchListWrappingImplementation.prototype.filter = function(f) {
-  return htmlimpl__Collections.filter(this, new Array(), f);
+  return _Collections.filter(this, new Array(), f);
 }
 TouchListWrappingImplementation.prototype.removeRange = function(start, length) {
   $throw(new UnsupportedOperationException("Cannot removeRange on immutable List."));
@@ -6104,7 +6196,7 @@ TouchListWrappingImplementation.prototype.getRange = function(start, length) {
   $throw(new NotImplementedException());
 }
 TouchListWrappingImplementation.prototype.iterator = function() {
-  return new htmlimpl__FixedSizeListIterator_html_Touch(this);
+  return new _FixedSizeListIterator_html_Touch(this);
 }
 TouchListWrappingImplementation.prototype.item = function(index) {
   return LevelDom.wrapTouch(this._ptr.item(index));
@@ -6242,6 +6334,11 @@ LevelDom.wrapDocument = function(raw) {
     return raw.get$dartObjectLocalStorage();
   }
   switch (raw.get$typeName()) {
+    case "Document":
+    case "XMLDocument":
+
+      return new XMLDocumentWrappingImplementation._wrap$ctor(raw, raw.get$documentElement());
+
     case "HTMLDocument":
 
       return new DocumentWrappingImplementation._wrap$ctor(raw, raw.get$documentElement());
@@ -6264,6 +6361,10 @@ LevelDom.wrapElement = function(raw) {
     return raw.get$dartObjectLocalStorage();
   }
   switch (raw.get$typeName()) {
+    case "Element":
+
+      return new XMLElementWrappingImplementation._wrap$ctor(raw);
+
     case "HTMLAnchorElement":
 
       return new AnchorElementWrappingImplementation._wrap$ctor(raw);
@@ -7007,6 +7108,10 @@ LevelDom.wrapNode = function(raw) {
     return raw.get$dartObjectLocalStorage();
   }
   switch (raw.get$typeName()) {
+    case "Element":
+
+      return new XMLElementWrappingImplementation._wrap$ctor(raw);
+
     case "HTMLAnchorElement":
 
       return new AnchorElementWrappingImplementation._wrap$ctor(raw);
@@ -7677,68 +7782,68 @@ LevelDom.initialize = function() {
   $globals.secretWindow = LevelDom.wrapWindow(get$$window());
   $globals.secretDocument = LevelDom.wrapDocument(get$$document());
 }
-// ********** Code for htmlimpl__Collections **************
-function htmlimpl__Collections() {}
-htmlimpl__Collections.forEach = function(iterable, f) {
+// ********** Code for _Collections **************
+function _Collections() {}
+_Collections.forEach = function(iterable, f) {
   for (var $$i = iterable.iterator(); $$i.hasNext(); ) {
     var e = $$i.next();
     f(e);
   }
 }
-htmlimpl__Collections.map = function(source, destination, f) {
+_Collections.map = function(source, destination, f) {
   for (var $$i = source.iterator(); $$i.hasNext(); ) {
     var e = $$i.next();
     destination.add(f(e));
   }
   return destination;
 }
-htmlimpl__Collections.filter = function(source, destination, f) {
+_Collections.filter = function(source, destination, f) {
   for (var $$i = source.iterator(); $$i.hasNext(); ) {
     var e = $$i.next();
     if (f(e)) destination.add(e);
   }
   return destination;
 }
-// ********** Code for htmlimpl__VariableSizeListIterator **************
-function htmlimpl__VariableSizeListIterator() {}
-htmlimpl__VariableSizeListIterator.prototype.hasNext = function() {
+// ********** Code for _VariableSizeListIterator **************
+function _VariableSizeListIterator() {}
+_VariableSizeListIterator.prototype.hasNext = function() {
   return this._htmlimpl_list.get$length() > this._htmlimpl_pos;
 }
-htmlimpl__VariableSizeListIterator.prototype.next = function() {
+_VariableSizeListIterator.prototype.next = function() {
   if (!this.hasNext()) {
     $throw(const$0001);
   }
   return this._htmlimpl_list.$index(this._htmlimpl_pos++);
 }
-// ********** Code for htmlimpl__FixedSizeListIterator **************
-$inherits(htmlimpl__FixedSizeListIterator, htmlimpl__VariableSizeListIterator);
-function htmlimpl__FixedSizeListIterator() {}
-htmlimpl__FixedSizeListIterator.prototype.hasNext = function() {
+// ********** Code for _FixedSizeListIterator **************
+$inherits(_FixedSizeListIterator, _VariableSizeListIterator);
+function _FixedSizeListIterator() {}
+_FixedSizeListIterator.prototype.hasNext = function() {
   return this._htmlimpl_length > this._htmlimpl_pos;
 }
-// ********** Code for htmlimpl__VariableSizeListIterator_int **************
-$inherits(htmlimpl__VariableSizeListIterator_int, htmlimpl__VariableSizeListIterator);
-function htmlimpl__VariableSizeListIterator_int(list) {
+// ********** Code for _VariableSizeListIterator_int **************
+$inherits(_VariableSizeListIterator_int, _VariableSizeListIterator);
+function _VariableSizeListIterator_int(list) {
   this._htmlimpl_list = list;
   this._htmlimpl_pos = (0);
 }
-// ********** Code for htmlimpl__FixedSizeListIterator_int **************
-$inherits(htmlimpl__FixedSizeListIterator_int, htmlimpl__FixedSizeListIterator);
-function htmlimpl__FixedSizeListIterator_int(list) {
+// ********** Code for _FixedSizeListIterator_int **************
+$inherits(_FixedSizeListIterator_int, _FixedSizeListIterator);
+function _FixedSizeListIterator_int(list) {
   this._htmlimpl_length = list.get$length();
-  htmlimpl__VariableSizeListIterator_int.call(this, list);
+  _VariableSizeListIterator_int.call(this, list);
 }
-// ********** Code for htmlimpl__VariableSizeListIterator_html_Touch **************
-$inherits(htmlimpl__VariableSizeListIterator_html_Touch, htmlimpl__VariableSizeListIterator);
-function htmlimpl__VariableSizeListIterator_html_Touch(list) {
+// ********** Code for _VariableSizeListIterator_html_Touch **************
+$inherits(_VariableSizeListIterator_html_Touch, _VariableSizeListIterator);
+function _VariableSizeListIterator_html_Touch(list) {
   this._htmlimpl_list = list;
   this._htmlimpl_pos = (0);
 }
-// ********** Code for htmlimpl__FixedSizeListIterator_html_Touch **************
-$inherits(htmlimpl__FixedSizeListIterator_html_Touch, htmlimpl__FixedSizeListIterator);
-function htmlimpl__FixedSizeListIterator_html_Touch(list) {
+// ********** Code for _FixedSizeListIterator_html_Touch **************
+$inherits(_FixedSizeListIterator_html_Touch, _FixedSizeListIterator);
+function _FixedSizeListIterator_html_Touch(list) {
   this._htmlimpl_length = list.get$length();
-  htmlimpl__VariableSizeListIterator_html_Touch.call(this, list);
+  _VariableSizeListIterator_html_Touch.call(this, list);
 }
 // ********** Code for Lists **************
 function Lists() {}
@@ -7922,7 +8027,7 @@ FilteredElementList.prototype.get$first = function() {
   return null;
 }
 FilteredElementList.prototype.forEach = function(f) {
-  this.get$_filtered().forEach$1(f);
+  this.get$_filtered().forEach(f);
 }
 FilteredElementList.prototype.$setindex = function(index, value) {
   this.$index(index).replaceWith(value);
@@ -8016,10 +8121,10 @@ DocumentFragmentWrappingImplementation._wrap$ctor.prototype = DocumentFragmentWr
 function DocumentFragmentWrappingImplementation() {}
 DocumentFragmentWrappingImplementation.prototype.is$html_Element = function(){return true};
 DocumentFragmentWrappingImplementation.prototype.get$elements = function() {
-  if (this._htmlimpl_elements == null) {
-    this._htmlimpl_elements = new FilteredElementList(this);
+  if (this._elements == null) {
+    this._elements = new FilteredElementList(this);
   }
-  return this._htmlimpl_elements;
+  return this._elements;
 }
 DocumentFragmentWrappingImplementation.prototype.set$innerHTML = function(value) {
   this.get$nodes().clear();
@@ -8027,6 +8132,9 @@ DocumentFragmentWrappingImplementation.prototype.set$innerHTML = function(value)
   e.set$innerHTML(value);
   var nodes = ListFactory.ListFactory$from$factory(e.get$nodes());
   this.get$nodes().addAll(nodes);
+}
+DocumentFragmentWrappingImplementation.prototype.query = function(selectors) {
+  return LevelDom.wrapElement(this._ptr.querySelector(selectors));
 }
 DocumentFragmentWrappingImplementation.prototype.get$id = function() {
   return "";
@@ -8036,6 +8144,9 @@ DocumentFragmentWrappingImplementation.prototype.get$firstElementChild = functio
 }
 DocumentFragmentWrappingImplementation.prototype.get$lastElementChild = function() {
   return this.get$elements().last();
+}
+DocumentFragmentWrappingImplementation.prototype.get$attributes = function() {
+  return const$0013;
 }
 DocumentFragmentWrappingImplementation.prototype.get$style = function() {
   return new EmptyStyleDeclaration();
@@ -8111,8 +8222,8 @@ DocumentWrappingImplementation.prototype.get$on = function() {
 }
 // ********** Code for _ChildrenElementList **************
 _ChildrenElementList._wrap$ctor = function(element) {
-  this._element = element;
   this._childElements = element.get$children();
+  this._element = element;
 }
 _ChildrenElementList._wrap$ctor.prototype = _ChildrenElementList.prototype;
 function _ChildrenElementList() {}
@@ -8284,45 +8395,83 @@ _ListWrapper.prototype.map$1 = function($0) {
 _ListWrapper.prototype.sort$1 = function($0) {
   return this.sort(to$call$2($0));
 };
-// ********** Code for _ListWrapper_html_Element **************
-$inherits(_ListWrapper_html_Element, _ListWrapper);
-function _ListWrapper_html_Element(_list) {
+// ********** Code for _ListWrapper_Element **************
+$inherits(_ListWrapper_Element, _ListWrapper);
+function _ListWrapper_Element(_list) {
   this._list = _list;
 }
-_ListWrapper_html_Element.prototype.is$List = function(){return true};
-_ListWrapper_html_Element.prototype.is$Collection = function(){return true};
-_ListWrapper_html_Element.prototype.add$1 = _ListWrapper_html_Element.prototype.add;
-_ListWrapper_html_Element.prototype.clear$0 = _ListWrapper_html_Element.prototype.clear;
-_ListWrapper_html_Element.prototype.filter$1 = function($0) {
+_ListWrapper_Element.prototype.is$List = function(){return true};
+_ListWrapper_Element.prototype.is$Collection = function(){return true};
+_ListWrapper_Element.prototype.add$1 = _ListWrapper_Element.prototype.add;
+_ListWrapper_Element.prototype.clear$0 = _ListWrapper_Element.prototype.clear;
+_ListWrapper_Element.prototype.filter$1 = function($0) {
   return this.filter(to$call$1($0));
 };
-_ListWrapper_html_Element.prototype.forEach$1 = function($0) {
+_ListWrapper_Element.prototype.forEach$1 = function($0) {
   return this.forEach(to$call$1($0));
 };
-_ListWrapper_html_Element.prototype.indexOf$1 = function($0) {
+_ListWrapper_Element.prototype.indexOf$1 = function($0) {
   return this.indexOf($0, (0));
 };
-_ListWrapper_html_Element.prototype.map$1 = function($0) {
+_ListWrapper_Element.prototype.map$1 = function($0) {
   return this.map(to$call$1($0));
 };
-_ListWrapper_html_Element.prototype.sort$1 = function($0) {
+_ListWrapper_Element.prototype.sort$1 = function($0) {
   return this.sort(to$call$2($0));
 };
 // ********** Code for _ElementList **************
-$inherits(_ElementList, _ListWrapper_html_Element);
+$inherits(_ElementList, _ListWrapper_Element);
 function _ElementList(list) {
-  _ListWrapper_html_Element.call(this, list);
+  _ListWrapper_Element.call(this, list);
 }
 _ElementList.prototype.is$List = function(){return true};
 _ElementList.prototype.is$Collection = function(){return true};
 _ElementList.prototype.filter = function(f) {
-  return new _ElementList(_ListWrapper_html_Element.prototype.filter.call(this, f));
+  return new _ElementList(_ListWrapper_Element.prototype.filter.call(this, f));
 }
 _ElementList.prototype.getRange = function(start, length) {
-  return new _ElementList(_ListWrapper_html_Element.prototype.getRange.call(this, start, length));
+  return new _ElementList(_ListWrapper_Element.prototype.getRange.call(this, start, length));
 }
 _ElementList.prototype.filter$1 = function($0) {
   return this.filter(to$call$1($0));
+};
+// ********** Code for ElementAttributeMap **************
+ElementAttributeMap._wrap$ctor = function(_element) {
+  this._element = _element;
+}
+ElementAttributeMap._wrap$ctor.prototype = ElementAttributeMap.prototype;
+function ElementAttributeMap() {}
+ElementAttributeMap.prototype.is$Map = function(){return true};
+ElementAttributeMap.prototype.containsKey = function(key) {
+  return this._element.hasAttribute(key);
+}
+ElementAttributeMap.prototype.$index = function(key) {
+  return this._element.getAttribute(key);
+}
+ElementAttributeMap.prototype.$setindex = function(key, value) {
+  this._element.setAttribute(key, value);
+}
+ElementAttributeMap.prototype.clear = function() {
+  var attributes = this._element.get$attributes();
+  for (var i = $sub$(attributes.get$length(), (1));
+   i >= (0); i--) {
+    this._element.removeAttribute(attributes.item(i).get$name());
+  }
+}
+ElementAttributeMap.prototype.forEach = function(f) {
+  var attributes = this._element.get$attributes();
+  for (var i = (0), len = attributes.get$length();
+   i < len; i++) {
+    var item = attributes.item(i);
+    f(item.get$name(), item.get$value());
+  }
+}
+ElementAttributeMap.prototype.get$length = function() {
+  return this._element.get$attributes().get$length();
+}
+ElementAttributeMap.prototype.clear$0 = ElementAttributeMap.prototype.clear;
+ElementAttributeMap.prototype.forEach$1 = function($0) {
+  return this.forEach(to$call$2($0));
 };
 // ********** Code for ErrorEventWrappingImplementation **************
 $inherits(ErrorEventWrappingImplementation, EventWrappingImplementation);
@@ -8333,14 +8482,14 @@ ErrorEventWrappingImplementation._wrap$ctor.prototype = ErrorEventWrappingImplem
 function ErrorEventWrappingImplementation() {}
 // ********** Code for _EventListenerWrapper **************
 function _EventListenerWrapper(raw, wrapped, useCapture) {
-  this.raw = raw;
   this.wrapped = wrapped;
   this.useCapture = useCapture;
+  this.raw = raw;
 }
 // ********** Code for EventListenerListImplementation **************
 function EventListenerListImplementation(_ptr, _type) {
   this._ptr = _ptr;
-  this._htmlimpl_type = _type;
+  this._type = _type;
   this._wrappers = new Array();
 }
 EventListenerListImplementation.prototype.get$_ptr = function() { return this._ptr; };
@@ -8353,12 +8502,12 @@ EventListenerListImplementation.prototype.remove = function(listener, useCapture
   return this;
 }
 EventListenerListImplementation.prototype._add = function(listener, useCapture) {
-  this._ptr.addEventListener$3(this._htmlimpl_type, this._findOrAddWrapper(listener, useCapture), useCapture);
+  this._ptr.addEventListener$3(this._type, this._findOrAddWrapper(listener, useCapture), useCapture);
 }
 EventListenerListImplementation.prototype._remove = function(listener, useCapture) {
   var wrapper = this._removeWrapper(listener, useCapture);
   if (null != wrapper) {
-    this._ptr.removeEventListener$3(this._htmlimpl_type, wrapper, useCapture);
+    this._ptr.removeEventListener$3(this._type, wrapper, useCapture);
   }
 }
 EventListenerListImplementation.prototype._removeWrapper = function(listener, useCapture) {
@@ -8552,42 +8701,42 @@ _ChildrenNodeList.prototype.map$1 = function($0) {
 _ChildrenNodeList.prototype.sort$1 = function($0) {
   return this.sort(to$call$2($0));
 };
-// ********** Code for _ListWrapper_html_Node **************
-$inherits(_ListWrapper_html_Node, _ListWrapper);
-function _ListWrapper_html_Node(_list) {
+// ********** Code for _ListWrapper_Node **************
+$inherits(_ListWrapper_Node, _ListWrapper);
+function _ListWrapper_Node(_list) {
   this._list = _list;
 }
-_ListWrapper_html_Node.prototype.is$List = function(){return true};
-_ListWrapper_html_Node.prototype.is$Collection = function(){return true};
-_ListWrapper_html_Node.prototype.add$1 = _ListWrapper_html_Node.prototype.add;
-_ListWrapper_html_Node.prototype.clear$0 = _ListWrapper_html_Node.prototype.clear;
-_ListWrapper_html_Node.prototype.filter$1 = function($0) {
+_ListWrapper_Node.prototype.is$List = function(){return true};
+_ListWrapper_Node.prototype.is$Collection = function(){return true};
+_ListWrapper_Node.prototype.add$1 = _ListWrapper_Node.prototype.add;
+_ListWrapper_Node.prototype.clear$0 = _ListWrapper_Node.prototype.clear;
+_ListWrapper_Node.prototype.filter$1 = function($0) {
   return this.filter(to$call$1($0));
 };
-_ListWrapper_html_Node.prototype.forEach$1 = function($0) {
+_ListWrapper_Node.prototype.forEach$1 = function($0) {
   return this.forEach(to$call$1($0));
 };
-_ListWrapper_html_Node.prototype.indexOf$1 = function($0) {
+_ListWrapper_Node.prototype.indexOf$1 = function($0) {
   return this.indexOf($0, (0));
 };
-_ListWrapper_html_Node.prototype.map$1 = function($0) {
+_ListWrapper_Node.prototype.map$1 = function($0) {
   return this.map(to$call$1($0));
 };
-_ListWrapper_html_Node.prototype.sort$1 = function($0) {
+_ListWrapper_Node.prototype.sort$1 = function($0) {
   return this.sort(to$call$2($0));
 };
 // ********** Code for _NodeList **************
-$inherits(_NodeList, _ListWrapper_html_Node);
+$inherits(_NodeList, _ListWrapper_Node);
 function _NodeList(list) {
-  _ListWrapper_html_Node.call(this, list);
+  _ListWrapper_Node.call(this, list);
 }
 _NodeList.prototype.is$List = function(){return true};
 _NodeList.prototype.is$Collection = function(){return true};
 _NodeList.prototype.filter = function(f) {
-  return new _NodeList(_ListWrapper_html_Node.prototype.filter.call(this, f));
+  return new _NodeList(_ListWrapper_Node.prototype.filter.call(this, f));
 }
 _NodeList.prototype.getRange = function(start, length) {
-  return new _NodeList(_ListWrapper_html_Node.prototype.getRange.call(this, start, length));
+  return new _NodeList(_ListWrapper_Node.prototype.getRange.call(this, start, length));
 }
 _NodeList.prototype.filter$1 = function($0) {
   return this.filter(to$call$1($0));
@@ -8756,6 +8905,58 @@ WindowWrappingImplementation.prototype.moveTo$2 = WindowWrappingImplementation.p
 WindowWrappingImplementation.prototype.setInterval$2 = function($0, $1) {
   return this.setInterval(to$call$0($0), $1);
 };
+// ********** Code for XMLDocumentWrappingImplementation **************
+$inherits(XMLDocumentWrappingImplementation, DocumentWrappingImplementation);
+XMLDocumentWrappingImplementation._wrap$ctor = function(documentPtr, ptr) {
+  DocumentWrappingImplementation._wrap$ctor.call(this, documentPtr, ptr);
+  ptr.set$dartObjectLocalStorage(null);
+  this.documentEl = new XMLElementWrappingImplementation._wrap$ctor(ptr);
+  ptr.set$dartObjectLocalStorage(this);
+}
+XMLDocumentWrappingImplementation._wrap$ctor.prototype = XMLDocumentWrappingImplementation.prototype;
+function XMLDocumentWrappingImplementation() {}
+XMLDocumentWrappingImplementation.prototype.is$html_Element = function(){return true};
+XMLDocumentWrappingImplementation.XMLDocumentWrappingImplementation$xml$factory = function(xml) {
+  var parser = _DOMParserFactoryProvider.DOMParser$factory();
+  var xmlDoc = LevelDom.wrapDocument(parser.parseFromString(xml, "text/xml"));
+  if (!xml.toLowerCase().contains("<parsererror") && xmlDoc.query("parsererror") != null) {
+    $throw(new IllegalArgumentException(("Error parsing XML: \"" + xml + "\"")));
+  }
+  return xmlDoc;
+}
+XMLDocumentWrappingImplementation.prototype.get$elements = function() {
+  return this.documentEl.get$elements();
+}
+XMLDocumentWrappingImplementation.prototype.set$innerHTML = function(xml) {
+  this.documentEl.set$innerHTML(xml);
+}
+XMLDocumentWrappingImplementation.prototype.get$id = function() {
+  return this.documentEl.get$id();
+}
+// ********** Code for XMLElementWrappingImplementation **************
+$inherits(XMLElementWrappingImplementation, ElementWrappingImplementation);
+XMLElementWrappingImplementation._wrap$ctor = function(ptr) {
+  ElementWrappingImplementation._wrap$ctor.call(this, ptr);
+}
+XMLElementWrappingImplementation._wrap$ctor.prototype = XMLElementWrappingImplementation.prototype;
+function XMLElementWrappingImplementation() {}
+XMLElementWrappingImplementation.prototype.is$html_Element = function(){return true};
+XMLElementWrappingImplementation.prototype.get$elements = function() {
+  if (this._elements == null) {
+    this._elements = new FilteredElementList(this);
+  }
+  return this._elements;
+}
+XMLElementWrappingImplementation.prototype.set$innerHTML = function(xml) {
+  var xmlDoc = XMLDocumentWrappingImplementation.XMLDocumentWrappingImplementation$xml$factory(("<xml>" + xml + "</xml>"));
+  this.set$nodes(xmlDoc.remove$0().get$nodes());
+}
+XMLElementWrappingImplementation.prototype.get$id = function() {
+  return this._attr("id", "");
+}
+XMLElementWrappingImplementation.prototype._attr = function(name, def) {
+  return this.get$attributes().containsKey(name) ? this.get$attributes().$index(name) : def;
+}
 // ********** Code for XMLHttpRequestProgressEventWrappingImplementation **************
 $inherits(XMLHttpRequestProgressEventWrappingImplementation, ProgressEventWrappingImplementation);
 XMLHttpRequestProgressEventWrappingImplementation._wrap$ctor = function(ptr) {
@@ -8812,8 +9013,8 @@ function Object3D() {
   this.matrixWorldNeedsUpdate = true;
   this.quaternion = new Quaternion((0), (0), (0), (1));
   this.useQuaternion = false;
-  this.boundRadius = (0.0);
-  this.boundRadiusScale = (1.0);
+  this.boundRadius = (0);
+  this.boundRadiusScale = (1);
   this.visible = true;
   this.castShadow = false;
   this.receiveShadow = false;
@@ -8826,6 +9027,7 @@ Object3D.prototype.get$position = function() { return this.position; };
 Object3D.prototype.get$rotation = function() { return this.rotation; };
 Object3D.prototype.get$scale = function() { return this.scale; };
 Object3D.prototype.get$dynamic = function() { return this.dynamic; };
+Object3D.prototype.get$matrixWorld = function() { return this.matrixWorld; };
 Object3D.prototype.get$name = function() {
   return this._name;
 }
@@ -8925,7 +9127,7 @@ PerspectiveCamera.prototype.get$far = function() {
 PerspectiveCamera.prototype.updateProjectionMatrix = function() {
   if (null != this._fullWidth) {
     var aspect = this._fullWidth / this._fullHeight;
-    var top = Math.tan(this._fov * (3.141593) / (360)) * this._near;
+    var top = Math.tan(this._fov * (3.141592653589793) / (360)) * this._near;
     var bottom = -top;
     var left = aspect * bottom;
     var right = aspect * top;
@@ -8939,9 +9141,9 @@ PerspectiveCamera.prototype.updateProjectionMatrix = function() {
 }
 // ********** Code for Vector3 **************
 function Vector3(_x, _y, _z) {
-  this._x = _x;
-  this._y = _y;
   this._z = _z;
+  this._y = _y;
+  this._x = _x;
 }
 Vector3.prototype.get$x = function() {
   return this._x;
@@ -9034,22 +9236,22 @@ function Matrix3() {
 }
 // ********** Code for Matrix4 **************
 function Matrix4(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44) {
-  this.n11 = n11;
-  this.n12 = n12;
-  this.n13 = n13;
-  this.n14 = n14;
-  this.n21 = n21;
   this.n22 = n22;
-  this.n23 = n23;
-  this.n24 = n24;
-  this.n31 = n31;
+  this.n14 = n14;
   this.n32 = n32;
-  this.n33 = n33;
+  this.n24 = n24;
   this.n34 = n34;
-  this.n41 = n41;
-  this.n42 = n42;
   this.n43 = n43;
+  this.n42 = n42;
   this.n44 = n44;
+  this.n31 = n31;
+  this.n23 = n23;
+  this.n11 = n11;
+  this.n21 = n21;
+  this.n13 = n13;
+  this.n12 = n12;
+  this.n41 = n41;
+  this.n33 = n33;
   this._flat = new Array();
   this._m33 = new Matrix3();
   if ($globals.Matrix4___v1 == null) $globals.Matrix4___v1 = new Vector3((0), (0), (0));
@@ -9059,22 +9261,22 @@ function Matrix4(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41
   if ($globals.Matrix4___m2 == null) $globals.Matrix4___m2 = new Matrix4.createMatrices$ctor((1), (0), (0), (0), (0), (1), (0), (0), (0), (0), (1), (0), (0), (0), (0), (1));
 }
 Matrix4.createMatrices$ctor = function(n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44) {
-  this.n11 = n11;
-  this.n12 = n12;
-  this.n13 = n13;
-  this.n14 = n14;
-  this.n21 = n21;
   this.n22 = n22;
-  this.n23 = n23;
-  this.n24 = n24;
-  this.n31 = n31;
+  this.n14 = n14;
   this.n32 = n32;
-  this.n33 = n33;
+  this.n24 = n24;
   this.n34 = n34;
-  this.n41 = n41;
-  this.n42 = n42;
   this.n43 = n43;
+  this.n42 = n42;
   this.n44 = n44;
+  this.n31 = n31;
+  this.n23 = n23;
+  this.n11 = n11;
+  this.n21 = n21;
+  this.n13 = n13;
+  this.n12 = n12;
+  this.n41 = n41;
+  this.n33 = n33;
   this._flat = new Array();
   this._m33 = new Matrix3();
 }
@@ -9374,7 +9576,7 @@ Matrix4.makeFrustum = function(left, right, bottom, top, near, far) {
 }
 Matrix4.makePerspective = function(fov, aspect, near, far) {
   var ymax, ymin, xmin, xmax;
-  ymax = near * Math.tan(fov * (3.141593) / (360));
+  ymax = near * Math.tan(fov * (3.141592653589793) / (360));
   ymin = -ymax;
   xmin = ymin * aspect;
   xmax = ymax * aspect;
@@ -9382,10 +9584,10 @@ Matrix4.makePerspective = function(fov, aspect, near, far) {
 }
 // ********** Code for Quaternion **************
 function Quaternion(x, y, z, w) {
-  this.x = x;
   this.y = y;
-  this.z = z;
   this.w = w;
+  this.x = x;
+  this.z = z;
 }
 Quaternion.prototype.get$x = function() { return this.x; };
 Quaternion.prototype.get$y = function() { return this.y; };
@@ -9399,10 +9601,10 @@ Quaternion.prototype.get$length = function() {
 }
 // ********** Code for Vector4 **************
 function Vector4(_x, _y, _z, _w) {
-  this._x = _x;
-  this._y = _y;
   this._z = _z;
+  this._y = _y;
   this._w = _w;
+  this._x = _x;
 }
 Vector4.prototype.is$IVector4 = function(){return true};
 Vector4.prototype.get$x = function() {
@@ -9620,7 +9822,7 @@ Frustum.prototype.setFromMatrix = function(m) {
 Frustum.prototype.contains = function(object) {
   var distance;
   var planes = this._planes;
-  var matrix = object.matrixWorld;
+  var matrix = object.get$matrixWorld();
   var scale = $globals.Frustum___v1.setValues(matrix.getColumnX().length(), matrix.getColumnY().length(), matrix.getColumnZ().length());
   var radius = $negate$(object.get$geometry().get$boundingSphere().$index("radius")) * Math.max(scale.get$x(), Math.max(scale.get$y(), scale.get$z()));
   for (var i = (0);
@@ -9633,7 +9835,7 @@ Frustum.prototype.contains = function(object) {
 // ********** Code for Geometry **************
 function Geometry() {
   var $0;
-  this._ThreeD_id = ($globals.Three_GeometryCount = ($0 = $globals.Three_GeometryCount) + (1), $0);
+  this._id = ($globals.Three_GeometryCount = ($0 = $globals.Three_GeometryCount) + (1), $0);
   this._vertices = [];
   this._colors = [];
   this._materials = [];
@@ -10111,8 +10313,8 @@ function ProjectorRenderData() {
 ProjectorRenderData.prototype.get$elements = function() { return this.elements; };
 // ********** Code for Vector2 **************
 function Vector2(_x, _y) {
-  this._x = _x;
   this._y = _y;
+  this._x = _x;
 }
 Vector2.prototype.get$x = function() {
   return this._x;
@@ -10372,12 +10574,12 @@ CubeGeometry.prototype.buildPlane = function(u, v, udir, vdir, width, height, de
 }
 // ********** Code for CubeGeomSides **************
 function CubeGeomSides(px, nx, py, ny, pz, nz) {
+  this.pz = pz;
   this.nx = nx;
   this.ny = ny;
+  this.py = py;
   this.nz = nz;
   this.px = px;
-  this.py = py;
-  this.pz = pz;
 }
 // ********** Code for PlaneGeometry **************
 $inherits(PlaneGeometry, Geometry);
@@ -10613,7 +10815,14 @@ Mesh.prototype.get$material = function() {
   return this._material;
 }
 // ********** Code for Line **************
+$inherits(Line, Object3D);
 function Line() {}
+Line.prototype.get$geometry = function() {
+  return this._geometry;
+}
+Line.prototype.get$material = function() {
+  return this._material;
+}
 // ********** Code for Particle **************
 $inherits(Particle, Object3D);
 function Particle() {}
@@ -10747,8 +10956,8 @@ RenderableFace4.prototype.set$z = function(value) {
 }
 // ********** Code for RenderableLine **************
 function RenderableLine() {
-  this.z = null;
   this.material = null;
+  this.z = null;
   this.v1 = new RenderableVertex();
   this.v2 = new RenderableVertex();
 }
@@ -10758,11 +10967,11 @@ RenderableLine.prototype.get$v2 = function() { return this.v2; };
 RenderableLine.prototype.get$material = function() { return this.material; };
 // ********** Code for RenderableParticle **************
 function RenderableParticle() {
+  this.material = null;
   this.x = null;
   this.y = null;
-  this.z = null;
   this.rotation = null;
-  this.material = null;
+  this.z = null;
   this.scale = new Vector2((0), (0));
 }
 RenderableParticle.prototype.get$x = function() { return this.x; };
@@ -10774,7 +10983,7 @@ RenderableParticle.prototype.get$material = function() { return this.material; }
 // ********** Code for CanvasRenderer **************
 function CanvasRenderer(parameters) {
   var $0, $1;
-  this._pi2 = (6.283185);
+  this._pi2 = (6.283185307179586);
   parameters = parameters != null ? parameters : new HashMapImplementation();
   this._projector = new Projector();
   this._canvas = $ne$(parameters.$index("canvas")) ? parameters.$index("canvas") : ElementWrappingImplementation.ElementWrappingImplementation$tag$factory("canvas");
@@ -10869,7 +11078,7 @@ CanvasRenderer.prototype.render = function(scene, camera) {
   this._autoClear ? this.clear() : this._context.setTransform((1), (0), (0), (-1), this._canvasWidthHalf, this._canvasHeightHalf);
   this._info.render.reset();
   this._renderData = this._projector.projectScene(scene, camera, this._sortElements);
-  this._elements = this._renderData.elements;
+  this._ThreeD_elements = this._renderData.elements;
   this._lights = this._renderData.lights;
   if (this.debug) {
     this._context.set$fillStyle("rgba( 0, 255, 255, 0.5 )");
@@ -10879,10 +11088,10 @@ CanvasRenderer.prototype.render = function(scene, camera) {
   if (this._enableLighting) {
     this.calculateLights(this._lights);
   }
-  el = this._elements.get$length();
+  el = this._ThreeD_elements.get$length();
   for (e = (0);
    e < el; e++) {
-    element = this._elements.$index(e);
+    element = this._ThreeD_elements.$index(e);
     material = element.get$material();
     material = (material instanceof MeshFaceMaterial) ? element.get$faceMaterial() : material;
     if (material == null || material.get$opacity() == (0)) continue;
@@ -11592,7 +11801,7 @@ function UVMapping() {}
 // ********** Code for SphericalReflectionMapping **************
 function SphericalReflectionMapping() {}
 // ********** Code for top level **************
-//  ********** Library C:\Users\Rob\ThreeD\examples\canvas_geometry_cube\Canvas_Geometry_Cube **************
+//  ********** Library Canvas_Geometry_Cube **************
 // ********** Code for Canvas_Geometry_Cube **************
 function Canvas_Geometry_Cube() {
 
@@ -11632,7 +11841,7 @@ Canvas_Geometry_Cube.prototype.init = function() {
   this.cube.position.set$y((150));
   this.scene.add(this.cube);
   this.plane = new Mesh(new PlaneGeometry((200), (200)), new MeshBasicMaterial(_map(["color", (14737632), "overdraw", true])));
-  this.plane.rotation.set$x((-1.570796));
+  this.plane.rotation.set$x((-1.5707963267948966));
   this.scene.add(this.plane);
   this.renderer = new CanvasRenderer();
   this.renderer.setSize(html_get$$window().get$innerWidth(), html_get$$window().get$innerHeight());
@@ -11714,8 +11923,8 @@ Canvas_Geometry_Cube.prototype.render = function() {
 function main() {
   new Canvas_Geometry_Cube().run();
 }
-// 218 dynamic types.
-// 505 types
+// 217 dynamic types.
+// 504 types
 // 44 !leaf
 function $dynamicSetMetadata(inputTable) {
   // TODO: Deal with light isolates.
@@ -11799,6 +12008,8 @@ var const$0000 = Object.create(_DeletedKeySentinel.prototype, {});
 var const$0001 = Object.create(NoMoreElementsException.prototype, {});
 var const$0002 = Object.create(EmptyQueueException.prototype, {});
 var const$0011 = Object.create(UnsupportedOperationException.prototype, {_message: {"value": "TODO(jacobr): should we impl?", writeable: false}});
+var const$0012 = Object.create(IllegalAccessException.prototype, {});
+var const$0013 = _constMap([]);
 var $globals = {};
 $static_init();
 main();
