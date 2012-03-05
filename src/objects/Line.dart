@@ -1,5 +1,9 @@
-final LineStrip = 0;
-final LinePieces = 1;
+/**
+ * @author mr.doob / http://mrdoob.com/
+ * 
+ * Ported to Dart from JS by:
+ * @author adam smith / http://financecoding.wordpress.com/
+ */
 
 class Line extends Object3D {
 

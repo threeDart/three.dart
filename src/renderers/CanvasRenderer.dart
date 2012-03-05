@@ -453,7 +453,7 @@ class CanvasRenderer
   
   }
   
-  void renderParticle ( RenderableParticle v1, Element element, IMaterial material, Scene scene ) 
+  void renderParticle ( RenderableParticle v1, RenderableParticle element, IMaterial material, Scene scene ) 
   {
     setOpacity( material.opacity );
     setBlending( material.blending );
@@ -463,9 +463,10 @@ class CanvasRenderer
   
     if ( material is ParticleBasicMaterial ) 
     {
-      if ( material.map )
+      ParticleBasicMaterial pbMaterial = material;
+      if ( pbMaterial.map )
       {
-        bitmap = material.map.image;
+        bitmap = pbMaterial.map.image;
         bitmapWidth = bitmap.width >> 1;
         bitmapHeight = bitmap.height >> 1;
   
@@ -508,6 +509,8 @@ class CanvasRenderer
     } 
     else if ( material is ParticleCanvasMaterial ) 
     {
+      ParticleCanvasMaterial pcMaterial = material;
+      
       width = element.scale.x * _canvasWidthHalf;
       height = element.scale.y * _canvasHeightHalf;
   
@@ -517,15 +520,15 @@ class CanvasRenderer
         return;
       }
       
-      setStrokeStyle( material.color.getContextStyle() );
-      setFillStyle( material.color.getContextStyle() );
+      setStrokeStyle( pcMaterial.color.getContextStyle() );
+      setFillStyle( pcMaterial.color.getContextStyle() );
   
       _context.save();
       _context.translate( v1.x, v1.y );
       _context.rotate( - element.rotation );
       _context.scale( width, height );
   
-      material.program( _context );
+      pcMaterial.program( _context );
   
       _context.restore();
     }

@@ -9,9 +9,9 @@ class Canvas_Lines {
   IParticleMaterial material;
   Geometry geometry;
   
-  var mouseX = 0, mouseY = 0;
-  var windowHalfX = 0;
-  var windowHalfY = 0;
+  int mouseX = 0, mouseY = 0;
+  int windowHalfX = 0;
+  int windowHalfY = 0;
   
   Canvas_Lines() {
   }
@@ -24,14 +24,6 @@ class Canvas_Lines {
     container = new Element.tag('div');
     document.body.nodes.add( container );
     
-    Element info = new Element.tag('div');
-    info.style.position = 'absolute';
-    info.style.top = '10px';
-    info.style.width = '100%';
-    info.style.textAlign = 'center';
-    info.innerHTML = '<a href="http://github.com/robsilv/three.dart" target="_blank">three.dart</a> - clickable objects';
-    container.nodes.add( info );
-    
     camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
     camera.position.z = 100;
     
@@ -43,13 +35,17 @@ class Canvas_Lines {
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.nodes.add( renderer.domElement );
     
+    
+    //TODO: context.arc() "anticlockwise" has to = false in Chrome on Win7 in order to render particles.
+    // Not sure why yet... Need to know whether this messes things up on a Mac.
+    
     // particles
-    var PI2 = Math.PI * 2;
+    final num Tau = Math.PI * 2;
     material = new ParticleCanvasMaterial( {
       'color': 0xffffff,
       'program': function (CanvasRenderingContext2D context ) {
         context.beginPath();
-        context.arc( 0, 0, 1, 0, PI2, true );
+        context.arc( 0, 0, 1, 0, Tau, false );
         context.closePath();
         context.fill();
       }
@@ -88,11 +84,25 @@ class Canvas_Lines {
   }
   
   onDocumentTouchStart(TouchEvent event) {
-    
+    if ( event.touches.length > 1 ) {
+
+      event.preventDefault();
+
+      mouseX = event.touches[ 0 ].pageX - windowHalfX;
+      mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+    }    
   }
   
   onDocumentTouchMove(TouchEvent event) {
-    
+    if ( event.touches.length == 1 ) {
+
+      event.preventDefault();
+
+      mouseX = event.touches[ 0 ].pageX - windowHalfX;
+      mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+    }    
   }
   
   animate() {

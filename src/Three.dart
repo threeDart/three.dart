@@ -9,6 +9,10 @@ class Three {
   num lastTime;
   List<String> vendors;
   
+  // from Line
+  static final int LineStrip = 0;
+  static final int LinePieces = 1;
+  
   // from Geometry
   static int GeometryCount = 0;
   
@@ -18,19 +22,19 @@ class Three {
   // from Material
   static int MaterialCount = 0;
   // think these ones are actually consts?
-  static int NoShading = 0;
-  static int FlatShading = 1;
-  static int SmoothShading = 2;
+  static final int NoShading = 0;
+  static final int FlatShading = 1;
+  static final int SmoothShading = 2;
 
-  static int NoColors = 0;
-  static int FaceColors = 1;
-  static int VertexColors = 2;
+  static final int NoColors = 0;
+  static final int FaceColors = 1;
+  static final int VertexColors = 2;
 
-  static int NormalBlending = 0;
-  static int AdditiveBlending = 1;
-  static int SubtractiveBlending = 2;
-  static int MultiplyBlending = 3;
-  static int AdditiveAlphaBlending = 4;
+  static final int NormalBlending = 0;
+  static final int AdditiveBlending = 1;
+  static final int SubtractiveBlending = 2;
+  static final int MultiplyBlending = 3;
+  static final int AdditiveAlphaBlending = 4;
   
   // from MeshBasicMaterial
   //static var MultiplyOperation;
@@ -38,8 +42,8 @@ class Three {
   // from Texture
   static int TextureCount = 0;
 
-  static int MultiplyOperation = 0;
-  static int MixOperation = 1;
+  static final int MultiplyOperation = 0;
+  static final int MixOperation = 1;
   //TODO: figure out what needs to happen with these functions
   // Mapping modes
   static var CubeReflectionMapping;//();
@@ -54,33 +58,33 @@ class Three {
   static var UVMapping;//();
 
   // Wrapping modes
-  static int RepeatWrapping = 0;
-  static int ClampToEdgeWrapping = 1;
-  static int MirroredRepeatWrapping = 2;
+  static final int RepeatWrapping = 0;
+  static final int ClampToEdgeWrapping = 1;
+  static final int MirroredRepeatWrapping = 2;
 
   // Filters
-  static int NearestFilter = 3;
-  static int NearestMipMapNearestFilter = 4;
-  static int NearestMipMapLinearFilter = 5;
-  static int LinearFilter = 6;
-  static int LinearMipMapNearestFilter = 7;
-  static int LinearMipMapLinearFilter = 8;
+  static final int NearestFilter = 3;
+  static final int NearestMipMapNearestFilter = 4;
+  static final int NearestMipMapLinearFilter = 5;
+  static final int LinearFilter = 6;
+  static final int LinearMipMapNearestFilter = 7;
+  static final int LinearMipMapLinearFilter = 8;
 
   // Types
-  static int ByteType = 9;
-  static int UnsignedByteType = 10;
-  static int ShortType = 11;
-  static int UnsignedShortType = 12;
-  static int IntType = 13;
-  static int UnsignedIntType = 14;
-  static int FloatType = 15;
+  static final int ByteType = 9;
+  static final int UnsignedByteType = 10;
+  static final int ShortType = 11;
+  static final int UnsignedShortType = 12;
+  static final int IntType = 13;
+  static final int UnsignedIntType = 14;
+  static final int FloatType = 15;
 
   // Formats
-  static int AlphaFormat = 16;
-  static int RGBFormat = 17;
-  static int RGBAFormat = 18;
-  static int LuminanceFormat = 19;
-  static int LuminanceAlphaFormat = 20;  
+  static final int AlphaFormat = 16;
+  static final int RGBFormat = 17;
+  static final int RGBAFormat = 18;
+  static final int LuminanceFormat = 19;
+  static final int LuminanceAlphaFormat = 20;  
   
   Three()
   {

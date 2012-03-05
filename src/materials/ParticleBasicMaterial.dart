@@ -28,20 +28,22 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
   num _size;
   bool _sizeAttenuation, _vertexColors, _fog;
   
+  Dynamic get map() { return _map; }
+  
   ParticleBasicMaterial( [Map parameters] ) : super( parameters )
   {
     Map _parameters = parameters != null ? parameters : {};
 
-    _color = _parameters.color !== null ? new Color( _parameters.color ) : new Color( 0xffffff );
+    _color = _parameters['color'] !== null ? new Color( _parameters['color'] ) : new Color( 0xffffff );
 
-    _map = _parameters.map !== null ? _parameters.map : null;
+    _map = _parameters['map'] !== null ? _parameters['map'] : null;
 
-    _size = _parameters.size !== null ? _parameters.size : 1;
-    _sizeAttenuation = _parameters.sizeAttenuation !== null ? _parameters.sizeAttenuation : true;
+    _size = _parameters['size'] !== null ? _parameters['size'] : 1;
+    _sizeAttenuation = _parameters['sizeAttenuation'] !== null ? _parameters['sizeAttenuation'] : true;
 
-    _vertexColors = _parameters.vertexColors !== null ? _parameters.vertexColors : false;
+    _vertexColors = _parameters['vertexColors'] !== null ? _parameters['vertexColors'] : false;
 
-    _fog = _parameters.fog !== null ? _parameters.fog : true;    
+    _fog = _parameters['fog'] !== null ? _parameters['fog'] : true;    
   }
 }
 
