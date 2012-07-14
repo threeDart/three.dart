@@ -213,7 +213,7 @@ class CanvasRenderer
         setBlending( Three.NormalBlending );
         setOpacity( 1 );
 
-        setFillStyle( 'rgba(' + ( _clearColor.r * 255 ).floor() + ',' + ( _clearColor.g * 255 ).floor() + ',' + ( _clearColor.b * 255 ).floor() + ',' + _clearOpacity + ')' );
+        setFillStyle( 'rgba(${( _clearColor.r * 255 ).floor()}, ${( _clearColor.g * 255 ).floor()},${( _clearColor.b * 255 ).floor()},${_clearOpacity})' );
 
         _context.fillRect( ( _clearRect.getX() ).floor(), ( _clearRect.getY() ).floor(), ( _clearRect.getWidth() ).floor(), ( _clearRect.getHeight() ).floor() );
       }
@@ -586,7 +586,7 @@ class CanvasRenderer
   
         }
       }
-      else if ( mbMaterial.envMap ) 
+      else if ( null != mbMaterial.envMap ) 
       {
         if ( mbMaterial.envMap.mapping is SphericalReflectionMapping )
         {

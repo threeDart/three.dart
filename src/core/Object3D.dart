@@ -24,14 +24,14 @@ class Object3D
   
   Matrix4 matrix, matrixWorld, matrixRotationWorld;
 
-  bool matrixAutoUpdate, matrixWorldNeedsUpdate;
+  bool matrixAutoUpdate = false, matrixWorldNeedsUpdate = false;
 
   Quaternion quaternion;
   bool useQuaternion;
 
   num boundRadius, boundRadiusScale;
 
-  bool visible, castShadow, receiveShadow, frustumCulled;
+  bool visible = false, castShadow = false, receiveShadow = false, frustumCulled = false;
 
   Vector3 _vector; 
   
@@ -133,13 +133,13 @@ class Object3D
       children.add( object );
 
       // add to scene
-      Scene scene = this;
+      Object3D scene = this;
       
       while ( scene.parent !== null ) {
         scene = scene.parent;
       }
       //TODO: "instanceof" equivalent to "is"?
-      if ( scene !== null && scene is Scene ) {
+      if ( scene is Scene ) {
         scene.addObject( object );
       }
     }
@@ -156,13 +156,13 @@ class Object3D
       // children.splice( index, 1 );
 
       // remove from scene
-      Scene scene = this;
+      Object3D scene = this;
 
       while ( scene.parent !== null ) {
         scene = scene.parent;
       }
       //TODO: "instanceof" equivalent to "is"?
-      if ( scene !== null && scene is Scene ) {
+      if (scene is Scene ) {
         scene.removeObject( object );
       }
     }
@@ -214,7 +214,7 @@ class Object3D
     matrixWorldNeedsUpdate = true;
   }
 
-  void updateMatrixWorld( [bool force] ) 
+  void updateMatrixWorld( [bool force=false] ) 
   {
     //TODO: figure out what was meant by this line...
    // matrixAutoUpdate && updateMatrix();
