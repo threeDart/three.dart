@@ -267,6 +267,9 @@ class CanvasRenderer
       RenderableVertex _v1, _v2, _v3, _v4;
 
       //TODO: Replaced non type-safe references to _v1 - _v4 here, hopefully that's ok.
+      if (debug) {
+        print("$element");
+      }
       if ( element is RenderableParticle ) 
       {
 //        _v1 = element;
@@ -504,6 +507,7 @@ class CanvasRenderer
         _context.closePath();
         _context.strokeStyle = 'rgb(255,255,0)';
         _context.stroke();
+        print("renderParticle $v1 at (${v1.x}, ${v1.y})");
       }
   
     } 
@@ -556,6 +560,10 @@ class CanvasRenderer
       _context.stroke();
       _bboxRect.inflate( lbMaterial.linewidth * 2 );
     }
+    if (debug) {
+      print("renderLine $element at (${v1.positionScreen.x}, ${v1.positionScreen.y}) to (${v2.positionScreen.x}, ${v2.positionScreen.y})");
+    }
+    
   }
   
   void renderFace3( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, num uv1, num uv2, num uv3, Dynamic element, Material material, Scene scene )

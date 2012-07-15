@@ -61,7 +61,6 @@ class Matrix4
                            num this.n31 = 0, num this.n32 = 0, num this.n33 = 1, num this.n34 = 0, 
                            num this.n41 = 0, num this.n42 = 0, num this.n43 = 0, num this.n44 = 1] ) 
   {
-    
     //TODO: need to make this List length 16?
     _flat = new List();//( 16 );
     // Equivalent of super-constructor?
@@ -111,7 +110,6 @@ class Matrix4
       m.n31, m.n32, m.n33, m.n34,
       m.n41, m.n42, m.n43, m.n44
     );
-
     return this;
   }
 
@@ -138,7 +136,6 @@ class Matrix4
       n11 = x.x; n12 = y.x; n13 = z.x;
       n21 = x.y; n22 = y.y; n23 = z.y;
       n31 = x.z; n32 = y.z; n33 = z.z;
-
     return this;
   }
 
@@ -173,7 +170,6 @@ class Matrix4
     n42 = a41 * b12 + a42 * b22 + a43 * b32 + a44 * b42;
     n43 = a41 * b13 + a42 * b23 + a43 * b33 + a44 * b43;
     n44 = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
-
     return this;
   }
 
@@ -513,7 +509,6 @@ class Matrix4
     n43 = _n13*_n22*_n41 - _n12*_n23*_n41 - _n13*_n21*_n42 + _n11*_n23*_n42 + _n12*_n21*_n43 - _n11*_n22*_n43;
     n44 = _n12*_n23*_n31 - _n13*_n22*_n31 + _n13*_n21*_n32 - _n11*_n23*_n32 - _n12*_n21*_n33 + _n11*_n22*_n33;
     multiplyScalar( 1 / m.determinant() );
-
     return this;
   }
 

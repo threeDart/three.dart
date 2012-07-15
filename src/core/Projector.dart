@@ -170,7 +170,7 @@ class Projector
   {
     num near = camera.near, far = camera.far;
     int o, ol, v, vl, f, fl, n, nl, c, cl, u, ul;
-    Mesh object;
+    Object3D object;
     Matrix4 objectMatrixWorld, objectMatrixWorldRotation;
     Material objectMaterial;
     Geometry geometry;

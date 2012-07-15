@@ -9,10 +9,11 @@ class Material implements IMaterial
 {
   String _name;
   int _id;
-  int _opacity, _blending, _alphaTest, _polygonOffsetFactor, _polygonOffsetUnits;
+  num _opacity; 
+  int _blending, _alphaTest, _polygonOffsetFactor, _polygonOffsetUnits;
   bool _transparent, _depthTest, _depthWrite, _polygonOffset, _overdraw;
   
-  int get opacity() {  return _opacity;  }
+  num get opacity() {  return _opacity;  }
   bool get overdraw() {  return _overdraw;  }
   int get blending() {  return _blending;  }
   
@@ -27,16 +28,16 @@ class Material implements IMaterial
     _opacity = _parameters['opacity'] !== null ? _parameters['opacity'] : 1;
     _transparent = _parameters['transparent'] !== null ? _parameters['transparent'] : false;
 
-    _blending = _parameters['blending'] !== null ? _parameters['blending'] : Three.NormalBlending;
+    _blending = _parameters['blending'] !== null ? _parameters['blending'].toInt() : Three.NormalBlending;
 
     _depthTest = _parameters['depthTest'] !== null ? _parameters['depthTest'] : true;
     _depthWrite = _parameters['depthWrite'] !== null ? _parameters['depthWrite'] : true;
 
     _polygonOffset = _parameters['polygonOffset'] !== null ? _parameters['polygonOffset'] : false;
-    _polygonOffsetFactor = _parameters['polygonOffsetFactor'] !== null ? _parameters['polygonOffsetFactor'] : 0;
-    _polygonOffsetUnits = _parameters['polygonOffsetUnits'] !== null ? _parameters['polygonOffsetUnits'] : 0;
+    _polygonOffsetFactor = _parameters['polygonOffsetFactor'] !== null ? _parameters['polygonOffsetFactor'].toInt() : 0;
+    _polygonOffsetUnits = _parameters['polygonOffsetUnits'] !== null ? _parameters['polygonOffsetUnits'].toInt() : 0;
 
-    _alphaTest = _parameters['alphaTest'] !== null ? _parameters['alphaTest'] : 0;
+    _alphaTest = _parameters['alphaTest'] !== null ? _parameters['alphaTest'].toInt() : 0;
 
     _overdraw = _parameters['overdraw'] !== null ? _parameters['overdraw'] : false; // Boolean for fixing antialiasing gaps in CanvasRenderer
 

@@ -130,7 +130,7 @@ class Color
     // how r,g,b is set. Something in CanvasRender is setting them to doubles
     // when they should be int's. We could add setter/getter's to handle this
     
-    int rr=r,bb=b,gg=g;
+    int rr,bb,gg;
     
     if (r is double && r < 1) {
       rr = (r*0xff).toInt();

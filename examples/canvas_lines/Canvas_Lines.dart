@@ -30,7 +30,9 @@ class Canvas_Lines {
     scene = new Scene();
     scene.add( camera );
     
-    renderer = new CanvasRenderer();
+    var options;
+//    options = {"debug": true};
+    renderer = new CanvasRenderer(options);
     //renderer.debug = true;
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.nodes.add( renderer.domElement );

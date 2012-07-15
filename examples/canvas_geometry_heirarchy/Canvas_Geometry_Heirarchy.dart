@@ -56,7 +56,6 @@ class Canvas_Geometry_Heirarchy
       materials.add( new MeshBasicMaterial( { 'color' : Math.random() * 0xffffff } ) );
     }
     
-    
     geometry = new CubeGeometry( 100, 100, 100 );
     MeshNormalMaterial material = new MeshNormalMaterial();
     

@@ -158,7 +158,7 @@ class Vector3 implements IVector3
 
   Vector3 divideScalar( num s ) 
   {
-    if ( s !== 0 ) 
+    if ( s != 0 ) 
     {
       _x /= s;
       _y /= s;
