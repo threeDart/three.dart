@@ -26,7 +26,7 @@ class Vector3 implements IVector3
   Vector3( [num x=0, num y=0, num z=0] )
   {
     _x = (null != x) ? x : 0;
-    _y = (null != y) ? x : 0;
+    _y = (null != y) ? y : 0;
     _z = (null != z) ? z : 0;
   }
   
