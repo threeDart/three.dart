@@ -23,9 +23,11 @@ class Vector3 implements IVector3
   set y(num value) {  _y = value;  }
   set z(num value) {  _z = value;  }
   
-  Vector3( [num this._x=0, num this._y=0, num this._z=0] )
+  Vector3( [num x=0, num y=0, num z=0] )
   {
-    
+    _x = (null != x) ? x : 0;
+    _y = (null != y) ? y : 0;
+    _z = (null != z) ? z : 0;
   }
   
   // changed "set" to "setValues" as "set" is reserved.
@@ -156,7 +158,7 @@ class Vector3 implements IVector3
 
   Vector3 divideScalar( num s ) 
   {
-    if ( s !== 0 ) 
+    if ( s != 0 ) 
     {
       _x /= s;
       _y /= s;

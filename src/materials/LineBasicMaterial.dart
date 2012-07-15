@@ -48,7 +48,7 @@ class LineBasicMaterial extends Material
     _linecap = parameters['linecap'] !== null ? parameters['linecap'] : 'round';
     _linejoin = parameters['linejoin'] !== null ? parameters['linejoin'] : 'round';
 
-    _vertexColors = parameters['vertexColors'] ? parameters['vertexColors'] : false;
+    _vertexColors = (null != parameters['vertexColors']) ? parameters['vertexColors'] : false;
 
     _fog = parameters['fog'] !== null ? parameters['fog'] : true;
   }

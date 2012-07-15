@@ -56,7 +56,6 @@ class Canvas_Geometry_Heirarchy
       materials.add( new MeshBasicMaterial( { 'color' : Math.random() * 0xffffff } ) );
     }
     
-    
     geometry = new CubeGeometry( 100, 100, 100 );
     MeshNormalMaterial material = new MeshNormalMaterial();
     
@@ -78,7 +77,9 @@ class Canvas_Geometry_Heirarchy
     
     scene.add( group );
 
-    renderer = new CanvasRenderer();
+    var options;
+//    options = {"debug": true};
+    renderer = new CanvasRenderer(options);
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
     //container.appendChild( renderer.domElement );
@@ -114,9 +115,12 @@ class Canvas_Geometry_Heirarchy
     camera.position.y += ( - mouseY - camera.position.y ) * .05;
     camera.lookAt( scene.position );
 
-    group.rotation.x = Math.sin( new Date.now().value * 0.0007 ) * 0.5;
-    group.rotation.y = Math.sin( new Date.now().value * 0.0003 ) * 0.5;
-    group.rotation.z = Math.sin( new Date.now().value * 0.0002 ) * 0.5;
+    //TODO describe how this oscillation affects the example
+    num t = new Date.now().millisecondsSinceEpoch;
+    var oscillate = (num rate) => Math.sin(t * rate) * 0.5;
+    group.rotation.x = oscillate( 0.0007 );
+    group.rotation.y = oscillate( 0.0003 );
+    group.rotation.z = oscillate( 0.0002 );
 
     renderer.render( scene, camera );
   }

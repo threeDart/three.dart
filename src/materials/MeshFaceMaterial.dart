@@ -5,7 +5,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class MeshFaceMaterial //extends Material
+class MeshFaceMaterial extends Material
 {
   MeshFaceMaterial()
   {

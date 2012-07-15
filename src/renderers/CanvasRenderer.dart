@@ -213,7 +213,7 @@ class CanvasRenderer
         setBlending( Three.NormalBlending );
         setOpacity( 1 );
 
-        setFillStyle( 'rgba(' + ( _clearColor.r * 255 ).floor() + ',' + ( _clearColor.g * 255 ).floor() + ',' + ( _clearColor.b * 255 ).floor() + ',' + _clearOpacity + ')' );
+        setFillStyle( 'rgba(${( _clearColor.r * 255 ).floor()}, ${( _clearColor.g * 255 ).floor()},${( _clearColor.b * 255 ).floor()},${_clearOpacity})' );
 
         _context.fillRect( ( _clearRect.getX() ).floor(), ( _clearRect.getY() ).floor(), ( _clearRect.getWidth() ).floor(), ( _clearRect.getHeight() ).floor() );
       }
@@ -267,6 +267,9 @@ class CanvasRenderer
       RenderableVertex _v1, _v2, _v3, _v4;
 
       //TODO: Replaced non type-safe references to _v1 - _v4 here, hopefully that's ok.
+      if (debug) {
+        print("$element");
+      }
       if ( element is RenderableParticle ) 
       {
 //        _v1 = element;
@@ -504,6 +507,9 @@ class CanvasRenderer
         _context.closePath();
         _context.strokeStyle = 'rgb(255,255,0)';
         _context.stroke();
+        if (debug) {
+          print("renderParticle $v1 at (${v1.x}, ${v1.y})");
+        }
       }
   
     } 
@@ -556,6 +562,10 @@ class CanvasRenderer
       _context.stroke();
       _bboxRect.inflate( lbMaterial.linewidth * 2 );
     }
+    if (debug) {
+      print("renderLine $element at (${v1.positionScreen.x}, ${v1.positionScreen.y}) to (${v2.positionScreen.x}, ${v2.positionScreen.y})");
+    }
+    
   }
   
   void renderFace3( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, num uv1, num uv2, num uv3, Dynamic element, Material material, Scene scene )
@@ -586,7 +596,7 @@ class CanvasRenderer
   
         }
       }
-      else if ( mbMaterial.envMap ) 
+      else if ( null != mbMaterial.envMap ) 
       {
         if ( mbMaterial.envMap.mapping is SphericalReflectionMapping )
         {

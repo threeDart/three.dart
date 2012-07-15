@@ -40,7 +40,7 @@ class ThreeMath
   // Random integer from <low, high> interval
   int randInt( num low, num high )
   {
-    return low + ( Math.random() * ( high - low + 1 ) ).floor();
+    return (low + ( Math.random() * ( high - low + 1 ) ).floor()).toInt();
   }
 
   // Random float from <low, high> interval

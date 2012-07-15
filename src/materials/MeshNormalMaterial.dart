@@ -36,10 +36,10 @@ class MeshNormalMaterial extends Material
 
     Map _parameters = parameters != null ? parameters : {};
 
-    _shading = _parameters['shading'] ? _parameters['shading'] : Three.FlatShading;
+    _shading = (null != _parameters['shading']) ? _parameters['shading'] : Three.FlatShading;
 
-    _wireframe = _parameters['wireframe'] ? _parameters['wireframe'] : false;
-    _wireframeLinewidth = _parameters['wireframeLinewidth'] ? _parameters['wireframeLinewidth'] : 1;
+    _wireframe = (null != _parameters['wireframe']) ? _parameters['wireframe'] : false;
+    _wireframeLinewidth = (null != _parameters['wireframeLinewidth']) ? _parameters['wireframeLinewidth'] : 1;
 
   }
 }

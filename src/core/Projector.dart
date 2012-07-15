@@ -170,7 +170,7 @@ class Projector
   {
     num near = camera.near, far = camera.far;
     int o, ol, v, vl, f, fl, n, nl, c, cl, u, ul;
-    Mesh object;
+    Object3D object;
     Matrix4 objectMatrixWorld, objectMatrixWorldRotation;
     Material objectMaterial;
     Geometry geometry;
@@ -533,9 +533,8 @@ class Projector
     return particle;
   }
 
-  //
-  num painterSort( a, b ) {
-    return b.z - a.z;
+  int painterSort( a, b ) {
+    return b.z.compareTo(a.z);
   }
 
   bool clipLine( Vector4 s1, Vector4 s2 ) 

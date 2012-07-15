@@ -455,9 +455,9 @@ class Geometry
       
       //key = [ ThreeMath.round( v.x * precision ), ThreeMath.round( v.y * precision ), ThreeMath.round( v.z * precision ) ].join( '_' );
       
-      int vx = ( v.x * precision ).round();
-      int vy = ( v.y * precision ).round();
-      int vz = ( v.z * precision ).round();
+      int vx = ( v.x * precision ).round().toInt();
+      int vy = ( v.y * precision ).round().toInt();
+      int vz = ( v.z * precision ).round().toInt();
      
       key = "${vx}_${vy}_${vz}";
       
