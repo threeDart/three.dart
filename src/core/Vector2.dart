@@ -19,10 +19,10 @@ class Vector2 implements IVector2
   num get y() {  return _y;  }
   set y(num value) {  _y = value;  }
   
-  Vector2( [num this._x = 0, num this._y = 0] )
+  Vector2( [num x = 0, num y = 0] )
   {
-    //_x = (x != null) ? x : 0;
-    //_y = (y != null) ? y : 0;
+    _x = (x != null) ? x : 0;
+    _y = (y != null) ? y : 0;
   }
    
   Vector2 setValues( num x, num y )

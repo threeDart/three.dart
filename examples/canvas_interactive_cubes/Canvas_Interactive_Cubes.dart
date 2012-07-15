@@ -92,7 +92,9 @@ class Canvas_Interactive_Cubes
     
     projector = new Projector();
 
-    renderer = new CanvasRenderer();
+    var options;
+//    options = {"debug" : true};
+    renderer = new CanvasRenderer(options);
     //renderer.debug = true;
     renderer.setSize( window.innerWidth, window.innerHeight );
 

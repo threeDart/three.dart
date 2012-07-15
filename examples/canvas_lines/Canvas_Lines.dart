@@ -30,11 +30,11 @@ class Canvas_Lines {
     scene = new Scene();
     scene.add( camera );
     
-    renderer = new CanvasRenderer();
-    //renderer.debug = true;
+    var options;
+//    options = {"debug": true};
+    renderer = new CanvasRenderer(options);
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.nodes.add( renderer.domElement );
-    
     
     //TODO: context.arc() "anticlockwise" has to = false in Chrome on Win7 in order to render particles.
     // Not sure why yet... Need to know whether this messes things up on a Mac.
@@ -90,7 +90,6 @@ class Canvas_Lines {
 
       mouseX = event.touches[ 0 ].pageX - windowHalfX;
       mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
     }    
   }
   
@@ -101,7 +100,6 @@ class Canvas_Lines {
 
       mouseX = event.touches[ 0 ].pageX - windowHalfX;
       mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
     }    
   }
   
