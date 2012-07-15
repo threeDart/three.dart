@@ -134,14 +134,20 @@ class Color
     
     if (r is double && r < 1) {
       rr = (r*0xff).toInt();
+    } else {
+      rr = r;
     }
     
     if (g is double && g < 1) {
       gg = (g*0xff).toInt();
+    } else {
+      gg = g;
     }
     
     if (b is double && b < 1) {
       bb = (b*0xff).toInt();
+    } else {
+      bb = b;
     }
     
     return 'rgb(${rr},${gg},${bb})';

@@ -507,7 +507,9 @@ class CanvasRenderer
         _context.closePath();
         _context.strokeStyle = 'rgb(255,255,0)';
         _context.stroke();
-        print("renderParticle $v1 at (${v1.x}, ${v1.y})");
+        if (debug) {
+          print("renderParticle $v1 at (${v1.x}, ${v1.y})");
+        }
       }
   
     } 

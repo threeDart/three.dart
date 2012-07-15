@@ -533,9 +533,8 @@ class Projector
     return particle;
   }
 
-  //
-  num painterSort( a, b ) {
-    return b.z - a.z;
+  int painterSort( a, b ) {
+    return b.z.compareTo(a.z);
   }
 
   bool clipLine( Vector4 s1, Vector4 s2 ) 
