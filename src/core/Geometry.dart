@@ -13,30 +13,38 @@ class Geometry
 {
   int _id;
 
-  List<Vertex> _vertices;
-  List _colors, _materials;
-  List<IFace3> _faces;
+  List<Vertex> vertices;
+  List colors, materials;
+  List<IFace3> faces;
   
   //TODO: not entirely sure these should be declared here...
   List tan1, tan2;
 
-  List _faceUvs;// = [[]];
-  List<List> _faceVertexUvs;// = [[]];
+  List faceUvs;// = [[]];
+  List<List> faceVertexUvs;// = [[]];
 
-  List _morphTargets, _morphColors, _skinWeights, _skinIndices;
+  List morphTargets, morphColors, morphNormals, skinWeights, skinIndices;
 
   List __tmpVertices;
   
-  Map _boundingBox, _boundingSphere;
+  BoundingBox _boundingBox;
+  BoundingSphere _boundingSphere;
 
-  bool _hasTangents, _dynamic;
+  bool hasTangents, _dynamic;
   
-  Map get boundingSphere() {  return _boundingSphere;  }
-  List get morphTargets() {  return _morphTargets;  }
-  List<IFace3> get faces() {  return _faces;  }
-  List get materials() {  return _materials;  }
-  List<Vertex> get vertices() {  return _vertices;  }
-  List<List> get faceVertexUvs() {  return _faceVertexUvs;  }
+  // TODO - Check if these are only used in WebGLRendererer
+  var geometryGroups, geometryGroupsList;
+  var verticesNeedUpdate, 
+    morphTargetsNeedUpdate,
+    elementsNeedUpdate,
+    uvsNeedUpdate,
+    normalsNeedUpdate,
+    tangentsNeedUpdate,
+    colorsNeedUpdate;
+
+  var skinVerticesA, skinVerticesB;
+
+  BoundingSphere get boundingSphere() {  return _boundingSphere;  }
   
   //TODO: is this in the right scope?
 //  THREE.GeometryCount = 0;
@@ -46,47 +54,50 @@ class Geometry
   {
     _id = Three.GeometryCount ++;
 
-    _vertices = [];
-    _colors = []; // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
+    vertices = [];
+    colors = []; // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
 
-    _materials = [];
+    materials = [];
 
-    _faces = [];
+    faces = [];
 
-    _faceUvs = [[]];
-    _faceVertexUvs = [];//[[]];
-    _faceVertexUvs.add(new List());
+    faceUvs = [[]];
+    faceVertexUvs = [];//[[]];
+    faceVertexUvs.add(new List());
 
-    _morphTargets = [];
-    _morphColors = [];
-
-    _skinWeights = [];
-    _skinIndices = [];
+    morphTargets = [];
+    morphColors = [];
+    morphNormals = [];
+    
+    skinWeights = [];
+    skinIndices = [];
 
     _boundingBox = null;
     _boundingSphere = null;
 
-    _hasTangents = false;
+    hasTangents = false;
 
     _dynamic = false; // unless set to true the *Arrays will be deleted once sent to a buffer.
   }
 
+  bool get isDynamic() => _dynamic;
+  
   void applyMatrix( Matrix4 matrix ) 
   {
     Matrix4 matrixRotation = new Matrix4();
     //TODO: figure out why this has extra arg...
     matrixRotation.extractRotation( matrix);//, new Vector3( 1, 1, 1 ) );
 
-    for ( int i = 0, il = _vertices.length; i < il; i ++ ) 
+    for ( int i = 0, il = vertices.length; i < il; i ++ ) 
     {
-      Vertex vertex = _vertices[ i ];
+      Vertex vertex = vertices[ i ];
 
       matrix.multiplyVector3( vertex.position );
     }
 
-    for ( int i = 0, il = _faces.length; i < il; i ++ )
+    for ( int i = 0, il = faces.length; i < il; i ++ )
     {
-      IFace3 face = _faces[ i ];
+      IFace3 face = faces[ i ];
 
       matrixRotation.multiplyVector3( face.normal );
 
@@ -101,26 +112,26 @@ class Geometry
   void computeCentroids()
   {
     int f;
-    int fl = _faces.length;
+    int fl = faces.length;
     //TODO: face should be typed
     IFace3 face;
 
     for ( f = 0; f < fl; f ++ ) 
     {
-      face = _faces[ f ];
+      face = faces[ f ];
       face.centroid.setValues( 0, 0, 0 );
 
       if ( face is Face3 ) {
-        face.centroid.addSelf( _vertices[ face.a ].position );
-        face.centroid.addSelf( _vertices[ face.b ].position );
-        face.centroid.addSelf( _vertices[ face.c ].position );
+        face.centroid.addSelf( vertices[ face.a ] );
+        face.centroid.addSelf( vertices[ face.b ] );
+        face.centroid.addSelf( vertices[ face.c ] );
         face.centroid.divideScalar( 3 );
       } else if ( face is Face4 ) {
         Face4 face4 = face;
-        face4.centroid.addSelf( _vertices[ face4.a ].position );
-        face4.centroid.addSelf( _vertices[ face4.b ].position );
-        face4.centroid.addSelf( _vertices[ face4.c ].position );
-        face4.centroid.addSelf( _vertices[ face4.d ].position );
+        face4.centroid.addSelf( vertices[ face4.a ] );
+        face4.centroid.addSelf( vertices[ face4.b ] );
+        face4.centroid.addSelf( vertices[ face4.c ] );
+        face4.centroid.addSelf( vertices[ face4.d ] );
         face4.centroid.divideScalar( 4 );
       }
     }
@@ -130,7 +141,7 @@ class Geometry
   {
     num n, nl, v, vl, f;  
     Vertex vertex;
-    int fl = _faces.length;
+    int fl = faces.length;
     //TODO: face should be typed
     IFace3 face;
     Vertex vA, vB, vC;
@@ -138,14 +149,14 @@ class Geometry
 
     for ( f = 0; f < fl; f ++ )
     {
-      face = _faces[ f ];
+      face = faces[ f ];
 
-      vA = _vertices[ face.a ];
-      vB = _vertices[ face.b ];
-      vC = _vertices[ face.c ];
+      vA = vertices[ face.a ];
+      vB = vertices[ face.b ];
+      vC = vertices[ face.c ];
 
-      cb.sub( vC.position, vB.position );
-      ab.sub( vA.position, vB.position );
+      cb.sub( vC, vB );
+      ab.sub( vA, vB );
       cb.crossSelf( ab );
 
       if ( !cb.isZero() ) {
@@ -159,8 +170,8 @@ class Geometry
   void computeVertexNormals() 
   {
     int v, f; 
-    int vl = _vertices.length;
-    int fl = _faces.length;
+    int vl = vertices.length;
+    int fl = faces.length;
     //TODO: face should be typed
     IFace3 face;
     List vertices;
@@ -180,7 +191,7 @@ class Geometry
 
       for ( f = 0; f < fl; f ++ )
       {
-        face = _faces[ f ];
+        face = faces[ f ];
 
         if ( face is Face3 ) {
           face.vertexNormals = [ new Vector3(), new Vector3(), new Vector3() ];
@@ -192,7 +203,7 @@ class Geometry
 
     } else {
       vertices = __tmpVertices;
-      vl =_vertices.length;
+      vl =vertices.length;
 
       for ( v = 0; v < vl; v ++ ) {
         v3 = vertices[v];
@@ -200,10 +211,10 @@ class Geometry
       }
     }
 
-    fl = _faces.length;
+    fl = faces.length;
     for ( f = 0; f < fl; f ++ )
     {
-      face = _faces[ f ];
+      face = faces[ f ];
 
       if ( face is Face3 ) {
         vertices[ face.a ].addSelf( face.normal );
@@ -218,15 +229,15 @@ class Geometry
       }
     }
     
-    vl = _vertices.length;
+    vl = vertices.length;
     for ( v = 0; v < vl; v ++ ) {
       v3 = vertices[v];
       v3.normalize();
     }
 
-    fl = _faces.length;
+    fl = faces.length;
     for ( f = 0; f < fl; f ++ ) {
-      face = _faces[ f ];
+      face = faces[ f ];
 
       if ( face is Face3 ) {
         face.vertexNormals[ 0 ].copy( vertices[ face.a ] );
@@ -257,18 +268,18 @@ class Geometry
       
     Vector3 tmp = new Vector3(), tmp2 = new Vector3(), n = new Vector3(), t;
 
-    vl = _vertices.length;
+    vl = vertices.length;
     
     for ( v = 0; v < vl; v ++ ) {
       tan1[ v ] = new Vector3();
       tan2[ v ] = new Vector3();
     }
 
-    fl = _faces.length;
+    fl = faces.length;
     for ( f = 0; f < fl; f ++ ) 
     {
-      face = _faces[ f ];
-      UV uv = _faceVertexUvs[ 0 ][ f ]; // use UV layer 0 for tangents
+      face = faces[ f ];
+      UV uv = faceVertexUvs[ 0 ][ f ]; // use UV layer 0 for tangents
 
       if ( face is Face3 ) {
         handleTriangle( this, face.a, face.b, face.c, 0, 1, 2 );
@@ -281,10 +292,10 @@ class Geometry
 
     var faceIndex = [ 'a', 'b', 'c', 'd' ];
 
-    fl = _faces.length;
+    fl = faces.length;
     for ( f = 0; f < fl; f ++ ) 
     {
-      face = _faces[ f ];
+      face = faces[ f ];
 
       for ( i = 0; i < face.vertexNormals.length; i++ ) 
       {
@@ -339,9 +350,9 @@ class Geometry
     
     UV uvA, uvB, uvC;
     
-    vA = context.vertices[ a ].position;
-    vB = context.vertices[ b ].position;
-    vC = context.vertices[ c ].position;
+    vA = context.vertices[ a ];
+    vB = context.vertices[ b ];
+    vC = context.vertices[ c ];
 
     uvA = uv[ ua ];
     uvB = uv[ ub ];
@@ -379,24 +390,24 @@ class Geometry
 
   void computeBoundingBox()
   {
-    if ( _vertices.length > 0 )
+    if ( _boundingBox === null ) {
+      _boundingBox = new BoundingBox( min: new Vector3(), max: new Vector3() );
+    }
+    
+    if ( vertices.length > 0 )
     {
-      Vector3 position, firstPosition = _vertices[ 0 ].position;
+      Vector3 position, firstPosition = vertices[ 0 ];
 
-      if ( _boundingBox === null ) {
-        _boundingBox = { "min": firstPosition.clone(), "max": firstPosition.clone() };
-      } else {
-        _boundingBox["min"].copy( firstPosition );
-        _boundingBox["max"].copy( firstPosition );
-      }
+      _boundingBox.min.copy( firstPosition );
+      _boundingBox.max.copy( firstPosition );
 
-      Vector3 min = _boundingBox["min"],
-        max = _boundingBox["max"];
+      Vector3 min = _boundingBox.min,
+        max = _boundingBox.max;
 
-      num vl = _vertices.length;
+      num vl = vertices.length;
       for ( int v = 1; v < vl; v ++ ) 
       {
-        position = _vertices[ v ].position;
+        position = vertices[ v ];
 
         if ( position.x < min.x ) {
           min.x = position.x;
@@ -422,13 +433,13 @@ class Geometry
   void computeBoundingSphere()
   {
     num radius, maxRadius = 0;
-    int vl = _vertices.length;
+    int vl = vertices.length;
     for ( int v = 0; v < vl; v ++ ) {
-      radius = _vertices[ v ].position.length();
+      radius = vertices[ v ].length();
       if ( radius > maxRadius ) maxRadius = radius;
     }
 
-    _boundingSphere = { "radius": maxRadius };
+    _boundingSphere = new BoundingSphere(radius: maxRadius );
   }
 
   /*
@@ -448,10 +459,10 @@ class Geometry
     num precision = Math.pow( 10, precisionPoints );
     int i;
     
-    int il = _vertices.length;
+    int il = vertices.length;
     for ( i = 0; i < il; i ++ ) 
     {
-      Vector3 v = _vertices[ i ].position;
+      Vector3 v = vertices[ i ];
       
       //key = [ ThreeMath.round( v.x * precision ), ThreeMath.round( v.y * precision ), ThreeMath.round( v.z * precision ) ].join( '_' );
       
@@ -464,7 +475,7 @@ class Geometry
       if ( verticesMap[ key ] === null ) 
       {
         verticesMap[ key ] = i;
-        unique.add( _vertices[ i ] );
+        unique.add( vertices[ i ] );
         //TODO: pretty sure this is an acceptable change in syntax here:
         //changes[ i ] = unique.length - 1;
         changes.add( unique.length - 1);
@@ -476,11 +487,11 @@ class Geometry
       }
     }
 
-    il = _faces.length;
+    il = faces.length;
     // Start to patch face indices
     for( i = 0; i < il; i ++ ) 
     {
-      IFace3 face = _faces[ i ];
+      IFace3 face = faces[ i ];
 
       if ( face is Face3 ) {
         face.a = changes[ face.a ];
@@ -498,6 +509,17 @@ class Geometry
     }
     
     // Use unique set of vertices
-    _vertices = unique;
+    vertices = unique;
   }
+}
+
+class BoundingBox {
+  Vector3 min;
+  Vector3 max;
+  BoundingBox([this.min, this.max]);
+}
+
+class BoundingSphere {
+  num radius;
+  BoundingSphere([this.radius]);
 }

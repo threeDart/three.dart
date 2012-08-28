@@ -9,10 +9,9 @@
 
 class PerspectiveCamera extends Camera
 {
-  num _fov;
-  num _aspect;
-  num _near;
-  num _far;
+
+  num fov;
+  num aspect;
   
   num _fullWidth;
   num _fullHeight;
@@ -20,20 +19,10 @@ class PerspectiveCamera extends Camera
   num _y;
   num _width;
   num _height;
+
   
-  num get near() {  return _near;  }
-  num get far() {  return _far;  }
-  
-  PerspectiveCamera( fov, aspect, near, far ) : super()
+  PerspectiveCamera( [this.fov = 50, this.aspect = 1, near = 0.1, far = 2000] ) : super(near, far)
   {
-    //super
-    //THREE.Camera.call( this );
-
-    _fov = fov !== null ? fov : 50;
-    _aspect = aspect !== null ? aspect : 1;
-    _near = near !== null ? near : 0.1;
-    _far = far !== null ? far : 2000;
-
     updateProjectionMatrix();
   }
   
@@ -47,8 +36,8 @@ class PerspectiveCamera extends Camera
   {
     frameSize = frameSize !== null ? frameSize : 43.25; // 36x24mm
 
-    _fov = 2 * Math.atan( frameSize / ( focalLength * 2 ) );
-    _fov = 180 / Math.PI * _fov;
+    fov = 2 * Math.atan( frameSize / ( focalLength * 2 ) );
+    fov = 180 / Math.PI * fov;
 
     updateProjectionMatrix();
   }
@@ -108,7 +97,7 @@ class PerspectiveCamera extends Camera
     if ( _fullWidth !== null )
     {
       num aspect = _fullWidth / _fullHeight;
-      num top = Math.tan( _fov * Math.PI / 360 ) * _near;
+      num top = Math.tan( fov * Math.PI / 360 ) * near;
       num bottom = -top;
       num left = aspect * bottom;
       num right = aspect * top;
@@ -120,10 +109,10 @@ class PerspectiveCamera extends Camera
         left + ( _x + width ) * width / _fullWidth,
         top - ( _y + height ) * height / _fullHeight,
         top - _y * height / _fullHeight,
-        _near,
-        _far );
+        near,
+        far );
     } else {
-      projectionMatrix = Matrix4.makePerspective( _fov, _aspect, _near, _far );
+      projectionMatrix = Matrix4.makePerspective( fov, aspect, near, far );
     }
   }
 }

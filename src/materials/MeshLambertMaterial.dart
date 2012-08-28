@@ -36,35 +36,29 @@
 class MeshLambertMaterial extends Material implements ITextureMapMaterial
 {
   Map _parameters;
-  Color _color;
+
+  Color color;
   Color _ambient;
   bool _wrapAround;
   Vector3 _wrapRGB;
-  Texture _map;
-  Texture _lightMap;
-  Dynamic _envMap; //TODO: TextureCube?
+  Texture map;
+  Texture lightMap;
+  Dynamic envMap; //TODO: TextureCube?
   int _combine;
   num _reflectivity;
   num _refractionRatio;
   
-  bool _fog;
-  int _shading;
-  bool _wireframe;
-  num _wireframeLinewidth;
-  String _wireframeLinecap;
-  String _wireframeLinejoin;
-  bool _vertexColors;
-  bool _skinning;
-  bool _morphTargets;
+  int shading;
+  bool wireframe;
+  num wireframeLinewidth;
+  String wireframeLinecap;
+  String wireframeLinejoin;
+
+  bool skinning;
+  bool morphTargets;
   
-  Texture get map() {  return _map;  }
-  Dynamic get envMap() {  return _envMap;  }
-  Color get color() {  return _color;  }
-  bool get wireframe() {  return _wireframe;  }
-  num get wireframeLinewidth() {  return _wireframeLinewidth;  }
-  String get wireframeLinecap() {  return _wireframeLinecap;  }
-  String get wireframeLinejoin() {  return _wireframeLinejoin;  }
-  int get shading() {  return _shading;  }
+  int vertexColors;
+  bool fog;
   
   MeshLambertMaterial( Map parameters ) : super( parameters ) 
   {
@@ -72,33 +66,33 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
 
     _parameters = parameters != null ? parameters : {};
 
-    _color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
+    color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
     _ambient = parameters['ambient'] !== null ? new Color( parameters['ambient'] ) : new Color( 0x050505 );
 
     _wrapAround = parameters['wrapAround'] !== null ? parameters['wrapAround'] : false;
     _wrapRGB = new Vector3( 1, 1, 1 );
 
-    _map = parameters['map'] !== null ? parameters['map'] : null;
+    map = parameters['map'] !== null ? parameters['map'] : null;
 
-    _lightMap = parameters['lightMap'] !== null ? parameters['lightMap'] : null;
+    lightMap = parameters['lightMap'] !== null ? parameters['lightMap'] : null;
 
-    _envMap = parameters['envMap'] !== null ? parameters['envMap'] : null;
+    envMap = parameters['envMap'] !== null ? parameters['envMap'] : null;
     _combine = parameters['combine'] !== null ? parameters['combine'] : Three.MultiplyOperation;
     _reflectivity = parameters['reflectivity'] !== null ? parameters['reflectivity'] : 1;
     _refractionRatio = parameters['refractionRatio'] !== null ? parameters['refractionRatio'] : 0.98;
 
-    _fog = parameters['fog'] !== null ? parameters['fog'] : true;
+    fog = parameters['fog'] !== null ? parameters['fog'] : true;
 
-    _shading = parameters['shading'] !== null ? parameters['shading'] : Three.SmoothShading;
+    shading = parameters['shading'] !== null ? parameters['shading'] : Three.SmoothShading;
 
-    _wireframe = parameters['wireframe'] !== null ? parameters['wireframe'] : false;
-    _wireframeLinewidth = parameters['wireframeLinewidth'] !== null ? parameters['wireframeLinewidth'] : 1;
-    _wireframeLinecap = parameters['wireframeLinecap'] !== null ? parameters['wireframeLinecap'] : 'round';
-    _wireframeLinejoin = parameters['wireframeLinejoin'] !== null ? parameters['wireframeLinejoin'] : 'round';
+    wireframe = parameters['wireframe'] !== null ? parameters['wireframe'] : false;
+    wireframeLinewidth = parameters['wireframeLinewidth'] !== null ? parameters['wireframeLinewidth'] : 1;
+    wireframeLinecap = parameters['wireframeLinecap'] !== null ? parameters['wireframeLinecap'] : 'round';
+    wireframeLinejoin = parameters['wireframeLinejoin'] !== null ? parameters['wireframeLinejoin'] : 'round';
 
-    _vertexColors = parameters['vertexColors'] !== null ? parameters['vertexColors'] : false;
+    vertexColors = parameters['vertexColors'] !== null ? parameters['vertexColors'] : Three.NoColors;
 
-    _skinning = parameters['skinning'] !== null ? parameters['skinning'] : false;
-    _morphTargets = parameters['morphTargets'] !== null ? parameters['morphTargets'] : false;
+    skinning = parameters['skinning'] !== null ? parameters['skinning'] : false;
+    morphTargets = parameters['morphTargets'] !== null ? parameters['morphTargets'] : false;
   }
 }

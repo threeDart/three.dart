@@ -1,7 +1,7 @@
 #import('dart:html');
 #import('../../src/ThreeD.dart');
 
-class WebgL_Geometry_Cube  {
+class WebGL_Geometry_Cube  {
   Element container;
 
   PerspectiveCamera camera;
@@ -12,7 +12,7 @@ class WebgL_Geometry_Cube  {
   
   void run() {
     init();
-    animate();
+    animate(0);
   }
   
   void init() {
@@ -26,8 +26,10 @@ class WebgL_Geometry_Cube  {
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
     camera.position.z = 400;
 
+    scene.add(camera);
+    
     var geometry = new CubeGeometry( 200, 200, 200 );
-    var material = new MeshBasicMaterial( { map: ImageUtils.loadTexture( 'textures/crate.gif' ) });
+    var material = new MeshBasicMaterial( { "map": ImageUtils.loadTexture( 'textures/crate.gif' ) });
 
     cube = new Mesh( geometry, material);
     scene.add( cube );
@@ -40,7 +42,7 @@ class WebgL_Geometry_Cube  {
     window.on.resize.add(onWindowResize);
   }
   
-  function onWindowResize(e) {
+  onWindowResize(e) {
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();

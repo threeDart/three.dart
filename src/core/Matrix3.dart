@@ -5,18 +5,18 @@
 
 class Matrix3 
 {
-  List _m;
+  List<num> _m;
   
   get m() {  return _m;  }
   
   Matrix3()
   {
-    _m = [];
+    _m = new List<num>(9);
   }
   
   Matrix3 transpose() 
   {
-    List tmp, m = _m;
+    var tmp, m = _m;
 
     tmp = m[1]; m[1] = m[3]; m[3] = tmp;
     tmp = m[2]; m[2] = m[6]; m[6] = tmp;
@@ -41,4 +41,45 @@ class Matrix3
 
     return this;
   } 
+  
+  getInverse( Matrix4 matrix ) {
+
+    // input: THREE.Matrix4
+    // ( based on http://code.google.com/p/webgl-mjs/ )
+
+// TODO - Use Float32Array and matrix.elements;
+        var me = new List(16); 
+        matrix.flattenToArray(me); 
+        
+    var a11 =   me[10] * me[5] - me[6] * me[9];
+    var a21 = - me[10] * me[1] + me[2] * me[9];
+    var a31 =   me[6] * me[1] - me[2] * me[5];
+    var a12 = - me[10] * me[4] + me[6] * me[8];
+    var a22 =   me[10] * me[0] - me[2] * me[8];
+    var a32 = - me[6] * me[0] + me[2] * me[4];
+    var a13 =   me[9] * me[4] - me[5] * me[8];
+    var a23 = - me[9] * me[0] + me[1] * me[8];
+    var a33 =   me[5] * me[0] - me[1] * me[4];
+
+    var det = me[0] * a11 + me[1] * a12 + me[2] * a13;
+
+    // no inverse
+
+    if ( det === 0 ) {
+
+      print( "Matrix3.getInverse(): determinant == 0" );
+
+    }
+
+    var idet = 1.0 / det;
+
+    //var m = this.elements;
+
+    m[ 0 ] = idet * a11; m[ 1 ] = idet * a21; m[ 2 ] = idet * a31;
+    m[ 3 ] = idet * a12; m[ 4 ] = idet * a22; m[ 5 ] = idet * a32;
+    m[ 6 ] = idet * a13; m[ 7 ] = idet * a23; m[ 8 ] = idet * a33;
+
+    return this;
+
+  }
 }

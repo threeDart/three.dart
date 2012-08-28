@@ -27,7 +27,7 @@ class Face3 implements IFace3
   num get b() {  return _b;  }
   num get c() {  return _c;  }
   
-  Face3( num a, num b, num c,  Dynamic normal, Dynamic color, materialIndex ) 
+  Face3( num a, num b, num c,  [Dynamic normal, Dynamic color, materialIndex] ) 
   {
     _a = a;
     _b = b;

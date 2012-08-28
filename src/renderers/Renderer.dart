@@ -1,3 +1,3 @@
 abstract class Renderer {
-  void render( Scene scene, Camera camera );
+  abstract void render( Scene scene, Camera camera );
 }

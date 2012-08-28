@@ -33,31 +33,25 @@
 
 class MeshBasicMaterial extends Material implements ITextureMapMaterial
 {
-  Color _color;
-  Texture _map;
-  Texture _lightMap;
-  var _envMap; // TextureCube?
-  var _combine; // Three.Multiply?
-  num _reflectivity;
-  num _refractionRatio;
-  bool _fog;
-  int _shading;
-  bool _wireframe;
-  num _wireframeLinewidth;
-  String _wireframeLinecap, _wireframeLinejoin;
-  bool _vertexColors; //?
-  bool _skinning, _morphTargets;
+  Color color;
   
-  Texture get map() {  return _map;  }
-  Dynamic get envMap() {  return _envMap;  }
+  Texture map;
+  Texture lightMap;
+  Texture specularMap;
+  var envMap; // TextureCube?
+  var combine; // Three.Multiply?
+  num reflectivity;
+  num refractionRatio;
+
+  int shading;
+  bool wireframe;
+  num wireframeLinewidth;
+  String wireframeLinecap, wireframeLinejoin;
+
+  bool skinning, morphTargets;
   
-  Color get color() {  return _color;  }
-  set color( Color value ) { _color = value;  }
-  
-  bool get wireframe() {  return _wireframe;  }
-  num get wireframeLinewidth() {  return _wireframeLinewidth;  }
-  String get wireframeLinecap() {  return _wireframeLinecap;  }
-  String get wireframeLinejoin() {  return _wireframeLinejoin;  }
+  int vertexColors;
+  bool fog;
   
   MeshBasicMaterial( Map parameters ) : super( parameters )
   {
@@ -65,29 +59,30 @@ class MeshBasicMaterial extends Material implements ITextureMapMaterial
 
     parameters = parameters != null ? parameters : {};
 
-    _color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
+    map = parameters['map'] !== null ? parameters['map'] : null;
 
-    _map = parameters['map'] !== null ? parameters['map'] : null;
+    color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff ); //emissive
+    
+    lightMap = parameters['lightMap'] !== null ? parameters['lightMap'] : null;
+    specularMap = parameters['specularMap'] !== null ? parameters['specularMap'] : null;
+    
+    envMap = parameters['envMap'] !== null ? parameters['envMap'] : null;
+    combine = parameters['combine'] !== null ? parameters['combine'] : Three.MultiplyOperation;
+    reflectivity = parameters['reflectivity'] !== null ? parameters['reflectivity'] : 1;
+    refractionRatio = parameters['refractionRatio'] !== null ? parameters['refractionRatio'] : 0.98;
 
-    _lightMap = parameters['lightMap'] !== null ? parameters['lightMap'] : null;
+    shading = parameters['shading'] !== null ? parameters['shading'] : Three.SmoothShading;
 
-    _envMap = parameters['envMap'] !== null ? parameters['envMap'] : null;
-    _combine = parameters['combine'] !== null ? parameters['combine'] : Three.MultiplyOperation;
-    _reflectivity = parameters['reflectivity'] !== null ? parameters['reflectivity'] : 1;
-    _refractionRatio = parameters['refractionRatio'] !== null ? parameters['refractionRatio'] : 0.98;
+    vertexColors = (null != parameters['vertexColors']) ? parameters['vertexColors'] : Three.NoColors;
 
-    _fog = parameters['fog'] !== null ? parameters['fog'] : true;
+    fog = parameters['fog'] !== null ? parameters['fog'] : true;
+    
+    wireframe = parameters['wireframe'] !== null ? parameters['wireframe'] : false;
+    wireframeLinewidth = parameters['wireframeLinewidth'] !== null ? parameters['wireframeLinewidth'] : 1;
+    wireframeLinecap = parameters['wireframeLinecap'] !== null ? parameters['wireframeLinecap'] : 'round';
+    wireframeLinejoin = parameters['wireframeLinejoin'] !== null ? parameters['wireframeLinejoin'] : 'round';
 
-    _shading = parameters['shading'] !== null ? parameters['shading'] : Three.SmoothShading;
-
-    _wireframe = parameters['wireframe'] !== null ? parameters['wireframe'] : false;
-    _wireframeLinewidth = parameters['wireframeLinewidth'] !== null ? parameters['wireframeLinewidth'] : 1;
-    _wireframeLinecap = parameters['wireframeLinecap'] !== null ? parameters['wireframeLinecap'] : 'round';
-    _wireframeLinejoin = parameters['wireframeLinejoin'] !== null ? parameters['wireframeLinejoin'] : 'round';
-
-    _vertexColors = parameters['vertexColors'] !== null ? parameters['vertexColors'] : false;
-
-    _skinning = parameters['skinning'] !== null ? parameters['skinning'] : false;
-    _morphTargets = parameters['morphTargets'] !== null ? parameters['morphTargets'] : false;
+    skinning = parameters['skinning'] !== null ? parameters['skinning'] : false;
+    morphTargets = parameters['morphTargets'] !== null ? parameters['morphTargets'] : false;
   }
 }

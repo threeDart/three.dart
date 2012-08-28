@@ -9,7 +9,7 @@
 class DirectionalLight extends Light 
 {
   Vector3 _position;
-  Object3D _target;
+  Object3D target;
   num _intensity, _distance;
   bool _castShadow, _onlyShadow;
   num _shadowCameraLeft, _shadowCameraRight, _shadowCameraTop, _shadowCameraBottom;
@@ -22,12 +22,12 @@ class DirectionalLight extends Light
   
   num get intensity() {  return _intensity;  }
   
-  DirectionalLight( num hex, num intensity, num distance ) : super( hex )
+  DirectionalLight( num hex, [num intensity = 1, num distance = 0]) : super( hex )
   {
     //THREE.Light.call( this, hex );
 
     _position = new Vector3( 0, 1, 0 );
-    _target = new Object3D();
+    target = new Object3D();
 
     _intensity = ( intensity !== null ) ? intensity : 1;
     _distance = ( distance !== null ) ? distance : 0;
