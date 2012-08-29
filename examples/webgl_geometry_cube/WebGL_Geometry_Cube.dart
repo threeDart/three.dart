@@ -53,7 +53,7 @@ class WebGL_Geometry_Cube  {
 
   bool animate(int time) {
 
-    window.webkitRequestAnimationFrame( animate );
+    window.requestAnimationFrame( animate );
 
     cube.rotation.x += 0.005;
     cube.rotation.y += 0.01;

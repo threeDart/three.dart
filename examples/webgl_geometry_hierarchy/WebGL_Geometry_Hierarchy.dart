@@ -87,7 +87,7 @@ class WebGL_Geometry_Hierarchy  {
   }
   
   bool animate(int time) {
-    window.webkitRequestAnimationFrame( animate );
+    window.requestAnimationFrame( animate );
     render();
   }
   
