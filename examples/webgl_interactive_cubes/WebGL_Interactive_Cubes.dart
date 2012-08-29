@@ -12,7 +12,7 @@ class WebGL_Interactive_Cubes  {
   
   var mouseX = 0, mouseY = 0;
   
-  Object3D INTERSECTED;
+  Mesh INTERSECTED;
   
   void run() {
     init();
@@ -129,18 +129,19 @@ class WebGL_Interactive_Cubes  {
     if ( intersects.length > 0 ) {
 
       if ( INTERSECTED != intersects[ 0 ].object ) {
-
-        if ( INTERSECTED != null ) INTERSECTED.material.color.setHex( INTERSECTED["currentHex"] );
+        
+        if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
 
         INTERSECTED = intersects[ 0 ].object;
-        INTERSECTED["currentHex"] = INTERSECTED.material.color.getHex();
-        INTERSECTED.material.color.setHex( 0xff0000 );
+        MeshLambertMaterial material = INTERSECTED.material;
+        INTERSECTED["currentHex"] = material.color.getHex();
+        material.color.setHex( 0xff0000 );
 
       }
 
     } else {
 
-      if ( INTERSECTED != null ) INTERSECTED.material.color.setHex( INTERSECTED["currentHex"] );
+      if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
 
       INTERSECTED = null;
 
