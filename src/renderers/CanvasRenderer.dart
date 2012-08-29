@@ -5,7 +5,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class CanvasRenderer 
+class CanvasRenderer implements Renderer
 {
   Element domElement;
 

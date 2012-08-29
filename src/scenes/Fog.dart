@@ -8,15 +8,10 @@
 
 class Fog 
 {
-  Color _color;
-  num _near;
-  num _far;
+  Color color;
+  num near;
+  num far;
   
-  Fog( num hex, num near, num far ) 
-  {
-    _color = new Color( hex );
+  Fog( num hex, [this.near = 1, this.far = 1000] ) : color = new Color( hex );
 
-    _near = ( near !== null ) ? near : 1;
-    _far = ( far !== null ) ? far : 1000;
-  }
 }

@@ -24,17 +24,14 @@
 
 class LineBasicMaterial extends Material
 {
-  Color _color;
-  num _linewidth;
-  String _linecap;
-  String _linejoin;
-  bool _vertexColors;
-  bool _fog;
+  Color color;
+  num linewidth;
+  String linecap;
+  String linejoin;
+
+  bool fog;
+  int vertexColors;
   
-  num get linewidth() {  return _linewidth;  }
-  String get linecap() {  return _linecap;  }
-  String get linejoin() {  return _linejoin;  }
-  Color get color() {  return _color;  }
   
   LineBasicMaterial( [Map parameters] ) : super( parameters )
   {
@@ -42,14 +39,14 @@ class LineBasicMaterial extends Material
 
     parameters = parameters != null ? parameters : {};
 
-    _color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
+    color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
 
-    _linewidth = parameters['linewidth'] !== null ? parameters['linewidth'] : 1;
-    _linecap = parameters['linecap'] !== null ? parameters['linecap'] : 'round';
-    _linejoin = parameters['linejoin'] !== null ? parameters['linejoin'] : 'round';
+    linewidth = parameters['linewidth'] !== null ? parameters['linewidth'] : 1;
+    linecap = parameters['linecap'] !== null ? parameters['linecap'] : 'round';
+    linejoin = parameters['linejoin'] !== null ? parameters['linejoin'] : 'round';
 
-    _vertexColors = (null != parameters['vertexColors']) ? parameters['vertexColors'] : false;
+    vertexColors = (null != parameters['vertexColors']) ? parameters['vertexColors'] : false;
 
-    _fog = parameters['fog'] !== null ? parameters['fog'] : true;
+    fog = parameters['fog'] !== null ? parameters['fog'] : true;
   }
 }

@@ -72,7 +72,7 @@ class Frustum
     Matrix4 matrix = object.matrixWorld;
   
     Vector3 scale = __v1.setValues( matrix.getColumnX().length(), matrix.getColumnY().length(), matrix.getColumnZ().length() );
-    num radius = - object.geometry.boundingSphere['radius'] * Math.max( scale.x, Math.max( scale.y, scale.z ) );
+    num radius = - object.geometry.boundingSphere.radius * Math.max( scale.x, Math.max( scale.y, scale.z ) );
    
     for ( int i = 0; i < 6; i ++ ) 
     {

@@ -1,4 +1,5 @@
 #import('dart:html');
+#import('dart:math', prefix:'Math');
 #import('../../src/ThreeD.dart');
 
 class Canvas_Lines {
@@ -53,13 +54,14 @@ class Canvas_Lines {
     
     geometry = new Geometry();
 
+    var rnd = new Math.Random();
     for ( var i = 0; i < 100; i ++ ) {
       particle = new Particle( material );
-      particle.position.x = Math.random() * 2 - 1;
-      particle.position.y = Math.random() * 2 - 1;
-      particle.position.z = Math.random() * 2 - 1;
+      particle.position.x = rnd.nextDouble() * 2 - 1;
+      particle.position.y = rnd.nextDouble() * 2 - 1;
+      particle.position.z = rnd.nextDouble() * 2 - 1;
       particle.position.normalize();
-      particle.position.multiplyScalar( Math.random() * 10 + 450 );
+      particle.position.multiplyScalar( rnd.nextDouble() * 10 + 450 );
       particle.scale.x = particle.scale.y = 5;
       scene.add( particle );
 

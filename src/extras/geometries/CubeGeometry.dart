@@ -8,7 +8,7 @@
 
 class CubeGeometry extends Geometry
 {
-  //List _materials;
+  //List materials;
   CubeGeomSides _sides;
   num segmentsWidth;
   num segmentsHeight;
@@ -27,19 +27,19 @@ class CubeGeometry extends Geometry
     if ( materials !== null ) 
     {
       if ( materials is List ) {
-        _materials = materials;
+        this.materials = materials;
       } else {
-        _materials = [];
+        this.materials = [];
 
         for ( int i = 0; i < 6; i ++ ) {
-          _materials.add( materials );
+          this.materials.add( materials );
         }
       }
 
       mpx = 0; mnx = 1; mpy = 2; mny = 3; mpz = 4; mnz = 5;
 
     } else {
-      _materials = [];
+      this.materials = [];
     }
 
     //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
@@ -120,7 +120,7 @@ class CubeGeometry extends Geometry
         else if ( w == 'y' )   vector.y = depth;
         else if ( w == 'z' )   vector.z = depth;
         
-        vertices.add( new Vertex( vector ) );
+        vertices.add( vector );
       }
     }
 

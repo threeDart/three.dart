@@ -1,6 +1,7 @@
 #library("ThreeD");
 
 #import('dart:html');
+#import('dart:math', prefix:'Math');
 
 #source('Three.dart');
 
@@ -30,13 +31,22 @@
 #source('core/IFace3.dart');
 #source('core/IFace4.dart');
 #source('core/Rectangle.dart');
+#source('core/BufferGeometry.dart');
+#source('core/EventEmitter.dart');
 
+#source('loaders/ImageLoader.dart');
+
+#source('extras/ImageUtils.dart');
 #source('extras/geometries/CubeGeometry.dart');
 #source('extras/geometries/PlaneGeometry.dart');
+
+#source('extras/objects/LensFlare.dart');
+#source('extras/objects/ImmediateRenderObject.dart');
 
 #source('lights/AmbientLight.dart');
 #source('lights/DirectionalLight.dart');
 #source('lights/PointLight.dart');
+#source('lights/SpotLight.dart');
 #source('lights/Light.dart');
 
 #source('materials/Material.dart');
@@ -51,12 +61,17 @@
 #source('materials/ITextureMapMaterial.dart');
 #source('materials/IParticleMaterial.dart');
 #source('materials/IMaterial.dart');
+#source('materials/MeshPhongMaterial.dart');
+#source('materials/ShaderMaterial.dart');
 
 #source('objects/Bone.dart');
 #source('objects/Mesh.dart');
 #source('objects/Line.dart');
 #source('objects/Particle.dart');
+#source('objects/ParticleSystem.dart');
 #source('objects/Sprite.dart');
+#source('objects/Ribbon.dart');
+#source('objects/SkinnedMesh.dart');
 
 #source('renderers/renderables/RenderableObject.dart');
 #source('renderers/renderables/RenderableVertex.dart');
@@ -65,6 +80,11 @@
 #source('renderers/renderables/RenderableLine.dart');
 #source('renderers/renderables/RenderableParticle.dart');
 
+#source('renderers/Renderer.dart');
+#source('renderers/WebGLRenderer.dart');
+#source('renderers/WebGLRenderTarget.dart');
+#source('renderers/WebGLRenderTargetCube.dart');
+#source('renderers/WebGLShaders.dart');
 #source('renderers/CanvasRenderer.dart');
 
 #source('renderers/renderables/IRenderableObj.dart');
@@ -73,7 +93,10 @@
 
 #source('scenes/Scene.dart');
 #source('scenes/Fog.dart');
+#source('scenes/FogExp2.dart');
+
 #source('textures/Texture.dart');
+#source('textures/DataTexture.dart');
 
 #source('UVMapping.dart');
-#source('SphericalReflectionMapping.dart');
+#source('materials/Mappings.dart');

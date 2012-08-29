@@ -30,28 +30,30 @@ class ThreeMath
     return b1 + ( x - a1 ) * ( b2 - b1 ) / ( a2 - a1 );
   }
 
+  num get _randomDouble() => new Math.Random().nextDouble();
+  
   // Random float from <0, 1> with 16 bits of randomness
   // (standard Math.random() creates repetitive patterns when applied over larger space)
   num random16() 
   {
-    return ( 65280 * Math.random() + 255 * Math.random() ) / 65535;
+    return ( 65280 * _randomDouble + 255 * _randomDouble ) / 65535;
   }
 
   // Random integer from <low, high> interval
   int randInt( num low, num high )
   {
-    return (low + ( Math.random() * ( high - low + 1 ) ).floor()).toInt();
+    return (low + ( _randomDouble * ( high - low + 1 ) ).floor()).toInt();
   }
 
   // Random float from <low, high> interval
   num randFloat( num low, num high ) 
   {
-    return low + Math.random() * ( high - low );
+    return low + _randomDouble * ( high - low );
   }
 
   // Random float from <-range/2, range/2> interval
   num randFloatSpread( num range ) 
   {
-    return range * ( 0.5 - Math.random() );
+    return range * ( 0.5 - _randomDouble );
   }
 }

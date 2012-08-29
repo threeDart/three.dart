@@ -8,17 +8,12 @@
 class PointLight extends Light
 {
   Vector3 _position;
-  num _intensity, _distance;
+  num intensity, distance;
   
-  num get intensity() {  return _intensity;  }
-  num get distance() {  return _distance;  }
-  
-  PointLight( num hex, num intensity, num distance ) : super( hex )
+  PointLight( num hex, [this.intensity = 1, this.distance = 0] ) : super( hex )
   {
     //THREE.Light.call( this, hex );
 
     _position = new Vector3( 0, 0, 0 );
-    _intensity = ( intensity !== null ) ? intensity : 1;
-    _distance = ( distance !== null ) ? distance : 0;
   }
 }

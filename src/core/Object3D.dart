@@ -18,7 +18,7 @@ class Object3D
   
   String eulerOrder;
   
-  bool dynamic, doubleSided, flipSided, rotationAutoUpdate;
+  bool _dynamic, doubleSided, flipSided, rotationAutoUpdate;
   
   int renderDepth;
   
@@ -57,7 +57,7 @@ class Object3D
     eulerOrder = 'XYZ';
     scale = new Vector3( 1, 1, 1 );
 
-    dynamic = false; // when true it retains arrays so they can be updated with __dirty*
+    _dynamic = false; // when true it retains arrays so they can be updated with __dirty*
 
     doubleSided = false;
     flipSided = false;
@@ -89,6 +89,8 @@ class Object3D
     _vector = new Vector3();
   }
 
+  bool get isDynamic => _dynamic;
+  
   void translate( num distance, Vector3 axis ) 
   {
     matrix.rotateAxis( axis );
@@ -239,4 +241,17 @@ class Object3D
       children[ i ].updateMatrixWorld( force );
     }
   }
+  
+  // Quick hack to allow setting new properties (used by the renderer)
+  Map __data;
+  
+  get _data() {
+    if (__data == null) {
+      __data = {};
+    }
+    return __data;
+  }
+  
+  operator [] (String key) => _data[key];
+  operator []= (String key, value) => _data[key] = value;
 }

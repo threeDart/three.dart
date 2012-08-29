@@ -201,7 +201,31 @@ class Matrix4
     return this;
   }
 
-  Vector3 multiplyVector3( Vector3 v ) 
+  multiplyVector3Array( a ) {
+
+    var tmp = Matrix4.__v1;
+
+    int il = a.length;
+    
+    for ( var i = 0; i < il; i += 3 ) {
+
+      tmp.x = a[ i ];
+      tmp.y = a[ i + 1 ];
+      tmp.z = a[ i + 2 ];
+
+      multiplyVector3( tmp );
+
+      a[ i ]     = tmp.x;
+      a[ i + 1 ] = tmp.y;
+      a[ i + 2 ] = tmp.z;
+
+    }
+
+    return a;
+
+  }
+  
+  multiplyVector3( IVector3 v ) 
   {
     num vx = v.x, vy = v.y, vz = v.z,
     d = 1 / ( n41 * vx + n42 * vy + n43 * vz + n44 );
@@ -343,6 +367,13 @@ class Matrix4
     return flat;
   }
 
+  // TODO - Use Float32Array for storage
+  get elements() {
+    Float32Array array = new Float32Array(16);
+    flattenToArray(array);
+    return array;
+  }
+  
   List flattenToArrayOffset( List flat, int offset ) 
   {
     flat[ offset ] = n11;
@@ -512,7 +543,7 @@ class Matrix4
     return this;
   }
 
-  Matrix4 setRotationFromEuler( Vector3 v, String order ) 
+  Matrix4 setRotationFromEuler( Vector3 v, [String order = 'XYZ'] ) 
   {
     num x = v.x, y = v.y, z = v.z,
     a = Math.cos( x ), b = Math.sin( x ),

@@ -30,7 +30,7 @@ class Projector
   
   ProjectorRenderData _renderData;
   
-  Matrix4 _projScreenMatrix, _projScreenobjectMatrixWorld;
+  Matrix4 _viewProjectionMatrix, _modelViewProjectionMatrix;
   
   Frustum _frustum;
   
@@ -49,8 +49,8 @@ class Projector
     _vector3 = new Vector3();
     _vector4 = new Vector4();
 
-    _projScreenMatrix = new Matrix4();
-    _projScreenobjectMatrixWorld = new Matrix4();
+    _viewProjectionMatrix = new Matrix4();
+    _modelViewProjectionMatrix = new Matrix4();
 
     _frustum = new Frustum();
 
@@ -65,8 +65,8 @@ class Projector
   {
     camera.matrixWorldInverse.getInverse( camera.matrixWorld );
 
-    _projScreenMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
-    _projScreenMatrix.multiplyVector3( vector );
+    _viewProjectionMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
+    _viewProjectionMatrix.multiplyVector3( vector );
 
     return vector;
   }
@@ -75,8 +75,8 @@ class Projector
   {
     camera.projectionMatrixInverse.getInverse( camera.projectionMatrix );
 
-    _projScreenMatrix.multiply( camera.matrixWorld, camera.projectionMatrixInverse );
-    _projScreenMatrix.multiplyVector3( vector );
+    _viewProjectionMatrix.multiply( camera.matrixWorld, camera.projectionMatrixInverse );
+    _viewProjectionMatrix.multiplyVector3( vector );
 
     return vector;
   }
@@ -135,7 +135,7 @@ class Projector
     if ( ( object is Mesh || object is Line ) &&
     ( object.frustumCulled === false || _frustum.contains( object ) ) ) 
     {
-      _projScreenMatrix.multiplyVector3( _vector3.copy( object.position ) );
+      _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
 
       _object = getNextObjectInPool();
       _object.object = object;
@@ -145,7 +145,7 @@ class Projector
     }
     else if ( object is Sprite || object is Particle ) 
     {
-      _projScreenMatrix.multiplyVector3( _vector3.copy( object.position ) );
+      _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
 
       _object = getNextObjectInPool();
       _object.object = object;
@@ -166,13 +166,13 @@ class Projector
   }
 
   //TODO: check logic of using PerspectiveCamera here, seems odd.
-  ProjectorRenderData projectScene( Scene scene, PerspectiveCamera camera, bool sort )
+  ProjectorRenderData projectScene( Scene scene, Camera camera, bool sort )
   {
     num near = camera.near, far = camera.far;
+    bool visible = false;
     int o, ol, v, vl, f, fl, n, nl, c, cl, u, ul;
     Object3D object;
-    Matrix4 objectMatrixWorld, objectMatrixWorldRotation;
-    Material objectMaterial;
+    Matrix4 modelMatrix, rotationMatrix;
     Geometry geometry;
     List geometryMaterials;
     List<Vertex> vertices; 
@@ -184,6 +184,8 @@ class Projector
     List faceVertexNormals;
     List<List> faceVertexUvs;
     RenderableVertex v1, v2, v3, v4;
+    bool isFaceMaterial;
+    Material material;
 
     _face3Count = 0;
     _face4Count = 0;
@@ -194,18 +196,19 @@ class Projector
     //_renderData.elements.length = 0;
     _renderData.elements = [];
 
-    if ( camera.parent === null ) {
+    scene.updateMatrixWorld();
+
+    if ( camera.parent == null ) {
 //      console.warn( 'DEPRECATED: Camera hasn\'t been added to a Scene. Adding it...' );
       scene.add( camera );
+      camera.updateMatrixWorld();
     }
-
-    scene.updateMatrixWorld();
 
     camera.matrixWorldInverse.getInverse( camera.matrixWorld );
 
-    _projScreenMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
+    _viewProjectionMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
 
-    _frustum.setFromMatrix( _projScreenMatrix );
+    _frustum.setFromMatrix( _viewProjectionMatrix );
 
     _renderData = projectGraph( scene, false );
 
@@ -215,8 +218,8 @@ class Projector
     {
       object = _renderData.objects[ o ].object;
 
-      objectMatrixWorld = object.matrixWorld;
-      objectMaterial = object.material;
+      modelMatrix = object.matrixWorld;
+      material = object.material;
 
       _vertexCount = 0;
 
@@ -228,18 +231,21 @@ class Projector
         faces = geometry.faces;
         faceVertexUvs = geometry.faceVertexUvs;
 
-        objectMatrixWorldRotation = object.matrixRotationWorld.extractRotation( objectMatrixWorld );
+        rotationMatrix = object.matrixRotationWorld.extractRotation( modelMatrix );
+
+        isFaceMaterial = (object.material is MeshFaceMaterial);
+		//side = object.material.side;
 
         vl = vertices.length;
         
         for ( v = 0; v < vl; v ++ ) 
         {
           _vertex = getNextVertexInPool();
-          _vertex.positionWorld.copy( vertices[ v ].position );
+          _vertex.positionWorld.copy( vertices[ v ] );
 
-          objectMatrixWorld.multiplyVector3( _vertex.positionWorld );
+          modelMatrix.multiplyVector3( _vertex.positionWorld );
           _vertex.positionScreen.copy( _vertex.positionWorld );
-          _projScreenMatrix.multiplyVector4( _vertex.positionScreen );
+          _viewProjectionMatrix.multiplyVector4( _vertex.positionScreen );
           _vertex.positionScreen.x /= _vertex.positionScreen.w;
           _vertex.positionScreen.y /= _vertex.positionScreen.w;
 
@@ -250,6 +256,9 @@ class Projector
         for ( f = 0; f < fl; f ++ ) 
         {
           face = faces[ f ];
+          material = isFaceMaterial === true ? geometryMaterials[ face.materialIndex ] : object.material;
+
+          if ( material == null ) continue;
 
           if ( face is Face3 )
           {
@@ -302,13 +311,15 @@ class Projector
           }
           
           _face.normalWorld.copy( face.normal );
-          objectMatrixWorldRotation.multiplyVector3( _face.normalWorld );
+
+		  //if ( visible === false && ( side === Three.BackSide || side === THREE.DoubleSide ) ) _face.normalWorld.negate();
+          rotationMatrix.multiplyVector3( _face.normalWorld );
 
           _face.centroidWorld.copy( face.centroid );
-          objectMatrixWorld.multiplyVector3( _face.centroidWorld );
+          modelMatrix.multiplyVector3( _face.centroidWorld );
 
           _face.centroidScreen.copy( _face.centroidWorld );
-          _projScreenMatrix.multiplyVector3( _face.centroidScreen );
+          _viewProjectionMatrix.multiplyVector3( _face.centroidScreen );
 
           faceVertexNormals = face.vertexNormals;
 
@@ -317,7 +328,7 @@ class Projector
           {
             normal = _face.vertexNormalsWorld[ n ];
             normal.copy( faceVertexNormals[ n ] );
-            objectMatrixWorldRotation.multiplyVector3( normal );
+            rotationMatrix.multiplyVector3( normal );
           }
 
           cl = faceVertexUvs.length;
@@ -336,7 +347,7 @@ class Projector
             }
           }
 
-          _face.material = objectMaterial;
+          _face.material = material;
           _face.faceMaterial = face.materialIndex !== null ? geometryMaterials[ face.materialIndex ] : null;
 
           _face.z = _face.centroidScreen.z;
@@ -347,20 +358,20 @@ class Projector
       } 
       else if ( object is Line ) 
       {
-        _projScreenobjectMatrixWorld.multiply( _projScreenMatrix, objectMatrixWorld );
+        _modelViewProjectionMatrix.multiply( _viewProjectionMatrix, modelMatrix );
 
         vertices = object.geometry.vertices;
 
         v1 = getNextVertexInPool();
         v1.positionScreen.copy( vertices[ 0 ].position );
-        _projScreenobjectMatrixWorld.multiplyVector4( v1.positionScreen );
+        _modelViewProjectionMatrix.multiplyVector4( v1.positionScreen );
 
         vl = vertices.length;
         for ( v = 1; v < vl; v++ ) 
         {
           v1 = getNextVertexInPool();
           v1.positionScreen.copy( vertices[ v ].position );
-          _projScreenobjectMatrixWorld.multiplyVector4( v1.positionScreen );
+          _modelViewProjectionMatrix.multiplyVector4( v1.positionScreen );
 
           v2 = _vertexPool[ _vertexCount - 2 ];
 
@@ -379,7 +390,7 @@ class Projector
 
             _line.z = Math.max( _clippedVertex1PositionScreen.z, _clippedVertex2PositionScreen.z );
 
-            _line.material = objectMaterial;
+            _line.material = material;
 
             _renderData.elements.add( _line );
           }
@@ -392,12 +403,12 @@ class Projector
     {
       object = _renderData.sprites[ o ].object;
 
-      objectMatrixWorld = object.matrixWorld;
+      modelMatrix = object.matrixWorld;
 
       if ( object is Particle )
       {
-        _vector4.setValues( objectMatrixWorld.n14, objectMatrixWorld.n24, objectMatrixWorld.n34, 1 );
-        _projScreenMatrix.multiplyVector4( _vector4 );
+        _vector4.setValues( modelMatrix.n14, modelMatrix.n24, modelMatrix.n34, 1 );
+        _viewProjectionMatrix.multiplyVector4( _vector4 );
 
         _vector4.z /= _vector4.w;
 
