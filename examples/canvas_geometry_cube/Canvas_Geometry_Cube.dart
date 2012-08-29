@@ -1,4 +1,5 @@
 #import('dart:html');
+#import('dart:math', prefix:'Math');
 #import('../../src/ThreeD.dart');
 
 class Canvas_Geometry_Cube 
@@ -67,8 +68,9 @@ class Canvas_Geometry_Cube
 
     List materials = [];
 
+    var rnd = new Math.Random();
     for ( int i = 0; i < 6; i ++ ) {
-      materials.add( new MeshBasicMaterial( { 'color' : Math.random() * 0xffffff } ) );
+      materials.add( new MeshBasicMaterial( { 'color' : rnd.nextDouble() * 0xffffff } ) );
     }
 
     cube = new Mesh( new CubeGeometry( 200, 200, 200, 1, 1, 1, materials ), new MeshFaceMaterial());// { 'overdraw' : true }) );

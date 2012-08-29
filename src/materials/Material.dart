@@ -7,41 +7,67 @@
 
 class Material implements IMaterial
 {
-  String _name;
-  int _id;
-  num _opacity; 
-  int _blending, _alphaTest, _polygonOffsetFactor, _polygonOffsetUnits;
-  bool _transparent, _depthTest, _depthWrite, _polygonOffset, _overdraw;
+  String name;
+  int id;
+  int side;
   
-  num get opacity() {  return _opacity;  }
-  bool get overdraw() {  return _overdraw;  }
-  int get blending() {  return _blending;  }
+  num opacity; 
+  int blending, blendSrc, blendDst, blendEquation;
+  int alphaTest;
+  bool polygonOffset;
+  int polygonOffsetFactor, polygonOffsetUnits;
+  bool transparent, depthTest, depthWrite, overdraw;
+  bool visible;
+  
+  bool needsUpdate;
   
   Material( [Map parameters] ) 
   {
     Map _parameters = parameters != null ? parameters : {};
 
-    _name = '';
+    name = '';
 
-    _id = Three.MaterialCount ++;
+    id = Three.MaterialCount ++;
 
-    _opacity = _parameters['opacity'] !== null ? _parameters['opacity'] : 1;
-    _transparent = _parameters['transparent'] !== null ? _parameters['transparent'] : false;
+    side = _parameters['side'] !== null ? _parameters['side'] : Three.FrontSide;
+    
+    opacity = _parameters['opacity'] !== null ? _parameters['opacity'] : 1;
+    transparent = _parameters['transparent'] !== null ? _parameters['transparent'] : false;
 
-    _blending = _parameters['blending'] !== null ? _parameters['blending'].toInt() : Three.NormalBlending;
+    blending = _parameters['blending'] !== null ? _parameters['blending'].toInt() : Three.NormalBlending;
+    blendSrc = _parameters['blendSrc'] !== null ? _parameters['blendSrc'].toInt() : Three.SrcAlphaFactor;
+    blendDst = _parameters['blendDst'] !== null ? _parameters['blendDst'].toInt() : Three.OneMinusSrcAlphaFactor;
+    blendEquation = _parameters['blendEquation'] !== null ? _parameters['blendEquation'].toInt() : Three.AddEquation;
+    
+    depthTest = _parameters['depthTest'] !== null ? _parameters['depthTest'] : true;
+    depthWrite = _parameters['depthWrite'] !== null ? _parameters['depthWrite'] : true;
 
-    _depthTest = _parameters['depthTest'] !== null ? _parameters['depthTest'] : true;
-    _depthWrite = _parameters['depthWrite'] !== null ? _parameters['depthWrite'] : true;
+    polygonOffset = _parameters['polygonOffset'] !== null ? _parameters['polygonOffset'] : false;
+    polygonOffsetFactor = _parameters['polygonOffsetFactor'] !== null ? _parameters['polygonOffsetFactor'].toInt() : 0;
+    polygonOffsetUnits = _parameters['polygonOffsetUnits'] !== null ? _parameters['polygonOffsetUnits'].toInt() : 0;
 
-    _polygonOffset = _parameters['polygonOffset'] !== null ? _parameters['polygonOffset'] : false;
-    _polygonOffsetFactor = _parameters['polygonOffsetFactor'] !== null ? _parameters['polygonOffsetFactor'].toInt() : 0;
-    _polygonOffsetUnits = _parameters['polygonOffsetUnits'] !== null ? _parameters['polygonOffsetUnits'].toInt() : 0;
+    alphaTest = _parameters['alphaTest'] !== null ? _parameters['alphaTest'].toInt() : 0;
+    
+    overdraw = _parameters['overdraw'] !== null ? _parameters['overdraw'] : false; // Boolean for fixing antialiasing gaps in CanvasRenderer
 
-    _alphaTest = _parameters['alphaTest'] !== null ? _parameters['alphaTest'].toInt() : 0;
-
-    _overdraw = _parameters['overdraw'] !== null ? _parameters['overdraw'] : false; // Boolean for fixing antialiasing gaps in CanvasRenderer
-
+    visible = _parameters['visible'] !== null ? _parameters['visible'] : true;
+    
+    needsUpdate = true;
   }
+  
+  // Quick hack to allow setting new properties (used by the renderer)
+  Map __data;
+  
+  get _data() {
+    if (__data == null) {
+      __data = {};
+    }
+    return __data;
+  }
+  
+  operator [] (String key) => _data[key];
+  operator []= (String key, value) => _data[key] = value;
+  
 /*
   THREE.MaterialCount = 0;
 

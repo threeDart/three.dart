@@ -12,11 +12,15 @@ class Color
   num g;// = 1;
   num b;// = 1;
   
+  int get _rr() => (r*255).floor().toInt();
+  int get _gg() => (g*255).floor().toInt();
+  int get _bb() => (b*255).floor().toInt();
+  
   Color( [num hex] )
   {
-    r = 1;
-    g = 1;
-    b = 1;
+    r = 1.0;
+    g = 1.0;
+    b = 1.0;
     
     if ( hex is num ) setHex( hex );
     //TODO: Work out how pivotal this odd return statement is.
@@ -112,15 +116,15 @@ class Color
   Color setHex( num hex )
   {
     var h = hex.floor().toInt();    
-    r = (h&0xFF0000)>>16; 
-    g = (h&0x00FF00)>>8;
-    b = (h&0x0000FF);
+    r = ( (h&0xFF0000)>>16 ) / 255; 
+    g = ( (h&0x00FF00)>>8 ) / 255;
+    b = (h&0x0000FF) / 255;
     return this;
   }
 
   num getHex()
   {
-    num h = (r<<16)^(g<<8)^(b);
+    num h = (_rr<<16)^(_gg<<8)^(_bb);
     return h;
   }
 
@@ -130,27 +134,7 @@ class Color
     // how r,g,b is set. Something in CanvasRender is setting them to doubles
     // when they should be int's. We could add setter/getter's to handle this
     
-    int rr,bb,gg;
-    
-    if (r is double && r < 1) {
-      rr = (r*0xff).toInt();
-    } else {
-      rr = r;
-    }
-    
-    if (g is double && g < 1) {
-      gg = (g*0xff).toInt();
-    } else {
-      gg = g;
-    }
-    
-    if (b is double && b < 1) {
-      bb = (b*0xff).toInt();
-    } else {
-      bb = b;
-    }
-    
-    return 'rgb(${rr},${gg},${bb})';
+    return 'rgb(${_rr},${_gg},${_bb})';
   }
 
   Color clone() 

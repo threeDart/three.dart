@@ -10,55 +10,69 @@
 class Texture 
 {
   int _id;
-  var _image;
+  var image;
   var _mapping; //UVMapping appears to be missing..
-  int _wrapS, _wrapT, _magFilter, _minFilter, _format, _type;
-  Vector2 _offset, _repeat;
-  bool _generateMipmaps, _needsUpdate;
-  var _onUpdate;
+  int wrapS, wrapT, magFilter, minFilter, format, type, anisotropy;
+  Vector2 offset, repeat;
+  bool generateMipmaps;
+  bool premultiplyAlpha;
   
-  Vector2 get offset() {  return _offset;  }
-  Vector2 get repeat() {  return _repeat;  }
+  bool needsUpdate;
+  var onUpdate;
+  
+  bool flipY;
+  
   Dynamic get mapping() {  return _mapping;  }
   
   
   //TODO: resolve dynamic vars, find out what UVMapping is!
-  Texture( Dynamic image, Dynamic mapping, int wrapS, int wrapT, int magFilter, int minFilter, int format, int type )
+  Texture( this.image, [Dynamic mapping = null, 
+                        this.wrapS = Three.ClampToEdgeWrapping,
+                        this.wrapT = Three.ClampToEdgeWrapping,
+                        this.magFilter = Three.LinearFilter,
+                        this.minFilter = Three.LinearMipMapLinearFilter,
+                        this.format = Three.RGBAFormat,
+                        this.type = Three.UnsignedByteType,
+                        this.anisotropy = 1] )
   {
     _id = Three.TextureCount ++;
 
-    _image = image;
-
     //UVMapping _mapping = mapping !== null ? mapping : new UVMapping();
     _mapping = mapping !== null ? mapping : null;//new UVMapping();
+
+    offset = new Vector2( 0, 0 );
+    repeat = new Vector2( 1, 1 );
+
+    generateMipmaps = true;
+    premultiplyAlpha = false;
+    flipY = true;
     
-    _wrapS = wrapS !== null ? wrapS : Three.ClampToEdgeWrapping;
-    _wrapT = wrapT !== null ? wrapT : Three.ClampToEdgeWrapping;
-
-    _magFilter = magFilter !== null ? magFilter : Three.LinearFilter;
-    _minFilter = minFilter !== null ? minFilter : Three.LinearMipMapLinearFilter;
-
-    _format = format !== null ? format : Three.RGBAFormat;
-    _type = type !== null ? type : Three.UnsignedByteType;
-
-    _offset = new Vector2( 0, 0 );
-    _repeat = new Vector2( 1, 1 );
-
-    _generateMipmaps = true;
-
-    _needsUpdate = false;
-    _onUpdate = null;
+    needsUpdate = false;
+    onUpdate = null;
   }
 
   Texture clone()
   {
-    Texture clonedTexture = new Texture( _image, _mapping, _wrapS, _wrapT, _magFilter, _minFilter, _format, _type );
+    Texture clonedTexture = new Texture( image, _mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy );
 
-    clonedTexture.offset.copy( _offset );
-    clonedTexture.repeat.copy( _repeat );
+    clonedTexture.offset.copy( offset );
+    clonedTexture.repeat.copy( repeat );
 
     return clonedTexture;
   }
+  
+  // Quick hack to allow setting new properties (used by the renderer)
+  Map __data;
+  
+  get _data() {
+    if (__data == null) {
+      __data = {};
+    }
+    return __data;
+  }
+  
+  operator [] (String key) => _data[key];
+  operator []= (String key, value) => _data[key] = value;
   
 /*
   THREE.TextureCount = 0;

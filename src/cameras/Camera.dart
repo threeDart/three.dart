@@ -12,17 +12,11 @@ class Camera extends Object3D
   Matrix4 projectionMatrix;
   Matrix4 projectionMatrixInverse;
   
-  Camera() 
+  num near;
+  num far;
+  
+  Camera(this.near, this.far) : super()
   {
-//    if ( arguments.length ) 
-//    {
-       //TODO: figure out what's supposed to be happening here.. Quirk of JS inheritance?
-//      console.warn( 'DEPRECATED: Camera() is now PerspectiveCamera() or OrthographicCamera().' );
-//      return new PerspectiveCamera( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ] );
-//    }
-
-//    super();
-//    THREE.Object3D.call( this );
 
     matrixWorldInverse = new Matrix4();
 

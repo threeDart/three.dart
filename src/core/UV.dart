@@ -12,7 +12,7 @@ class UV
   num get u() {  return _u;  }
   num get v() {  return _v;  }
   
-  UV( num u, num v )
+  UV( [num u, num v] )
   {
     _u = ( u != null ) ? u : 0;
     _v = ( v != null ) ? v : 0;

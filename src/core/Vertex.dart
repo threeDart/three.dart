@@ -5,13 +5,13 @@
  * @author rob silverton / http://www.unwrong.com/ 
  */
 
-class Vertex 
-{
-  Vector3 _position;
+class Vertex extends Vector3 {
   
-  Vector3 get position() {  return _position;  }
+  Vector3 position;
   
-  Vertex( [Vector3 position] ) {
-    _position = (position != null) ? position : new Vector3();
-  }
+  Vertex( this.position ) { print('THREE.Vertex has been DEPRECATED. Use THREE.Vector3 instead.'); }
+  
+  get x() => position.x;
+  get y() => position.y;
+  get z() => position.z;
 }
