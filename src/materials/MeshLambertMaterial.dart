@@ -38,15 +38,18 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
   Map _parameters;
 
   Color color;
-  Color _ambient;
-  bool _wrapAround;
-  Vector3 _wrapRGB;
+  Color ambient;
+  Color emissive;
+  
+  bool wrapAround;
+  Vector3 wrapRGB;
   Texture map;
   Texture lightMap;
+  Texture specularMap;
   Dynamic envMap; //TODO: TextureCube?
-  int _combine;
-  num _reflectivity;
-  num _refractionRatio;
+  int combine;
+  num reflectivity;
+  num refractionRatio;
   
   int shading;
   bool wireframe;
@@ -55,7 +58,7 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
   String wireframeLinejoin;
 
   bool skinning;
-  bool morphTargets;
+  bool morphTargets, morphNormals;
   
   int vertexColors;
   bool fog;
@@ -67,19 +70,21 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
     _parameters = parameters != null ? parameters : {};
 
     color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
-    _ambient = parameters['ambient'] !== null ? new Color( parameters['ambient'] ) : new Color( 0x050505 );
-
-    _wrapAround = parameters['wrapAround'] !== null ? parameters['wrapAround'] : false;
-    _wrapRGB = new Vector3( 1, 1, 1 );
+    ambient = parameters['ambient'] !== null ? new Color( parameters['ambient'] ) : new Color( 0xffffff );
+    emissive = parameters['ambient'] !== null ? new Color( parameters['emissive'] ) : new Color( 0x000000 );
+    
+    wrapAround = parameters['wrapAround'] !== null ? parameters['wrapAround'] : false;
+    wrapRGB = new Vector3( 1, 1, 1 );
 
     map = parameters['map'] !== null ? parameters['map'] : null;
 
     lightMap = parameters['lightMap'] !== null ? parameters['lightMap'] : null;
+    specularMap = parameters['specularMap'] !== null ? parameters['specularMap'] : null;
 
     envMap = parameters['envMap'] !== null ? parameters['envMap'] : null;
-    _combine = parameters['combine'] !== null ? parameters['combine'] : Three.MultiplyOperation;
-    _reflectivity = parameters['reflectivity'] !== null ? parameters['reflectivity'] : 1;
-    _refractionRatio = parameters['refractionRatio'] !== null ? parameters['refractionRatio'] : 0.98;
+    combine = parameters['combine'] !== null ? parameters['combine'] : Three.MultiplyOperation;
+    reflectivity = parameters['reflectivity'] !== null ? parameters['reflectivity'] : 1;
+    refractionRatio = parameters['refractionRatio'] !== null ? parameters['refractionRatio'] : 0.98;
 
     fog = parameters['fog'] !== null ? parameters['fog'] : true;
 
@@ -94,5 +99,6 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
 
     skinning = parameters['skinning'] !== null ? parameters['skinning'] : false;
     morphTargets = parameters['morphTargets'] !== null ? parameters['morphTargets'] : false;
+    morphNormals = parameters['morphNormals'] !== null ? parameters['morphNormals'] : false;
   }
 }

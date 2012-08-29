@@ -1,6 +1,6 @@
 class BufferGeometry {
 
-	int id = Three.GeometryCount ++;
+	int id;
 
 	// attributes
 	Map attributes;

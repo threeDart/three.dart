@@ -181,7 +181,7 @@ class Ray
       intersects.addAll(intersectObject( objects[ i ] ));
     }
 
-    intersects.sort( function ( a, b ) { return a.distance - b.distance; } );
+    intersects.sort( ( a, b ) => a.distance.compareTo(b.distance) );
 
     return intersects;
   }

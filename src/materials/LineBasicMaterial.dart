@@ -29,7 +29,8 @@ class LineBasicMaterial extends Material
   String linecap;
   String linejoin;
 
-  bool fog, vertexColors;
+  bool fog;
+  int vertexColors;
   
   
   LineBasicMaterial( [Map parameters] ) : super( parameters )

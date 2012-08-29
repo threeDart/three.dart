@@ -82,4 +82,8 @@ class Matrix3
     return this;
 
   }
+  
+  // TODO - Use Float32Array for storage
+  get elements() => new Float32Array.fromList(_m);
+
 }

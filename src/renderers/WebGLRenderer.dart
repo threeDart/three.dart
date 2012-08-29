@@ -62,8 +62,8 @@ class WebGLRenderer implements Renderer {
 
 	/** Internal properties **/
 
-	List _programs = [];
-	int _programs_counter = 0;
+	List _programs;
+	int _programs_counter;
 
 	// internal state cache
 	var _currentProgram = null,
@@ -111,6 +111,7 @@ class WebGLRenderer implements Renderer {
   // light arrays cache
   Vector3 _direction;
 
+  Map _lights;
   bool _lightsNeedUpdate;
 
   // GL Extensions
@@ -229,19 +230,22 @@ class WebGLRenderer implements Renderer {
   // light arrays cache
 
   _direction = new Vector3(),
-
+  
   _lightsNeedUpdate = true
-
-  /*
-  _lights = {
-
-    ambient: [ 0, 0, 0 ],
-    directional: { length: 0, colors: new Array(), positions: new Array() },
-    point: { length: 0, colors: new Array(), positions: new Array(), distances: new Array() },
-    spot: { length: 0, colors: new Array(), positions: new Array(), distances: new Array(), directions: new Array(), angles: new Array(), exponents: new Array() }
-
-  };*/ {
+  
+  {
   		  
+	  _lights = {
+
+	    "ambient": [ 0, 0, 0 ],
+	    "directional": { "length": 0, "colors": [], "positions": [] },
+	    "point": { "length": 0, "colors": [], "positions": [], "distances": [] },
+	    "spot": { "length": 0, "colors": [], "positions": [], "distances": [], "directions": [], "angles": [], "exponents": [] }
+
+	  };
+  		 
+	  
+	  
     if (canvas == null) {
         canvas = new CanvasElement();
     }
@@ -279,11 +283,11 @@ class WebGLRenderer implements Renderer {
   	
   }
 
-  Element get domElement => canvas;
+  Element get domElement() => canvas;
   
 	// API
 
-	get context => _gl;
+	get context() => _gl;
 
 
 	setSize( width, height ) {
@@ -441,9 +445,9 @@ class WebGLRenderer implements Renderer {
 
 	deallocateMaterial( material ) {
 
-		var program = material.program;
-
-		if ( ! program ) return;
+		Program program = material.program;
+    
+		if ( program == null ) return;
 
 		material.program = null;
 
@@ -451,54 +455,17 @@ class WebGLRenderer implements Renderer {
 		// assumed there is only single copy of any program in the _programs list
 		// (that's how it's constructed)
 
-		var i, il, programInfo;
-		var deleteProgram = false;
+		program.usedTimes --;
 
-		il = _programs.length;
-
-		for ( i = 0; i < il; i ++ ) {
-
-			programInfo = _programs[ i ];
-
-			if ( programInfo.program === program ) {
-
-				programInfo.usedTimes --;
-
-				if ( programInfo.usedTimes === 0 ) {
-
-					deleteProgram = true;
-
-				}
-
-				break;
-
-			}
-
-		}
+    var deleteProgram = ( program.usedTimes == 0 );
 
 		if ( deleteProgram ) {
 
-			// avoid using array.splice, this is costlier than creating new array from scratch
+			// -avoid using array.splice, this is costlier than creating new array from scratch
 
-			var newPrograms = [];
+			_programs.removeRange(_programs.indexOf(program), 1);
 
-			il = _programs.length;
-
-			for ( i = 0; i < il; i ++ ) {
-
-				programInfo = _programs[ i ];
-
-				if ( programInfo.program !== program ) {
-
-					newPrograms.add( programInfo );
-
-				}
-
-			}
-
-			_programs = newPrograms;
-
-			_gl.deleteProgram( program );
+			_gl.deleteProgram( program.glProgram );
 
 			info.memory.programs --;
 
@@ -3786,9 +3753,9 @@ class WebGLRenderer implements Renderer {
 
 	// Sorting
 
-	painterSort ( a, b ) => b.z - a.z;
+	painterSort ( a, b ) => (b.z - a.z).toInt();
 
-	numericalSort ( a, b ) => b[ 1 ] - a[ 1 ];
+	numericalSort ( a, b ) => (b[ 1 ] - a[ 1 ]).toInt();
 
 
 	// Rendering
@@ -4960,7 +4927,7 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				refreshUniformsLights( m_uniforms, lights );
+				refreshUniformsLights( m_uniforms, _lights );
 
 			}
 
@@ -5243,23 +5210,23 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsLights ( uniforms, lights ) {
+	refreshUniformsLights ( Map<String, Uniform> uniforms, Map lights ) {
 
-		uniforms["ambientLightColor"].value = lights.ambient;
+		uniforms["ambientLightColor"].value = lights["ambient"];
 
-		uniforms["directionalLightColor"].value = lights.directional.colors;
-		uniforms["directionalLightDirection"].value = lights.directional.positions;
+		uniforms["directionalLightColor"].value = lights["directional"]["colors"];
+		uniforms["directionalLightDirection"].value = lights["directional"]["positions"];
 
-		uniforms["pointLightColor"].value = lights.point.colors;
-		uniforms["pointLightPosition"].value = lights.point.positions;
-		uniforms["pointLightDistance"].value = lights.point.distances;
+		uniforms["pointLightColor"].value = lights["point"]["colors"];
+		uniforms["pointLightPosition"].value = lights["point"]["positions"];
+		uniforms["pointLightDistance"].value = lights["point"]["distances"];
 
-		uniforms["spotLightColor"].value = lights.spot.colors;
-		uniforms["spotLightPosition"].value = lights.spot.positions;
-		uniforms["spotLightDistance"].value = lights.spot.distances;
-		uniforms["spotLightDirection"].value = lights.spot.directions;
-		uniforms["spotLightAngle"].value = lights.spot.angles;
-		uniforms["spotLightExponent"].value = lights.spot.exponents;
+		uniforms["spotLightColor"].value = lights["spot"]["colors"];
+		uniforms["spotLightPosition"].value = lights["spot"]["positions"];
+		uniforms["spotLightDistance"].value = lights["spot"]["distances"];
+		uniforms["spotLightDirection"].value = lights["spot"]["directions"];
+		uniforms["spotLightAngle"].value = lights["spot"]["angles"];
+		uniforms["spotLightExponent"].value = lights["spot"]["exponents"];
 
 	}
 
@@ -5361,8 +5328,8 @@ class WebGLRenderer implements Renderer {
 				_gl.uniform1fv( location, value );
 
 			} else if ( type === "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
-
-				_gl.uniform3fv( location, value );
+        
+				_gl.uniform3fv( location, (value is List) ? new Float32Array.fromList(value) : value );
 
 			} else if ( type === "v2v" ) { // array of THREE.Vector2
 
@@ -5520,47 +5487,52 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setupLights ( program, lights ) {
+	setupLights ( Program program, List<Light> lights ) {
 
 		var l, ll, light, n,
 		r = 0, g = 0, b = 0,
 		color, position, intensity, distance,
 
-		zlights = lights,
+		zlights = _lights;
 
-		dcolors = zlights.directional.colors,
-		dpositions = zlights.directional.positions,
+		List dcolors = zlights["directional"]["colors"],
+		     dpositions = zlights["directional"]["positions"],
+		     
+		     pcolors = zlights["point"]["colors"],
+		     ppositions = zlights["point"]["positions"],
+      	 pdistances = zlights["point"]["distances"],
+      
+      	 scolors = zlights["spot"]["colors"],
+      	 spositions = zlights["spot"]["positions"],
+      	 sdistances = zlights["spot"]["distances"],
+      	 sdirections = zlights["spot"]["directions"],
+      	 sangles = zlights["spot"]["angles"],
+      	 sexponents = zlights["spot"]["exponents"];
 
-		pcolors = zlights.point.colors,
-		ppositions = zlights.point.positions,
-		pdistances = zlights.point.distances,
-
-		scolors = zlights.spot.colors,
-		spositions = zlights.spot.positions,
-		sdistances = zlights.spot.distances,
-		sdirections = zlights.spot.directions,
-		sangles = zlights.spot.angles,
-		sexponents = zlights.spot.exponents,
-
-		dlength = 0,
-		plength = 0,
-		slength = 0,
-
-		doffset = 0,
-		poffset = 0,
-		soffset = 0;
+		var dlength = 0,
+    		plength = 0,
+    		slength = 0,
+    
+    		doffset = 0,
+    		poffset = 0,
+    		soffset = 0;
 
 		ll = lights.length;
 		for ( l = 0; l < ll; l ++ ) {
 
 			light = lights[ l ];
 
-			if ( light.onlyShadow || ! light.visible ) continue;
+			// TODO - Setup proper interfaces for Light to avoid type checks
+			if ( (((light is DirectionalLight) || (light is SpotLight)) && light.dynamic.onlyShadow) || 
+			    ! light.visible ) continue;
 
 			color = light.color;
-			intensity = light.intensity;
-			distance = light.distance;
-
+			
+			if ( (light is DirectionalLight) || (light is SpotLight) || (light is PointLight)) {
+  			intensity = light.dynamic.intensity;
+  			distance = light.dynamic.distance;
+			}
+			
 			if ( light is AmbientLight ) {
 
 				if ( gammaInput ) {
@@ -5581,6 +5553,10 @@ class WebGLRenderer implements Renderer {
 
 				doffset = dlength * 3;
 
+				// Grow the lists
+				dcolors.length = doffset + 3;
+				dpositions.length = doffset + 3;
+				
 				if ( gammaInput ) {
 
 					dcolors[ doffset ]     = color.r * color.r * intensity * intensity;
@@ -5609,6 +5585,10 @@ class WebGLRenderer implements Renderer {
 
 				poffset = plength * 3;
 
+        // Grow the lists
+				pcolors.length = poffset + 3;
+				ppositions.length = poffset + 3;
+				
 				if ( gammaInput ) {
 
 					pcolors[ poffset ]     = color.r * color.r * intensity * intensity;
@@ -5637,6 +5617,12 @@ class WebGLRenderer implements Renderer {
 
 				soffset = slength * 3;
 
+        // Grow the lists
+				scolors.length = soffset + 3;
+				spositions.length = soffset + 3;
+				sdirections.length = soffset + 3;
+				sdistances.length = slength + 1;
+				
 				if ( gammaInput ) {
 
 					scolors[ soffset ]     = color.r * color.r * intensity * intensity;
@@ -5683,13 +5669,13 @@ class WebGLRenderer implements Renderer {
 		ll = pcolors.length; for ( l = plength * 3; l < ll; l ++ ) pcolors[ l ] = 0.0;
 		ll = scolors.length; for ( l = slength * 3; l < ll; l ++ ) scolors[ l ] = 0.0;
 
-		zlights.directional.length = dlength;
-		zlights.point.length = plength;
-		zlights.spot.length = slength;
+		zlights["directional"]["length"] = dlength;
+		zlights["point"]["length"] = plength;
+		zlights["spot"]["length"] = slength;
 
-		zlights.ambient[ 0 ] = r;
-		zlights.ambient[ 1 ] = g;
-		zlights.ambient[ 2 ] = b;
+		zlights["ambient"][ 0 ] = r;
+		zlights["ambient"][ 1 ] = g;
+		zlights["ambient"][ 2 ] = b;
 
 	}
 
@@ -6000,15 +5986,15 @@ class WebGLRenderer implements Renderer {
 		pl = _programs.length;
 		for ( p = 0; p < pl; p ++ ) {
 
-			var programInfo = _programs[ p ];
+			Program program = _programs[ p ];
 
-			if ( programInfo.code === code ) {
+			if ( program.code === code ) {
 
 				// console.log( "Code already compiled." /*: \n\n" + code*/ );
 
-				programInfo.usedTimes ++;
+			  program.usedTimes ++;
 
-				return programInfo.program;
+				return program;
 
 			}
 
@@ -6809,7 +6795,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	allocateLights ( lights ) {
+	allocateLights ( List<Light> lights ) {
 
 		var l, ll, light, dirLights, pointLights, spotLights, maxDirLights, maxPointLights, maxSpotLights;
 
@@ -6820,7 +6806,8 @@ class WebGLRenderer implements Renderer {
 
 			light = lights[ l ];
 
-			if ( light.onlyShadow ) continue;
+			if ( (( light is DirectionalLight ) || ( light is SpotLight )) &&
+			    light.dynamic.onlyShadow ) continue;
 
 			if ( light is DirectionalLight ) dirLights ++;
 			if ( light is PointLight ) pointLights ++;
@@ -6878,7 +6865,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-		} catch ( error ) {
+		} catch ( var error ) {
 
 			print( error );
 
@@ -6977,7 +6964,7 @@ class WebGLObject {
 	WebGLMaterial opaque, transparent;
 	bool render;
 	var z;
-	WebGLObject([this.object, this.opaque, this.transparent, this.buffer, this.render = true]);
+	WebGLObject([this.object, this.opaque, this.transparent, this.buffer, this.render = true, this.z = 0]);
 }
 
 class GeometryBuffer {
@@ -7035,6 +7022,9 @@ class WebGLMaterial { // implements Material {
   
   num numSupportedMorphTargets, numSupportedMorphNormals;
   
+  // Used by ShadowMapPlugin
+  bool _shadowPass;
+  
   WebGLMaterial._internal(Material material) : _material = material;
   
   factory WebGLMaterial(Material material) {
@@ -7085,6 +7075,8 @@ class WebGLMaterial { // implements Material {
   // TODO - Define proper interfaces to remove use of Dynamic
   int get vertexColors() => _hasVertexColors ? _material.dynamic.vertexColors : Three.NoColors;
   get color() => _material.dynamic.color;
+  get ambient() => _material.dynamic.ambient;
+  get emissive() => _material.dynamic.emissive;
   
   get lights() => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
   
@@ -7104,7 +7096,7 @@ class WebGLMaterial { // implements Material {
   get envMap() => _hasEnvMap ? _material.dynamic.envMap : null;
   get lightMap() => _hasLightMap ? _material.dynamic.lightMap : null;
   get bumpMap() => isMeshPhongMaterial ? (_material as MeshPhongMaterial).bumpMap : null;
-  get specularMap() => _hasLightMap ? _material.dynamic.specularMap : null;
+  get specularMap() => _hasSpecularMap ? _material.dynamic.specularMap : null;
 
   get wireframe() => _material.dynamic.wireframe;
   get reflectivity() => _material.dynamic.reflectivity;
@@ -7124,6 +7116,8 @@ class WebGLMaterial { // implements Material {
   bool get isParticleBasicMaterial() => _material is ParticleBasicMaterial;
   
   // TODO - Use this to identify proper interfaces
+  bool get _hasAmbient() => isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasEmissive() => isMeshLambertMaterial || isMeshPhongMaterial;
   bool get _hasWrapAround() => isMeshLambertMaterial || isMeshPhongMaterial;
   
   bool get _hasLightMap() => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
@@ -7162,6 +7156,8 @@ class WebGLCamera { // implements Camera {
     return camera["__webglCamera"];
   }
   
+  get near() => _camera.near;
+  get far() => _camera.far;
   get parent() => _camera.parent;
   get matrixWorld() => _camera.matrixWorld;
   get matrixWorldInverse() => _camera.matrixWorldInverse;
