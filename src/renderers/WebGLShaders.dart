@@ -1704,6 +1704,83 @@ var __ShaderLib;
 get ShaderLib()  {
   if (__ShaderLib == null) {
     __ShaderLib = {
+
+'depth': {
+
+    'uniforms': {
+
+      "mNear": new Uniform( type: "f", value: 1.0 ),
+      "mFar" :  new Uniform( type: "f", value: 2000.0 ),
+      "opacity" :  new Uniform( type: "f", value: 1.0 )
+
+    },
+
+    'vertexShader': Strings.join([
+
+      "void main() {",
+
+        "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
+
+      "}"
+
+    ], "\n"),
+
+    'fragmentShader': Strings.join([
+
+      "uniform float mNear;",
+      "uniform float mFar;",
+      "uniform float opacity;",
+
+      "void main() {",
+
+        "float depth = gl_FragCoord.z / gl_FragCoord.w;",
+        "float color = 1.0 - smoothstep( mNear, mFar, depth );",
+        "gl_FragColor = vec4( vec3( color ), opacity );",
+
+      "}"
+
+    ], "\n")
+
+  },
+
+'normal': {
+
+    'uniforms': {
+
+      "opacity" : new Uniform( type: "f", value: 1.0 )
+
+    },
+
+    'vertexShader': Strings.join([
+
+      "varying vec3 vNormal;",
+
+      "void main() {",
+
+        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+        "vNormal = normalMatrix * normal;",
+
+        "gl_Position = projectionMatrix * mvPosition;",
+
+      "}"
+
+    ], "\n"),
+
+    'fragmentShader': Strings.join([
+
+      "uniform float opacity;",
+      "varying vec3 vNormal;",
+
+      "void main() {",
+
+        "gl_FragColor = vec4( 0.5 * normalize( vNormal ) + 0.5, opacity );",
+
+      "}"
+
+    ], "\n")
+
+  },
+
 'basic': {
   'uniforms': UniformsUtils.merge( [UniformsLib[ "common" ],
                                     UniformsLib[ "fog" ],
@@ -1770,7 +1847,366 @@ get ShaderLib()  {
 
                     ],"\n")
 
-}
+  },
+
+  'lambert': {
+
+    'uniforms': UniformsUtils.merge( [
+
+      UniformsLib[ "common" ],
+      UniformsLib[ "fog" ],
+      UniformsLib[ "lights" ],
+      UniformsLib[ "shadowmap" ],
+
+      {
+        "ambient"  : new Uniform( type: "c", value: new Color( 0xffffff ) ),
+        "emissive" : new Uniform( type: "c", value: new Color( 0x000000 ) ),
+        "wrapRGB"  : new Uniform( type: "v3", value: new Vector3( 1, 1, 1 ) )
+      }
+
+    ] ),
+
+    'vertexShader': Strings.join([
+
+      "varying vec3 vLightFront;",
+
+      "#ifdef DOUBLE_SIDED",
+
+        "varying vec3 vLightBack;",
+
+      "#endif",
+
+      ShaderChunk[ "map_pars_vertex" ],
+      ShaderChunk[ "lightmap_pars_vertex" ],
+      ShaderChunk[ "envmap_pars_vertex" ],
+      ShaderChunk[ "lights_lambert_pars_vertex" ],
+      ShaderChunk[ "color_pars_vertex" ],
+      ShaderChunk[ "skinning_pars_vertex" ],
+      ShaderChunk[ "morphtarget_pars_vertex" ],
+      ShaderChunk[ "shadowmap_pars_vertex" ],
+
+      "void main() {",
+
+        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+
+        ShaderChunk[ "map_vertex" ],
+        ShaderChunk[ "lightmap_vertex" ],
+        ShaderChunk[ "envmap_vertex" ],
+        ShaderChunk[ "color_vertex" ],
+
+        ShaderChunk[ "morphnormal_vertex" ],
+        ShaderChunk[ "skinbase_vertex" ],
+        ShaderChunk[ "skinnormal_vertex" ],
+        ShaderChunk[ "defaultnormal_vertex" ],
+
+        "#ifndef USE_ENVMAP",
+
+          "vec4 mPosition = modelMatrix * vec4( position, 1.0 );",
+
+        "#endif",
+
+        ShaderChunk[ "lights_lambert_vertex" ],
+        ShaderChunk[ "skinning_vertex" ],
+        ShaderChunk[ "morphtarget_vertex" ],
+        ShaderChunk[ "default_vertex" ],
+        ShaderChunk[ "shadowmap_vertex" ],
+
+      "}"
+
+    ], "\n"),
+
+    'fragmentShader': Strings.join([
+
+      "uniform float opacity;",
+
+      "varying vec3 vLightFront;",
+
+      "#ifdef DOUBLE_SIDED",
+
+        "varying vec3 vLightBack;",
+
+      "#endif",
+
+      ShaderChunk[ "color_pars_fragment" ],
+      ShaderChunk[ "map_pars_fragment" ],
+      ShaderChunk[ "lightmap_pars_fragment" ],
+      ShaderChunk[ "envmap_pars_fragment" ],
+      ShaderChunk[ "fog_pars_fragment" ],
+      ShaderChunk[ "shadowmap_pars_fragment" ],
+      ShaderChunk[ "specularmap_pars_fragment" ],
+
+      "void main() {",
+
+        "gl_FragColor = vec4( vec3 ( 1.0 ), opacity );",
+
+        ShaderChunk[ "map_fragment" ],
+        ShaderChunk[ "alphatest_fragment" ],
+        ShaderChunk[ "specularmap_fragment" ],
+
+        "#ifdef DOUBLE_SIDED",
+
+          //"float isFront = float( gl_FrontFacing );",
+          //"gl_FragColor.xyz *= isFront * vLightFront + ( 1.0 - isFront ) * vLightBack;",
+
+          "if ( gl_FrontFacing )",
+            "gl_FragColor.xyz *= vLightFront;",
+          "else",
+            "gl_FragColor.xyz *= vLightBack;",
+
+        "#else",
+
+          "gl_FragColor.xyz *= vLightFront;",
+
+        "#endif",
+
+        ShaderChunk[ "lightmap_fragment" ],
+        ShaderChunk[ "color_fragment" ],
+        ShaderChunk[ "envmap_fragment" ],
+        ShaderChunk[ "shadowmap_fragment" ],
+
+        ShaderChunk[ "linear_to_gamma_fragment" ],
+
+        ShaderChunk[ "fog_fragment" ],
+
+      "}"
+
+    ], "\n")
+
+  },
+
+  'phong': {
+
+    'uniforms': UniformsUtils.merge( [
+
+      UniformsLib[ "common" ],
+      UniformsLib[ "bump" ],
+      UniformsLib[ "fog" ],
+      UniformsLib[ "lights" ],
+      UniformsLib[ "shadowmap" ],
+
+      {
+        "ambient"  : new Uniform( type: "c", value: new Color( 0xffffff ) ),
+        "emissive" : new Uniform( type: "c", value: new Color( 0x000000 ) ),
+        "specular" : new Uniform( type: "c", value: new Color( 0x111111 ) ),
+        "shininess": new Uniform( type: "f", value: 30 ),
+        "wrapRGB"  : new Uniform( type: "v3", value: new Vector3( 1, 1, 1 ) )
+      }
+
+    ] ),
+
+    'vertexShader': Strings.join([
+
+      "varying vec3 vViewPosition;",
+      "varying vec3 vNormal;",
+
+      ShaderChunk[ "map_pars_vertex" ],
+      ShaderChunk[ "lightmap_pars_vertex" ],
+      ShaderChunk[ "envmap_pars_vertex" ],
+      ShaderChunk[ "lights_phong_pars_vertex" ],
+      ShaderChunk[ "color_pars_vertex" ],
+      ShaderChunk[ "skinning_pars_vertex" ],
+      ShaderChunk[ "morphtarget_pars_vertex" ],
+      ShaderChunk[ "shadowmap_pars_vertex" ],
+
+      "void main() {",
+
+        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+
+        ShaderChunk[ "map_vertex" ],
+        ShaderChunk[ "lightmap_vertex" ],
+        ShaderChunk[ "envmap_vertex" ],
+        ShaderChunk[ "color_vertex" ],
+
+        "#ifndef USE_ENVMAP",
+
+          "vec4 mPosition = modelMatrix * vec4( position, 1.0 );",
+
+        "#endif",
+
+        "vViewPosition = -mvPosition.xyz;",
+
+        ShaderChunk[ "morphnormal_vertex" ],
+        ShaderChunk[ "skinbase_vertex" ],
+        ShaderChunk[ "skinnormal_vertex" ],
+        ShaderChunk[ "defaultnormal_vertex" ],
+
+        "vNormal = transformedNormal;",
+
+        ShaderChunk[ "lights_phong_vertex" ],
+        ShaderChunk[ "skinning_vertex" ],
+        ShaderChunk[ "morphtarget_vertex" ],
+        ShaderChunk[ "default_vertex" ],
+        ShaderChunk[ "shadowmap_vertex" ],
+
+      "}"
+
+    ], "\n"),
+
+    'fragmentShader': Strings.join([
+
+      "uniform vec3 diffuse;",
+      "uniform float opacity;",
+
+      "uniform vec3 ambient;",
+      "uniform vec3 emissive;",
+      "uniform vec3 specular;",
+      "uniform float shininess;",
+
+      ShaderChunk[ "color_pars_fragment" ],
+      ShaderChunk[ "map_pars_fragment" ],
+      ShaderChunk[ "lightmap_pars_fragment" ],
+      ShaderChunk[ "envmap_pars_fragment" ],
+      ShaderChunk[ "fog_pars_fragment" ],
+      ShaderChunk[ "lights_phong_pars_fragment" ],
+      ShaderChunk[ "shadowmap_pars_fragment" ],
+      ShaderChunk[ "bumpmap_pars_fragment" ],
+      ShaderChunk[ "specularmap_pars_fragment" ],
+
+      "void main() {",
+
+        "gl_FragColor = vec4( vec3 ( 1.0 ), opacity );",
+
+        ShaderChunk[ "map_fragment" ],
+        ShaderChunk[ "alphatest_fragment" ],
+        ShaderChunk[ "specularmap_fragment" ],
+
+        ShaderChunk[ "lights_phong_fragment" ],
+
+        ShaderChunk[ "lightmap_fragment" ],
+        ShaderChunk[ "color_fragment" ],
+        ShaderChunk[ "envmap_fragment" ],
+        ShaderChunk[ "shadowmap_fragment" ],
+
+        ShaderChunk[ "linear_to_gamma_fragment" ],
+
+        ShaderChunk[ "fog_fragment" ],
+
+      "}"
+
+    ], "\n")
+
+  },
+
+  'particle_basic': {
+
+    'uniforms':  UniformsUtils.merge( [
+
+      UniformsLib[ "particle" ],
+      UniformsLib[ "shadowmap" ]
+
+    ] ),
+
+    'vertexShader': Strings.join([
+
+      "uniform float size;",
+      "uniform float scale;",
+
+      ShaderChunk[ "color_pars_vertex" ],
+      ShaderChunk[ "shadowmap_pars_vertex" ],
+
+      "void main() {",
+
+        ShaderChunk[ "color_vertex" ],
+
+        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+
+        "#ifdef USE_SIZEATTENUATION",
+          "gl_PointSize = size * ( scale / length( mvPosition.xyz ) );",
+        "#else",
+          "gl_PointSize = size;",
+        "#endif",
+
+        "gl_Position = projectionMatrix * mvPosition;",
+
+        ShaderChunk[ "shadowmap_vertex" ],
+
+      "}"
+
+    ], "\n"),
+
+    'fragmentShader': Strings.join([
+
+      "uniform vec3 psColor;",
+      "uniform float opacity;",
+
+      ShaderChunk[ "color_pars_fragment" ],
+      ShaderChunk[ "map_particle_pars_fragment" ],
+      ShaderChunk[ "fog_pars_fragment" ],
+      ShaderChunk[ "shadowmap_pars_fragment" ],
+
+      "void main() {",
+
+        "gl_FragColor = vec4( psColor, opacity );",
+
+        ShaderChunk[ "map_particle_fragment" ],
+        ShaderChunk[ "alphatest_fragment" ],
+        ShaderChunk[ "color_fragment" ],
+        ShaderChunk[ "shadowmap_fragment" ],
+        ShaderChunk[ "fog_fragment" ],
+
+      "}"
+
+    ], "\n")
+
+  },
+
+  // Depth encoding into RGBA texture
+  //  based on SpiderGL shadow map example
+  //    http://spidergl.org/example.php?id=6
+  //  originally from
+  //    http://www.gamedev.net/topic/442138-packing-a-float-into-a-a8r8g8b8-texture-shader/page__whichpage__1%25EF%25BF%25BD
+  //  see also here:
+  //    http://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
+
+  'depthRGBA': {
+
+    'uniforms': {},
+
+    'vertexShader': Strings.join([
+
+      ShaderChunk[ "skinning_pars_vertex" ],
+      ShaderChunk[ "morphtarget_pars_vertex" ],
+
+      "void main() {",
+
+        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+
+        ShaderChunk[ "skinbase_vertex" ],
+        ShaderChunk[ "skinning_vertex" ],
+        ShaderChunk[ "morphtarget_vertex" ],
+        ShaderChunk[ "default_vertex" ],
+
+      "}"
+
+    ], "\n"),
+
+    'fragmentShader': Strings.join([
+
+      "vec4 pack_depth( const in float depth ) {",
+
+        "const vec4 bit_shift = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );",
+        "const vec4 bit_mask  = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );",
+        "vec4 res = fract( depth * bit_shift );",
+        "res -= res.xxyz * bit_mask;",
+        "return res;",
+
+      "}",
+
+      "void main() {",
+
+        "gl_FragData[ 0 ] = pack_depth( gl_FragCoord.z );",
+
+        //"gl_FragData[ 0 ] = pack_depth( gl_FragCoord.z / gl_FragCoord.w );",
+        //"float z = ( ( gl_FragCoord.z / gl_FragCoord.w ) - 3.0 ) / ( 4000.0 - 3.0 );",
+        //"gl_FragData[ 0 ] = pack_depth( z );",
+        //"gl_FragData[ 0 ] = vec4( z, z, z, 1.0 );",
+
+      "}"
+
+    ], "\n")
+
+  }
+
     };
   }
   return __ShaderLib;
