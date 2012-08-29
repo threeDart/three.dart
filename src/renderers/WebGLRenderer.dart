@@ -125,6 +125,8 @@ class WebGLRenderer implements Renderer {
 
   var shadowMapPlugin;
   
+  num maxVertexTextures, maxTextureSize, maxCubemapSize;
+      
   WebGLRenderer( [	this.canvas, 
   					this.precision = PRECISION_HIGH, 
   					this.alpha = true,
@@ -257,13 +259,13 @@ class WebGLRenderer implements Renderer {
   
   	// GPU capabilities
   
-  	num _maxVertexTextures = _gl.getParameter( WebGLRenderingContext.MAX_VERTEX_TEXTURE_IMAGE_UNITS ),
-	  	  _maxTextureSize = _gl.getParameter( WebGLRenderingContext.MAX_TEXTURE_SIZE ),
-	  	  _maxCubemapSize = _gl.getParameter( WebGLRenderingContext.MAX_CUBE_MAP_TEXTURE_SIZE );
+  	maxVertexTextures = _gl.getParameter( WebGLRenderingContext.MAX_VERTEX_TEXTURE_IMAGE_UNITS );
+	  maxTextureSize = _gl.getParameter( WebGLRenderingContext.MAX_TEXTURE_SIZE );
+	  maxCubemapSize = _gl.getParameter( WebGLRenderingContext.MAX_CUBE_MAP_TEXTURE_SIZE );
   
   	maxAnisotropy = (_glExtensionTextureFilterAnisotropic != null) ? _gl.getParameter( EXTTextureFilterAnisotropic.MAX_TEXTURE_MAX_ANISOTROPY_EXT ) : 0;
   
-  	supportsVertexTextures = ( _maxVertexTextures > 0 );
+  	supportsVertexTextures = ( maxVertexTextures > 0 );
   	supportsBoneTextures = supportsVertexTextures && (_glExtensionTextureFloat != null);
   
   
@@ -413,25 +415,25 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	deallocateRenderTarget( Dynamic renderTarget ) {
+	deallocateRenderTarget( WebGLRenderTarget renderTarget ) {
 
-		if ( (renderTarget == null) || ! renderTarget["__webglTexture"] ) return;
+		if ( (renderTarget == null) || (renderTarget.__webglTexture == null) ) return;
 
-		_gl.deleteTexture( renderTarget["__webglTexture"] );
+		_gl.deleteTexture( renderTarget.__webglTexture );
 
 		if ( renderTarget is WebGLRenderTargetCube ) {
 
 			for ( var i = 0; i < 6; i ++ ) {
 
-				_gl.deleteFramebuffer( renderTarget["__webglFramebuffer"][ i ] );
-				_gl.deleteRenderbuffer( renderTarget["__webglRenderbuffer"][ i ] );
+				_gl.deleteFramebuffer( renderTarget.__webglFramebuffer[ i ] );
+				_gl.deleteRenderbuffer( renderTarget.__webglRenderbuffer[ i ] );
 
 			}
 
 		} else {
 
-			_gl.deleteFramebuffer( renderTarget["__webglFramebuffer"] );
-			_gl.deleteRenderbuffer( renderTarget["__webglRenderbuffer"] );
+			_gl.deleteFramebuffer( renderTarget.__webglFramebuffer );
+			_gl.deleteRenderbuffer( renderTarget.__webglRenderbuffer );
 
 		}
 
@@ -904,26 +906,27 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				if( !attribute["__webglInitialized"] || attribute.createUniqueBuffers ) {
+				if( ( attribute["__webglInitialized"] == null ||  attribute["__webglInitialized"] == false) || 
+				    ( attribute["createUniqueBuffers"] != null && attribute["createUniqueBuffers"]) ) {
 
 					attribute["__webglInitialized"] = true;
 
 					var size = 1;		// "f" and "i"
 
-					if( attribute.type === "v2" ) size = 2;
-					else if( attribute.type === "v3" ) size = 3;
-					else if( attribute.type === "v4" ) size = 4;
-					else if( attribute.type === "c"  ) size = 3;
+					if( attribute["type"] === "v2" ) size = 2;
+					else if( attribute["type"] === "v3" ) size = 3;
+					else if( attribute["type"] === "v4" ) size = 4;
+					else if( attribute["type"] === "c"  ) size = 3;
 
-					attribute.size = size;
+					attribute["size"] = size;
 
-					attribute.array = new Float32Array( nvertices * size );
+					attribute["array"] = new Float32Array( nvertices * size );
 
-					attribute.buffer = _gl.createBuffer();
-					attribute.buffer.belongsToAttribute = a;
+					attribute["buffer"] = _gl.createBuffer();
+					attribute["buffer"].belongsToAttribute = a; // TODO
 
 					originalAttribute.needsUpdate = true;
-					attribute.__original = originalAttribute;
+					attribute["__original"] = originalAttribute;
 
 				}
 
@@ -1109,7 +1112,7 @@ class WebGLRenderer implements Renderer {
 
 					customAttribute = customAttributes[ i ];
 
-					if ( ! ( customAttribute.boundTo === undefined || customAttribute.boundTo === "vertices" ) ) continue;
+					if ( ! ( customAttribute.boundTo == null || customAttribute.boundTo === "vertices" ) ) continue;
 
 					offset = 0;
 
@@ -2468,7 +2471,7 @@ class WebGLRenderer implements Renderer {
 				face = obj_faces[ fi ];
 				uv2 = obj_uvs2[ fi ];
 
-				if ( uv2 === undefined ) continue;
+				if ( uv2 == null ) continue;
 
 				for ( i = 0; i < 4; i ++ ) {
 
@@ -3698,7 +3701,8 @@ class WebGLRenderer implements Renderer {
 
 			// find the most influencing
 
-			var influence, activeInfluenceIndices = [];
+			var influence;
+			List<List> activeInfluenceIndices = [];
 			var influences = object.morphTargetInfluences;
 			var i, il = influences.length;
 
@@ -3733,7 +3737,7 @@ class WebGLRenderer implements Renderer {
 
 			while ( m < material.numSupportedMorphTargets ) {
 
-				if ( activeInfluenceIndices[ m ] ) {
+				if ( activeInfluenceIndices[ m ] != null && !activeInfluenceIndices[ m ].isEmpty()) {
 
 					influenceIndex = activeInfluenceIndices[ m ][ 0 ];
 
@@ -4025,7 +4029,7 @@ class WebGLRenderer implements Renderer {
 
 	renderObjects (  List<WebGLObject>renderList, 
 	                 bool reverse, String materialType, 
-	                 Camera camera, 
+	                 WebGLCamera camera, 
 	                 List<Light> lights, 
 	                 fog, 
 	                 useBlending, 
@@ -4230,8 +4234,9 @@ class WebGLRenderer implements Renderer {
 	sortFacesByMaterial ( geometry ) {
 
 		var f, fl, face, materialIndex, vertices,
-			materialHash, groupHash,
-			hash_map = {};
+			materialHash, groupHash;
+		
+		Map<String, Map> hash_map = {};
 
 		var numMorphTargets = geometry.morphTargets.length;
 		var numMorphNormals = geometry.morphNormals.length;
@@ -4264,7 +4269,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.geometryGroups[ groupHash ].vertices + vertices > 65535 ) {
 
-				hash_map[ materialHash ].counter += 1;
+				hash_map[ materialHash ]["counter"] += 1;
 				groupHash = "${hash_map[ materialHash ]["hash"]}_${hash_map[ materialHash ]["counter"]}";
 
 				if ( geometry.geometryGroups[ groupHash ] == null ) {
@@ -4513,7 +4518,9 @@ class WebGLRenderer implements Renderer {
 	updateObject ( object ) {
 
 		var geometry = object.geometry,
-			geometryGroup, customAttributesDirty, material;
+			geometryGroup, customAttributesDirty;
+		
+		WebGLMaterial material;
 
 		if ( object is Mesh ) {
 
@@ -4833,7 +4840,7 @@ class WebGLRenderer implements Renderer {
 
 			for ( i = 0; i < maxMorphTargets; i ++ ) {
 
-				id = base + i;
+				id = "$base$i";
 
 				if ( attributes[ id ] >= 0 ) {
 
@@ -4854,7 +4861,7 @@ class WebGLRenderer implements Renderer {
 
 			for ( i = 0; i < maxMorphNormals; i ++ ) {
 
-				id = base + i;
+				id = "$base$i";
 
 				if ( attributes[ id ] >= 0 ) {
 
@@ -5171,7 +5178,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsFog ( uniforms, fog ) {
+	refreshUniformsFog ( uniforms, Fog fog ) {
 
 		uniforms["fogColor"].value = fog.color;
 
@@ -6443,7 +6450,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setCubeTexture ( texture, slot ) {
+	setCubeTexture ( Texture texture, slot ) {
 
 		if ( texture.image.length === 6 ) {
 
@@ -6458,7 +6465,7 @@ class WebGLRenderer implements Renderer {
 				_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
 				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image["__webglTextureCube"] );
 
-				_gl.pixelStorei( WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, texture.flipY );
+				_gl.pixelStorei( WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
 
 				var cubeImage = [];
 
@@ -6477,7 +6484,7 @@ class WebGLRenderer implements Renderer {
 				}
 
 				var image = cubeImage[ 0 ],
-				isImagePowerOfTwo = isPowerOfTwo( image.width ) && isPowerOfTwo( image.height ),
+				isImagePowerOfTwo = isPowerOfTwo( image.dynamic.width ) && isPowerOfTwo( image.dynamic.height ),
 				glFormat = paramThreeToGL( texture.format ),
 				glType = paramThreeToGL( texture.type );
 
@@ -6554,16 +6561,16 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setRenderTarget ( renderTarget ) {
+	setRenderTarget ( WebGLRenderTarget renderTarget ) {
 
 		var isCube = ( renderTarget is WebGLRenderTargetCube );
 
-		if ( (renderTarget != null ) && ( renderTarget["__webglFramebuffer"] == null) ) {
+		if ( (renderTarget != null ) && ( renderTarget.__webglFramebuffer == null) ) {
 
 			if ( renderTarget.depthBuffer == null ) renderTarget.depthBuffer = true;
 			if ( renderTarget.stencilBuffer == null ) renderTarget.stencilBuffer = true;
 
-			renderTarget["__webglTexture"] = _gl.createTexture();
+			renderTarget.__webglTexture = _gl.createTexture();
 
 			// Setup texture, create render and frame buffers
 
@@ -6573,21 +6580,21 @@ class WebGLRenderer implements Renderer {
 
 			if ( isCube ) {
 
-				renderTarget["__webglFramebuffer"] = [];
-				renderTarget["__webglRenderbuffer"] = [];
+				renderTarget.__webglFramebuffer = [];
+				renderTarget.__webglRenderbuffer = [];
 
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, renderTarget["__webglTexture"] );
+				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, renderTarget.__webglTexture );
 				setTextureParameters( WebGLRenderingContext.TEXTURE_CUBE_MAP, renderTarget, isTargetPowerOfTwo );
 
 				for ( var i = 0; i < 6; i ++ ) {
 
-					renderTarget["__webglFramebuffer"][ i ] = _gl.createFramebuffer();
-					renderTarget["__webglRenderbuffer"][ i ] = _gl.createRenderbuffer();
+					renderTarget.__webglFramebuffer[ i ] = _gl.createFramebuffer();
+					renderTarget.__webglRenderbuffer[ i ] = _gl.createRenderbuffer();
 
 					_gl.texImage2D( WebGLRenderingContext.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
 
-					setupFrameBuffer( renderTarget["__webglFramebuffer"][ i ], renderTarget, WebGLRenderingContext.TEXTURE_CUBE_MAP_POSITIVE_X + i );
-					setupRenderBuffer( renderTarget["__webglRenderbuffer"][ i ], renderTarget );
+					setupFrameBuffer( renderTarget.__webglFramebuffer[ i ], renderTarget, WebGLRenderingContext.TEXTURE_CUBE_MAP_POSITIVE_X + i );
+					setupRenderBuffer( renderTarget.__webglRenderbuffer[ i ], renderTarget );
 
 				}
 
@@ -6595,16 +6602,16 @@ class WebGLRenderer implements Renderer {
 
 			} else {
 
-				renderTarget["__webglFramebuffer"] = _gl.createFramebuffer();
-				renderTarget["__webglRenderbuffer"] = _gl.createRenderbuffer();
+				renderTarget.__webglFramebuffer = _gl.createFramebuffer();
+				renderTarget.__webglRenderbuffer = _gl.createRenderbuffer();
 
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, renderTarget["__webglTexture"] );
+				_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, renderTarget.__webglTexture );
 				setTextureParameters( WebGLRenderingContext.TEXTURE_2D, renderTarget, isTargetPowerOfTwo );
 
 				_gl.texImage2D( WebGLRenderingContext.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
 
-				setupFrameBuffer( renderTarget["__webglFramebuffer"], renderTarget, WebGLRenderingContext.TEXTURE_2D );
-				setupRenderBuffer( renderTarget["__webglRenderbuffer"], renderTarget );
+				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, WebGLRenderingContext.TEXTURE_2D );
+				setupRenderBuffer( renderTarget.__webglRenderbuffer, renderTarget );
 
 				if ( isTargetPowerOfTwo ) _gl.generateMipmap( WebGLRenderingContext.TEXTURE_2D );
 
@@ -6633,11 +6640,11 @@ class WebGLRenderer implements Renderer {
 
 			if ( isCube ) {
 
-				framebuffer = renderTarget["__webglFramebuffer"][ renderTarget.activeCubeFace ];
+				framebuffer = renderTarget.__webglFramebuffer[ (renderTarget as WebGLRenderTargetCube).activeCubeFace ];
 
 			} else {
 
-				framebuffer = renderTarget["__webglFramebuffer"];
+				framebuffer = renderTarget.__webglFramebuffer;
 
 			}
 
@@ -6779,8 +6786,8 @@ class WebGLRenderer implements Renderer {
 			//  - limit here is ANGLE's 254 max uniform vectors
 			//    (up to 54 should be safe)
 
-			var nVertexUniforms = _gl.getParameter( WebGLRenderingContext.MAX_VERTEX_UNIFORM_VECTORS );
-			var nVertexMatrices = ( ( nVertexUniforms - 20 ) / 4 ).floor().toInt();
+			int nVertexUniforms = _gl.getParameter( WebGLRenderingContext.MAX_VERTEX_UNIFORM_VECTORS );
+			int nVertexMatrices = ( ( nVertexUniforms - 20 ) / 4 ).floor().toInt();
 
 			var maxBones = nVertexMatrices;
 
@@ -6790,7 +6797,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( maxBones < object.bones.length ) {
 
-					print( "WebGLRenderer: too many bones - " + object.bones.length + ", this GPU supports just " + maxBones + " (try OpenGL instead of ANGLE)" );
+					print( "WebGLRenderer: too many bones - ${object.bones.length} , this GPU supports just $maxBones  (try OpenGL instead of ANGLE)" );
 
 				}
 
@@ -7017,7 +7024,7 @@ class GeometryBuffer {
   GeometryBuffer([this.faces3, this.faces4, this.materialIndex = 0, this.vertices = 0, this.numMorphTargets = 0, this.numMorphNormals = 0]);
 }
 
-class WebGLMaterial implements Material {
+class WebGLMaterial { // implements Material {
   Material _material;
   
   var program;
@@ -7025,6 +7032,8 @@ class WebGLMaterial implements Material {
   var _vertexShader;
   var _uniforms;
   var uniformsList;
+  
+  num numSupportedMorphTargets, numSupportedMorphNormals;
   
   WebGLMaterial._internal(Material material) : _material = material;
   
@@ -7069,7 +7078,6 @@ class WebGLMaterial implements Material {
   bool get polygonOffset() => _material.polygonOffset; 
   bool get overdraw() => _material.overdraw;
   bool get visible() => _material.visible;
-  
   bool get needsUpdate() => _material.needsUpdate;
   set needsUpdate(bool flag) => _material.needsUpdate = flag;
   
@@ -7126,7 +7134,7 @@ class WebGLMaterial implements Material {
   bool get isParticleBasicMaterial() => _material is ParticleBasicMaterial;
 }
 
-class WebGLCamera implements Camera {
+class WebGLCamera { // implements Camera {
   
   Camera _camera;
   Float32Array _viewMatrixArray,

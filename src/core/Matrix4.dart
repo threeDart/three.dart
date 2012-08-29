@@ -205,7 +205,7 @@ class Matrix4
 
     var tmp = Matrix4.__v1;
 
-    il = a.length;
+    int il = a.length;
     
     for ( var i = 0; i < il; i += 3 ) {
 
@@ -225,7 +225,7 @@ class Matrix4
 
   }
   
-  IVector3 multiplyVector3( IVector3 v ) 
+  multiplyVector3( IVector3 v ) 
   {
     num vx = v.x, vy = v.y, vz = v.z,
     d = 1 / ( n41 * vx + n42 * vy + n43 * vz + n44 );

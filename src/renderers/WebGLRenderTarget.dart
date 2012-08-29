@@ -19,7 +19,9 @@ class WebGLRenderTarget {
 
 	bool generateMipmaps;
 	
-	var __webglTexture;
+	WebGLTexture __webglTexture;
+	var __webglFramebuffer; // List<WebGLFramebuffer> or WebGLFramebuffer
+	var __webglRenderbuffer; // List<WebGLRenderbuffer> or WebGLRenderbuffer
 	
 	WebGLRenderTarget ( this.width, this.height, 
 						[ this.wrapS = Three.ClampToEdgeWrapping,

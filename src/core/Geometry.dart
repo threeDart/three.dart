@@ -169,8 +169,7 @@ class Geometry
 
   void computeVertexNormals() 
   {
-    int v, f; 
-    int vl = vertices.length;
+    int v, f, vl; 
     int fl = faces.length;
     //TODO: face should be typed
     IFace3 face;
@@ -185,6 +184,7 @@ class Geometry
       __tmpVertices = new List( vertices.length );
       vertices = __tmpVertices;
 
+      vl = vertices.length;
       for ( v = 0; v < vl; v ++ ) {
         vertices[ v ] = new Vector3();
       }
@@ -334,7 +334,7 @@ class Geometry
 
     }
 
-    _hasTangents = true;
+    hasTangents = true;
 
   }
   
@@ -511,6 +511,19 @@ class Geometry
     // Use unique set of vertices
     vertices = unique;
   }
+  
+  // Quick hack to allow setting new properties (used by the renderer)
+  Map __data;
+  
+  get _data() {
+    if (__data == null) {
+      __data = {};
+    }
+    return __data;
+  }
+  
+  operator [] (String key) => _data[key];
+  operator []= (String key, value) => _data[key] = value;
 }
 
 class BoundingBox {

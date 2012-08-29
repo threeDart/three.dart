@@ -3,7 +3,7 @@ class ParticleSystem extends Object3D {
   Material material;
   bool sortParticles;
 
-  ParticleSystem(this.geometry, [this.material = null]) : sortParticles = false, frustumCulled = false, super() {
+  ParticleSystem(this.geometry, [this.material = null]) : sortParticles = false, super() {
   	if (material == null) {
   		material = new ParticleBasicMaterial( { "color": new Math.Random().nextDouble() * 0xffffff } );
   	}
