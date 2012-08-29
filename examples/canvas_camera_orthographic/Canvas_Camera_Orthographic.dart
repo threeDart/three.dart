@@ -127,7 +127,7 @@ class Canvas_Camera_Orthographic {
   
   bool animate(int time)
   {
-    window.webkitRequestAnimationFrame(animate);
+    window.requestAnimationFrame(animate);
 
     render();
   }
