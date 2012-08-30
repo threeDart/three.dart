@@ -20,11 +20,17 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 
 <a href="http://robsilv.github.com/three.dart/examples/canvas_geometry_cube/Canvas_Geometry_Cube.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_geometry_cube/thumb_small.png" width="104" height="78" alt="canvas_geometry_cube"></a>
-<a href="http://robsilv.github.com/three.dart/examples/canvas_geometry_heirarchy/Canvas_Geometry_Heirarchy.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_geometry_heirarchy/thumb_small.png" width="104" height="78" alt="canvas_geometry_heirarchy"></a>
+<a href="http://robsilv.github.com/three.dart/examples/canvas_geometry_hierarchy/Canvas_Geometry_Hierarchy.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_geometry_hierarchy/thumb_small.png" width="104" height="78" alt="canvas_geometry_hierarchy"></a>
 <a href="http://robsilv.github.com/three.dart/examples/canvas_interactive_cubes/Canvas_Interactive_Cubes.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_interactive_cubes/thumb_small.png" width="104" height="78" alt="canvas_interactive_cubes"></a>
 <a href="http://robsilv.github.com/three.dart/examples/canvas_lines/Canvas_Lines.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_lines/thumb_small.png"></a>
+<a href="http://robsilv.github.com/three.dart/examples/canvas_camera_orthographic/Canvas_Camera_Orthographic.html"><img src="http://robsilv.github.com/three.dart/examples/canvas_camera_orthographic/thumb_small.png"></a>
 
 ### Change Log ###
+
+2012 08 30 - **v 0.2.1**
+
+* Orthographic camera added ([nelsonsilva](https://github.com/nelsonsilva))
+  * Canvas_Camera_Orthographic
 
 2012 08 29 - **v 0.2.0**
 
