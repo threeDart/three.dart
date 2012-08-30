@@ -15,7 +15,7 @@ class CanvasRenderer implements Renderer
   Color _clearColor;
   num _clearOpacity;
   
-  PerspectiveCamera _camera;
+  Camera _camera;
   
   CanvasElement _canvas;
   CanvasRenderingContext2D _context;
