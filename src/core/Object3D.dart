@@ -50,7 +50,7 @@ class Object3D
     parent = null;
     children = [];
 
-    up = new Vector3();
+    up = new Vector3( 0, 1, 0);
 
     position = new Vector3();
     rotation = new Vector3();

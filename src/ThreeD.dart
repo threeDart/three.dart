@@ -7,6 +7,7 @@
 
 #source('cameras/Camera.dart');
 #source('cameras/PerspectiveCamera.dart');
+#source('cameras/OrthographicCamera.dart');
 
 #source('core/Vector3.dart');
 #source('core/Matrix3.dart');
