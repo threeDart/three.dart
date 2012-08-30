@@ -5,55 +5,45 @@
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
-//TODO: not extending a Face3 class for now in case we run into typing problems (i.e. "if (obj is Face3)" logic)
-class Face4 implements IFace4
-{
-  num _a;
-  num _b;
-  num _c;
-  num _d;
-  
-  Vector3 _normal;
-  List _vertexNormals, _vertexColors, _vertexTangents;
-  Color _color;
-  int _materialIndex;
-  Vector3 _centroid;
-  
-  Vector3 get centroid() {  return _centroid;  }
-  Vector3 get normal() {  return _normal;  }
-  List get vertexNormals() {  return _vertexNormals;  }
-  List get vertexTangents() {  return _vertexTangents;  }
-  
-  set materialIndex( int value ) {  _materialIndex = value;  }
-  int get materialIndex() {  return _materialIndex;  }
-  
-  num get a() {  return _a;  }
-  set a( num value ) {  _a = value;  }
-  num get b() {  return _b;  }
-  set b( num value ) {  _b = value;  }
-  num get c() {  return _c;  }
-  set c( num value ) {  _c = value;  }
-  num get d() {  return _d;  }
-  set d( num value ) {  _d = value;  }
-  
-  Face4( num a, num b, num c, num d, [Dynamic normal, Dynamic color, int materialIndex] ) 
-  {
-    _a = a;
-    _b = b;
-    _c = c;
-    _d = d;
 
-    _normal = normal is Vector3 ? normal : new Vector3();
-    _vertexNormals = normal is List ? normal : [ ];
+class Face4 implements IFace4 {
+  num a, b, c, d;
+  Vector3 normal;
+  List vertexNormals, vertexColors, vertexTangents;
+  Color color;
+  int materialIndex;
+  Vector3 centroid;
+  
+  /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
+  Face4( this.a, this.b, this.c, this.d, [normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
+    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
+    vertexNormals = normalOrVertexNormals is List ? normal : [];
 
-    _color = color is Color ? color : new Color();
-    _vertexColors = color is List ? color : [];
+    color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
+    vertexColors = colorOrVertexColors is List ? color : [];
+    
+    vertexTangents = [];
 
-    _vertexTangents = [];
+    materialIndex = materialIndex;
 
-    _materialIndex = materialIndex;
-
-    _centroid = new Vector3();
+    centroid = new Vector3();
   }
 
+  clone() {
+
+    var face = new Face4( a, b, c, d );
+
+    face.normal.copy( this.normal );
+    face.color.copy( this.color );
+    face.centroid.copy( this.centroid );
+
+    face.materialIndex = this.materialIndex;
+
+    face.vertexNormals = vertexNormals.map((Vector3 v) => v.clone());
+    face.vertexColors = vertexColors.map((Vector3 v) => v.clone());
+    face.vertexTangents = vertexTangents.map((Vector3 v) => v.clone());
+
+    return face;
+
+  }
 }

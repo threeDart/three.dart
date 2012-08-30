@@ -7,8 +7,7 @@
  * @author rob silverton / http://www.unwrong.com/ 
  */
 
-class Projector 
-{
+class Projector {
   List<RenderableObject>_objectPool;
   List<RenderableVertex> _vertexPool;
   List<RenderableFace4> _face4Pool;
@@ -35,34 +34,28 @@ class Projector
   Frustum _frustum;
   
   Projector()
-  {
-    _objectPool = [];
-    _vertexPool = [];
-    _face3Pool = [];
-    _face4Pool = [];
-    _linePool = [];
-    _particlePool = [];
-
-    //_renderData = { "objects": [], "sprites": [], "lights": [], "elements": [] };
-    _renderData = new ProjectorRenderData();
-
-    _vector3 = new Vector3();
-    _vector4 = new Vector4();
-
-    _viewProjectionMatrix = new Matrix4();
-    _modelViewProjectionMatrix = new Matrix4();
-
-    _frustum = new Frustum();
-
-    _clippedVertex1PositionScreen = new Vector4();
-    _clippedVertex2PositionScreen = new Vector4();
-
-    //TODO: this seems to be redundant?
-    var _face3VertexNormals;
-  }
+      : _objectPool = [],
+        _vertexPool = [],
+        _face3Pool = [],
+        _face4Pool = [],
+        _linePool = [],
+        _particlePool = [],
+    
+        //_renderData = { "objects": [], "sprites": [], "lights": [], "elements": [] };
+        _renderData = new ProjectorRenderData(),
+    
+        _vector3 = new Vector3(),
+        _vector4 = new Vector4(),
+    
+        _viewProjectionMatrix = new Matrix4(),
+        _modelViewProjectionMatrix = new Matrix4(),
+    
+        _frustum = new Frustum(),
+    
+        _clippedVertex1PositionScreen = new Vector4(),
+        _clippedVertex2PositionScreen = new Vector4();
   
-  Vector3 projectVector( Vector3 vector, Camera camera )
-  {
+  Vector3 projectVector( Vector3 vector, Camera camera ) {
     camera.matrixWorldInverse.getInverse( camera.matrixWorld );
 
     _viewProjectionMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
@@ -71,8 +64,7 @@ class Projector
     return vector;
   }
 
-  Vector3 unprojectVector( Vector3 vector, Camera camera )
-  {
+  Vector3 unprojectVector( Vector3 vector, Camera camera ) {
     camera.projectionMatrixInverse.getInverse( camera.projectionMatrix );
 
     _viewProjectionMatrix.multiply( camera.matrixWorld, camera.projectionMatrixInverse );
@@ -87,8 +79,7 @@ class Projector
    * @vector - THREE.Vector3 that represents 2D point
    * @camera - THREE.Camera
    */
-  Ray pickingRay( Vector3 vector, Camera camera ) 
-  {
+  Ray pickingRay( Vector3 vector, Camera camera ) {
     Vector3 end, ray, t;
 
     // set two vectors with opposing z values
@@ -104,18 +95,49 @@ class Projector
     return new Ray( vector, end );
   }
 
-  ProjectorRenderData projectGraph( Object3D root, bool sort )
-  {
+  ProjectorRenderData projectGraph( Object3D root, bool sort ) {
     _objectCount = 0;
     
-    //TODO: does this clear the Lists in Dart?
-//    _renderData.objects.length = 0;
-//    _renderData.sprites.length = 0;
-//    _renderData.lights.length = 0;
-      _renderData.objects = [];
-      _renderData.sprites = [];
-      _renderData.lights = [];
+    _renderData.objects = [];
+    _renderData.sprites = [];
+    _renderData.lights = [];
 
+    var projectObject;
+    
+    projectObject = ( Object3D object ) {
+      if ( !object.visible ) return null;
+      
+      if ( ( object is Mesh || object is Line ) &&
+          ( object.frustumCulled === false || _frustum.contains( object ) ) ) {
+        
+        _vector3.copy( object.matrixWorld.getPosition() );
+        _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
+
+        _object = getNextObjectInPool();
+        _object.object = object;
+        _object.z = _vector3.z;
+
+        _renderData.objects.add( _object );
+        
+      } else if ( object is Sprite || object is Particle ) {
+        
+        _vector3.copy( object.matrixWorld.getPosition() );
+        _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
+
+        _object = getNextObjectInPool();
+        _object.object = object;
+        _object.z = _vector3.z;
+
+        _renderData.sprites.add( _object );
+        
+      } else if ( object is Light ) {
+        _renderData.lights.add( object );
+      }
+      
+     object.children.forEach(projectObject);
+      
+    };
+    
     projectObject( root );
 
     //TODO: assuming this is a form of 'if' statement.
@@ -128,46 +150,8 @@ class Projector
     return _renderData;
   }
   
-  ProjectorRenderData projectObject( Object3D object ) 
-  {
-    if ( object.visible === false ) return null;
-    
-    if ( ( object is Mesh || object is Line ) &&
-    ( object.frustumCulled === false || _frustum.contains( object ) ) ) 
-    {
-      _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
 
-      _object = getNextObjectInPool();
-      _object.object = object;
-      _object.z = _vector3.z;
-
-      _renderData.objects.add( _object );
-    }
-    else if ( object is Sprite || object is Particle ) 
-    {
-      _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
-
-      _object = getNextObjectInPool();
-      _object.object = object;
-      _object.z = _vector3.z;
-
-      _renderData.sprites.add( _object );
-    } 
-    else if ( object is Light ) 
-    {
-      _renderData.lights.add( object );
-    }
-    
-    int cl = object.children.length;
-    for ( int c = 0; c < cl; c ++ ) {
-      Object3D obj = object.children[ c ];
-      projectObject( object.children[ c ] );
-    }
-  }
-
-  //TODO: check logic of using PerspectiveCamera here, seems odd.
-  ProjectorRenderData projectScene( Scene scene, Camera camera, bool sort )
-  {
+  ProjectorRenderData projectScene( Scene scene, Camera camera, bool sort ) {
     num near = camera.near, far = camera.far;
     bool visible = false;
     int o, ol, v, vl, f, fl, n, nl, c, cl, u, ul;
@@ -175,7 +159,7 @@ class Projector
     Matrix4 modelMatrix, rotationMatrix;
     Geometry geometry;
     List geometryMaterials;
-    List<Vertex> vertices; 
+    List<Vector3> vertices; 
     Vertex vertex; 
     Vector3 vertexPositionScreen, normal;
     List<IFace3> faces;
@@ -186,21 +170,20 @@ class Projector
     RenderableVertex v1, v2, v3, v4;
     bool isFaceMaterial;
     Material material;
+    int side;
 
     _face3Count = 0;
     _face4Count = 0;
     _lineCount = 0;
     _particleCount = 0;
 
-    //TODO: does this clear a List in Dart?
-    //_renderData.elements.length = 0;
     _renderData.elements = [];
 
     scene.updateMatrixWorld();
 
     if ( camera.parent == null ) {
-//      console.warn( 'DEPRECATED: Camera hasn\'t been added to a Scene. Adding it...' );
-      scene.add( camera );
+      // console.warn( 'DEPRECATED: Camera hasn\'t been added to a Scene. Adding it...' );
+      // scene.add( camera );
       camera.updateMatrixWorld();
     }
 
@@ -212,99 +195,104 @@ class Projector
 
     _renderData = projectGraph( scene, false );
 
-    ol = _renderData.objects.length;
-    
-    for ( o = 0; o < ol; o++ ) 
-    {
-      object = _renderData.objects[ o ].object;
-
+    _renderData.objects.forEach((o) {
+      
+      object = o.object;
+      
       modelMatrix = object.matrixWorld;
-      material = object.material;
-
+      
       _vertexCount = 0;
-
-      if ( object is Mesh )
-      {
+      
+      if ( object is Mesh ) {
+        
         geometry = object.geometry;
         geometryMaterials = object.geometry.materials;
         vertices = geometry.vertices;
         faces = geometry.faces;
         faceVertexUvs = geometry.faceVertexUvs;
-
-        rotationMatrix = object.matrixRotationWorld.extractRotation( modelMatrix );
-
-        isFaceMaterial = (object.material is MeshFaceMaterial);
-		//side = object.material.side;
-
-        vl = vertices.length;
         
-        for ( v = 0; v < vl; v ++ ) 
-        {
+        rotationMatrix = object.matrixRotationWorld.extractRotation( modelMatrix );
+        
+        isFaceMaterial = (object.material is MeshFaceMaterial);
+        side = object.material.side;
+      
+        vertices.forEach((v) {
           _vertex = getNextVertexInPool();
-          _vertex.positionWorld.copy( vertices[ v ] );
-
+          _vertex.positionWorld.copy( v );
+      
           modelMatrix.multiplyVector3( _vertex.positionWorld );
           _vertex.positionScreen.copy( _vertex.positionWorld );
           _viewProjectionMatrix.multiplyVector4( _vertex.positionScreen );
           _vertex.positionScreen.x /= _vertex.positionScreen.w;
           _vertex.positionScreen.y /= _vertex.positionScreen.w;
-
+      
           _vertex.visible = _vertex.positionScreen.z > near && _vertex.positionScreen.z < far;
-        }
-
+        });
+      
         fl = faces.length;
-        for ( f = 0; f < fl; f ++ ) 
-        {
+        for ( f = 0; f < fl; f ++ ) {
+          
           face = faces[ f ];
+
           material = isFaceMaterial === true ? geometryMaterials[ face.materialIndex ] : object.material;
-
+          
           if ( material == null ) continue;
-
-          if ( face is Face3 )
-          {
+          
+          side = material.side;
+          
+          if ( face is Face3 ) {
             v1 = _vertexPool[ face.a ];
             v2 = _vertexPool[ face.b ];
             v3 = _vertexPool[ face.c ];
-
-            if ( v1.visible && v2.visible && v3.visible &&
-              ( object.doubleSided || ( object.flipSided !=
-              ( v3.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
-              ( v3.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0 ) ) ) {
-
+          
+            if ( v1.visible && v2.visible && v3.visible ) {
+              
+              visible = (
+                  ( ( v3.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
+                    ( v3.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) ) < 0);
+              
+              if ( side === Three.DoubleSide || visible === ( side === Three.FrontSide ) ) {
+          
+          
               _face = getNextFace3InPool();
-
+          
               _face.v1.copy( v1 );
               _face.v2.copy( v2 );
               _face.v3.copy( v3 );
-
+          
+              } else {
+                continue;
+              }
             } else {
               continue;
             }
-          }
-          else if ( face is Face4 )
-          {
+            
+          } else if ( face is Face4 ) {
+            
             Face4 face4 = face;
             v1 = _vertexPool[ face4.a ];
             v2 = _vertexPool[ face4.b ];
             v3 = _vertexPool[ face4.c ];
             v4 = _vertexPool[ face4.d ];
             
-            bool bool1  = ( v4.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
-                ( v4.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0;
-            bool bool2 = ( v2.positionScreen.x - v3.positionScreen.x ) * ( v4.positionScreen.y - v3.positionScreen.y ) -
-                ( v2.positionScreen.y - v3.positionScreen.y ) * ( v4.positionScreen.x - v3.positionScreen.x ) < 0;
-            bool bool3 = bool1 || bool2; 
-            
-            if ( v1.visible && v2.visible && v3.visible && v4.visible && ( object.doubleSided || ( object.flipSided != bool3 ) ) )
-            {
-              _face = getNextFace4InPool();
-
-              _face.v1.copy( v1 );
-              _face.v2.copy( v2 );
-              _face.v3.copy( v3 );
-              IRenderableFace4 rFace4 = _face;
-              //_face.v4.copy( v4 );
-              rFace4.v4.copy( v4 );
+            if ( v1.visible === true && v2.visible === true && v3.visible === true && v4.visible === true ) {
+              
+              visible = ( v4.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
+                  ( v4.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0 ||
+                  ( v2.positionScreen.x - v3.positionScreen.x ) * ( v4.positionScreen.y - v3.positionScreen.y ) -
+                  ( v2.positionScreen.y - v3.positionScreen.y ) * ( v4.positionScreen.x - v3.positionScreen.x ) < 0;
+              
+              if ( side === Three.DoubleSide || visible === ( side === Three.FrontSide ) ) {
+                
+                _face = getNextFace4InPool();
+              
+                _face.v1.copy( v1 );
+                _face.v2.copy( v2 );
+                _face.v3.copy( v3 );
+                (_face as IRenderableFace4).v4.copy( v4 );
+              } else {
+                continue;
+              }
             } else {
               continue;
             }
@@ -312,7 +300,7 @@ class Projector
           
           _face.normalWorld.copy( face.normal );
 
-		  //if ( visible === false && ( side === Three.BackSide || side === THREE.DoubleSide ) ) _face.normalWorld.negate();
+		      if ( visible === false && ( side === Three.BackSide || side === Three.DoubleSide ) ) _face.normalWorld.negate();
           rotationMatrix.multiplyVector3( _face.normalWorld );
 
           _face.centroidWorld.copy( face.centroid );
@@ -324,16 +312,14 @@ class Projector
           faceVertexNormals = face.vertexNormals;
 
           nl = faceVertexNormals.length;
-          for ( n = 0; n < nl; n ++ ) 
-          {
+          for ( n = 0; n < nl; n ++ ) {
             normal = _face.vertexNormalsWorld[ n ];
             normal.copy( faceVertexNormals[ n ] );
             rotationMatrix.multiplyVector3( normal );
           }
 
           cl = faceVertexUvs.length;
-          for ( c = 0; c < cl; c ++ )
-          {
+          for ( c = 0; c < cl; c ++ ) {
             List<UV> uvs = faceVertexUvs[ c ][ f ];
 
             if ( uvs == null ) continue;
@@ -355,31 +341,33 @@ class Projector
           _renderData.elements.add( _face );
         }
         
-      } 
-      else if ( object is Line ) 
-      {
+      } else if ( object is Line ) {
         _modelViewProjectionMatrix.multiply( _viewProjectionMatrix, modelMatrix );
 
         vertices = object.geometry.vertices;
 
         v1 = getNextVertexInPool();
-        v1.positionScreen.copy( vertices[ 0 ].position );
+        v1.positionScreen.copy( vertices[ 0 ] );
         _modelViewProjectionMatrix.multiplyVector4( v1.positionScreen );
 
+      // Handle LineStrip and LinePieces
+        var step = object.type === Three.LinePieces ? 2 : 1;
+        
         vl = vertices.length;
-        for ( v = 1; v < vl; v++ ) 
-        {
+        for ( v = 1; v < vl; v++ ) {
+          
           v1 = getNextVertexInPool();
-          v1.positionScreen.copy( vertices[ v ].position );
+          v1.positionScreen.copy( vertices[ v ] );
           _modelViewProjectionMatrix.multiplyVector4( v1.positionScreen );
 
+          if ( ( v + 1 ) % step > 0 ) continue;
+          
           v2 = _vertexPool[ _vertexCount - 2 ];
 
           _clippedVertex1PositionScreen.copy( v1.positionScreen );
           _clippedVertex2PositionScreen.copy( v2.positionScreen );
 
-          if ( clipLine( _clippedVertex1PositionScreen, _clippedVertex2PositionScreen ) ) 
-          {
+          if ( clipLine( _clippedVertex1PositionScreen, _clippedVertex2PositionScreen ) ) {
             // Perform the perspective divide
             _clippedVertex1PositionScreen.multiplyScalar( 1 / _clippedVertex1PositionScreen.w );
             _clippedVertex2PositionScreen.multiplyScalar( 1 / _clippedVertex2PositionScreen.w );
@@ -390,30 +378,27 @@ class Projector
 
             _line.z = Math.max( _clippedVertex1PositionScreen.z, _clippedVertex2PositionScreen.z );
 
-            _line.material = material;
+            _line.material = object.material;
 
             _renderData.elements.add( _line );
           }
         }
       }
-    }
+    });
     
-    ol = _renderData.sprites.length;
-    for ( o = 0; o < ol; o++ ) 
-    {
-      object = _renderData.sprites[ o ].object;
+   _renderData.sprites.forEach((o) {
+
+      object = o.object;
 
       modelMatrix = object.matrixWorld;
 
-      if ( object is Particle )
-      {
-        _vector4.setValues( modelMatrix.n14, modelMatrix.n24, modelMatrix.n34, 1 );
+      if ( object is Particle ) {
+        _vector4.setValues( modelMatrix.elements[12], modelMatrix.elements[13], modelMatrix.elements[14], 1 );
         _viewProjectionMatrix.multiplyVector4( _vector4 );
 
         _vector4.z /= _vector4.w;
 
-        if ( _vector4.z > 0 && _vector4.z < 1 ) 
-        {         
+        if ( _vector4.z > 0 && _vector4.z < 1 ) {         
           _particle = getNextParticleInPool();
           _particle.x = _vector4.x / _vector4.w;
           _particle.y = _vector4.y / _vector4.w;
@@ -421,17 +406,16 @@ class Projector
 
           _particle.rotation = object.rotation.z;
           
-          _particle.scale.x = object.scale.x * ( _particle.x - ( _vector4.x + camera.projectionMatrix.n11 ) / ( _vector4.w + camera.projectionMatrix.n14 ) ).abs();
-          _particle.scale.y = object.scale.y * ( _particle.y - ( _vector4.y + camera.projectionMatrix.n22 ) / ( _vector4.w + camera.projectionMatrix.n24 ) ).abs();
+          _particle.scale.x = object.scale.x * ( _particle.x - ( _vector4.x + camera.projectionMatrix.elements[0] ) / ( _vector4.w + camera.projectionMatrix.elements[12] ) ).abs();
+          _particle.scale.y = object.scale.y * ( _particle.y - ( _vector4.y + camera.projectionMatrix.elements[5] ) / ( _vector4.w + camera.projectionMatrix.elements[13] ) ).abs();
 
           _particle.material = object.material;
 
           _renderData.elements.add( _particle );
         }
       }
-    }
-    //TODO: assuming this equates to an 'if' statement
-    //sort && _renderData.elements.sort( painterSort );
+    });
+   
     if ( sort ) {
       _renderData.elements.sort( painterSort );
     }
@@ -440,8 +424,7 @@ class Projector
   }
 
   // Pools
-  RenderableObject getNextObjectInPool() 
-  {
+  RenderableObject getNextObjectInPool() {
     //TODO: make sure I've interpreted this logic correctly
     // RenderableObject object = _objectPool[ _objectCount ] = _objectPool[ _objectCount ] || new RenderableObject();
     
@@ -458,8 +441,7 @@ class Projector
     return object;
   }
 
-  RenderableVertex getNextVertexInPool() 
-  {
+  RenderableVertex getNextVertexInPool() {
     //TODO: make sure I've interpreted this logic correctly
     // var vertex = _vertexPool[ _vertexCount ] = _vertexPool[ _vertexCount ] || new THREE.RenderableVertex();
     RenderableVertex vertex;
@@ -477,8 +459,7 @@ class Projector
     return vertex;
   }
 
-  IRenderableFace3 getNextFace3InPool()
-  {
+  IRenderableFace3 getNextFace3InPool() {
     //TODO: make sure I've interpreted this logic correctly
     // RenderableFace3 face = _face3Pool[ _face3Count ] = _face3Pool[ _face3Count ] || new RenderableFace3();
     RenderableFace3 face;
@@ -494,8 +475,7 @@ class Projector
     return face;
   }
 
-  IRenderableFace4 getNextFace4InPool() 
-  {
+  IRenderableFace4 getNextFace4InPool() {
     //TODO: make sure I've interpreted this logic correctly
     //RenderableFace4 face = _face4Pool[ _face4Count ] = _face4Pool[ _face4Count ] || new RenderableFace4();
     RenderableFace4 face;
@@ -511,8 +491,7 @@ class Projector
     return face;
   }
 
-  RenderableLine getNextLineInPool()
-  {
+  RenderableLine getNextLineInPool() {
     //TODO: make sure I've interpreted this logic correctly
     //RenderableLine line = _linePool[ _lineCount ] = _linePool[ _lineCount ] || new RenderableLine();
     RenderableLine line;
@@ -528,8 +507,7 @@ class Projector
     return line;
   }
 
-  RenderableParticle getNextParticleInPool()
-  {
+  RenderableParticle getNextParticleInPool() {
     //TODO: make sure I've interpreted this logic correctly
     //RenderableParticle particle = _particlePool[ _particleCount ] = _particlePool[ _particleCount ] || new RenderableParticle();
     RenderableParticle particle;
@@ -544,12 +522,9 @@ class Projector
     return particle;
   }
 
-  int painterSort( a, b ) {
-    return b.z.compareTo(a.z);
-  }
+  int painterSort( a, b ) => b.z.compareTo(a.z);
 
-  bool clipLine( Vector4 s1, Vector4 s2 ) 
-  {
+  bool clipLine( Vector4 s1, Vector4 s2 ) {
     num alpha1 = 0, alpha2 = 1,
 
     // Calculate the boundary coordinate of each vertex for the near and far clip planes,
@@ -600,17 +575,14 @@ class Projector
 }
 
 // _renderData = { "objects": [], "sprites": [], "lights": [], "elements": [] };
-class ProjectorRenderData
-{
+class ProjectorRenderData {
   List objects, sprites, lights, elements;
   
   ProjectorRenderData()
-  {
-    objects = [];
-    sprites = [];
-    lights = [];
-    elements = [];
-  }
+      : objects = [],
+        sprites = [],
+        lights = [],
+        elements = [];
 }
 
 

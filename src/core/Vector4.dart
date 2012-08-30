@@ -8,36 +8,20 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Vector4 implements IVector4
-{
-  num _x;
-  num _y;
-  num _z;
-  num _w;
+class Vector4 implements IVector4 {
+  num x;
+  num y;
+  num z;
+  num w;
   
-  num get x() {  return _x;  }
-  set x( num value ) {  _x = value;  }
-  num get y() {  return _y;  }
-  set y( num value ) {  _y = value;  }
-  num get z() {  return _z;  }
-  set z( num value ) {  _z = value;  }
-  num get w() {  return _w;  }
-  set w( num value ) {  _w = value;  }
   
-  Vector4( [num x = 0, num y = 0, num z = 0, num w = 1] ) 
-  {
-    _x = ( x !== null ) ? x : 0;
-    _y = ( y !== null ) ? y : 0;
-    _z = ( z !== null ) ? z : 0;
-    _w = ( w !== null ) ? w : 1;
-  }
+  Vector4( [this.x = 0, this.y = 0, this.z = 0, this.w = 1] );
 
-  setValues( num x, num y, num z, num w ) 
-  {
-    _x = x;
-    _y = y;
-    _z = z;
-    _w = w;
+  setValues( num x, num y, num z, num w ) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.w = w;
 
     return this;
   }
@@ -48,130 +32,255 @@ class Vector4 implements IVector4
   // but as the Vector classes are currently unrelated, causes an issue in Dart.
   // Interfaces have been used to avoid introducing issues with any existing "if (Vector4/3/2)" logic.
   // Inheritance should probably eventually be used instead, and such logic should be checked to cascade (e.g. 4, then 3, then 2).
-  copy( IVector3 v ) 
-  {
-    _x = v.x;
-    _y = v.y;
-    _z = v.z;
+  copy( IVector3 v ) {
+    x = v.x;
+    y = v.y;
+    z = v.z;
     
     if ( v is IVector4 ) {
      Vector4 v4 = v;
-     //_w = ( v4.w !== null ) ? v4.w : 1;
-     _w = v4.w;
+     w = v4.w;
     } else {
-      _w = 1;
+      w = 1;
     }
   }
 
+
+  Vector4 add( Vector4 v1, Vector4 v2 ) {
+    x = v1.x + v2.x;
+    y = v1.y + v2.y;
+    z = v1.z + v2.z;
+    w = v1.w + v2.w;
+
+    return this;
+  }
+
+  Vector4 addSelf(Vector4 v ) {
+    x += v.x;
+    y += v.y;
+    z += v.z;
+    w += v.w;
+
+    return this;
+  }
+
+  Vector4 sub( Vector4 v1, Vector4 v2 ) {
+    x = v1.x - v2.x;
+    y = v1.y - v2.y;
+    z = v1.z - v2.z;
+    w = v1.w - v2.w;
+
+    return this;
+  }
+
+  Vector4 subSelf( Vector4 v ) {
+    x -= v.x;
+    y -= v.y;
+    z -= v.z;
+    w -= v.w;
+
+    return this;
+  }
+
+  Vector4 multiplyScalar( num s ) {
+    x *= s;
+    y *= s;
+    z *= s;
+    w *= s;
+
+    return this;
+  }
+
+  Vector4 divideScalar( num s ) {
+    if ( s !== null ) {
+      x /= s;
+      y /= s;
+      z /= s;
+      w /= s;
+    } else {
+      x = 0;
+      y = 0;
+      z = 0;
+      w = 1;
+    }
+
+    return this;
+  }
+
+  Vector4 negate() => multiplyScalar( -1 );
+
+  num dot( Vector4 v ) => x * v.x + y * v.y + z * v.z + w * v.w;
+
+  num lengthSq() => dot( this );
+
+  num length() => Math.sqrt( lengthSq() );
+
+  Vector4 normalize() => divideScalar( length() );
+
+  Vector4 setLength( l ) => normalize().multiplyScalar( l );
+
+  Vector4 lerpSelf( Vector4 v, num alpha ) {
+    x += ( v.x - x ) * alpha;
+    y += ( v.y - y ) * alpha;
+    z += ( v.z - z ) * alpha;
+    w += ( v.w - w ) * alpha;
+
+    return this;
+
+  }
+  
   Vector4 clone() 
   {
-    return new Vector4( _x, _y, _z, _w );
+    return new Vector4( x, y, z, w );
   }
+  
+  Vector4 setAxisAngleFromQuaternion( Quaternion q ) {
 
+    // http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
 
-  Vector4 add( Vector4 v1, Vector4 v2 ) 
-  {
-    _x = v1.x + v2.x;
-    _y = v1.y + v2.y;
-    _z = v1.z + v2.z;
-    _w = v1.w + v2.w;
+    // q is assumed to be normalized
 
-    return this;
-  }
+    w = 2 * Math.acos( q.w );
 
-  Vector4 addSelf(Vector4 v ) 
-  {
-    _x += v.x;
-    _y += v.y;
-    _z += v.z;
-    _w += v.w;
+    var s = Math.sqrt( 1 - q.w * q.w );
 
-    return this;
-  }
+    if ( s < 0.0001 ) {
 
-  Vector4 sub( Vector4 v1, Vector4 v2 ) 
-  {
-    _x = v1.x - v2.x;
-    _y = v1.y - v2.y;
-    _z = v1.z - v2.z;
-    _w = v1.w - v2.w;
+       x = 1;
+       y = 0;
+       z = 0;
 
-    return this;
-  }
-
-  Vector4 subSelf( Vector4 v )
-  {
-    _x -= v.x;
-    _y -= v.y;
-    _z -= v.z;
-    _w -= v.w;
-
-    return this;
-  }
-
-  Vector4 multiplyScalar( num s ) 
-  {
-    _x *= s;
-    _y *= s;
-    _z *= s;
-    _w *= s;
-
-    return this;
-  }
-
-  Vector4 divideScalar( num s ) 
-  {
-    if ( s !== null ) {
-      _x /= s;
-      _y /= s;
-      _z /= s;
-      _w /= s;
     } else {
-      _x = 0;
-      _y = 0;
-      _z = 0;
-      _w = 1;
+
+       x = q.x / s;
+       y = q.y / s;
+       z = q.z / s;
+
     }
 
     return this;
-  }
 
-  Vector4 negate()
-  {
-    return multiplyScalar( -1 );
   }
+  
+  setAxisAngleFromRotationMatrix( m ) {
 
-  num dot( Vector4 v )
-  {
-    return _x * v.x + _y * v.y + _z * v.z + _w * v.w;
-  }
+    // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
 
-  num lengthSq()
-  {
-    return dot( this );
-  }
+    // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
-  num length()
-  {
-    return Math.sqrt( lengthSq() );
-  }
+    var angle, x, y, z,   // variables for result
+      epsilon = 0.01,   // margin to allow for rounding errors
+      epsilon2 = 0.1,   // margin to distinguish between 0 and 180 degrees
 
-  Vector4 normalize()
-  {
-    return divideScalar( length() );
-  }
+      te = m.elements,
 
-  Vector4 setLength( l )
-  {
-    return normalize().multiplyScalar( l );
-  }
+      m11 = te[0], m12 = te[4], m13 = te[8],
+      m21 = te[1], m22 = te[5], m23 = te[9],
+      m31 = te[2], m32 = te[6], m33 = te[10];
 
-  Vector4 lerpSelf( Vector4 v, num alpha ) 
-  {
-    _x += ( v.x - _x ) * alpha;
-    _y += ( v.y - _y ) * alpha;
-    _z += ( v.z - _z ) * alpha;
-    _w += ( v.w - _w ) * alpha;
+    if ( ( ( m12 - m21 ).abs() < epsilon )
+      && ( ( m13 - m31 ).abs() < epsilon )
+      && ( ( m23 - m32 ).abs() < epsilon ) ) {
+
+      // singularity found
+      // first check for identity matrix which must have +1 for all terms
+      // in leading diagonal and zero in other terms
+
+      if ( ( ( m12 + m21 ).abs() < epsilon2 )
+        && ( ( m13 + m31 ).abs() < epsilon2 )
+        && ( ( m23 + m32 ).abs() < epsilon2 )
+        && ( ( m11 + m22 + m33 - 3 ).abs() < epsilon2 ) ) {
+
+        // this singularity is identity matrix so angle = 0
+
+        this.setValues( 1, 0, 0, 0 );
+
+        return this; // zero angle, arbitrary axis
+
+      }
+
+      // otherwise this singularity is angle = 180
+
+      angle = Math.PI;
+
+      var xx = ( m11 + 1 ) / 2;
+      var yy = ( m22 + 1 ) / 2;
+      var zz = ( m33 + 1 ) / 2;
+      var xy = ( m12 + m21 ) / 4;
+      var xz = ( m13 + m31 ) / 4;
+      var yz = ( m23 + m32 ) / 4;
+
+      if ( ( xx > yy ) && ( xx > zz ) ) { // m11 is the largest diagonal term
+
+        if ( xx < epsilon ) {
+
+          x = 0;
+          y = 0.707106781;
+          z = 0.707106781;
+
+        } else {
+
+          x = Math.sqrt( xx );
+          y = xy / x;
+          z = xz / x;
+
+        }
+
+      } else if ( yy > zz ) { // m22 is the largest diagonal term
+
+        if ( yy < epsilon ) {
+
+          x = 0.707106781;
+          y = 0;
+          z = 0.707106781;
+
+        } else {
+
+          y = Math.sqrt( yy );
+          x = xy / y;
+          z = yz / y;
+
+        } 
+
+      } else { // m33 is the largest diagonal term so base result on this
+
+        if ( zz < epsilon ) {
+
+          x = 0.707106781;
+          y = 0.707106781;
+          z = 0;
+
+        } else {
+
+          z = Math.sqrt( zz );
+          x = xz / z;
+          y = yz / z;
+
+        }
+
+      }
+
+      this.setValues( x, y, z, angle );
+
+      return this; // return 180 deg rotation
+
+    }
+
+    // as we have reached here there are no singularities so we can handle normally
+
+    var s = Math.sqrt( ( m32 - m23 ) * ( m32 - m23 )
+             + ( m13 - m31 ) * ( m13 - m31 )
+             + ( m21 - m12 ) * ( m21 - m12 ) ); // used to normalize
+
+    if ( s.abs() < 0.001 ) s = 1; 
+
+    // prevent divide by zero, should not happen if matrix is orthogonal and should be
+    // caught by singularity test above, but I've left it in just in case
+
+    x = ( m32 - m23 ) / s;
+    y = ( m13 - m31 ) / s;
+    z = ( m21 - m12 ) / s;
+    w = Math.acos( ( m11 + m22 + m33 - 1 ) / 2 );
 
     return this;
 

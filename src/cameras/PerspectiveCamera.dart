@@ -7,8 +7,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class PerspectiveCamera extends Camera
-{
+class PerspectiveCamera extends Camera {
 
   num fov;
   num aspect;
@@ -21,8 +20,9 @@ class PerspectiveCamera extends Camera
   num _height;
 
   
-  PerspectiveCamera( [this.fov = 50, this.aspect = 1, near = 0.1, far = 2000] ) : super(near, far)
-  {
+  PerspectiveCamera( [this.fov = 50, this.aspect = 1, near = 0.1, far = 2000] )
+    : super(near, far){
+      
     updateProjectionMatrix();
   }
   
@@ -32,8 +32,7 @@ class PerspectiveCamera extends Camera
    * Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
    */
 
-  void setLens( num focalLength, num frameSize ) 
-  {
+  void setLens( num focalLength, num frameSize ) {
     frameSize = frameSize !== null ? frameSize : 43.25; // 36x24mm
 
     fov = 2 * Math.atan( frameSize / ( focalLength * 2 ) );
@@ -79,8 +78,7 @@ class PerspectiveCamera extends Camera
    *   Note there is no reason monitors have to be the same size or in a grid.
    */
 
-  void setViewOffset( num fullWidth, num fullHeight, num x, num y, num width, num height )
-  {
+  void setViewOffset( num fullWidth, num fullHeight, num x, num y, num width, num height ) {
     _fullWidth = fullWidth;
     _fullHeight = fullHeight;
     _x = x;
@@ -92,10 +90,8 @@ class PerspectiveCamera extends Camera
   }
 
 
-  void updateProjectionMatrix() 
-  {
-    if ( _fullWidth !== null )
-    {
+  void updateProjectionMatrix() {
+    if ( _fullWidth !== null ) {
       num aspect = _fullWidth / _fullHeight;
       num top = Math.tan( fov * Math.PI / 360 ) * near;
       num bottom = -top;
@@ -104,7 +100,7 @@ class PerspectiveCamera extends Camera
       num width = ( right - left ).abs();
       num height = ( top - bottom ).abs();
 
-      projectionMatrix = Matrix4.makeFrustum(
+      projectionMatrix.makeFrustum(
         left + _x * width / _fullWidth,
         left + ( _x + width ) * width / _fullWidth,
         top - ( _y + height ) * height / _fullHeight,
@@ -112,7 +108,7 @@ class PerspectiveCamera extends Camera
         near,
         far );
     } else {
-      projectionMatrix = Matrix4.makePerspective( fov, aspect, near, far );
+      projectionMatrix.makePerspective( fov, aspect, near, far );
     }
   }
 }

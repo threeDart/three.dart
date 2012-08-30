@@ -5,38 +5,35 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class UV 
-{
-  num _u, _v;
+class UV {
+  num u, v;
   
-  num get u() {  return _u;  }
-  num get v() {  return _v;  }
   
-  UV( [num u, num v] )
-  {
-    _u = ( u != null ) ? u : 0;
-    _v = ( v != null ) ? v : 0;
+  UV( [this.u = 0, this.v = 0] );
 
-  }
-
-  UV setValues( num u, num v )
-  {
-    _u = u;
-    _v = v;
+  UV setValues( num u, num v ) {
+    this.u = u;
+    this.v = v;
 
     return this;
   }
 
-  UV copy( UV uv ) 
-  {
-    _u = uv.u;
-    _v = uv.v;
+  UV copy( UV uv ) {
+    u = uv.u;
+    v = uv.v;
 
     return this;
   }
 
-  UV clone() 
-  {
-    return new UV( _u, _v );
+  lerpSelf( UV uv, num alpha ) {
+
+    u += ( uv.u - u ) * alpha;
+    v += ( uv.v - v ) * alpha;
+
+    return this;
+
   }
+  
+  UV clone()=> new UV( u, v );
+  
 }

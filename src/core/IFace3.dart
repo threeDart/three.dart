@@ -1,17 +1,8 @@
-interface IFace3 
-{
-  Vector3 get centroid();
-  Vector3 get normal();
-  
-  List get vertexNormals();
-  set vertexNormals( List value );
-  
-  List get vertexTangents();
-  num get materialIndex();
-  num get a();
-  set a( num value );
-  num get b();
-  set b( num value );
-  num get c();
-  set c( num value );
+interface IFace3 {
+  num a, b, c;
+  Vector3 normal;
+  List vertexNormals, vertexColors, vertexTangents;
+  Color color;
+  int materialIndex;
+  Vector3 centroid;
 }
