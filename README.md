@@ -43,7 +43,7 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 * Adaptation to Dart SDK build 9474 ([jwb](https://github.com/jwb))
 
-2012 03 05 - **v 0.1.1**
+2012 03 05 - **v 0.1.1** ([robsilv](https://github.com/robsilv))
 
 * README.md 
 	* Contributors link added
@@ -63,7 +63,7 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 * ParticleBasicMaterial.dart/CanvasRenderer.dart CTEs resolved
 
 
-2012 02 28 - **v 0.1.0**
+2012 02 28 - **v 0.1.0** ([robsilv](https://github.com/robsilv))
 
 * Project upgraded to run with DartBuild 4577 (compile-time errors resolved)
 * All HTML examples now use Dart -> JS dynamic replacement code
@@ -73,14 +73,14 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 * Debug mode flag introduced for CanvasRenderer
 
 
-2012 02 23 - **v 0.0.4**
+2012 02 23 - **v 0.0.4** ([robsilv](https://github.com/robsilv))
 
 * Canvas_Geometry_Heirarchy example implemented
 * Color: r,g,b getters and setters removed for brevity (properties are read/write)
 * Vector3: divideScalar()  "if ( s !== null )" error resolved
 
 
-2012 02 23 - **v 0.0.3**
+2012 02 23 - **v 0.0.3** ([robsilv](https://github.com/robsilv))
 
 * Multiple frame rendering bug fixed!
 * Canvas_Geometry_Cube example now draggable
@@ -88,13 +88,13 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 * Change Log updated from "revision" to "version" numbers (where "version 1" will demonstrate all of the functionality of three.js revision 47.0)
 
 
-2012 02 12 - **v 0.0.2**
+2012 02 12 - **v 0.0.2** ([robsilv](https://github.com/robsilv))
 
 * Project restructuring:
   * "ThreeD" renamed to "src"
   * "examples" folder introduced
 
-2012 02 11 - **v 0.0.1**
+2012 02 11 - **v 0.0.1** ([robsilv](https://github.com/robsilv))
 
 * Pre-alpha release (I can see a cube!! :D - Tested in Google Chrome Browser on Windows 7)
 * This code is not currently ready to be used in a project
