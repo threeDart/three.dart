@@ -5,22 +5,64 @@
  * @author rob silverton / http://www.unwrong.com/ 
  */
 
-class Ray 
-{
-  Vector3 _origin;
-  Vector3 _direction;
+class Ray {
+  Vector3 origin,
+          direction;
+  num near,
+      far;
   
-  Ray( Vector3 origin, Vector3 direction ) 
-  {
-    _origin = ( origin != null) ? origin : new Vector3();
-    _direction = ( direction != null ) ? direction : new Vector3();
-  }
+  Vector3 _v0, _v1, _v2;
   
-  Vector3 get origin() => _origin;
-  Vector3 get direction() => _direction;
+  final num precision;
+      
+  Ray( [this.origin, this.direction, this.near = 0, this.far = double.INFINITY] ) 
+      : _v0 = new Vector3(), 
+        _v1 = new Vector3(),
+        _v2 = new Vector3(),
+        precision = 0.0001 {
+        
+    if (this.origin == null) this.origin = new Vector3();
+    if (this.direction == null) this.direction = new Vector3();
+  
+      }
+  
+  num _distanceFromIntersection( Vector3 origin, Vector3 direction, Vector3 position ) {
+    var v0 = _v0, v1 = _v1, v2 = _v2;
+    
+    var dot, intersect, distance;
+    v0.sub( position, origin );
+    dot = v0.dot( direction );
 
-  List<Intersect> intersectObject( Object3D object ) 
-  {
+    intersect = v1.add( origin, v2.copy( direction ).multiplyScalar( dot ) );
+    distance = position.distanceTo( intersect );
+
+    return distance;
+  }
+
+  //http://www.blackpawn.com/texts/pointinpoly/default.html
+  bool _pointInFace3( Vector3 p, Vector3 a, Vector3 b, Vector3 c ) {
+    var v0 = _v0, v1 = _v1, v2 = _v2;
+    
+    num dot00, dot01, dot02, dot11, dot12, invDenom, u, v;
+    
+    v0.sub( c, a );
+    v1.sub( b, a );
+    v2.sub( p, a );
+
+    dot00 = v0.dot( v0 );
+    dot01 = v0.dot( v1 );
+    dot02 = v0.dot( v2 );
+    dot11 = v1.dot( v1 );
+    dot12 = v1.dot( v2 );
+
+    invDenom = 1 / ( dot00 * dot11 - dot01 * dot01 );
+    u = ( dot11 * dot02 - dot01 * dot12 ) * invDenom;
+    v = ( dot00 * dot12 - dot01 * dot02 ) * invDenom;
+
+    return ( u >= 0 ) && ( v >= 0 ) && ( u + v < 1 );
+  }  
+
+  List<Intersect> intersectObject( Object3D object, [bool recursive = false] ) {
     Vector3 a = new Vector3();
     Vector3 b = new Vector3();
     Vector3 c = new Vector3();
@@ -37,35 +79,32 @@ class Ray
     List intersects = [];
     int l = object.children.length;
     
-    //TODO: not sure this is equivalent logic..
-    for ( int i = 0; i < l; i ++ ) {
-      //Array.prototype.push.apply( intersects, intersectObject( object.children[ i ] ) );
-      intersects.addAll(intersectObject( object.children[ i ] ));
+    if ( recursive ) {
+      object.children.forEach((child) {
+        intersects.addAll(intersectObject( child ));
+      });
     }
 
-    if ( object is Particle ) 
-    {
-      num distance = distanceFromIntersection( _origin, _direction, object.matrixWorld.getPosition() );
+    if ( object is Particle ) {
+      num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getPosition() );
 
       if ( distance > object.scale.x ) {
         return [];
       }
 
-      intersect = new Intersect( distance, object.position, null, object );
-      
-//      intersect = {
-//        "distance": distance,
-//        "point": object.position,
-//        "face": null,
-//        "object": object
-//      };
+      intersect = new Intersect( 
+          distance: distance,
+          point: object.position,
+          face: null,
+          object: object);
+
 
       intersects.add( intersect );
 
     } else if ( object is Mesh ) {
       Mesh mesh = object;
       // Checking boundingSphere
-      num distance = distanceFromIntersection( _origin, _direction, object.matrixWorld.getPosition() );
+      num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getPosition() );
       Vector3 scale = Frustum.__v1.setValues( object.matrixWorld.getColumnX().length(), object.matrixWorld.getColumnY().length(), object.matrixWorld.getColumnZ().length() );
 
       if ( distance > mesh.geometry.boundingSphere.radius * Math.max( scale.x, Math.max( scale.y, scale.z ) ) ) {
@@ -81,17 +120,28 @@ class Ray
       Geometry geometry = mesh.geometry;
       List vertices = geometry.vertices;
       Matrix4 objMatrix;
+      Material material;
       
-      int fl = geometry.faces.length;
+      List<Material> geometryMaterials = object.geometry.materials;
+      bool isFaceMaterial = object.material is MeshFaceMaterial;
+      int side = object.material.side;
+      
 
       object.matrixRotationWorld.extractRotation( object.matrixWorld );
 
-      for ( f = 0; f < fl; f ++ ) {
+      int fl = geometry.faces.length;
+      
+      for (var f = 0; f < fl; f++) {
 
-        face = geometry.faces[ f ];
-
-        originCopy.copy( _origin );
-        directionCopy.copy( _direction );
+        face = geometry.faces[f];
+        
+        material = isFaceMaterial === true ? geometryMaterials[ face.materialIndex ] : object.material;
+        if ( material == null ) continue;
+        
+        side = material.side;
+        
+        originCopy.copy( origin );
+        directionCopy.copy( direction );
 
         objMatrix = object.matrixWorld;
 
@@ -113,7 +163,7 @@ class Ray
 
         if ( scalar < 0 ) continue;
 
-        if ( object.doubleSided || ( object.flipSided ? dot > 0 : dot < 0 ) ) {
+        if ( side === Three.DoubleSide || ( side === Three.FrontSide ? dot < 0 : dot > 0 ) ) {
 
           intersectPoint.add( originCopy, directionCopy.multiplyScalar( scalar ) );
 
@@ -123,16 +173,13 @@ class Ray
             b = objMatrix.multiplyVector3( b.copy( vertices[ face.b ].position ) );
             c = objMatrix.multiplyVector3( c.copy( vertices[ face.c ].position ) );
 
-            if ( pointInFace3( intersectPoint, a, b, c ) ) 
-            {
-              intersect = new Intersect( originCopy.distanceTo( intersectPoint ), intersectPoint.clone(), face, object );
-              
-//              intersect = {
-//                "distance": originCopy.distanceTo( intersectPoint ),
-//                "point": intersectPoint.clone(),
-//                "face": face,
-//                "object": object
-//              };
+            if ( _pointInFace3( intersectPoint, a, b, c ) ) {
+              intersect = new Intersect(
+                distance: originCopy.distanceTo( intersectPoint ),
+                point: intersectPoint.clone(),
+                face: face,
+                object: object
+              );
 
               intersects.add( intersect );
 
@@ -145,16 +192,14 @@ class Ray
             c = objMatrix.multiplyVector3( c.copy( vertices[ face4.c ] ) );
             d = objMatrix.multiplyVector3( d.copy( vertices[ face4.d ] ) );
 
-            if ( pointInFace3( intersectPoint, a, b, d ) || pointInFace3( intersectPoint, b, c, d ) ) 
+            if ( _pointInFace3( intersectPoint, a, b, d ) || _pointInFace3( intersectPoint, b, c, d ) ) 
             {
-              intersect = new Intersect( originCopy.distanceTo( intersectPoint ), intersectPoint.clone(), face, object );
-              
-//              intersect = {
-//                "distance": originCopy.distanceTo( intersectPoint ),
-//                "point": intersectPoint.clone(),
-//                "face": face,
-//                "object": object
-//              };
+              intersect = new Intersect( 
+                  distance: originCopy.distanceTo( intersectPoint ),
+                  point: intersectPoint.clone(),
+                  face: face,
+                  object: object
+              );
 
               intersects.add( intersect );
             }
@@ -165,82 +210,27 @@ class Ray
 
     return intersects;
   } 
-  
-  List<Intersect> intersectScene( Scene scene ) {
-    return intersectObjects( scene.children );
-  }
 
-  List<Intersect> intersectObjects( List<Object3D> objects )
-  {
+  List<Intersect> intersectObjects( List<Object3D> objects ) {
     int l = objects.length;
     List<Intersect> intersects = [];
 
-    //TODO: not sure this is equivalent logic..
-    for ( int i = 0; i < l; i ++ ) {
-      //Array.prototype.push.apply( intersects, intersectObject( objects[ i ] ) );
-      intersects.addAll(intersectObject( objects[ i ] ));
-    }
+    objects.forEach((o) => intersects.addAll(intersectObject(o)));
 
     intersects.sort( ( a, b ) => a.distance.compareTo(b.distance) );
 
     return intersects;
   }
-
-  num distanceFromIntersection( Vector3 origin, Vector3 direction, Vector3 position ) 
-  {
-    //TODO: Not sure if these are supposed to be declared in here...
-    Vector3 v0 = new Vector3(), v1 = new Vector3(), v2 = new Vector3();
-    
-    var dot, intersect, distance;
-    v0.sub( position, origin );
-    dot = v0.dot( direction );
-
-    intersect = v1.add( origin, v2.copy( direction ).multiplyScalar( dot ) );
-    distance = position.distanceTo( intersect );
-
-    return distance;
-  }
   
-  //http://www.blackpawn.com/texts/pointinpoly/default.html
-  bool pointInFace3( Vector3 p, Vector3 a, Vector3 b, Vector3 c ) 
-  {
-    //TODO: Not sure if these are supposed to be declared in here...
-    Vector3 v0 = new Vector3(), v1 = new Vector3(), v2 = new Vector3();
-    
-    num dot00, dot01, dot02, dot11, dot12, invDenom, u, v;
-    
-    v0.sub( c, a );
-    v1.sub( b, a );
-    v2.sub( p, a );
-
-    dot00 = v0.dot( v0 );
-    dot01 = v0.dot( v1 );
-    dot02 = v0.dot( v2 );
-    dot11 = v1.dot( v1 );
-    dot12 = v1.dot( v2 );
-
-    invDenom = 1 / ( dot00 * dot11 - dot01 * dot01 );
-    u = ( dot11 * dot02 - dot01 * dot12 ) * invDenom;
-    v = ( dot00 * dot12 - dot01 * dot02 ) * invDenom;
-
-    return ( u >= 0 ) && ( v >= 0 ) && ( u + v < 1 );
-  }  
 }
 
-class Intersect 
-{
+class Intersect {
   num distance;
   Vector3 point;
   IFace3 face;
   Object3D object;
   
-  Intersect(num d, Vector3 iPoint, IFace3 f, Object3D obj )
-  {
-    distance = d;
-    point = iPoint;
-    face = f;
-    object = obj;
-  }
+  Intersect([this.distance, this.point, this.face, this.object] );
 }
 
 

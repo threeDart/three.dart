@@ -6,29 +6,15 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Quaternion 
-{
+class Quaternion {
   num x;
   num y;
   num z;
   num w;
   
-//  get x() {  return _x;  }
-//  set x( num value ) {  _x = value;  }
-//  get y() {  return _y;  }
-//  set y( num value ) {  _y = value;  }
-//  get z() {  return _z;  }
-//  set z( num value ) {  _z = value;  }
-//  get w() {  return _w;  }
-//  set w( num value ) {  _w = value;  }
-  
-  Quaternion( [num this.x=0, num this.y=0, num this.z=0, num this.w=1] ) 
-  {
-    
-  }
+  Quaternion( [num this.x=0, num this.y=0, num this.z=0, num this.w=1] );
 
-  Quaternion setValues( num newX, num newY, num newZ, num newW ) 
-  {
+  Quaternion setValues( num newX, num newY, num newZ, num newW ) {
     this.x = newX;
     this.y = newY;
     this.z = newZ;
@@ -37,8 +23,7 @@ class Quaternion
     return this;
   }
 
-  Quaternion copy( Vector4 q ) 
-  {
+  Quaternion copy( Vector4 q ) {
     this.x = q.x;
     this.y = q.y;
     this.z = q.z;
@@ -47,33 +32,67 @@ class Quaternion
     return this;
   }
 
-  Quaternion setFromEuler( Vector3 vec3 ) 
-  {
-    num c = Math.PI / 360, // 0.5 * Math.PI / 360, // 0.5 is an optimization
-    _x = vec3.x * c,
-    _y = vec3.y * c,
-    _z = vec3.z * c,
+  Quaternion setFromEuler( Vector3 v, [String order = 'XYZ'] ) {
+    // http://www.mathworks.com/matlabcentral/fileexchange/
+    //  20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
+    //  content/SpinCalc.m
 
-    c1 = Math.cos( _y  ),
-    s1 = Math.sin( _y  ),
-    c2 = Math.cos( -_z ),
-    s2 = Math.sin( -_z ),
-    c3 = Math.cos( _x  ),
-    s3 = Math.sin( _x  ),
+    var c1 = Math.cos( v.x / 2 );
+    var c2 = Math.cos( v.y / 2 );
+    var c3 = Math.cos( v.z / 2 );
+    var s1 = Math.sin( v.x / 2 );
+    var s2 = Math.sin( v.y / 2 );
+    var s3 = Math.sin( v.z / 2 );
 
-    c1c2 = c1 * c2,
-    s1s2 = s1 * s2;
+    if ( order === 'XYZ' ) {
 
-    this.w = c1c2 * c3  - s1s2 * s3;
-    this.x = c1c2 * s3  + s1s2 * c3;
-    this.y = s1 * c2 * c3 + c1 * s2 * s3;
-    this.z = c1 * s2 * c3 - s1 * c2 * s3;
+      this.x = s1 * c2 * c3 + c1 * s2 * s3;
+      this.y = c1 * s2 * c3 - s1 * c2 * s3;
+      this.z = c1 * c2 * s3 + s1 * s2 * c3;
+      this.w = c1 * c2 * c3 - s1 * s2 * s3;
+
+    } else if ( order === 'YXZ' ) {
+
+      this.x = s1 * c2 * c3 + c1 * s2 * s3;
+      this.y = c1 * s2 * c3 - s1 * c2 * s3;
+      this.z = c1 * c2 * s3 - s1 * s2 * c3;
+      this.w = c1 * c2 * c3 + s1 * s2 * s3;
+
+    } else if ( order === 'ZXY' ) {
+
+      this.x = s1 * c2 * c3 - c1 * s2 * s3;
+      this.y = c1 * s2 * c3 + s1 * c2 * s3;
+      this.z = c1 * c2 * s3 + s1 * s2 * c3;
+      this.w = c1 * c2 * c3 - s1 * s2 * s3;
+
+    } else if ( order === 'ZYX' ) {
+
+      this.x = s1 * c2 * c3 - c1 * s2 * s3;
+      this.y = c1 * s2 * c3 + s1 * c2 * s3;
+      this.z = c1 * c2 * s3 - s1 * s2 * c3;
+      this.w = c1 * c2 * c3 + s1 * s2 * s3;
+
+    } else if ( order === 'YZX' ) {
+
+      this.x = s1 * c2 * c3 + c1 * s2 * s3;
+      this.y = c1 * s2 * c3 + s1 * c2 * s3;
+      this.z = c1 * c2 * s3 - s1 * s2 * c3;
+      this.w = c1 * c2 * c3 - s1 * s2 * s3;
+
+    } else if ( order === 'XZY' ) {
+
+      this.x = s1 * c2 * c3 - c1 * s2 * s3;
+      this.y = c1 * s2 * c3 - s1 * c2 * s3;
+      this.z = c1 * c2 * s3 + s1 * s2 * c3;
+      this.w = c1 * c2 * c3 + s1 * s2 * s3;
+
+    }
 
     return this;
+
   }
 
-  Quaternion setFromAxisAngle( Vector3 axis, num angle ) 
-  {
+  Quaternion setFromAxisAngle( Vector3 axis, num angle ) {
     // from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
     // axis have to be normalized
 
@@ -88,34 +107,69 @@ class Quaternion
     return this;
   }
 
-  Quaternion setFromRotationMatrix( Matrix4 m ) 
-  {
-    num absQ = Math.pow(m.determinant(), 1.0 / 3.0);
-    this.w = Math.sqrt( Math.max( 0, absQ + m.n11 + m.n22 + m.n33 ) ) / 2;
-    this.x = Math.sqrt( Math.max( 0, absQ + m.n11 - m.n22 - m.n33 ) ) / 2;
-    this.y = Math.sqrt( Math.max( 0, absQ - m.n11 + m.n22 - m.n33 ) ) / 2;
-    this.z = Math.sqrt( Math.max( 0, absQ - m.n11 - m.n22 + m.n33 ) ) / 2;
-    this.x = copySign( x, ( m.n32 - m.n23 ) );
-    this.y = copySign( y, ( m.n13 - m.n31 ) );
-    this.z = copySign( z, ( m.n21 - m.n12 ) );
-    normalize();
+  Quaternion setFromRotationMatrix( Matrix4 m ) {
+    
+    // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+
+    // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
+
+    var te = m.elements,
+
+      m11 = te[0], m12 = te[4], m13 = te[8],
+      m21 = te[1], m22 = te[5], m23 = te[9],
+      m31 = te[2], m32 = te[6], m33 = te[10],
+
+      trace = m11 + m22 + m33,
+      s;
+
+    if( trace > 0 ) {
+
+      s = 0.5 / Math.sqrt( trace + 1.0 );
+
+      this.w = 0.25 / s;
+      this.x = ( m32 - m23 ) * s;
+      this.y = ( m13 - m31 ) * s;
+      this.z = ( m21 - m12 ) * s;
+
+    } else if ( m11 > m22 && m11 > m33 ) {
+
+      s = 2.0 * Math.sqrt( 1.0 + m11 - m22 - m33 );
+
+      this.w = (m32 - m23 ) / s;
+      this.x = 0.25 * s;
+      this.y = (m12 + m21 ) / s;
+      this.z = (m13 + m31 ) / s;
+
+    } else if (m22 > m33) {
+
+      s = 2.0 * Math.sqrt( 1.0 + m22 - m11 - m33 );
+
+      this.w = (m13 - m31 ) / s;
+      this.x = (m12 + m21 ) / s;
+      this.y = 0.25 * s;
+      this.z = (m23 + m32 ) / s;
+
+    } else {
+
+      s = 2.0 * Math.sqrt( 1.0 + m33 - m11 - m22 );
+
+      this.w = ( m21 - m12 ) / s;
+      this.x = ( m13 + m31 ) / s;
+      this.y = ( m23 + m32 ) / s;
+      this.z = 0.25 * s;
+
+    }
+
     return this;
   }
   
-  // Adapted from: http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
-  copySign(num a, num b) {
-    return b < 0 ? -a.abs() : a.abs();
-  }
 
-  Quaternion calculateW() 
-  {
+  Quaternion calculateW() {
     this.w = - Math.sqrt( ( 1.0 - x * x - y * y - z * z ).abs() );
-
     return this;
   }
 
-  Quaternion inverse() 
-  {
+  Quaternion inverse() {
     this.x *= -1;
     this.y *= -1;
     this.z *= -1;
@@ -123,13 +177,9 @@ class Quaternion
     return this;
   }
 
-  double length() 
-  {
-    return Math.sqrt( x * x + y * y + z * z + w * w );
-  }
+  double length() => Math.sqrt( x * x + y * y + z * z + w * w );
 
-  Quaternion normalize()
-  {
+  Quaternion normalize() {
     num l = Math.sqrt( x * x + y * y + z * z + w * w );
 
     if ( l === 0 ) {
@@ -149,8 +199,18 @@ class Quaternion
     return this;
   }
 
-  Quaternion multiplySelf( Vector4 quat2 ) 
-  {
+  Quaternion multiply( Vector4 q1, Vector4 q2 ) {
+    // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
+
+    this.x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
+    this.y = -q1.x * q2.z + q1.y * q2.w + q1.z * q2.x + q1.w * q2.y;
+    this.z =  q1.x * q2.y - q1.y * q2.x + q1.z * q2.w + q1.w * q2.z;
+    this.w = -q1.x * q2.x - q1.y * q2.y - q1.z * q2.z + q1.w * q2.w;
+
+    return this;
+  }
+  
+  Quaternion multiplySelf( Vector4 quat2 ) {
     num qax = x,  qay = y,  qaz = z,  qaw = w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
 
@@ -162,21 +222,8 @@ class Quaternion
     return this;
   }
 
-  Quaternion multiply( Vector4 q1, Vector4 q2 ) 
-  {
-    // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
-
-    this.x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
-    this.y = -q1.x * q2.z + q1.y * q2.w + q1.z * q2.x + q1.w * q2.y;
-    this.z =  q1.x * q2.y - q1.y * q2.x + q1.z * q2.w + q1.w * q2.z;
-    this.w = -q1.x * q2.x - q1.y * q2.y - q1.z * q2.z + q1.w * q2.w;
-
-    return this;
-  }
-
-  Vector3 multiplyVector3( Vector3 vec, Vector3 dest ) 
-  {
-    if( dest != null ) { dest = vec; }
+  Vector3 multiplyVector3( Vector3 vec, [Vector3 dest = null] ) {
+    if( dest == null ) { dest = vec; }
 
     num _x    = vec.x,  _y  = vec.y,  _z  = vec.z,
       qx   = x, qy = y, qz = z, qw = w;
@@ -197,8 +244,67 @@ class Quaternion
     return dest;
   }
 
-  static Vector4 slerp( Vector4 qa, Vector4 qb, Vector4 qm, num t ) 
-  {
+  slerpSelf(Vector4 qb, num t ) {
+
+    // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
+
+    var cosHalfTheta = w * qb.w + x * qb.x + y * qb.y + z * qb.z;
+
+    if ( cosHalfTheta < 0 ) {
+
+      this.w = -qb.w;
+      this.x = -qb.x;
+      this.y = -qb.y;
+      this.z = -qb.z;
+
+      cosHalfTheta = -cosHalfTheta;
+
+    } else {
+
+      this.copy( qb );
+
+    }
+
+    if ( cosHalfTheta >= 1.0 ) {
+
+      this.w = w;
+      this.x = x;
+      this.y = y;
+      this.z = z;
+
+      return this;
+
+    }
+
+    var halfTheta = Math.acos( cosHalfTheta );
+    var sinHalfTheta = Math.sqrt( 1.0 - cosHalfTheta * cosHalfTheta );
+
+    if ( sinHalfTheta.abs() < 0.001 ) {
+
+      this.w = 0.5 * ( w + this.w );
+      this.x = 0.5 * ( x + this.x );
+      this.y = 0.5 * ( y + this.y );
+      this.z = 0.5 * ( z + this.z );
+
+      return this;
+
+    }
+
+    var ratioA = Math.sin( ( 1 - t ) * halfTheta ) / sinHalfTheta,
+    ratioB = Math.sin( t * halfTheta ) / sinHalfTheta;
+
+    this.w = ( w * ratioA + this.w * ratioB );
+    this.x = ( x * ratioA + this.x * ratioB );
+    this.y = ( y * ratioA + this.y * ratioB );
+    this.z = ( z * ratioA + this.z * ratioB );
+
+    return this;
+
+  }
+  
+  clone() => new Quaternion( this.x, this.y, this.z, this.w );
+  
+  static Vector4 slerp( Vector4 qa, Vector4 qb, Vector4 qm, num t ) {
     // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
     num cosHalfTheta = qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z;

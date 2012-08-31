@@ -1,7 +1,4 @@
-interface IVector2 
-{
-  num get x();
-  set x(num value);
-  num get y();
-  set y(num value);
+interface IVector2 {
+  num x;
+  num y;
 }

@@ -6,8 +6,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Camera extends Object3D
-{
+class Camera extends Object3D {
   Matrix4 matrixWorldInverse;
   Matrix4 projectionMatrix;
   Matrix4 projectionMatrixInverse;
@@ -15,23 +14,19 @@ class Camera extends Object3D
   num near;
   num far;
   
-  Camera(this.near, this.far) : super()
-  {
+  Camera(this.near, this.far) 
+    : matrixWorldInverse = new Matrix4(),
+      projectionMatrix = new Matrix4(),
+      projectionMatrixInverse = new Matrix4(),
+      super();
 
-    matrixWorldInverse = new Matrix4();
-
-    projectionMatrix = new Matrix4();
-    projectionMatrixInverse = new Matrix4();
-  }
-
-  void lookAt( vector ) 
-  {
+  void lookAt( vector ) {
     // TODO: Add hierarchy support.
 
     matrix.lookAt( position, vector, up );
 
     if ( rotationAutoUpdate ) {
-      rotation.setRotationFromMatrix( matrix );
+      rotation.setEulerFromRotationMatrix( matrix, eulerOrder );
     }
   }
 }
