@@ -5,6 +5,9 @@
 
 #import('core/ThreeMath.dart', prefix:'ThreeMath');
 
+// TODO - Use M1 Re-export ( see: http://code.google.com/p/dart/issues/detail?id=760)
+#import('extras/ImageUtils.dart', prefix:'ImageUtils');
+
 #source('Three.dart');
 
 #source('cameras/Camera.dart');
@@ -38,7 +41,6 @@
 
 #source('loaders/ImageLoader.dart');
 
-#source('extras/ImageUtils.dart');
 #source('extras/geometries/CubeGeometry.dart');
 #source('extras/geometries/PlaneGeometry.dart');
 
