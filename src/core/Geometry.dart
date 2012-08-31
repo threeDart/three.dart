@@ -154,9 +154,9 @@ class Geometry {
     // (otherwise memory allocation / deallocation every frame is big resource hog)
     if ( __tmpVertices === null ) {
       
-      __tmpVertices = new List( vertices.length );
-      
-      vertices = __tmpVertices.map((_) => new Vector3()) as List; 
+      __tmpVertices = [];
+      vertices.forEach((_) => __tmpVertices.add(new Vector3())); 
+      vertices = __tmpVertices;
 
       faces.forEach((face) {
 
