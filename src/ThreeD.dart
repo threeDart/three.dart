@@ -42,6 +42,7 @@
 #source('loaders/ImageLoader.dart');
 
 #source('extras/geometries/CubeGeometry.dart');
+#source('extras/geometries/CylinderGeometry.dart');
 #source('extras/geometries/PlaneGeometry.dart');
 
 #source('extras/objects/LensFlare.dart');
