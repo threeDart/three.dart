@@ -3,6 +3,8 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
 
+#import('core/ThreeMath.dart', prefix:'ThreeMath');
+
 #source('Three.dart');
 
 #source('cameras/Camera.dart');
@@ -15,7 +17,6 @@
 #source('core/Quaternion.dart');
 #source('core/Vector4.dart');
 #source('core/Object3D.dart');
-#source('core/ThreeMath.dart');
 #source('core/Color.dart');
 #source('core/Face3.dart');
 #source('core/Face4.dart');
