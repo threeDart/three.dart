@@ -17,7 +17,7 @@ class Geometry {
   
   List<Vector3> vertices;
   List colors, materials;
-  List<Face4> faces;
+  List faces;
 
   List faceUvs;
   List<List> faceVertexUvs;

@@ -18,7 +18,7 @@ class Face3 implements IFace3 {
   Face3( this.a, this.b, this.c,  [normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
 
     normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
-    vertexNormals = normalOrVertexNormals is List ? normal : [];
+    vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
 
     color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
     vertexColors = colorOrVertexColors is List ? color : [];
