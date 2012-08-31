@@ -43,8 +43,8 @@ class Canvas_Camera_Orthographic {
     
     // Grid
     geometry = new Geometry();
-    geometry.vertices.add( new Vertex(new Vector3( - 500, 0, 0 )) );
-    geometry.vertices.add( new Vertex(new Vector3( 500, 0, 0 )) );
+    geometry.vertices.add( new Vector3( - 500, 0, 0 ) );
+    geometry.vertices.add( new Vector3( 500, 0, 0 ) );
 
     for ( var i = 0; i <= 20; i ++ ) {
 
