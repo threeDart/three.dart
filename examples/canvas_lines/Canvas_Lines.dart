@@ -65,7 +65,7 @@ class Canvas_Lines {
       particle.scale.x = particle.scale.y = 5;
       scene.add( particle );
 
-      geometry.vertices.add( new Vertex( particle.position ) );
+      geometry.vertices.add( particle.position );
     }
    
     // lines

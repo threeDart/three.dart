@@ -3,53 +3,17 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Matrix3 
-{
-  List<num> _m;
+class Matrix3  {
+  Float32Array elements;
   
-  get m() {  return _m;  }
-  
-  Matrix3()
-  {
-    _m = new List<num>(9);
-  }
-  
-  Matrix3 transpose() 
-  {
-    var tmp, m = _m;
-
-    tmp = m[1]; m[1] = m[3]; m[3] = tmp;
-    tmp = m[2]; m[2] = m[6]; m[6] = tmp;
-    tmp = m[5]; m[5] = m[7]; m[7] = tmp;
-
-    return this;
-  }
-  
-  Matrix3 transposeIntoArray( List r ) 
-  {
-    var m = _m;
-
-    r[ 0 ] = m[ 0 ];
-    r[ 1 ] = m[ 3 ];
-    r[ 2 ] = m[ 6 ];
-    r[ 3 ] = m[ 1 ];
-    r[ 4 ] = m[ 4 ];
-    r[ 5 ] = m[ 7 ];
-    r[ 6 ] = m[ 2 ];
-    r[ 7 ] = m[ 5 ];
-    r[ 8 ] = m[ 8 ];
-
-    return this;
-  } 
+  Matrix3() : elements = new Float32Array(9);
   
   getInverse( Matrix4 matrix ) {
 
     // input: THREE.Matrix4
     // ( based on http://code.google.com/p/webgl-mjs/ )
 
-// TODO - Use Float32Array and matrix.elements;
-        var me = new List(16); 
-        matrix.flattenToArray(me); 
+    var me = matrix.elements;
         
     var a11 =   me[10] * me[5] - me[6] * me[9];
     var a21 = - me[10] * me[1] + me[2] * me[9];
@@ -73,7 +37,7 @@ class Matrix3
 
     var idet = 1.0 / det;
 
-    //var m = this.elements;
+    var m = elements;
 
     m[ 0 ] = idet * a11; m[ 1 ] = idet * a21; m[ 2 ] = idet * a31;
     m[ 3 ] = idet * a12; m[ 4 ] = idet * a22; m[ 5 ] = idet * a32;
@@ -83,7 +47,30 @@ class Matrix3
 
   }
   
-  // TODO - Use Float32Array for storage
-  get elements() => new Float32Array.fromList(_m);
+  Matrix3 transpose() {
+    var tmp, m = elements;
+
+    tmp = m[1]; m[1] = m[3]; m[3] = tmp;
+    tmp = m[2]; m[2] = m[6]; m[6] = tmp;
+    tmp = m[5]; m[5] = m[7]; m[7] = tmp;
+
+    return this;
+  }
+  
+  Matrix3 transposeIntoArray( List r ) {
+    var m = elements;
+
+    r[ 0 ] = m[ 0 ];
+    r[ 1 ] = m[ 3 ];
+    r[ 2 ] = m[ 6 ];
+    r[ 3 ] = m[ 1 ];
+    r[ 4 ] = m[ 4 ];
+    r[ 5 ] = m[ 7 ];
+    r[ 6 ] = m[ 2 ];
+    r[ 7 ] = m[ 5 ];
+    r[ 8 ] = m[ 8 ];
+
+    return this;
+  } 
 
 }

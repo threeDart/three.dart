@@ -20,6 +20,6 @@ class OrthographicCamera extends Camera {
 	}
 
 	updateProjectionMatrix() {
-		projectionMatrix = Matrix4.makeOrtho( left, right, top, bottom, near, far);
+		projectionMatrix.makeOrthographic( left, right, top, bottom, near, far);
 	}
 }

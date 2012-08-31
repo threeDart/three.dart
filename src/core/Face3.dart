@@ -6,43 +6,43 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Face3 implements IFace3
-{
-  num _a;
-  num _b;
-  num _c;
+class Face3 implements IFace3 {
+  num a, b, c;
+  Vector3 normal;
+  List vertexNormals, vertexColors, vertexTangents;
+  Color color;
+  int materialIndex;
+  Vector3 centroid;
   
-  Vector3 _normal;
-  List _vertexNormals, _vertexColors, _vertexTangents;
-  Color _color;
-  int _materialIndex;
-  Vector3 _centroid;
+  /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
+  Face3( this.a, this.b, this.c,  [normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
+
+    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
+    vertexNormals = normalOrVertexNormals is List ? normal : [];
+
+    color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
+    vertexColors = colorOrVertexColors is List ? color : [];
+
+    vertexTangents = [];
+
+    centroid = new Vector3();
+  }
   
-  Vector3 get centroid() {  return _centroid;  }
-  Vector3 get normal() {  return _normal;  }
-  List get vertexNormals() {  return _vertexNormals;  }
-  List get vertexTangents() {  return _vertexTangents;  }
-  int get materialIndex() {  return _materialIndex;  }
-  num get a() {  return _a;  }
-  num get b() {  return _b;  }
-  num get c() {  return _c;  }
-  
-  Face3( num a, num b, num c,  [Dynamic normal, Dynamic color, materialIndex] ) 
-  {
-    _a = a;
-    _b = b;
-    _c = c;
+  clone() {
 
-    _normal = normal is Vector3 ? normal : new Vector3();
-    _vertexNormals = normal is List ? normal : [ ];
+    var face = new Face3( a, b, c );
 
-    _color = color is Color ? color : new Color();
-    _vertexColors = color is List ? color : [];
+    face.normal.copy( this.normal );
+    face.color.copy( this.color );
+    face.centroid.copy( this.centroid );
 
-    _vertexTangents = [];
+    face.materialIndex = this.materialIndex;
 
-    _materialIndex = materialIndex;
+    face.vertexNormals = vertexNormals.map((Vector3 v) => v.clone());
+    face.vertexColors = vertexColors.map((Vector3 v) => v.clone());
+    face.vertexTangents = vertexTangents.map((Vector3 v) => v.clone());
 
-    _centroid = new Vector3();
+    return face;
+
   }
 }

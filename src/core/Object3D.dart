@@ -7,10 +7,12 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Object3D 
-{
-  String _name;
+class Object3D {
+
   int id;
+  String name;
+  Map properties;
+  
   Object3D parent;
   List children;
   
@@ -35,124 +37,125 @@ class Object3D
 
   Vector3 _vector; 
   
-  //TODO: is this meant to be here?
-  //THREE.Object3DCount
-  //static int Object3DCount = 0;
   
-  String get name() {  return _name;  }
+  Object3D()
+      : id = Three.Object3DCount++,
+      
+        name = '',
+        properties = {},
+            
+        parent = null,
+        children = [],
+    
+        up = new Vector3( 0, 1, 0),
+    
+        position = new Vector3(),
+        rotation = new Vector3(),
+        eulerOrder = 'XYZ',
+        scale = new Vector3( 1, 1, 1 ),
+    
+        renderDepth = null,
+    
+        rotationAutoUpdate = true,
+    
+        matrix = new Matrix4(),
+        matrixWorld = new Matrix4(),
+        matrixRotationWorld = new Matrix4(),
+    
+        matrixAutoUpdate = true,
+        matrixWorldNeedsUpdate = true,
+    
+        quaternion = new Quaternion(),
+        useQuaternion = false,
+    
+        boundRadius = 0.0,
+        boundRadiusScale = 1.0,
+    
+        visible = true,
+    
+        castShadow = false,
+        receiveShadow = false,
+    
+        frustumCulled = true,
+    
+        _vector = new Vector3();
   
-  Object3D() 
-  {
-    _name = '';
+        // TODO - These are not in three.js
+        //_dynamic = false, // when true it retains arrays so they can be updated with __dirty*
+            
+        //doubleSided = false,
+        //flipSided = false,
+  
 
-    id = Three.Object3DCount ++;
+  //bool get isDynamic => _dynamic;
+  
+  void applyMatrix ( matrix ) {
 
-    parent = null;
-    children = [];
+    this.matrix.multiply(matrix, this.matrix);
 
-    up = new Vector3( 0, 1, 0);
+    this.scale.getScaleFromMatrix( this.matrix );
 
-    position = new Vector3();
-    rotation = new Vector3();
-    eulerOrder = 'XYZ';
-    scale = new Vector3( 1, 1, 1 );
+    var mat = new Matrix4().extractRotation( this.matrix );
+    this.rotation.setEulerFromRotationMatrix( mat, this.eulerOrder );
 
-    _dynamic = false; // when true it retains arrays so they can be updated with __dirty*
+    this.position.getPositionFromMatrix( this.matrix );
 
-    doubleSided = false;
-    flipSided = false;
-
-    renderDepth = null;
-
-    rotationAutoUpdate = true;
-
-    matrix = new Matrix4();
-    matrixWorld = new Matrix4();
-    matrixRotationWorld = new Matrix4();
-
-    matrixAutoUpdate = true;
-    matrixWorldNeedsUpdate = true;
-
-    quaternion = new Quaternion();
-    useQuaternion = false;
-
-    boundRadius = 0.0;
-    boundRadiusScale = 1.0;
-
-    visible = true;
-
-    castShadow = false;
-    receiveShadow = false;
-
-    frustumCulled = true;
-
-    _vector = new Vector3();
   }
-
-  bool get isDynamic => _dynamic;
   
-  void translate( num distance, Vector3 axis ) 
-  {
+  void translate( num distance, Vector3 axis ) {
     matrix.rotateAxis( axis );
     position.addSelf( axis.multiplyScalar( distance ) );
   }
 
-  void translateX( num distance )
-  {
-    translate( distance, _vector.setValues( 1, 0, 0 ) );
-  }
+  void translateX( num distance ) => translate( distance, _vector.setValues( 1, 0, 0 ) );
 
-  void translateY( num distance )
-  {
-    translate( distance, _vector.setValues( 0, 1, 0 ) );
-  }
+  void translateY( num distance ) => translate( distance, _vector.setValues( 0, 1, 0 ) );
 
-  void translateZ( num distance )
-  {
-    translate( distance, _vector.setValues( 0, 0, 1 ) );
-  }
+  void translateZ( num distance ) => translate( distance, _vector.setValues( 0, 0, 1 ) );
 
-  void lookAt( Vector3 vector ) 
-  {
+  void lookAt( Vector3 vector ) {
     // TODO: Add hierarchy support.
 
     matrix.lookAt( vector, position, up );
 
     if ( rotationAutoUpdate ) {
-      rotation.setRotationFromMatrix( matrix );
+      rotation.setEulerFromRotationMatrix( matrix, eulerOrder );
     }
   }
 
-  void add( Object3D object ) 
-  {
-    if ( children.indexOf( object ) === - 1 )
-    {
-      if ( object.parent !== null ) {
-        object.parent.remove( object );
-      }
-
-      object.parent = this;
-      children.add( object );
-
-      // add to scene
-      Object3D scene = this;
-      
-      while ( scene.parent !== null ) {
-        scene = scene.parent;
-      }
-      //TODO: "instanceof" equivalent to "is"?
-      if ( scene is Scene ) {
-        scene.addObject( object );
-      }
+  void add( Object3D object ) {
+    if ( object === this ) {
+      print( 'THREE.Object3D.add: An object can\'t be added as a child of itself.' );
+      return;
     }
+    
+
+    if ( object.parent != null ) {
+      object.parent.remove( object );
+    }
+
+    object.parent = this;
+    children.add( object );
+
+    // add to scene
+    Object3D scene = this;
+    
+    while ( scene.parent !== null ) {
+      scene = scene.parent;
+    }
+
+    if ( scene is Scene ) {
+      scene.addObject( object );
+    }
+    
   }
 
-  void remove( Object3D object )
-  {
+  void remove( Object3D object ) {
+    
     int index = children.indexOf( object );
 
-    if ( index !== - 1 )
-    {
+    if ( index !== - 1 ){
+      
       object.parent = null;
       children.removeRange(index, 1);
       // children.splice( index, 1 );
@@ -163,42 +166,37 @@ class Object3D
       while ( scene.parent !== null ) {
         scene = scene.parent;
       }
-      //TODO: "instanceof" equivalent to "is"?
+
       if (scene is Scene ) {
         scene.removeObject( object );
       }
     }
   }
 
-  Object3D getChildByName( String name, bool doRecurse ) 
-  {
+  Object3D getChildByName( String name, bool doRecurse ) {
     int c;
     int cl = children.length;
     Object3D child, recurseResult;
 
-    for ( c = 0; c < cl; c ++ ) 
-    {
-      child = children[ c ];
+    children.forEach((child){
 
       if ( child.name === name ) {
         return child;
       }
 
-      if ( doRecurse ) 
-      {
+      if ( doRecurse ) {
         recurseResult = child.getChildByName( name, doRecurse );
 
-        if ( recurseResult !== null ) {
+        if ( recurseResult != null ) {
           return recurseResult;
         }
       }
-    }
+    });
 
     return null;
   }
 
-  void updateMatrix() 
-  {
+  void updateMatrix() {
     matrix.setPosition( position );
 
     if ( useQuaternion ) {
@@ -207,8 +205,7 @@ class Object3D
       matrix.setRotationFromEuler( rotation, eulerOrder );
     }
 
-    if ( scale.x !== 1 || scale.y !== 1 || scale.z !== 1 ) 
-    {
+    if ( scale.x !== 1 || scale.y !== 1 || scale.z !== 1 ) {
       matrix.scale( scale );
       boundRadiusScale = Math.max( scale.x, Math.max( scale.y, scale.z ) );
     }
@@ -216,16 +213,13 @@ class Object3D
     matrixWorldNeedsUpdate = true;
   }
 
-  void updateMatrixWorld( [bool force=false] ) 
-  {
-    //TODO: figure out what was meant by this line...
-   // matrixAutoUpdate && updateMatrix();
+  void updateMatrixWorld( [bool force=false] ) {
+
    if (matrixAutoUpdate) updateMatrix();
 
     // update matrixWorld
-    if ( matrixWorldNeedsUpdate || force )
-    {
-      if ( parent !== null ) {
+    if ( matrixWorldNeedsUpdate || force ) {
+      if ( parent != null ) {
         matrixWorld.multiply( parent.matrixWorld, matrix );
       } else {
         matrixWorld.copy( matrix );
@@ -237,9 +231,26 @@ class Object3D
     }
 
     // update children
-    for ( int i = 0, l = children.length; i < l; i ++ ) {
-      children[ i ].updateMatrixWorld( force );
+    children.forEach((c) => c.updateMatrixWorld( force ) );
+
+  }
+  
+  worldToLocal( vector ) => __m1.getInverse( this.matrixWorld ).multiplyVector3( vector );
+
+  localToWorld( vector ) => matrixWorld.multiplyVector3( vector );
+
+  clone() {
+
+    // TODO
+
+  }
+  
+  static Matrix4 ___m1;
+  static Matrix4 get __m1() {
+    if (___m1 == null) {
+      ___m1 = new Matrix4();
     }
+    return ___m1;
   }
   
   // Quick hack to allow setting new properties (used by the renderer)

@@ -8,140 +8,104 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Vector2 implements IVector2
-{
-  num _x;
-  num _y;
+class Vector2 implements IVector2 {
+  num x;
+  num y;
   
-  num get x() {  return _x;  }
-  set x(num value) {  _x = value;  }
-  
-  num get y() {  return _y;  }
-  set y(num value) {  _y = value;  }
-  
-  Vector2( [num x = 0, num y = 0] )
-  {
-    _x = (x != null) ? x : 0;
-    _y = (y != null) ? y : 0;
-  }
+  Vector2( [this.x = 0, this.y = 0] );
    
-  Vector2 setValues( num x, num y )
-  {
-    _x = x;
-    _y = y;
+  Vector2 setValues( num x, num y ) {
+    this.x = x;
+    this.y = y;
 
     return this;
   }
 
-  Vector2 copy( Vector2 v ) 
-  {
-    _x = v.x;
-    _y = v.y;
+  Vector2 copy( Vector2 v ) {
+    x = v.x;
+    y = v.y;
 
     return this;
   }
 
-  Vector2 clone()
-  {
-    return new Vector2( _x, _y );
-  }
 
-
-  Vector2 add( Vector2 v1, Vector2 v2 )
-  {
-    _x = v1.x + v2.x;
-    _y = v1.y + v2.y;
+  Vector2 add( Vector2 v1, Vector2 v2 ) {
+    x = v1.x + v2.x;
+    y = v1.y + v2.y;
 
     return this;
   }
 
-  Vector2 addSelf( Vector2 v )
-  {
-    _x += v.x;
-    _y += v.y;
+  Vector2 addSelf( Vector2 v ) {
+    x += v.x;
+    y += v.y;
 
     return this;
   }
 
-  Vector2 sub( Vector2 v1, Vector2 v2 ) 
-  {
-    _x = v1.x - v2.x;
-    _y = v1.y - v2.y;
+  Vector2 sub( Vector2 v1, Vector2 v2 ) {
+    x = v1.x - v2.x;
+    y = v1.y - v2.y;
 
     return this;
   }
 
-  Vector2 subSelf( Vector2 v )
-  {
-    _x -= v.x;
-    _y -= v.y;
+  Vector2 subSelf( Vector2 v ) {
+    x -= v.x;
+    y -= v.y;
 
     return this;
   }
 
-  Vector2 multiplyScalar( num s )
-  {
-    _x *= s;
-    _y *= s;
+  Vector2 multiplyScalar( num s ) {
+    x *= s;
+    y *= s;
 
     return this;
   }
 
-  Vector2 divideScalar ( num s )
-  {
+  Vector2 divideScalar ( num s ) {
     if ( s != null ) {
-      _x /= s;
-      _y /= s;
-
+      x /= s;
+      y /= s;
     } else {
       setValues( 0, 0 );
     }
     return this;
   }
 
-  Vector2 negate() 
-  {
-    return multiplyScalar( -1 );
-  }
+  Vector2 negate() => multiplyScalar( -1 );
 
-  num dot( Vector2 v ) 
-  {
-    return _x * v.x + _y * v.y;
-  }
+  num dot( Vector2 v ) => x * v.x + y * v.y;
 
-  num lengthSq() 
-  {
-    return _x * _x + _y * _y;
-  }
+  num lengthSq() => x * x + y * y;
 
-  num length()
-  {
-    return Math.sqrt( this.lengthSq() );
-  }
+  num length() => Math.sqrt( lengthSq() );
 
-  normalize()
-  {
-    return divideScalar( length() );
-  }
+  normalize() => divideScalar( length() );
 
-  num distanceTo( Vector2 v )
-  {
-    return Math.sqrt( distanceToSquared( v ) );
-  }
+  num distanceTo( Vector2 v ) => Math.sqrt( distanceToSquared( v ) );
 
-  num distanceToSquared( Vector2 v )
-  {
-    num dx = _x - v.x, dy = _y - v.y;
+  num distanceToSquared( Vector2 v ) {
+    num dx = x - v.x, dy = y - v.y;
     return dx * dx + dy * dy;
   }
 
-  Vector2 setLength( num l )
-  {
-    return normalize().multiplyScalar( l );
-  }
+  Vector2 setLength( num l ) => normalize().multiplyScalar( l );
 
-  bool equals( Vector2 v )
-  {
-    return ( ( v.x === _x ) && ( v.y === _y ) );
+  lerpSelf( Vector2 v, num alpha ) {
+
+    x += ( v.x - x ) * alpha;
+    y += ( v.y - y ) * alpha;
+
+    return this;
+
   }
+  
+  bool equals( Vector2 v ) => ( ( v.x === x ) && ( v.y === y ) );
+  
+  bool isZero() => ( lengthSq() < 0.0001 /* almostZero */ );
+  
+  Vector2 clone() => new Vector2( x, y );
+  
 }

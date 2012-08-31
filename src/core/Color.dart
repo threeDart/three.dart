@@ -5,30 +5,25 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Color 
-{
-  //TODO: declaring a value here seems to automatically set the var as a constant.
-  num r;// = 1;
-  num g;// = 1;
-  num b;// = 1;
+class Color {
+
+  num r;
+  num g;
+  num b;
   
   int get _rr() => (r*255).floor().toInt();
   int get _gg() => (g*255).floor().toInt();
   int get _bb() => (b*255).floor().toInt();
   
-  Color( [num hex] )
-  {
-    r = 1.0;
-    g = 1.0;
-    b = 1.0;
+  Color( [num hex] ) 
+      : r = 1.0,
+        g = 1.0,
+        b = 1.0 {
     
     if ( hex is num ) setHex( hex );
-    //TODO: Work out how pivotal this odd return statement is.
-    //return this;
   }
 
-  Color copy( Color color )
-  {
+  Color copy( Color color ) {
     r = color.r;
     g = color.g;
     b = color.b;
@@ -36,8 +31,7 @@ class Color
     return this;
   }
 
-  Color copyGammaToLinear( Color color )
-  {
+  Color copyGammaToLinear( Color color ) {
     r = color.r * color.r;
     g = color.g * color.g;
     b = color.b * color.b;
@@ -45,8 +39,7 @@ class Color
     return this;
   }
 
-  Color copyLinearToGamma( Color color ) 
-  {
+  Color copyLinearToGamma( Color color ) {
     num x = Math.sqrt( color.r );
     
     r = Math.sqrt( color.r );
@@ -56,8 +49,7 @@ class Color
     return this;
   }
 
-  Color convertGammaToLinear() 
-  {
+  Color convertGammaToLinear() {
     var _r = r, _g = g, _b = b;
 
     r = _r * _r;
@@ -67,16 +59,14 @@ class Color
     return this;
   }
 
-  Color convertLinearToGamma()
-  {
+  Color convertLinearToGamma() {
     r = Math.sqrt( r );
     g = Math.sqrt( g );
     b = Math.sqrt( b );
     return this;
   }
 
-  Color setRGB( num newR, num newG, num newB ) 
-  {
+  Color setRGB( num newR, num newG, num newB ) {
     r = newR;
     g = newG;
     b = newB;
@@ -84,8 +74,7 @@ class Color
     return this;
   }
 
-  Color setHSV( num h, num s, num v )
-  {
+  Color setHSV( num h, num s, num v ) {
     // based on MochiKit implementation by Bob Ippolito
     // h,s,v ranges are < 0.0 - 1.0 >  
     num i, f, p, q, t;
@@ -113,8 +102,7 @@ class Color
     return this;
   }
 
-  Color setHex( num hex )
-  {
+  Color setHex( num hex ) {
     var h = hex.floor().toInt();    
     r = ( (h&0xFF0000)>>16 ) / 255; 
     g = ( (h&0x00FF00)>>8 ) / 255;
@@ -122,14 +110,12 @@ class Color
     return this;
   }
 
-  num getHex()
-  {
+  num getHex() {
     num h = (_rr<<16)^(_gg<<8)^(_bb);
     return h;
   }
 
-  String getContextStyle()
-  {
+  String getContextStyle() {
     // TODO: this is a little bit of a mess. We should stay consistent between
     // how r,g,b is set. Something in CanvasRender is setting them to doubles
     // when they should be int's. We could add setter/getter's to handle this
@@ -137,8 +123,7 @@ class Color
     return 'rgb(${_rr},${_gg},${_bb})';
   }
 
-  Color clone() 
-  {
+  Color clone() {
     return new Color().setRGB( r, g, b);
   }
 }

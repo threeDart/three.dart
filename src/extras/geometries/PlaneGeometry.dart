@@ -31,7 +31,7 @@ class PlaneGeometry extends Geometry
         num x = ix * segment_width - width_half;
         num y = iy * segment_height - height_half;
 
-        vertices.add( new Vertex( new Vector3( x, - y, 0 ) ) );
+        vertices.add( new Vector3( x, - y, 0 ) );
       }
     }
 
