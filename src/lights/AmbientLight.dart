@@ -1,4 +1,3 @@
-class AmbientLight extends Light
-{
+class AmbientLight extends Light {
   AmbientLight(num hex) : super(hex);
 }

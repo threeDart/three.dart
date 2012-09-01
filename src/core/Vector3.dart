@@ -51,7 +51,7 @@ class Vector3 implements IVector3 {
     return this;
   }
   
-  Vector3 add( Vector3 v1, Vector3 v2 ) {
+  Vector3 add( IVector3 v1, IVector3 v2 ) {
     x = v1.x + v2.x;
     y = v1.y + v2.y;
     z = v1.z + v2.z;
@@ -59,7 +59,7 @@ class Vector3 implements IVector3 {
     return this;
   }
 
-  Vector3 addSelf( Vector3 v ) {
+  Vector3 addSelf( IVector3 v ) {
     x += v.x;
     y += v.y;
     z += v.z;

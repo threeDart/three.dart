@@ -9,14 +9,14 @@ class ParticleSystem extends Object3D {
   	}
 
   	if ( geometry != null) {
-
-		// calc bound radius
-		if( geometry.boundingSphere == null) {
-			geometry.computeBoundingSphere();
-		}
-
-		boundRadius = geometry.boundingSphere.radius;
-	}
-
+  		// calc bound radius
+  		if( geometry.boundingSphere == null) {
+  			geometry.computeBoundingSphere();
+  		}
+  		boundRadius = geometry.boundingSphere.radius;
+  	}
+  	
+  	frustumCulled = false;
   }
+  
 }

@@ -369,40 +369,42 @@ class WebGLRenderer implements Renderer {
 
 	// Deallocation
 
-	deallocateObject( Dynamic object ) {
+	deallocateObject( WebGLObject webglobject ) {
 
+	  Object3D object = webglobject.object; // unwrap
 	  
-		if ( ! object["__webglInit"] ) return;
+		if ( ! webglobject.__webglInit ) return;
 
-		object["__webglInit"] = false;
+		webglobject.__webglInit = false;
 
-		object["_modelViewMatrix"] = null; //delete object["_modelViewMatrix"];
-		object["_normalMatrix"] = null; //delete object["_normalMatrix"];
+		webglobject._modelViewMatrix = null; //delete object["_modelViewMatrix"];
+		webglobject._normalMatrix = null; //delete object["_normalMatrix"];
 
-		object["_normalMatrixArray"] = null; //delete object["_normalMatrixArray"];
-		object["_modelViewMatrixArray"] = null; //delete object["_modelViewMatrixArray"];
-		object["modelMatrixArray"] = null;//delete object["modelMatrixArray"];
+		webglobject._normalMatrixArray = null; //delete object["_normalMatrixArray"];
+		webglobject._modelViewMatrixArray = null; //delete object["_modelViewMatrixArray"];
+		webglobject.modelMatrixArray = null;//delete object["modelMatrixArray"];
 
+		WebGLGeometry geometry = webglobject.webglgeometry;
+		
 		if ( object is Mesh ) {
-      		Mesh mesh = object;
-      
-			for ( var g in mesh.geometry.geometryGroups ) {
+  
+			for ( var g in geometry.geometryGroups ) {
 
-				deleteMeshBuffers( mesh.geometry.geometryGroups[ g ] );
+				deleteMeshBuffers( geometry.geometryGroups[ g ] );
 
 			}
 
 		} else if ( object is Ribbon ) {
 
-			deleteRibbonBuffers( (object as Ribbon).geometry );
+			deleteRibbonBuffers( geometry);
 
 		} else if ( object is Line ) {
 
-			deleteLineBuffers( object.geometry );
+			deleteLineBuffers( geometry );
 
 		} else if ( object is ParticleSystem ) {
 
-			deleteParticleBuffers( (object as ParticleSystem) .geometry );
+			deleteParticleBuffers( geometry );
 
 		}
 
@@ -495,34 +497,34 @@ class WebGLRenderer implements Renderer {
 
 	// Buffer allocation
 
-	createParticleBuffers ( geometry ) {
+	createParticleBuffers ( WebGLGeometry geometry ) {
 
-		geometry["__webglVertexBuffer"] = _gl.createBuffer();
-		geometry["__webglColorBuffer"] = _gl.createBuffer();
+		geometry.__webglVertexBuffer = _gl.createBuffer();
+		geometry.__webglColorBuffer = _gl.createBuffer();
 
 		info.memory.geometries++;
 
 	}
 
-	createLineBuffers ( geometry ) {
+	createLineBuffers ( WebGLGeometry geometry ) {
 
-		geometry["__webglVertexBuffer"] = _gl.createBuffer();
-		geometry["__webglColorBuffer"] = _gl.createBuffer();
-
-		info.memory.geometries ++;
-
-	}
-
-	createRibbonBuffers ( geometry ) {
-
-		geometry["__webglVertexBuffer"] = _gl.createBuffer();
-		geometry["__webglColorBuffer"] = _gl.createBuffer();
+		geometry.__webglVertexBuffer = _gl.createBuffer();
+		geometry.__webglColorBuffer = _gl.createBuffer();
 
 		info.memory.geometries ++;
 
 	}
 
-	createMeshBuffers ( GeometryBuffer geometryGroup ) {
+	createRibbonBuffers ( WebGLGeometry geometry ) {
+
+		geometry.__webglVertexBuffer = _gl.createBuffer();
+		geometry.__webglColorBuffer = _gl.createBuffer();
+
+		info.memory.geometries ++;
+
+	}
+
+	createMeshBuffers ( WebGLGeometry geometryGroup ) {
 
 		geometryGroup.__webglVertexBuffer = _gl.createBuffer();
 		geometryGroup.__webglNormalBuffer = _gl.createBuffer();
@@ -574,34 +576,34 @@ class WebGLRenderer implements Renderer {
 
 	// Buffer deallocation
 
-	deleteParticleBuffers ( geometry ) {
+	deleteParticleBuffers ( WebGLGeometry geometry ) {
 
-		_gl.deleteBuffer( geometry["__webglVertexBuffer"] );
-		_gl.deleteBuffer( geometry["__webglColorBuffer"] );
-
-		info.memory.geometries --;
-
-	}
-
-	deleteLineBuffers ( geometry ) {
-
-		_gl.deleteBuffer( geometry["__webglVertexBuffer"] );
-		_gl.deleteBuffer( geometry["__webglColorBuffer"] );
+		_gl.deleteBuffer( geometry.__webglVertexBuffer );
+		_gl.deleteBuffer( geometry.__webglColorBuffer );
 
 		info.memory.geometries --;
 
 	}
 
-	deleteRibbonBuffers ( geometry ) {
+	deleteLineBuffers ( WebGLGeometry geometry ) {
 
-		_gl.deleteBuffer( geometry["__webglVertexBuffer"] );
-		_gl.deleteBuffer( geometry["__webglColorBuffer"] );
+		_gl.deleteBuffer( geometry.__webglVertexBuffer );
+		_gl.deleteBuffer( geometry.__webglColorBuffer );
 
 		info.memory.geometries --;
 
 	}
 
-	deleteMeshBuffers ( GeometryBuffer geometryGroup ) {
+	deleteRibbonBuffers ( WebGLGeometry geometry ) {
+
+		_gl.deleteBuffer( geometry.__webglVertexBuffer );
+		_gl.deleteBuffer( geometry.__webglColorBuffer );
+
+		info.memory.geometries --;
+
+	}
+
+	deleteMeshBuffers ( WebGLGeometry geometryGroup ) {
 
 		_gl.deleteBuffer( geometryGroup.__webglVertexBuffer );
 		_gl.deleteBuffer( geometryGroup.__webglNormalBuffer );
@@ -661,17 +663,17 @@ class WebGLRenderer implements Renderer {
 
 	// Buffer initialization
 
-	initCustomAttributes ( geometry, object ) {
+	initCustomAttributes ( WebGLGeometry geometry, WebGLObject object ) {
 
 		var nvertices = geometry.vertices.length;
 
-		var material = object.material;
+		var material = object.webglmaterial;
 
-		if ( material.attributes ) {
+		if ( material.attributes != null ) {
 
-			if ( geometry["__webglCustomAttributesList"] == null ) {
+			if ( geometry.__webglCustomAttributesList == null ) {
 
-				geometry["__webglCustomAttributesList"] = [];
+				geometry.__webglCustomAttributesList = [];
 
 			}
 
@@ -694,14 +696,14 @@ class WebGLRenderer implements Renderer {
 
 					attribute.array = new Float32Array( nvertices * size );
 
-					attribute.buffer = _gl.createBuffer();
+					attribute.buffer = new Buffer(_gl.createBuffer());
 					attribute.buffer.belongsToAttribute = a;
 
 					attribute.needsUpdate = true;
 
 				}
 
-				geometry["__webglCustomAttributesList"].add( attribute );
+				geometry.__webglCustomAttributesList.add( attribute );
 
 			}
 
@@ -709,46 +711,46 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	initParticleBuffers ( geometry, object ) {
+	initParticleBuffers ( WebGLGeometry geometry, WebGLObject object ) {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry["__vertexArray"] = new Float32Array( nvertices * 3 );
-		geometry["__colorArray"] = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32Array( nvertices * 3 );
+		geometry.__colorArray = new Float32Array( nvertices * 3 );
 
-		geometry["__sortArray"] = [];
+		geometry.__sortArray = [];
 
-		geometry["__webglParticleCount"] = nvertices;
+		geometry.__webglParticleCount = nvertices;
 
 		initCustomAttributes ( geometry, object );
 
 	}
 
-	initLineBuffers ( geometry, object ) {
+	initLineBuffers ( WebGLGeometry geometry, WebGLObject object ) {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry["__vertexArray"] = new Float32Array( nvertices * 3 );
-		geometry["__colorArray"] = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32Array( nvertices * 3 );
+		geometry.__colorArray = new Float32Array( nvertices * 3 );
 
-		geometry["__webglLineCount"] = nvertices;
+		geometry.__webglLineCount = nvertices;
 
 		initCustomAttributes ( geometry, object );
 
 	}
 
-	initRibbonBuffers ( geometry ) {
+	initRibbonBuffers ( WebGLGeometry geometry ) {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry["__vertexArray"] = new Float32Array( nvertices * 3 );
-		geometry["__colorArray"] = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32Array( nvertices * 3 );
+		geometry.__colorArray = new Float32Array( nvertices * 3 );
 
-		geometry["__webglVertexCount"] = nvertices;
+		geometry.__webglVertexCount = nvertices;
 
 	}
 
-	initMeshBuffers ( GeometryBuffer geometryGroup, object ) {
+	initMeshBuffers ( WebGLGeometry geometryGroup, WebGLObject object ) {
 
 		var geometry = object.geometry,
 			faces3 = geometryGroup.faces3,
@@ -889,8 +891,9 @@ class WebGLRenderer implements Renderer {
 
 					attribute["array"] = new Float32Array( nvertices * size );
 
-					attribute["buffer"] = _gl.createBuffer();
-					attribute["buffer"].belongsToAttribute = a; // TODO
+					var buffer = new Buffer(_gl.createBuffer());
+					buffer.belongsToAttribute = a;
+					attribute["buffer"] = buffer;
 
 					originalAttribute.needsUpdate = true;
 					attribute["__original"] = originalAttribute;
@@ -907,7 +910,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	WebGLMaterial getBufferMaterial( object, geometryGroup ) {
+	WebGLMaterial getBufferMaterial( WebGLObject object, WebGLGeometry geometryGroup ) {
 
 	  Material material;
 	  
@@ -921,7 +924,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		return new WebGLMaterial(material);
+		return new WebGLMaterial.from(material);
 	}
 
 
@@ -977,11 +980,11 @@ class WebGLRenderer implements Renderer {
 
 	//
 
-	initDirectBuffers( geometry ) {
+	initDirectBuffers( BufferGeometry geometry ) {
 
 		var a, attribute, type;
 
-		for ( a in geometry.attributes ) {
+		geometry.attributes.forEach((a, v) {
 
 			if ( a === "index" ) {
 
@@ -993,14 +996,14 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			attribute = geometry.attributes[ a ];
+			attribute = v;
 
 			attribute.buffer = _gl.createBuffer();
 
 			_gl.bindBuffer( type, attribute.buffer );
 			_gl.bufferData( type, attribute.array, WebGLRenderingContext.STATIC_DRAW );
 
-		}
+		});
 
 	}
 
@@ -1331,7 +1334,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setLineBuffers ( geometry, hint ) {
+	setLineBuffers ( WebGLGeometry geometry, hint ) {
 
 		var v, c, vertex, offset, color,
 
@@ -1340,13 +1343,13 @@ class WebGLRenderer implements Renderer {
 		vl = vertices.length,
 		cl = colors.length,
 
-		vertexArray = geometry["__vertexArray"],
-		colorArray = geometry["__colorArray"],
+		vertexArray = geometry.__vertexArray,
+		colorArray = geometry.__colorArray,
 
 		dirtyVertices = geometry.verticesNeedUpdate,
 		dirtyColors = geometry.colorsNeedUpdate,
 
-		customAttributes = geometry["__webglCustomAttributesList"],
+		customAttributes = geometry.__webglCustomAttributesList,
 
 		i, il,
 		a, ca, cal, value,
@@ -1366,7 +1369,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry["__webglVertexBuffer"] );
+			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglVertexBuffer );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
 
 		}
@@ -1385,12 +1388,12 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry["__webglColorBuffer"] );
+			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglColorBuffer );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
-		if ( customAttributes ) {
+		if ( customAttributes != null ) {
 
 			il = customAttributes.length;
 			for ( i = 0; i < il; i ++ ) {
@@ -1486,7 +1489,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setRibbonBuffers ( geometry, hint ) {
+	setRibbonBuffers ( WebGLGeometry geometry, hint ) {
 
 		var v, c, vertex, offset, color,
 
@@ -1495,8 +1498,8 @@ class WebGLRenderer implements Renderer {
 		vl = vertices.length,
 		cl = colors.length,
 
-		vertexArray = geometry["__vertexArray"],
-		colorArray = geometry["__colorArray"],
+		vertexArray = geometry.__vertexArray,
+		colorArray = geometry.__colorArray,
 
 		dirtyVertices = geometry.verticesNeedUpdate,
 		dirtyColors = geometry.colorsNeedUpdate;
@@ -1515,7 +1518,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry["__webglVertexBuffer"] );
+			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglVertexBuffer );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
 
 		}
@@ -1534,14 +1537,14 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry["__webglColorBuffer"] );
+			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglColorBuffer );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
 	}
 
-	setMeshBuffers( GeometryBuffer geometryGroup, object, hint, dispose, material ) {
+	setMeshBuffers( WebGLGeometry geometryGroup, WebGLObject object, hint, dispose, material ) {
 
 		if ( ! geometryGroup.__inittedArrays ) {
     
@@ -1610,7 +1613,7 @@ class WebGLRenderer implements Renderer {
 		faceArray = geometryGroup.__faceArray,
 		lineArray = geometryGroup.__lineArray,
 
-		geometry = object.geometry, // this is shared for all chunks
+		geometry = object.webglgeometry, // this is shared for all chunks
 
 		dirtyVertices = geometry.verticesNeedUpdate,
 		dirtyElements = geometry.elementsNeedUpdate,
@@ -3411,13 +3414,15 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderBuffer ( camera, lights, fog, material, GeometryBuffer geometryGroup, object ) {
+	renderBuffer ( camera, lights, fog, material, WebGLGeometry geometryGroup, WebGLObject webglobject ) {
 
+	  Object3D object = webglobject.object;
+	  
 		if ( !material.visible ) return;
 
 		var program, attributes, linewidth, primitives, a, attribute, i, il;
 
-		program = setProgram( camera, lights, fog, material, object );
+		program = setProgram( camera, lights, fog, material, webglobject );
 
 		attributes = program.attributes;
 
@@ -3445,9 +3450,9 @@ class WebGLRenderer implements Renderer {
 
 		} else {
 
-			if ( object.morphTargetBase ) {
+			if ( webglobject.morphTargetBase ) {
 
-				setupMorphTargets( material, geometryGroup, object );
+				setupMorphTargets( material, geometryGroup, webglobject );
 
 			}
 
@@ -3592,7 +3597,7 @@ class WebGLRenderer implements Renderer {
 
 		} else if ( object is Line ) {
 
-			primitives = ( object.type === Three.LineStrip ) ? WebGLRenderingContext.LINE_STRIP : WebGLRenderingContext.LINES;
+			primitives = ( (object as Line).type == LineStrip ) ? WebGLRenderingContext.LINE_STRIP : WebGLRenderingContext.LINES;
 
 			setLineWidth( material.linewidth );
 
@@ -3621,7 +3626,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setupMorphTargets ( material, geometryGroup, object ) {
+	setupMorphTargets ( material, WebGLGeometry geometryGroup, WebGLObject object ) {
 
 		// set base
 
@@ -3659,7 +3664,7 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				object["__webglMorphTargetInfluences"][ m ] = influences[ order[ m ] ];
+				object.__webglMorphTargetInfluences[ m ] = influences[ order[ m ] ];
 
 				m ++;
 			}
@@ -3719,7 +3724,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					object["__webglMorphTargetInfluences"][ m ] = influences[ influenceIndex ];
+					object.__webglMorphTargetInfluences[ m ] = influences[ influenceIndex ];
 
 				} else {
 
@@ -3731,7 +3736,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					object["__webglMorphTargetInfluences"][ m ] = 0;
+					object.__webglMorphTargetInfluences[ m ] = 0;
 
 				}
 
@@ -3745,7 +3750,7 @@ class WebGLRenderer implements Renderer {
 
 		if ( material.program.uniforms["morphTargetInfluences"] !== null ) {
 
-			_gl.uniform1fv( material.program.uniforms["morphTargetInfluences"], object["__webglMorphTargetInfluences"] );
+			_gl.uniform1fv( material.program.uniforms["morphTargetInfluences"], object.__webglMorphTargetInfluences );
 
 		}
 
@@ -3763,13 +3768,14 @@ class WebGLRenderer implements Renderer {
 	
 	_render ( Scene scene, Camera c, [renderTarget = null, forceClear = false] ) {
 
-		var i, il,
+		var i, il;
 
-		webglObject, object,
-		renderList,
+		WebGLObject webglObject;
+		Object3D object;
+		var renderList;
 
-		lights = scene.lights,
-		fog = scene.fog;
+		List lights = scene.lights;
+		Fog fog = scene.fog;
 
 		// reset caching for this frame
 
@@ -3836,7 +3842,7 @@ class WebGLRenderer implements Renderer {
 
 					//object.matrixWorld.flattenToArray( object["modelMatrixArray"] );
 
-					setupMatrices( object, camera );
+					setupMatrices( webglObject, camera );
 
 					unrollBufferMaterial( webglObject );
 
@@ -3892,7 +3898,7 @@ class WebGLRenderer implements Renderer {
 				}
 				*/
 
-				setupMatrices( object, camera );
+				setupMatrices( webglObject, camera );
 
 				unrollImmediateBufferMaterial( webglObject );
 
@@ -4050,11 +4056,11 @@ class WebGLRenderer implements Renderer {
 
 				if ( buffer is BufferGeometry ) {
 
-					renderBufferDirect( camera, lights, fog, material, buffer, object );
+					renderBufferDirect( camera, lights, fog, material, buffer, webglObject );
 
 				} else {
 
-					renderBuffer( camera, lights, fog, material, buffer, object );
+					renderBuffer( camera, lights, fog, material, buffer, webglObject );
 
 				}
 
@@ -4123,50 +4129,49 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	unrollImmediateBufferMaterial ( globject ) {
+	unrollImmediateBufferMaterial ( WebGLObject webglobject ) {
 
-		var object = globject.object,
-			material = object.material;
+		var material = webglobject.webglmaterial;
 
 		if ( material.transparent ) {
 
-			globject.transparent = material;
-			globject.opaque = null;
+		  webglobject.transparent = material;
+		  webglobject.opaque = null;
 
 		} else {
 
-			globject.opaque = material;
-			globject.transparent = null;
+		  webglobject.opaque = material;
+		  webglobject.transparent = null;
 
 		}
 
 	}
 
-	unrollBufferMaterial ( globject ) {
+	unrollBufferMaterial ( WebGLObject object ) {
 
-		var object = globject.object,
-			buffer = globject.buffer,
-			material, materialIndex, meshMaterial;
+		WebGLGeometry	buffer = object.buffer;
+		WebGLMaterial meshMaterial = object.webglmaterial;
+		int materialIndex;
+		WebGLMaterial material;
 
-		meshMaterial = new WebGLMaterial(object.material);
-
-		if ( meshMaterial.isMeshFaceMaterial ) {
+		
+		if ( object.material is MeshFaceMaterial ) {
 
 			materialIndex = buffer.materialIndex;
 
 			if ( materialIndex >= 0 ) {
 
-				material = object.geometry.materials[ materialIndex ];
+				material = new WebGLMaterial.from(object.geometry.materials[ materialIndex ]);
 
 				if ( material.transparent ) {
 
-					globject.transparent = material;
-					globject.opaque = null;
+				  object.transparent = material;
+				  object.opaque = null;
 
 				} else {
 
-					globject.opaque = material;
-					globject.transparent = null;
+				  object.opaque = material;
+				  object.transparent = null;
 
 				}
 
@@ -4174,19 +4179,19 @@ class WebGLRenderer implements Renderer {
 
 		} else {
 
-			material = meshMaterial;
-
+		  material = meshMaterial;
+		  
 			if ( material != null ) {
 
-				if ( material.transparent ) {
+				if ( material.transparent != null ) {
 
-					globject.transparent = material;
-					globject.opaque = null;
+				  object.transparent = material;
+				  object.opaque = null;
 
 				} else {
 
-					globject.opaque = material;
-					globject.transparent = null;
+				  object.opaque = material;
+				  object.transparent = null;
 
 				}
 
@@ -4198,7 +4203,7 @@ class WebGLRenderer implements Renderer {
 
 	// Geometry splitting
 
-	sortFacesByMaterial ( geometry ) {
+	sortFacesByMaterial ( WebGLGeometry geometry ) {
 
 		var f, fl, face, materialIndex, vertices,
 			materialHash, groupHash;
@@ -4228,7 +4233,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.geometryGroups[ groupHash ] == null ) {
 
-				geometry.geometryGroups[ groupHash ] = new GeometryBuffer(faces3: [], faces4: [], materialIndex: materialIndex, vertices: 0, numMorphTargets: numMorphTargets, numMorphNormals: numMorphNormals);
+				geometry.geometryGroups[ groupHash ] = new WebGLGeometry(faces3: [], faces4: [], materialIndex: materialIndex, vertices: 0, numMorphTargets: numMorphTargets, numMorphNormals: numMorphNormals);
 
 			}
 
@@ -4241,7 +4246,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( geometry.geometryGroups[ groupHash ] == null ) {
 
-					geometry.geometryGroups[ groupHash ] = new GeometryBuffer(faces3: [], faces4: [], materialIndex: materialIndex, vertices: 0, numMorphTargets: numMorphTargets, numMorphNormals: numMorphNormals );
+					geometry.geometryGroups[ groupHash ] = new WebGLGeometry(faces3: [], faces4: [], materialIndex: materialIndex, vertices: 0, numMorphTargets: numMorphTargets, numMorphNormals: numMorphNormals );
 
 				}
 
@@ -4263,13 +4268,15 @@ class WebGLRenderer implements Renderer {
 
 		geometry.geometryGroupsList = [];
 
-		geometry.geometryGroups.forEach((k, GeometryBuffer v) {
+		geometry.geometryGroups.forEach( (k,g) {
+		  
+      g.id = _geometryGroupCounter ++;
+      
+      geometry.geometryGroupsList.add( g );
 
-			v.id = _geometryGroupCounter ++;
-
-			geometry.geometryGroupsList.add( v );
-
-		});
+    });
+				
+		return;
 
 	}
 
@@ -4304,7 +4311,7 @@ class WebGLRenderer implements Renderer {
 
 		for ( var o = 0, ol = scene["__webglObjects"].length; o < ol; o ++ ) {
 
-			updateObject( scene["__webglObjects"][ o ].object );
+			updateObject( scene["__webglObjects"][ o ] );
 
 		}
 
@@ -4312,22 +4319,24 @@ class WebGLRenderer implements Renderer {
 
 	// Objects adding
 
-	addObject ( object, scene ) {
+	addObject ( Object3D object, Scene scene ) {
 
-		var g, geometry, geometryGroup;
+	  // nelsonsilva - wrapping in our own decorator
+    WebGLObject webglobject = new WebGLObject(object);
+    
+    // ATTENTION - All type checks must be done with object and object.geometry
+    WebGLGeometry geometry = webglobject.webglgeometry;
+	  
+		if (  !webglobject.__webglInit ) {
 
-		if (  object["__webglInit"] == null) {
+		  webglobject.__webglInit = true;
 
-			object["__webglInit"] = true;
-
-			object["_modelViewMatrix"] = new Matrix4();
-			object["_normalMatrix"] = new Matrix3();
+		  webglobject._modelViewMatrix = new Matrix4();
+		  webglobject._normalMatrix = new Matrix3();
 
 			if ( object is Mesh ) {
 
-				geometry = object.geometry;
-
-				if ( geometry is Geometry ) {
+				if ( object.geometry is Geometry ) {
 
 					if ( geometry.geometryGroups == null) {
 
@@ -4344,7 +4353,7 @@ class WebGLRenderer implements Renderer {
 						if ( geometryGroup.__webglVertexBuffer == null ) {
 
 							createMeshBuffers( geometryGroup );
-							initMeshBuffers( geometryGroup, object );
+							initMeshBuffers( geometryGroup, webglobject );
 
 							geometry.verticesNeedUpdate = true;
 							geometry.morphTargetsNeedUpdate = true;
@@ -4358,17 +4367,15 @@ class WebGLRenderer implements Renderer {
 
 					});
 
-				} else if ( geometry is BufferGeometry ) {
+				} else if ( object.geometry is BufferGeometry ) {
 
-					initDirectBuffers( geometry );
+					initDirectBuffers( object.geometry as BufferGeometry);
 
 				}
 
 			} else if ( object is Ribbon ) {
 
-				geometry = object.geometry;
-
-				if( ! geometry["__webglVertexBuffer"] ) {
+				if( geometry.__webglVertexBuffer == null) {
 
 					createRibbonBuffers( geometry );
 					initRibbonBuffers( geometry );
@@ -4380,12 +4387,12 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( object is Line ) {
 
-				geometry = object.geometry;
+				geometry = new WebGLGeometry.from(object.geometry);
 
-				if( ! geometry["__webglVertexBuffer"] ) {
+				if( geometry.__webglVertexBuffer == null ) {
 
 					createLineBuffers( geometry );
-					initLineBuffers( geometry, object );
+					initLineBuffers( geometry, webglobject );
 
 					geometry.verticesNeedUpdate = true;
 					geometry.colorsNeedUpdate = true;
@@ -4394,12 +4401,10 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( object is ParticleSystem ) {
 
-				geometry = object.geometry;
-
-				if ( ! geometry["__webglVertexBuffer"] ) {
+				if ( geometry.__webglVertexBuffer == null ) {
 
 					createParticleBuffers( geometry );
-					initParticleBuffers( geometry, object );
+					initParticleBuffers( geometry, webglobject );
 
 					geometry.verticesNeedUpdate = true;
 					geometry.colorsNeedUpdate = true;
@@ -4410,21 +4415,19 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( object["__webglActive"] == null) {
+		if ( webglobject.__webglActive == null) {
 
 			if ( object is Mesh ) {
 
-				geometry = object.geometry;
+				if ( object.geometry is BufferGeometry ) {
 
-				if ( geometry is BufferGeometry ) {
-
-					addBuffer( scene["__webglObjects"], geometry, object );
+					addBuffer( scene["__webglObjects"], geometry, webglobject );
 
 				} else {
 
 				  geometry.geometryGroups.forEach( (k, geometryGroup) {
 
-						addBuffer( scene["__webglObjects"], geometryGroup, object );
+						addBuffer( scene["__webglObjects"], geometryGroup, webglobject );
 
 					});
 
@@ -4434,12 +4437,11 @@ class WebGLRenderer implements Renderer {
 						object is Line ||
 						object is ParticleSystem ) {
 
-				geometry = object.geometry;
-				addBuffer( scene["__webglObjects"], geometry, object );
+				addBuffer( scene["__webglObjects"],  geometry, webglobject );
 
-			} else if ( object is ImmediateRenderObject ) { // TODO - check if this is needed: || object.immediateRenderCallback != null) {
+			} else if ( object is ImmediateRenderObject || (object["immediateRenderCallback"] != null) ) {
 
-				addBufferImmediate( scene["__webglObjectsImmediate"], object );
+				addBufferImmediate( scene["__webglObjectsImmediate"], webglobject );
 
 			} else if ( object is Sprite ) {
 
@@ -4457,41 +4459,37 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	addBuffer ( objlist, buffer, object ) {
+	addBuffer ( objlist, WebGLGeometry buffer, WebGLObject object ) {
 
-		objlist.add( new WebGLObject(
-				buffer: buffer,
-				object: object,
-				opaque: null,
-				transparent: null
-			)
-		);
+	  object.buffer = buffer;
+	  object.opaque = null;
+	  object.transparent = null;
+		objlist.add(object);
 
 	}
 
-	addBufferImmediate ( objlist, object ) {
+	addBufferImmediate ( objlist, WebGLObject object ) {
 
-		objlist.add( new WebGLObject(
-				object: object,
-				opaque: null,
-				transparent: null
-			)
-		);
+	  object.opaque = null;
+    object.transparent = null;
+    
+		objlist.add(object);
 
 	}
 
 	// Objects updates
 
-	updateObject ( object ) {
-
-		var geometry = object.geometry,
-			geometryGroup, customAttributesDirty;
+	updateObject ( WebGLObject webglobject ) {
+	  
+    Object3D object = webglobject.object;
+		WebGLGeometry geometry = webglobject.webglgeometry, geometryGroup;
+		var customAttributesDirty;
 		
 		WebGLMaterial material;
 
 		if ( object is Mesh ) {
 
-			if ( geometry is BufferGeometry ) {
+			if ( object.geometry is BufferGeometry ) {
 
 				if ( geometry.verticesNeedUpdate || geometry.elementsNeedUpdate ||
 					 geometry.uvsNeedUpdate || geometry.normalsNeedUpdate ||
@@ -4516,7 +4514,7 @@ class WebGLRenderer implements Renderer {
 
 					geometryGroup = geometry.geometryGroupsList[ i ];
 
-					material = getBufferMaterial( object, geometryGroup );
+					material = getBufferMaterial( webglobject, geometryGroup );
 
 					customAttributesDirty = (material.attributes != null) && areCustomAttributesDirty( material );
 
@@ -4524,7 +4522,7 @@ class WebGLRenderer implements Renderer {
 						 geometry.uvsNeedUpdate || geometry.normalsNeedUpdate ||
 						 geometry.colorsNeedUpdate || geometry.tangentsNeedUpdate || customAttributesDirty ) {
 
-						setMeshBuffers( geometryGroup, object, WebGLRenderingContext.DYNAMIC_DRAW, !geometry.isDynamic, material );
+						setMeshBuffers( geometryGroup, webglobject, WebGLRenderingContext.DYNAMIC_DRAW, !geometry.isDynamic, material );
 
 					}
 
@@ -4557,9 +4555,9 @@ class WebGLRenderer implements Renderer {
 
 		} else if ( object is Line ) {
 
-			material = getBufferMaterial( object, geometryGroup );
+			material = getBufferMaterial( webglobject, geometryGroup );
 
-			customAttributesDirty = material.attributes && areCustomAttributesDirty( material );
+			customAttributesDirty = (material.attributes != null) && areCustomAttributesDirty( material );
 
 			if ( geometry.verticesNeedUpdate ||  geometry.colorsNeedUpdate || customAttributesDirty ) {
 
@@ -4570,11 +4568,11 @@ class WebGLRenderer implements Renderer {
 			geometry.verticesNeedUpdate = false;
 			geometry.colorsNeedUpdate = false;
 
-			material.attributes && clearCustomAttributes( material );
+			if (material.attributes != null) clearCustomAttributes( material );
 
 		} else if ( object is ParticleSystem ) {
 
-			material = getBufferMaterial( object, geometryGroup );
+			material = getBufferMaterial( webglobject, geometryGroup );
 
 			customAttributesDirty = material.attributes && areCustomAttributesDirty( material );
 
@@ -4587,7 +4585,7 @@ class WebGLRenderer implements Renderer {
 			geometry.verticesNeedUpdate = false;
 			geometry.colorsNeedUpdate = false;
 
-			material.attributes && clearCustomAttributes( material );
+			if (material.attributes != null) clearCustomAttributes( material );
 
 		}
 
@@ -4597,9 +4595,9 @@ class WebGLRenderer implements Renderer {
 
 	areCustomAttributesDirty ( material ) {
 
-		for ( var a in material.attributes ) {
+		for ( var m in material.attributes ) {
 
-			if ( material.attributes[ a ].needsUpdate ) return true;
+			if ( m.needsUpdate ) return true;
 
 		}
 
@@ -4609,9 +4607,9 @@ class WebGLRenderer implements Renderer {
 
 	clearCustomAttributes ( material ) {
 
-		for ( var a in material.attributes ) {
+		for ( var m in material.attributes ) {
 
-			material.attributes[ a ].needsUpdate = false;
+			m.needsUpdate = false;
 
 		}
 
@@ -4619,38 +4617,40 @@ class WebGLRenderer implements Renderer {
 
 	// Objects removal
 
-	removeObject ( object, scene ) {
+	removeObject ( WebGLObject webglobject, scene ) {
 
+	  Object3D object = webglobject.object;
+	  
 		if ( object is Mesh  ||
 			 object is ParticleSystem ||
 			 object is Ribbon ||
 			 object is Line ) {
 
-			removeInstances( scene["__webglObjects"], object );
+			removeInstances( scene["__webglObjects"], webglobject );
 
 		} else if ( object is Sprite ) {
 
-			removeInstancesDirect( scene["__webglSprites"], object );
+			removeInstancesDirect( scene["__webglSprites"], webglobject );
 
 		} else if ( object is LensFlare ) {
 
-			removeInstancesDirect( scene["__webglFlares"], object );
+			removeInstancesDirect( scene["__webglFlares"], webglobject );
 
-		} else if ( object is ImmediateRenderObject || object.immediateRenderCallback ) {
+		} else if ( object is ImmediateRenderObject || (object["immediateRenderCallback"] != null) ) {
 
-			removeInstances( scene["__webglObjectsImmediate"], object );
+			removeInstances( scene["__webglObjectsImmediate"], webglobject );
 
 		}
 
-		object["__webglActive"] = false;
+		webglobject.__webglActive = false;
 
 	}
 
-	removeInstances ( objlist, object ) {
+	removeInstances ( objlist, WebGLObject object ) {
 
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
-			if ( objlist[ o ].object === object ) {
+			if ( objlist[ o ].object == object ) {
 
 				objlist.splice( o, 1 );
 
@@ -4676,8 +4676,10 @@ class WebGLRenderer implements Renderer {
 
 	// Materials
 
-	initMaterial( WebGLMaterial material, List<Light> lights, Fog fog, Mesh object ) {
+	initMaterial( WebGLMaterial material, List<Light> lights, Fog fog, WebGLObject webglobject ) {
 
+	  Object3D object = webglobject.object;
+	  
 		var u, a, identifiers, i, parameters, maxLightCount, maxBones, maxShadows, shaderID;
 
 		if ( material.isMeshDepthMaterial ) {
@@ -4855,7 +4857,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setProgram( WebGLCamera camera, List lights, Fog fog, WebGLMaterial material, object ) {
+	setProgram( WebGLCamera camera, List lights, Fog fog, WebGLMaterial material, WebGLObject object ) {
 
 		if ( material.needsUpdate ) {
 
@@ -4868,9 +4870,9 @@ class WebGLRenderer implements Renderer {
 
 		if ( material.morphTargets ) {
 
-			if ( ! object["__webglMorphTargetInfluences"] ) {
+			if ( ! object.__webglMorphTargetInfluences ) {
 
-				object["__webglMorphTargetInfluences"] = new Float32Array( maxMorphTargets );
+				object.__webglMorphTargetInfluences = new Float32Array( maxMorphTargets );
 
 			}
 
@@ -5264,13 +5266,13 @@ class WebGLRenderer implements Renderer {
 
 	// Uniforms (load to GPU)
 
-	loadUniformsMatrices ( uniforms, object ) {
+	loadUniformsMatrices ( uniforms, WebGLObject object ) {
 	  
-		_gl.uniformMatrix4fv( uniforms["modelViewMatrix"], false, object["_modelViewMatrix"].elements );
+		_gl.uniformMatrix4fv( uniforms["modelViewMatrix"], false, object._modelViewMatrix.elements );
 
 		if ( uniforms["normalMatrix"] != null ) {
 
-			_gl.uniformMatrix3fv( uniforms["normalMatrix"], false, object["_normalMatrix"].elements );
+			_gl.uniformMatrix3fv( uniforms["normalMatrix"], false, object._normalMatrix.elements );
 
 		}
 
@@ -5478,12 +5480,12 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setupMatrices ( object, camera ) {
+	setupMatrices ( WebGLObject object, WebGLCamera camera ) {
 
-		object["_modelViewMatrix"].multiply( camera.matrixWorldInverse, object.matrixWorld );
+		object._modelViewMatrix.multiply( camera.matrixWorldInverse, object.matrixWorld );
 
-		object["_normalMatrix"].getInverse( object["_modelViewMatrix"] );
-		object["_normalMatrix"].transpose();
+		object._normalMatrix.getInverse( object._modelViewMatrix );
+		object._normalMatrix.transpose();
 
 	}
 
@@ -6756,7 +6758,7 @@ class WebGLRenderer implements Renderer {
 
 	// Allocations
 
-	int allocateBones ( Mesh object ) {
+	int allocateBones ( Object3D object ) {
 
 		if ( supportsBoneTextures && (object != null) && (object is SkinnedMesh) && (object as SkinnedMesh).useVertexTexture ) {
 
@@ -6924,6 +6926,9 @@ class WebGLRenderer implements Renderer {
     
 }
 
+//
+// Rendering Info classes by nelsonsilva 
+//
 class WebGLRendererInfo {
 	WebGLRendererMemoryInfo memory;
 	WebGLRendererRenderInfo render;
@@ -6947,6 +6952,9 @@ class WebGLRendererRenderInfo {
 	    points = 0;
 }
 
+//
+// Wrapper classes for WebGL stuff by nelsonsilva 
+//
 class Program {
 	int id;
 	WebGLProgram glProgram;
@@ -6958,22 +6966,94 @@ class Program {
 	Program( this.id, this.glProgram, this.code, [this.usedTimes = 0] ) : uniforms = {}, attributes = {};
 } 
 
+class Buffer {
+  WebGLBuffer glbuffer;
+  var belongsToAttribute;
+  Buffer(this.glbuffer);
+}
+
+//
+// Wrapper classes for Object3D, Geometry and Material by nelsonsilva 
+//
+// TODO - Try to use an expando and implement the interfaces
+//
 class WebGLObject {
-	var buffer;
-	Mesh object;
+  
+  bool __webglInit = false;
+  var __webglActive;
+  
+  Matrix4 _modelViewMatrix;
+  Matrix3 _normalMatrix;
+  
+  var _normalMatrixArray;
+  var _modelViewMatrixArray;
+  var modelMatrixArray;
+  
+  WebGLGeometry buffer;
+	Object3D object;
 	WebGLMaterial opaque, transparent;
 	bool render;
 	var z;
-	WebGLObject([this.object, this.opaque, this.transparent, this.buffer, this.render = true, this.z = 0]);
+	
+	var __webglMorphTargetInfluences;
+
+	WebGLObject._internal(this.object, this.opaque, this.transparent, this.buffer, this.render, this.z) ;
+  
+	factory WebGLObject(Object3D object, [WebGLMaterial opaque, 
+	                                      WebGLMaterial transparent, 
+	                                      WebGLGeometry buffer, 
+	                                      bool render = true, 
+	                                      num z = 0]) {
+	  if (object["__webglObject"] == null) {
+      var webglObject = new WebGLObject._internal(object, opaque, transparent, buffer, render, z );
+      object["__webglObject"] = webglObject;
+    }
+      
+    return object["__webglObject"];
+	}
+	
+	Geometry get geometry() => _hasGeometry ? object.dynamic.geometry : null;
+	WebGLGeometry get webglgeometry() => geometry != null ? new WebGLGeometry.from(geometry) : null;
+	
+	Material get material() => object.dynamic.material;
+  WebGLMaterial get webglmaterial() => new WebGLMaterial.from(material);
+  
+  get matrixWorld() => object.matrixWorld;
+  
+  get _hasGeometry() => (object is Mesh) || (object is ParticleSystem) || (object is Line);
+  
+  get morphTargetBase() => object.dynamic.morphTargetBase;
+  
+  get receiveShadow() => object.receiveShadow;
+  
+  get morphTargetForcedOrder() => (object as Mesh).morphTargetForcedOrder;
+  get morphTargetInfluences() => (object as Mesh).morphTargetInfluences;
+  
+  // only SkinnedMesh
+  get useVertexTexture() => object.dynamic.useVertexTexture; 
+  get boneMatrices() => object.dynamic.boneMatrices;
+  get boneTexture() => object.dynamic.boneTexture;
+
 }
 
-class GeometryBuffer {
+class WebGLGeometry {
   
   int id;
   
+  int _vertices;
+  
   List faces3, faces4;
-  int materialIndex, vertices, numMorphTargets, numMorphNormals;
+  int materialIndex, numMorphTargets, numMorphNormals;
 
+  var geometryGroups, geometryGroupsList;
+  var verticesNeedUpdate, 
+    morphTargetsNeedUpdate,
+    elementsNeedUpdate,
+    uvsNeedUpdate,
+    normalsNeedUpdate,
+    tangentsNeedUpdate,
+    colorsNeedUpdate;
+  
   bool __inittedArrays;
   Float32Array __vertexArray, 
                __normalArray,
@@ -6989,6 +7069,8 @@ class GeometryBuffer {
   List<Float32Array> __morphTargetsArrays, __morphNormalsArrays;
   int __webglFaceCount, __webglLineCount, __webglParticleCount, __webglVertexCount;
 
+  List __sortArray;
+  
   var __webglCustomAttributesList;
   
   WebGLBuffer __webglVertexBuffer, 
@@ -7007,8 +7089,58 @@ class GeometryBuffer {
               __webglLineBuffer;
 
   List <WebGLBuffer> __webglMorphTargetsBuffers, __webglMorphNormalsBuffers;
+
+  Geometry _geometry;
+  
+  WebGLGeometry([this.faces3, 
+                  this.faces4, 
+                  this.materialIndex = 0, 
+                  int vertices = null, 
+                  this.numMorphTargets = 0, 
+                  this.numMorphNormals = 0]) : _vertices = vertices;
+
+  WebGLGeometry._internal(Geometry geometry) 
+  :   _geometry = geometry,
+      _vertices = null, // Delegate vertices to geometry
+      id = geometry.id,
+      materialIndex = 0, 
+      numMorphTargets = 0, 
+      numMorphNormals = 0;
+  
+  factory WebGLGeometry.from(Geometry geometry) {
+    if (geometry["__webglBuffer"] == null) {
+      var __webglBuffer = new WebGLGeometry._internal(geometry);
+      geometry["__webglBuffer"] = __webglBuffer;
+    }
       
-  GeometryBuffer([this.faces3, this.faces4, this.materialIndex = 0, this.vertices = 0, this.numMorphTargets = 0, this.numMorphNormals = 0]);
+    return geometry["__webglBuffer"];
+  }
+      
+  // This is weird since vertices can be a List from geometry or a number
+  set vertices(int n) => _vertices = n;
+  get vertices() {
+    if (_vertices == null && _geometry != null) {
+      return _geometry.vertices;
+    }
+    return _vertices;
+  }
+  
+  get morphTargets() => _geometry.morphTargets;
+  get morphNormals() => _geometry.morphNormals;
+  
+  get faces() => _geometry.faces;
+  
+  get isDynamic() => _geometry.isDynamic;
+  
+  get faceVertexUvs() => _geometry.faceVertexUvs;
+  get colors() => _geometry.colors;
+  get skinIndices() => _geometry.skinIndices;
+  get skinWeights() => _geometry.skinWeights;
+  get skinVerticesA() => _geometry["skinVerticesA"];
+  get skinVerticesB() => _geometry["skinVerticesB"];
+  
+  get hasTangents() => _geometry.hasTangents;
+  
 }
 
 class WebGLMaterial { // implements Material {
@@ -7027,7 +7159,7 @@ class WebGLMaterial { // implements Material {
   
   WebGLMaterial._internal(Material material) : _material = material;
   
-  factory WebGLMaterial(Material material) {
+  factory WebGLMaterial.from(Material material) {
 
     if (material["__webglMaterial"] == null) {
       var webglMaterial = new WebGLMaterial._internal(material);
@@ -7098,7 +7230,10 @@ class WebGLMaterial { // implements Material {
   get bumpMap() => isMeshPhongMaterial ? (_material as MeshPhongMaterial).bumpMap : null;
   get specularMap() => _hasSpecularMap ? _material.dynamic.specularMap : null;
 
-  get wireframe() => _material.dynamic.wireframe;
+  get wireframe() => !isLineBasicMaterial && _material.dynamic.wireframe;
+  get wireframeLinewidth() => (isLineBasicMaterial) ? _material.dynamic.wireframeLinewidth : null;
+  
+  get linewidth() => (isLineBasicMaterial) ? _material.dynamic.linewidth : null;
   get reflectivity() => _material.dynamic.reflectivity;
   get refractionRatio() => _material.dynamic.refractionRatio;
   get combine() => _material.dynamic.combine;

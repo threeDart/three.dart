@@ -26,14 +26,15 @@ class Texture
   
   
   //TODO: resolve dynamic vars, find out what UVMapping is!
-  Texture( this.image, [Dynamic mapping = null, 
-                        this.wrapS = Three.ClampToEdgeWrapping,
-                        this.wrapT = Three.ClampToEdgeWrapping,
-                        this.magFilter = Three.LinearFilter,
-                        this.minFilter = Three.LinearMipMapLinearFilter,
-                        this.format = Three.RGBAFormat,
-                        this.type = Three.UnsignedByteType,
-                        this.anisotropy = 1] )
+  Texture( [  this.image, 
+              Dynamic mapping = null, 
+              this.wrapS = Three.ClampToEdgeWrapping,
+              this.wrapT = Three.ClampToEdgeWrapping,
+              this.magFilter = Three.LinearFilter,
+              this.minFilter = Three.LinearMipMapLinearFilter,
+              this.format = Three.RGBAFormat,
+              this.type = Three.UnsignedByteType,
+              this.anisotropy = 1] )
   {
     _id = Three.TextureCount ++;
 
