@@ -6,14 +6,8 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Light extends Object3D 
-{   
+class Light extends Object3D {   
   Color color;
   
-  Light( num hex ) : super()
-  {
-    //THREE.Object3D.call( this );
-
-    color = new Color( hex );
-  }
+  Light( num hex ): color = new Color( hex ), super();
 }

@@ -6,28 +6,24 @@
  * @author rob silverton / http://www.unwrong.com/ 
  */
 
-class PlaneGeometry extends Geometry
-{
+class PlaneGeometry extends Geometry {
 
-  PlaneGeometry( num width, num height, [num segmentsWidth, num segmentsHeight] ) : super()
-  {
+  PlaneGeometry( num width, num height, [num segmentsWidth, num segmentsHeight] ) : super() {
     //THREE.Geometry.call( this );
 
     int ix, iy;
     num width_half = width / 2,
-    height_half = height / 2,
-    gridX = segmentsWidth != null ? segmentsWidth : 1,
-    gridY = segmentsHeight != null ? segmentsHeight : 1,
-    gridX1 = gridX + 1,
-    gridY1 = gridY + 1,
-    segment_width = width / gridX,
-    segment_height = height / gridY;
+        height_half = height / 2,
+        gridX = segmentsWidth != null ? segmentsWidth : 1,
+        gridY = segmentsHeight != null ? segmentsHeight : 1,
+        gridX1 = gridX + 1,
+        gridY1 = gridY + 1,
+        segment_width = width / gridX,
+        segment_height = height / gridY;
     Vector3 normal = new Vector3( 0, 0, 1 );
 
-    for ( iy = 0; iy < gridY1; iy++ ) 
-    {
-      for ( ix = 0; ix < gridX1; ix++ ) 
-      {
+    for ( iy = 0; iy < gridY1; iy++ ) {
+      for ( ix = 0; ix < gridX1; ix++ ) {
         num x = ix * segment_width - width_half;
         num y = iy * segment_height - height_half;
 
@@ -35,10 +31,8 @@ class PlaneGeometry extends Geometry
       }
     }
 
-    for ( iy = 0; iy < gridY; iy++ ) 
-    {
-      for ( ix = 0; ix < gridX; ix++ ) 
-      {
+    for ( iy = 0; iy < gridY; iy++ ) {
+      for ( ix = 0; ix < gridX; ix++ ) {
         num a = ix + gridX1 * iy;
         num b = ix + gridX1 * ( iy + 1 );
         num c = ( ix + 1 ) + gridX1 * ( iy + 1 );

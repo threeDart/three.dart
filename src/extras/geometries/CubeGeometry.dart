@@ -6,40 +6,43 @@
  * @author rob silverton / http://www.unwrong.com/ 
  */
 
-class CubeGeometry extends Geometry
-{
+class CubeGeometry extends Geometry {
   //List materials;
   CubeGeomSides _sides;
   num segmentsWidth;
   num segmentsHeight;
   num segmentsDepth;
   
-  CubeGeometry( num width, num height, num depth, [num segmentsWidth, num segmentsHeight, num segmentsDepth, List materials, List sides] ) : super()
-  {
-    //THREE.Geometry.call( this );
+  /**
+   * [materialOrList] is a [Material] or a [List] of [Material]. */
+  CubeGeometry( num width, num height, num depth, [this.segmentsWidth = 1, 
+                                                   this.segmentsHeight = 1, 
+                                                   this.segmentsDepth = 1, 
+                                                   materialOrList, 
+                                                   List sides] )
+                                                   : super() {
 
     num width_half = width / 2,
-    height_half = height / 2,
-    depth_half = depth / 2;
+        height_half = height / 2,
+        depth_half = depth / 2;
 
     num mpx, mpy, mpz, mnx, mny, mnz;
 
-    if ( materials !== null ) 
-    {
-      if ( materials is List ) {
-        this.materials = materials;
+    if ( materialOrList != null ) {
+      if ( materialOrList is List ) {
+        materials = materialOrList;
       } else {
-        this.materials = [];
+        materials = [];
 
         for ( int i = 0; i < 6; i ++ ) {
-          this.materials.add( materials );
+          materials.add( materialOrList );
         }
       }
 
       mpx = 0; mnx = 1; mpy = 2; mny = 3; mpz = 4; mnz = 5;
 
     } else {
-      this.materials = [];
+      materials = [];
     }
 
     //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
@@ -65,8 +68,7 @@ class CubeGeometry extends Geometry
     mergeVertices();
   }
   
-  void buildPlane( String u, String v, num udir, num vdir, num width, num height, num depth, num material )
-  {
+  void buildPlane( String u, String v, num udir, num vdir, num width, num height, num depth, num material ) {
     String w; 
     num ix, iy,
     gridX = ( segmentsWidth != null ) ? segmentsWidth : 1,
@@ -92,16 +94,14 @@ class CubeGeometry extends Geometry
     Vector3 normal = new Vector3();
 
     //TODO: find out how to do this sort of casting in Dart...
-//    normal.dynamic[ w ] = depth > 0 ? 1 : - 1;
+    // normal.dynamic[ w ] = depth > 0 ? 1 : - 1;
     
     if ( w == 'x' )         normal.x = depth > 0 ? 1 : - 1;
     else if ( w == 'y' )    normal.y = depth > 0 ? 1 : - 1;
     else if ( w == 'z' )    normal.z = depth > 0 ? 1 : - 1;
     
-    for ( iy = 0; iy < gridY1; iy ++ ) 
-    {
-      for ( ix = 0; ix < gridX1; ix ++ ) 
-      {
+    for ( iy = 0; iy < gridY1; iy ++ )  {
+      for ( ix = 0; ix < gridX1; ix ++ ) {
         Vector3 vector = new Vector3();
         //TODO: find out how to do this sort of casting in Dart...
 //        vector[ u ] = ( ix * segment_width - width_half ) * udir;
@@ -124,10 +124,8 @@ class CubeGeometry extends Geometry
       }
     }
 
-    for ( iy = 0; iy < gridY; iy++ ) 
-    {
-      for ( ix = 0; ix < gridX; ix++ ) 
-      {
+    for ( iy = 0; iy < gridY; iy++ ) {
+      for ( ix = 0; ix < gridX; ix++ ) {
         num a = ix + gridX1 * iy;
         num b = ix + gridX1 * ( iy + 1 );
         num c = ( ix + 1 ) + gridX1 * ( iy + 1 );
@@ -155,14 +153,15 @@ class CubeGeometry extends Geometry
 }
 
 //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
-class CubeGeomSides
-{
+class CubeGeomSides{
   bool px, nx, py, ny, pz, nz;
   
-  CubeGeomSides( [bool this.px = true, bool this.nx = true, bool this.py = true, bool this.ny = true, bool this.pz = true, bool this.nz = true] )
-  {
-    
-  }
+  CubeGeomSides( [this.px = true, 
+                  this.nx = true, 
+                  this.py = true, 
+                  this.ny = true,
+                  this.pz = true,
+                  this.nz = true] );
 }
 
 

@@ -6,7 +6,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Quaternion {
+class Quaternion implements IVector4 {
   num x;
   num y;
   num z;
@@ -23,7 +23,7 @@ class Quaternion {
     return this;
   }
 
-  Quaternion copy( Vector4 q ) {
+  Quaternion copy( IVector4 q ) {
     this.x = q.x;
     this.y = q.y;
     this.z = q.z;

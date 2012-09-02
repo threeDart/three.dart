@@ -7,26 +7,23 @@
 
 class Line extends Object3D {
 
-  Geometry _geometry;
-  Material _material;
-  int _type = 0;
+  Geometry geometry;
+  Material material;
+  int type;
+ 
   
-  Geometry get geometry() {  return _geometry;  }
-  IMaterial get material() {  return _material;  }
-  int get type() { return _type; }
-  
-  Line(Geometry geometry, LineBasicMaterial material, [int ltype=0]) : super() {
-    _geometry = geometry;
-    _material = material;
+  Line(this.geometry, [this.material, this.type = LineStrip]) : super() {
+
+    if (material == null) { material = new LineBasicMaterial( { "color": new Math.Random().nextInt(0xffffff) } ); }
     
-    this._type = ltype;
-    
-    if ( _geometry != null ) 
-    {
+    if ( geometry != null ) {
       // calc bound radius
-      if( _geometry.boundingSphere == null ) {
-        _geometry.computeBoundingSphere();
+      if( geometry.boundingSphere == null ) {
+        geometry.computeBoundingSphere();
       }
     }
   }
 }
+
+const int LineStrip = 0;
+const int LinePieces = 1;

@@ -7,6 +7,8 @@
 
 // TODO - Use M1 Re-export ( see: http://code.google.com/p/dart/issues/detail?id=760)
 #import('extras/ImageUtils.dart', prefix:'ImageUtils');
+#import('extras/SceneUtils.dart', prefix:'SceneUtils');
+#import('extras/FontUtils.dart', prefix:'FontUtils');
 
 #source('Three.dart');
 
@@ -41,12 +43,41 @@
 
 #source('loaders/ImageLoader.dart');
 
+#source('extras/geometries/CircleGeometry.dart');
+#source('extras/geometries/ConvexGeometry.dart');
 #source('extras/geometries/CubeGeometry.dart');
 #source('extras/geometries/CylinderGeometry.dart');
+#source('extras/geometries/ExtrudeGeometry.dart');
+#source('extras/geometries/IcosahedronGeometry.dart');
+#source('extras/geometries/LatheGeometry.dart');
+#source('extras/geometries/OctahedronGeometry.dart');
+#source('extras/geometries/ParametricGeometry.dart');
 #source('extras/geometries/PlaneGeometry.dart');
+#source('extras/geometries/PolyhedronGeometry.dart');
+#source('extras/geometries/SphereGeometry.dart');
+#source('extras/geometries/TetrahedronGeometry.dart');
+#source('extras/geometries/TextGeometry.dart');
+#source('extras/geometries/TorusGeometry.dart');
+#source('extras/geometries/TorusKnotGeometry.dart');
+#source('extras/geometries/TubeGeometry.dart');
+
+#source('extras/core/CurveUtils.dart');
+#source('extras/core/Curve.dart');
+#source('extras/core/CurvePath.dart');
+#source('extras/core/Path.dart');
+#source('extras/core/ShapeUtils.dart');
+#source('extras/core/Shape.dart');
+#source('extras/core/LineCurve.dart');
+#source('extras/core/QuadraticBezierCurve.dart');
+#source('extras/core/CubicBezierCurve.dart');
+#source('extras/core/SplineCurve.dart');
+#source('extras/core/ArcCurve.dart');
 
 #source('extras/objects/LensFlare.dart');
 #source('extras/objects/ImmediateRenderObject.dart');
+
+#source('extras/helpers/ArrowHelper.dart');
+#source('extras/helpers/AxisHelper.dart');
 
 #source('lights/AmbientLight.dart');
 #source('lights/DirectionalLight.dart');
@@ -77,6 +108,8 @@
 #source('objects/Sprite.dart');
 #source('objects/Ribbon.dart');
 #source('objects/SkinnedMesh.dart');
+#source('objects/LOD.dart');
+#source('objects/MorphAnimMesh.dart');
 
 #source('renderers/renderables/RenderableObject.dart');
 #source('renderers/renderables/RenderableVertex.dart');

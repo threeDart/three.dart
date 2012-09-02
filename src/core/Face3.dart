@@ -21,7 +21,7 @@ class Face3 implements IFace3 {
     vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
 
     color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
-    vertexColors = colorOrVertexColors is List ? color : [];
+    vertexColors = colorOrVertexColors is List ? colorOrVertexColors : [];
 
     vertexTangents = [];
 

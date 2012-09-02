@@ -20,7 +20,7 @@ class Face4 implements IFace4 {
     vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
 
     color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
-    vertexColors = colorOrVertexColors is List ? color : [];
+    vertexColors = colorOrVertexColors is List ? colorOrVertexColors : [];
     
     vertexTangents = [];
 

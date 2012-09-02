@@ -16,13 +16,16 @@ class Geometry {
   String name;
   
   List<Vector3> vertices;
-  List colors, materials;
+
+  List colors; // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
+  List materials;
   List faces;
 
   List faceUvs;
   List<List> faceVertexUvs;
 
-  List morphTargets, morphColors, morphNormals, skinWeights, skinIndices;
+  List morphTargets, morphColors, morphNormals;
+  List skinWeights, skinIndices;
 
   List<Vector3> __tmpVertices;
   
@@ -30,23 +33,6 @@ class Geometry {
   BoundingSphere boundingSphere;
 
   bool hasTangents, _dynamic;
-  
-  // TODO - Check if these are only used in WebGLRendererer
-  var geometryGroups, geometryGroupsList;
-  var verticesNeedUpdate, 
-    morphTargetsNeedUpdate,
-    elementsNeedUpdate,
-    uvsNeedUpdate,
-    normalsNeedUpdate,
-    tangentsNeedUpdate,
-    colorsNeedUpdate;
-
-  var skinVerticesA, skinVerticesB;
-
-  
-  //TODO: is this in the right scope?
-//  THREE.GeometryCount = 0;
-//  static int GeometryCount = 0;
   
   Geometry() 
       : id = Three.GeometryCount ++,
@@ -155,7 +141,7 @@ class Geometry {
     if ( __tmpVertices === null ) {
       
       __tmpVertices = [];
-      vertices.forEach((_) => __tmpVertices.add(new Vector3())); 
+      this.vertices.forEach((_) => __tmpVertices.add(new Vector3())); 
       vertices = __tmpVertices;
 
       faces.forEach((face) {
@@ -171,7 +157,11 @@ class Geometry {
     } else {
       vertices = __tmpVertices;
       
-      vertices.forEach((v) => v.setValues(0, 0, 0));
+      var vl = this.vertices.length;
+      for ( var v = 0; v < vl; v ++ ) {
+        vertices[ v ].setValues( 0, 0, 0 );
+      }
+      
     }
 
     faces.forEach((face) { 
@@ -400,13 +390,17 @@ class Geometry {
     int i, il;
     var abcd = 'abcd', o, k, j, jl, u;
     
-    vertices.forEach((Vector3 v) {
+    Vector3 v;
+    il = this.vertices.length;
+    
+    for( i = 0; i < il; i++) {
+      v = this.vertices[i];
       
       key = Strings.join( [ ( v.x * precision ).round().toStringAsFixed(0), 
                             ( v.y * precision ).round().toStringAsFixed(0), 
                             ( v.z * precision ).round().toStringAsFixed(0) ], '_' );
       
-      if ( verticesMap[ key ] === null ) {
+      if ( verticesMap[ key ] == null ) {
         verticesMap[ key ] = i;
         unique.add( v );
         //TODO: pretty sure this is an acceptable change in syntax here:
@@ -418,14 +412,16 @@ class Geometry {
         //changes[ i ] = changes[ verticesMap[ key ] ];
         changes.add( changes[ verticesMap[ key ] ] );
       }
-    });
+    
+    }
 
     
     // Start to patch face indices
+    
     il = faces.length;
     for( i = 0; i < il; i ++ ) {
       IFace3 face = faces[ i ];
-
+      
       if ( face is Face3 ) {
         face.a = changes[ face.a ];
         face.b = changes[ face.b ];

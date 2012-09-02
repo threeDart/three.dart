@@ -71,7 +71,7 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
 
     color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
     ambient = parameters['ambient'] !== null ? new Color( parameters['ambient'] ) : new Color( 0xffffff );
-    emissive = parameters['ambient'] !== null ? new Color( parameters['emissive'] ) : new Color( 0x000000 );
+    emissive = parameters['emissive'] !== null ? new Color( parameters['emissive'] ) : new Color( 0x000000 );
     
     wrapAround = parameters['wrapAround'] !== null ? parameters['wrapAround'] : false;
     wrapRGB = new Vector3( 1, 1, 1 );

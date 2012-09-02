@@ -33,20 +33,18 @@ class LineBasicMaterial extends Material
   int vertexColors;
   
   
-  LineBasicMaterial( [Map parameters] ) : super( parameters )
-  {
-    //THREE.Material.call( this, parameters );
+  LineBasicMaterial( [Map parameters] ) : super( parameters ) {
 
     parameters = parameters != null ? parameters : {};
 
-    color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
+    color = parameters['color'] != null ? new Color( parameters['color'] ) : new Color( 0xffffff );
 
-    linewidth = parameters['linewidth'] !== null ? parameters['linewidth'] : 1;
-    linecap = parameters['linecap'] !== null ? parameters['linecap'] : 'round';
-    linejoin = parameters['linejoin'] !== null ? parameters['linejoin'] : 'round';
+    linewidth = parameters['linewidth'] != null ? parameters['linewidth'] : 1;
+    linecap = parameters['linecap'] != null ? parameters['linecap'] : 'round';
+    linejoin = parameters['linejoin'] !==null ? parameters['linejoin'] : 'round';
 
-    vertexColors = (null != parameters['vertexColors']) ? parameters['vertexColors'] : Three.NoColors;
+    vertexColors = parameters['vertexColors'] != null ? parameters['vertexColors'] : Three.NoColors;
 
-    fog = parameters['fog'] !== null ? parameters['fog'] : true;
+    fog = parameters['fog'] != null ? parameters['fog'] : true;
   }
 }

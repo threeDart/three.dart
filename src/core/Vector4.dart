@@ -168,11 +168,11 @@ class Vector4 implements IVector4 {
 
     // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
-    var angle, x, y, z,   // variables for result
+    num angle, x, y, z,   // variables for result
       epsilon = 0.01,   // margin to allow for rounding errors
-      epsilon2 = 0.1,   // margin to distinguish between 0 and 180 degrees
+      epsilon2 = 0.1;   // margin to distinguish between 0 and 180 degrees
 
-      te = m.elements,
+    var te = m.elements,
 
       m11 = te[0], m12 = te[4], m13 = te[8],
       m21 = te[1], m22 = te[5], m23 = te[9],
@@ -193,7 +193,7 @@ class Vector4 implements IVector4 {
 
         // this singularity is identity matrix so angle = 0
 
-        this.setValues( 1, 0, 0, 0 );
+        setValues( 1, 0, 0, 0 );
 
         return this; // zero angle, arbitrary axis
 
@@ -260,7 +260,7 @@ class Vector4 implements IVector4 {
 
       }
 
-      this.setValues( x, y, z, angle );
+      // TODO - check if this is needed - setValues( x, y, z, angle );
 
       return this; // return 180 deg rotation
 

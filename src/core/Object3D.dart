@@ -86,8 +86,9 @@ class Object3D {
         //doubleSided = false,
         //flipSided = false,
   
-
-  //bool get isDynamic => _dynamic;
+  // dynamic 
+  bool get isDynamic => _dynamic;
+       set isDynamic(bool flag) => _dynamic = flag;
   
   void applyMatrix ( matrix ) {
 
