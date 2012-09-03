@@ -24,14 +24,12 @@
 class ParticleBasicMaterial extends Material implements IParticleMaterial
 {
   Color color;
-  Dynamic _map;
-  num _size;
+  Dynamic map;
+  num size;
   bool sizeAttenuation;
   
   int vertexColors;
   bool fog;
-  
-  Dynamic get map() { return _map; }
   
   ParticleBasicMaterial( [Map parameters] ) : super( parameters )
   {
@@ -39,12 +37,12 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
 
     color = _parameters['color'] !== null ? new Color( _parameters['color'] ) : new Color( 0xffffff );
 
-    _map = _parameters['map'] !== null ? _parameters['map'] : null;
+    map = _parameters['map'] !== null ? _parameters['map'] : null;
 
-    _size = _parameters['size'] !== null ? _parameters['size'] : 1;
+    size = _parameters['size'] !== null ? _parameters['size'] : 1;
     sizeAttenuation = _parameters['sizeAttenuation'] !== null ? _parameters['sizeAttenuation'] : true;
 
-    vertexColors = _parameters['vertexColors'] !== null ? _parameters['vertexColors'] : false;
+    vertexColors = _parameters['vertexColors'] !== null ? _parameters['vertexColors'] : Three.NoColors;;
 
     fog = _parameters['fog'] !== null ? _parameters['fog'] : true;    
   }

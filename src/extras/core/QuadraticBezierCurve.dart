@@ -1,4 +1,4 @@
-class QuadraticBezierCurve extends Curve {
+class QuadraticBezierCurve extends Curve2D {
   
   Vector2 v0, v1, v2;
   

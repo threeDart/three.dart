@@ -11,6 +11,7 @@ class PathAction {
 	static final String BEZIER_CURVE_TO = 'bezierCurveTo';  		// Bezier cubic curve
 	static final String CSPLINE_THRU = 'splineThru';				// Catmull-rom spline
 	static final String ARC = 'arc';								// Circle
+	static final String ELLIPSE = 'ellipse';
 
 	String action;
 	var args;
@@ -25,27 +26,30 @@ class Path extends CurvePath {
   List _points;
   List<PathAction> actions;
   
-	Path( [List points] ) : _points = points, actions = [],  super();
-
+	Path( [List points] ) : actions = [],  super(){
+	  if (points != null) {
+	    _fromPoints(points);
+	  }
+	}
 	
   // Create path using straight lines to connect all points
   // - vectors: array of Vector2
-  Path.fromPoints( vectors ) : super(), _points = [] {
-  
-  	moveTo( vectors[0].x, vectors[0].y );
-  
-  	for ( var v = 1, vlen = vectors.length; v < vlen; v ++ ) {
-  		this.lineTo( vectors[ v ].x, vectors[ v ].y );
-  	}
+  factory Path.fromPoints( vectors ) => new Path(vectors);
+ 
+  _fromPoints( vectors ){                                        
+     moveTo( vectors[0].x, vectors[0].y );
+     
+     for ( var v = 1, vlen = vectors.length; v < vlen; v ++ ) {
+       this.lineTo( vectors[ v ].x, vectors[ v ].y );
+     }
   }
-  
+ 
   addAction(String action, [var args]) => actions.add(new PathAction(action, args));
   
+   
+ 
   // startPath() endPath()?
-  moveTo( x, y ) {
-  	//var args = Array.prototype.slice.call( arguments );
-    addAction( PathAction.MOVE_TO, [x, y] );
-  }
+  moveTo( x, y ) => addAction( PathAction.MOVE_TO, [x, y] );
   
   lineTo( x, y ) {
   
@@ -126,46 +130,44 @@ class Path extends CurvePath {
   arc( aX, aY, aRadius,
   								aStartAngle, aEndAngle, aClockwise ) {
   
-  	var args = [aX, aY, aRadius,
-                aStartAngle, aEndAngle, aClockwise];
-  
-  	var laste = actions.last().args;
-    
-  	// TODO(nelsonsilva) - Where is laste.x coming from ?! 
-  	var curve = new ArcCurve( laste.x + aX, laste.y + aY, aRadius,
-  									aStartAngle, aEndAngle, aClockwise );
-  	curves.add( curve );
-  
-  	// All of the other actions look to the last two elements in the list to
-  	// find the ending point, so we need to append them.
-  	var lastPoint = curve.getPoint(aClockwise ? 1 : 0);
-  	args.add(lastPoint.x);
-  	args.add(lastPoint.y);
-  
-  	addAction( PathAction.ARC, args );
+    var lastargs = actions[ actions.length - 1].args;
+    var x0 = lastargs[ lastargs.length - 2 ];
+    var y0 = lastargs[ lastargs.length - 1 ];
+
+    absarc(aX + x0, aY + y0, aRadius, aStartAngle, aEndAngle, aClockwise );
   
    }
   
   absarc( aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise ) {
   
-  	var args = [aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise];
-  
-  	var curve = new ArcCurve( aX, aY, aRadius,
-  									aStartAngle, aEndAngle, aClockwise );
-  	curves.add( curve );
-  
-  	// console.log( 'arc', args );
-  
-          // All of the other actions look to the last two elements in the list to
-          // find the ending point, so we need to append them.
-          var lastPoint = curve.getPoint(aClockwise ? 1 : 0);
-          args.add(lastPoint.x);
-          args.add(lastPoint.y);
-  
-  	addAction( PathAction.ARC, args );
+    absellipse(aX, aY, aRadius, aRadius, aStartAngle, aEndAngle, aClockwise);
   
    }
   
+  ellipse( aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise ) {
+
+    var lastargs = actions.last().args;
+    var x0 = lastargs[ lastargs.length - 2 ];
+    var y0 = lastargs[ lastargs.length - 1 ];
+
+    absellipse(aX + x0, aY + y0, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise );
+
+  }
+  
+  absellipse( aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise ) {
+
+    var args = [aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise];
+    
+    var curve = new EllipseCurve( aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise );
+    curves.add( curve );
+
+    var lastPoint = curve.getPoint(aClockwise ? 1 : 0);
+    args.add(lastPoint.x);
+    args.add(lastPoint.y);
+
+    addAction(PathAction.ELLIPSE, args);
+
+  }
   
   getSpacedPoints( [int divisions = 5, bool closedPath = false] ) {
   
@@ -365,7 +367,44 @@ class Path extends CurvePath {
   			//console.log(points);
   
   		  break;
-  
+  		  
+  		case PathAction.ELLIPSE:
+
+        var aX = args[ 0 ], aY = args[ 1 ],
+        xRadius = args[ 2 ],
+        yRadius = args[ 3 ],
+        aStartAngle = args[ 4 ], aEndAngle = args[ 5 ],
+        aClockwise = !!args[ 6 ];
+
+
+      var deltaAngle = aEndAngle - aStartAngle;
+      var angle;
+      var tdivisions = divisions * 2;
+
+      for ( j = 1; j <= tdivisions; j ++ ) {
+
+        t = j / tdivisions;
+
+        if ( ! aClockwise ) {
+
+          t = 1 - t;
+
+        }
+
+        angle = aStartAngle + t * deltaAngle;
+
+        tx = aX + xRadius * Math.cos( angle );
+        ty = aY + yRadius * Math.sin( angle );
+
+        //console.log('t', t, 'angle', angle, 'tx', tx, 'ty', ty);
+
+        points.add( new Vector2( tx, ty ) );
+
+      }
+
+      //console.log(points);
+
+      break;
   		} // end switch
   
   	}
@@ -403,61 +442,6 @@ class Path extends CurvePath {
   
   }
   
-  // Read http://www.tinaja.com/glib/nonlingr.pdf
-  // nonlinear transforms
-  nltransform( a, b, c, d, e, f ) {
-  
-  	// a - horizontal size
-  	// b - lean
-  	// c - x offset
-  	// d - vertical size
-  	// e - climb
-  	// f - y offset
-  
-  	var oldPts = getPoints();
-  
-  	var i, il, p, oldX, oldY;
-  
-  	for ( i = 0; i < oldPts.length; i ++ ) {
-  
-  		p = oldPts[i];
-  
-  		oldX = p.x;
-  		oldY = p.y;
-  
-  		p.x = a * oldX + b * oldY + c;
-  		p.y = d * oldY + e * oldX + f;
-  
-  	}
-  
-  	return oldPts;
-  
-  }
-  
-  // TODO(nelsonsilva) - Come up with a better way to invoke the action
-  applyAction( action, args) {
-    switch (action) {
-      case PathAction.MOVE_TO:
-        moveTo(args[0], args[1]);
-        break;
-      case PathAction.LINE_TO:
-        lineTo(args[0], args[1]);
-        break;
-      case PathAction.QUADRATIC_CURVE_TO:
-        quadraticCurveTo(args[0], args[1], args[2], args[3]);
-        break;
-      case PathAction.BEZIER_CURVE_TO:
-        bezierCurveTo(args[0], args[1], args[2], args[3], args[4], args[5]);
-        break;
-      case PathAction.CSPLINE_THRU:
-        splineThru(args[0]);
-        break;
-      case PathAction.ARC:
-        arc(args[0], args[1], args[2], args[3], args[4], args[5]);
-        break;
-    }
-  }
-  
   // Breaks path into shapes
   toShapes() {
   
@@ -484,7 +468,7 @@ class Path extends CurvePath {
   
   		}
   
-  		lastPath.applyAction( action, args);
+  		lastPath._applyAction( action, args);
   
   	}
   
@@ -575,5 +559,33 @@ class Path extends CurvePath {
   
   	return shapes;
   
+  }
+  
+  
+  // TODO(nelsonsilva) - Come up with a better way to invoke the action
+  _applyAction( action, args) {
+    switch (action) {
+      case PathAction.MOVE_TO:
+        moveTo(args[0], args[1]);
+        break;
+      case PathAction.LINE_TO:
+        lineTo(args[0], args[1]);
+        break;
+      case PathAction.QUADRATIC_CURVE_TO:
+        quadraticCurveTo(args[0], args[1], args[2], args[3]);
+        break;
+      case PathAction.BEZIER_CURVE_TO:
+        bezierCurveTo(args[0], args[1], args[2], args[3], args[4], args[5]);
+        break;
+      case PathAction.CSPLINE_THRU:
+        splineThru(args[0]);
+        break;
+      case PathAction.ARC:
+        arc(args[0], args[1], args[2], args[3], args[4], args[5]);
+        break;
+      case PathAction.ELLIPSE:
+        ellipse(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        break;
+    }
   }
 }

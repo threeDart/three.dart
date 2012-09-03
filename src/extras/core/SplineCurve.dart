@@ -1,4 +1,4 @@
-class SplineCurve extends Curve {
+class SplineCurve extends Curve2D {
   List<Vector2> points;
   
   SplineCurve( [this.points = null] ) {
@@ -8,11 +8,11 @@ class SplineCurve extends Curve {
   getPoint( t ) {
 
     var v = new Vector2();
-    var c = [];
+    var c = new List(4);
     var point, intPoint, weight;
     point = ( points.length - 1 ) * t;
 
-    intPoint = point.floor();
+    intPoint = point.floor().toInt();
     weight = point - intPoint;
 
     c[ 0 ] = intPoint == 0 ? intPoint : intPoint - 1;

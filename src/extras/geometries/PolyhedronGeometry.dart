@@ -162,4 +162,6 @@ class PolyhedronGeometryVertex implements IVector3 {
   num get y() => vertex.y;
   num get z() => vertex.z;
   
+  clone() => new PolyhedronGeometryVertex(x, y, z);
+  
 }

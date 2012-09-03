@@ -1009,7 +1009,7 @@ class WebGLRenderer implements Renderer {
 
 	// Buffer setting
 
-	setParticleBuffers ( geometry, hint, object ) {
+	setParticleBuffers ( WebGLGeometry geometry, hint, object ) {
 
 		var v, c, vertex, offset, index, color,
 
@@ -1019,16 +1019,16 @@ class WebGLRenderer implements Renderer {
 		colors = geometry.colors,
 		cl = colors.length,
 
-		vertexArray = geometry["__vertexArray"],
-		colorArray = geometry["__colorArray"],
+		vertexArray = geometry.__vertexArray,
+		colorArray = geometry.__colorArray,
 
-		sortArray = geometry["__sortArray"],
+		sortArray = geometry.__sortArray,
 
 		dirtyVertices = geometry.verticesNeedUpdate,
 		dirtyElements = geometry.elementsNeedUpdate,
 		dirtyColors = geometry.colorsNeedUpdate,
 
-		customAttributes = geometry["__webglCustomAttributesList"],
+		customAttributes = geometry.__webglCustomAttributesList,
 		i, il,
 		a, ca, cal, value,
 		customAttribute;
@@ -1206,7 +1206,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			if ( customAttributes ) {
+			if ( customAttributes != null) {
 
 				il = customAttributes.length;
 				for ( i = 0; i < il; i ++ ) {
@@ -1301,19 +1301,19 @@ class WebGLRenderer implements Renderer {
 
 		if ( dirtyVertices || object.sortParticles ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry["__webglVertexBuffer"] );
+			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglVertexBuffer );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
 		if ( dirtyColors || object.sortParticles ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry["__webglColorBuffer"] );
+			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglColorBuffer );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
-		if ( customAttributes ) {
+		if ( customAttributes != null) {
 
 			il = customAttributes.length;
 			for ( i = 0; i < il; i ++ ) {
@@ -4574,7 +4574,7 @@ class WebGLRenderer implements Renderer {
 
 			material = getBufferMaterial( webglobject, geometryGroup );
 
-			customAttributesDirty = material.attributes && areCustomAttributesDirty( material );
+			customAttributesDirty = (material.attributes != null) && areCustomAttributesDirty( material );
 
 			if ( geometry.verticesNeedUpdate || geometry.colorsNeedUpdate || object.sortParticles || customAttributesDirty ) {
 
@@ -7204,6 +7204,7 @@ class WebGLMaterial { // implements Material {
   bool get needsUpdate() => _material.needsUpdate;
   set needsUpdate(bool flag) => _material.needsUpdate = flag;
   
+ 
   // TODO - Define proper interfaces to remove use of Dynamic
   int get vertexColors() => _hasVertexColors ? _material.dynamic.vertexColors : Three.NoColors;
   get color() => _material.dynamic.color;
@@ -7230,7 +7231,7 @@ class WebGLMaterial { // implements Material {
   get bumpMap() => isMeshPhongMaterial ? (_material as MeshPhongMaterial).bumpMap : null;
   get specularMap() => _hasSpecularMap ? _material.dynamic.specularMap : null;
 
-  get wireframe() => !isLineBasicMaterial && _material.dynamic.wireframe;
+  get wireframe() => !isLineBasicMaterial && !isParticleBasicMaterial && _material.dynamic.wireframe;
   get wireframeLinewidth() => (isLineBasicMaterial) ? _material.dynamic.wireframeLinewidth : null;
   
   get linewidth() => (isLineBasicMaterial) ? _material.dynamic.linewidth : null;
@@ -7239,6 +7240,7 @@ class WebGLMaterial { // implements Material {
   get combine() => _material.dynamic.combine;
   get skinning() => _hasSkinning ?  _material.dynamic.skinning : false;
   get sizeAttenuation() => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).sizeAttenuation : false; //null;
+  get size() => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).size : null;
   
   bool get isShaderMaterial() => _material is ShaderMaterial;
   bool get isMeshFaceMaterial() => _material is MeshFaceMaterial;
