@@ -42,15 +42,15 @@ class Canvas_Lines {
     
     // particles
     final num Tau = Math.PI * 2;
-    material = new ParticleCanvasMaterial( {
-      'color': 0xffffff,
-      'program': function (CanvasRenderingContext2D context ) {
+    material = new ParticleCanvasMaterial(
+      color: 0xffffff,
+      program: (CanvasRenderingContext2D context ) {
         context.beginPath();
         context.arc( 0, 0, 1, 0, Tau, false );
         context.closePath();
         context.fill();
       }
-    });
+    );
     
     geometry = new Geometry();
 
@@ -70,7 +70,7 @@ class Canvas_Lines {
    
     // lines
 
-    var line = new Line( geometry, new LineBasicMaterial( { 'color': 0xffffff, 'opacity': 0.5 } ) );
+    var line = new Line( geometry, new LineBasicMaterial( color: 0xffffff, opacity: 0.5 ) );
     scene.add( line );
 
     document.on.mouseMove.add(onDocumentMouseMove);

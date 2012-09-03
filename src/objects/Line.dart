@@ -14,7 +14,7 @@ class Line extends Object3D {
   
   Line(this.geometry, [this.material, this.type = LineStrip]) : super() {
 
-    if (material == null) { material = new LineBasicMaterial( { "color": new Math.Random().nextInt(0xffffff) } ); }
+    if (material == null) { material = new LineBasicMaterial( color: new Math.Random().nextInt(0xffffff) ); }
     
     if ( geometry != null ) {
       // calc bound radius

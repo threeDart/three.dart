@@ -32,8 +32,8 @@ class WebGL_Geometry_Extrude_Shapes  {
     // 3d shape
 
     var mesh = SceneUtils.createMultiMaterialObject( geometry, 
-        [ new MeshLambertMaterial( { "color": color, "opacity": 0.2, "transparent": true } ), 
-          new MeshBasicMaterial( { "color": 0x000000, "wireframe": true,  "opacity": 0.3 } ) ] );
+        [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ), 
+          new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
     mesh.position.setValues( x, y, z - 75 );
     // mesh.rotation.set( rx, ry, rz );

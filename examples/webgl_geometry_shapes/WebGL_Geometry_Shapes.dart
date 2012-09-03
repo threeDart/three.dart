@@ -33,8 +33,8 @@ class WebGL_Geometry_Shapes  {
     // 3d shape
 
     var mesh = SceneUtils.createMultiMaterialObject( geometry, 
-        [ new MeshLambertMaterial( { "color": color } ), 
-          new MeshBasicMaterial( { "color": 0x000000, "wireframe": true, "transparent": true } )]);
+        [ new MeshLambertMaterial( color: color ), 
+          new MeshBasicMaterial( color: 0x000000, wireframe: true, transparent: true )]);
     mesh.position.setValues( x, y, z - 75 );
     mesh.rotation.setValues( rx, ry, rz );
     mesh.scale.setValues( s, s, s );
@@ -42,7 +42,7 @@ class WebGL_Geometry_Shapes  {
 
     // solid line
     
-    var line = new Line( points, new LineBasicMaterial( { "color": color, "linewidth": 2 } ) );
+    var line = new Line( points, new LineBasicMaterial( color: color, linewidth: 2 ) );
     line.position.setValues( x, y, z + 25 );
     line.rotation.setValues( rx, ry, rz );
     line.scale.setValues( s, s, s );
@@ -50,7 +50,7 @@ class WebGL_Geometry_Shapes  {
 
     // transparent line from real points
 
-    line = new Line( points, new LineBasicMaterial( { "color": color, "opacity": 0.5 } ) );
+    line = new Line( points, new LineBasicMaterial( color: color, opacity: 0.5 ) );
     line.position.setValues( x, y, z + 75 );
     line.rotation.setValues( rx, ry, rz );
     line.scale.setValues( s, s, s );
@@ -59,7 +59,7 @@ class WebGL_Geometry_Shapes  {
     // vertices from real points
 
     var pgeo = GeometryUtils.clone( points );
-    var particles = new ParticleSystem( pgeo, new ParticleBasicMaterial( { "color": color, "size": 2, "opacity": 0.75 } ) );
+    var particles = new ParticleSystem( pgeo, new ParticleBasicMaterial( color: color, size: 2, opacity: 0.75 ) );
     particles.position.setValues( x, y, z + 75 );
     particles.rotation.setValues( rx, ry, rz );
     particles.scale.setValues( s, s, s );
@@ -67,7 +67,7 @@ class WebGL_Geometry_Shapes  {
 
     // transparent line from equidistance sampled points
 
-    line = new Line( spacedPoints, new LineBasicMaterial( { "color": color, "opacity": 0.2 } ) );
+    line = new Line( spacedPoints, new LineBasicMaterial( color: color, opacity: 0.2) );
     line.position.setValues( x, y, z + 100 );
     line.rotation.setValues( rx, ry, rz );
     line.scale.setValues( s, s, s );
@@ -76,7 +76,7 @@ class WebGL_Geometry_Shapes  {
     // equidistance sampled points
 
     pgeo = GeometryUtils.clone( spacedPoints );
-    var particles2 = new ParticleSystem( pgeo, new ParticleBasicMaterial( { "color": color, "size": 2, "opacity": 0.5 } ) );
+    var particles2 = new ParticleSystem( pgeo, new ParticleBasicMaterial( color: color, size: 2, opacity: 0.5 ) );
     particles2.position.setValues( x, y, z + 100 );
     particles2.rotation.setValues( rx, ry, rz );
     particles2.scale.setValues( s, s, s );

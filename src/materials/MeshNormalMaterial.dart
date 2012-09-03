@@ -15,31 +15,60 @@
  *  wireframeLinewidth: <float>
  * }
  */
-class MeshNormalMaterial extends Material
-{
+class MeshNormalMaterial extends Material {
   //Map _parameters;
-  int _shading;
-  bool _wireframe;
-  num _wireframeLinewidth;
-  String _wireframeLinecap;
-  String _wireframeLinejoin;
+  int shading;
+  bool wireframe;
+  num wireframeLinewidth;
+  String wireframeLinecap;
+  String wireframeLinejoin;
 
-  bool get wireframe() {  return _wireframe;  }
-  num get wireframeLinewidth() {  return _wireframeLinewidth;  }
-  String get wireframeLinecap() {  return _wireframeLinecap;  }
-  String get wireframeLinejoin() {  return _wireframeLinejoin;  }
-  int get shading() {  return _shading;  }
-  
-  MeshNormalMaterial( [Map parameters] ) : super( parameters )
-  {
-    //THREE.Material.call( this, parameters );
 
-    Map _parameters = parameters != null ? parameters : {};
-
-    _shading = (null != _parameters['shading']) ? _parameters['shading'] : Three.FlatShading;
-
-    _wireframe = (null != _parameters['wireframe']) ? _parameters['wireframe'] : false;
-    _wireframeLinewidth = (null != _parameters['wireframeLinewidth']) ? _parameters['wireframeLinewidth'] : 1;
-
-  }
+  MeshNormalMaterial( [ // MeshNormalMaterial                 
+                        this.shading = Three.FlatShading, // doesn't really apply here, normals are not used                 
+                        this.wireframe = false,
+                        this.wireframeLinewidth = 1,
+                       
+                        // Material 
+                        name = '',
+                        side = Three.FrontSide,
+                        
+                        opacity = 1,
+                        transparent = false,
+                        
+                        blending = Three.NormalBlending,
+                        blendSrc = Three.SrcAlphaFactor,
+                        blendDst = Three.OneMinusSrcAlphaFactor,
+                        blendEquation = Three.AddEquation,
+                        
+                        depthTest = true,
+                        depthWrite = true,
+                        
+                        polygonOffset = false,
+                        polygonOffsetFactor = 0,
+                        polygonOffsetUnits =  0,
+                        
+                        alphaTest = 0,
+                        
+                        overdraw = false, 
+                        
+                        visible = true ])
+                        :
+                          
+                          super(  name: name,
+                                  side: side,
+                                  opacity: opacity,
+                                  transparent: transparent,
+                                  blending: blending,
+                                  blendSrc: blendSrc,
+                                  blendDst: blendDst,
+                                  blendEquation: blendEquation,      
+                                  depthTest: depthTest,
+                                  depthWrite: depthWrite,          
+                                  polygonOffset: polygonOffset,
+                                  polygonOffsetFactor: polygonOffsetFactor,
+                                  polygonOffsetUnits: polygonOffsetUnits,             
+                                  alphaTest: alphaTest,              
+                                  overdraw: overdraw,          
+                                  visible: visible );
 }

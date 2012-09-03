@@ -31,21 +31,60 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
   int vertexColors;
   bool fog;
   
-  ParticleBasicMaterial( [Map parameters] ) : super( parameters )
-  {
-    Map _parameters = parameters != null ? parameters : {};
+  ParticleBasicMaterial( [ // ParticleBasicMaterial
+                       
+                       this.map,
+                       num color = 0xffffff,
+                       this.size = 1,
+                       this.sizeAttenuation = true,
+                       this.vertexColors = Three.NoColors,
 
-    color = _parameters['color'] !== null ? new Color( _parameters['color'] ) : new Color( 0xffffff );
+                       this.fog = true,
 
-    map = _parameters['map'] !== null ? _parameters['map'] : null;
+                       // Material 
+                       name = '',
+                       side = Three.FrontSide,
+                       
+                       opacity = 1,
+                       transparent = false,
+                       
+                       blending = Three.NormalBlending,
+                       blendSrc = Three.SrcAlphaFactor,
+                       blendDst = Three.OneMinusSrcAlphaFactor,
+                       blendEquation = Three.AddEquation,
+                       
+                       depthTest = true,
+                       depthWrite = true,
+                       
+                       polygonOffset = false,
+                       polygonOffsetFactor = 0,
+                       polygonOffsetUnits =  0,
+                       
+                       alphaTest = 0,
+                       
+                       overdraw = false, 
+                       
+                       visible = true ])
+                       :
+                         this.color = new Color(color), 
+                         
+                         super(  name: name,
+                                 side: side,
+                                 opacity: opacity,
+                                 transparent: transparent,
+                                 blending: blending,
+                                 blendSrc: blendSrc,
+                                 blendDst: blendDst,
+                                 blendEquation: blendEquation,      
+                                 depthTest: depthTest,
+                                 depthWrite: depthWrite,          
+                                 polygonOffset: polygonOffset,
+                                 polygonOffsetFactor: polygonOffsetFactor,
+                                 polygonOffsetUnits: polygonOffsetUnits,             
+                                 alphaTest: alphaTest,              
+                                 overdraw: overdraw,          
+                                 visible: visible );
 
-    size = _parameters['size'] !== null ? _parameters['size'] : 1;
-    sizeAttenuation = _parameters['sizeAttenuation'] !== null ? _parameters['sizeAttenuation'] : true;
-
-    vertexColors = _parameters['vertexColors'] !== null ? _parameters['vertexColors'] : Three.NoColors;;
-
-    fog = _parameters['fog'] !== null ? _parameters['fog'] : true;    
-  }
 }
 
 

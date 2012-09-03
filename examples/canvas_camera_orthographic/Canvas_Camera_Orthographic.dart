@@ -48,11 +48,11 @@ class Canvas_Camera_Orthographic {
 
     for ( var i = 0; i <= 20; i ++ ) {
 
-      var line = new Line( geometry, new LineBasicMaterial( { "color": 0x000000, "opacity": 0.2 } ) );
+      var line = new Line( geometry, new LineBasicMaterial( color: 0x000000, opacity: 0.2 ) );
       line.position.z = ( i * 50 ) - 500;
       scene.add( line );
 
-      line = new Line( geometry, new LineBasicMaterial( { "color": 0x000000, "opacity": 0.2 } ) );
+      line = new Line( geometry, new LineBasicMaterial( color: 0x000000, opacity: 0.2 ) );
       line.position.x = ( i * 50 ) - 500;
       line.rotation.y = 90 * Math.PI / 180;
       scene.add( line );
@@ -62,7 +62,7 @@ class Canvas_Camera_Orthographic {
     // Cubes
 
     geometry = new CubeGeometry( 50, 50, 50 );
-    material = new MeshLambertMaterial( { "color": 0xffffff, "overdraw": true} );
+    material = new MeshLambertMaterial( color: 0xffffff, overdraw: true );
 
     var rnd = new Math.Random();
     

@@ -9,12 +9,12 @@ class ArrowHelper extends Object3D {
     lineGeometry.vertices.add( new Vector3( 0, 0, 0 ) );
     lineGeometry.vertices.add( new Vector3( 0, 1, 0 ) );
 
-    this.line = new Line( lineGeometry, new LineBasicMaterial( { "color": hex } ) );
+    this.line = new Line( lineGeometry, new LineBasicMaterial( color: hex ) );
     this.add( this.line );
 
     var coneGeometry = new CylinderGeometry( 0, 0.05, 0.25, 5, 1 );
 
-    this.cone = new Mesh( coneGeometry, new MeshBasicMaterial( { "color": hex } ) );
+    this.cone = new Mesh( coneGeometry, new MeshBasicMaterial( color: hex ) );
     this.cone.position.setValues( 0, 1, 0 );
     this.add( this.cone );
 
