@@ -3,13 +3,14 @@
  **************************************************************/
 #library('ShapeUtils');
 
+#import('../../ThreeD.dart');
 #import('../FontUtils.dart', prefix:'FontUtils');
 
 /*
   contour - array of vector2 for contour
   holes   - array of array of vector2
 */
-removeHoles( contour, holes ) {
+removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
 
   var shape = new List.from(contour); // work on this shape
   var allpoints = new List.from(shape);

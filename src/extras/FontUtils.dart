@@ -290,7 +290,7 @@ class FontFace {
 var EPSILON = 0.0000000001;
 
 // takes in an contour array and returns
-List<List<Vector2>> process( contour, indices ) {
+List<List<Vector2>> process( List<Vector2> contour, bool indices ) {
 
   var n = contour.length;
 

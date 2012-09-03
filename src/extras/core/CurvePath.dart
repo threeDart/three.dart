@@ -18,10 +18,10 @@ class CurvePath extends Curve {
 	List cacheLengths = null;
 	
 	CurvePath() 
-		:	super(),
-			curves = [],
+		:	curves = [],
 			_bends = [],
-			autoClose = false;
+			autoClose = false,
+			super();
 
 	add( curve ) => curves.add( curve );
 
@@ -191,13 +191,13 @@ class CurvePath extends Curve {
 
 	/// Generate geometry from path points (for Line or ParticleSystem objects)
 	createPointsGeometry( [divisions] ) {
-		var pts = this.getPoints( divisions );
+		var pts = this.getPoints( divisions, true );
 		return this.createGeometry( pts );
 	}
 
 	// Generate geometry from equidistance sampling along the path
 	createSpacedPointsGeometry( [divisions] ) {
-		var pts = this.getSpacedPoints( divisions );
+		var pts = this.getSpacedPoints( divisions, true );
 		return this.createGeometry( pts );
 	}
 

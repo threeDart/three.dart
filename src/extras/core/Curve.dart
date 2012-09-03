@@ -19,7 +19,8 @@ abstract class Curve<V extends IVector2> {
 	}
 
 	// Get sequence of points using getPoint( t )
-	List<V> getPoints( [num divisions = null] ) {
+  // TODO(nelsonsilva) - closedPath is only used in Path
+	List<V> getPoints( [num divisions = null, closedPath = false] ) { 
 
 	  if (divisions == null) divisions = 5;
 	  
@@ -33,7 +34,8 @@ abstract class Curve<V extends IVector2> {
 	}
 
 	// Get sequence of points using getPointAt( u )
-	List<V> getSpacedPoints( [num divisions = 5] ) {
+  // TODO(nelsonsilva) - closedPath is only used in Path
+	List<V> getSpacedPoints( [num divisions = 5, closedPath = false] ) {
 
 
 		var d, pts = [];
@@ -207,7 +209,7 @@ abstract class Curve<V extends IVector2> {
 
 }
 
-class Curve2D extends Curve<Vector2> {
+abstract class Curve2D extends Curve<Vector2> {
   // In 2D space, there are actually 2 normal vectors,
   // and in 3D space, infinte
   // TODO this should be depreciated.
@@ -217,5 +219,5 @@ class Curve2D extends Curve<Vector2> {
   }
 }
 
-class Curve3D extends Curve<Vector3> {
+abstract class Curve3D extends Curve<Vector3> {
 }

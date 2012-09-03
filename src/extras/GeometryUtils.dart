@@ -33,7 +33,8 @@ clone( Geometry geometry ) {
 
       var uv = uvs[ i ], uvCopy = [];
 
-      for ( var j = 0, jl = uv.length; j < jl; j ++ ) {
+      var jl = uv.length;
+      for ( var j = 0; j < jl; j ++ ) {
 
         uvCopy.add( new UV( uv[ j ].u, uv[ j ].v ) );
 

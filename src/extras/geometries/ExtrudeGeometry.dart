@@ -221,14 +221,18 @@ class ExtrudeGeometry extends Geometry {
       return reversed;
    }
     
-  addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments,bevelEnabled,
-            curveSegments,steps,bendPath,extrudePath,material, extrudeMaterial) {
+  addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments, bevelEnabled,
+            curveSegments, steps, bendPath, extrudePath, material, extrudeMaterial, 
+            [ExtrudeGeometryWorldUVGenerator UVGenerator, TubeGeometry frames]) {
   
   
     var extrudePts, extrudeByPath = false;
   
     //shapebb = shape.getBoundingBox();
   
+    // set UV generator
+    var uvgen = (UVGenerator!= null) ? UVGenerator : new ExtrudeGeometryWorldUVGenerator();
+    
     TubeGeometry splineTube;
     Vector3 binormal, normal, position2;
     
@@ -243,7 +247,7 @@ class ExtrudeGeometry extends Geometry {
   
       // Reuse TNB from TubeGeomtry for now.
       // TODO1 - have a .isClosed in spline?
-      splineTube = new TubeGeometry.FrenetFrames(extrudePath, steps, false);
+      splineTube = (frames != null) ? frames : new TubeGeometry.FrenetFrames(extrudePath, steps, false);
   
       // console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
   
@@ -329,6 +333,7 @@ class ExtrudeGeometry extends Geometry {
   
       ahole = holes[ h ];
   
+      vertices = new List.from(vertices);
       vertices.addAll( ahole );
   
     }
@@ -354,8 +359,8 @@ class ExtrudeGeometry extends Geometry {
         k = i + 1;
     for ( i = 0; i < il; i ++ ) {
   
-      if ( j === il ) j = 0;
-      if ( k === il ) k = 0;
+      if ( j == il ) j = 0;
+      if ( k == il ) k = 0;
   
       //  (j)---(i)---(k)
       // console.log('i,j,k', i, j , k)
@@ -385,8 +390,8 @@ class ExtrudeGeometry extends Geometry {
       
       for ( i = 0; i < il; i++) {
   
-        if ( j === il ) j = 0;
-        if ( k === il ) k = 0;
+        if ( j == il ) j = 0;
+        if ( k == il ) k = 0;
   
         //  (j)---(i)---(k)
         oneHoleMovements[ i ]= _getBevelVec( ahole[ i ], ahole[ j ], ahole[ k ] );
@@ -548,11 +553,7 @@ class ExtrudeGeometry extends Geometry {
       }
   
     }
-  
-    test() => print("hello");
     
-    // set UV generator
-    var uvgen = new ExtrudeGeometryWorldUVGenerator();
   
     ////
     ///   Handle Faces
@@ -653,8 +654,6 @@ class ExtrudeGeometry extends Geometry {
         }
       }
     }
-  
-    
     
     // Sides faces
     //buildSideFaces() {
