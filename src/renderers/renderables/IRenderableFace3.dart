@@ -1,21 +1,14 @@
-interface IRenderableFace3 extends IRenderableObj
-{
-  RenderableVertex get v1();
-  RenderableVertex get v2();
-  RenderableVertex get v3();
+interface IRenderableFace3 extends IRenderableObj {
+  RenderableVertex v1;
+  RenderableVertex v2;
+  RenderableVertex v3;
   
-  Vector3 get normalWorld();
-  Vector3 get centroidWorld();
-  Vector3 get centroidScreen();
-  List get vertexNormalsWorld();
-  List get uvs();
+  Vector3 centroidWorld, centroidScreen, normalWorld;
   
-  Material get material();
-  set material( Material value );
+  List vertexNormalsWorld, uvs;
   
-  Material get faceMaterial();
-  set faceMaterial( Material value );
+  Material material;
+  Material faceMaterial;
   
-  num get z();
-  set z( num value );
+  num z;
 }
