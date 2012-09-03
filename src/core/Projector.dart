@@ -275,14 +275,14 @@ class Projector {
             v3 = _vertexPool[ face4.c ];
             v4 = _vertexPool[ face4.d ];
             
-            if ( v1.visible === true && v2.visible === true && v3.visible === true && v4.visible === true ) {
+            if ( v1.visible && v2.visible && v3.visible && v4.visible ) {
               
               visible = ( v4.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
                   ( v4.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0 ||
                   ( v2.positionScreen.x - v3.positionScreen.x ) * ( v4.positionScreen.y - v3.positionScreen.y ) -
                   ( v2.positionScreen.y - v3.positionScreen.y ) * ( v4.positionScreen.x - v3.positionScreen.x ) < 0;
               
-              if ( side === Three.DoubleSide || visible === ( side === Three.FrontSide ) ) {
+              if ( side == Three.DoubleSide || visible == ( side == Three.FrontSide ) ) {
                 
                 _face = getNextFace4InPool();
               
@@ -315,6 +315,9 @@ class Projector {
           for ( n = 0; n < nl; n ++ ) {
             normal = _face.vertexNormalsWorld[ n ];
             normal.copy( faceVertexNormals[ n ] );
+            
+            if ( !visible && ( side == Three.BackSide || side == Three.DoubleSide ) ) normal.negate();
+            
             rotationMatrix.multiplyVector3( normal );
           }
 
@@ -476,8 +479,7 @@ class Projector {
   }
 
   IRenderableFace4 getNextFace4InPool() {
-    //TODO: make sure I've interpreted this logic correctly
-    //RenderableFace4 face = _face4Pool[ _face4Count ] = _face4Pool[ _face4Count ] || new RenderableFace4();
+
     RenderableFace4 face;
     if ( _face4Count < _face4Pool.length ) {
       face = ( _face4Pool[ _face4Count ] != null ) ? _face4Pool[ _face4Count ] : new RenderableFace4();
