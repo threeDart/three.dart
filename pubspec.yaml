@@ -1,0 +1,4 @@
+name: three.dart
+version: 0.2.1
+description: >
+  A port of the three.js JavaScript 3D engine to Dart.
