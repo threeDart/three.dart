@@ -10,8 +10,8 @@ class Three {
   List<String> vendors;
   
   // from Line
-  static final int LineStrip = 0;
-  static final int LinePieces = 1;
+  static const int LineStrip = 0;
+  static const int LinePieces = 1;
   
   // from Geometry
   static int GeometryCount = 0;
@@ -25,94 +25,94 @@ class Three {
   // MATERIAL CONSTANTS
 
   // side
-  static final int FrontSide = 0;
-  static final int BackSide = 1;
-  static final int DoubleSide = 2;
+  static const int FrontSide = 0;
+  static const int BackSide = 1;
+  static const int DoubleSide = 2;
 
-  static final int NoShading = 0;
-  static final int FlatShading = 1;
-  static final int SmoothShading = 2;
+  static const int NoShading = 0;
+  static const int FlatShading = 1;
+  static const int SmoothShading = 2;
 
-  static final int NoColors = 0;
-  static final int FaceColors = 1;
-  static final int VertexColors = 2;
+  static const int NoColors = 0;
+  static const int FaceColors = 1;
+  static const int VertexColors = 2;
 
   // blending modes
 
- static final int NoBlending = 0;
- static final int NormalBlending = 1;
- static final int AdditiveBlending = 2;
- static final int SubtractiveBlending = 3;
- static final int MultiplyBlending = 4;
- static final int CustomBlending = 5;
+ static const int NoBlending = 0;
+ static const int NormalBlending = 1;
+ static const int AdditiveBlending = 2;
+ static const int SubtractiveBlending = 3;
+ static const int MultiplyBlending = 4;
+ static const int CustomBlending = 5;
   
   // custom blending equations
 // (numbers start from 100 not to clash with other
 //  mappings to OpenGL constants defined in Texture.js)
 
- static final int AddEquation = 100;
- static final int SubtractEquation = 101;
- static final int ReverseSubtractEquation = 102;
+ static const int AddEquation = 100;
+ static const int SubtractEquation = 101;
+ static const int ReverseSubtractEquation = 102;
 
  // custom blending destination factors
 
- static final int ZeroFactor = 200;
- static final int OneFactor = 201;
- static final int SrcColorFactor = 202;
- static final int OneMinusSrcColorFactor = 203;
- static final int SrcAlphaFactor = 204;
- static final int OneMinusSrcAlphaFactor = 205;
- static final int DstAlphaFactor = 206;
- static final int OneMinusDstAlphaFactor = 207;
+ static const int ZeroFactor = 200;
+ static const int OneFactor = 201;
+ static const int SrcColorFactor = 202;
+ static const int OneMinusSrcColorFactor = 203;
+ static const int SrcAlphaFactor = 204;
+ static const int OneMinusSrcAlphaFactor = 205;
+ static const int DstAlphaFactor = 206;
+ static const int OneMinusDstAlphaFactor = 207;
 
 // custom blending source factors
 
- static final int DstColorFactor = 208;
- static final int OneMinusDstColorFactor = 209;
- static final int SrcAlphaSaturateFactor = 210;
+ static const int DstColorFactor = 208;
+ static const int OneMinusDstColorFactor = 209;
+ static const int SrcAlphaSaturateFactor = 210;
 
   // from MeshBasicMaterial
   
   // from Texture
   static int TextureCount = 0;
 
-  static final int MultiplyOperation = 0;
-  static final int MixOperation = 1;
+  static const int MultiplyOperation = 0;
+  static const int MixOperation = 1;
 
   static var UVMapping;//();
 
   // Wrapping modes
-  static final int RepeatWrapping = 0;
-  static final int ClampToEdgeWrapping = 1;
-  static final int MirroredRepeatWrapping = 2;
+  static const int RepeatWrapping = 0;
+  static const int ClampToEdgeWrapping = 1;
+  static const int MirroredRepeatWrapping = 2;
 
   // Filters
-  static final int NearestFilter = 3;
-  static final int NearestMipMapNearestFilter = 4;
-  static final int NearestMipMapLinearFilter = 5;
-  static final int LinearFilter = 6;
-  static final int LinearMipMapNearestFilter = 7;
-  static final int LinearMipMapLinearFilter = 8;
+  static const int NearestFilter = 3;
+  static const int NearestMipMapNearestFilter = 4;
+  static const int NearestMipMapLinearFilter = 5;
+  static const int LinearFilter = 6;
+  static const int LinearMipMapNearestFilter = 7;
+  static const int LinearMipMapLinearFilter = 8;
 
   // Types
-  static final int ByteType = 9;
-  static final int UnsignedByteType = 10;
-  static final int ShortType = 11;
-  static final int UnsignedShortType = 12;
-  static final int IntType = 13;
-  static final int UnsignedIntType = 14;
-  static final int FloatType = 15;
+  static const int ByteType = 9;
+  static const int UnsignedByteType = 10;
+  static const int ShortType = 11;
+  static const int UnsignedShortType = 12;
+  static const int IntType = 13;
+  static const int UnsignedIntType = 14;
+  static const int FloatType = 15;
 
-  static final int UnsignedShort4444Type = 1016;
-  static final int UnsignedShort5551Type = 1017;
-  static final int UnsignedShort565Type = 1018;
+  static const int UnsignedShort4444Type = 1016;
+  static const int UnsignedShort5551Type = 1017;
+  static const int UnsignedShort565Type = 1018;
 
   // Formats
-  static final int AlphaFormat = 16;
-  static final int RGBFormat = 17;
-  static final int RGBAFormat = 18;
-  static final int LuminanceFormat = 19;
-  static final int LuminanceAlphaFormat = 20;  
+  static const int AlphaFormat = 16;
+  static const int RGBFormat = 17;
+  static const int RGBAFormat = 18;
+  static const int LuminanceFormat = 19;
+  static const int LuminanceAlphaFormat = 20;  
   
   Three()
   {

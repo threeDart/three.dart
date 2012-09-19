@@ -1,6 +1,6 @@
 class WebGLRenderer implements Renderer {
 
-  static final String PRECISION_HIGH = 'highp';
+  static const String PRECISION_HIGH = 'highp';
 
   CanvasElement canvas;
   WebGLRenderingContext _gl;
@@ -6867,7 +6867,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-		} catch ( var error ) {
+		} catch  ( var error ) {
 
 			print( error );
 
