@@ -6867,7 +6867,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-		} catch  ( var error ) {
+		} catch  ( error ) {
 
 			print( error );
 
