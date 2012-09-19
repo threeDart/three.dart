@@ -5,13 +5,13 @@
  **/
 
 class PathAction {
-	static final String MOVE_TO = 'moveTo';
-	static final String LINE_TO = 'lineTo';
-	static final String QUADRATIC_CURVE_TO = 'quadraticCurveTo';    // Bezier quadratic curve
-	static final String BEZIER_CURVE_TO = 'bezierCurveTo';  		// Bezier cubic curve
-	static final String CSPLINE_THRU = 'splineThru';				// Catmull-rom spline
-	static final String ARC = 'arc';								// Circle
-	static final String ELLIPSE = 'ellipse';
+	static const String MOVE_TO = 'moveTo';
+	static const String LINE_TO = 'lineTo';
+	static const String QUADRATIC_CURVE_TO = 'quadraticCurveTo';    // Bezier quadratic curve
+	static const String BEZIER_CURVE_TO = 'bezierCurveTo';  		// Bezier cubic curve
+	static const String CSPLINE_THRU = 'splineThru';				// Catmull-rom spline
+	static const String ARC = 'arc';								// Circle
+	static const String ELLIPSE = 'ellipse';
 
 	String action;
 	var args;
