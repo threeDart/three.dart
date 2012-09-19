@@ -24,28 +24,66 @@ class ShaderMaterial extends Material {
   
   Map attributes;
   
-  ShaderMaterial( Map parameters ) : super( parameters )  {
+  ShaderMaterial( [ // ShaderMaterial
+                    this.attributes,
+                    this.fragmentShader = "void main() {}",
+                    this.vertexShader = "void main() {}",
+                    Map uniforms,
 
-    attributes =  parameters['attributes'] != null ? parameters['attributes'] : {};
-    fragmentShader = parameters['fragmentShader'] != null ? parameters['fragmentShader'] : "void main() {}";
-    vertexShader = parameters['vertexShader'] != null ? parameters['vertexShader'] : "void main() {}";
-    uniforms = parameters['uniforms'] != null ? parameters['uniforms'] : {};
+                    this.shading = Three.SmoothShading,
 
-    shading = parameters['shading'] != null ? parameters['shading'] : Three.SmoothShading;
+                    this.vertexColors = Three.NoColors,
 
-    wireframe = parameters['wireframe'] != null ? parameters['wireframe'] : false;
-    wireframeLinewidth = parameters['wireframeLinewidth'] != null ? parameters['wireframeLinewidth'] : 1;
+                    this.fog = true,
+                    
+                    this.wireframe = false,
+                    this.wireframeLinewidth = 1,
 
-    fog = parameters['fog'] != null ? parameters['fog'] : false; // set to use scene fog
+                    this.skinning = false,
+                    this.morphTargets = false,
+                    this.morphNormals = false,
+                    
+                    // Material 
+                    name = '',
+                    side = Three.FrontSide,
+                    
+                    opacity = 1,
+                    transparent = false,
+                    
+                    blending = Three.NormalBlending,
+                    blendSrc = Three.SrcAlphaFactor,
+                    blendDst = Three.OneMinusSrcAlphaFactor,
+                    blendEquation = Three.AddEquation,
+                    
+                    depthTest = true,
+                    depthWrite = true,
+                    
+                    polygonOffset = false,
+                    polygonOffsetFactor = 0,
+                    polygonOffsetUnits =  0,
+                    
+                    alphaTest = 0,
+                    
+                    overdraw = false, 
+                    
+                    visible = true ])
+                    :
+                      this.uniforms = (uniforms != null) ? uniforms : {},
+                      super(  name: name,
+                              side: side,
+                              opacity: opacity,
+                              transparent: transparent,
+                              blending: blending,
+                              blendSrc: blendSrc,
+                              blendDst: blendDst,
+                              blendEquation: blendEquation,      
+                              depthTest: depthTest,
+                              depthWrite: depthWrite,          
+                              polygonOffset: polygonOffset,
+                              polygonOffsetFactor: polygonOffsetFactor,
+                              polygonOffsetUnits: polygonOffsetUnits,             
+                              alphaTest: alphaTest,              
+                              overdraw: overdraw,          
+                              visible: visible );
 
-    lights = parameters['lights'] != null ? parameters['lights'] : false; // set to use scene lights
-
-    vertexColors = parameters['vertexColors'] != null ? parameters['vertexColors'] : Three.NoColors; // set to use "color" attribute stream
-
-    skinning = parameters['skinning'] != null ? parameters['skinning'] : false; // set to use skinning attribute streams
-
-    morphTargets = parameters['morphTargets'] != null ? parameters['morphTargets'] : false; // set to use morph targets
-    morphNormals = parameters['morphNormals'] != null ? parameters['morphNormals'] : false; // set to use morph normals
-
-  }
 }

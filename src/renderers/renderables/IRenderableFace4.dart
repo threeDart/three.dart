@@ -1,4 +1,3 @@
-interface IRenderableFace4 extends IRenderableFace3 
-{
-  RenderableVertex get v4();
+interface IRenderableFace4 extends IRenderableFace3 {
+  RenderableVertex v4;
 }

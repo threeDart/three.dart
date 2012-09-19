@@ -48,7 +48,7 @@ class WebGL_Interactive_Cubes  {
     
     for ( var i = 0; i < 500; i ++ ) {
 
-      var object = new Mesh( geometry, new MeshLambertMaterial( { "color": rnd.nextInt(0xffffff) } ) );
+      var object = new Mesh( geometry, new MeshLambertMaterial( color: rnd.nextInt(0xffffff) ) );
 
       object.position.x = rnd.nextInt(800) - 400;
       object.position.y = rnd.nextInt(800) - 400;

@@ -22,8 +22,7 @@
  * }
  */
 
-class LineBasicMaterial extends Material
-{
+class LineBasicMaterial extends Material {
   Color color;
   num linewidth;
   String linecap;
@@ -33,18 +32,59 @@ class LineBasicMaterial extends Material
   int vertexColors;
   
   
-  LineBasicMaterial( [Map parameters] ) : super( parameters ) {
+  LineBasicMaterial([ // LineBasicMaterial
+                      
+                      num color = 0xffffff,
 
-    parameters = parameters != null ? parameters : {};
+                      this.linewidth = 1,
+                      this.linecap = 'round',
+                      this.linejoin = 'round',
 
-    color = parameters['color'] != null ? new Color( parameters['color'] ) : new Color( 0xffffff );
+                      this.vertexColors = Three.NoColors,
 
-    linewidth = parameters['linewidth'] != null ? parameters['linewidth'] : 1;
-    linecap = parameters['linecap'] != null ? parameters['linecap'] : 'round';
-    linejoin = parameters['linejoin'] !==null ? parameters['linejoin'] : 'round';
-
-    vertexColors = parameters['vertexColors'] != null ? parameters['vertexColors'] : Three.NoColors;
-
-    fog = parameters['fog'] != null ? parameters['fog'] : true;
-  }
+                      this.fog = true,
+                      
+                      // Material 
+                      name = '',
+                      side = Three.FrontSide,
+                    
+                      opacity = 1,
+                      transparent = false,
+                    
+                      blending = Three.NormalBlending,
+                      blendSrc = Three.SrcAlphaFactor,
+                      blendDst = Three.OneMinusSrcAlphaFactor,
+                      blendEquation = Three.AddEquation,
+                    
+                      depthTest = true,
+                      depthWrite = true,
+                    
+                      polygonOffset = false,
+                      polygonOffsetFactor = 0,
+                      polygonOffsetUnits =  0,
+                    
+                      alphaTest = 0,
+                    
+                      overdraw = false, 
+                    
+                      visible = true ])
+      :
+                      this.color = new Color(color), 
+                      
+                      super(  name: name,
+                              side: side,
+                              opacity: opacity,
+                              transparent: transparent,
+                              blending: blending,
+                              blendSrc: blendSrc,
+                              blendDst: blendDst,
+                              blendEquation: blendEquation,      
+                              depthTest: depthTest,
+                              depthWrite: depthWrite,          
+                              polygonOffset: polygonOffset,
+                              polygonOffsetFactor: polygonOffsetFactor,
+                              polygonOffsetUnits: polygonOffsetUnits,             
+                              alphaTest: alphaTest,              
+                              overdraw: overdraw,          
+                              visible: visible );
 }

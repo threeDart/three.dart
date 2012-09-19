@@ -20,8 +20,12 @@ class TubeGeometry extends Geometry {
   var grid;
   var tangents, normals, binormals;
       
-  TubeGeometry ( path, [segments = 64, this.radius = 1, this.segmentsRadius = 8, closed = false]) 
+  Object3D debug;
+  
+  TubeGeometry ( path, [segments = 64, this.radius = 1, this.segmentsRadius = 8, closed = false, bool debug]) 
     : grid = [], super() {
+      
+    if ( debug ) this.debug = new Object3D();
       
     var tangent,
         normal,
@@ -43,10 +47,11 @@ class TubeGeometry extends Geometry {
     var frames = _frenetFrames(path, segments, closed);
   
     // consruct the grid
-  
+    grid.length = numpoints;
+    
     for ( i = 0; i < numpoints; i++ ) {
   
-      grid[ i ] = [];
+      grid[ i ] = new List(this.segmentsRadius);
   
       u = i / ( numpoints - 1 );
   
@@ -56,14 +61,13 @@ class TubeGeometry extends Geometry {
       normal = normals[ i ];
       binormal = binormals[ i ];
   
-      /*
-      if ( this.debug ) {
+      if ( debug ) {
   
-        this.debug.add(new THREE.ArrowHelper(tangent, pos, radius, 0x0000ff));  
-        this.debug.add(new THREE.ArrowHelper(normal, pos, radius, 0xff0000));
-        this.debug.add(new THREE.ArrowHelper(binormal, pos, radius, 0x00ff00));
+        this.debug.add(new ArrowHelper(tangent, pos, radius, 0x0000ff));  
+        this.debug.add(new ArrowHelper(normal, pos, radius, 0xff0000));
+        this.debug.add(new ArrowHelper(binormal, pos, radius, 0x00ff00));
   
-      }*/
+      }
   
       for ( j = 0; j < this.segmentsRadius; j++ ) {
   
@@ -72,12 +76,12 @@ class TubeGeometry extends Geometry {
         cx = -this.radius * Math.cos( v ); // TODO: Hack: Negating it so it faces outside.
         cy = this.radius * Math.sin( v );
   
-              pos2.copy( pos );
-              pos2.x += cx * normal.x + cy * binormal.x;
-              pos2.y += cx * normal.y + cy * binormal.y;
-              pos2.z += cx * normal.z + cy * binormal.z;
-  
-              this.grid[ i ][ j ] = _vert( pos2.x, pos2.y, pos2.z );
+        pos2.copy( pos );
+        pos2.x += cx * normal.x + cy * binormal.x;
+        pos2.y += cx * normal.y + cy * binormal.y;
+        pos2.z += cx * normal.z + cy * binormal.z;
+
+        this.grid[ i ][ j ] = _vert( pos2.x, pos2.y, pos2.z );
   
       }
     }
@@ -116,7 +120,7 @@ class TubeGeometry extends Geometry {
 
 
   _vert( x, y, z ) { 
-    vertices.add( new Vertex( new Vector3(x, y, z) ) );
+    vertices.add( new Vector3(x, y, z) );
     return vertices.length - 1;
   }
 
@@ -153,9 +157,9 @@ class TubeGeometry extends Geometry {
   
   
     // expose internals
-    tangents = [];
-    normals = [];
-    binormals = [];
+    tangents = new List(numpoints);
+    normals = new List(numpoints);
+    binormals = new List(numpoints);
   
     // compute the tangent vectors for each segment on the path
   

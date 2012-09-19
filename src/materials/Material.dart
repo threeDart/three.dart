@@ -21,39 +21,33 @@ class Material implements IMaterial
   
   bool needsUpdate;
   
-  Material( [Map parameters] ) 
-  {
-    Map _parameters = parameters != null ? parameters : {};
-
-    name = '';
-
-    id = Three.MaterialCount ++;
-
-    side = _parameters['side'] !== null ? _parameters['side'] : Three.FrontSide;
+  Material( [ this.name = '',
+              this.side = Three.FrontSide,
+              
+              this.opacity = 1,
+              this.transparent = false,
+        
+              this.blending = Three.NormalBlending,
+              this.blendSrc = Three.SrcAlphaFactor,
+              this.blendDst = Three.OneMinusSrcAlphaFactor,
+              this.blendEquation = Three.AddEquation,
+              
+              this.depthTest = true,
+              this.depthWrite = true,
+        
+              this.polygonOffset = false,
+              this.polygonOffsetFactor = 0,
+              this.polygonOffsetUnits =  0,
     
-    opacity = _parameters['opacity'] !== null ? _parameters['opacity'] : 1;
-    transparent = _parameters['transparent'] !== null ? _parameters['transparent'] : false;
-
-    blending = _parameters['blending'] !== null ? _parameters['blending'].toInt() : Three.NormalBlending;
-    blendSrc = _parameters['blendSrc'] !== null ? _parameters['blendSrc'].toInt() : Three.SrcAlphaFactor;
-    blendDst = _parameters['blendDst'] !== null ? _parameters['blendDst'].toInt() : Three.OneMinusSrcAlphaFactor;
-    blendEquation = _parameters['blendEquation'] !== null ? _parameters['blendEquation'].toInt() : Three.AddEquation;
+              this.alphaTest = 0,
+          
+              this.overdraw = false, // Boolean for fixing antialiasing gaps in CanvasRenderer
     
-    depthTest = _parameters['depthTest'] !== null ? _parameters['depthTest'] : true;
-    depthWrite = _parameters['depthWrite'] !== null ? _parameters['depthWrite'] : true;
-
-    polygonOffset = _parameters['polygonOffset'] !== null ? _parameters['polygonOffset'] : false;
-    polygonOffsetFactor = _parameters['polygonOffsetFactor'] !== null ? _parameters['polygonOffsetFactor'].toInt() : 0;
-    polygonOffsetUnits = _parameters['polygonOffsetUnits'] !== null ? _parameters['polygonOffsetUnits'].toInt() : 0;
-
-    alphaTest = _parameters['alphaTest'] !== null ? _parameters['alphaTest'].toInt() : 0;
-    
-    overdraw = _parameters['overdraw'] !== null ? _parameters['overdraw'] : false; // Boolean for fixing antialiasing gaps in CanvasRenderer
-
-    visible = _parameters['visible'] !== null ? _parameters['visible'] : true;
-    
-    needsUpdate = true;
-  }
+              this.visible = true ])
+      :       
+                
+            id = Three.MaterialCount ++,
+            needsUpdate = true;
   
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;

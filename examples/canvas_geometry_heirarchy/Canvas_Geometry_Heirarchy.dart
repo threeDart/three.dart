@@ -55,7 +55,7 @@ class Canvas_Geometry_Heirarchy
 
     var rnd = new Math.Random();
     for ( int i = 0; i < 6; i ++ ) {
-      materials.add( new MeshBasicMaterial( { 'color' :  rnd.nextDouble() * 0xffffff } ) );
+      materials.add( new MeshBasicMaterial( color:  rnd.nextDouble() * 0xffffff ) );
     }
     
     geometry = new CubeGeometry( 100, 100, 100 );

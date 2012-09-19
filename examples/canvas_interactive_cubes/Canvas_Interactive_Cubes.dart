@@ -61,7 +61,7 @@ class Canvas_Interactive_Cubes
       particle.scale.x = particle.scale.y = 8;
       scene.add( particle );
       
-      Mesh object = new Mesh( geometry, new MeshBasicMaterial( { 'color': rnd.nextDouble() * 0xffffff, 'opacity': 0.5 } ) );
+      Mesh object = new Mesh( geometry, new MeshBasicMaterial( color: rnd.nextDouble() * 0xffffff, opacity: 0.5 ) );
       object.position.x = rnd.nextInt(800) - 400;
       object.position.y = rnd.nextInt(800) - 400;
       object.position.z = rnd.nextInt(800) - 400;
@@ -80,17 +80,17 @@ class Canvas_Interactive_Cubes
     }
 
     
-    particleMaterial = new ParticleCanvasMaterial( {
+    particleMaterial = new ParticleCanvasMaterial(
 
-      'color': 0x000000,
-      'program': function( CanvasRenderingContext2D context ) {
+      color: 0x000000,
+      program: ( CanvasRenderingContext2D context) {
         context.beginPath();
         context.arc( 0, 0, 1, 0, Math.PI * 2, false );
         context.closePath();
         context.fill();
       }
 
-    } );
+    );
     
     projector = new Projector();
 

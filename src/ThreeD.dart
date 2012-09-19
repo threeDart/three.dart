@@ -9,6 +9,10 @@
 #import('extras/ImageUtils.dart', prefix:'ImageUtils');
 #import('extras/SceneUtils.dart', prefix:'SceneUtils');
 #import('extras/FontUtils.dart', prefix:'FontUtils');
+#import('extras/GeometryUtils.dart', prefix:'GeometryUtils');
+
+#import('extras/core/CurveUtils.dart', prefix:'CurveUtils');
+#import('extras/core/ShapeUtils.dart', prefix:'ShapeUtils');
 
 #source('Three.dart');
 
@@ -61,17 +65,22 @@
 #source('extras/geometries/TorusKnotGeometry.dart');
 #source('extras/geometries/TubeGeometry.dart');
 
-#source('extras/core/CurveUtils.dart');
 #source('extras/core/Curve.dart');
 #source('extras/core/CurvePath.dart');
 #source('extras/core/Path.dart');
-#source('extras/core/ShapeUtils.dart');
 #source('extras/core/Shape.dart');
 #source('extras/core/LineCurve.dart');
 #source('extras/core/QuadraticBezierCurve.dart');
 #source('extras/core/CubicBezierCurve.dart');
 #source('extras/core/SplineCurve.dart');
 #source('extras/core/ArcCurve.dart');
+#source('extras/core/EllipseCurve.dart');
+
+#source('extras/core/LineCurve3.dart');
+#source('extras/core/QuadraticBezierCurve3.dart');
+#source('extras/core/CubicBezierCurve3.dart');
+#source('extras/core/SplineCurve3.dart');
+#source('extras/core/ClosedSplineCurve3.dart');
 
 #source('extras/objects/LensFlare.dart');
 #source('extras/objects/ImmediateRenderObject.dart');

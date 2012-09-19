@@ -1,11 +1,11 @@
-class ArcCurve extends Curve {
+class ArcCurve extends Curve2D {
   
   num aX, aY, aRadius, aStartAngle, aEndAngle;
   bool aClockwise;
   
   ArcCurve( this.aX, this.aY, this.aRadius,
     this.aStartAngle, this.aEndAngle,
-    this.aClockwise );
+    this.aClockwise ) : super();
 
   getPoint( t ) {
 

@@ -18,10 +18,10 @@ class CurvePath extends Curve {
 	List cacheLengths = null;
 	
 	CurvePath() 
-		:	super(),
-			curves = [],
+		:	curves = [],
 			_bends = [],
-			autoClose = false;
+			autoClose = false,
+			super();
 
 	add( curve ) => curves.add( curve );
 
@@ -68,7 +68,7 @@ class CurvePath extends Curve {
 				diff = curveLengths[ i ] - d;
 				curve = this.curves[ i ];
 
-				var u = 1 - diff / curve.getLength();
+				var u = 1 - diff / curve.length;
 
 				return curve.getPointAt( u );
 
@@ -112,7 +112,7 @@ class CurvePath extends Curve {
 
 		for ( i = 0; i < il; i ++ ) {
 
-			sums += this.curves[ i ].getLength();
+			sums += this.curves[ i ].length;
 			lengths.add( sums );
 
 		}
@@ -190,14 +190,14 @@ class CurvePath extends Curve {
 	 **************************************************************/
 
 	/// Generate geometry from path points (for Line or ParticleSystem objects)
-	createPointsGeometry( divisions ) {
-		var pts = this.getPoints( divisions );
+	createPointsGeometry( [divisions] ) {
+		var pts = this.getPoints( divisions, true );
 		return this.createGeometry( pts );
 	}
 
 	// Generate geometry from equidistance sampling along the path
-	createSpacedPointsGeometry( divisions ) {
-		var pts = this.getSpacedPoints( divisions );
+	createSpacedPointsGeometry( [divisions] ) {
+		var pts = this.getSpacedPoints( divisions, true );
 		return this.createGeometry( pts );
 	}
 
@@ -206,7 +206,7 @@ class CurvePath extends Curve {
 		var geometry = new Geometry();
 
 		for ( var i = 0; i < points.length; i ++ ) {
-		  var z = (points[ i ].z != null) ? points[ i ].z : 0;
+		  var z = (points[i] is Vector3) ? points[ i ].z : 0;
 			geometry.vertices.add( new Vector3( points[ i ].x, points[ i ].y, z) );
 		}
 

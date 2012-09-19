@@ -13,16 +13,42 @@ class Shape extends Path {
 
   List holes;
   
-	Shape() : super(), holes = [];
+	Shape([List points]) : holes = [], super(points);
 	
   // Convenience method to return ExtrudeGeometry
-  extrude( options ) => new ExtrudeGeometry( [this], options );
+  extrude( [amount = 100, 
+            bevelThickness = 6,
+            bevelSize = null,
+            bevelSegments = 3,
+            bevelEnabled = true,
+            curveSegments = 12,
+            steps = 1,
+            bendPath,
+            extrudePath,
+            material,
+            extrudeMaterial] ) {
+    
+    if (bevelSize == null) bevelSize = bevelThickness - 2;
+    
+    return new ExtrudeGeometry( [this], amount, 
+                                        bevelThickness,
+                                        bevelSize,
+                                        bevelSegments,
+                                        bevelEnabled,
+                                        curveSegments,
+                                        steps,
+                                        bendPath,
+                                        extrudePath,
+                                        material,
+                                        extrudeMaterial );
+  }
   
   
   // Get points of holes
   getPointsHoles( divisions ) {
   
-  	var i, il = holes.length, holesPts = [];
+  	var i, il = holes.length;
+  	var holesPts = new List(il);
   
   	for ( i = 0; i < il; i ++ ) {
   
@@ -37,7 +63,8 @@ class Shape extends Path {
   // Get points of holes (spaced by regular distance)
   getSpacedPointsHoles ( divisions ) {
   
-  	var i, il = holes.length, holesPts = [];
+  	var i, il = holes.length;
+  	var holesPts = new List(il);
   
   	for ( i = 0; i < il; i ++ ) {
   

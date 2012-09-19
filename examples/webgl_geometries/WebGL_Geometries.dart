@@ -38,8 +38,8 @@ class WebGL_Geometries  {
     map.anisotropy = 16;
 
     var materials = [
-                 new MeshLambertMaterial( { "ambient": 0xbbbbbb, "map": map, "side": Three.DoubleSide } ),
-                 new MeshBasicMaterial( { "color": 0xffffff, "wireframe": true, "transparent": true, "opacity": 0.1, "side": Three.DoubleSide } )
+                 new MeshLambertMaterial( ambient: 0xbbbbbb, map: map, side: Three.DoubleSide ),
+                 new MeshBasicMaterial( color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1, side: Three.DoubleSide )
                  ];
 
     var object;

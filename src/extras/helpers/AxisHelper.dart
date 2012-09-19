@@ -10,31 +10,31 @@ class AxisHelper extends Object3D {
 
     // x
 
-    line = new Line( lineGeometry, new LineBasicMaterial( { "color" : 0xff0000 } ) );
+    line = new Line( lineGeometry, new LineBasicMaterial( color: 0xff0000 ) );
     line.rotation.z = - Math.PI / 2;
     this.add( line );
 
-    cone = new Mesh( coneGeometry, new MeshBasicMaterial( { "color" : 0xff0000 } ) );
+    cone = new Mesh( coneGeometry, new MeshBasicMaterial( color: 0xff0000 ) );
     cone.position.x = 100;
     cone.rotation.z = - Math.PI / 2;
     this.add( cone );
 
     // y
 
-    line = new Line( lineGeometry, new LineBasicMaterial( { "color" : 0x00ff00 } ) );
+    line = new Line( lineGeometry, new LineBasicMaterial( color: 0x00ff00 ) );
     this.add( line );
 
-    cone = new Mesh( coneGeometry, new MeshBasicMaterial( { "color" : 0x00ff00 } ) );
+    cone = new Mesh( coneGeometry, new MeshBasicMaterial( color: 0x00ff00 ) );
     cone.position.y = 100;
     this.add( cone );
 
     // z
 
-    line = new Line( lineGeometry, new LineBasicMaterial( { "color" : 0x0000ff } ) );
+    line = new Line( lineGeometry, new LineBasicMaterial( color: 0x0000ff ) );
     line.rotation.x = Math.PI / 2;
     this.add( line );
 
-    cone = new Mesh( coneGeometry, new MeshBasicMaterial( { "color" : 0x0000ff } ) );
+    cone = new Mesh( coneGeometry, new MeshBasicMaterial( color: 0x0000ff ) );
     cone.position.z = 100;
     cone.rotation.x = Math.PI / 2;
     this.add( cone );

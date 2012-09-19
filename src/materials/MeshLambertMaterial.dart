@@ -63,42 +63,86 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
   int vertexColors;
   bool fog;
   
-  MeshLambertMaterial( Map parameters ) : super( parameters ) 
-  {
-    //THREE.Material.call( this, parameters );
+  MeshLambertMaterial( [ // MeshLambertMaterial
+                         
+                         this.map,
 
-    _parameters = parameters != null ? parameters : {};
+                         num color = 0xffffff, //emissive
+                         num ambient = 0xffffff,
+                         num emissive = 0x000000,
+                         
+                         this.wrapAround = false,
+                         Vector3 wrapRGB,
+                         
+                         this.lightMap,
+                         this.specularMap,
+                         this.envMap,
+                         
+                         this.combine = Three.MultiplyOperation,
+                         this.reflectivity = 1,
+                         this.refractionRatio = 0.98,
 
-    color = parameters['color'] !== null ? new Color( parameters['color'] ) : new Color( 0xffffff );
-    ambient = parameters['ambient'] !== null ? new Color( parameters['ambient'] ) : new Color( 0xffffff );
-    emissive = parameters['emissive'] !== null ? new Color( parameters['emissive'] ) : new Color( 0x000000 );
-    
-    wrapAround = parameters['wrapAround'] !== null ? parameters['wrapAround'] : false;
-    wrapRGB = new Vector3( 1, 1, 1 );
+                         this.shading = Three.SmoothShading,
 
-    map = parameters['map'] !== null ? parameters['map'] : null;
+                         this.vertexColors = Three.NoColors,
 
-    lightMap = parameters['lightMap'] !== null ? parameters['lightMap'] : null;
-    specularMap = parameters['specularMap'] !== null ? parameters['specularMap'] : null;
+                         this.fog = true,
+                         
+                         this.wireframe = false,
+                         this.wireframeLinewidth = 1,
+                         this.wireframeLinecap = 'round',
+                         this.wireframeLinejoin = 'round',
 
-    envMap = parameters['envMap'] !== null ? parameters['envMap'] : null;
-    combine = parameters['combine'] !== null ? parameters['combine'] : Three.MultiplyOperation;
-    reflectivity = parameters['reflectivity'] !== null ? parameters['reflectivity'] : 1;
-    refractionRatio = parameters['refractionRatio'] !== null ? parameters['refractionRatio'] : 0.98;
+                         this.skinning = false,
+                         this.morphTargets = false,
+                         this.morphNormals = false,
+                         
+                         // Material 
+                         name = '',
+                         side = Three.FrontSide,
+                         
+                         opacity = 1,
+                         transparent = false,
+                         
+                         blending = Three.NormalBlending,
+                         blendSrc = Three.SrcAlphaFactor,
+                         blendDst = Three.OneMinusSrcAlphaFactor,
+                         blendEquation = Three.AddEquation,
+                         
+                         depthTest = true,
+                         depthWrite = true,
+                         
+                         polygonOffset = false,
+                         polygonOffsetFactor = 0,
+                         polygonOffsetUnits =  0,
+                         
+                         alphaTest = 0,
+                         
+                         overdraw = false, 
+                         
+                         visible = true ])
+                         :
+                           this.color = new Color(color),
+                           this.ambient = new Color(ambient),
+                           this.emissive = new Color(emissive),
+                           
+                           this.wrapRGB = wrapRGB == null ? new Vector3( 1, 1, 1 ) : wrapRGB,
+                           
+                           super(  name: name,
+                                   side: side,
+                                   opacity: opacity,
+                                   transparent: transparent,
+                                   blending: blending,
+                                   blendSrc: blendSrc,
+                                   blendDst: blendDst,
+                                   blendEquation: blendEquation,      
+                                   depthTest: depthTest,
+                                   depthWrite: depthWrite,          
+                                   polygonOffset: polygonOffset,
+                                   polygonOffsetFactor: polygonOffsetFactor,
+                                   polygonOffsetUnits: polygonOffsetUnits,             
+                                   alphaTest: alphaTest,              
+                                   overdraw: overdraw,          
+                                   visible: visible );
 
-    fog = parameters['fog'] !== null ? parameters['fog'] : true;
-
-    shading = parameters['shading'] !== null ? parameters['shading'] : Three.SmoothShading;
-
-    wireframe = parameters['wireframe'] !== null ? parameters['wireframe'] : false;
-    wireframeLinewidth = parameters['wireframeLinewidth'] !== null ? parameters['wireframeLinewidth'] : 1;
-    wireframeLinecap = parameters['wireframeLinecap'] !== null ? parameters['wireframeLinecap'] : 'round';
-    wireframeLinejoin = parameters['wireframeLinejoin'] !== null ? parameters['wireframeLinejoin'] : 'round';
-
-    vertexColors = parameters['vertexColors'] !== null ? parameters['vertexColors'] : Three.NoColors;
-
-    skinning = parameters['skinning'] !== null ? parameters['skinning'] : false;
-    morphTargets = parameters['morphTargets'] !== null ? parameters['morphTargets'] : false;
-    morphNormals = parameters['morphNormals'] !== null ? parameters['morphNormals'] : false;
-  }
 }

@@ -22,7 +22,7 @@
 #library("FontUtils");
 
 #import("../ThreeD.dart");
-
+#import('core/ShapeUtils.dart', prefix:'ShapeUtils');
 
 var  face = "helvetiker",
      weight = "normal",
@@ -290,14 +290,14 @@ class FontFace {
 var EPSILON = 0.0000000001;
 
 // takes in an contour array and returns
-process( contour, indices ) {
+List<List<Vector2>> process( List<Vector2> contour, bool indices ) {
 
   var n = contour.length;
 
   if ( n < 3 ) return null;
 
   var result = [],
-    verts = [],
+    verts = new List(n),
     vertIndices = [];
 
   /* we want a counter-clockwise polygon in verts */
@@ -356,14 +356,9 @@ process( contour, indices ) {
 
       /* output Triangle */
 
-      /*
-      result.push( contour[ a ] );
-      result.push( contour[ b ] );
-      result.push( contour[ c ] );
-      */
-      result.addAll( [ contour[ a ],
-        contour[ b ],
-        contour[ c ] ] );
+      result.add( [ contour[ a ],
+                    contour[ b ],
+                    contour[ c ] ] );
 
 
       vertIndices.addAll( [ verts[ u ], verts[ v ], verts[ w ] ] );

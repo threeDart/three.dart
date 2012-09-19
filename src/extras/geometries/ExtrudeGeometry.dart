@@ -34,7 +34,7 @@ class ExtrudeGeometry extends Geometry {
   ExtrudeGeometry( [this.shapes = null,   
                     amount = 100, 
                     bevelThickness = 6,
-                    bevelSize = bevelThickness - 2,
+                    bevelSize = null,
                     bevelSegments = 3,
                     bevelEnabled = true,
                     curveSegments = 12,
@@ -43,6 +43,8 @@ class ExtrudeGeometry extends Geometry {
                     extrudePath,
                     material,
                     extrudeMaterial] ) : super() {
+       
+    if (bevelSize == null) bevelSize = bevelThickness - 2;
                       
     if (shapes == null) {
       shapes = [];
@@ -82,19 +84,19 @@ class ExtrudeGeometry extends Geometry {
   }
   
   // addShape Helpers
-  _scalePt2 ( pt, vec, size ) {
-    if ( !vec ) print( "die" );
+  _scalePt2 ( Vector2 pt, Vector2 vec, num size ) {
+    if ( vec == null ) print( "die" );
     return vec.clone().multiplyScalar( size ).addSelf( pt );
   }
   
-  _getBevelVec2( pt_i, pt_j, pt_k ) {
+  _getBevelVec2( Vector2 pt_i, Vector2 pt_j, Vector2 pt_k ) {
 
-    var a = ExtrudeGeometry.__v[0],
-      b = ExtrudeGeometry.__v[1],
-      v_hat = ExtrudeGeometry.__v[2],
-      w_hat = ExtrudeGeometry.__v[3],
-      p = ExtrudeGeometry.__v[4],
-      q = ExtrudeGeometry.__v[5],
+    var a = ExtrudeGeometry.__v1,
+      b = ExtrudeGeometry.__v2,
+      v_hat = ExtrudeGeometry.__v3,
+      w_hat = ExtrudeGeometry.__v4,
+      p = ExtrudeGeometry.__v5,
+      q = ExtrudeGeometry.__v6,
       v, w,
       v_dot_w_hat, q_sub_p_dot_w_hat,
       s, intersection;
@@ -205,7 +207,7 @@ class ExtrudeGeometry extends Geometry {
   }
   
     _v( x, y, z ) {
-      vertices.add( new Vertex(new Vector3( x, y, z )) );
+      vertices.add( new Vector3( x, y, z ) );
     }
   
   
@@ -219,18 +221,22 @@ class ExtrudeGeometry extends Geometry {
       return reversed;
    }
     
-  addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments,bevelEnabled,
-            curveSegments,steps,bendPath,extrudePath,material, extrudeMaterial) {
+  addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments, bevelEnabled,
+            curveSegments, steps, bendPath, extrudePath, material, extrudeMaterial, 
+            [ExtrudeGeometryWorldUVGenerator UVGenerator, TubeGeometry frames]) {
   
   
     var extrudePts, extrudeByPath = false;
   
     //shapebb = shape.getBoundingBox();
   
+    // set UV generator
+    var uvgen = (UVGenerator!= null) ? UVGenerator : new ExtrudeGeometryWorldUVGenerator();
+    
     TubeGeometry splineTube;
     Vector3 binormal, normal, position2;
     
-    if ( extrudePath ) {
+    if ( extrudePath != null ) {
   
       extrudePts = extrudePath.getSpacedPoints( steps );
   
@@ -241,7 +247,7 @@ class ExtrudeGeometry extends Geometry {
   
       // Reuse TNB from TubeGeomtry for now.
       // TODO1 - have a .isClosed in spline?
-      splineTube = new TubeGeometry.FrenetFrames(extrudePath, steps, false);
+      splineTube = (frames != null) ? frames : new TubeGeometry.FrenetFrames(extrudePath, steps, false);
   
       // console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
   
@@ -270,7 +276,7 @@ class ExtrudeGeometry extends Geometry {
   
     var shapesOffset = this.vertices.length;
   
-    if ( bendPath ) {
+    if ( bendPath != null ) {
   
       shape.addWrapPath( bendPath );
   
@@ -327,7 +333,8 @@ class ExtrudeGeometry extends Geometry {
   
       ahole = holes[ h ];
   
-      vertices.add( ahole );
+      vertices = new List.from(vertices);
+      vertices.addAll( ahole );
   
     }
   
@@ -344,7 +351,7 @@ class ExtrudeGeometry extends Geometry {
   
   
   
-    var contourMovements = [];
+    var contourMovements = new List(contour.length);
   
     num i = 0, 
         il = contour.length, 
@@ -352,8 +359,8 @@ class ExtrudeGeometry extends Geometry {
         k = i + 1;
     for ( i = 0; i < il; i ++ ) {
   
-      if ( j === il ) j = 0;
-      if ( k === il ) k = 0;
+      if ( j == il ) j = 0;
+      if ( k == il ) k = 0;
   
       //  (j)---(i)---(k)
       // console.log('i,j,k', i, j , k)
@@ -374,7 +381,7 @@ class ExtrudeGeometry extends Geometry {
   
       ahole = holes[ h ];
   
-      oneHoleMovements = [];
+      oneHoleMovements = new List(ahole.length);
   
       i = 0;
       il = ahole.length;
@@ -383,8 +390,8 @@ class ExtrudeGeometry extends Geometry {
       
       for ( i = 0; i < il; i++) {
   
-        if ( j === il ) j = 0;
-        if ( k === il ) k = 0;
+        if ( j == il ) j = 0;
+        if ( k == il ) k = 0;
   
         //  (j)---(i)---(k)
         oneHoleMovements[ i ]= _getBevelVec( ahole[ i ], ahole[ j ], ahole[ k ] );
@@ -546,11 +553,7 @@ class ExtrudeGeometry extends Geometry {
       }
   
     }
-  
-    test() => print("hello");
     
-    // set UV generator
-    var uvgen = new ExtrudeGeometryWorldUVGenerator();
   
     ////
     ///   Handle Faces
@@ -651,8 +654,6 @@ class ExtrudeGeometry extends Geometry {
         }
       }
     }
-  
-    
     
     // Sides faces
     //buildSideFaces() {
@@ -670,12 +671,13 @@ class ExtrudeGeometry extends Geometry {
     }
   }
   
-  static List<Vector2> ___v = null;
   
-  static get __v() {
-    if (___v == null) ___v = new List<Vector2> (6);
-    return ___v;
-  }
+  static Vector2 ___v1 = null; static get __v1() => (___v1 == null)? ___v1 = new Vector2() : ___v1;
+  static Vector2 ___v2 = null; static get __v2() => (___v2 == null)? ___v2 = new Vector2() : ___v2;
+  static Vector2 ___v3 = null; static get __v3() => (___v3 == null)? ___v3 = new Vector2() : ___v3;
+  static Vector2 ___v4 = null; static get __v4() => (___v4 == null)? ___v4 = new Vector2() : ___v4;
+  static Vector2 ___v5 = null; static get __v5() => (___v5 == null)? ___v5 = new Vector2() : ___v5;
+  static Vector2 ___v6 = null; static get __v6() => (___v6 == null)? ___v6 = new Vector2() : ___v6;
 }
 
 class ExtrudeGeometryWorldUVGenerator {

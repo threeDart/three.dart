@@ -20,7 +20,7 @@ class Mesh extends Object3D {
   Mesh( this.geometry, [this.material] ) : super() {
 
     if (material == null) {
-      material = new MeshBasicMaterial( { "color": new Math.Random().nextInt(0xffffff), "wireframe": true } );
+      material = new MeshBasicMaterial( color: new Math.Random().nextInt(0xffffff), wireframe: true );
     }
     if ( geometry != null ) {
       // calc bound radius
