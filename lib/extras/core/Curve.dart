@@ -48,7 +48,7 @@ abstract class Curve<V extends IVector2> {
 	}
 
 	// Get total curve arc length
-	num get length() => getLengths().last();
+	num get length => getLengths().last();
 
 	// Get list of cumulative segment lengths
 	List getLengths( [num divisions = null] ) {

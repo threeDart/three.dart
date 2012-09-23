@@ -13,7 +13,7 @@ class Frustum {
   
   static Vector3 ___v1;// = new Vector3();
   
-  static Vector3 get __v1() {
+  static Vector3 get __v1 {
     if (___v1 == null) {
       ___v1 = new Vector3();
     }

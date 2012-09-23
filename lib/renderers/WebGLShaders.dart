@@ -1,6 +1,6 @@
 var __ShaderChunk;
 
-get ShaderChunk()  {
+get ShaderChunk  {
   if (__ShaderChunk == null) {
     __ShaderChunk = {
 // FOG
@@ -1606,7 +1606,7 @@ class Uniform {
 
 var __UniformsLib;
 
-get UniformsLib() {
+get UniformsLib {
   if (__UniformsLib == null) {
     __UniformsLib = {
   "common": {
@@ -1701,7 +1701,7 @@ return __UniformsLib;
 
 var __ShaderLib;
 
-get ShaderLib()  {
+get ShaderLib  {
   if (__ShaderLib == null) {
     __ShaderLib = {
 

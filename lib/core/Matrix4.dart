@@ -970,35 +970,35 @@ class Matrix4 {
   static Matrix4 ___m1;
   static Matrix4 ___m2;
   
-  static Vector3 get __v1() {
+  static Vector3 get __v1 {
     if (___v1 == null) {
       ___v1 = new Vector3();
     }
     return ___v1;
   }
   
-  static Vector3 get __v2() {
+  static Vector3 get __v2 {
     if (___v2 == null) {
       ___v2 = new Vector3();
     }
     return ___v2;
   }
   
-  static Vector3 get __v3() {
+  static Vector3 get __v3 {
     if (___v3 == null) {
       ___v3 = new Vector3();
     }
     return ___v3;
   }
 
-  static Matrix4 get __m1() {
+  static Matrix4 get __m1 {
     if (___m1 == null) {
       ___m1 = new Matrix4();
     }
     return ___m1;
   }
 
-  static Matrix4 get __m2() {
+  static Matrix4 get __m2 {
     if (___m2 == null) {
       ___m2 = new Matrix4();
     }

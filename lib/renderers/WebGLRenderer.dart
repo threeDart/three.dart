@@ -283,11 +283,11 @@ class WebGLRenderer implements Renderer {
   	
   }
 
-  Element get domElement() => canvas;
+  Element get domElement => canvas;
   
 	// API
 
-	get context() => _gl;
+	get context => _gl;
 
 
 	setSize( width, height ) {
@@ -7012,27 +7012,27 @@ class WebGLObject {
     return object["__webglObject"];
 	}
 	
-	Geometry get geometry() => _hasGeometry ? object.dynamic.geometry : null;
-	WebGLGeometry get webglgeometry() => geometry != null ? new WebGLGeometry.from(geometry) : null;
+	Geometry get geometry => _hasGeometry ? object.dynamic.geometry : null;
+	WebGLGeometry get webglgeometry => geometry != null ? new WebGLGeometry.from(geometry) : null;
 	
-	Material get material() => object.dynamic.material;
-  WebGLMaterial get webglmaterial() => new WebGLMaterial.from(material);
+	Material get material => object.dynamic.material;
+  WebGLMaterial get webglmaterial => new WebGLMaterial.from(material);
   
-  get matrixWorld() => object.matrixWorld;
+  get matrixWorld => object.matrixWorld;
   
-  get _hasGeometry() => (object is Mesh) || (object is ParticleSystem) || (object is Line);
+  get _hasGeometry => (object is Mesh) || (object is ParticleSystem) || (object is Line);
   
-  get morphTargetBase() => object.dynamic.morphTargetBase;
+  get morphTargetBase => object.dynamic.morphTargetBase;
   
-  get receiveShadow() => object.receiveShadow;
+  get receiveShadow => object.receiveShadow;
   
-  get morphTargetForcedOrder() => (object as Mesh).morphTargetForcedOrder;
-  get morphTargetInfluences() => (object as Mesh).morphTargetInfluences;
+  get morphTargetForcedOrder => (object as Mesh).morphTargetForcedOrder;
+  get morphTargetInfluences => (object as Mesh).morphTargetInfluences;
   
   // only SkinnedMesh
-  get useVertexTexture() => object.dynamic.useVertexTexture; 
-  get boneMatrices() => object.dynamic.boneMatrices;
-  get boneTexture() => object.dynamic.boneTexture;
+  get useVertexTexture => object.dynamic.useVertexTexture; 
+  get boneMatrices => object.dynamic.boneMatrices;
+  get boneTexture => object.dynamic.boneTexture;
 
 }
 
@@ -7118,28 +7118,28 @@ class WebGLGeometry {
       
   // This is weird since vertices can be a List from geometry or a number
   set vertices(int n) => _vertices = n;
-  get vertices() {
+  get vertices {
     if (_vertices == null && _geometry != null) {
       return _geometry.vertices;
     }
     return _vertices;
   }
   
-  get morphTargets() => _geometry.morphTargets;
-  get morphNormals() => _geometry.morphNormals;
+  get morphTargets => _geometry.morphTargets;
+  get morphNormals => _geometry.morphNormals;
   
-  get faces() => _geometry.faces;
+  get faces => _geometry.faces;
   
-  get isDynamic() => _geometry.isDynamic;
+  get isDynamic => _geometry.isDynamic;
   
-  get faceVertexUvs() => _geometry.faceVertexUvs;
-  get colors() => _geometry.colors;
-  get skinIndices() => _geometry.skinIndices;
-  get skinWeights() => _geometry.skinWeights;
-  get skinVerticesA() => _geometry["skinVerticesA"];
-  get skinVerticesB() => _geometry["skinVerticesB"];
+  get faceVertexUvs => _geometry.faceVertexUvs;
+  get colors => _geometry.colors;
+  get skinIndices => _geometry.skinIndices;
+  get skinWeights => _geometry.skinWeights;
+  get skinVerticesA => _geometry["skinVerticesA"];
+  get skinVerticesB => _geometry["skinVerticesB"];
   
-  get hasTangents() => _geometry.hasTangents;
+  get hasTangents => _geometry.hasTangents;
   
 }
 
@@ -7169,108 +7169,108 @@ class WebGLMaterial { // implements Material {
     return material["__webglMaterial"];
   }
 
-  get attributes() => (isShaderMaterial)? (_material as ShaderMaterial).attributes : null;
-  get fragmentShader() => (isShaderMaterial)? (_material as ShaderMaterial).fragmentShader : _fragmentShader;
-  get vertexShader() => (isShaderMaterial)? (_material as ShaderMaterial).vertexShader : _vertexShader;
-  get uniforms() => (isShaderMaterial)? (_material as ShaderMaterial).uniforms : _uniforms;
+  get attributes => (isShaderMaterial)? (_material as ShaderMaterial).attributes : null;
+  get fragmentShader => (isShaderMaterial)? (_material as ShaderMaterial).fragmentShader : _fragmentShader;
+  get vertexShader => (isShaderMaterial)? (_material as ShaderMaterial).vertexShader : _vertexShader;
+  get uniforms => (isShaderMaterial)? (_material as ShaderMaterial).uniforms : _uniforms;
   set fragmentShader(v) => (isShaderMaterial)? (_material as ShaderMaterial).fragmentShader = v : _fragmentShader = v;
   set vertexShader(v) => (isShaderMaterial)? (_material as ShaderMaterial).vertexShader = v: _vertexShader = v;
   set uniforms(v) => (isShaderMaterial)? (_material as ShaderMaterial).uniforms = v : _uniforms = v;
   
-  bool get needsSmoothNormals()
+  bool get needsSmoothNormals
     => (_material != null) && (shading != null) && (shading == Three.SmoothShading);
 
   // only MeshBasicMaterial and MeshDepthMaterial don't need normals
-  bool get needsNormals() 
+  bool get needsNormals 
     => ! (( _material is MeshBasicMaterial && (envMap == null) ) || _material is MeshDepthMaterial);
       
-  String get name() => _material.name;
-  int get id() => _material.id;
-  int get side() => _material.side;
-  num get opacity() => _material.opacity;
-  int get blending() => _material.blending;
-  int get blendSrc() => _material.blendSrc; 
-  int get blendDst() => _material.blendDst; 
-  int get blendEquation() => _material.blendEquation;
-  int get alphaTest() => _material.alphaTest; 
-  int get polygonOffsetFactor() => _material.polygonOffsetFactor; 
-  int get polygonOffsetUnits() => _material.polygonOffsetUnits;
-  bool get transparent() => _material.transparent;
-  bool get depthTest() => _material.depthTest; 
-  bool get depthWrite() => _material.depthWrite; 
-  bool get polygonOffset() => _material.polygonOffset; 
-  bool get overdraw() => _material.overdraw;
-  bool get visible() => _material.visible;
-  bool get needsUpdate() => _material.needsUpdate;
+  String get name => _material.name;
+  int get id => _material.id;
+  int get side => _material.side;
+  num get opacity => _material.opacity;
+  int get blending => _material.blending;
+  int get blendSrc => _material.blendSrc; 
+  int get blendDst => _material.blendDst; 
+  int get blendEquation => _material.blendEquation;
+  int get alphaTest => _material.alphaTest; 
+  int get polygonOffsetFactor => _material.polygonOffsetFactor; 
+  int get polygonOffsetUnits => _material.polygonOffsetUnits;
+  bool get transparent => _material.transparent;
+  bool get depthTest => _material.depthTest; 
+  bool get depthWrite => _material.depthWrite; 
+  bool get polygonOffset => _material.polygonOffset; 
+  bool get overdraw => _material.overdraw;
+  bool get visible => _material.visible;
+  bool get needsUpdate => _material.needsUpdate;
   set needsUpdate(bool flag) => _material.needsUpdate = flag;
   
  
   // TODO - Define proper interfaces to remove use of Dynamic
-  int get vertexColors() => _hasVertexColors ? _material.dynamic.vertexColors : Three.NoColors;
-  get color() => _material.dynamic.color;
-  get ambient() => _material.dynamic.ambient;
-  get emissive() => _material.dynamic.emissive;
+  int get vertexColors => _hasVertexColors ? _material.dynamic.vertexColors : Three.NoColors;
+  get color => _material.dynamic.color;
+  get ambient => _material.dynamic.ambient;
+  get emissive => _material.dynamic.emissive;
   
-  get lights() => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
+  get lights => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
   
-  get morphTargets() => _hasMorhTargets ?  _material.dynamic.morphTargets : false;  
+  get morphTargets => _hasMorhTargets ?  _material.dynamic.morphTargets : false;  
 
-  get morphNormals() => _hasMorphNormals ?  _material.dynamic.morphNormals : false;  
+  get morphNormals => _hasMorphNormals ?  _material.dynamic.morphNormals : false;  
       
-  bool get metal() => isMeshPhongMaterial ? (_material as MeshPhongMaterial).metal : false; //null;
+  bool get metal => isMeshPhongMaterial ? (_material as MeshPhongMaterial).metal : false; //null;
       
-  bool get perPixel() => isMeshPhongMaterial ? (_material as MeshPhongMaterial).perPixel : false; //null;
+  bool get perPixel => isMeshPhongMaterial ? (_material as MeshPhongMaterial).perPixel : false; //null;
 
-  get wrapAround() => _hasWrapAround ?  _material.dynamic.wrapAround : false;
+  get wrapAround => _hasWrapAround ?  _material.dynamic.wrapAround : false;
 
-  get fog() => _hasFog ? _material.dynamic.fog : false;
-  get shading() => _material.dynamic.shading;
-  get map() => _hasTextureMap ? _material.dynamic.map : null;
-  get envMap() => _hasEnvMap ? _material.dynamic.envMap : null;
-  get lightMap() => _hasLightMap ? _material.dynamic.lightMap : null;
-  get bumpMap() => isMeshPhongMaterial ? (_material as MeshPhongMaterial).bumpMap : null;
-  get specularMap() => _hasSpecularMap ? _material.dynamic.specularMap : null;
+  get fog => _hasFog ? _material.dynamic.fog : false;
+  get shading => _material.dynamic.shading;
+  get map => _hasTextureMap ? _material.dynamic.map : null;
+  get envMap => _hasEnvMap ? _material.dynamic.envMap : null;
+  get lightMap => _hasLightMap ? _material.dynamic.lightMap : null;
+  get bumpMap => isMeshPhongMaterial ? (_material as MeshPhongMaterial).bumpMap : null;
+  get specularMap => _hasSpecularMap ? _material.dynamic.specularMap : null;
 
-  get wireframe() => !isLineBasicMaterial && !isParticleBasicMaterial && _material.dynamic.wireframe;
-  get wireframeLinewidth() => (isLineBasicMaterial) ? _material.dynamic.wireframeLinewidth : null;
+  get wireframe => !isLineBasicMaterial && !isParticleBasicMaterial && _material.dynamic.wireframe;
+  get wireframeLinewidth => (isLineBasicMaterial) ? _material.dynamic.wireframeLinewidth : null;
   
-  get linewidth() => (isLineBasicMaterial) ? _material.dynamic.linewidth : null;
-  get reflectivity() => _material.dynamic.reflectivity;
-  get refractionRatio() => _material.dynamic.refractionRatio;
-  get combine() => _material.dynamic.combine;
-  get skinning() => _hasSkinning ?  _material.dynamic.skinning : false;
-  get sizeAttenuation() => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).sizeAttenuation : false; //null;
-  get size() => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).size : null;
+  get linewidth => (isLineBasicMaterial) ? _material.dynamic.linewidth : null;
+  get reflectivity => _material.dynamic.reflectivity;
+  get refractionRatio => _material.dynamic.refractionRatio;
+  get combine => _material.dynamic.combine;
+  get skinning => _hasSkinning ?  _material.dynamic.skinning : false;
+  get sizeAttenuation => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).sizeAttenuation : false; //null;
+  get size => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).size : null;
   
-  bool get isShaderMaterial() => _material is ShaderMaterial;
-  bool get isMeshFaceMaterial() => _material is MeshFaceMaterial;
-  bool get isMeshDepthMaterial() => _material is MeshDepthMaterial;
-  bool get isMeshNormalMaterial() => _material is MeshNormalMaterial;
-  bool get isMeshBasicMaterial() => _material is MeshBasicMaterial;
-  bool get isMeshLambertMaterial() => _material is MeshLambertMaterial;
-  bool get isMeshPhongMaterial() => _material is MeshPhongMaterial;
-  bool get isLineBasicMaterial() => _material is LineBasicMaterial;
-  bool get isParticleBasicMaterial() => _material is ParticleBasicMaterial;
+  bool get isShaderMaterial => _material is ShaderMaterial;
+  bool get isMeshFaceMaterial => _material is MeshFaceMaterial;
+  bool get isMeshDepthMaterial => _material is MeshDepthMaterial;
+  bool get isMeshNormalMaterial => _material is MeshNormalMaterial;
+  bool get isMeshBasicMaterial => _material is MeshBasicMaterial;
+  bool get isMeshLambertMaterial => _material is MeshLambertMaterial;
+  bool get isMeshPhongMaterial => _material is MeshPhongMaterial;
+  bool get isLineBasicMaterial => _material is LineBasicMaterial;
+  bool get isParticleBasicMaterial => _material is ParticleBasicMaterial;
   
   // TODO - Use this to identify proper interfaces
-  bool get _hasAmbient() => isMeshLambertMaterial || isMeshPhongMaterial;
-  bool get _hasEmissive() => isMeshLambertMaterial || isMeshPhongMaterial;
-  bool get _hasWrapAround() => isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasAmbient => isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasEmissive => isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasWrapAround => isMeshLambertMaterial || isMeshPhongMaterial;
   
-  bool get _hasLightMap() => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
-  bool get _hasEnvMap() => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
-  bool get _hasSpecularMap() => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasLightMap => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasEnvMap => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
+  bool get _hasSpecularMap => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial;
       
-  bool get _hasTextureMap() => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isParticleBasicMaterial; //_material is ITextureMapMaterial;
+  bool get _hasTextureMap => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isParticleBasicMaterial; //_material is ITextureMapMaterial;
   
-  bool get _hasSkinning() => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isShaderMaterial;
+  bool get _hasSkinning => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isShaderMaterial;
   
   bool get _hasMorhTargets => isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isShaderMaterial;
   
-  bool get _hasMorphNormals() => isMeshLambertMaterial || isMeshPhongMaterial || isShaderMaterial;
+  bool get _hasMorphNormals => isMeshLambertMaterial || isMeshPhongMaterial || isShaderMaterial;
   
-  bool get _hasVertexColors() => isLineBasicMaterial || isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isParticleBasicMaterial || isShaderMaterial;
-  bool get _hasFog() => isLineBasicMaterial || isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isParticleBasicMaterial || isShaderMaterial;
+  bool get _hasVertexColors => isLineBasicMaterial || isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isParticleBasicMaterial || isShaderMaterial;
+  bool get _hasFog => isLineBasicMaterial || isMeshBasicMaterial || isMeshLambertMaterial || isMeshPhongMaterial || isParticleBasicMaterial || isShaderMaterial;
 }
 
 class WebGLCamera { // implements Camera {
@@ -7293,12 +7293,12 @@ class WebGLCamera { // implements Camera {
     return camera["__webglCamera"];
   }
   
-  get near() => _camera.near;
-  get far() => _camera.far;
-  get parent() => _camera.parent;
-  get matrixWorld() => _camera.matrixWorld;
-  get matrixWorldInverse() => _camera.matrixWorldInverse;
-  get projectionMatrix() => _camera.projectionMatrix;
+  get near => _camera.near;
+  get far => _camera.far;
+  get parent => _camera.parent;
+  get matrixWorld => _camera.matrixWorld;
+  get matrixWorldInverse => _camera.matrixWorldInverse;
+  get projectionMatrix => _camera.projectionMatrix;
   
   void updateMatrixWorld( [bool force=false] ) => _camera.updateMatrixWorld();
 }

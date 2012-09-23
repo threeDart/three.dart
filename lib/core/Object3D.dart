@@ -247,7 +247,7 @@ class Object3D {
   }
   
   static Matrix4 ___m1;
-  static Matrix4 get __m1() {
+  static Matrix4 get __m1 {
     if (___m1 == null) {
       ___m1 = new Matrix4();
     }
@@ -257,7 +257,7 @@ class Object3D {
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
   
-  get _data() {
+  get _data {
     if (__data == null) {
       __data = {};
     }

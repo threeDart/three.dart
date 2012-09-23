@@ -64,7 +64,7 @@ class Geometry {
         _dynamic = false; // unless set to true the *Arrays will be deleted once sent to a buffer.
 
   // dynamic is a reserved word in Dart
-  bool get isDynamic() => _dynamic;
+  bool get isDynamic => _dynamic;
   
   void applyMatrix( Matrix4 matrix ) {
     Matrix4 matrixRotation = new Matrix4();
@@ -481,7 +481,7 @@ class Geometry {
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
   
-  get _data() {
+  get _data {
     if (__data == null) {
       __data = {};
     }
