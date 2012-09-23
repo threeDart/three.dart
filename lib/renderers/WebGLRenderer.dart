@@ -6866,9 +6866,8 @@ class WebGLRenderer implements Renderer {
 				throw 'Error creating WebGL context.';
 
 			}
-
-		} catch  ( error ) {
-
+		} catch ( error ) {
+		  
 			print( error );
 
 		}
