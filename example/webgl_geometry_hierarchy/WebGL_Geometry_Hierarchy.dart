@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
-#import('../../src/ThreeD.dart');
+#import('package:three.dart/ThreeD.dart');
 
 class WebGL_Geometry_Hierarchy  {
   Element container;

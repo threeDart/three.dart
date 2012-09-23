@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MINFROG=~/dart_bleeding/dart/frog/minfrog
+MINFROG=/Application/dart/dart-sdk/bin/dart
 for htmlFile in `find . -type f -name "*.html"`
 do
     htmlDirectory=${htmlFile%/*}
