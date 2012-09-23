@@ -72,7 +72,6 @@ class CurvePath extends Curve {
 
 				return curve.getPointAt( u );
 
-				break;
 			}
 
 			i ++;
