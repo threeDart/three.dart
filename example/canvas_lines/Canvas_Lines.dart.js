@@ -8439,7 +8439,7 @@ $$.CanvasRenderer = {"":
   var t2 = t1.render;
   var t3 = t2.get$vertices();
   if (typeof t3 !== 'number')
-    return this.renderFace3$9$bailout(1, v1, v2, v3, uv1, uv2, uv3, element, material, t2, t3, t1, 0, 0, 0, 0, 0);
+    return this.renderFace3$9$bailout(1, v1, v2, v3, uv1, uv2, uv3, element, material, t1, t2, t3, 0, 0, 0, 0, 0);
   t2.set$vertices(t3 + 3);
   var t5 = t2.get$faces();
   if (typeof t5 !== 'number')
@@ -8461,7 +8461,7 @@ $$.CanvasRenderer = {"":
       if (typeof t2 === 'object' && t2 !== null && !!t2.is$UVMapping) {
         t2 = element.get$uvs();
         if (typeof t2 !== 'string' && (typeof t2 !== 'object' || t2 === null || t2.constructor !== Array && !t2.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(3, t2, uv1, uv2, uv3, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(3, t1, t2, uv1, uv2, uv3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         if (0 >= t2.length)
           throw $.ioore(0);
         this._uvs = t2[0];
@@ -8473,7 +8473,7 @@ $$.CanvasRenderer = {"":
         var t9 = this._v3y;
         var t10 = this._uvs;
         if (typeof t10 !== 'string' && (typeof t10 !== 'object' || t10 === null || t10.constructor !== Array && !t10.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(4, t4, t5, t6, uv1, uv2, uv3, t7, t8, t9, t10, t1, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(4, t8, t9, t10, uv1, uv2, uv3, t1, t4, t5, t6, t7, 0, 0, 0, 0, 0);
         if (uv1 < 0 || uv1 >= t10.length)
           throw $.ioore(uv1);
         var t12 = t10[uv1].get$u();
@@ -8502,237 +8502,237 @@ $$.CanvasRenderer = {"":
           t2 = this._vector3;
           t3 = element.get$vertexNormalsWorld();
           if (typeof t3 !== 'string' && (typeof t3 !== 'object' || t3 === null || t3.constructor !== Array && !t3.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(10, cameraMatrix, t3, uv2, uv3, element, t1, uv1, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(10, cameraMatrix, t3, uv2, uv3, element, uv1, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0);
           if (uv1 < 0 || uv1 >= t3.length)
             throw $.ioore(uv1);
           t2.copy$1(t3[uv1]);
           t5 = t2.x;
           if (typeof t5 !== 'number')
-            return this.renderFace3$9$bailout(11, cameraMatrix, uv2, uv3, element, t5, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(11, cameraMatrix, t1, uv2, uv3, element, t5, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t7 = cameraMatrix.get$elements();
           if (typeof t7 !== 'string' && (typeof t7 !== 'object' || t7 === null || t7.constructor !== Array && !t7.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(12, cameraMatrix, uv2, uv3, element, t5, t1, t7, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(12, cameraMatrix, t1, uv2, uv3, element, t5, t7, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           if (0 >= t7.length)
             throw $.ioore(0);
           t7 = t7[0];
           if (typeof t7 !== 'number')
-            return this.renderFace3$9$bailout(13, cameraMatrix, uv2, uv3, element, t5, t1, t7, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(13, cameraMatrix, t1, uv2, uv3, element, t5, t7, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           t7 = t5 * t7;
           t5 = t2.y;
           if (typeof t5 !== 'number')
-            return this.renderFace3$9$bailout(14, cameraMatrix, uv2, uv3, element, t1, t7, t5, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(14, cameraMatrix, t1, uv2, uv3, element, t2, t7, t5, 0, 0, 0, 0, 0, 0, 0, 0);
           var t11 = cameraMatrix.get$elements();
           if (typeof t11 !== 'string' && (typeof t11 !== 'object' || t11 === null || t11.constructor !== Array && !t11.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(15, cameraMatrix, t11, uv2, uv3, element, t1, t7, t5, t2, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(15, cameraMatrix, t11, t1, uv2, uv3, element, t2, t7, t5, 0, 0, 0, 0, 0, 0, 0);
           if (4 >= t11.length)
             throw $.ioore(4);
           t11 = t11[4];
           if (typeof t11 !== 'number')
-            return this.renderFace3$9$bailout(16, cameraMatrix, t11, uv2, uv3, element, t1, t7, t5, t2, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(16, cameraMatrix, t11, t1, uv2, uv3, element, t2, t7, t5, 0, 0, 0, 0, 0, 0, 0);
           t7 += t5 * t11;
           t14 = t2.z;
           if (typeof t14 !== 'number')
-            return this.renderFace3$9$bailout(17, cameraMatrix, uv2, uv3, element, t7, t1, t14, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(17, cameraMatrix, t1, uv2, uv3, element, t7, t14, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           t16 = cameraMatrix.get$elements();
           if (typeof t16 !== 'string' && (typeof t16 !== 'object' || t16 === null || t16.constructor !== Array && !t16.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(18, cameraMatrix, uv2, uv3, element, t7, t1, t14, t16, t2, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(18, cameraMatrix, t1, uv2, uv3, element, t7, t14, t16, t2, 0, 0, 0, 0, 0, 0, 0);
           if (8 >= t16.length)
             throw $.ioore(8);
           t16 = t16[8];
           if (typeof t16 !== 'number')
-            return this.renderFace3$9$bailout(19, cameraMatrix, uv2, uv3, element, t7, t1, t14, t16, t2, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(19, cameraMatrix, t1, uv2, uv3, element, t7, t14, t2, t16, 0, 0, 0, 0, 0, 0, 0);
           this._uv1x = (t7 + t14 * t16) * 0.5 + 0.5;
           var t19 = t2.x;
           if (typeof t19 !== 'number')
-            return this.renderFace3$9$bailout(20, cameraMatrix, uv2, uv3, element, t1, t19, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(20, cameraMatrix, t1, uv2, uv3, element, t19, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t21 = cameraMatrix.get$elements();
           if (typeof t21 !== 'string' && (typeof t21 !== 'object' || t21 === null || t21.constructor !== Array && !t21.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(21, cameraMatrix, uv2, uv3, element, t1, t19, t21, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(21, cameraMatrix, t1, uv2, uv3, element, t19, t21, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           if (1 >= t21.length)
             throw $.ioore(1);
           t21 = t21[1];
           if (typeof t21 !== 'number')
-            return this.renderFace3$9$bailout(22, cameraMatrix, uv2, uv3, element, t1, t19, t21, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(22, cameraMatrix, t1, uv2, uv3, element, t19, t21, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           t21 = t19 * t21;
           t19 = t2.y;
           if (typeof t19 !== 'number')
-            return this.renderFace3$9$bailout(23, cameraMatrix, t2, uv2, uv3, element, t1, t21, t19, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(23, cameraMatrix, t1, uv2, uv3, element, t2, t21, t19, 0, 0, 0, 0, 0, 0, 0, 0);
           var t25 = cameraMatrix.get$elements();
           if (typeof t25 !== 'string' && (typeof t25 !== 'object' || t25 === null || t25.constructor !== Array && !t25.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(24, cameraMatrix, t25, t2, uv2, uv3, element, t1, t21, t19, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(24, cameraMatrix, t25, t1, uv2, uv3, element, t2, t21, t19, 0, 0, 0, 0, 0, 0, 0);
           if (5 >= t25.length)
             throw $.ioore(5);
           t25 = t25[5];
           if (typeof t25 !== 'number')
-            return this.renderFace3$9$bailout(25, cameraMatrix, t2, t25, uv2, uv3, element, t1, t21, t19, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(25, cameraMatrix, t1, uv2, uv3, element, t25, t2, t21, t19, 0, 0, 0, 0, 0, 0, 0);
           t21 += t19 * t25;
           var t28 = t2.z;
           if (typeof t28 !== 'number')
-            return this.renderFace3$9$bailout(26, cameraMatrix, uv2, uv3, element, t1, t21, t28, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(26, cameraMatrix, t1, uv2, uv3, element, t21, t28, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           var t30 = cameraMatrix.get$elements();
           if (typeof t30 !== 'string' && (typeof t30 !== 'object' || t30 === null || t30.constructor !== Array && !t30.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(27, cameraMatrix, uv2, uv3, element, t1, t21, t28, t30, t2, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(27, cameraMatrix, t1, uv2, uv3, element, t21, t28, t2, t30, 0, 0, 0, 0, 0, 0, 0);
           if (9 >= t30.length)
             throw $.ioore(9);
           t30 = t30[9];
           if (typeof t30 !== 'number')
-            return this.renderFace3$9$bailout(28, cameraMatrix, uv2, uv3, element, t1, t21, t28, t30, t2, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(28, cameraMatrix, t1, uv2, uv3, element, t21, t28, t2, t30, 0, 0, 0, 0, 0, 0, 0);
           this._uv1y = -(t21 + t28 * t30) * 0.5 + 0.5;
           var t33 = element.get$vertexNormalsWorld();
           if (typeof t33 !== 'string' && (typeof t33 !== 'object' || t33 === null || t33.constructor !== Array && !t33.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(29, cameraMatrix, uv2, uv3, element, t1, t33, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(29, cameraMatrix, t1, uv2, uv3, element, t33, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (uv2 < 0 || uv2 >= t33.length)
             throw $.ioore(uv2);
           t2.copy$1(t33[uv2]);
           var t35 = t2.x;
           if (typeof t35 !== 'number')
-            return this.renderFace3$9$bailout(30, cameraMatrix, t2, uv3, element, t1, t35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(30, cameraMatrix, t1, uv3, element, t2, t35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t37 = cameraMatrix.get$elements();
           if (typeof t37 !== 'string' && (typeof t37 !== 'object' || t37 === null || t37.constructor !== Array && !t37.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(31, cameraMatrix, t37, t2, uv3, element, t1, t35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(31, cameraMatrix, t37, t1, uv3, element, t2, t35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (0 >= t37.length)
             throw $.ioore(0);
           t37 = t37[0];
           if (typeof t37 !== 'number')
-            return this.renderFace3$9$bailout(32, cameraMatrix, t37, uv3, element, t1, t2, t35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(32, cameraMatrix, t37, t1, uv3, element, t2, t35, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t37 = t35 * t37;
           t35 = t2.y;
           if (typeof t35 !== 'number')
-            return this.renderFace3$9$bailout(33, cameraMatrix, t37, uv3, element, t35, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(33, cameraMatrix, t1, t37, uv3, element, t35, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t41 = cameraMatrix.get$elements();
           if (typeof t41 !== 'string' && (typeof t41 !== 'object' || t41 === null || t41.constructor !== Array && !t41.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(34, cameraMatrix, t37, uv3, element, t35, t1, t41, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(34, cameraMatrix, t1, t37, uv3, element, t35, t41, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           if (4 >= t41.length)
             throw $.ioore(4);
           t41 = t41[4];
           if (typeof t41 !== 'number')
-            return this.renderFace3$9$bailout(35, cameraMatrix, t37, uv3, element, t35, t1, t41, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(35, cameraMatrix, t1, t37, uv3, element, t35, t41, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           t37 += t35 * t41;
           var t44 = t2.z;
           if (typeof t44 !== 'number')
-            return this.renderFace3$9$bailout(36, cameraMatrix, t44, uv3, element, t1, t37, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(36, cameraMatrix, t1, uv3, element, t2, t37, t44, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t46 = cameraMatrix.get$elements();
           if (typeof t46 !== 'string' && (typeof t46 !== 'object' || t46 === null || t46.constructor !== Array && !t46.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(37, cameraMatrix, t46, t44, uv3, element, t1, t37, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(37, cameraMatrix, t46, t1, uv3, element, t2, t37, t44, 0, 0, 0, 0, 0, 0, 0, 0);
           if (8 >= t46.length)
             throw $.ioore(8);
           t46 = t46[8];
           if (typeof t46 !== 'number')
-            return this.renderFace3$9$bailout(38, cameraMatrix, t46, uv3, element, t1, t2, t37, t44, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(38, cameraMatrix, t46, t1, uv3, element, t2, t37, t44, 0, 0, 0, 0, 0, 0, 0, 0);
           this._uv2x = (t37 + t44 * t46) * 0.5 + 0.5;
           var t49 = t2.x;
           if (typeof t49 !== 'number')
-            return this.renderFace3$9$bailout(39, cameraMatrix, uv3, element, t1, t49, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(39, cameraMatrix, t1, uv3, element, t2, t49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t51 = cameraMatrix.get$elements();
           if (typeof t51 !== 'string' && (typeof t51 !== 'object' || t51 === null || t51.constructor !== Array && !t51.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(40, cameraMatrix, t2, uv3, element, t1, t49, t51, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(40, cameraMatrix, t1, uv3, element, t2, t49, t51, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (1 >= t51.length)
             throw $.ioore(1);
           t51 = t51[1];
           if (typeof t51 !== 'number')
-            return this.renderFace3$9$bailout(41, cameraMatrix, t51, uv3, element, t1, t49, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(41, cameraMatrix, t51, t1, uv3, element, t2, t49, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t51 = t49 * t51;
           t49 = t2.y;
           if (typeof t49 !== 'number')
-            return this.renderFace3$9$bailout(42, cameraMatrix, t51, t49, uv3, element, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(42, cameraMatrix, t51, t1, t49, uv3, element, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t55 = cameraMatrix.get$elements();
           if (typeof t55 !== 'string' && (typeof t55 !== 'object' || t55 === null || t55.constructor !== Array && !t55.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(43, cameraMatrix, t51, t49, uv3, element, t55, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(43, cameraMatrix, t51, t1, t49, uv3, element, t55, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           if (5 >= t55.length)
             throw $.ioore(5);
           t55 = t55[5];
           if (typeof t55 !== 'number')
-            return this.renderFace3$9$bailout(44, cameraMatrix, t51, t49, uv3, element, t1, t55, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(44, cameraMatrix, t51, t1, t49, uv3, element, t55, t2, 0, 0, 0, 0, 0, 0, 0, 0);
           t51 += t49 * t55;
           var t58 = t2.z;
           if (typeof t58 !== 'number')
-            return this.renderFace3$9$bailout(45, cameraMatrix, uv3, element, t1, t51, t58, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(45, cameraMatrix, t1, uv3, element, t2, t51, t58, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t60 = cameraMatrix.get$elements();
           if (typeof t60 !== 'string' && (typeof t60 !== 'object' || t60 === null || t60.constructor !== Array && !t60.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(46, cameraMatrix, t2, uv3, element, t1, t51, t58, t60, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(46, cameraMatrix, t1, uv3, element, t2, t51, t58, t60, 0, 0, 0, 0, 0, 0, 0, 0);
           if (9 >= t60.length)
             throw $.ioore(9);
           t60 = t60[9];
           if (typeof t60 !== 'number')
-            return this.renderFace3$9$bailout(47, cameraMatrix, t60, uv3, element, t1, t51, t58, t2, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(47, cameraMatrix, t60, t1, uv3, element, t2, t51, t58, 0, 0, 0, 0, 0, 0, 0, 0);
           this._uv2y = -(t51 + t58 * t60) * 0.5 + 0.5;
           var t63 = element.get$vertexNormalsWorld();
           if (typeof t63 !== 'string' && (typeof t63 !== 'object' || t63 === null || t63.constructor !== Array && !t63.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(48, cameraMatrix, t2, uv3, t63, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(48, cameraMatrix, t1, t2, uv3, t63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (uv3 < 0 || uv3 >= t63.length)
             throw $.ioore(uv3);
           t2.copy$1(t63[uv3]);
           var t65 = t2.x;
           if (typeof t65 !== 'number')
-            return this.renderFace3$9$bailout(49, cameraMatrix, t65, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(49, cameraMatrix, t65, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t67 = cameraMatrix.get$elements();
           if (typeof t67 !== 'string' && (typeof t67 !== 'object' || t67 === null || t67.constructor !== Array && !t67.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(50, cameraMatrix, t65, t67, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(50, cameraMatrix, t65, t1, t67, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (0 >= t67.length)
             throw $.ioore(0);
           t67 = t67[0];
           if (typeof t67 !== 'number')
-            return this.renderFace3$9$bailout(51, cameraMatrix, t2, t65, t67, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(51, cameraMatrix, t65, t1, t2, t67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t67 = t65 * t67;
           t65 = t2.y;
           if (typeof t65 !== 'number')
-            return this.renderFace3$9$bailout(52, cameraMatrix, t65, t67, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(52, cameraMatrix, t65, t1, t2, t67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t71 = cameraMatrix.get$elements();
           if (typeof t71 !== 'string' && (typeof t71 !== 'object' || t71 === null || t71.constructor !== Array && !t71.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(53, cameraMatrix, t67, t1, t65, t71, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(53, cameraMatrix, t1, t67, t65, t2, t71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (4 >= t71.length)
             throw $.ioore(4);
           t71 = t71[4];
           if (typeof t71 !== 'number')
-            return this.renderFace3$9$bailout(54, cameraMatrix, t67, t1, t65, t71, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(54, cameraMatrix, t1, t67, t65, t2, t71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t67 += t65 * t71;
           var t74 = t2.z;
           if (typeof t74 !== 'number')
-            return this.renderFace3$9$bailout(55, cameraMatrix, t67, t74, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(55, cameraMatrix, t67, t74, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t76 = cameraMatrix.get$elements();
           if (typeof t76 !== 'string' && (typeof t76 !== 'object' || t76 === null || t76.constructor !== Array && !t76.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(56, cameraMatrix, t67, t74, t76, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(56, cameraMatrix, t67, t74, t1, t76, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (8 >= t76.length)
             throw $.ioore(8);
           t76 = t76[8];
           if (typeof t76 !== 'number')
-            return this.renderFace3$9$bailout(57, cameraMatrix, t67, t74, t76, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(57, cameraMatrix, t67, t74, t1, t76, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           this._uv3x = (t67 + t74 * t76) * 0.5 + 0.5;
           var t79 = t2.x;
           if (typeof t79 !== 'number')
-            return this.renderFace3$9$bailout(58, cameraMatrix, t79, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(58, cameraMatrix, t79, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t81 = cameraMatrix.get$elements();
           if (typeof t81 !== 'string' && (typeof t81 !== 'object' || t81 === null || t81.constructor !== Array && !t81.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(59, cameraMatrix, t79, t81, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(59, cameraMatrix, t79, t81, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (1 >= t81.length)
             throw $.ioore(1);
           t81 = t81[1];
           if (typeof t81 !== 'number')
-            return this.renderFace3$9$bailout(60, cameraMatrix, t79, t2, t81, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(60, cameraMatrix, t79, t1, t81, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t81 = t79 * t81;
           t79 = t2.y;
           if (typeof t79 !== 'number')
-            return this.renderFace3$9$bailout(61, cameraMatrix, t2, t79, t81, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(61, cameraMatrix, t1, t2, t81, t79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t85 = cameraMatrix.get$elements();
           if (typeof t85 !== 'string' && (typeof t85 !== 'object' || t85 === null || t85.constructor !== Array && !t85.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(62, cameraMatrix, t81, t79, t1, t85, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(62, cameraMatrix, t1, t81, t79, t85, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (5 >= t85.length)
             throw $.ioore(5);
           t85 = t85[5];
           if (typeof t85 !== 'number')
-            return this.renderFace3$9$bailout(63, cameraMatrix, t81, t79, t1, t85, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(63, cameraMatrix, t1, t81, t79, t85, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t81 += t79 * t85;
           t2 = t2.z;
           if (typeof t2 !== 'number')
-            return this.renderFace3$9$bailout(64, t2, cameraMatrix, t81, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(64, t2, cameraMatrix, t1, t81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           var t89 = cameraMatrix.get$elements();
           if (typeof t89 !== 'string' && (typeof t89 !== 'object' || t89 === null || t89.constructor !== Array && !t89.is$JavaScriptIndexingBehavior()))
-            return this.renderFace3$9$bailout(65, t2, t89, t81, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(65, t2, t89, t1, t81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           if (9 >= t89.length)
             throw $.ioore(9);
           t89 = t89[9];
           if (typeof t89 !== 'number')
-            return this.renderFace3$9$bailout(66, t2, t89, t81, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(66, t2, t89, t1, t81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           this._uv3y = -(t81 + t2 * t89) * 0.5 + 0.5;
           this.patternPath$13(this._v1x, this._v1y, this._v2x, this._v2y, this._v3x, this._v3y, this._uv1x, this._uv1y, this._uv2x, this._uv2y, this._uv3x, this._uv3y, t1);
         }
@@ -8752,7 +8752,7 @@ $$.CanvasRenderer = {"":
       if (typeof t2 === 'object' && t2 !== null && !!t2.is$UVMapping) {
         t2 = element.get$uvs();
         if (typeof t2 !== 'string' && (typeof t2 !== 'object' || t2 === null || t2.constructor !== Array && !t2.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(67, t1, t2, uv1, uv2, uv3, element, material, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(67, uv1, uv2, uv3, element, material, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         if (0 >= t2.length)
           throw $.ioore(0);
         this._uvs = t2[0];
@@ -8764,7 +8764,7 @@ $$.CanvasRenderer = {"":
         t9 = this._v3y;
         t10 = this._uvs;
         if (typeof t10 !== 'string' && (typeof t10 !== 'object' || t10 === null || t10.constructor !== Array && !t10.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(68, t1, uv1, uv2, uv3, element, t4, t5, t6, t7, t8, t9, material, t10, 0, 0, 0);
+          return this.renderFace3$9$bailout(68, uv1, uv2, t4, element, t6, t7, t5, t8, material, t10, t9, uv3, t1, 0, 0, 0);
         if (uv1 < 0 || uv1 >= t10.length)
           throw $.ioore(uv1);
         t12 = t10[uv1].get$u();
@@ -8792,15 +8792,15 @@ $$.CanvasRenderer = {"":
         if ($.eqB(material.shading, 2)) {
           t2 = $.get$length(element.get$vertexNormalsWorld());
           if (typeof t2 !== 'number')
-            return this.renderFace3$9$bailout(74, material, element, t2, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            return this.renderFace3$9$bailout(74, material, t2, element, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
           t2 = t2 === 3;
         } else
           t2 = false;
       else
         t2 = false;
-      t3 = material.color;
-      t4 = this._ambientLight;
-      t5 = t4.r;
+      t3 = this._ambientLight;
+      t4 = material.color;
+      t5 = t3.r;
       if (t2) {
         t1 = this._color3;
         t1.r = t5;
@@ -8808,153 +8808,153 @@ $$.CanvasRenderer = {"":
         t2.r = t5;
         t6 = this._color1;
         t6.r = t5;
-        t5 = t4.g;
+        t5 = t3.g;
         t1.g = t5;
         t2.g = t5;
         t6.g = t5;
-        t4 = t4.b;
-        t1.b = t4;
-        t2.b = t4;
-        t6.b = t4;
-        t4 = this._lights;
+        t3 = t3.b;
+        t1.b = t3;
+        t2.b = t3;
+        t6.b = t3;
+        t3 = this._lights;
         t5 = element.get$v1().get$positionWorld();
         t7 = element.get$vertexNormalsWorld();
         if (typeof t7 !== 'string' && (typeof t7 !== 'object' || t7 === null || t7.constructor !== Array && !t7.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(75, t4, t5, element, t7, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(75, t3, t5, t1, t2, t6, element, t4, t7, 0, 0, 0, 0, 0, 0, 0, 0);
         if (0 >= t7.length)
           throw $.ioore(0);
-        this.calculateLight$4(t4, t5, t7[0], t6);
+        this.calculateLight$4(t3, t5, t7[0], t6);
         t5 = this._lights;
-        t4 = element.get$v2().get$positionWorld();
+        t3 = element.get$v2().get$positionWorld();
         t9 = element.get$vertexNormalsWorld();
         if (typeof t9 !== 'string' && (typeof t9 !== 'object' || t9 === null || t9.constructor !== Array && !t9.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(76, t3, t5, element, t1, t2, t6, t4, t9, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(76, t5, t1, element, t2, t6, t4, t3, t9, 0, 0, 0, 0, 0, 0, 0, 0);
         if (1 >= t9.length)
           throw $.ioore(1);
-        this.calculateLight$4(t5, t4, t9[1], t2);
-        t4 = this._lights;
+        this.calculateLight$4(t5, t3, t9[1], t2);
+        t3 = this._lights;
         t5 = element.get$v3().get$positionWorld();
         t11 = element.get$vertexNormalsWorld();
         if (typeof t11 !== 'string' && (typeof t11 !== 'object' || t11 === null || t11.constructor !== Array && !t11.is$JavaScriptIndexingBehavior()))
-          return this.renderFace3$9$bailout(77, t5, t11, t4, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(77, t3, t1, t11, t2, t6, t5, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         if (2 >= t11.length)
           throw $.ioore(2);
-        this.calculateLight$4(t4, t5, t11[2], t1);
-        t5 = t3.get$r();
+        this.calculateLight$4(t3, t5, t11[2], t1);
+        t5 = t4.get$r();
         if (typeof t5 !== 'number')
-          return this.renderFace3$9$bailout(78, t1, t2, t6, t5, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(78, t5, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t13 = t6.r;
         if (typeof t13 !== 'number')
-          return this.renderFace3$9$bailout(79, t13, t1, t2, t6, t5, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(79, t1, t2, t6, t4, t5, t13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t6.r = $.max(0, $.min(t5 * t13, 1));
-        t15 = t3.get$g();
+        t15 = t4.get$g();
         if (typeof t15 !== 'number')
-          return this.renderFace3$9$bailout(80, t1, t2, t6, t15, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(80, t15, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         var t17 = t6.g;
         if (typeof t17 !== 'number')
-          return this.renderFace3$9$bailout(81, t1, t2, t6, t17, t15, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(81, t1, t2, t6, t15, t4, t17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t6.g = $.max(0, $.min(t15 * t17, 1));
-        t19 = t3.get$b();
+        t19 = t4.get$b();
         if (typeof t19 !== 'number')
-          return this.renderFace3$9$bailout(82, t1, t2, t6, t19, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(82, t19, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t21 = t6.b;
         if (typeof t21 !== 'number')
-          return this.renderFace3$9$bailout(83, t19, t21, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(83, t19, t1, t21, t6, t2, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t6.b = $.max(0, $.min(t19 * t21, 1));
-        var t23 = t3.get$r();
+        var t23 = t4.get$r();
         if (typeof t23 !== 'number')
-          return this.renderFace3$9$bailout(84, t1, t23, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(84, t23, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t25 = t2.r;
         if (typeof t25 !== 'number')
-          return this.renderFace3$9$bailout(85, t23, t25, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(85, t23, t25, t1, t2, t6, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t2.r = $.max(0, $.min(t23 * t25, 1));
-        var t27 = t3.get$g();
+        var t27 = t4.get$g();
         if (typeof t27 !== 'number')
-          return this.renderFace3$9$bailout(86, t1, t2, t6, t27, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(86, t27, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         var t29 = t2.g;
         if (typeof t29 !== 'number')
-          return this.renderFace3$9$bailout(87, t29, t1, t2, t6, t27, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(87, t1, t2, t6, t4, t27, t29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t2.g = $.max(0, $.min(t27 * t29, 1));
-        var t31 = t3.get$b();
+        var t31 = t4.get$b();
         if (typeof t31 !== 'number')
-          return this.renderFace3$9$bailout(88, t1, t2, t6, t31, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(88, t31, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t33 = t2.b;
         if (typeof t33 !== 'number')
-          return this.renderFace3$9$bailout(89, t1, t2, t6, t33, t31, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(89, t1, t2, t6, t31, t4, t33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t2.b = $.max(0, $.min(t31 * t33, 1));
-        t35 = t3.get$r();
+        t35 = t4.get$r();
         if (typeof t35 !== 'number')
-          return this.renderFace3$9$bailout(90, t1, t2, t6, t35, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(90, t35, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t37 = t1.r;
         if (typeof t37 !== 'number')
-          return this.renderFace3$9$bailout(91, t35, t37, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(91, t35, t1, t37, t6, t2, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t1.r = $.max(0, $.min(t35 * t37, 1));
-        var t39 = t3.get$g();
+        var t39 = t4.get$g();
         if (typeof t39 !== 'number')
-          return this.renderFace3$9$bailout(92, t1, t39, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(92, t39, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t41 = t1.g;
         if (typeof t41 !== 'number')
-          return this.renderFace3$9$bailout(93, t39, t41, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(93, t39, t41, t1, t2, t6, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t1.g = $.max(0, $.min(t39 * t41, 1));
-        t3 = t3.get$b();
-        if (typeof t3 !== 'number')
-          return this.renderFace3$9$bailout(94, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        t4 = t4.get$b();
+        if (typeof t4 !== 'number')
+          return this.renderFace3$9$bailout(94, t4, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t44 = t1.b;
         if (typeof t44 !== 'number')
-          return this.renderFace3$9$bailout(95, t44, t1, t2, t6, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        t1.b = $.max(0, $.min(t3 * t44, 1));
+          return this.renderFace3$9$bailout(95, t4, t44, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        t1.b = $.max(0, $.min(t4 * t44, 1));
         t46 = t2.r;
         if (typeof t46 !== 'number')
           return this.renderFace3$9$bailout(96, t46, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         var t48 = t1.r;
         if (typeof t48 !== 'number')
-          return this.renderFace3$9$bailout(97, t46, t1, t2, t6, t48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(97, t46, t48, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         var t50 = (t46 + t48) * 0.5;
         t51 = this._color4;
         t51.r = t50;
         t50 = t2.g;
         if (typeof t50 !== 'number')
-          return this.renderFace3$9$bailout(98, t1, t50, t2, t6, t51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(98, t50, t51, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         var t53 = t1.g;
         if (typeof t53 !== 'number')
           return this.renderFace3$9$bailout(99, t50, t53, t1, t2, t6, t51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t51.g = (t50 + t53) * 0.5;
         t55 = t2.b;
         if (typeof t55 !== 'number')
-          return this.renderFace3$9$bailout(100, t1, t2, t6, t55, t51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(100, t51, t55, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         var t57 = t1.b;
         if (typeof t57 !== 'number')
-          return this.renderFace3$9$bailout(101, t1, t2, t6, t55, t51, t57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(101, t1, t2, t6, t51, t55, t57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t51.b = (t55 + t57) * 0.5;
         this._image = this.getGradientTexture$4(t6, t2, t1, t51);
         this.clipImage$13(this._v1x, this._v1y, this._v2x, this._v2y, this._v3x, this._v3y, 0, 0, 1, 0, 0, 1, this._image);
       } else {
         t2 = this._color;
         t2.r = t5;
-        t2.g = t4.g;
-        t2.b = t4.b;
+        t2.g = t3.g;
+        t2.b = t3.b;
         this.calculateLight$4(this._lights, element.get$centroidWorld(), element.get$normalWorld(), t2);
-        t5 = t3.get$r();
+        t5 = t4.get$r();
         if (typeof t5 !== 'number')
-          return this.renderFace3$9$bailout(102, t3, t5, t2, material, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(102, t2, material, t4, t1, t5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t7 = t2.r;
         if (typeof t7 !== 'number')
-          return this.renderFace3$9$bailout(103, t1, t2, material, t5, t7, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(103, t5, t7, material, t4, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t2.r = $.max(0, $.min(t5 * t7, 1));
-        t9 = t3.get$g();
+        t9 = t4.get$g();
         if (typeof t9 !== 'number')
-          return this.renderFace3$9$bailout(104, t1, t2, t9, t3, material, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(104, t2, t9, material, t4, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t11 = t2.g;
         if (typeof t11 !== 'number')
-          return this.renderFace3$9$bailout(105, material, t2, t9, t3, t11, t1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace3$9$bailout(105, t9, t11, material, t4, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t2.g = $.max(0, $.min(t9 * t11, 1));
-        t3 = t3.get$b();
-        if (typeof t3 !== 'number')
-          return this.renderFace3$9$bailout(106, t3, t2, t1, material, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        t4 = t4.get$b();
+        if (typeof t4 !== 'number')
+          return this.renderFace3$9$bailout(106, t4, material, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         t14 = t2.b;
         if (typeof t14 !== 'number')
-          return this.renderFace3$9$bailout(107, t3, t2, t14, t1, material, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        t2.b = $.max(0, $.min(t3 * t14, 1));
+          return this.renderFace3$9$bailout(107, t4, t14, material, t1, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        t2.b = $.max(0, $.min(t4 * t14, 1));
         if (t1)
           this.strokePath$4(t2, material.wireframeLinewidth, material.wireframeLinecap, material.wireframeLinejoin);
         else
@@ -8997,26 +8997,26 @@ $$.CanvasRenderer = {"":
     t4.r = t1;
     t1 = t3.r;
     if (typeof t1 !== 'number')
-      return this.renderFace3$9$bailout(108, t4, t1, t3, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      return this.renderFace3$9$bailout(108, t3, t1, t2, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     t6 = t4.r;
     if (typeof t6 !== 'number')
-      return this.renderFace3$9$bailout(109, t4, t1, t3, t6, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      return this.renderFace3$9$bailout(109, t3, t1, t6, t2, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     t8 = (t1 + t6) * 0.5;
     t9 = this._color4;
     t9.r = t8;
     t8 = t3.g;
     if (typeof t8 !== 'number')
-      return this.renderFace3$9$bailout(110, t4, t3, t8, t9, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      return this.renderFace3$9$bailout(110, t3, t9, t2, t8, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     t11 = t4.g;
     if (typeof t11 !== 'number')
-      return this.renderFace3$9$bailout(111, t4, t8, t9, t11, t2, t3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      return this.renderFace3$9$bailout(111, t9, t2, t11, t8, t3, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     t9.g = (t8 + t11) * 0.5;
     t13 = t3.b;
     if (typeof t13 !== 'number')
-      return this.renderFace3$9$bailout(112, t13, t4, t3, t9, t2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      return this.renderFace3$9$bailout(112, t3, t9, t2, t13, t4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     t15 = t4.b;
     if (typeof t15 !== 'number')
-      return this.renderFace3$9$bailout(113, t4, t15, t9, t2, t3, t13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      return this.renderFace3$9$bailout(113, t9, t2, t3, t13, t4, t15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     t9.b = (t13 + t15) * 0.5;
     this._image = this.getGradientTexture$4(t2, t3, t4, t9);
     this.clipImage$13(this._v1x, this._v1y, this._v2x, this._v2y, this._v3x, this._v3y, 0, 0, 1, 0, 0, 1, this._image);
@@ -9043,9 +9043,9 @@ $$.CanvasRenderer = {"":
       var uv3 = env5;
       var element = env6;
       var material = env7;
-      t2 = env8;
-      t3 = env9;
-      t1 = env10;
+      t1 = env8;
+      t2 = env9;
+      t3 = env10;
       break;
     case 2:
       v1 = env0;
@@ -9060,24 +9060,24 @@ $$.CanvasRenderer = {"":
       t2 = env9;
       break;
     case 3:
-      t2 = env0;
-      uv1 = env1;
-      uv2 = env2;
-      uv3 = env3;
-      t1 = env4;
+      t1 = env0;
+      t2 = env1;
+      uv1 = env2;
+      uv2 = env3;
+      uv3 = env4;
       break;
     case 4:
-      t4 = env0;
-      t5 = env1;
-      t6 = env2;
+      t8 = env0;
+      t9 = env1;
+      t10 = env2;
       uv1 = env3;
       uv2 = env4;
       uv3 = env5;
-      t7 = env6;
-      t8 = env7;
-      t9 = env8;
-      t10 = env9;
-      t1 = env10;
+      t1 = env6;
+      t4 = env7;
+      t5 = env8;
+      t6 = env9;
+      t7 = env10;
       break;
     case 5:
       uv1 = env0;
@@ -9089,9 +9089,9 @@ $$.CanvasRenderer = {"":
       t7 = env6;
       t8 = env7;
       t9 = env8;
-      t12 = env9;
+      t1 = env9;
       t13 = env10;
-      t1 = env11;
+      t12 = env11;
       break;
     case 6:
       uv2 = env0;
@@ -9102,9 +9102,9 @@ $$.CanvasRenderer = {"":
       t7 = env5;
       t8 = env6;
       t9 = env7;
-      t12 = env8;
+      t1 = env8;
       t16 = env9;
-      t1 = env10;
+      t12 = env10;
       t15 = env11;
       break;
     case 7:
@@ -9116,9 +9116,9 @@ $$.CanvasRenderer = {"":
       t7 = env5;
       t8 = env6;
       t9 = env7;
-      t12 = env8;
+      t1 = env8;
       t19 = env9;
-      t1 = env10;
+      t12 = env10;
       t15 = env11;
       t18 = env12;
       break;
@@ -9131,10 +9131,10 @@ $$.CanvasRenderer = {"":
       t7 = env5;
       t8 = env6;
       t9 = env7;
-      t12 = env8;
-      t1 = env9;
-      t15 = env10;
-      t22 = env11;
+      t1 = env8;
+      t22 = env9;
+      t12 = env10;
+      t15 = env11;
       t18 = env12;
       break;
     case 9:
@@ -9147,10 +9147,10 @@ $$.CanvasRenderer = {"":
       t7 = env6;
       t8 = env7;
       t9 = env8;
-      t12 = env9;
-      t1 = env10;
-      t15 = env11;
-      t25 = env12;
+      t1 = env9;
+      t12 = env10;
+      t25 = env11;
+      t15 = env12;
       t18 = env13;
       break;
     case 10:
@@ -9159,359 +9159,359 @@ $$.CanvasRenderer = {"":
       uv2 = env2;
       uv3 = env3;
       element = env4;
-      t1 = env5;
-      uv1 = env6;
-      t2 = env7;
+      uv1 = env5;
+      t2 = env6;
+      t1 = env7;
       break;
     case 11:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t5 = env4;
-      t1 = env5;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t5 = env5;
       t2 = env6;
       break;
     case 12:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t5 = env4;
-      t1 = env5;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t5 = env5;
       t7 = env6;
       t2 = env7;
       break;
     case 13:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t5 = env4;
-      t1 = env5;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t5 = env5;
       t7 = env6;
       t2 = env7;
       break;
     case 14:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
-      t7 = env5;
-      t5 = env6;
-      t2 = env7;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t2 = env5;
+      t7 = env6;
+      t5 = env7;
       break;
     case 15:
       cameraMatrix = env0;
       t11 = env1;
-      uv2 = env2;
-      uv3 = env3;
-      element = env4;
-      t1 = env5;
-      t7 = env6;
-      t5 = env7;
-      t2 = env8;
+      t1 = env2;
+      uv2 = env3;
+      uv3 = env4;
+      element = env5;
+      t2 = env6;
+      t7 = env7;
+      t5 = env8;
       break;
     case 16:
       cameraMatrix = env0;
       t11 = env1;
-      uv2 = env2;
-      uv3 = env3;
-      element = env4;
-      t1 = env5;
-      t7 = env6;
-      t5 = env7;
-      t2 = env8;
+      t1 = env2;
+      uv2 = env3;
+      uv3 = env4;
+      element = env5;
+      t2 = env6;
+      t7 = env7;
+      t5 = env8;
       break;
     case 17:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t7 = env4;
-      t1 = env5;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t7 = env5;
       t14 = env6;
       t2 = env7;
       break;
     case 18:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t7 = env4;
-      t1 = env5;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t7 = env5;
       t14 = env6;
       t16 = env7;
       t2 = env8;
       break;
     case 19:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t7 = env4;
-      t1 = env5;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t7 = env5;
       t14 = env6;
-      t16 = env7;
-      t2 = env8;
+      t2 = env7;
+      t16 = env8;
       break;
     case 20:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t19 = env5;
       t2 = env6;
       break;
     case 21:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t19 = env5;
       t21 = env6;
       t2 = env7;
       break;
     case 22:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t19 = env5;
       t21 = env6;
       t2 = env7;
       break;
     case 23:
       cameraMatrix = env0;
-      t2 = env1;
+      t1 = env1;
       uv2 = env2;
       uv3 = env3;
       element = env4;
-      t1 = env5;
+      t2 = env5;
       t21 = env6;
       t19 = env7;
       break;
     case 24:
       cameraMatrix = env0;
       t25 = env1;
-      t2 = env2;
+      t1 = env2;
       uv2 = env3;
       uv3 = env4;
       element = env5;
-      t1 = env6;
+      t2 = env6;
       t21 = env7;
       t19 = env8;
       break;
     case 25:
       cameraMatrix = env0;
-      t2 = env1;
-      t25 = env2;
-      uv2 = env3;
-      uv3 = env4;
-      element = env5;
-      t1 = env6;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
+      t25 = env5;
+      t2 = env6;
       t21 = env7;
       t19 = env8;
       break;
     case 26:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t21 = env5;
       t28 = env6;
       t2 = env7;
       break;
     case 27:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t21 = env5;
       t28 = env6;
-      t30 = env7;
-      t2 = env8;
+      t2 = env7;
+      t30 = env8;
       break;
     case 28:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t21 = env5;
       t28 = env6;
-      t30 = env7;
-      t2 = env8;
+      t2 = env7;
+      t30 = env8;
       break;
     case 29:
       cameraMatrix = env0;
-      uv2 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env1;
+      uv2 = env2;
+      uv3 = env3;
+      element = env4;
       t33 = env5;
       t2 = env6;
       break;
     case 30:
       cameraMatrix = env0;
-      t2 = env1;
+      t1 = env1;
       uv3 = env2;
       element = env3;
-      t1 = env4;
+      t2 = env4;
       t35 = env5;
       break;
     case 31:
       cameraMatrix = env0;
       t37 = env1;
-      t2 = env2;
+      t1 = env2;
       uv3 = env3;
       element = env4;
-      t1 = env5;
+      t2 = env5;
       t35 = env6;
       break;
     case 32:
       cameraMatrix = env0;
       t37 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env2;
+      uv3 = env3;
+      element = env4;
       t2 = env5;
       t35 = env6;
       break;
     case 33:
       cameraMatrix = env0;
-      t37 = env1;
-      uv3 = env2;
-      element = env3;
-      t35 = env4;
-      t1 = env5;
+      t1 = env1;
+      t37 = env2;
+      uv3 = env3;
+      element = env4;
+      t35 = env5;
       t2 = env6;
       break;
     case 34:
       cameraMatrix = env0;
-      t37 = env1;
-      uv3 = env2;
-      element = env3;
-      t35 = env4;
-      t1 = env5;
+      t1 = env1;
+      t37 = env2;
+      uv3 = env3;
+      element = env4;
+      t35 = env5;
       t41 = env6;
       t2 = env7;
       break;
     case 35:
       cameraMatrix = env0;
-      t37 = env1;
-      uv3 = env2;
-      element = env3;
-      t35 = env4;
-      t1 = env5;
+      t1 = env1;
+      t37 = env2;
+      uv3 = env3;
+      element = env4;
+      t35 = env5;
       t41 = env6;
       t2 = env7;
       break;
     case 36:
       cameraMatrix = env0;
-      t44 = env1;
+      t1 = env1;
       uv3 = env2;
       element = env3;
-      t1 = env4;
+      t2 = env4;
       t37 = env5;
-      t2 = env6;
+      t44 = env6;
       break;
     case 37:
       cameraMatrix = env0;
       t46 = env1;
-      t44 = env2;
+      t1 = env2;
       uv3 = env3;
       element = env4;
-      t1 = env5;
+      t2 = env5;
       t37 = env6;
-      t2 = env7;
+      t44 = env7;
       break;
     case 38:
       cameraMatrix = env0;
       t46 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
+      t1 = env2;
+      uv3 = env3;
+      element = env4;
       t2 = env5;
       t37 = env6;
       t44 = env7;
       break;
     case 39:
       cameraMatrix = env0;
-      uv3 = env1;
-      element = env2;
-      t1 = env3;
-      t49 = env4;
-      t2 = env5;
+      t1 = env1;
+      uv3 = env2;
+      element = env3;
+      t2 = env4;
+      t49 = env5;
       break;
     case 40:
       cameraMatrix = env0;
-      t2 = env1;
+      t1 = env1;
       uv3 = env2;
       element = env3;
-      t1 = env4;
+      t2 = env4;
       t49 = env5;
       t51 = env6;
       break;
     case 41:
       cameraMatrix = env0;
       t51 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
-      t49 = env5;
-      t2 = env6;
+      t1 = env2;
+      uv3 = env3;
+      element = env4;
+      t2 = env5;
+      t49 = env6;
       break;
     case 42:
       cameraMatrix = env0;
       t51 = env1;
-      t49 = env2;
-      uv3 = env3;
-      element = env4;
-      t1 = env5;
+      t1 = env2;
+      t49 = env3;
+      uv3 = env4;
+      element = env5;
       t2 = env6;
       break;
     case 43:
       cameraMatrix = env0;
       t51 = env1;
-      t49 = env2;
-      uv3 = env3;
-      element = env4;
-      t55 = env5;
-      t1 = env6;
+      t1 = env2;
+      t49 = env3;
+      uv3 = env4;
+      element = env5;
+      t55 = env6;
       t2 = env7;
       break;
     case 44:
       cameraMatrix = env0;
       t51 = env1;
-      t49 = env2;
-      uv3 = env3;
-      element = env4;
-      t1 = env5;
+      t1 = env2;
+      t49 = env3;
+      uv3 = env4;
+      element = env5;
       t55 = env6;
       t2 = env7;
       break;
     case 45:
       cameraMatrix = env0;
-      uv3 = env1;
-      element = env2;
-      t1 = env3;
-      t51 = env4;
-      t58 = env5;
-      t2 = env6;
+      t1 = env1;
+      uv3 = env2;
+      element = env3;
+      t2 = env4;
+      t51 = env5;
+      t58 = env6;
       break;
     case 46:
       cameraMatrix = env0;
-      t2 = env1;
+      t1 = env1;
       uv3 = env2;
       element = env3;
-      t1 = env4;
+      t2 = env4;
       t51 = env5;
       t58 = env6;
       t60 = env7;
@@ -9519,341 +9519,341 @@ $$.CanvasRenderer = {"":
     case 47:
       cameraMatrix = env0;
       t60 = env1;
-      uv3 = env2;
-      element = env3;
-      t1 = env4;
-      t51 = env5;
-      t58 = env6;
-      t2 = env7;
+      t1 = env2;
+      uv3 = env3;
+      element = env4;
+      t2 = env5;
+      t51 = env6;
+      t58 = env7;
       break;
     case 48:
       cameraMatrix = env0;
-      t2 = env1;
-      uv3 = env2;
-      t63 = env3;
-      t1 = env4;
+      t1 = env1;
+      t2 = env2;
+      uv3 = env3;
+      t63 = env4;
       break;
     case 49:
       cameraMatrix = env0;
       t65 = env1;
-      t2 = env2;
-      t1 = env3;
+      t1 = env2;
+      t2 = env3;
       break;
     case 50:
       cameraMatrix = env0;
       t65 = env1;
-      t67 = env2;
-      t2 = env3;
-      t1 = env4;
+      t1 = env2;
+      t67 = env3;
+      t2 = env4;
       break;
     case 51:
       cameraMatrix = env0;
-      t2 = env1;
-      t65 = env2;
-      t67 = env3;
-      t1 = env4;
+      t65 = env1;
+      t1 = env2;
+      t2 = env3;
+      t67 = env4;
       break;
     case 52:
       cameraMatrix = env0;
       t65 = env1;
-      t67 = env2;
+      t1 = env2;
       t2 = env3;
-      t1 = env4;
+      t67 = env4;
       break;
     case 53:
       cameraMatrix = env0;
-      t67 = env1;
-      t1 = env2;
+      t1 = env1;
+      t67 = env2;
       t65 = env3;
-      t71 = env4;
-      t2 = env5;
+      t2 = env4;
+      t71 = env5;
       break;
     case 54:
       cameraMatrix = env0;
-      t67 = env1;
-      t1 = env2;
+      t1 = env1;
+      t67 = env2;
       t65 = env3;
-      t71 = env4;
-      t2 = env5;
+      t2 = env4;
+      t71 = env5;
       break;
     case 55:
       cameraMatrix = env0;
       t67 = env1;
       t74 = env2;
-      t2 = env3;
-      t1 = env4;
+      t1 = env3;
+      t2 = env4;
       break;
     case 56:
       cameraMatrix = env0;
       t67 = env1;
       t74 = env2;
-      t76 = env3;
-      t1 = env4;
+      t1 = env3;
+      t76 = env4;
       t2 = env5;
       break;
     case 57:
       cameraMatrix = env0;
       t67 = env1;
       t74 = env2;
-      t76 = env3;
-      t1 = env4;
+      t1 = env3;
+      t76 = env4;
       t2 = env5;
       break;
     case 58:
       cameraMatrix = env0;
       t79 = env1;
-      t2 = env2;
-      t1 = env3;
+      t1 = env2;
+      t2 = env3;
       break;
     case 59:
       cameraMatrix = env0;
       t79 = env1;
       t81 = env2;
-      t2 = env3;
-      t1 = env4;
+      t1 = env3;
+      t2 = env4;
       break;
     case 60:
       cameraMatrix = env0;
       t79 = env1;
-      t2 = env2;
+      t1 = env2;
       t81 = env3;
-      t1 = env4;
+      t2 = env4;
       break;
     case 61:
       cameraMatrix = env0;
-      t2 = env1;
-      t79 = env2;
+      t1 = env1;
+      t2 = env2;
       t81 = env3;
-      t1 = env4;
+      t79 = env4;
       break;
     case 62:
       cameraMatrix = env0;
-      t81 = env1;
-      t79 = env2;
-      t1 = env3;
+      t1 = env1;
+      t81 = env2;
+      t79 = env3;
       t85 = env4;
       t2 = env5;
       break;
     case 63:
       cameraMatrix = env0;
-      t81 = env1;
-      t79 = env2;
-      t1 = env3;
+      t1 = env1;
+      t81 = env2;
+      t79 = env3;
       t85 = env4;
       t2 = env5;
       break;
     case 64:
       t2 = env0;
       cameraMatrix = env1;
-      t81 = env2;
-      t1 = env3;
+      t1 = env2;
+      t81 = env3;
       break;
     case 65:
       t2 = env0;
       t89 = env1;
-      t81 = env2;
-      t1 = env3;
+      t1 = env2;
+      t81 = env3;
       break;
     case 66:
       t2 = env0;
       t89 = env1;
-      t81 = env2;
-      t1 = env3;
+      t1 = env2;
+      t81 = env3;
       break;
     case 67:
-      t1 = env0;
-      t2 = env1;
-      uv1 = env2;
-      uv2 = env3;
-      uv3 = env4;
-      element = env5;
-      material = env6;
+      uv1 = env0;
+      uv2 = env1;
+      uv3 = env2;
+      element = env3;
+      material = env4;
+      t1 = env5;
+      t2 = env6;
       break;
     case 68:
-      t1 = env0;
-      uv1 = env1;
-      uv2 = env2;
-      uv3 = env3;
-      element = env4;
-      t4 = env5;
+      uv1 = env0;
+      uv2 = env1;
+      t4 = env2;
+      element = env3;
+      t6 = env4;
+      t7 = env5;
       t5 = env6;
-      t6 = env7;
-      t7 = env8;
-      t8 = env9;
+      t8 = env7;
+      material = env8;
+      t10 = env9;
       t9 = env10;
-      material = env11;
-      t10 = env12;
+      uv3 = env11;
+      t1 = env12;
       break;
     case 69:
-      t1 = env0;
-      uv1 = env1;
-      uv2 = env2;
-      uv3 = env3;
-      element = env4;
-      t4 = env5;
+      uv1 = env0;
+      uv2 = env1;
+      t4 = env2;
+      element = env3;
+      t6 = env4;
+      t7 = env5;
       t5 = env6;
-      t6 = env7;
-      t7 = env8;
-      t8 = env9;
+      t8 = env7;
+      material = env8;
+      t13 = env9;
       t9 = env10;
-      material = env11;
-      t13 = env12;
-      t12 = env13;
+      uv3 = env11;
+      t12 = env12;
+      t1 = env13;
       break;
     case 70:
-      t15 = env0;
-      t1 = env1;
-      uv2 = env2;
-      uv3 = env3;
-      element = env4;
-      t4 = env5;
-      t5 = env6;
-      t6 = env7;
-      t7 = env8;
-      t8 = env9;
-      t9 = env10;
-      material = env11;
-      t16 = env12;
-      t12 = env13;
+      uv2 = env0;
+      t4 = env1;
+      element = env2;
+      t6 = env3;
+      t7 = env4;
+      t5 = env5;
+      t8 = env6;
+      material = env7;
+      t9 = env8;
+      t16 = env9;
+      uv3 = env10;
+      t12 = env11;
+      t1 = env12;
+      t15 = env13;
       break;
     case 71:
-      t15 = env0;
-      t1 = env1;
-      t18 = env2;
-      uv3 = env3;
-      element = env4;
-      uv2 = env5;
-      t4 = env6;
-      t5 = env7;
-      t6 = env8;
-      t7 = env9;
-      t8 = env10;
-      t9 = env11;
-      material = env12;
-      t19 = env13;
-      t12 = env14;
+      t18 = env0;
+      uv2 = env1;
+      t4 = env2;
+      element = env3;
+      t6 = env4;
+      t7 = env5;
+      t5 = env6;
+      t8 = env7;
+      material = env8;
+      t9 = env9;
+      t19 = env10;
+      uv3 = env11;
+      t12 = env12;
+      t1 = env13;
+      t15 = env14;
       break;
     case 72:
-      t15 = env0;
-      t1 = env1;
-      t18 = env2;
-      uv3 = env3;
-      element = env4;
-      t21 = env5;
-      t4 = env6;
-      t5 = env7;
-      t6 = env8;
-      t7 = env9;
-      t8 = env10;
-      t9 = env11;
-      material = env12;
-      t22 = env13;
-      t12 = env14;
+      t18 = env0;
+      t4 = env1;
+      element = env2;
+      t6 = env3;
+      t7 = env4;
+      t5 = env5;
+      t8 = env6;
+      material = env7;
+      t9 = env8;
+      t22 = env9;
+      t21 = env10;
+      uv3 = env11;
+      t12 = env12;
+      t1 = env13;
+      t15 = env14;
       break;
     case 73:
-      t15 = env0;
-      t1 = env1;
-      t18 = env2;
-      uv3 = env3;
-      element = env4;
-      t21 = env5;
-      t4 = env6;
-      t5 = env7;
-      t6 = env8;
-      t7 = env9;
-      t8 = env10;
-      t9 = env11;
-      material = env12;
-      t24 = env13;
-      t25 = env14;
-      t12 = env15;
+      t18 = env0;
+      t4 = env1;
+      element = env2;
+      t6 = env3;
+      t7 = env4;
+      t5 = env5;
+      t8 = env6;
+      material = env7;
+      t24 = env8;
+      t9 = env9;
+      uv3 = env10;
+      t25 = env11;
+      t21 = env12;
+      t12 = env13;
+      t1 = env14;
+      t15 = env15;
       break;
     case 74:
       material = env0;
-      element = env1;
-      t2 = env2;
+      t2 = env1;
+      element = env2;
       t1 = env3;
       break;
     case 75:
-      t4 = env0;
-      t1 = env1;
-      element = env2;
-      t7 = env3;
-      t2 = env4;
-      t5 = env5;
-      t6 = env6;
-      t3 = env7;
-      break;
-    case 76:
       t3 = env0;
       t1 = env1;
-      element = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
+      element = env5;
       t4 = env6;
+      t7 = env7;
+      break;
+    case 76:
+      t1 = env0;
+      t2 = env1;
+      element = env2;
+      t5 = env3;
+      t6 = env4;
+      t4 = env5;
+      t3 = env6;
       t9 = env7;
       break;
     case 77:
-      t1 = env0;
-      t11 = env1;
-      t4 = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
-      t3 = env6;
+      t3 = env0;
+      t2 = env1;
+      t11 = env2;
+      t5 = env3;
+      t6 = env4;
+      t1 = env5;
+      t4 = env6;
       break;
     case 78:
-      t2 = env0;
-      t5 = env1;
-      t6 = env2;
-      t1 = env3;
-      t3 = env4;
+      t1 = env0;
+      t4 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 79:
-      t13 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t1 = env4;
-      t3 = env5;
-      break;
-    case 80:
       t2 = env0;
       t5 = env1;
       t6 = env2;
-      t15 = env3;
-      t3 = env4;
+      t4 = env3;
+      t1 = env4;
+      t13 = env5;
+      break;
+    case 80:
+      t15 = env0;
+      t4 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 81:
       t2 = env0;
       t5 = env1;
       t6 = env2;
-      t17 = env3;
-      t15 = env4;
-      t3 = env5;
+      t15 = env3;
+      t4 = env4;
+      t17 = env5;
       break;
     case 82:
-      t2 = env0;
-      t5 = env1;
-      t6 = env2;
-      t19 = env3;
-      t3 = env4;
-      break;
-    case 83:
       t19 = env0;
-      t21 = env1;
+      t4 = env1;
       t2 = env2;
       t5 = env3;
       t6 = env4;
-      t3 = env5;
+      break;
+    case 83:
+      t19 = env0;
+      t2 = env1;
+      t21 = env2;
+      t6 = env3;
+      t5 = env4;
+      t4 = env5;
       break;
     case 84:
-      t2 = env0;
-      t23 = env1;
-      t5 = env2;
-      t6 = env3;
-      t3 = env4;
+      t23 = env0;
+      t4 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 85:
       t23 = env0;
@@ -9861,59 +9861,59 @@ $$.CanvasRenderer = {"":
       t2 = env2;
       t5 = env3;
       t6 = env4;
-      t3 = env5;
+      t4 = env5;
       break;
     case 86:
-      t2 = env0;
-      t5 = env1;
-      t6 = env2;
-      t27 = env3;
-      t3 = env4;
+      t27 = env0;
+      t4 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 87:
-      t29 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t27 = env4;
-      t3 = env5;
-      break;
-    case 88:
       t2 = env0;
       t5 = env1;
       t6 = env2;
-      t31 = env3;
-      t3 = env4;
+      t4 = env3;
+      t27 = env4;
+      t29 = env5;
+      break;
+    case 88:
+      t31 = env0;
+      t4 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 89:
       t2 = env0;
       t5 = env1;
       t6 = env2;
-      t33 = env3;
-      t31 = env4;
-      t3 = env5;
+      t31 = env3;
+      t4 = env4;
+      t33 = env5;
       break;
     case 90:
-      t2 = env0;
-      t5 = env1;
-      t6 = env2;
-      t35 = env3;
-      t3 = env4;
-      break;
-    case 91:
       t35 = env0;
-      t37 = env1;
+      t4 = env1;
       t2 = env2;
       t5 = env3;
       t6 = env4;
-      t3 = env5;
+      break;
+    case 91:
+      t35 = env0;
+      t2 = env1;
+      t37 = env2;
+      t6 = env3;
+      t5 = env4;
+      t4 = env5;
       break;
     case 92:
-      t2 = env0;
-      t39 = env1;
-      t5 = env2;
-      t6 = env3;
-      t3 = env4;
+      t39 = env0;
+      t4 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 93:
       t39 = env0;
@@ -9921,20 +9921,20 @@ $$.CanvasRenderer = {"":
       t2 = env2;
       t5 = env3;
       t6 = env4;
-      t3 = env5;
+      t4 = env5;
       break;
     case 94:
-      t2 = env0;
-      t5 = env1;
-      t6 = env2;
-      t3 = env3;
-      break;
-    case 95:
-      t44 = env0;
+      t4 = env0;
       t2 = env1;
       t5 = env2;
       t6 = env3;
-      t3 = env4;
+      break;
+    case 95:
+      t4 = env0;
+      t44 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 96:
       t46 = env0;
@@ -9944,17 +9944,17 @@ $$.CanvasRenderer = {"":
       break;
     case 97:
       t46 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t48 = env4;
+      t48 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 98:
-      t2 = env0;
-      t50 = env1;
-      t5 = env2;
-      t6 = env3;
-      t51 = env4;
+      t50 = env0;
+      t51 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 99:
       t50 = env0;
@@ -9965,105 +9965,105 @@ $$.CanvasRenderer = {"":
       t51 = env5;
       break;
     case 100:
-      t2 = env0;
-      t5 = env1;
-      t6 = env2;
-      t55 = env3;
-      t51 = env4;
+      t51 = env0;
+      t55 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
       break;
     case 101:
       t2 = env0;
       t5 = env1;
       t6 = env2;
-      t55 = env3;
-      t51 = env4;
+      t51 = env3;
+      t55 = env4;
       t57 = env5;
       break;
     case 102:
-      t3 = env0;
-      t2 = env1;
-      t5 = env2;
-      material = env3;
-      t1 = env4;
+      t5 = env0;
+      material = env1;
+      t4 = env2;
+      t1 = env3;
+      t2 = env4;
       break;
     case 103:
-      t1 = env0;
-      t5 = env1;
+      t2 = env0;
+      t7 = env1;
       material = env2;
-      t2 = env3;
-      t7 = env4;
-      t3 = env5;
+      t4 = env3;
+      t1 = env4;
+      t5 = env5;
       break;
     case 104:
-      t1 = env0;
-      t5 = env1;
-      t9 = env2;
-      t3 = env3;
-      material = env4;
+      t5 = env0;
+      t9 = env1;
+      material = env2;
+      t4 = env3;
+      t1 = env4;
       break;
     case 105:
-      material = env0;
-      t5 = env1;
-      t9 = env2;
-      t3 = env3;
-      t11 = env4;
-      t1 = env5;
+      t9 = env0;
+      t11 = env1;
+      material = env2;
+      t4 = env3;
+      t1 = env4;
+      t5 = env5;
       break;
     case 106:
-      t3 = env0;
-      t5 = env1;
+      t4 = env0;
+      material = env1;
       t1 = env2;
-      material = env3;
+      t5 = env3;
       break;
     case 107:
-      t3 = env0;
-      t5 = env1;
-      t14 = env2;
+      t4 = env0;
+      t14 = env1;
+      material = env2;
       t1 = env3;
-      material = env4;
+      t5 = env4;
       break;
     case 108:
-      t4 = env0;
+      t3 = env0;
       t1 = env1;
-      t3 = env2;
-      t2 = env3;
+      t2 = env2;
+      t4 = env3;
       break;
     case 109:
-      t4 = env0;
+      t3 = env0;
       t1 = env1;
-      t3 = env2;
-      t6 = env3;
-      t2 = env4;
+      t6 = env2;
+      t2 = env3;
+      t4 = env4;
       break;
     case 110:
-      t4 = env0;
-      t3 = env1;
-      t8 = env2;
-      t9 = env3;
-      t2 = env4;
+      t3 = env0;
+      t9 = env1;
+      t2 = env2;
+      t8 = env3;
+      t4 = env4;
       break;
     case 111:
-      t4 = env0;
-      t8 = env1;
-      t9 = env2;
-      t11 = env3;
-      t2 = env4;
-      t3 = env5;
+      t9 = env0;
+      t2 = env1;
+      t11 = env2;
+      t8 = env3;
+      t3 = env4;
+      t4 = env5;
       break;
     case 112:
-      t13 = env0;
-      t4 = env1;
-      t3 = env2;
-      t9 = env3;
-      t2 = env4;
+      t3 = env0;
+      t9 = env1;
+      t2 = env2;
+      t13 = env3;
+      t4 = env4;
       break;
     case 113:
-      t4 = env0;
-      t15 = env1;
-      t9 = env2;
-      t2 = env3;
-      t3 = env4;
-      t13 = env5;
+      t9 = env0;
+      t2 = env1;
+      t3 = env2;
+      t13 = env3;
+      t4 = env4;
+      t15 = env5;
       break;
   }
   switch (state) {
@@ -10468,108 +10468,108 @@ $$.CanvasRenderer = {"":
                           }
                         else
                           t2 = false;
-                        t3 = material.color;
-                        t4 = this._ambientLight;
+                        t3 = this._ambientLight;
+                        t4 = material.color;
                       default:
                         if (state === 101 || state === 100 || state === 99 || state === 98 || state === 97 || state === 96 || state === 95 || state === 94 || state === 93 || state === 92 || state === 91 || state === 90 || state === 89 || state === 88 || state === 87 || state === 86 || state === 85 || state === 84 || state === 83 || state === 82 || state === 81 || state === 80 || state === 79 || state === 78 || state === 77 || state === 76 || state === 75 || state === 0 && t2)
                           switch (state) {
                             case 0:
-                              t1 = t4.get$r();
+                              t1 = t3.get$r();
                               t2 = this._color3;
                               t2.set$r(t1);
                               t5 = this._color2;
                               t5.set$r(t1);
                               t6 = this._color1;
                               t6.set$r(t1);
-                              t1 = t4.get$g();
+                              t1 = t3.get$g();
                               t2.set$g(t1);
                               t5.set$g(t1);
                               t6.set$g(t1);
-                              t4 = t4.get$b();
-                              t2.set$b(t4);
-                              t5.set$b(t4);
-                              t6.set$b(t4);
-                              t4 = this._lights;
+                              t3 = t3.get$b();
+                              t2.set$b(t3);
+                              t5.set$b(t3);
+                              t6.set$b(t3);
+                              t3 = this._lights;
                               t1 = element.get$v1().get$positionWorld();
                               t7 = element.get$vertexNormalsWorld();
                             case 75:
                               state = 0;
-                              this.calculateLight$4(t4, t1, $.index(t7, 0), t6);
+                              this.calculateLight$4(t3, t1, $.index(t7, 0), t6);
                               t1 = this._lights;
-                              t4 = element.get$v2().get$positionWorld();
+                              t3 = element.get$v2().get$positionWorld();
                               t9 = element.get$vertexNormalsWorld();
                             case 76:
                               state = 0;
-                              this.calculateLight$4(t1, t4, $.index(t9, 1), t5);
-                              t4 = this._lights;
+                              this.calculateLight$4(t1, t3, $.index(t9, 1), t5);
+                              t3 = this._lights;
                               t1 = element.get$v3().get$positionWorld();
                               t11 = element.get$vertexNormalsWorld();
                             case 77:
                               state = 0;
-                              this.calculateLight$4(t4, t1, $.index(t11, 2), t2);
-                              t1 = t3.get$r();
+                              this.calculateLight$4(t3, t1, $.index(t11, 2), t2);
+                              t1 = t4.get$r();
                             case 78:
                               state = 0;
                               t13 = t6.get$r();
                             case 79:
                               state = 0;
                               t6.set$r($.max(0, $.min($.mul(t1, t13), 1)));
-                              t15 = t3.get$g();
+                              t15 = t4.get$g();
                             case 80:
                               state = 0;
                               var t17 = t6.get$g();
                             case 81:
                               state = 0;
                               t6.set$g($.max(0, $.min($.mul(t15, t17), 1)));
-                              t19 = t3.get$b();
+                              t19 = t4.get$b();
                             case 82:
                               state = 0;
                               t21 = t6.get$b();
                             case 83:
                               state = 0;
                               t6.set$b($.max(0, $.min($.mul(t19, t21), 1)));
-                              var t23 = t3.get$r();
+                              var t23 = t4.get$r();
                             case 84:
                               state = 0;
                               t25 = t5.get$r();
                             case 85:
                               state = 0;
                               t5.set$r($.max(0, $.min($.mul(t23, t25), 1)));
-                              var t27 = t3.get$g();
+                              var t27 = t4.get$g();
                             case 86:
                               state = 0;
                               var t29 = t5.get$g();
                             case 87:
                               state = 0;
                               t5.set$g($.max(0, $.min($.mul(t27, t29), 1)));
-                              var t31 = t3.get$b();
+                              var t31 = t4.get$b();
                             case 88:
                               state = 0;
                               t33 = t5.get$b();
                             case 89:
                               state = 0;
                               t5.set$b($.max(0, $.min($.mul(t31, t33), 1)));
-                              t35 = t3.get$r();
+                              t35 = t4.get$r();
                             case 90:
                               state = 0;
                               t37 = t2.get$r();
                             case 91:
                               state = 0;
                               t2.set$r($.max(0, $.min($.mul(t35, t37), 1)));
-                              var t39 = t3.get$g();
+                              var t39 = t4.get$g();
                             case 92:
                               state = 0;
                               t41 = t2.get$g();
                             case 93:
                               state = 0;
                               t2.set$g($.max(0, $.min($.mul(t39, t41), 1)));
-                              t3 = t3.get$b();
+                              t4 = t4.get$b();
                             case 94:
                               state = 0;
                               t44 = t2.get$b();
                             case 95:
                               state = 0;
-                              t2.set$b($.max(0, $.min($.mul(t3, t44), 1)));
+                              t2.set$b($.max(0, $.min($.mul(t4, t44), 1)));
                               t46 = t5.get$r();
                             case 96:
                               state = 0;
@@ -10599,33 +10599,33 @@ $$.CanvasRenderer = {"":
                         else
                           switch (state) {
                             case 0:
-                              t2 = t4.get$r();
+                              t2 = t3.get$r();
                               t5 = this._color;
                               t5.set$r(t2);
-                              t5.set$g(t4.get$g());
-                              t5.set$b(t4.get$b());
+                              t5.set$g(t3.get$g());
+                              t5.set$b(t3.get$b());
                               this.calculateLight$4(this._lights, element.get$centroidWorld(), element.get$normalWorld(), t5);
-                              t2 = t3.get$r();
+                              t2 = t4.get$r();
                             case 102:
                               state = 0;
                               t7 = t5.get$r();
                             case 103:
                               state = 0;
                               t5.set$r($.max(0, $.min($.mul(t2, t7), 1)));
-                              t9 = t3.get$g();
+                              t9 = t4.get$g();
                             case 104:
                               state = 0;
                               t11 = t5.get$g();
                             case 105:
                               state = 0;
                               t5.set$g($.max(0, $.min($.mul(t9, t11), 1)));
-                              t3 = t3.get$b();
+                              t4 = t4.get$b();
                             case 106:
                               state = 0;
                               t14 = t5.get$b();
                             case 107:
                               state = 0;
-                              t5.set$b($.max(0, $.min($.mul(t3, t14), 1)));
+                              t5.set$b($.max(0, $.min($.mul(t4, t14), 1)));
                               if (t1)
                                 this.strokePath$4(t5, material.wireframeLinewidth, material.wireframeLinecap, material.wireframeLinejoin);
                               else
@@ -10757,9 +10757,9 @@ $$.CanvasRenderer = {"":
     if (this._enableLighting === true) {
       t1 = material.wireframe === true;
       t2 = !t1 && $.eqB(material.shading, 2) && element.vertexNormalsWorld.length === 4;
-      t3 = this._ambientLight;
-      var t4 = material.color;
-      t5 = t3.r;
+      t3 = material.color;
+      var t4 = this._ambientLight;
+      t5 = t4.r;
       if (t2) {
         t1 = this._color4;
         t1.r = t5;
@@ -10769,121 +10769,121 @@ $$.CanvasRenderer = {"":
         t6.r = t5;
         var t7 = this._color1;
         t7.r = t5;
-        t5 = t3.g;
+        t5 = t4.g;
         t1.g = t5;
         t2.g = t5;
         t6.g = t5;
         t7.g = t5;
-        t3 = t3.b;
-        t1.b = t3;
-        t2.b = t3;
-        t6.b = t3;
-        t7.b = t3;
-        t3 = this._lights;
+        t4 = t4.b;
+        t1.b = t4;
+        t2.b = t4;
+        t6.b = t4;
+        t7.b = t4;
+        t4 = this._lights;
         t5 = element.v1.positionWorld;
         var t8 = element.vertexNormalsWorld;
         if (0 >= t8.length)
           throw $.ioore(0);
-        this.calculateLight$4(t3, t5, t8[0], t7);
+        this.calculateLight$4(t4, t5, t8[0], t7);
         t5 = this._lights;
-        t3 = element.v2.positionWorld;
+        t4 = element.v2.positionWorld;
         if (1 >= t8.length)
           throw $.ioore(1);
-        this.calculateLight$4(t5, t3, t8[1], t6);
-        t3 = this._lights;
+        this.calculateLight$4(t5, t4, t8[1], t6);
+        t4 = this._lights;
         t5 = element.v4.positionWorld;
         if (3 >= t8.length)
           throw $.ioore(3);
-        this.calculateLight$4(t3, t5, t8[3], t2);
+        this.calculateLight$4(t4, t5, t8[3], t2);
         t5 = this._lights;
-        t3 = element.v3.positionWorld;
+        t4 = element.v3.positionWorld;
         if (2 >= t8.length)
           throw $.ioore(2);
-        this.calculateLight$4(t5, t3, t8[2], t1);
-        t3 = t4.get$r();
-        if (typeof t3 !== 'number')
-          return this.renderFace4$9$bailout(3, t3, t4, t1, t2, t6, t7, 0, 0, 0, 0, 0, 0);
+        this.calculateLight$4(t5, t4, t8[2], t1);
+        t4 = t3.get$r();
+        if (typeof t4 !== 'number')
+          return this.renderFace4$9$bailout(3, t4, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0, 0);
         var t9 = t7.r;
         if (typeof t9 !== 'number')
-          return this.renderFace4$9$bailout(4, t3, t4, t9, t1, t2, t6, t7, 0, 0, 0, 0, 0);
-        t7.r = $.max(0, $.min(t3 * t9, 1));
-        var t11 = t4.get$g();
+          return this.renderFace4$9$bailout(4, t4, t9, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0);
+        t7.r = $.max(0, $.min(t4 * t9, 1));
+        var t11 = t3.get$g();
         if (typeof t11 !== 'number')
-          return this.renderFace4$9$bailout(5, t4, t1, t2, t6, t7, t11, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(5, t1, t2, t6, t7, t11, t3, 0, 0, 0, 0, 0, 0);
         var t13 = t7.g;
         if (typeof t13 !== 'number')
-          return this.renderFace4$9$bailout(6, t4, t1, t2, t6, t7, t11, t13, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(6, t1, t2, t6, t7, t11, t13, t3, 0, 0, 0, 0, 0);
         t7.g = $.max(0, $.min(t11 * t13, 1));
-        var t15 = t4.get$b();
+        var t15 = t3.get$b();
         if (typeof t15 !== 'number')
-          return this.renderFace4$9$bailout(7, t4, t1, t2, t6, t7, t15, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(7, t1, t2, t6, t7, t15, t3, 0, 0, 0, 0, 0, 0);
         var t17 = t7.b;
         if (typeof t17 !== 'number')
-          return this.renderFace4$9$bailout(8, t4, t1, t2, t6, t7, t17, t15, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(8, t1, t2, t6, t7, t15, t17, t3, 0, 0, 0, 0, 0);
         t7.b = $.max(0, $.min(t15 * t17, 1));
-        var t19 = t4.get$r();
+        var t19 = t3.get$r();
         if (typeof t19 !== 'number')
-          return this.renderFace4$9$bailout(9, t4, t19, t1, t2, t6, t7, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(9, t19, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0, 0);
         var t21 = t6.r;
         if (typeof t21 !== 'number')
-          return this.renderFace4$9$bailout(10, t4, t19, t21, t1, t2, t6, t7, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(10, t19, t1, t2, t6, t7, t21, t3, 0, 0, 0, 0, 0);
         t6.r = $.max(0, $.min(t19 * t21, 1));
-        var t23 = t4.get$g();
+        var t23 = t3.get$g();
         if (typeof t23 !== 'number')
-          return this.renderFace4$9$bailout(11, t23, t4, t1, t2, t6, t7, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(11, t23, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0, 0);
         var t25 = t6.g;
         if (typeof t25 !== 'number')
-          return this.renderFace4$9$bailout(12, t23, t4, t25, t1, t2, t6, t7, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(12, t23, t25, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0);
         t6.g = $.max(0, $.min(t23 * t25, 1));
-        var t27 = t4.get$b();
+        var t27 = t3.get$b();
         if (typeof t27 !== 'number')
-          return this.renderFace4$9$bailout(13, t4, t1, t2, t6, t7, t27, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(13, t1, t2, t6, t7, t27, t3, 0, 0, 0, 0, 0, 0);
         var t29 = t6.b;
         if (typeof t29 !== 'number')
-          return this.renderFace4$9$bailout(14, t4, t1, t2, t6, t7, t27, t29, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(14, t1, t2, t6, t7, t27, t29, t3, 0, 0, 0, 0, 0);
         t6.b = $.max(0, $.min(t27 * t29, 1));
-        var t31 = t4.get$r();
+        var t31 = t3.get$r();
         if (typeof t31 !== 'number')
-          return this.renderFace4$9$bailout(15, t4, t1, t2, t6, t7, t31, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(15, t1, t2, t6, t7, t31, t3, 0, 0, 0, 0, 0, 0);
         var t33 = t2.r;
         if (typeof t33 !== 'number')
-          return this.renderFace4$9$bailout(16, t4, t1, t2, t6, t7, t33, t31, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(16, t1, t2, t6, t7, t31, t33, t3, 0, 0, 0, 0, 0);
         t2.r = $.max(0, $.min(t31 * t33, 1));
-        var t35 = t4.get$g();
+        var t35 = t3.get$g();
         if (typeof t35 !== 'number')
-          return this.renderFace4$9$bailout(17, t4, t35, t1, t2, t6, t7, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(17, t35, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0, 0);
         var t37 = t2.g;
         if (typeof t37 !== 'number')
-          return this.renderFace4$9$bailout(18, t4, t35, t37, t1, t2, t6, t7, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(18, t35, t1, t2, t6, t7, t37, t3, 0, 0, 0, 0, 0);
         t2.g = $.max(0, $.min(t35 * t37, 1));
-        var t39 = t4.get$b();
+        var t39 = t3.get$b();
         if (typeof t39 !== 'number')
-          return this.renderFace4$9$bailout(19, t39, t4, t1, t2, t6, t7, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(19, t39, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0, 0);
         var t41 = t2.b;
         if (typeof t41 !== 'number')
-          return this.renderFace4$9$bailout(20, t39, t4, t41, t1, t2, t6, t7, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(20, t39, t41, t1, t2, t6, t7, t3, 0, 0, 0, 0, 0);
         t2.b = $.max(0, $.min(t39 * t41, 1));
-        var t43 = t4.get$r();
+        var t43 = t3.get$r();
         if (typeof t43 !== 'number')
-          return this.renderFace4$9$bailout(21, t4, t1, t2, t6, t7, t43, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(21, t1, t2, t6, t7, t43, t3, 0, 0, 0, 0, 0, 0);
         var t45 = t1.r;
         if (typeof t45 !== 'number')
-          return this.renderFace4$9$bailout(22, t4, t1, t2, t6, t7, t43, t45, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(22, t1, t2, t6, t7, t43, t45, t3, 0, 0, 0, 0, 0);
         t1.r = $.max(0, $.min(t43 * t45, 1));
-        var t47 = t4.get$g();
+        var t47 = t3.get$g();
         if (typeof t47 !== 'number')
-          return this.renderFace4$9$bailout(23, t4, t1, t2, t6, t7, t47, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(23, t1, t2, t6, t7, t47, t3, 0, 0, 0, 0, 0, 0);
         var t49 = t1.g;
         if (typeof t49 !== 'number')
-          return this.renderFace4$9$bailout(24, t4, t1, t2, t6, t7, t49, t47, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(24, t1, t2, t6, t7, t47, t49, t3, 0, 0, 0, 0, 0);
         t1.g = $.max(0, $.min(t47 * t49, 1));
-        t4 = t4.get$b();
-        if (typeof t4 !== 'number')
-          return this.renderFace4$9$bailout(25, t1, t2, t6, t7, t4, 0, 0, 0, 0, 0, 0, 0);
+        t3 = t3.get$b();
+        if (typeof t3 !== 'number')
+          return this.renderFace4$9$bailout(25, t7, t3, t1, t2, t6, 0, 0, 0, 0, 0, 0, 0);
         var t52 = t1.b;
         if (typeof t52 !== 'number')
-          return this.renderFace4$9$bailout(26, t4, t52, t1, t2, t6, t7, 0, 0, 0, 0, 0, 0);
-        t1.b = $.max(0, $.min(t4 * t52, 1));
+          return this.renderFace4$9$bailout(26, t3, t1, t2, t6, t7, t52, 0, 0, 0, 0, 0, 0);
+        t1.b = $.max(0, $.min(t3 * t52, 1));
         this._image = this.getGradientTexture$4(t7, t6, t2, t1);
         this.drawTriangle$6(this._v1x, this._v1y, this._v2x, this._v2y, this._v4x, this._v4y);
         this.clipImage$13(this._v1x, this._v1y, this._v2x, this._v2y, this._v4x, this._v4y, 0, 0, 1, 0, 0, 1, this._image);
@@ -10892,30 +10892,30 @@ $$.CanvasRenderer = {"":
       } else {
         t2 = this._color;
         t2.r = t5;
-        t2.g = t3.g;
-        t2.b = t3.b;
+        t2.g = t4.g;
+        t2.b = t4.b;
         this.calculateLight$4(this._lights, element.centroidWorld, element.normalWorld, t2);
-        t5 = t4.get$r();
+        t5 = t3.get$r();
         if (typeof t5 !== 'number')
-          return this.renderFace4$9$bailout(27, t2, material, t4, t1, t5, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(27, t1, t2, material, t5, t3, 0, 0, 0, 0, 0, 0, 0);
         t7 = t2.r;
         if (typeof t7 !== 'number')
-          return this.renderFace4$9$bailout(28, t4, t1, t5, material, t7, t2, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(28, t1, material, t5, t7, t2, t3, 0, 0, 0, 0, 0, 0);
         t2.r = $.max(0, $.min(t5 * t7, 1));
-        t9 = t4.get$g();
+        t9 = t3.get$g();
         if (typeof t9 !== 'number')
-          return this.renderFace4$9$bailout(29, material, t4, t1, t9, t2, 0, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(29, t9, t1, t2, material, t3, 0, 0, 0, 0, 0, 0, 0);
         t11 = t2.g;
         if (typeof t11 !== 'number')
-          return this.renderFace4$9$bailout(30, t4, t1, t11, t9, material, t2, 0, 0, 0, 0, 0, 0);
+          return this.renderFace4$9$bailout(30, t9, t1, t11, material, t2, t3, 0, 0, 0, 0, 0, 0);
         t2.g = $.max(0, $.min(t9 * t11, 1));
-        t4 = t4.get$b();
-        if (typeof t4 !== 'number')
-          return this.renderFace4$9$bailout(31, t2, material, t1, t4, 0, 0, 0, 0, 0, 0, 0, 0);
+        t3 = t3.get$b();
+        if (typeof t3 !== 'number')
+          return this.renderFace4$9$bailout(31, t1, t2, material, t3, 0, 0, 0, 0, 0, 0, 0, 0);
         var t14 = t2.b;
         if (typeof t14 !== 'number')
-          return this.renderFace4$9$bailout(32, t2, t14, material, t1, t4, 0, 0, 0, 0, 0, 0, 0);
-        t2.b = $.max(0, $.min(t4 * t14, 1));
+          return this.renderFace4$9$bailout(32, t14, t1, t2, material, t3, 0, 0, 0, 0, 0, 0, 0);
+        t2.b = $.max(0, $.min(t3 * t14, 1));
         this.drawQuad$8(this._v1x, this._v1y, this._v2x, this._v2y, this._v3x, this._v3y, this._v4x, this._v4y);
         if (t1)
           this.strokePath$4(t2, material.wireframeLinewidth, material.wireframeLinecap, material.wireframeLinejoin);
@@ -11015,249 +11015,249 @@ $$.CanvasRenderer = {"":
       t2 = env10;
       break;
     case 3:
-      t3 = env0;
-      t4 = env1;
-      t2 = env2;
-      t5 = env3;
-      t6 = env4;
-      t7 = env5;
+      t4 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t3 = env5;
       break;
     case 4:
-      t3 = env0;
-      t4 = env1;
-      t9 = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
-      t7 = env6;
+      t4 = env0;
+      t9 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
+      t7 = env5;
+      t3 = env6;
       break;
     case 5:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t11 = env5;
-      break;
-    case 6:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t11 = env5;
-      t13 = env6;
-      break;
-    case 7:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t15 = env5;
-      break;
-    case 8:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t17 = env5;
-      t15 = env6;
-      break;
-    case 9:
-      t4 = env0;
-      t19 = env1;
-      t2 = env2;
-      t5 = env3;
-      t6 = env4;
-      t7 = env5;
-      break;
-    case 10:
-      t4 = env0;
-      t19 = env1;
-      t21 = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
-      t7 = env6;
-      break;
-    case 11:
-      t23 = env0;
-      t4 = env1;
-      t2 = env2;
-      t5 = env3;
-      t6 = env4;
-      t7 = env5;
-      break;
-    case 12:
-      t23 = env0;
-      t4 = env1;
-      t25 = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
-      t7 = env6;
-      break;
-    case 13:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t27 = env5;
-      break;
-    case 14:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t27 = env5;
-      t29 = env6;
-      break;
-    case 15:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t31 = env5;
-      break;
-    case 16:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t33 = env5;
-      t31 = env6;
-      break;
-    case 17:
-      t4 = env0;
-      t35 = env1;
-      t2 = env2;
-      t5 = env3;
-      t6 = env4;
-      t7 = env5;
-      break;
-    case 18:
-      t4 = env0;
-      t35 = env1;
-      t37 = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
-      t7 = env6;
-      break;
-    case 19:
-      t39 = env0;
-      t4 = env1;
-      t2 = env2;
-      t5 = env3;
-      t6 = env4;
-      t7 = env5;
-      break;
-    case 20:
-      t39 = env0;
-      t4 = env1;
-      t41 = env2;
-      t2 = env3;
-      t5 = env4;
-      t6 = env5;
-      t7 = env6;
-      break;
-    case 21:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t43 = env5;
-      break;
-    case 22:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t43 = env5;
-      t45 = env6;
-      break;
-    case 23:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t47 = env5;
-      break;
-    case 24:
-      t4 = env0;
-      t2 = env1;
-      t5 = env2;
-      t6 = env3;
-      t7 = env4;
-      t49 = env5;
-      t47 = env6;
-      break;
-    case 25:
       t2 = env0;
       t5 = env1;
       t6 = env2;
       t7 = env3;
-      t4 = env4;
+      t11 = env4;
+      t3 = env5;
       break;
-    case 26:
-      t4 = env0;
-      t52 = env1;
+    case 6:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t11 = env4;
+      t13 = env5;
+      t3 = env6;
+      break;
+    case 7:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t15 = env4;
+      t3 = env5;
+      break;
+    case 8:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t15 = env4;
+      t17 = env5;
+      t3 = env6;
+      break;
+    case 9:
+      t19 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t3 = env5;
+      break;
+    case 10:
+      t19 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t21 = env5;
+      t3 = env6;
+      break;
+    case 11:
+      t23 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t3 = env5;
+      break;
+    case 12:
+      t23 = env0;
+      t25 = env1;
       t2 = env2;
       t5 = env3;
       t6 = env4;
       t7 = env5;
+      t3 = env6;
+      break;
+    case 13:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t27 = env4;
+      t3 = env5;
+      break;
+    case 14:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t27 = env4;
+      t29 = env5;
+      t3 = env6;
+      break;
+    case 15:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t31 = env4;
+      t3 = env5;
+      break;
+    case 16:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t31 = env4;
+      t33 = env5;
+      t3 = env6;
+      break;
+    case 17:
+      t35 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t3 = env5;
+      break;
+    case 18:
+      t35 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t37 = env5;
+      t3 = env6;
+      break;
+    case 19:
+      t39 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t3 = env5;
+      break;
+    case 20:
+      t39 = env0;
+      t41 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
+      t7 = env5;
+      t3 = env6;
+      break;
+    case 21:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t43 = env4;
+      t3 = env5;
+      break;
+    case 22:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t43 = env4;
+      t45 = env5;
+      t3 = env6;
+      break;
+    case 23:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t47 = env4;
+      t3 = env5;
+      break;
+    case 24:
+      t2 = env0;
+      t5 = env1;
+      t6 = env2;
+      t7 = env3;
+      t47 = env4;
+      t49 = env5;
+      t3 = env6;
+      break;
+    case 25:
+      t7 = env0;
+      t3 = env1;
+      t2 = env2;
+      t5 = env3;
+      t6 = env4;
+      break;
+    case 26:
+      t3 = env0;
+      t2 = env1;
+      t5 = env2;
+      t6 = env3;
+      t7 = env4;
+      t52 = env5;
       break;
     case 27:
-      t5 = env0;
-      material = env1;
-      t4 = env2;
-      t1 = env3;
-      t2 = env4;
+      t1 = env0;
+      t5 = env1;
+      material = env2;
+      t2 = env3;
+      t3 = env4;
       break;
     case 28:
-      t4 = env0;
-      t1 = env1;
+      t1 = env0;
+      material = env1;
       t2 = env2;
-      material = env3;
-      t7 = env4;
-      t5 = env5;
+      t7 = env3;
+      t5 = env4;
+      t3 = env5;
       break;
     case 29:
-      material = env0;
-      t4 = env1;
-      t1 = env2;
-      t9 = env3;
-      t5 = env4;
+      t9 = env0;
+      t1 = env1;
+      t5 = env2;
+      material = env3;
+      t3 = env4;
       break;
     case 30:
-      t4 = env0;
+      t9 = env0;
       t1 = env1;
       t11 = env2;
-      t9 = env3;
-      material = env4;
-      t5 = env5;
+      material = env3;
+      t5 = env4;
+      t3 = env5;
       break;
     case 31:
-      t5 = env0;
-      material = env1;
-      t1 = env2;
-      t4 = env3;
+      t1 = env0;
+      t5 = env1;
+      material = env2;
+      t3 = env3;
       break;
     case 32:
-      t5 = env0;
-      t14 = env1;
-      material = env2;
-      t1 = env3;
-      t4 = env4;
+      t14 = env0;
+      t1 = env1;
+      t5 = env2;
+      material = env3;
+      t3 = env4;
       break;
   }
   switch (state) {
@@ -11314,13 +11314,13 @@ $$.CanvasRenderer = {"":
                       case 0:
                         t1 = material.wireframe === true;
                         t2 = !t1 && $.eqB(material.shading, 2) && element.vertexNormalsWorld.length === 4;
-                        t3 = this._ambientLight;
-                        var t4 = material.color;
+                        t3 = material.color;
+                        var t4 = this._ambientLight;
                       default:
                         if (state === 26 || state === 25 || state === 24 || state === 23 || state === 22 || state === 21 || state === 20 || state === 19 || state === 18 || state === 17 || state === 16 || state === 15 || state === 14 || state === 13 || state === 12 || state === 11 || state === 10 || state === 9 || state === 8 || state === 7 || state === 6 || state === 5 || state === 4 || state === 3 || state === 0 && t2)
                           switch (state) {
                             case 0:
-                              t1 = t3.get$r();
+                              t1 = t4.get$r();
                               t2 = this._color4;
                               t2.set$r(t1);
                               var t5 = this._color3;
@@ -11329,121 +11329,121 @@ $$.CanvasRenderer = {"":
                               t6.set$r(t1);
                               var t7 = this._color1;
                               t7.set$r(t1);
-                              t1 = t3.get$g();
+                              t1 = t4.get$g();
                               t2.set$g(t1);
                               t5.set$g(t1);
                               t6.set$g(t1);
                               t7.set$g(t1);
-                              t3 = t3.get$b();
-                              t2.set$b(t3);
-                              t5.set$b(t3);
-                              t6.set$b(t3);
-                              t7.set$b(t3);
-                              t3 = this._lights;
+                              t4 = t4.get$b();
+                              t2.set$b(t4);
+                              t5.set$b(t4);
+                              t6.set$b(t4);
+                              t7.set$b(t4);
+                              t4 = this._lights;
                               t1 = element.v1.get$positionWorld();
                               var t8 = element.vertexNormalsWorld;
                               if (0 < 0 || 0 >= t8.length)
                                 throw $.ioore(0);
-                              this.calculateLight$4(t3, t1, t8[0], t7);
+                              this.calculateLight$4(t4, t1, t8[0], t7);
                               t1 = this._lights;
-                              t3 = element.v2.get$positionWorld();
+                              t4 = element.v2.get$positionWorld();
                               if (1 < 0 || 1 >= t8.length)
                                 throw $.ioore(1);
-                              this.calculateLight$4(t1, t3, t8[1], t6);
-                              t3 = this._lights;
+                              this.calculateLight$4(t1, t4, t8[1], t6);
+                              t4 = this._lights;
                               t1 = element.v4.get$positionWorld();
                               if (3 < 0 || 3 >= t8.length)
                                 throw $.ioore(3);
-                              this.calculateLight$4(t3, t1, t8[3], t5);
+                              this.calculateLight$4(t4, t1, t8[3], t5);
                               t1 = this._lights;
-                              t3 = element.v3.get$positionWorld();
+                              t4 = element.v3.get$positionWorld();
                               if (2 < 0 || 2 >= t8.length)
                                 throw $.ioore(2);
-                              this.calculateLight$4(t1, t3, t8[2], t2);
-                              t3 = t4.get$r();
+                              this.calculateLight$4(t1, t4, t8[2], t2);
+                              t4 = t3.get$r();
                             case 3:
                               state = 0;
                               var t9 = t7.get$r();
                             case 4:
                               state = 0;
-                              t7.set$r($.max(0, $.min($.mul(t3, t9), 1)));
-                              var t11 = t4.get$g();
+                              t7.set$r($.max(0, $.min($.mul(t4, t9), 1)));
+                              var t11 = t3.get$g();
                             case 5:
                               state = 0;
                               var t13 = t7.get$g();
                             case 6:
                               state = 0;
                               t7.set$g($.max(0, $.min($.mul(t11, t13), 1)));
-                              var t15 = t4.get$b();
+                              var t15 = t3.get$b();
                             case 7:
                               state = 0;
                               var t17 = t7.get$b();
                             case 8:
                               state = 0;
                               t7.set$b($.max(0, $.min($.mul(t15, t17), 1)));
-                              var t19 = t4.get$r();
+                              var t19 = t3.get$r();
                             case 9:
                               state = 0;
                               var t21 = t6.get$r();
                             case 10:
                               state = 0;
                               t6.set$r($.max(0, $.min($.mul(t19, t21), 1)));
-                              var t23 = t4.get$g();
+                              var t23 = t3.get$g();
                             case 11:
                               state = 0;
                               var t25 = t6.get$g();
                             case 12:
                               state = 0;
                               t6.set$g($.max(0, $.min($.mul(t23, t25), 1)));
-                              var t27 = t4.get$b();
+                              var t27 = t3.get$b();
                             case 13:
                               state = 0;
                               var t29 = t6.get$b();
                             case 14:
                               state = 0;
                               t6.set$b($.max(0, $.min($.mul(t27, t29), 1)));
-                              var t31 = t4.get$r();
+                              var t31 = t3.get$r();
                             case 15:
                               state = 0;
                               var t33 = t5.get$r();
                             case 16:
                               state = 0;
                               t5.set$r($.max(0, $.min($.mul(t31, t33), 1)));
-                              var t35 = t4.get$g();
+                              var t35 = t3.get$g();
                             case 17:
                               state = 0;
                               var t37 = t5.get$g();
                             case 18:
                               state = 0;
                               t5.set$g($.max(0, $.min($.mul(t35, t37), 1)));
-                              var t39 = t4.get$b();
+                              var t39 = t3.get$b();
                             case 19:
                               state = 0;
                               var t41 = t5.get$b();
                             case 20:
                               state = 0;
                               t5.set$b($.max(0, $.min($.mul(t39, t41), 1)));
-                              var t43 = t4.get$r();
+                              var t43 = t3.get$r();
                             case 21:
                               state = 0;
                               var t45 = t2.get$r();
                             case 22:
                               state = 0;
                               t2.set$r($.max(0, $.min($.mul(t43, t45), 1)));
-                              var t47 = t4.get$g();
+                              var t47 = t3.get$g();
                             case 23:
                               state = 0;
                               var t49 = t2.get$g();
                             case 24:
                               state = 0;
                               t2.set$g($.max(0, $.min($.mul(t47, t49), 1)));
-                              t4 = t4.get$b();
+                              t3 = t3.get$b();
                             case 25:
                               state = 0;
                               var t52 = t2.get$b();
                             case 26:
                               state = 0;
-                              t2.set$b($.max(0, $.min($.mul(t4, t52), 1)));
+                              t2.set$b($.max(0, $.min($.mul(t3, t52), 1)));
                               this._image = this.getGradientTexture$4(t7, t6, t5, t2);
                               this.drawTriangle$6(this._v1x, this._v1y, this._v2x, this._v2y, this._v4x, this._v4y);
                               this.clipImage$13(this._v1x, this._v1y, this._v2x, this._v2y, this._v4x, this._v4y, 0, 0, 1, 0, 0, 1, this._image);
@@ -11453,33 +11453,33 @@ $$.CanvasRenderer = {"":
                         else
                           switch (state) {
                             case 0:
-                              t2 = t3.get$r();
+                              t2 = t4.get$r();
                               t5 = this._color;
                               t5.set$r(t2);
-                              t5.set$g(t3.get$g());
-                              t5.set$b(t3.get$b());
+                              t5.set$g(t4.get$g());
+                              t5.set$b(t4.get$b());
                               this.calculateLight$4(this._lights, element.centroidWorld, element.normalWorld, t5);
-                              t2 = t4.get$r();
+                              t2 = t3.get$r();
                             case 27:
                               state = 0;
                               t7 = t5.get$r();
                             case 28:
                               state = 0;
                               t5.set$r($.max(0, $.min($.mul(t2, t7), 1)));
-                              t9 = t4.get$g();
+                              t9 = t3.get$g();
                             case 29:
                               state = 0;
                               t11 = t5.get$g();
                             case 30:
                               state = 0;
                               t5.set$g($.max(0, $.min($.mul(t9, t11), 1)));
-                              t4 = t4.get$b();
+                              t3 = t3.get$b();
                             case 31:
                               state = 0;
                               var t14 = t5.get$b();
                             case 32:
                               state = 0;
-                              t5.set$b($.max(0, $.min($.mul(t4, t14), 1)));
+                              t5.set$b($.max(0, $.min($.mul(t3, t14), 1)));
                               this.drawQuad$8(this._v1x, this._v1y, this._v2x, this._v2y, this._v3x, this._v3y, this._v4x, this._v4y);
                               if (t1)
                                 this.strokePath$4(t5, material.wireframeLinewidth, material.wireframeLinecap, material.wireframeLinejoin);
