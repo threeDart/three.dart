@@ -9834,27 +9834,23 @@ $$.Path = {"":
   return this.getSpacedPoints$2(divisions,false)
 },
  getPoints$2: function(divisions, closedPath) {
-  if (this.useSpacedPoints)
+  if (this.useSpacedPoints === true)
     return this.getSpacedPoints$2(divisions, closedPath);
   if (divisions == null)
     divisions = 12;
-  if (divisions !== (divisions | 0))
-    return this.getPoints$2$bailout(1, closedPath, divisions, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   var points = [];
-  for (var t1 = this.actions, tdivisions = divisions * 2, cpx = null, item = null, args = null, cpx2 = null, j = null, cpy1 = null, action = null, tx = null, i = 0, cpy0 = null, cpy = null, cpx0 = null, cpy2 = null, t = null, cpx1 = null, laste = null, ty = null; t2 = t1.length, i < t2; ++i) {
-    if (i < 0 || i >= t2)
-      throw $.ioore(i);
-    item = t1[i];
+  for (var t1 = this.actions, cpx = null, item = null, args = null, cpx2 = null, j = null, cpy1 = null, action = null, tx = null, i = 0, cpy0 = null, cpy = null, cpx0 = null, cpy2 = null, t = null, cpx1 = null, laste = null, ty = null; $.ltB(i, $.get$length(t1)); ++i) {
+    item = $.index(t1, i);
     action = item.get$action();
     args = item.get$args();
-    $1: {
-      if ('moveTo' === action) {
+    switch (action) {
+      case 'moveTo':
         points.push($.Vector2$($.index(args, 0), $.index(args, 1)));
-        break $1;
-      } else if ('lineTo' === action) {
+        break;
+      case 'lineTo':
         points.push($.Vector2$($.index(args, 0), $.index(args, 1)));
-        break $1;
-      } else if ('quadraticCurveTo' === action) {
+        break;
+      case 'quadraticCurveTo':
         cpx = $.index(args, 2);
         cpy = $.index(args, 3);
         cpx1 = $.index(args, 0);
@@ -9868,21 +9864,20 @@ $$.Path = {"":
           cpx0 = laste.get$x();
           cpy0 = laste.get$y();
         } else {
-          t2 = i - 1;
-          if (t2 < 0 || t2 >= t1.length)
-            throw $.ioore(t2);
-          laste = t1[t2].get$args();
+          laste = $.index(t1, i - 1).get$args();
           cpx0 = $.index(laste, $.sub($.get$length(laste), 2));
           cpy0 = $.index(laste, $.sub($.get$length(laste), 1));
         }
-        for (j = 1; j <= divisions; ++j) {
+        for (j = 1; $.leB(j, divisions); ++j) {
+          if (typeof divisions !== 'number')
+            throw $.iae(divisions);
           t = j / divisions;
           tx = $.b2(t, cpx0, cpx1, cpx);
           ty = $.b2(t, cpy0, cpy1, cpy);
           points.push($.Vector2$(tx, ty));
         }
-        break $1;
-      } else if ('bezierCurveTo' === action) {
+        break;
+      case 'bezierCurveTo':
         cpx = $.index(args, 4);
         cpy = $.index(args, 5);
         cpx1 = $.index(args, 0);
@@ -9898,91 +9893,79 @@ $$.Path = {"":
           cpx0 = laste.get$x();
           cpy0 = laste.get$y();
         } else {
-          t2 = i - 1;
-          if (t2 < 0 || t2 >= t1.length)
-            throw $.ioore(t2);
-          laste = t1[t2].get$args();
+          laste = $.index(t1, i - 1).get$args();
           cpx0 = $.index(laste, $.sub($.get$length(laste), 2));
           cpy0 = $.index(laste, $.sub($.get$length(laste), 1));
         }
-        for (j = 1; j <= divisions; ++j) {
+        for (j = 1; $.leB(j, divisions); ++j) {
+          if (typeof divisions !== 'number')
+            throw $.iae(divisions);
           t = j / divisions;
           tx = $.b3(t, cpx0, cpx1, cpx2, cpx);
           ty = $.b3(t, cpy0, cpy1, cpy2, cpy);
           points.push($.Vector2$(tx, ty));
         }
-        break $1;
-      } else if ('splineThru' === action) {
-        t3 = i - 1;
-        if (t3 < 0 || t3 >= t2)
-          throw $.ioore(t3);
-        laste = t1[t3].get$args();
+        break;
+      case 'splineThru':
+        laste = $.index(t1, i - 1).get$args();
         var spts = [$.Vector2$($.index(laste, $.sub($.get$length(laste), 2)), $.index(laste, $.sub($.get$length(laste), 1)))];
-        var t4 = $.get$length($.index(args, 0));
-        if (typeof t4 !== 'number')
-          throw $.iae(t4);
-        var n = divisions * t4;
+        var n = $.mul(divisions, $.get$length($.index(args, 0)));
         $.addAll(spts, $.index(args, 0));
         var spline = $.SplineCurve$(spts);
-        for (j = 1; j <= n; ++j)
+        for (j = 1; $.leB(j, n); ++j) {
+          if (typeof n !== 'number')
+            throw $.iae(n);
           points.push(spline.getPointAt$1(j / n));
-        break $1;
-      } else if ('arc' === action) {
-        t3 = i - 1;
-        if (t3 < 0 || t3 >= t2)
-          throw $.ioore(t3);
-        laste = t1[t3].get$args();
+        }
+        break;
+      case 'arc':
+        laste = $.index(t1, i - 1).get$args();
         var aX = $.index(args, 0);
         var aY = $.index(args, 1);
         var aRadius = $.index(args, 2);
-        if (typeof aRadius !== 'number')
-          return this.getPoints$2$bailout(2, t1, cpy1, closedPath, tx, i, cpy0, cpy, cpx0, cpy2, t, cpx1, ty, laste, aX, points, aY, divisions, aRadius, cpx, item, action, args, cpx2, 0, 0, 0, 0);
         var aStartAngle = $.index(args, 3);
-        if (typeof aStartAngle !== 'number')
-          return this.getPoints$2$bailout(3, closedPath, laste, aX, points, aY, divisions, aRadius, aStartAngle, cpx, t1, cpx2, cpy1, tx, i, cpy0, cpy, cpx0, cpy2, t, cpx1, ty, item, action, args, 0, 0, 0);
         var aEndAngle = $.index(args, 4);
-        var t6 = $.index(args, 5) !== true;
+        t2 = $.index(args, 5) !== true;
         var deltaAngle = $.sub(aEndAngle, aStartAngle);
-        if (typeof deltaAngle !== 'number')
-          return this.getPoints$2$bailout(4, closedPath, laste, aX, points, aY, divisions, aRadius, aStartAngle, cpx, t1, cpx2, t6, cpy1, tx, deltaAngle, i, cpy, cpx0, cpy0, cpy2, cpx1, t, ty, item, action, args, 0);
-        for (var j = 1, angle = null; j <= tdivisions; ++j) {
+        var tdivisions = $.mul(divisions, 2);
+        for (var j = 1, angle = null; $.leB(j, tdivisions); ++j) {
+          if (typeof tdivisions !== 'number')
+            throw $.iae(tdivisions);
           t = j / tdivisions;
-          if (t6)
+          if (t2)
             t = 1 - t;
-          angle = aStartAngle + t * deltaAngle;
-          tx = $.add(aX, aRadius * $.cos(angle));
-          ty = $.add(aY, aRadius * $.sin(angle));
+          if (typeof deltaAngle !== 'number')
+            throw $.iae(deltaAngle);
+          angle = $.add(aStartAngle, t * deltaAngle);
+          tx = $.add(aX, $.mul(aRadius, $.cos(angle)));
+          ty = $.add(aY, $.mul(aRadius, $.sin(angle)));
           points.push($.Vector2$(tx, ty));
         }
-        break $1;
-      } else if ('ellipse' === action) {
+        break;
+      case 'ellipse':
         aX = $.index(args, 0);
         aY = $.index(args, 1);
         var xRadius = $.index(args, 2);
-        if (typeof xRadius !== 'number')
-          return this.getPoints$2$bailout(5, aX, cpy1, aY, tx, xRadius, i, cpy0, cpy, cpx0, cpy2, t, cpx1, laste, ty, t1, closedPath, divisions, points, cpx, item, action, args, cpx2, 0, 0, 0, 0);
         var yRadius = $.index(args, 3);
-        if (typeof yRadius !== 'number')
-          return this.getPoints$2$bailout(6, aX, closedPath, aY, xRadius, yRadius, divisions, points, cpx, t1, cpx2, cpy1, tx, i, cpy0, cpy, cpx0, cpy2, t, cpx1, laste, ty, item, action, args, 0, 0, 0);
         aStartAngle = $.index(args, 4);
-        if (typeof aStartAngle !== 'number')
-          return this.getPoints$2$bailout(7, aX, closedPath, aY, xRadius, yRadius, aStartAngle, divisions, points, cpx, t1, cpx2, cpy1, tx, i, cpy0, cpy, cpx0, cpy2, t, cpx1, laste, ty, item, action, args, 0, 0);
         aEndAngle = $.index(args, 5);
-        var t5 = $.index(args, 6) !== true;
+        t2 = $.index(args, 6) !== true;
         deltaAngle = $.sub(aEndAngle, aStartAngle);
-        if (typeof deltaAngle !== 'number')
-          return this.getPoints$2$bailout(8, aX, closedPath, aY, xRadius, yRadius, aStartAngle, t5, deltaAngle, divisions, points, cpx, t1, cpx2, cpy1, tx, i, cpy0, cpy, cpx0, cpy2, t, cpx1, laste, ty, item, action, args);
-        for (j = 1, angle = null; j <= tdivisions; ++j) {
+        tdivisions = $.mul(divisions, 2);
+        for (j = 1, angle = null; $.leB(j, tdivisions); ++j) {
+          if (typeof tdivisions !== 'number')
+            throw $.iae(tdivisions);
           t = j / tdivisions;
-          if (t5)
+          if (t2)
             t = 1 - t;
-          angle = aStartAngle + t * deltaAngle;
-          tx = $.add(aX, xRadius * $.cos(angle));
-          ty = $.add(aY, yRadius * $.sin(angle));
+          if (typeof deltaAngle !== 'number')
+            throw $.iae(deltaAngle);
+          angle = $.add(aStartAngle, t * deltaAngle);
+          tx = $.add(aX, $.mul(xRadius, $.cos(angle)));
+          ty = $.add(aY, $.mul(yRadius, $.sin(angle)));
           points.push($.Vector2$(tx, ty));
         }
-        break $1;
-      }
+        break;
     }
   }
   t1 = points.length;
@@ -10012,460 +9995,6 @@ $$.Path = {"":
     points.push(points[0]);
   }
   return points;
-},
- getPoints$2$bailout: function(state, env0, env1, env2, env3, env4, env5, env6, env7, env8, env9, env10, env11, env12, env13, env14, env15, env16, env17, env18, env19, env20, env21, env22, env23, env24, env25, env26) {
-  switch (state) {
-    case 1:
-      var closedPath = env0;
-      divisions = env1;
-      break;
-    case 2:
-      t1 = env0;
-      cpy1 = env1;
-      closedPath = env2;
-      tx = env3;
-      i = env4;
-      cpy0 = env5;
-      cpy = env6;
-      cpx0 = env7;
-      cpy2 = env8;
-      t = env9;
-      cpx1 = env10;
-      ty = env11;
-      laste = env12;
-      aX = env13;
-      points = env14;
-      aY = env15;
-      divisions = env16;
-      aRadius = env17;
-      cpx = env18;
-      item = env19;
-      action = env20;
-      args = env21;
-      cpx2 = env22;
-      break;
-    case 3:
-      closedPath = env0;
-      laste = env1;
-      aX = env2;
-      points = env3;
-      aY = env4;
-      divisions = env5;
-      aRadius = env6;
-      aStartAngle = env7;
-      cpx = env8;
-      t1 = env9;
-      cpx2 = env10;
-      cpy1 = env11;
-      tx = env12;
-      i = env13;
-      cpy0 = env14;
-      cpy = env15;
-      cpx0 = env16;
-      cpy2 = env17;
-      t = env18;
-      cpx1 = env19;
-      ty = env20;
-      item = env21;
-      action = env22;
-      args = env23;
-      break;
-    case 4:
-      closedPath = env0;
-      laste = env1;
-      aX = env2;
-      points = env3;
-      aY = env4;
-      divisions = env5;
-      aRadius = env6;
-      aStartAngle = env7;
-      cpx = env8;
-      t1 = env9;
-      cpx2 = env10;
-      t5 = env11;
-      cpy1 = env12;
-      tx = env13;
-      deltaAngle = env14;
-      i = env15;
-      cpy = env16;
-      cpx0 = env17;
-      cpy0 = env18;
-      cpy2 = env19;
-      cpx1 = env20;
-      t = env21;
-      ty = env22;
-      item = env23;
-      action = env24;
-      args = env25;
-      break;
-    case 5:
-      aX = env0;
-      cpy1 = env1;
-      aY = env2;
-      tx = env3;
-      xRadius = env4;
-      i = env5;
-      cpy0 = env6;
-      cpy = env7;
-      cpx0 = env8;
-      cpy2 = env9;
-      t = env10;
-      cpx1 = env11;
-      laste = env12;
-      ty = env13;
-      t1 = env14;
-      closedPath = env15;
-      divisions = env16;
-      points = env17;
-      cpx = env18;
-      item = env19;
-      action = env20;
-      args = env21;
-      cpx2 = env22;
-      break;
-    case 6:
-      aX = env0;
-      closedPath = env1;
-      aY = env2;
-      xRadius = env3;
-      yRadius = env4;
-      divisions = env5;
-      points = env6;
-      cpx = env7;
-      t1 = env8;
-      cpx2 = env9;
-      cpy1 = env10;
-      tx = env11;
-      i = env12;
-      cpy0 = env13;
-      cpy = env14;
-      cpx0 = env15;
-      cpy2 = env16;
-      t = env17;
-      cpx1 = env18;
-      laste = env19;
-      ty = env20;
-      item = env21;
-      action = env22;
-      args = env23;
-      break;
-    case 7:
-      aX = env0;
-      closedPath = env1;
-      aY = env2;
-      xRadius = env3;
-      yRadius = env4;
-      aStartAngle = env5;
-      divisions = env6;
-      points = env7;
-      cpx = env8;
-      t1 = env9;
-      cpx2 = env10;
-      cpy1 = env11;
-      tx = env12;
-      i = env13;
-      cpy0 = env14;
-      cpy = env15;
-      cpx0 = env16;
-      cpy2 = env17;
-      t = env18;
-      cpx1 = env19;
-      laste = env20;
-      ty = env21;
-      item = env22;
-      action = env23;
-      args = env24;
-      break;
-    case 8:
-      aX = env0;
-      closedPath = env1;
-      aY = env2;
-      xRadius = env3;
-      yRadius = env4;
-      aStartAngle = env5;
-      t5 = env6;
-      deltaAngle = env7;
-      divisions = env8;
-      points = env9;
-      cpx = env10;
-      t1 = env11;
-      cpx2 = env12;
-      cpy1 = env13;
-      tx = env14;
-      i = env15;
-      cpy0 = env16;
-      cpy = env17;
-      cpx0 = env18;
-      cpy2 = env19;
-      t = env20;
-      cpx1 = env21;
-      laste = env22;
-      ty = env23;
-      item = env24;
-      action = env25;
-      args = env26;
-      break;
-  }
-  switch (state) {
-    case 0:
-      if (this.useSpacedPoints === true)
-        return this.getSpacedPoints$2(divisions, closedPath);
-      if (divisions == null)
-        var divisions = 12;
-    case 1:
-      state = 0;
-      var points = [];
-      var t1 = this.actions;
-      var cpx = null;
-      var item = null;
-      var args = null;
-      var cpx2 = null;
-      var j = null;
-      var cpy1 = null;
-      var action = null;
-      var tx = null;
-      var i = 0;
-      var cpy0 = null;
-      var cpy = null;
-      var cpx0 = null;
-      var cpy2 = null;
-      var t = null;
-      var cpx1 = null;
-      var laste = null;
-      var ty = null;
-    default:
-      L0:
-        while (true)
-          switch (state) {
-            case 0:
-              if (!(i < t1.length))
-                break L0;
-              if (i < 0 || i >= t1.length)
-                throw $.ioore(i);
-              item = t1[i];
-              action = item.get$action();
-              args = item.get$args();
-            default:
-              $1: {
-                switch (state) {
-                  case 0:
-                  default:
-                    if (state === 0 && 'moveTo' === action) {
-                      points.push($.Vector2$($.index(args, 0), $.index(args, 1)));
-                      break $1;
-                    } else
-                      switch (state) {
-                        case 0:
-                        default:
-                          if (state === 0 && 'lineTo' === action) {
-                            points.push($.Vector2$($.index(args, 0), $.index(args, 1)));
-                            break $1;
-                          } else
-                            switch (state) {
-                              case 0:
-                              default:
-                                if (state === 0 && 'quadraticCurveTo' === action) {
-                                  cpx = $.index(args, 2);
-                                  cpy = $.index(args, 3);
-                                  cpx1 = $.index(args, 0);
-                                  cpy1 = $.index(args, 1);
-                                  var t2 = points.length;
-                                  if (t2 > 0) {
-                                    var t3 = t2 - 1;
-                                    if (t3 < 0 || t3 >= t2)
-                                      throw $.ioore(t3);
-                                    laste = points[t3];
-                                    cpx0 = laste.get$x();
-                                    cpy0 = laste.get$y();
-                                  } else {
-                                    t2 = i - 1;
-                                    if (t2 < 0 || t2 >= t1.length)
-                                      throw $.ioore(t2);
-                                    laste = t1[t2].get$args();
-                                    cpx0 = $.index(laste, $.sub($.get$length(laste), 2));
-                                    cpy0 = $.index(laste, $.sub($.get$length(laste), 1));
-                                  }
-                                  for (j = 1; $.leB(j, divisions); ++j) {
-                                    if (typeof divisions !== 'number')
-                                      throw $.iae(divisions);
-                                    t = j / divisions;
-                                    tx = $.b2(t, cpx0, cpx1, cpx);
-                                    ty = $.b2(t, cpy0, cpy1, cpy);
-                                    points.push($.Vector2$(tx, ty));
-                                  }
-                                  break $1;
-                                } else
-                                  switch (state) {
-                                    case 0:
-                                    default:
-                                      if (state === 0 && 'bezierCurveTo' === action) {
-                                        cpx = $.index(args, 4);
-                                        cpy = $.index(args, 5);
-                                        cpx1 = $.index(args, 0);
-                                        cpy1 = $.index(args, 1);
-                                        cpx2 = $.index(args, 2);
-                                        cpy2 = $.index(args, 3);
-                                        t2 = points.length;
-                                        if (t2 > 0) {
-                                          t3 = t2 - 1;
-                                          if (t3 < 0 || t3 >= t2)
-                                            throw $.ioore(t3);
-                                          laste = points[t3];
-                                          cpx0 = laste.get$x();
-                                          cpy0 = laste.get$y();
-                                        } else {
-                                          t2 = i - 1;
-                                          if (t2 < 0 || t2 >= t1.length)
-                                            throw $.ioore(t2);
-                                          laste = t1[t2].get$args();
-                                          cpx0 = $.index(laste, $.sub($.get$length(laste), 2));
-                                          cpy0 = $.index(laste, $.sub($.get$length(laste), 1));
-                                        }
-                                        for (j = 1; $.leB(j, divisions); ++j) {
-                                          if (typeof divisions !== 'number')
-                                            throw $.iae(divisions);
-                                          t = j / divisions;
-                                          tx = $.b3(t, cpx0, cpx1, cpx2, cpx);
-                                          ty = $.b3(t, cpy0, cpy1, cpy2, cpy);
-                                          points.push($.Vector2$(tx, ty));
-                                        }
-                                        break $1;
-                                      } else
-                                        switch (state) {
-                                          case 0:
-                                          default:
-                                            if (state === 0 && 'splineThru' === action) {
-                                              t2 = i - 1;
-                                              if (t2 < 0 || t2 >= t1.length)
-                                                throw $.ioore(t2);
-                                              laste = t1[t2].get$args();
-                                              var spts = [$.Vector2$($.index(laste, $.sub($.get$length(laste), 2)), $.index(laste, $.sub($.get$length(laste), 1)))];
-                                              var n = $.mul(divisions, $.get$length($.index(args, 0)));
-                                              $.addAll(spts, $.index(args, 0));
-                                              var spline = $.SplineCurve$(spts);
-                                              for (j = 1; $.leB(j, n); ++j) {
-                                                if (typeof n !== 'number')
-                                                  throw $.iae(n);
-                                                points.push(spline.getPointAt$1(j / n));
-                                              }
-                                              break $1;
-                                            } else
-                                              switch (state) {
-                                                case 0:
-                                                default:
-                                                  if (state === 4 || state === 3 || state === 2 || state === 0 && 'arc' === action)
-                                                    switch (state) {
-                                                      case 0:
-                                                        t2 = i - 1;
-                                                        if (t2 < 0 || t2 >= t1.length)
-                                                          throw $.ioore(t2);
-                                                        laste = t1[t2].get$args();
-                                                        var aX = $.index(args, 0);
-                                                        var aY = $.index(args, 1);
-                                                        var aRadius = $.index(args, 2);
-                                                      case 2:
-                                                        state = 0;
-                                                        var aStartAngle = $.index(args, 3);
-                                                      case 3:
-                                                        state = 0;
-                                                        var aEndAngle = $.index(args, 4);
-                                                        var t5 = $.index(args, 5) !== true;
-                                                        var deltaAngle = $.sub(aEndAngle, aStartAngle);
-                                                      case 4:
-                                                        state = 0;
-                                                        var tdivisions = $.mul(divisions, 2);
-                                                        for (var j = 1, angle = null; $.leB(j, tdivisions); ++j) {
-                                                          if (typeof tdivisions !== 'number')
-                                                            throw $.iae(tdivisions);
-                                                          t = j / tdivisions;
-                                                          if (t5)
-                                                            t = 1 - t;
-                                                          if (typeof deltaAngle !== 'number')
-                                                            throw $.iae(deltaAngle);
-                                                          angle = $.add(aStartAngle, t * deltaAngle);
-                                                          tx = $.add(aX, $.mul(aRadius, $.cos(angle)));
-                                                          ty = $.add(aY, $.mul(aRadius, $.sin(angle)));
-                                                          points.push($.Vector2$(tx, ty));
-                                                        }
-                                                        break $1;
-                                                    }
-                                                  else
-                                                    switch (state) {
-                                                      case 0:
-                                                      default:
-                                                        if (state === 8 || state === 7 || state === 6 || state === 5 || state === 0 && 'ellipse' === action)
-                                                          switch (state) {
-                                                            case 0:
-                                                              aX = $.index(args, 0);
-                                                              aY = $.index(args, 1);
-                                                              var xRadius = $.index(args, 2);
-                                                            case 5:
-                                                              state = 0;
-                                                              var yRadius = $.index(args, 3);
-                                                            case 6:
-                                                              state = 0;
-                                                              aStartAngle = $.index(args, 4);
-                                                            case 7:
-                                                              state = 0;
-                                                              aEndAngle = $.index(args, 5);
-                                                              t5 = $.index(args, 6) !== true;
-                                                              deltaAngle = $.sub(aEndAngle, aStartAngle);
-                                                            case 8:
-                                                              state = 0;
-                                                              tdivisions = $.mul(divisions, 2);
-                                                              for (j = 1, angle = null; $.leB(j, tdivisions); ++j) {
-                                                                if (typeof tdivisions !== 'number')
-                                                                  throw $.iae(tdivisions);
-                                                                t = j / tdivisions;
-                                                                if (t5)
-                                                                  t = 1 - t;
-                                                                if (typeof deltaAngle !== 'number')
-                                                                  throw $.iae(deltaAngle);
-                                                                angle = $.add(aStartAngle, t * deltaAngle);
-                                                                tx = $.add(aX, $.mul(xRadius, $.cos(angle)));
-                                                                ty = $.add(aY, $.mul(yRadius, $.sin(angle)));
-                                                                points.push($.Vector2$(tx, ty));
-                                                              }
-                                                              break $1;
-                                                          }
-                                                    }
-                                              }
-                                        }
-                                  }
-                            }
-                      }
-                }
-              }
-              ++i;
-          }
-      t1 = points.length;
-      t2 = t1 - 1;
-      if (t2 < 0 || t2 >= t1)
-        throw $.ioore(t2);
-      var lastPoint = points[t2];
-      t2 = lastPoint.get$x();
-      if (0 >= t1)
-        throw $.ioore(0);
-      if ($.ltB($.abs($.sub(t2, points[0].get$x())), 1e-10)) {
-        t1 = lastPoint.get$y();
-        if (0 >= points.length)
-          throw $.ioore(0);
-        t2 = $.ltB($.abs($.sub(t1, points[0].get$y())), 1e-10);
-        t1 = t2;
-      } else
-        t1 = false;
-      if (t1) {
-        if (0 >= points.length)
-          throw $.ioore(0);
-        points.pop();
-      }
-      if (closedPath) {
-        if (0 >= points.length)
-          throw $.ioore(0);
-        points.push(points[0]);
-      }
-      return points;
-  }
 },
  getPoints$0: function() {
   return this.getPoints$2(null,false)
@@ -38767,7 +38296,9 @@ $.WebGLRenderingContext_TEXTURE_WRAP_T = 10243;
 $.WebGLRenderingContext_FRAGMENT_SHADER = 35632;
 $.Three_SmoothShading = 2;
 $.WebGLRenderingContext_SRC_ALPHA_SATURATE = 776;
+$.PathAction_ELLIPSE = 'ellipse';
 $.WebGLRenderingContext_DEPTH_ATTACHMENT = 36096;
+$.PathAction_BEZIER_CURVE_TO = 'bezierCurveTo';
 $.WebGLRenderingContext_BYTE = 5120;
 $.WebGLRenderingContext_CCW = 2305;
 $.WebGLRenderingContext_CLAMP_TO_EDGE = 33071;
@@ -38807,6 +38338,7 @@ $.WebGLRenderingContext_TEXTURE0 = 33984;
 $.WebGLRenderingContext_LINEAR_MIPMAP_LINEAR = 9987;
 $.WebGLRenderingContext_UNSIGNED_SHORT = 5123;
 $.Three_NormalBlending = 1;
+$.PathAction_MOVE_TO = 'moveTo';
 $.WebGLRenderingContext_LEQUAL = 515;
 $.Three_AddEquation = 100;
 $.WebGLRenderingContext_LUMINANCE_ALPHA = 6410;
@@ -38833,6 +38365,7 @@ $.WebGLRenderingContext_TEXTURE_MIN_FILTER = 10241;
 $.Three_FlatShading = 1;
 $.LineStrip = 0;
 $.WebGLRenderingContext_LINES = 1;
+$.PathAction_CSPLINE_THRU = 'splineThru';
 $.DualPivotQuicksort__INSERTION_SORT_THRESHOLD = 32;
 $.Three_UnsignedByteType = 10;
 $.WebGLRenderingContext_NEAREST_MIPMAP_LINEAR = 9986;
@@ -38852,6 +38385,7 @@ $.HashMapImplementation__INITIAL_CAPACITY = 8;
 $.WebGLRenderingContext_ALPHA = 6406;
 $.WebGLRenderingContext_CW = 2304;
 $.Three_AdditiveBlending = 2;
+$.PathAction_QUADRATIC_CURVE_TO = 'quadraticCurveTo';
 $.WebGLRenderingContext_MAX_CUBE_MAP_TEXTURE_SIZE = 34076;
 $.WebGLRenderingContext_FUNC_SUBTRACT = 32778;
 $.WebGLRenderingContext_STENCIL_BUFFER_BIT = 1024;
@@ -38882,12 +38416,14 @@ $.WebGLRenderingContext_RGB = 6407;
 $.Three_Object3DCount = 0;
 $.Three_ClampToEdgeWrapping = 1;
 $.WebGLRenderingContext_TRIANGLE_STRIP = 5;
+$.PathAction_ARC = 'arc';
 $.WebGLRenderingContext_DEPTH_STENCIL_ATTACHMENT = 33306;
 $.WebGLRenderingContext_DST_COLOR = 774;
 $.Three_FloatType = 15;
 $.WebGLRenderingContext_UNSIGNED_BYTE = 5121;
 $.WebGLRenderingContext_CULL_FACE = 2884;
 $.WebGLRenderingContext_UNSIGNED_SHORT_5_5_5_1 = 32820;
+$.PathAction_LINE_TO = 'lineTo';
 $.WebGLRenderingContext_LINE_STRIP = 3;
 $.ExtrudeGeometry____v3 = null;
 $.double_NEGATIVE_INFINITY = (-1/0);
