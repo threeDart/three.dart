@@ -230,7 +230,11 @@ class CanvasRenderer implements Renderer
 
     _camera = camera;
     
-    _autoClear ? clear() : _context.setTransform( 1, 0, 0, - 1, _canvasWidthHalf, _canvasHeightHalf );
+    if (_autoClear) {
+      clear();
+    } else {
+      _context.setTransform( 1, 0, 0, - 1, _canvasWidthHalf, _canvasHeightHalf );
+    }
     //TODO: these are ints not lists?
     //_info['render']['vertices'] = 0;
     //_info['render']['faces'] = 0;
@@ -620,7 +624,11 @@ class CanvasRenderer implements Renderer
   
         }*/
       } else {
-        mbMaterial.wireframe ? strokePath( mbMaterial.color, mbMaterial.wireframeLinewidth, mbMaterial.wireframeLinecap, mbMaterial.wireframeLinejoin ) : fillPath( mbMaterial.color );
+        if (mbMaterial.wireframe) { 
+          strokePath( mbMaterial.color, mbMaterial.wireframeLinewidth, mbMaterial.wireframeLinecap, mbMaterial.wireframeLinejoin );
+        } else { 
+          fillPath( mbMaterial.color );
+        }
       }
   
     } 
@@ -683,12 +691,20 @@ class CanvasRenderer implements Renderer
           _color.g = Math.max( 0, Math.min( mlMaterial.color.g * _color.g, 1 ) );
           _color.b = Math.max( 0, Math.min( mlMaterial.color.b * _color.b, 1 ) );
   
-          mlMaterial.wireframe ? strokePath( _color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin ) : fillPath( _color );
+          if (mlMaterial.wireframe) { 
+            strokePath( _color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin );
+          } else {
+            fillPath( _color );
+          }
         }
       } 
       else 
       {
-        mlMaterial.wireframe ? strokePath( mlMaterial.color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin ) : fillPath( mlMaterial.color );
+        if (mlMaterial.wireframe) { 
+          strokePath( mlMaterial.color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin ); 
+        } else { 
+          fillPath( mlMaterial.color );
+        }
       }
     } 
     else if ( material is MeshDepthMaterial ) 
@@ -718,7 +734,11 @@ class CanvasRenderer implements Renderer
       _color.b = normalToComponent( element.normalWorld.z );
   
       //TODO
-      mnMaterial.wireframe ? strokePath( _color, mnMaterial.wireframeLinewidth, mnMaterial.wireframeLinecap, mnMaterial.wireframeLinejoin ) : fillPath( _color );  
+      if (mnMaterial.wireframe) { 
+        strokePath( _color, mnMaterial.wireframeLinewidth, mnMaterial.wireframeLinecap, mnMaterial.wireframeLinejoin ); 
+      } else { 
+        fillPath( _color );  
+      }
     }
   }
   
@@ -758,7 +778,11 @@ class CanvasRenderer implements Renderer
       
       drawQuad( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _v4x, _v4y );
   
-      mbMaterial.wireframe ? strokePath( mbMaterial.color, mbMaterial.wireframeLinewidth, mbMaterial.wireframeLinecap, mbMaterial.wireframeLinejoin ) : fillPath( mbMaterial.color );
+      if (mbMaterial.wireframe) {
+        strokePath( mbMaterial.color, mbMaterial.wireframeLinewidth, mbMaterial.wireframeLinecap, mbMaterial.wireframeLinejoin );
+      } else { 
+        fillPath( mbMaterial.color );
+      }
     } 
     else if ( material is MeshLambertMaterial )
     {
@@ -818,14 +842,22 @@ class CanvasRenderer implements Renderer
   
           drawQuad( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _v4x, _v4y );
   
-          mlMaterial.wireframe ? strokePath( _color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin ) : fillPath( _color ); 
+          if (mlMaterial.wireframe) {
+            strokePath( _color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin );
+          } else {
+            fillPath( _color ); 
+          }
         }
       } 
       else
       {
         drawQuad( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _v4x, _v4y );
   
-        mlMaterial.wireframe ? strokePath( mlMaterial.color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin ) : fillPath( mlMaterial.color );
+        if (mlMaterial.wireframe) {
+          strokePath( mlMaterial.color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin ); 
+        } else { 
+          fillPath( mlMaterial.color );
+        }
       }
     } 
     else if ( material is MeshNormalMaterial )
@@ -838,7 +870,11 @@ class CanvasRenderer implements Renderer
   
       drawQuad( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _v4x, _v4y );
   
-      mnMaterial.wireframe ? strokePath( _color, mnMaterial.wireframeLinewidth, mnMaterial.wireframeLinecap, mnMaterial.wireframeLinejoin ) : fillPath( _color );
+      if (mnMaterial.wireframe) { 
+        strokePath( _color, mnMaterial.wireframeLinewidth, mnMaterial.wireframeLinecap, mnMaterial.wireframeLinejoin ); 
+      } else { 
+        fillPath( _color );
+      }
     } 
     else if ( material is MeshDepthMaterial ) 
     {
