@@ -27,6 +27,11 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 ### Change Log ###
 
+2012 09 23 - **v 0.2.x** 
+* Major refactor to pub ([adam](https://github.com/financeCoding))
+  * Minor refactors of getters and exceptions
+  * Regenerating javascript examples
+
 2012 08 30 - **v 0.2.1**
 
 * Orthographic camera added ([nelsonsilva](https://github.com/nelsonsilva))
