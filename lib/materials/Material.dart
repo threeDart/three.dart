@@ -52,7 +52,7 @@ class Material implements IMaterial
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
   
-  get _data() {
+  get _data {
     if (__data == null) {
       __data = {};
     }

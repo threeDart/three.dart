@@ -672,12 +672,12 @@ class ExtrudeGeometry extends Geometry {
   }
   
   
-  static Vector2 ___v1 = null; static get __v1() => (___v1 == null)? ___v1 = new Vector2() : ___v1;
-  static Vector2 ___v2 = null; static get __v2() => (___v2 == null)? ___v2 = new Vector2() : ___v2;
-  static Vector2 ___v3 = null; static get __v3() => (___v3 == null)? ___v3 = new Vector2() : ___v3;
-  static Vector2 ___v4 = null; static get __v4() => (___v4 == null)? ___v4 = new Vector2() : ___v4;
-  static Vector2 ___v5 = null; static get __v5() => (___v5 == null)? ___v5 = new Vector2() : ___v5;
-  static Vector2 ___v6 = null; static get __v6() => (___v6 == null)? ___v6 = new Vector2() : ___v6;
+  static Vector2 ___v1 = null; static get __v1 => (___v1 == null)? ___v1 = new Vector2() : ___v1;
+  static Vector2 ___v2 = null; static get __v2 => (___v2 == null)? ___v2 = new Vector2() : ___v2;
+  static Vector2 ___v3 = null; static get __v3 => (___v3 == null)? ___v3 = new Vector2() : ___v3;
+  static Vector2 ___v4 = null; static get __v4 => (___v4 == null)? ___v4 = new Vector2() : ___v4;
+  static Vector2 ___v5 = null; static get __v5 => (___v5 == null)? ___v5 = new Vector2() : ___v5;
+  static Vector2 ___v6 = null; static get __v6 => (___v6 == null)? ___v6 = new Vector2() : ___v6;
 }
 
 class ExtrudeGeometryWorldUVGenerator {

@@ -55,21 +55,21 @@ class Sprite extends Object3D {
 
 class SpriteAlignment {
   static Vector2 _topLeft;
-  static Vector2 get topLeft() => (_topLeft == null) ? _topLeft = new Vector2( 1, -1 ): _topLeft;
+  static Vector2 get topLeft => (_topLeft == null) ? _topLeft = new Vector2( 1, -1 ): _topLeft;
   static Vector2 _topCenter;
-  static Vector2 get topCenter() => (_topCenter == null) ? _topCenter = new Vector2( 0, -1 ): _topCenter;
+  static Vector2 get topCenter => (_topCenter == null) ? _topCenter = new Vector2( 0, -1 ): _topCenter;
   static Vector2 _topRight;
-  static Vector2 get topRight() => (_topRight == null) ? _topRight = new Vector2( -1, -1 ): _topRight;
+  static Vector2 get topRight => (_topRight == null) ? _topRight = new Vector2( -1, -1 ): _topRight;
   static Vector2 _centerLeft;
-  static Vector2 get centerLeft() => (_centerLeft == null) ? _centerLeft = new Vector2( 1, 0 ): _centerLeft;
+  static Vector2 get centerLeft => (_centerLeft == null) ? _centerLeft = new Vector2( 1, 0 ): _centerLeft;
   static Vector2 _center;
-  static Vector2 get center() => (_center == null) ? _center = new Vector2( 0, 0 ): _center;
+  static Vector2 get center => (_center == null) ? _center = new Vector2( 0, 0 ): _center;
   static Vector2 _centerRight;
-  static Vector2 get centerRight() => (_centerRight == null) ? _centerRight = new Vector2( -1, 0 ): _centerRight;
+  static Vector2 get centerRight => (_centerRight == null) ? _centerRight = new Vector2( -1, 0 ): _centerRight;
   static Vector2 _bottomLeft;
-  static Vector2 get bottomLeft() => (_bottomLeft == null) ? _bottomLeft = new Vector2( 1, 1 ): _bottomLeft;
+  static Vector2 get bottomLeft => (_bottomLeft == null) ? _bottomLeft = new Vector2( 1, 1 ): _bottomLeft;
   static Vector2 _bottomCenter;
-  static Vector2 get bottomCenter() => (_bottomCenter == null) ? _bottomCenter = new Vector2( 0, 1 ): _bottomCenter;
+  static Vector2 get bottomCenter => (_bottomCenter == null) ? _bottomCenter = new Vector2( 0, 1 ): _bottomCenter;
   static Vector2 _bottomRight;
-  static Vector2 get bottomRight() => (_bottomRight == null) ? _bottomRight = new Vector2( -1, 1 ): _bottomRight;
+  static Vector2 get bottomRight => (_bottomRight == null) ? _bottomRight = new Vector2( -1, 1 ): _bottomRight;
 }

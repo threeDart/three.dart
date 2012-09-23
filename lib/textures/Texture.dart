@@ -22,7 +22,7 @@ class Texture
   
   bool flipY;
   
-  Dynamic get mapping() {  return _mapping;  }
+  Dynamic get mapping {  return _mapping;  }
   
   
   //TODO: resolve dynamic vars, find out what UVMapping is!
@@ -65,7 +65,7 @@ class Texture
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
   
-  get _data() {
+  get _data {
     if (__data == null) {
       __data = {};
     }
