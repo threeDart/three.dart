@@ -67,9 +67,7 @@ class ShaderMaterial extends Material {
                     overdraw = false, 
                     
                     visible = true ])
-                    :
-                      this.uniforms = (uniforms != null) ? uniforms : {},
-                      super(  name: name,
+                    : super(  name: name,
                               side: side,
                               opacity: opacity,
                               transparent: transparent,
@@ -84,6 +82,8 @@ class ShaderMaterial extends Material {
                               polygonOffsetUnits: polygonOffsetUnits,             
                               alphaTest: alphaTest,              
                               overdraw: overdraw,          
-                              visible: visible );
+                              visible: visible ) {
+                      this.uniforms = (uniforms != null) ? uniforms : {};
+                    }
 
 }
