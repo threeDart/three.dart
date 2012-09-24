@@ -170,7 +170,7 @@ class CurvePath extends Curve {
 			"minY": minY,
 			"maxX": maxX,
 			"maxY": maxY,
-			"centroid": sum.dynamic.divideScalar( il )
+			"centroid": (sum as Dynamic).divideScalar( il )
 
 		};
 

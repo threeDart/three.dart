@@ -4495,7 +4495,7 @@ class WebGLRenderer implements Renderer {
 					 geometry.uvsNeedUpdate || geometry.normalsNeedUpdate ||
 					 geometry.colorsNeedUpdate || geometry.tangentsNeedUpdate ) {
 
-					setDirectBuffers( geometry, WebGLRenderingContext.DYNAMIC_DRAW, !geometry.dynamic );
+					setDirectBuffers( geometry, WebGLRenderingContext.DYNAMIC_DRAW, !(geometry as Dynamic) );
 
 				}
 
@@ -5525,14 +5525,14 @@ class WebGLRenderer implements Renderer {
 			light = lights[ l ];
 
 			// TODO - Setup proper interfaces for Light to avoid type checks
-			if ( (((light is DirectionalLight) || (light is SpotLight)) && light.dynamic.onlyShadow) || 
+			if ( (((light is DirectionalLight) || (light is SpotLight)) && (light as Dynamic).onlyShadow) || 
 			    ! light.visible ) continue;
 
 			color = light.color;
 			
 			if ( (light is DirectionalLight) || (light is SpotLight) || (light is PointLight)) {
-  			intensity = light.dynamic.intensity;
-  			distance = light.dynamic.distance;
+  			intensity = (light as Dynamic).intensity;
+  			distance = (light as Dynamic).distance;
 			}
 			
 			if ( light is AmbientLight ) {
@@ -6472,7 +6472,7 @@ class WebGLRenderer implements Renderer {
 				}
 
 				var image = cubeImage[ 0 ],
-				isImagePowerOfTwo = isPowerOfTwo( image.dynamic.width ) && isPowerOfTwo( image.dynamic.height ),
+				isImagePowerOfTwo = isPowerOfTwo( (image as Dynamic).width ) && isPowerOfTwo( (image as Dynamic).height ),
 				glFormat = paramThreeToGL( texture.format ),
 				glType = paramThreeToGL( texture.type );
 
@@ -6809,7 +6809,7 @@ class WebGLRenderer implements Renderer {
 			light = lights[ l ];
 
 			if ( (( light is DirectionalLight ) || ( light is SpotLight )) &&
-			    light.dynamic.onlyShadow ) continue;
+			    (light as Dynamic).onlyShadow ) continue;
 
 			if ( light is DirectionalLight ) dirLights ++;
 			if ( light is PointLight ) pointLights ++;
@@ -7011,17 +7011,17 @@ class WebGLObject {
     return object["__webglObject"];
 	}
 	
-	Geometry get geometry => _hasGeometry ? object.dynamic.geometry : null;
+	Geometry get geometry => _hasGeometry ? (object as Dynamic).geometry : null;
 	WebGLGeometry get webglgeometry => geometry != null ? new WebGLGeometry.from(geometry) : null;
 	
-	Material get material => object.dynamic.material;
+	Material get material => (object as Dynamic).material;
   WebGLMaterial get webglmaterial => new WebGLMaterial.from(material);
   
   get matrixWorld => object.matrixWorld;
   
   get _hasGeometry => (object is Mesh) || (object is ParticleSystem) || (object is Line);
   
-  get morphTargetBase => object.dynamic.morphTargetBase;
+  get morphTargetBase => (object as Dynamic).morphTargetBase;
   
   get receiveShadow => object.receiveShadow;
   
@@ -7029,9 +7029,9 @@ class WebGLObject {
   get morphTargetInfluences => (object as Mesh).morphTargetInfluences;
   
   // only SkinnedMesh
-  get useVertexTexture => object.dynamic.useVertexTexture; 
-  get boneMatrices => object.dynamic.boneMatrices;
-  get boneTexture => object.dynamic.boneTexture;
+  get useVertexTexture => (object as Dynamic).useVertexTexture; 
+  get boneMatrices => (object as Dynamic).boneMatrices;
+  get boneTexture => (object as Dynamic).boneTexture;
 
 }
 
@@ -7205,39 +7205,39 @@ class WebGLMaterial { // implements Material {
   
  
   // TODO - Define proper interfaces to remove use of Dynamic
-  int get vertexColors => _hasVertexColors ? _material.dynamic.vertexColors : Three.NoColors;
-  get color => _material.dynamic.color;
-  get ambient => _material.dynamic.ambient;
-  get emissive => _material.dynamic.emissive;
+  int get vertexColors => _hasVertexColors ? (_material as Dynamic).vertexColors : Three.NoColors;
+  get color => (_material as Dynamic).color;
+  get ambient => (_material as Dynamic).ambient;
+  get emissive => (_material as Dynamic).emissive;
   
   get lights => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
   
-  get morphTargets => _hasMorhTargets ?  _material.dynamic.morphTargets : false;  
+  get morphTargets => _hasMorhTargets ?  (_material as Dynamic).morphTargets : false;  
 
-  get morphNormals => _hasMorphNormals ?  _material.dynamic.morphNormals : false;  
+  get morphNormals => _hasMorphNormals ?  (_material as Dynamic).morphNormals : false;  
       
   bool get metal => isMeshPhongMaterial ? (_material as MeshPhongMaterial).metal : false; //null;
       
   bool get perPixel => isMeshPhongMaterial ? (_material as MeshPhongMaterial).perPixel : false; //null;
 
-  get wrapAround => _hasWrapAround ?  _material.dynamic.wrapAround : false;
+  get wrapAround => _hasWrapAround ?  (_material as Dynamic).wrapAround : false;
 
-  get fog => _hasFog ? _material.dynamic.fog : false;
-  get shading => _material.dynamic.shading;
-  get map => _hasTextureMap ? _material.dynamic.map : null;
-  get envMap => _hasEnvMap ? _material.dynamic.envMap : null;
-  get lightMap => _hasLightMap ? _material.dynamic.lightMap : null;
+  get fog => _hasFog ? (_material as Dynamic).fog : false;
+  get shading => (_material as Dynamic).shading;
+  get map => _hasTextureMap ? (_material as Dynamic).map : null;
+  get envMap => _hasEnvMap ? (_material as Dynamic).envMap : null;
+  get lightMap => _hasLightMap ? (_material as Dynamic).lightMap : null;
   get bumpMap => isMeshPhongMaterial ? (_material as MeshPhongMaterial).bumpMap : null;
-  get specularMap => _hasSpecularMap ? _material.dynamic.specularMap : null;
+  get specularMap => _hasSpecularMap ? (_material as Dynamic).specularMap : null;
 
-  get wireframe => !isLineBasicMaterial && !isParticleBasicMaterial && _material.dynamic.wireframe;
-  get wireframeLinewidth => (isLineBasicMaterial) ? _material.dynamic.wireframeLinewidth : null;
+  get wireframe => !isLineBasicMaterial && !isParticleBasicMaterial && (_material as Dynamic).wireframe;
+  get wireframeLinewidth => (isLineBasicMaterial) ? (_material as Dynamic).wireframeLinewidth : null;
   
-  get linewidth => (isLineBasicMaterial) ? _material.dynamic.linewidth : null;
-  get reflectivity => _material.dynamic.reflectivity;
-  get refractionRatio => _material.dynamic.refractionRatio;
-  get combine => _material.dynamic.combine;
-  get skinning => _hasSkinning ?  _material.dynamic.skinning : false;
+  get linewidth => (isLineBasicMaterial) ? (_material as Dynamic).linewidth : null;
+  get reflectivity => (_material as Dynamic).reflectivity;
+  get refractionRatio => (_material as Dynamic).refractionRatio;
+  get combine => (_material as Dynamic).combine;
+  get skinning => _hasSkinning ?  (_material as Dynamic).skinning : false;
   get sizeAttenuation => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).sizeAttenuation : false; //null;
   get size => isParticleBasicMaterial ? (_material as ParticleBasicMaterial).size : null;
   

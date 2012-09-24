@@ -44,7 +44,8 @@ Texture loadTextureCube ( array, mapping, onLoad ) {
 
 	texture.flipY = false;
 
-	images.dynamic.loadCount = 0;
+	// TODO - List does not have loadCount
+	(images as Dynamic).loadCount = 0;
 
 	l = array.length;
 	for ( i = 0; i < l; ++ i ) {
@@ -52,9 +53,9 @@ Texture loadTextureCube ( array, mapping, onLoad ) {
 		images[ i ] = new ImageElement();
 		images[ i ].on.load.add((_) {
 
-			images.dynamic.loadCount += 1;
+		  (images as Dynamic).loadCount += 1;
 
-			if ( images.dynamic.loadCount === 6 ) {
+			if ( (images as Dynamic).loadCount === 6 ) {
 
 				texture.needsUpdate = true;
 				if ( onLoad != null ) onLoad();

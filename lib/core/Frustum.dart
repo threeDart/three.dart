@@ -60,7 +60,7 @@ class Frustum {
    
     Matrix4 matrix = object.matrixWorld;
     var me = matrix.elements;
-    num radius = - object.dynamic.geometry.boundingSphere.radius * matrix.getMaxScaleOnAxis();
+    num radius = - (object as Dynamic).geometry.boundingSphere.radius * matrix.getMaxScaleOnAxis();
    
     for ( int i = 0; i < 6; i ++ ) {
       distance = planes[ i ].x * me[12] + planes[ i ].y * me[13] + planes[ i ].z * me[14] + planes[ i ].w;

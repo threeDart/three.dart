@@ -51,8 +51,8 @@ class CubeGeometry extends Geometry {
     //TODO: not sure if this is the correct use of "dynamic"
     if ( sides != null ) {
       for ( var s in sides ) {
-        if ( _sides.dynamic[ s ] !== null ) {
-          _sides.dynamic[ s ] = sides[ s ];
+        if ( (_sides as Dynamic)[ s ] !== null ) {
+          (_sides as Dynamic)[ s ] = sides[ s ];
         }
       }
     }
