@@ -204,7 +204,7 @@ class Geometry {
     // tangents go to vertices
 
     var f, fl, face;
-    num i, il, vertexIndex, test, w, t;
+    num i, il, vertexIndex, test, w;
     Vector3 vA, vB, vC; 
     UV uvA, uvB, uvC;
     
@@ -216,10 +216,11 @@ class Geometry {
             tdir = new Vector3(),
             tmp = new Vector3(),
             tmp2 = new Vector3(), 
-            n = new Vector3();
+            n = new Vector3(),
+            t;
 
-    var tan1 = vertices.map((_) => new Vector3()) as List,
-        tan2 = vertices.map((_) => new Vector3()) as List;
+    List<Vector3> tan1 = vertices.map((_) => new Vector3()) as List,
+                  tan2 = vertices.map((_) => new Vector3()) as List;
 
     var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
       

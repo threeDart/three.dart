@@ -33,15 +33,15 @@ cloneObject(Object3D source) {
 
     object = new MorphAnimMesh( source.geometry, source.material );
 
-    object.duration = source.duration;
-    object.mirroredLoop = source.mirroredLoop;
-    object.time = source.time;
+    (object as MorphAnimMesh).duration = source.duration;
+    (object as MorphAnimMesh).mirroredLoop = source.mirroredLoop;
+    (object as MorphAnimMesh).time = source.time;
 
-    object.lastKeyframe = source.lastKeyframe;
-    object.currentKeyframe = source.currentKeyframe;
+    (object as MorphAnimMesh).lastKeyframe = source.lastKeyframe;
+    (object as MorphAnimMesh).currentKeyframe = source.currentKeyframe;
 
-    object.direction = source.direction;
-    object.directionBackwards = source.directionBackwards;
+    (object as MorphAnimMesh).direction = source.direction;
+    (object as MorphAnimMesh).directionBackwards = source.directionBackwards;
 
   } else if ( source is SkinnedMesh ) {
 
@@ -62,7 +62,7 @@ cloneObject(Object3D source) {
   } else if ( source is ParticleSystem ) {
 
     object = new ParticleSystem( source.geometry, source.material );
-    object.sortParticles = source.sortParticles;
+    (object as ParticleSystem).sortParticles = source.sortParticles;
 
   } else if ( source is Particle ) {
 
@@ -72,22 +72,22 @@ cloneObject(Object3D source) {
 
     object = new Sprite();
 
-    object.color.copy( source.color );
-    object.map = source.map;
-    object.blending = source.blending;
+    (object as Sprite).color.copy( source.color );
+    (object as Sprite).map = source.map;
+    (object as Sprite).blending = source.blending;
 
-    object.useScreenCoordinates = source.useScreenCoordinates;
-    object.mergeWith3D = source.mergeWith3D;
-    object.affectedByDistance = source.affectedByDistance;
-    object.scaleByViewport = source.scaleByViewport;
-    object.alignment = source.alignment;
+    (object as Sprite).useScreenCoordinates = source.useScreenCoordinates;
+    (object as Sprite).mergeWith3D = source.mergeWith3D;
+    (object as Sprite).affectedByDistance = source.affectedByDistance;
+    (object as Sprite).scaleByViewport = source.scaleByViewport;
+    (object as Sprite).alignment = source.alignment;
 
-    object.rotation3d.copy( source.rotation3d );
+    (object as Sprite).rotation3d.copy( source.rotation3d );
     object.rotation = source.rotation;
-    object.opacity = source.opacity;
+    (object as Sprite).opacity = source.opacity;
 
-    object.uvOffset.copy( source.uvOffset );
-    object.uvScale.copy( source.uvScale);
+    (object as Sprite).uvOffset.copy( source.uvOffset );
+    (object as Sprite).uvScale.copy( source.uvScale);
 
   } else if ( source is LOD ) {
 

@@ -412,7 +412,7 @@ class Projector {
           _particle.scale.x = object.scale.x * ( _particle.x - ( _vector4.x + camera.projectionMatrix.elements[0] ) / ( _vector4.w + camera.projectionMatrix.elements[12] ) ).abs();
           _particle.scale.y = object.scale.y * ( _particle.y - ( _vector4.y + camera.projectionMatrix.elements[5] ) / ( _vector4.w + camera.projectionMatrix.elements[13] ) ).abs();
 
-          _particle.material = object.material;
+          _particle.material = object.material as Material;
 
           _renderData.elements.add( _particle );
         }
