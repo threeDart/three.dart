@@ -3,8 +3,8 @@
  **************************************************************/
 #library('ShapeUtils');
 
-#import('../../ThreeD.dart');
-#import('../FontUtils.dart', prefix:'FontUtils');
+#import('ThreeD.dart');
+#import('FontUtils.dart', prefix:'FontUtils');
 
 /*
   contour - array of vector2 for contour

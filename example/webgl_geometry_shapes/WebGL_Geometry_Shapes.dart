@@ -1,8 +1,8 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
 #import('package:three.dart/ThreeD.dart');
-#import('package:three.dart/extras/SceneUtils.dart', prefix:'SceneUtils');
-#import('package:three.dart/extras/GeometryUtils.dart', prefix:'GeometryUtils');
+#import('package:three.dart/SceneUtils.dart', prefix:'SceneUtils');
+#import('package:three.dart/GeometryUtils.dart', prefix:'GeometryUtils');
 
 class WebGL_Geometry_Shapes  {
   Element container;
