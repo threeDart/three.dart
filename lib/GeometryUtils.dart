@@ -1,6 +1,6 @@
 #library('GeometryUtils');
 
-#import("../ThreeD.dart");
+#import("ThreeD.dart");
 
 // TODO(nelsonsilva) - Add remaining functions
 clone( Geometry geometry ) {

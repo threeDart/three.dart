@@ -2,7 +2,7 @@
 
 #import("dart:html");
 #import("dart:math", prefix:'Math');
-#import("../ThreeD.dart");
+#import("ThreeD.dart");
 
 var crossOrigin = 'anonymous';
 
