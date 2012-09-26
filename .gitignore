@@ -1,3 +1,5 @@
 thumbs.db
 robots.txt
 .project
+packages
+pubspec.lock
