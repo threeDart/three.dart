@@ -6,12 +6,10 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Fog 
+class Fog implements IFog 
 {
   Color color;
   num near;
   num far;
-  
-  Fog( num hex, [this.near = 1, this.far = 1000] ) : color = new Color( hex );
-
+  Fog( num hex, [this.near = 1, this.far = 1000] ) : this.color = new Color( hex );
 }

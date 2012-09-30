@@ -3775,7 +3775,7 @@ class WebGLRenderer implements Renderer {
 		var renderList;
 
 		List lights = scene.lights;
-		Fog fog = scene.fog;
+		IFog fog = scene.fog;
 
 		// reset caching for this frame
 
@@ -4676,7 +4676,7 @@ class WebGLRenderer implements Renderer {
 
 	// Materials
 
-	initMaterial( WebGLMaterial material, List<Light> lights, Fog fog, WebGLObject webglobject ) {
+	initMaterial( WebGLMaterial material, List<Light> lights, IFog fog, WebGLObject webglobject ) {
 
 	  Object3D object = webglobject.object;
 	  
@@ -4857,7 +4857,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setProgram( WebGLCamera camera, List lights, Fog fog, WebGLMaterial material, WebGLObject object ) {
+	setProgram( WebGLCamera camera, List lights, IFog fog, WebGLMaterial material, WebGLObject object ) {
 
 		if ( material.needsUpdate ) {
 
@@ -5147,7 +5147,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsFog ( uniforms, Fog fog ) {
+	refreshUniformsFog ( uniforms, IFog fog ) {
 
 		uniforms["fogColor"].value = fog.color;
 
@@ -5935,7 +5935,7 @@ class WebGLRenderer implements Renderer {
 					bool shadowMapDebug = false,
 					bool shadowMapCascade = false,
 					bool sizeAttenuation = false,
-					Fog fog = null,
+					IFog fog = null,
 		      bool useFog = false,
 		      int maxMorphTargets = 8,
 		      int maxMorphNormals = 4,

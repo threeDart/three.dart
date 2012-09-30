@@ -139,6 +139,7 @@
 #source('src/renderers/renderables/IRenderableFace4.dart');
 
 #source('src/scenes/Scene.dart');
+#source('src/scenes/IFog.dart');
 #source('src/scenes/Fog.dart');
 #source('src/scenes/FogExp2.dart');
 

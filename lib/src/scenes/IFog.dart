@@ -1,0 +1,3 @@
+class IFog {
+  Color color;
+}
