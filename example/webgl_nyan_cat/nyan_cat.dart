@@ -3,10 +3,12 @@
 #import('package:three.dart/ThreeD.dart');
 #import('package:three.dart/extras/SceneUtils.dart', prefix:'SceneUtils');
 #import('package:three.dart/extras/GeometryUtils.dart', prefix:'GeometryUtils');
+#import('package:stats/stats.dart');
 
 class NyanCat {
   Math.Random rand = new Math.Random();
-  var container, stats;
+  DivElement container;
+  Stats stats;
   var camera, scene, renderer, poptart, face, feet, tail;
   var stars, numStars=10, rainbow, rainChunk, numRainChunks=30;
   var mouseX = 0, mouseY = 0;
@@ -34,6 +36,7 @@ class NyanCat {
     
     document.on.mouseMove.add(onDocumentMouseMove, false);
     document.on.mouseDown.add(onDocumentMouseDown, false);
+    document.on.keyPress.add(onDocumentKeyPress, false);
   }
   
   run() {
@@ -211,10 +214,14 @@ class NyanCat {
   }
   animate(t){
     window.requestAnimationFrame(animate);
-    //requestAnimationFrame( animate );
+    //requestAnimationFrame( animate );    
     render(t);
   }
   render(t){
+    if (stats != null) {
+      stats.begin();
+    }
+    
     var delta = t; //clock.getDelta();
     if(running) deltaSum+=delta;
     if(deltaSum>.07){
@@ -308,6 +315,10 @@ class NyanCat {
     camera.position.y += ( - mouseY - camera.position.y ) * .005;
     camera.lookAt( scene.position );
     renderer.render( scene, camera );
+    
+    if (stats != null) {
+      stats.end();
+    }
   }
   
   helper(o, x, y, z, w, h, d, c){
@@ -377,6 +388,22 @@ class NyanCat {
     }
   }
   
+  onDocumentKeyPress(event) {
+    // s key
+    if (event.keyCode == 115) {
+      toggleStats();
+    }
+  }
+  
+  toggleStats() {
+    if (stats == null) {
+      stats = new Stats();
+      query("#stats").elements.add(stats.container);
+    } else {
+      stats.container.remove();
+      stats = null;
+    }
+  }
 }
 
 void main() {
