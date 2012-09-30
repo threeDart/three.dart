@@ -5151,7 +5151,7 @@ class WebGLRenderer implements Renderer {
 
 		uniforms["fogColor"].value = fog.color;
 
-		if ( fog is Fog ) {
+		if ( fog is FogLinear ) {
 
 			uniforms["fogNear"].value = fog.near;
 			uniforms["fogFar"].value = fog.far;
@@ -5319,15 +5319,15 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type === "iv1" ) { // flat array of integers (JS or typed array)
 
-				_gl.uniform1iv( location, value );
+				_gl.uniform1iv( location, (value is List) ? new Float32Array.fromList(value) : value );
 
 			} else if ( type === "iv" ) { // flat array of integers with 3 x N size (JS or typed array)
 
-				_gl.uniform3iv( location, value );
+				_gl.uniform3iv( location, (value is List) ? new Float32Array.fromList(value) : value );
 
 			} else if ( type === "fv1" ) { // flat array of floats (JS or typed array)
 
-				_gl.uniform1fv( location, value );
+				_gl.uniform1fv( location, (value is List) ? new Float32Array.fromList(value) : value );
 
 			} else if ( type === "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
         
@@ -5611,6 +5611,8 @@ class WebGLRenderer implements Renderer {
 				ppositions[ poffset + 1 ] = position.y;
 				ppositions[ poffset + 2 ] = position.z;
 
+				if (pdistances==null) { pdistances = new List(); pdistances.add(0); }
+				if (pdistances.length == 0) {pdistances.add(0);}
 				pdistances[ plength ] = distance;
 
 				plength += 1;
