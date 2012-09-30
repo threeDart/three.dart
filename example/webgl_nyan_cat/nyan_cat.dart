@@ -52,7 +52,7 @@ class NyanCat {
     
     scene = new Scene();
     // TODO: FogExp2 does not inherit correctly. 
-    scene.fog = new Fog( 0x003366 ); //new FogExp2( 0x003366, 0.0095 );
+    scene.fog = new FogExp2( 0x003366, 0.0095 );
     
     //POPTART
     poptart = new Object3D();
@@ -201,7 +201,7 @@ class NyanCat {
       }
     }
     
-    var pointLight = new PointLight( 0xFFFFFF, 2);
+    var pointLight = new PointLight( 0xFFFFFF );
     pointLight.position.z = 1000;
     scene.add(pointLight);
     
