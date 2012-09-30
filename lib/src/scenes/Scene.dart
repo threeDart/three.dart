@@ -7,7 +7,7 @@
 
 class Scene extends Object3D
 {
-  IFog fog;
+  Fog fog;
   Material overrideMaterial;
   //bool matrixAutoUpdate;
   List<Object3D> objects;

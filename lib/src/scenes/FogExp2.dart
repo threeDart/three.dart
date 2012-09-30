@@ -1,4 +1,4 @@
-class FogExp2 implements IFog {
+class FogExp2 implements Fog {
   Color color;
   num density;
   FogExp2( num hex, [density = 0.00025] ) {
