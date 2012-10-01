@@ -2,7 +2,7 @@
 #import('dart:math', prefix:'Math');
 #import('package:three.dart/ThreeD.dart');
 
-class Canvas_Geometry_Heirarchy 
+class Canvas_Geometry_Hierarchy 
 {
   Element container;// stats;
 
@@ -18,7 +18,7 @@ class Canvas_Geometry_Heirarchy
   num windowHalfX;
   num windowHalfY;
   
-  Canvas_Geometry_Heirarchy() 
+  Canvas_Geometry_Hierarchy() 
   {
     
   }
@@ -129,5 +129,5 @@ class Canvas_Geometry_Heirarchy
 }
 
 void main() {
-  new Canvas_Geometry_Heirarchy().run();
+  new Canvas_Geometry_Hierarchy().run();
 }
