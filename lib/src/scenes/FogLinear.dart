@@ -6,10 +6,9 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class FogLinear implements Fog 
-{
+class FogLinear implements Fog {
   Color color;
   num near;
   num far;
-  FogLinear( num hex, [this.near = 1, this.far = 1000] ) : this.color = new Color( hex );
+  FogLinear( num hex, [this.near = 1, this.far = 1000] ) : color = new Color( hex );
 }

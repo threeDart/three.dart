@@ -5,8 +5,7 @@
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Scene extends Object3D
-{
+class Scene extends Object3D {
   Fog fog;
   Material overrideMaterial;
   //bool matrixAutoUpdate;
@@ -15,10 +14,9 @@ class Scene extends Object3D
   List __objectsAdded;
   List __objectsRemoved;
   
-  Scene() 
-  {
-    //TODO: check how to call super constructor
-//  super();
+  Scene() {
+    // TODO: check how to call super constructor
+    // super();
 
     fog = null;
     overrideMaterial = null;
@@ -32,18 +30,13 @@ class Scene extends Object3D
     __objectsRemoved = [];
   }
 
-  void addObject( Object3D object ) 
-  {
-    if ( object is Light )
-    {
+  void addObject( Object3D object ) {
+    if ( object is Light ) {
       if ( lights.indexOf( object ) === - 1 ) {
         lights.add( object );
       }
-    } 
-    else if ( !( object is Camera || object is Bone ) ) 
-    {
-      if ( objects.indexOf( object ) === - 1 ) 
-      {
+    } else if ( !( object is Camera || object is Bone ) ) {
+      if ( objects.indexOf( object ) === - 1 ) {
         objects.add( object );
         __objectsAdded.add( object );
 
@@ -63,11 +56,9 @@ class Scene extends Object3D
     }
   }
 
-  void removeObject( Object3D object )
-  {
+  void removeObject( Object3D object ) {
     //TODO: "instanceof" replaced by "is"?
-    if ( object is Light ) 
-    {
+    if ( object is Light ) {
       int i = lights.indexOf( object );
 
       if ( i !== -1 ) {
@@ -75,13 +66,10 @@ class Scene extends Object3D
         lights.removeRange(i, 1);
         //lights.splice( i, 1 );
       }
-    } 
-    else if ( !( object is Camera ) ) 
-    {
+    } else if ( !( object is Camera ) ) {
       int i = objects.indexOf( object );
 
-      if( i !== -1 ) 
-      {
+      if( i !== -1 ) {
         //TODO: removeRange replaces splice?
         objects.removeRange(i, 1);
         //objects.splice( i, 1 );
@@ -102,5 +90,4 @@ class Scene extends Object3D
       removeObject( object.children[ c ] );
     }
   }
-
 }
