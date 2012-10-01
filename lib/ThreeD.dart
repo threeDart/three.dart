@@ -2,6 +2,7 @@
 
 #import('dart:html');
 #import('dart:math', prefix:'Math');
+#import('dart:json');
 
 #import('src/core/ThreeMath.dart', prefix:'ThreeMath');
 
@@ -45,6 +46,8 @@
 #source('src/core/BufferGeometry.dart');
 #source('src/core/EventEmitter.dart');
 
+#source('src/loaders/Loader.dart');
+#source('src/loaders/JSONLoader.dart');
 #source('src/loaders/ImageLoader.dart');
 
 #source('extras/geometries/CircleGeometry.dart');

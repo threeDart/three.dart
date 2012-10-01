@@ -135,11 +135,13 @@ class WebGLRenderer implements Renderer {
 		        this.antialias = true,
 	          this.stencil = true,
   					this.preserveDrawingBuffer = false,
-  					this.clearColor,
+  					num clearColorHex = 0x000000,
   					this.clearAlpha = 0,
   					this.maxLights = 4] ) 
   		: 	
 
+  		clearColor = new Color(clearColorHex),
+  		
 			// clearing
 			autoClear = true,
 			autoClearColor = true,
@@ -248,10 +250,6 @@ class WebGLRenderer implements Renderer {
 	  
     if (canvas == null) {
         canvas = new CanvasElement();
-    }
-
-    if (clearColor == null) {
-    	clearColor = new Color( 0x000000 );
     }
 
   	// initialize

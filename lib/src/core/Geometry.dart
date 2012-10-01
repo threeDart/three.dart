@@ -34,6 +34,9 @@ class Geometry {
 
   bool hasTangents, _dynamic;
   
+  // Used in JSONLoader
+  var bones, animation;
+  
   Geometry() 
       : id = Three.GeometryCount ++,
 

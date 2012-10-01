@@ -15,7 +15,7 @@ class Face3 implements IFace3 {
   Vector3 centroid;
   
   /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
-  Face3( this.a, this.b, this.c,  [normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
+  Face3( [this.a, this.b, this.c, normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
 
     normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
     vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
