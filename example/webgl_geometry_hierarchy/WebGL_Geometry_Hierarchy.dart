@@ -33,7 +33,7 @@ class WebGL_Geometry_Hierarchy  {
     camera.position.z = 500;
 
     scene = new Scene();
-    scene.fog = new Fog( 0xffffff, 1, 10000 );
+    scene.fog = new FogLinear( 0xffffff, 1, 10000 );
     scene.add(camera);
     
     var geometry = new CubeGeometry( 100, 100, 100 );
