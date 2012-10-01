@@ -8,6 +8,3 @@ author:
 - Adam Singer <financeCoding@gmail.com>
 - John <jwbito@gmail.com>
 homepage: http://threedart.github.com/three.dart/
-dependencies:
-  stats:
-    git: https://github.com/financeCoding/stats.dart.git
