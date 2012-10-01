@@ -3,3 +3,5 @@ robots.txt
 .project
 packages
 pubspec.lock
+*.js
+*.map
