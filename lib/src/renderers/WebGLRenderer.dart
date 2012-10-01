@@ -4615,28 +4615,28 @@ class WebGLRenderer implements Renderer {
 
 	// Objects removal
 
-	removeObject ( WebGLObject webglobject, scene ) {
-
-	  Object3D object = webglobject.object;
+	removeObject ( Object3D object, scene ) {
+	  
+	  WebGLObject webglobject = new WebGLObject(object);
 	  
 		if ( object is Mesh  ||
 			 object is ParticleSystem ||
 			 object is Ribbon ||
 			 object is Line ) {
 
-			removeInstances( scene["__webglObjects"], webglobject );
+			removeInstances( scene["__webglObjects"], object );
 
 		} else if ( object is Sprite ) {
 
-			removeInstancesDirect( scene["__webglSprites"], webglobject );
+			removeInstancesDirect( scene["__webglSprites"], object );
 
 		} else if ( object is LensFlare ) {
 
-			removeInstancesDirect( scene["__webglFlares"], webglobject );
+			removeInstancesDirect( scene["__webglFlares"], object );
 
 		} else if ( object is ImmediateRenderObject || (object["immediateRenderCallback"] != null) ) {
 
-			removeInstances( scene["__webglObjectsImmediate"], webglobject );
+			removeInstances( scene["__webglObjectsImmediate"], object );
 
 		}
 
@@ -4644,7 +4644,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	removeInstances ( objlist, WebGLObject object ) {
+	removeInstances ( objlist, Object3D object ) {
 
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
@@ -4658,7 +4658,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	removeInstancesDirect ( objlist, object ) {
+	removeInstancesDirect ( objlist, Object3D object ) {
 
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
