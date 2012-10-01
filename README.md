@@ -12,9 +12,13 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 #### WebGL examples ####
 
 
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_cube/WebGL_Geometry_Cube.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_cube/thumb_small.png" width="104" height="78" alt="webgl_geometry_cube"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_hierarchy/WebGL_Geometry_Hierarchy.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_hierarchy/thumb_small.png" width="104" height="78" alt="webgl_geometry_hierarchy"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_interactive_cubes/WebGL_Interactive_Cubes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_interactive_cubes/thumb_small.png" width="104" height="78" alt="webgl_interactive_cubes"></a>
+<a href="http://threedart.github.com/three.dart/examples/webgl_nyan_cat/nyan_cat.html"><img src="http://threedart.github.com/three.dart/examples/webgl_nyan_cat/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/examples/webgl_geometries/WebGL_Geometries.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometries/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_cube/WebGL_Geometry_Cube.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_cube/thumb_small.png" alt="webgl_geometry_cube"></a>
+<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_extrude_shapes/WebGL_Geometry_Extrude_Shapes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_extrude_shapes/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_hierarchy/WebGL_Geometry_Hierarchy.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_hierarchy/thumb_small.png" alt="webgl_geometry_hierarchy"></a>    
+<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_shapes/WebGL_Geometry_Shapes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_shapes/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/examples/webgl_interactive_cubes/WebGL_Interactive_Cubes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_interactive_cubes/thumb_small.png" alt="webgl_interactive_cubes"></a>
 
 #### Canvas examples ####
 
@@ -27,7 +31,10 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 ### Change Log ###
 
-2012 09 23 - **v 0.2.x** 
+2012 10 01 - **v 0.2.3** 
+* Nyan Cat example added ([adam](https://github.com/financeCoding))
+
+2012 09 23 - **v 0.2.2** 
 * Major refactor to pub ([adam](https://github.com/financeCoding))
   * Minor refactors of getters and exceptions
   * Regenerating javascript examples
