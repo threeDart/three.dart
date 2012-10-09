@@ -95,7 +95,7 @@ class WebGL_Performance  {
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
   
-  bool animate(int time) {
+  animate(int time) {
     window.requestAnimationFrame( animate );
     render();
     //stats.update();

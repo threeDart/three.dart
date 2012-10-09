@@ -126,7 +126,7 @@ class WebGL_Geometries  {
     renderer.setSize( window.innerWidth, window.innerHeight );
   }
   
-  bool animate(int time) {
+  animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }

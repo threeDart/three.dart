@@ -304,7 +304,7 @@ class WebGL_Geometry_Extrude_Shapes  {
 
   }
   
-  bool animate(int time) {
+  animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }

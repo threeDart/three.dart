@@ -476,7 +476,7 @@ class WebGL_Geometry_Shapes  {
 
   }
   
-  bool animate(int time) {
+  animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }

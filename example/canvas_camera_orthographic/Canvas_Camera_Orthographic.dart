@@ -125,15 +125,13 @@ class Canvas_Camera_Orthographic {
   }
   
   
-  bool animate(int time)
-  {
+  animate(int time) {
     window.requestAnimationFrame(animate);
 
     render();
   }
 
-  void render()
-  {
+  void render() {
 
     var timer = new Date.now().millisecondsSinceEpoch * 0.0001;
 

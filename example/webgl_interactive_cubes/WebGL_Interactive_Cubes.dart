@@ -96,7 +96,7 @@ class WebGL_Interactive_Cubes  {
 
   }
   
-  bool animate(int time) {
+  animate(int time) {
 
     window.requestAnimationFrame( animate );
 

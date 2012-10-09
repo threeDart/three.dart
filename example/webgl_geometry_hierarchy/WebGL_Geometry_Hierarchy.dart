@@ -86,7 +86,7 @@ class WebGL_Geometry_Hierarchy  {
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
   
-  bool animate(int time) {
+  animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }
