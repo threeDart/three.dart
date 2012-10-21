@@ -211,27 +211,17 @@ parseDDS( buffer, loadMipmaps ) {
 
   var fourCC = header[ off_pfFourCC ];
 
-  switch ( fourCC ) {
-
-    case FOURCC_DXT1:
+  if( fourCC == FOURCC_DXT1 ) {
       blockBytes = 8;
       dds["format"] = THREE.RGB_S3TC_DXT1_Format;
-      break;
-
-    case FOURCC_DXT3:
+  } else if(fourCC == FOURCC_DXT3) {
       blockBytes = 16;
       dds["format"] = THREE.RGBA_S3TC_DXT3_Format;
-      break;
-
-    case FOURCC_DXT5:
+  } else if(fourCC == FOURCC_DXT5) {
       blockBytes = 16;
       dds["format"] = THREE.RGBA_S3TC_DXT5_Format;
-      break;
-
-    default:
+  } else {
       print( "ImageUtils.parseDDS(): Unsupported FourCC code: ${int32ToFourCC( fourCC )}" );
-      return dds;
-
   }
 
   dds["mipmapCount"] = 1;

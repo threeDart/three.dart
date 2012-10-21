@@ -101,12 +101,12 @@ class Loader {
 
   _is_pow2( n ) {
     var l = Math.log( n ) / Math.LN2;
-    return Math.floor( l ) == l;
+    return floor( l ) == l;
   }
 
   _nearest_pow2( n ) {
     var l = Math.log( n ) / Math.LN2;
-    return Math.pow( 2, Math.round(  l ) );
+    return pow( 2, round(  l ) );
   }
   
   _load_image( where, url ) {
