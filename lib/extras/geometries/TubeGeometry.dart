@@ -13,8 +13,8 @@
 
 class TubeGeometry extends Geometry {
   
-  var path;
-  num segments, radius, segmentsRadius;
+  var path, segments;
+  num num_segments, radius, segmentsRadius;
   bool closed;
   
   var grid;
@@ -85,15 +85,15 @@ class TubeGeometry extends Geometry {
   
       }
     }
-  
-  
+    
+    
     // construct the mesh
-  
-    for ( i = 0; i < this.segments; i++ ) {
+    
+    for ( i = 0; i < this.num_segments; i++ ) {
   
       for ( j = 0; j < this.segmentsRadius; j++ ) {
   
-        ip = ( closed ) ? (i + 1) % this.segments : i + 1;
+        ip = ( closed ) ? (i + 1) % this.num_segments : i + 1;
         jp = (j + 1) % this.segmentsRadius;
   
         a = this.grid[ i ][ j ];    // *** NOT NECESSARILY PLANAR ! ***
@@ -101,10 +101,10 @@ class TubeGeometry extends Geometry {
         c = this.grid[ ip ][ jp ];
         d = this.grid[ i ][ jp ];
   
-        uva = new UV( i / this.segments, j / this.segmentsRadius );
-        uvb = new UV( ( i + 1 ) / this.segments, j / this.segmentsRadius );
-        uvc = new UV( ( i + 1 ) / this.segments, ( j + 1 ) / this.segmentsRadius );
-        uvd = new UV( i / this.segments, ( j + 1 ) / this.segmentsRadius );
+        uva = new UV( i / this.num_segments, j / this.segmentsRadius );
+        uvb = new UV( ( i + 1 ) / this.num_segments, j / this.segmentsRadius );
+        uvc = new UV( ( i + 1 ) / this.num_segments, ( j + 1 ) / this.segmentsRadius );
+        uvd = new UV( i / this.num_segments, ( j + 1 ) / this.segmentsRadius );
   
         this.faces.add( new Face4( a, b, c, d ) );
         this.faceVertexUvs[ 0 ].add( [ uva, uvb, uvc, uvd ] );
@@ -137,6 +137,7 @@ class TubeGeometry extends Geometry {
     
     this.path = ppath;
     this.segments = psegments;
+    
     this.closed = pclosed;
   
     var 
@@ -146,8 +147,7 @@ class TubeGeometry extends Geometry {
   
       vec = new Vector3(),
       mat = new Matrix4(),
-  
-      numpoints = segments + 1,
+       
       theta,
       epsilon = 0.0001,
       smallest,
@@ -155,7 +155,15 @@ class TubeGeometry extends Geometry {
       tx, ty, tz,
       i, u, v;
   
-  
+    if(segments is num){
+      var length = segments;
+      segments = [];
+        for ( i = 1; i <= length; i++ ) {
+          segments.add( i / ( length ));
+        }
+    }
+    this.num_segments = segments.length;
+    var numpoints = this.num_segments + 1;
     // expose internals
     tangents = new List(numpoints);
     normals = new List(numpoints);
@@ -163,15 +171,13 @@ class TubeGeometry extends Geometry {
   
     // compute the tangent vectors for each segment on the path
   
-    for ( i = 0; i < numpoints; i++ ) {
-  
-      u = i / ( numpoints - 1 );
-  
-      tangents[ i ] = path.getTangentAt( u );
+    
+    for ( i = 0; i < numpoints; i++ ) { 
+      tangents[ i ] = (i == 0)? path.getTangentAt( 0 ): path.getTangentAt( segments[i - 1] );
       tangents[ i ].normalize();
-  
     }
-  
+        
+    
     _initialNormal1([lastBinormal = null]) {
       // fixed start binormal. Has dangers of 0 vectors
       normals[ 0 ] = new Vector3();

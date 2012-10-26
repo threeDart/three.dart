@@ -52,7 +52,7 @@ class CurvePath extends Curve {
 	// 2. Locate and identify type of curve
 	// 3. Get t for the curve
 	// 4. Return curve.getPointAt(t')
-	Vector2 getPoint( num t ) {
+	getPoint( num t ) {
 
 		var d = t * this.length;
 		var curveLengths = this.getCurveLengths();
