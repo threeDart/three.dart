@@ -12,22 +12,22 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 #### WebGL examples ####
 
 
-<a href="http://threedart.github.com/three.dart/examples/webgl_nyan_cat/nyan_cat.html"><img src="http://threedart.github.com/three.dart/examples/webgl_nyan_cat/thumb_small.png"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometries/WebGL_Geometries.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometries/thumb_small.png"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_cube/WebGL_Geometry_Cube.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_cube/thumb_small.png" alt="webgl_geometry_cube"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_extrude_shapes/WebGL_Geometry_Extrude_Shapes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_extrude_shapes/thumb_small.png"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_hierarchy/WebGL_Geometry_Hierarchy.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_hierarchy/thumb_small.png" alt="webgl_geometry_hierarchy"></a>    
-<a href="http://threedart.github.com/three.dart/examples/webgl_geometry_shapes/WebGL_Geometry_Shapes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_geometry_shapes/thumb_small.png"></a>
-<a href="http://threedart.github.com/three.dart/examples/webgl_interactive_cubes/WebGL_Interactive_Cubes.html"><img src="http://threedart.github.com/three.dart/examples/webgl_interactive_cubes/thumb_small.png" alt="webgl_interactive_cubes"></a>
+<a href="http://threedart.github.com/three.dart/example/webgl_nyan_cat/nyan_cat.html"><img src="http://threedart.github.com/three.dart/example/webgl_nyan_cat/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/example/webgl_geometries/WebGL_Geometries.html"><img src="http://threedart.github.com/three.dart/example/webgl_geometries/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/example/webgl_geometry_cube/WebGL_Geometry_Cube.html"><img src="http://threedart.github.com/three.dart/example/webgl_geometry_cube/thumb_small.png" alt="webgl_geometry_cube"></a>
+<a href="http://threedart.github.com/three.dart/example/webgl_geometry_extrude_shapes/WebGL_Geometry_Extrude_Shapes.html"><img src="http://threedart.github.com/three.dart/example/webgl_geometry_extrude_shapes/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/example/webgl_geometry_hierarchy/WebGL_Geometry_Hierarchy.html"><img src="http://threedart.github.com/three.dart/example/webgl_geometry_hierarchy/thumb_small.png" alt="webgl_geometry_hierarchy"></a>    
+<a href="http://threedart.github.com/three.dart/example/webgl_geometry_shapes/WebGL_Geometry_Shapes.html"><img src="http://threedart.github.com/three.dart/example/webgl_geometry_shapes/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/example/webgl_interactive_cubes/WebGL_Interactive_Cubes.html"><img src="http://threedart.github.com/three.dart/example/webgl_interactive_cubes/thumb_small.png" alt="webgl_interactive_cubes"></a>
 
 #### Canvas examples ####
 
 
-<a href="http://threedart.github.com/three.dart/examples/canvas_geometry_cube/Canvas_Geometry_Cube.html"><img src="http://threedart.github.com/three.dart/examples/canvas_geometry_cube/thumb_small.png" width="104" height="78" alt="canvas_geometry_cube"></a>
-<a href="http://threedart.github.com/three.dart/examples/canvas_geometry_hierarchy/Canvas_Geometry_Hierarchy.html"><img src="http://threedart.github.com/three.dart/examples/canvas_geometry_hierarchy/thumb_small.png" width="104" height="78" alt="canvas_geometry_hierarchy"></a>
-<a href="http://threedart.github.com/three.dart/examples/canvas_interactive_cubes/Canvas_Interactive_Cubes.html"><img src="http://threedart.github.com/three.dart/examples/canvas_interactive_cubes/thumb_small.png" width="104" height="78" alt="canvas_interactive_cubes"></a>
-<a href="http://threedart.github.com/three.dart/examples/canvas_lines/Canvas_Lines.html"><img src="http://threedart.github.com/three.dart/examples/canvas_lines/thumb_small.png"></a>
-<a href="http://threedart.github.com/three.dart/examples/canvas_camera_orthographic/Canvas_Camera_Orthographic.html"><img src="http://threedart.github.com/three.dart/examples/canvas_camera_orthographic/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/example/canvas_geometry_cube/Canvas_Geometry_Cube.html"><img src="http://threedart.github.com/three.dart/example/canvas_geometry_cube/thumb_small.png" width="104" height="78" alt="canvas_geometry_cube"></a>
+<a href="http://threedart.github.com/three.dart/example/canvas_geometry_hierarchy/Canvas_Geometry_Hierarchy.html"><img src="http://threedart.github.com/three.dart/example/canvas_geometry_hierarchy/thumb_small.png" width="104" height="78" alt="canvas_geometry_hierarchy"></a>
+<a href="http://threedart.github.com/three.dart/example/canvas_interactive_cubes/Canvas_Interactive_Cubes.html"><img src="http://threedart.github.com/three.dart/example/canvas_interactive_cubes/thumb_small.png" width="104" height="78" alt="canvas_interactive_cubes"></a>
+<a href="http://threedart.github.com/three.dart/example/canvas_lines/Canvas_Lines.html"><img src="http://threedart.github.com/three.dart/example/canvas_lines/thumb_small.png"></a>
+<a href="http://threedart.github.com/three.dart/example/canvas_camera_orthographic/Canvas_Camera_Orthographic.html"><img src="http://threedart.github.com/three.dart/example/canvas_camera_orthographic/thumb_small.png"></a>
 
 ### Change Log ###
 
