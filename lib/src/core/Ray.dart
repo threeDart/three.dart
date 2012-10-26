@@ -171,9 +171,9 @@ class Ray {
 
           if ( face is Face3 ) {
 
-            a = objMatrix.multiplyVector3( a.copy( vertices[ face.a ].position ) );
-            b = objMatrix.multiplyVector3( b.copy( vertices[ face.b ].position ) );
-            c = objMatrix.multiplyVector3( c.copy( vertices[ face.c ].position ) );
+            a = objMatrix.multiplyVector3( a.copy( vertices[ face.a ] ) );
+            b = objMatrix.multiplyVector3( b.copy( vertices[ face.b ] ) );
+            c = objMatrix.multiplyVector3( c.copy( vertices[ face.c ] ) );
 
             if ( _pointInFace3( intersectPoint, a, b, c ) ) {
               intersect = new Intersect(
