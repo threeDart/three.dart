@@ -1,20 +1,22 @@
-class SphereGeometry extends Geometry {  
+part of ThreeD;
+
+class SphereGeometry extends Geometry {
   num radius;
 
-  SphereGeometry([this.radius = 50, 
-                  num segmentsWidth = 8, 
-                  num segmentsHeight = 6, 
-                  num phiStart = 0, 
-                  num phiLength = Math.PI * 2, 
-                  num thetaStart = 0, 
+  SphereGeometry([this.radius = 50,
+                  num segmentsWidth = 8,
+                  num segmentsHeight = 6,
+                  num phiStart = 0,
+                  num phiLength = Math.PI * 2,
+                  num thetaStart = 0,
                   num thetaLength = Math.PI]) : super() {
-    
+
     num segmentsX = Math.max( 3, segmentsWidth.floor()),
         segmentsY = Math.max( 2, segmentsHeight.floor());
-    
+
     List vertices = [], uvs = [];
     var x, y;
-    
+
     for (y = 0; y <= segmentsY; y++ ) {
 
       var verticesRow = [];
@@ -41,7 +43,7 @@ class SphereGeometry extends Geometry {
       uvs.add( uvsRow );
 
     }
-    
+
     for (y = 0; y < segmentsY; y++ ) {
 
       for (x = 0; x < segmentsX; x++ ) {
@@ -81,12 +83,12 @@ class SphereGeometry extends Geometry {
       }
 
     }
-    
+
     this.computeCentroids();
     this.computeFaceNormals();
 
     this.boundingSphere = new BoundingSphere( radius );
-    
+
   }
-    
+
 }

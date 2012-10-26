@@ -1,15 +1,17 @@
+part of ThreeD;
+
 class MorphAnimMesh extends Mesh {
   num duration;
   bool mirroredLoop;
   num time;
-      
+
   num lastKeyframe, currentKeyframe;
-  
+
   num direction;
   bool directionBackwards;
-      
+
   num _startKeyframe, _endKeyframe, _length;
-  
+
   MorphAnimMesh(Geometry geometry, Material material)
       : duration = 1000, // milliseconds
         mirroredLoop = false,
@@ -17,15 +19,15 @@ class MorphAnimMesh extends Mesh {
 
         lastKeyframe = 0,
         currentKeyframe = 0,
-      
+
         direction = 1,
         directionBackwards = false,
-        
+
         super(geometry, material) {
-        
+
         setFrameRange( 0, geometry.morphTargets.length - 1 );
   }
-  
+
   setFrameRange( start, end ) {
     _startKeyframe = start;
     _endKeyframe = end;
@@ -143,7 +145,7 @@ class MorphAnimMesh extends Mesh {
 
     var keyframe = _startKeyframe + ThreeMath.clamp( ( time / frameTime ).floor(), 0, _length - 1 );
 
-    if ( keyframe !== currentKeyframe ) {
+    if ( keyframe != currentKeyframe ) {
 
       morphTargetInfluences[ lastKeyframe ] = 0;
       morphTargetInfluences[ currentKeyframe ] = 1;

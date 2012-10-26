@@ -1,4 +1,6 @@
-interface IFace3 {
+part of ThreeD;
+
+abstract class IFace3 {
   num a, b, c;
   Vector3 normal;
   List vertexNormals, vertexColors, vertexTangents;

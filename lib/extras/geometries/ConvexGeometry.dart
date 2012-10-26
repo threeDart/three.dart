@@ -1,7 +1,9 @@
+part of ThreeD;
+
 class ConvexGeometry extends Geometry {
   ConvexGeometry(List vertices) : super() {
-    
-    var faces = [ [ 0, 1, 2 ], [ 0, 2, 1 ] ]; 
+
+    var faces = [ [ 0, 1, 2 ], [ 0, 2, 1 ] ];
 
     var addPoint = ( vertexId ) {
 
@@ -63,7 +65,7 @@ class ConvexGeometry extends Geometry {
       // construct the new faces formed by the edges of the hole and the vertex
       for ( var h = 0; h < hole.length; h++ ) {
 
-        faces.add( [ 
+        faces.add( [
                      hole[ h ][ 0 ],
                      hole[ h ][ 1 ],
                      vertexId
@@ -71,12 +73,12 @@ class ConvexGeometry extends Geometry {
 
       }
     };
-    
-    
+
+
     for ( var i = 3; i < vertices.length; i++ ) {
       addPoint( i );
     }
-    
+
 
     // Push vertices into `this.vertices`, skipping those inside the hull
     var id = 0;
@@ -95,39 +97,39 @@ class ConvexGeometry extends Geometry {
 
         }
         face[ j ] = newId[ face[ j ] ];
-      } 
+      }
     }
-  
+
     // Convert faces into instances of THREE.Face3
     for ( var i = 0; i < faces.length; i++ ) {
-  
-      this.faces.add( new Face3( 
+
+      this.faces.add( new Face3(
           faces[ i ][ 0 ],
           faces[ i ][ 1 ],
           faces[ i ][ 2 ]
       ) );
-  
+
     }
-  
+
     // Compute UVs
     for ( var i = 0; i < this.faces.length; i++ ) {
-  
+
       var face = this.faces[ i ];
-  
+
       this.faceVertexUvs[ 0 ].add( [
         _vertexUv( this.vertices[ face.a ] ),
         _vertexUv( this.vertices[ face.b ] ),
         _vertexUv( this.vertices[ face.c ])
       ] );
-  
+
     }
-  
-  
+
+
     this.computeCentroids();
     this.computeFaceNormals();
     this.computeVertexNormals();
   }
-  
+
   /**
    * Whether the face is visible from the vertex
    */
@@ -142,7 +144,7 @@ class ConvexGeometry extends Geometry {
     // distance from face to origin
     var dist = n.dot( va );
 
-    return n.dot( vertex ) >= dist; 
+    return n.dot( vertex ) >= dist;
 
   }
 
@@ -160,7 +162,7 @@ class ConvexGeometry extends Geometry {
 
     if ( !cb.isZero() ) {
 
-      cb.normalize(); 
+      cb.normalize();
 
     }
 
@@ -173,7 +175,7 @@ class ConvexGeometry extends Geometry {
    * Note that when constructing the convex hull, two same edges can only
    * be of the negative direction.
    */
-  _equalEdge( ea, eb ) => ea[ 0 ] === eb[ 1 ] && ea[ 1 ] === eb[ 0 ]; 
+  _equalEdge( ea, eb ) => ea[ 0 ] == eb[ 1 ] && ea[ 1 ] == eb[ 0 ];
 
 
   /**

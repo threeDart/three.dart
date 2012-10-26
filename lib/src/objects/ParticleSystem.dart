@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class ParticleSystem extends Object3D {
   Geometry geometry;
   Material material;
@@ -15,8 +17,8 @@ class ParticleSystem extends Object3D {
   		}
   		boundRadius = geometry.boundingSphere.radius;
   	}
-  	
+
   	frustumCulled = false;
   }
-  
+
 }

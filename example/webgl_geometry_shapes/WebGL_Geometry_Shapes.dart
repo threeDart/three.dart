@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
-#import('package:three.dart/extras/SceneUtils.dart', prefix:'SceneUtils');
-#import('package:three.dart/extras/GeometryUtils.dart', prefix:'GeometryUtils');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
+import 'package:three.dart/extras/SceneUtils.dart' as SceneUtils;
+import 'package:three.dart/extras/GeometryUtils.dart' as GeometryUtils;
 
 class WebGL_Geometry_Shapes  {
   Element container;
@@ -14,26 +14,26 @@ class WebGL_Geometry_Shapes  {
   var windowHalfX, windowHalfY;
   var mouseX = 0;
   var mouseXOnMouseDown = 0;
-  
+
   var targetRotation = 0;
   var targetRotationOnMouseDown = 0;
-  
+
   Object3D parent, text, plane;
-  
+
   void run() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     init();
     animate(0);
   }
-  
+
   addGeometry( geometry, points, spacedPoints, color, x, y, z, rx, ry, rz, s ) {
 
     // 3d shape
 
-    var mesh = SceneUtils.createMultiMaterialObject( geometry, 
-        [ new MeshLambertMaterial( color: color ), 
+    var mesh = SceneUtils.createMultiMaterialObject( geometry,
+        [ new MeshLambertMaterial( color: color ),
           new MeshBasicMaterial( color: 0x000000, wireframe: true, transparent: true )]);
     mesh.position.setValues( x, y, z - 75 );
     mesh.rotation.setValues( rx, ry, rz );
@@ -41,7 +41,7 @@ class WebGL_Geometry_Shapes  {
     parent.add( mesh );
 
     // solid line
-    
+
     var line = new Line( points, new LineBasicMaterial( color: color, linewidth: 2 ) );
     line.position.setValues( x, y, z + 25 );
     line.rotation.setValues( rx, ry, rz );
@@ -83,7 +83,7 @@ class WebGL_Geometry_Shapes  {
     parent.add( particles2 );
 
   }
-  
+
   roundedRect( ctx, x, y, width, height, radius ){
 
     ctx.moveTo( x, y + radius );
@@ -98,7 +98,7 @@ class WebGL_Geometry_Shapes  {
 
   }
   void init() {
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -106,7 +106,7 @@ class WebGL_Geometry_Shapes  {
     camera.position.setValues( 0, 150, 500 );
 
     scene = new Scene();
-    
+
     var light = new DirectionalLight( 0xffffff );
     light.position.setValues( 0, 0, 1 );
     scene.add( light );
@@ -116,8 +116,8 @@ class WebGL_Geometry_Shapes  {
     scene.add( parent );
 
     var extrude_amount = 20,
-        extrude_bevelEnabled = true, 
-        extrude_bevelSegments = 2, 
+        extrude_bevelEnabled = true,
+        extrude_bevelSegments = 2,
         extrude_steps = 2; // bevelSegments: 2, steps: 2 , bevelSegments: 5, bevelsize: 8, bevelThickness:5,
 
     // California
@@ -161,11 +161,11 @@ class WebGL_Geometry_Shapes  {
     triangleShape.lineTo( 120, 80 );
     triangleShape.lineTo(  80, 20 ); // close path
 
-    var triangle3d = triangleShape.extrude( 
+    var triangle3d = triangleShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var trianglePoints = triangleShape.createPointsGeometry();
     var triangleSpacedPoints = triangleShape.createSpacedPointsGeometry();
 
@@ -184,11 +184,11 @@ class WebGL_Geometry_Shapes  {
     heartShape.bezierCurveTo( x + 80, y + 35, x + 80, y, x + 50, y );
     heartShape.bezierCurveTo( x + 35, y, x + 25, y + 25, x + 25, y + 25 );
 
-    var heart3d = heartShape.extrude( 
+    var heart3d = heartShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var heartPoints = heartShape.createPointsGeometry();
     var heartSpacedPoints = heartShape.createSpacedPointsGeometry();
 
@@ -205,11 +205,11 @@ class WebGL_Geometry_Shapes  {
     squareShape.lineTo( sqLength, 0 );
     squareShape.lineTo( 0, 0 );
 
-    var square3d = squareShape.extrude( 
+    var square3d = squareShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var squarePoints = squareShape.createPointsGeometry();
     var squareSpacedPoints = squareShape.createSpacedPointsGeometry();
 
@@ -224,11 +224,11 @@ class WebGL_Geometry_Shapes  {
     rectShape.lineTo( rectLength, 0 );
     rectShape.lineTo( 0, 0 );
 
-    var rect3d = rectShape.extrude( 
+    var rect3d = rectShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var rectPoints = rectShape.createPointsGeometry();
     var rectSpacedPoints = rectShape.createSpacedPointsGeometry();
 
@@ -237,7 +237,7 @@ class WebGL_Geometry_Shapes  {
     var roundedRectShape = new Shape();
     roundedRect( roundedRectShape, 0, 0, 50, 50, 20 );
 
-    var roundedRect3d = roundedRectShape.extrude( 
+    var roundedRect3d = roundedRectShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
@@ -255,7 +255,7 @@ class WebGL_Geometry_Shapes  {
     circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0 );
     circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0, circleRadius );
 
-    var circle3d = circleShape.extrude( 
+    var circle3d = circleShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
@@ -276,11 +276,11 @@ class WebGL_Geometry_Shapes  {
     fishShape.quadraticCurveTo(x + 100, y + 10, x + 90, y + 10);
     fishShape.quadraticCurveTo(x + 50, y + 80, x, y);
 
-    var fish3d = fishShape.extrude( 
+    var fish3d = fishShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var fishPoints = fishShape.createPointsGeometry();
     var fishSpacedPoints = fishShape.createSpacedPointsGeometry();
 
@@ -295,11 +295,11 @@ class WebGL_Geometry_Shapes  {
     holePath.absarc( 10, 10, 10, 0, Math.PI*2, true );
     arcShape.holes.add( holePath );
 
-    var arc3d = arcShape.extrude( 
+    var arc3d = arcShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var arcPoints = arcShape.createPointsGeometry();
     var arcSpacedPoints = arcShape.createSpacedPointsGeometry();
 
@@ -314,7 +314,7 @@ class WebGL_Geometry_Shapes  {
     smileyEye1Path.moveTo( 35, 20 );
     // smileyEye1Path.absarc( 25, 20, 10, 0, Math.PI*2, true );
     smileyEye1Path.absellipse( 25, 20, 10, 10, 0, Math.PI*2, true );
-    
+
     smileyShape.holes.add( smileyEye1Path );
 
     var smileyEye2Path = new Path();
@@ -339,11 +339,11 @@ class WebGL_Geometry_Shapes  {
     smileyShape.holes.add( smileyMouthPath );
 
 
-    var smiley3d = smileyShape.extrude( 
+    var smiley3d = smileyShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
-        steps: extrude_steps); 
+        steps: extrude_steps);
     var smileyPoints = smileyShape.createPointsGeometry();
     var smileySpacedPoints = smileyShape.createSpacedPointsGeometry();
 
@@ -373,12 +373,12 @@ class WebGL_Geometry_Shapes  {
     extrude_bevelEnabled = false;
     extrude_steps = 20;
 
-    var splineShape3d = splineShape.extrude( 
+    var splineShape3d = splineShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
         steps: extrude_steps,
-        extrudePath: extrude_extrudePath); 
+        extrudePath: extrude_extrudePath);
     var splinePoints = splineShape.createPointsGeometry( );
     var splineSpacedPoints = splineShape.createSpacedPointsGeometry( );
 
@@ -395,24 +395,24 @@ class WebGL_Geometry_Shapes  {
 
 
     //
-      
+
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     document.on.mouseDown.add(onDocumentMouseDown, false);
     document.on.touchStart.add(onDocumentTouchStart, false);
     document.on.touchMove.add(onDocumentTouchMove, false);
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(event) {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -429,12 +429,12 @@ class WebGL_Geometry_Shapes  {
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
   }
-  
+
   onDocumentMouseMove(MouseEvent event) {
     mouseX = event.clientX - windowHalfX;
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
   }
-  
+
   onDocumentMouseUp( event ) {
     document.on.mouseMove.remove(onDocumentMouseMove, false );
     document.on.mouseUp.remove(onDocumentMouseUp, false );
@@ -475,12 +475,12 @@ class WebGL_Geometry_Shapes  {
     }
 
   }
-  
+
   animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }
-  
+
   render() {
 
     parent.rotation.y += ( targetRotation - parent.rotation.y ) * 0.05;
@@ -488,7 +488,7 @@ class WebGL_Geometry_Shapes  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
 
-class Canvas_Interactive_Cubes 
+class Canvas_Interactive_Cubes
 {
   Element container;//, stats;
   PerspectiveCamera camera;
@@ -12,28 +12,28 @@ class Canvas_Interactive_Cubes
   IParticleMaterial particleMaterial;
 
   List<Mesh> objects;
-  
+
   final num radius = 600;
   num theta = 0;
 
-  Canvas_Interactive_Cubes() 
+  Canvas_Interactive_Cubes()
   {
-    
+
   }
 
-  void run() 
+  void run()
   {
     init();
-    animate(); 
+    animate();
   }
-  
+
   void init()
   {
     objects = [];
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
-    
+
     Element info = new Element.tag('div');
     info.style.position = 'absolute';
     info.style.top = '10px';
@@ -60,7 +60,7 @@ class Canvas_Interactive_Cubes
       particle.position.z = rnd.nextInt(800) - 400;
       particle.scale.x = particle.scale.y = 8;
       scene.add( particle );
-      
+
       Mesh object = new Mesh( geometry, new MeshBasicMaterial( color: rnd.nextDouble() * 0xffffff, opacity: 0.5 ) );
       object.position.x = rnd.nextInt(800) - 400;
       object.position.y = rnd.nextInt(800) - 400;
@@ -79,7 +79,7 @@ class Canvas_Interactive_Cubes
       objects.add( object );
     }
 
-    
+
     particleMaterial = new ParticleCanvasMaterial(
 
       color: 0x000000,
@@ -91,7 +91,7 @@ class Canvas_Interactive_Cubes
       }
 
     );
-    
+
     projector = new Projector();
 
     var options;
@@ -108,11 +108,11 @@ class Canvas_Interactive_Cubes
     //container.appendChild( stats.domElement );
 
     document.on.mouseDown.add(onDocumentMouseDown, false);
-    
+
     window.setInterval(f() => animate(), 10);
   }
 
-  void onDocumentMouseDown( event ) 
+  void onDocumentMouseDown( event )
   {
     event.preventDefault();
 
@@ -123,7 +123,7 @@ class Canvas_Interactive_Cubes
 
     List<Intersect> intersects = ray.intersectObjects( objects );
 
-    if ( intersects.length > 0 ) 
+    if ( intersects.length > 0 )
     {
       Intersect intersect = intersects[0];
       Mesh mesh = intersect.object;
@@ -133,7 +133,7 @@ class Canvas_Interactive_Cubes
       Particle particle = new Particle( particleMaterial );
       particle.position = intersect.point;
       particle.scale.x = particle.scale.y = 8;
-      scene.add( particle );   
+      scene.add( particle );
     }
 
     /*
@@ -148,7 +148,7 @@ class Canvas_Interactive_Cubes
 
   //
 
-  void animate() 
+  void animate()
   {
     //requestAnimationFrame( animate );
 
@@ -156,7 +156,7 @@ class Canvas_Interactive_Cubes
     //stats.update()
   }
 
-  void render() 
+  void render()
   {
     theta += 0.2;
 

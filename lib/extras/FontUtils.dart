@@ -19,10 +19,10 @@
  *
  */
 
-#library("FontUtils");
+library FontUtils;
 
-#import("package:three.dart/ThreeD.dart");
-#import("core/ShapeUtils.dart", prefix:'ShapeUtils');
+import "package:three.dart/ThreeD.dart";
+import "core/ShapeUtils.dart" as ShapeUtils;
 
 var  face = "helvetiker",
      weight = "normal",
@@ -36,19 +36,19 @@ Map<String, Map<String, Map<String, FontFace>>> faces = {};
 FontFace getFace() => faces[ face ][ weight ][ style ];
 
 loadFace( data ) {
-  
+
   var family = data.familyName.toLowerCase();
-  
+
   if (faces[ family ] == null) faces[ family ] = {};
-  
+
   if (faces[ family ][ data.cssFontWeight ] == null) faces[ family ][ data.cssFontWeight ] = {};
   faces[ family ][ data.cssFontWeight ][ data.cssFontStyle ] = data;
-  
+
   // TODO - Parse data
   var face = faces[ family ][ data.cssFontWeight ][ data.cssFontStyle ] = data;
-  
+
   return data;
-  
+
 }
 
 drawText( String text ) {
@@ -106,7 +106,7 @@ extractGlyphPoints ( String c, FontFace face, scale, offset, path ) {
     scaleX, scaleY,
     x, y, cpx, cpy, cpx0, cpy0, cpx1, cpy1, cpx2, cpy2,
     laste;
-  
+
   Glyph glyph = face.glyphs[ c ];
   if (glyph == null) glyph = face.glyphs[ '?' ];
 
@@ -219,14 +219,14 @@ extractGlyphPoints ( String c, FontFace face, scale, offset, path ) {
   return { "offset": glyph.ha*scale, "path":path};
 }
 
-generateShapes( text, [ int size = 100, 
-                        int curveSegments = 4, 
+generateShapes( text, [ int size = 100,
+                        int curveSegments = 4,
                         String font = "helvetiker",
                         String weight = "normal",
                         String style = "normal"] ) {
 
   var face = faces[font][weight][style];
-  
+
   if (faces == null) {
     face = new FontFace(size: size, divisions: curveSegments);
     faces[font][weight][style] = face;
@@ -239,7 +239,7 @@ generateShapes( text, [ int size = 100,
   var paths = data.paths;
   var shapes = [];
   var pl = paths.length;
-  
+
   for ( var p = 0; p < pl; p ++ ) {
 
     shapes.add(paths[ p ].toShapes() );
@@ -253,22 +253,22 @@ generateShapes( text, [ int size = 100,
 class Glyph {
   String o; /// outline
   List _cachedOutline;
-  
+
   num ha;
 }
 
 class FontFace {
   Map<String, Map> _data;
-  
-  Map<String, Glyph> glyphs; 
-  
+
+  Map<String, Glyph> glyphs;
+
   num size, divisions;
-  
+
   num resolution;
-  
+
   FontFace( [ this.size = 150,
               this.divisions = 10] ) : glyphs = {};
-  
+
   Map operator [](String weight) => _data[weight];
 }
 

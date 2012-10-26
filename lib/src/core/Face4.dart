@@ -1,7 +1,9 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -13,7 +15,7 @@ class Face4 implements IFace4 {
   Color color;
   int materialIndex;
   Vector3 centroid;
-  
+
   /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
   Face4( [this.a, this.b, this.c, this.d, normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
     normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
@@ -21,7 +23,7 @@ class Face4 implements IFace4 {
 
     color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
     vertexColors = colorOrVertexColors is List ? colorOrVertexColors : [];
-    
+
     vertexTangents = [];
 
     materialIndex = materialIndex;

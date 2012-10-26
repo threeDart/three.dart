@@ -1,9 +1,11 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * based on http://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Cube.as
- * 
+ *
  * Ported to Dart from JS by:
- * @author rob silverton / http://www.unwrong.com/ 
+ * @author rob silverton / http://www.unwrong.com/
  */
 
 class CubeGeometry extends Geometry {
@@ -12,13 +14,13 @@ class CubeGeometry extends Geometry {
   num segmentsWidth;
   num segmentsHeight;
   num segmentsDepth;
-  
+
   /**
    * [materialOrList] is a [Material] or a [List] of [Material]. */
-  CubeGeometry( num width, num height, num depth, [this.segmentsWidth = 1, 
-                                                   this.segmentsHeight = 1, 
-                                                   this.segmentsDepth = 1, 
-                                                   materialOrList, 
+  CubeGeometry( num width, num height, num depth, [this.segmentsWidth = 1,
+                                                   this.segmentsHeight = 1,
+                                                   this.segmentsDepth = 1,
+                                                   materialOrList,
                                                    List sides] )
                                                    : super() {
 
@@ -47,12 +49,12 @@ class CubeGeometry extends Geometry {
 
     //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
     _sides = new CubeGeomSides();
-    
+
     //TODO: not sure if this is the correct use of "dynamic"
     if ( sides != null ) {
       for ( var s in sides ) {
-        if ( (_sides as Dynamic)[ s ] !== null ) {
-          (_sides as Dynamic)[ s ] = sides[ s ];
+        if ( (_sides as dynamic)[ s ] != null ) {
+          (_sides as dynamic)[ s ] = sides[ s ];
         }
       }
     }
@@ -67,9 +69,9 @@ class CubeGeometry extends Geometry {
     computeCentroids();
     mergeVertices();
   }
-  
+
   void buildPlane( String u, String v, num udir, num vdir, num width, num height, num depth, num material ) {
-    String w; 
+    String w;
     num ix, iy,
     gridX = ( segmentsWidth != null ) ? segmentsWidth : 1,
     gridY = ( segmentsHeight != null ) ? segmentsHeight : 1,
@@ -77,12 +79,12 @@ class CubeGeometry extends Geometry {
     height_half = height / 2,
     offset = vertices.length;
 
-    if ( ( u === 'x' && v === 'y' ) || ( u === 'y' && v === 'x' ) ) {
+    if ( ( u == 'x' && v == 'y' ) || ( u == 'y' && v == 'x' ) ) {
       w = 'z';
-    } else if ( ( u === 'x' && v === 'z' ) || ( u === 'z' && v === 'x' ) ) {
+    } else if ( ( u == 'x' && v == 'z' ) || ( u == 'z' && v == 'x' ) ) {
       w = 'y';
       gridY = ( segmentsDepth != null ) ? segmentsDepth : 1;
-    } else if ( ( u === 'z' && v === 'y' ) || ( u === 'y' && v === 'z' ) ) {
+    } else if ( ( u == 'z' && v == 'y' ) || ( u == 'y' && v == 'z' ) ) {
       w = 'x';
       gridX = ( segmentsDepth != null ) ? segmentsDepth : 1;
     }
@@ -95,11 +97,11 @@ class CubeGeometry extends Geometry {
 
     //TODO: find out how to do this sort of casting in Dart...
     // normal.dynamic[ w ] = depth > 0 ? 1 : - 1;
-    
-    if ( w == 'x' )         normal.x = depth > 0 ? 1 : - 1;
-    else if ( w == 'y' )    normal.y = depth > 0 ? 1 : - 1;
-    else if ( w == 'z' )    normal.z = depth > 0 ? 1 : - 1;
-    
+
+    if ( w == 'x' ) {         normal.x = depth > 0 ? 1 : - 1;
+    } else if ( w == 'y' ) {    normal.y = depth > 0 ? 1 : - 1;
+    } else if ( w == 'z' )    normal.z = depth > 0 ? 1 : - 1;
+
     for ( iy = 0; iy < gridY1; iy ++ )  {
       for ( ix = 0; ix < gridX1; ix ++ ) {
         Vector3 vector = new Vector3();
@@ -107,19 +109,19 @@ class CubeGeometry extends Geometry {
 //        vector[ u ] = ( ix * segment_width - width_half ) * udir;
 //        vector[ v ] = ( iy * segment_height - height_half ) * vdir;
 //        vector[ w ] = depth;
-        
-        if ( u == 'x' )        vector.x = ( ix * segment_width - width_half ) * udir;
-        else if ( u == 'y' )   vector.y = ( ix * segment_width - width_half ) * udir;
-        else if ( u == 'z' )   vector.z = ( ix * segment_width - width_half ) * udir;
-        
-        if ( v == 'x' )        vector.x = ( iy * segment_height - height_half ) * vdir;
-        else if ( v == 'y' )   vector.y = ( iy * segment_height - height_half ) * vdir;
-        else if ( v == 'z' )   vector.z = ( iy * segment_height - height_half ) * vdir;
-        
-        if ( w == 'x' )        vector.x = depth;
-        else if ( w == 'y' )   vector.y = depth;
-        else if ( w == 'z' )   vector.z = depth;
-        
+
+        if ( u == 'x' ) {        vector.x = ( ix * segment_width - width_half ) * udir;
+        } else if ( u == 'y' ) {   vector.y = ( ix * segment_width - width_half ) * udir;
+        } else if ( u == 'z' )   vector.z = ( ix * segment_width - width_half ) * udir;
+
+        if ( v == 'x' ) {        vector.x = ( iy * segment_height - height_half ) * vdir;
+        } else if ( v == 'y' ) {   vector.y = ( iy * segment_height - height_half ) * vdir;
+        } else if ( v == 'z' )   vector.z = ( iy * segment_height - height_half ) * vdir;
+
+        if ( w == 'x' ) {        vector.x = depth;
+        } else if ( w == 'y' ) {   vector.y = depth;
+        } else if ( w == 'z' )   vector.z = depth;
+
         vertices.add( vector );
       }
     }
@@ -137,7 +139,7 @@ class CubeGeometry extends Geometry {
         face.materialIndex = material;
 
         faces.add( face );
-        
+
         List faceVertexUV = faceVertexUvs[ 0 ];
         List newUVs = new List();
         newUVs.addAll([
@@ -149,16 +151,16 @@ class CubeGeometry extends Geometry {
         faceVertexUV.add( newUVs );
       }
     }
-  }  
+  }
 }
 
 //_sides = { "px": true, "nx": true, "py": true, "ny": true, "pz": true, "nz": true };
 class CubeGeomSides{
   bool px, nx, py, ny, pz, nz;
-  
-  CubeGeomSides( [this.px = true, 
-                  this.nx = true, 
-                  this.py = true, 
+
+  CubeGeomSides( [this.px = true,
+                  this.nx = true,
+                  this.py = true,
                   this.ny = true,
                   this.pz = true,
                   this.nz = true] );

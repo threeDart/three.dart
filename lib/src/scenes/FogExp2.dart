@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class FogExp2 implements Fog {
   Color color;
   num density;

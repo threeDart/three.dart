@@ -1,6 +1,6 @@
-#import('dart:html');
-#import('package:three.dart/ThreeD.dart');
-#import('package:three.dart/extras/ImageUtils.dart', prefix:'ImageUtils'); // TODO - Use Re-export
+import 'dart:html';
+import 'package:three.dart/ThreeD.dart';
+import 'package:three.dart/extras/ImageUtils.dart' as ImageUtils; // TODO - Use Re-export
 
 class WebGL_Geometry_Cube  {
   Element container;
@@ -10,16 +10,16 @@ class WebGL_Geometry_Cube  {
   WebGLRenderer renderer;
 
   Mesh cube;
-  
+
   void run() {
     init();
     animate(0);
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
-    
+
     document.body.nodes.add( container );
 
     scene = new Scene();
@@ -28,7 +28,7 @@ class WebGL_Geometry_Cube  {
     camera.position.z = 400;
 
     scene.add(camera);
-    
+
     var geometry = new CubeGeometry( 200, 200, 200 );
     var material = new MeshBasicMaterial( map: ImageUtils.loadTexture( 'textures/crate.gif' ));
 
@@ -37,12 +37,12 @@ class WebGL_Geometry_Cube  {
 
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(e) {
 
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -62,7 +62,7 @@ class WebGL_Geometry_Cube  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

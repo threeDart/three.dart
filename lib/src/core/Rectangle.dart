@@ -1,6 +1,8 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -8,16 +10,16 @@
 class Rectangle {
   num _left, _top, _right, _bottom, _width, _height;
   bool _isEmpty;
-  
-  Rectangle() 
+
+  Rectangle()
       : _left = 0,
-        _top = 0, 
-        _right = 0, 
-        _bottom = 0, 
-        _width = 0, 
+        _top = 0,
+        _right = 0,
+        _bottom = 0,
+        _width = 0,
         _height = 0,
         _isEmpty = true;
-  
+
   resize() {
     _width = _right - _left;
     _height = _bottom - _top;
@@ -31,7 +33,7 @@ class Rectangle {
   num getTop() => _top;
   num getRight() => _right;
   num getBottom() => _bottom;
-  
+
   setValues( num left, num top, num right, num bottom ) {
     _isEmpty = false;
 

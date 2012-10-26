@@ -1,15 +1,17 @@
+part of ThreeD;
+
 class Bone extends Object3D {
-  
+
   var skin;
   Matrix4 skinMatrix;
-  
-  Bone(this.skin) : skinMatrix = new Matrix4(), super(); 
-  
+
+  Bone(this.skin) : skinMatrix = new Matrix4(), super();
+
   update( [Matrix4 parentSkinMatrix, forceUpdate = false] ) {
 
     // update local
     if ( matrixAutoUpdate ) {
-      
+
       // This should be <=> forceUpdate |= updateMatrix();
       if (forceUpdate) updateMatrix();
     }

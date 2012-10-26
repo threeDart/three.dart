@@ -1,3 +1,5 @@
-interface IRenderableObj {
+part of ThreeD;
+
+abstract class IRenderableObj {
 
 }

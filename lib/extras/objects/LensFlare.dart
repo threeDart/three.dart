@@ -1,18 +1,20 @@
+part of ThreeD;
+
 class LensFlare extends Object3D {
 	List lensFlares;
 	var customUpdateCallback;
 
 	Vector3 positionScreen;
-	
-	LensFlare(texture, size, distance, blending, color ) 
-		: 	lensFlares = [], 
-			customUpdateCallback = null, 
+
+	LensFlare(texture, size, distance, blending, color )
+		: 	lensFlares = [],
+			customUpdateCallback = null,
 			super() {
 
 		positionScreen = new Vector3();
 
 		// TODO
-		//if( texture !== undefined ) {
+		//if( texture != undefined ) {
 		//	add( texture, size, distance, blending, color );
 		//}
 

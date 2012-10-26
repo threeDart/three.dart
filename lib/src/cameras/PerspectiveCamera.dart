@@ -1,8 +1,10 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author greggman / http://games.greggman.com/
  * @author zz85 / http://www.lab4games.net/zz85/blog
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -11,7 +13,7 @@ class PerspectiveCamera extends Camera {
 
   num fov;
   num aspect;
-  
+
   num _fullWidth;
   num _fullHeight;
   num _x;
@@ -19,13 +21,13 @@ class PerspectiveCamera extends Camera {
   num _width;
   num _height;
 
-  
+
   PerspectiveCamera( [this.fov = 50, this.aspect = 1, near = 0.1, far = 2000] )
     : super(near, far){
-      
+
     updateProjectionMatrix();
   }
-  
+
   /**
    * Uses Focal Length (in mm) to estimate and set FOV
    * 35mm (fullframe) camera is used if frame size is not specified;
@@ -33,7 +35,7 @@ class PerspectiveCamera extends Camera {
    */
 
   void setLens( num focalLength, num frameSize ) {
-    frameSize = frameSize !== null ? frameSize : 43.25; // 36x24mm
+    frameSize = frameSize != null ? frameSize : 43.25; // 36x24mm
 
     fov = 2 * Math.atan( frameSize / ( focalLength * 2 ) );
     fov = 180 / Math.PI * fov;
@@ -91,7 +93,7 @@ class PerspectiveCamera extends Camera {
 
 
   void updateProjectionMatrix() {
-    if ( _fullWidth !== null ) {
+    if ( _fullWidth != null ) {
       num aspect = _fullWidth / _fullHeight;
       num top = Math.tan( fov * Math.PI / 360 ) * near;
       num bottom = -top;

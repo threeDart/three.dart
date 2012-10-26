@@ -1,6 +1,6 @@
-#library("SceneUtils");
+library SceneUtils;
 
-#import("package:three.dart/ThreeD.dart");
+import "package:three.dart/ThreeD.dart";
 
 showHierarchy( root, visible ) => traverseHierarchy( root, (node) => node.visible = visible);
 
@@ -119,8 +119,9 @@ cloneObject(Object3D source) {
 
   // because of Sprite madness
 
-  if ( object.rotation is Vector3 )
+  if ( object.rotation is Vector3 ) {
     object.rotation.copy( source.rotation );
+  }
 
   object.eulerOrder = source.eulerOrder;
 

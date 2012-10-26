@@ -1,7 +1,9 @@
+part of ThreeD;
+
 class Sprite extends Object3D {
   Color color;
   Texture map;
-  
+
   int blending;
   int blendSrc;
 
@@ -12,7 +14,7 @@ class Sprite extends Object3D {
   bool mergeWith3D;
   bool affectedByDistance;
   bool scaleByViewport;
-  
+
   Vector2 alignment;
 
   Vector3 rotation3d;
@@ -20,35 +22,35 @@ class Sprite extends Object3D {
   num opacity;
 
   Vector2 uvOffset, uvScale;
-  
-  Sprite([  num hexColor = 0xffffff, 
-            this.map, 
-            this.blending = Three.NormalBlending,
-            this.blendSrc = Three.SrcAlphaFactor,
-            this.blendDst = Three.OneMinusSrcAlphaFactor,
-            this.blendEquation = Three.AddEquation,
-  
-            this.useScreenCoordinates = true,
-           
-            bool mergeWith3D = null,
-            bool affectedByDistance = null,
-            bool scaleByViewport = null,
-            
-            Vector2 alignment = null]) 
-            
-            : color = new Color(hexColor), 
+
+  Sprite({  num hexColor: 0xffffff,
+            this.map,
+            this.blending: Three.NormalBlending,
+            this.blendSrc: Three.SrcAlphaFactor,
+            this.blendDst: Three.OneMinusSrcAlphaFactor,
+            this.blendEquation: Three.AddEquation,
+
+            this.useScreenCoordinates: true,
+
+            bool mergeWith3D: null,
+            bool affectedByDistance: null,
+            bool scaleByViewport: null,
+
+            Vector2 alignment: null})
+
+            : color = new Color(hexColor),
               uvOffset = new Vector2(0, 0),
               uvScale = new Vector2(1, 1),
               opacity = 1,
               super() {
-            
+
     if (map == null) map = new Texture();
     if (mergeWith3D == null)  this.mergeWith3D = !useScreenCoordinates;
     if (affectedByDistance == null)  this.affectedByDistance = !useScreenCoordinates;
     if (scaleByViewport == null)  this.scaleByViewport = !affectedByDistance;
-    
+
     if (alignment == null) this.alignment = SpriteAlignment.center;
-    
+
     rotation3d = rotation;
   }
 }

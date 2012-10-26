@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class ImageLoader extends EventEmitter {
 
 	String crossOrigin;

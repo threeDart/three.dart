@@ -1,3 +1,5 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author supereggbert / http://www.paulbrunt.co.uk/
@@ -7,32 +9,32 @@
  * @author alteredq / http://alteredqualia.com/
  * @author mikael emtinger / http://gomo.se/
  * @author timknip / http://www.floorplanner.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
 
 class Matrix4 {
   Float32Array elements;
-  
 
-  Matrix4( [num n11 = 1, num n12 = 0, num n13 = 0, num n14 = 0, 
-            num n21 = 0, num n22 = 1, num n23 = 0, num n24 = 0, 
-            num n31 = 0, num n32 = 0, num n33 = 1, num n34 = 0, 
-            num n41 = 0, num n42 = 0, num n43 = 0, num n44 = 1] ) 
+
+  Matrix4( {num n11: 1, num n12: 0, num n13: 0, num n14: 0,
+            num n21: 0, num n22: 1, num n23: 0, num n24: 0,
+            num n31: 0, num n32: 0, num n33: 1, num n34: 0,
+            num n41: 0, num n42: 0, num n43: 0, num n44: 1} )
       : elements = new Float32Array(16) {
-        
-    setValues(n11, n12, n13, n14, 
-              n21, n22, n23, n24, 
-              n31, n32, n33, n34, 
+
+    setValues(n11, n12, n13, n14,
+              n21, n22, n23, n24,
+              n31, n32, n33, n34,
               n41, n42, n43, n44);
   }
-  
+
 
   // "set" changed to "setM" as "set" is reserved
-  Matrix4 setValues( num n11, num n12, num n13, num n14, 
-                     num n21, num n22, num n23, num n24, 
-                     num n31, num n32, num n33, num n34, 
+  Matrix4 setValues( num n11, num n12, num n13, num n14,
+                     num n21, num n22, num n23, num n24,
+                     num n31, num n32, num n33, num n34,
                      num n41, num n42, num n43, num n44 ) {
     var te = this.elements;
 
@@ -66,27 +68,27 @@ class Matrix4 {
       me[3], me[7], me[11], me[15]
 
     );
-    
+
     return this;
   }
 
 
   Matrix4 lookAt( Vector3 eye, Vector3 center, Vector3 up ) {
     var te = elements;
-    
-    Vector3 x = __v1, 
-            y = __v2, 
+
+    Vector3 x = __v1,
+            y = __v2,
             z = __v3;
-    
+
     z.sub( eye, center ).normalize();
-    
-    if ( z.length() === 0 ) {
+
+    if ( z.length() == 0 ) {
       z.z = 1;
     }
 
     x.cross( up, z ).normalize();
-    
-    if ( x.length() === 0 ) {
+
+    if ( x.length() == 0 ) {
       z.x += 0.0001;
       x.cross( up, z ).normalize();
     }
@@ -96,7 +98,7 @@ class Matrix4 {
     te[0] = x.x; te[4] = y.x; te[8] = z.x;
     te[1] = x.y; te[5] = y.y; te[9] = z.y;
     te[2] = x.z; te[6] = y.z; te[10] = z.z;
-    
+
     return this;
   }
 
@@ -134,16 +136,16 @@ class Matrix4 {
     te[7] = a41 * b12 + a42 * b22 + a43 * b32 + a44 * b42;
     te[11] = a41 * b13 + a42 * b23 + a43 * b33 + a44 * b43;
     te[15] = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
-    
+
     return this;
   }
 
   Matrix4 multiplySelf( Matrix4 m ) => multiply( this, m );
 
   Matrix4 multiplyToArray( Matrix4 a, Matrix4 b, List r ) {
-    
+
     var te = elements;
-    
+
     multiply( a, b );
 
     r[ 0 ] = te[0]; r[ 1 ] = te[1]; r[ 2 ] = te[2]; r[ 3 ] = te[3];
@@ -177,7 +179,7 @@ class Matrix4 {
 
     return v;
   }
-  
+
   Vector4 multiplyVector4( Vector4 v ) {
     var te = elements;
     var vx = v.x, vy = v.y, vz = v.z, vw = v.w;
@@ -189,13 +191,13 @@ class Matrix4 {
 
     return v;
   }
-  
+
   multiplyVector3Array( a ) {
 
     var tmp = Matrix4.__v1;
 
     int il = a.length;
-    
+
     for ( var i = 0; i < il; i += 3 ) {
 
       tmp.x = a[ i ];
@@ -228,7 +230,7 @@ class Matrix4 {
   }
 
   Vector4 crossVector( Vector4 a ) {
-    
+
     var te = this.elements;
     Vector4 v = new Vector4();
 
@@ -302,7 +304,7 @@ class Matrix4 {
 
   List flattenToArray( List flat ) {
     var te = elements;
-    
+
     flat[ 0 ] = te[0]; flat[ 1 ] = te[1]; flat[ 2 ] = te[2]; flat[ 3 ] = te[3];
     flat[ 4 ] = te[4]; flat[ 5 ] = te[5]; flat[ 6 ] = te[6]; flat[ 7 ] = te[7];
     flat[ 8 ]  = te[8]; flat[ 9 ]  = te[9]; flat[ 10 ] = te[10]; flat[ 11 ] = te[11];
@@ -313,7 +315,7 @@ class Matrix4 {
 
   List flattenToArrayOffset( List flat, int offset ) {
     var te = elements;
-    
+
     flat[ offset ] = te[0];
     flat[ offset + 1 ] = te[1];
     flat[ offset + 2 ] = te[2];
@@ -338,7 +340,7 @@ class Matrix4 {
   }
 
   Vector3 getPosition() => __v1.setValues( elements[12], elements[13], elements[14] );
-  
+
   Matrix4 setPosition( Vector3 v ) {
     var te = elements;
 
@@ -503,7 +505,7 @@ class Matrix4 {
 
   Matrix4 setRotationFromQuaternion( Quaternion q ) {
     var te = this.elements;
-    
+
     num x = q.x, y = q.y, z = q.z, w = q.w,
     x2 = x + x, y2 = y + y, z2 = z + z,
     xx = x * x2, xy = x * y2, xz = x * z2,
@@ -526,9 +528,9 @@ class Matrix4 {
   }
 
   Matrix4 compose( Vector3 translation, Quaternion rotation, Vector3 s ) {
-    
+
     var te = elements;
-    
+
     Matrix4 mRotation = __m1;
     Matrix4 mScale = __m2;
 
@@ -547,9 +549,9 @@ class Matrix4 {
   }
 
   List decompose( Vector3 translation, Quaternion rotation, Vector3 scale ) {
-    
+
     var te = elements;
-    
+
     // grab the axis vectors
     Vector3 x = __v1;
     Vector3 y = __v2;
@@ -605,10 +607,10 @@ class Matrix4 {
   }
 
   Matrix4 extractRotation( Matrix4 m ) {
-    
+
     var te = elements;
     var me = m.elements;
-    
+
     Vector3 vector = __v1;
 
     var scaleX = 1 / vector.setValues( me[0], me[1], me[2] ).length();
@@ -641,7 +643,7 @@ class Matrix4 {
 
     return this;
   }
-  
+
   Matrix4 rotateX( num angle ) {
     var te = elements;
     var m12 = te[4];
@@ -719,10 +721,10 @@ class Matrix4 {
 
     return this;
   }
-  
+
   Matrix4 rotateByAxis( Vector3 axis, num angle ) {
     var te = elements;
-    
+
     // optimize by checking axis
     if ( axis.x == 1 && axis.y == 0 && axis.z == 0 ) {
       return rotateX( angle );
@@ -789,7 +791,7 @@ class Matrix4 {
   }
 
   Matrix4 scale( Vector3 v ) {
-    
+
     var te = elements;
     num x = v.x, y = v.y, z = v.z;
 
@@ -800,7 +802,7 @@ class Matrix4 {
 
     return this;
   }
-  
+
   double getMaxScaleOnAxis() {
 
     var te = elements;
@@ -812,7 +814,7 @@ class Matrix4 {
     return Math.sqrt( Math.max( scaleXSq, Math.max( scaleYSq, scaleZSq ) ) );
 
   }
-  
+
   Matrix4 makeTranslation( num x, num y, num z ) {
     setValues(
       1, 0, 0, x,
@@ -881,7 +883,7 @@ class Matrix4 {
 
      return this;
   }
-  
+
   Matrix4 makeScale( num x, num y, num z ) {
     setValues(
       x, 0, 0, 0,
@@ -895,7 +897,7 @@ class Matrix4 {
 
   Matrix4 makeFrustum( num left, num right, num bottom, num top, num near, num far ) {
     var te = elements;
-    
+
     num x, y, a, b, c, d;
 
     x = 2 * near / ( right - left );
@@ -927,7 +929,7 @@ class Matrix4 {
 
   Matrix4 makeOrthographic( num left, num right, num top, num bottom, num near, num far ) {
     var te = elements;
-    
+
     num x, y, z, w, h, p;
 
     w = right - left;
@@ -945,7 +947,7 @@ class Matrix4 {
 
     return this;
   }
-  
+
   Matrix4 clone() {
     var te = elements;
 
@@ -958,32 +960,32 @@ class Matrix4 {
 
     );
   }
-  
+
   //TODO: Fix "Expected Constant Expression" problem
-  
+
   // Axis Vectors, X, Y, Z
-  static Vector3 ___v1; 
+  static Vector3 ___v1;
   static Vector3 ___v2;
   static Vector3 ___v3;
 
   // Rotation, Scale
   static Matrix4 ___m1;
   static Matrix4 ___m2;
-  
+
   static Vector3 get __v1 {
     if (___v1 == null) {
       ___v1 = new Vector3();
     }
     return ___v1;
   }
-  
+
   static Vector3 get __v2 {
     if (___v2 == null) {
       ___v2 = new Vector3();
     }
     return ___v2;
   }
-  
+
   static Vector3 get __v3 {
     if (___v3 == null) {
       ___v3 = new Vector3();

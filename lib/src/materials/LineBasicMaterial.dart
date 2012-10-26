@@ -1,7 +1,9 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  *
@@ -30,47 +32,47 @@ class LineBasicMaterial extends Material {
 
   bool fog;
   int vertexColors;
-  
-  
-  LineBasicMaterial([ // LineBasicMaterial
-                      
-                      num color = 0xffffff,
 
-                      this.linewidth = 1,
-                      this.linecap = 'round',
-                      this.linejoin = 'round',
 
-                      this.vertexColors = Three.NoColors,
+  LineBasicMaterial({ // LineBasicMaterial
 
-                      this.fog = true,
-                      
-                      // Material 
-                      name = '',
-                      side = Three.FrontSide,
-                    
-                      opacity = 1,
-                      transparent = false,
-                    
-                      blending = Three.NormalBlending,
-                      blendSrc = Three.SrcAlphaFactor,
-                      blendDst = Three.OneMinusSrcAlphaFactor,
-                      blendEquation = Three.AddEquation,
-                    
-                      depthTest = true,
-                      depthWrite = true,
-                    
-                      polygonOffset = false,
-                      polygonOffsetFactor = 0,
-                      polygonOffsetUnits =  0,
-                    
-                      alphaTest = 0,
-                    
-                      overdraw = false, 
-                    
-                      visible = true ])
+                      num color: 0xffffff,
+
+                      this.linewidth: 1,
+                      this.linecap: 'round',
+                      this.linejoin: 'round',
+
+                      this.vertexColors: Three.NoColors,
+
+                      this.fog: true,
+
+                      // Material
+                      name: '',
+                      side: Three.FrontSide,
+
+                      opacity: 1,
+                      transparent: false,
+
+                      blending: Three.NormalBlending,
+                      blendSrc: Three.SrcAlphaFactor,
+                      blendDst: Three.OneMinusSrcAlphaFactor,
+                      blendEquation: Three.AddEquation,
+
+                      depthTest: true,
+                      depthWrite: true,
+
+                      polygonOffset: false,
+                      polygonOffsetFactor: 0,
+                      polygonOffsetUnits: 0,
+
+                      alphaTest: 0,
+
+                      overdraw: false,
+
+                      visible: true })
       :
-                      this.color = new Color(color), 
-                      
+                      this.color = new Color(color),
+
                       super(  name: name,
                               side: side,
                               opacity: opacity,
@@ -78,13 +80,13 @@ class LineBasicMaterial extends Material {
                               blending: blending,
                               blendSrc: blendSrc,
                               blendDst: blendDst,
-                              blendEquation: blendEquation,      
+                              blendEquation: blendEquation,
                               depthTest: depthTest,
-                              depthWrite: depthWrite,          
+                              depthWrite: depthWrite,
                               polygonOffset: polygonOffset,
                               polygonOffsetFactor: polygonOffsetFactor,
-                              polygonOffsetUnits: polygonOffsetUnits,             
-                              alphaTest: alphaTest,              
-                              overdraw: overdraw,          
+                              polygonOffsetUnits: polygonOffsetUnits,
+                              alphaTest: alphaTest,
+                              overdraw: overdraw,
                               visible: visible );
 }

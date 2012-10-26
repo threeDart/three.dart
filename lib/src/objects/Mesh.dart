@@ -1,8 +1,10 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
  * @author mikael emtinger / http://gomo.se/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  * @author nelson silva / http://www.inevo.pt/
@@ -11,12 +13,12 @@
 class Mesh extends Object3D {
   Geometry geometry;
   Material material;
-  
+
   num _morphTargetBase;
   List morphTargetForcedOrder;
   List morphTargetInfluences;
   Map _morphTargetDictionary;
-  
+
   Mesh( this.geometry, [this.material] ) : super() {
 
     if (material == null) {

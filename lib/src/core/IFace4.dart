@@ -1,3 +1,5 @@
-interface IFace4 extends IFace3 {
+part of ThreeD;
+
+abstract class IFace4 extends IFace3 {
   num d;
 }

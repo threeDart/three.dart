@@ -1,23 +1,25 @@
+part of ThreeD;
+
 /**
  * @author oosmoxiecode
  * based on http://code.google.com/p/away3d/source/browse/trunk/fp10/Away3D/src/away3d/primitives/TorusKnot.as?spec=svn2473&r=2473
  */
 
 class TorusKnotGeometry extends Geometry {
-  
+
   num radius, tube, segmentsR, segmentsT, p, q, heightScale;
   List grid;
-  
-  TorusKnotGeometry( [ this.radius = 200, 
-                       this.tube = 40, 
-                       this.segmentsR = 64, 
-                       this.segmentsT = 8, 
-                       this.p = 2, 
-                       this.q = 3, 
+
+  TorusKnotGeometry( [ this.radius = 200,
+                       this.tube = 40,
+                       this.segmentsR = 64,
+                       this.segmentsT = 8,
+                       this.p = 2,
+                       this.q = 3,
                        this.heightScale = 1]) : super() {
-                         
+
     grid = new List(segmentsR);
-    
+
     var tang = new Vector3();
     var n = new Vector3();
     var bitan = new Vector3();
@@ -81,9 +83,9 @@ class TorusKnotGeometry extends Geometry {
     this.computeCentroids();
     this.computeFaceNormals();
     this.computeVertexNormals();
-        
+
    }
-  
+
   num _vert( x, y, z ) {
     vertices.add( new Vector3( x, y, z ) );
     return vertices.length - 1;

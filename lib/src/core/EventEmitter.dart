@@ -1,7 +1,9 @@
+part of ThreeD;
+
 class EventEmitterEvent {
   String type;
   String message;
-  Dynamic content;
+  var content;
   EventEmitterEvent([this.type, this.message, this.content]);
 }
 

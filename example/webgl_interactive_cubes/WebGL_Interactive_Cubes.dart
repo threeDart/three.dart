@@ -1,6 +1,6 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
 
 class WebGL_Interactive_Cubes  {
   Element container;
@@ -9,20 +9,20 @@ class WebGL_Interactive_Cubes  {
   Scene scene;
   WebGLRenderer renderer;
   Projector projector;
-  
+
   var mouseX = 0, mouseY = 0;
-  
+
   Mesh INTERSECTED;
-  
+
   void run() {
     init();
     animate(0);
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
-    
+
     document.body.nodes.add( container );
 
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
@@ -30,9 +30,9 @@ class WebGL_Interactive_Cubes  {
 
     scene = new Scene();
     scene.add(camera);
-    
+
     var light;
-    
+
     light = new DirectionalLight( 0xffffff, 2 );
     light.position.setValues( 1, 1, 1 ).normalize();
     scene.add( light );
@@ -40,12 +40,12 @@ class WebGL_Interactive_Cubes  {
     light = new DirectionalLight( 0xffffff );
     light.position.setValues( -1, -1, -1 ).normalize();
     scene.add( light );
-    
-    
+
+
     var geometry = new CubeGeometry( 20, 20, 20 );
-    
+
     var rnd = new Math.Random();
-    
+
     for ( var i = 0; i < 500; i ++ ) {
 
       var object = new Mesh( geometry, new MeshLambertMaterial( color: rnd.nextInt(0xffffff) ) );
@@ -65,19 +65,19 @@ class WebGL_Interactive_Cubes  {
       scene.add( object );
 
     }
-    
+
     projector = new Projector();
-    
+
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     document.on.mouseMove.add(onDocumentMouseMove, false);
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(_) {
 
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -95,7 +95,7 @@ class WebGL_Interactive_Cubes  {
     mouseY = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
   }
-  
+
   animate(int time) {
 
     window.requestAnimationFrame( animate );
@@ -103,7 +103,7 @@ class WebGL_Interactive_Cubes  {
     render();
 
   }
-  
+
   var radius = 100;
   num theta = 0;
 
@@ -129,7 +129,7 @@ class WebGL_Interactive_Cubes  {
     if ( intersects.length > 0 ) {
 
       if ( INTERSECTED != intersects[ 0 ].object ) {
-        
+
         if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
 
         INTERSECTED = intersects[ 0 ].object;
@@ -150,7 +150,7 @@ class WebGL_Interactive_Cubes  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

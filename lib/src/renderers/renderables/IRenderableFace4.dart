@@ -1,3 +1,5 @@
-interface IRenderableFace4 extends IRenderableFace3 {
+part of ThreeD;
+
+abstract class IRenderableFace4 extends IRenderableFace3 {
   RenderableVertex v4;
 }

@@ -1,3 +1,5 @@
+part of ThreeD;
+
 /**
  * @author WestLangley / https://github.com/WestLangley
  * @author zz85 / https://github.com/zz85
@@ -12,114 +14,114 @@
  */
 
 class TubeGeometry extends Geometry {
-  
+
   var path;
   num segments, radius, segmentsRadius;
   bool closed;
-  
+
   var grid;
   var tangents, normals, binormals;
-      
+
   Object3D debug;
-  
-  TubeGeometry ( path, [segments = 64, this.radius = 1, this.segmentsRadius = 8, closed = false, bool debug]) 
+
+  TubeGeometry ( path, [segments = 64, this.radius = 1, this.segmentsRadius = 8, closed = false, bool debug])
     : grid = [], super() {
-      
+
     if ( debug ) this.debug = new Object3D();
-      
+
     var tangent,
         normal,
-        binormal, 
-        
+        binormal,
+
         numpoints = segments + 1,
-   
+
         x, y, z,
         tx, ty, tz,
         u, v,
-    
+
         cx, cy,
         pos, pos2 = new Vector3(),
         i, j,
         ip, jp,
         a, b, c, d,
         uva, uvb, uvc, uvd;
-  
+
     var frames = _frenetFrames(path, segments, closed);
-  
+
     // consruct the grid
     grid.length = numpoints;
-    
+
     for ( i = 0; i < numpoints; i++ ) {
-  
+
       grid[ i ] = new List(this.segmentsRadius);
-  
+
       u = i / ( numpoints - 1 );
-  
+
       pos = path.getPointAt( u );
-  
+
       tangent = tangents[ i ];
       normal = normals[ i ];
       binormal = binormals[ i ];
-  
+
       if ( debug ) {
-  
-        this.debug.add(new ArrowHelper(tangent, pos, radius, 0x0000ff));  
+
+        this.debug.add(new ArrowHelper(tangent, pos, radius, 0x0000ff));
         this.debug.add(new ArrowHelper(normal, pos, radius, 0xff0000));
         this.debug.add(new ArrowHelper(binormal, pos, radius, 0x00ff00));
-  
+
       }
-  
+
       for ( j = 0; j < this.segmentsRadius; j++ ) {
-  
+
         v = j / this.segmentsRadius * 2 * Math.PI;
-  
+
         cx = -this.radius * Math.cos( v ); // TODO: Hack: Negating it so it faces outside.
         cy = this.radius * Math.sin( v );
-  
+
         pos2.copy( pos );
         pos2.x += cx * normal.x + cy * binormal.x;
         pos2.y += cx * normal.y + cy * binormal.y;
         pos2.z += cx * normal.z + cy * binormal.z;
 
         this.grid[ i ][ j ] = _vert( pos2.x, pos2.y, pos2.z );
-  
+
       }
     }
-  
-  
+
+
     // construct the mesh
-  
+
     for ( i = 0; i < this.segments; i++ ) {
-  
+
       for ( j = 0; j < this.segmentsRadius; j++ ) {
-  
+
         ip = ( closed ) ? (i + 1) % this.segments : i + 1;
         jp = (j + 1) % this.segmentsRadius;
-  
+
         a = this.grid[ i ][ j ];    // *** NOT NECESSARILY PLANAR ! ***
         b = this.grid[ ip ][ j ];
         c = this.grid[ ip ][ jp ];
         d = this.grid[ i ][ jp ];
-  
+
         uva = new UV( i / this.segments, j / this.segmentsRadius );
         uvb = new UV( ( i + 1 ) / this.segments, j / this.segmentsRadius );
         uvc = new UV( ( i + 1 ) / this.segments, ( j + 1 ) / this.segmentsRadius );
         uvd = new UV( i / this.segments, ( j + 1 ) / this.segmentsRadius );
-  
+
         this.faces.add( new Face4( a, b, c, d ) );
         this.faceVertexUvs[ 0 ].add( [ uva, uvb, uvc, uvd ] );
-  
+
       }
     }
-  
+
     computeCentroids();
     computeFaceNormals();
     computeVertexNormals();
-  
+
   }
 
 
-  _vert( x, y, z ) { 
+  _vert( x, y, z ) {
     vertices.add( new Vector3(x, y, z) );
     return vertices.length - 1;
   }
@@ -127,51 +129,51 @@ class TubeGeometry extends Geometry {
 
   // FrenetFrames
 
-  
+
   TubeGeometry.FrenetFrames(path, segments, closed) {
     _frenetFrames(path, segments, closed);
   }
-  
+
 // For computing of Frenet frames, exposing the tangents, normals and binormals the spline
   _frenetFrames(ppath, psegments, pclosed) {
-    
+
     this.path = ppath;
     this.segments = psegments;
     this.closed = pclosed;
-  
-    var 
+
+    var
       tangent = new Vector3(),
       normal = new Vector3(),
       binormal = new Vector3(),
-  
+
       vec = new Vector3(),
       mat = new Matrix4(),
-  
+
       numpoints = segments + 1,
       theta,
       epsilon = 0.0001,
       smallest,
-  
+
       tx, ty, tz,
       i, u, v;
-  
-  
+
+
     // expose internals
     tangents = new List(numpoints);
     normals = new List(numpoints);
     binormals = new List(numpoints);
-  
+
     // compute the tangent vectors for each segment on the path
-  
+
     for ( i = 0; i < numpoints; i++ ) {
-  
+
       u = i / ( numpoints - 1 );
-  
+
       tangents[ i ] = path.getTangentAt( u );
       tangents[ i ].normalize();
-  
+
     }
-  
+
     _initialNormal1([lastBinormal = null]) {
       // fixed start binormal. Has dangers of 0 vectors
       normals[ 0 ] = new Vector3();
@@ -223,56 +225,56 @@ class TubeGeometry extends Geometry {
       normals[ 0 ].cross( tangents[ 0 ], vec );
       binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] );
     }
-    
+
     _initialNormal3();
-  
-  
+
+
     // compute the slowly-varying normal and binormal vectors for each segment on the path
-  
+
     for ( i = 1; i < numpoints; i++ ) {
-  
+
       normals[ i ] = normals[ i-1 ].clone();
-  
+
       binormals[ i ] = binormals[ i-1 ].clone();
-  
+
       vec.cross( tangents[ i-1 ], tangents[ i ] );
-  
+
       if ( vec.length() > epsilon ) {
-  
+
         vec.normalize();
-  
+
         theta = Math.acos( tangents[ i-1 ].dot( tangents[ i ] ) );
-  
+
         mat.makeRotationAxis( vec, theta ).multiplyVector3( normals[ i ] );
-  
+
       }
-  
+
       binormals[ i ].cross( tangents[ i ], normals[ i ] );
-  
+
     }
-  
-  
+
+
     // if the curve is closed, postprocess the vectors so the first and last normal vectors are the same
-  
+
     if ( closed ) {
-  
+
       theta = Math.acos( normals[ 0 ].dot( normals[ numpoints-1 ] ) );
       theta /= ( numpoints - 1 );
-  
+
       if ( tangents[ 0 ].dot( vec.cross( normals[ 0 ], normals[ numpoints-1 ] ) ) > 0 ) {
-  
+
         theta = -theta;
-  
+
       }
-  
+
       for ( i = 1; i < numpoints; i++ ) {
-  
+
         // twist a little...
         mat.makeRotationAxis( tangents[ i ], theta * i ).multiplyVector3( normals[ i ] );
         binormals[ i ].cross( tangents[ i ], normals[ i ] );
-  
+
       }
-  
+
     }
   }
 }

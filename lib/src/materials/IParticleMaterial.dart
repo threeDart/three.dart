@@ -1,4 +1,5 @@
-interface IParticleMaterial extends IMaterial
-{
+part of ThreeD;
+
+abstract class IParticleMaterial extends IMaterial {
 
 }

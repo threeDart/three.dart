@@ -1,24 +1,26 @@
+part of ThreeD;
+
 /**
  * @author mrdoob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author nelson silva / http://www.inevo.pt/
- * 
+ *
  * based on r51
  */
 class JSONLoader extends Loader {
-  
-  JSONLoader( [bool showStatus = false] ) : super(showStatus );
 
-  load( url, LoadedCallback callback, [texturePath = null] ) {
+  JSONLoader( {bool showStatus: false} ) : super(showStatus );
+
+  load( url, LoadedCallback callback, {texturePath: null} ) {
 
     if (texturePath == null) {
       texturePath = Loader._extractUrlBase( url );
     }
-    
+
     onLoadStart();
-    
+
     _loadAjaxJSON(url, callback, texturePath );
   }
 
@@ -41,7 +43,7 @@ class JSONLoader extends Loader {
 
           } else {
 
-            console.warn( "THREE.JSONLoader: [$url] seems to be unreachable or file there is empty" );
+            print( "THREE.JSONLoader: [$url] seems to be unreachable or file there is empty" );
 
           }
 
@@ -85,7 +87,7 @@ class JSONLoader extends Loader {
   }
 
   bool _isBitSet( value, position ) => (value & ( 1 << position )) > 0;
-  
+
   _createModel( Map json, LoadedCallback callback, String texturePath ) {
 
     var geometry = new Geometry(),
@@ -283,7 +285,7 @@ class JSONLoader extends Loader {
           normal.y = normals[ normalIndex ++ ];
           normal.z = normals[ normalIndex ];
 
-          face.vertexNormals.push( normal );
+          face.vertexNormals.add( normal );
 
         }
 
@@ -318,7 +320,7 @@ class JSONLoader extends Loader {
     }
 
   }
-  
+
   _parseSkin(Map json, Geometry geometry) {
 
     var i, l, x, y, z, w, a, b, c, d;
@@ -359,7 +361,7 @@ class JSONLoader extends Loader {
     geometry.animation = json["animation"];
 
   }
-  
+
   _parseMorphing( Map json, Geometry geometry, num scale ) {
 
     if ( json.containsKey("morphTargets") ) {
@@ -417,5 +419,5 @@ class JSONLoader extends Loader {
       }
     }
   }
-  
+
 }

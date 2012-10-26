@@ -1,42 +1,44 @@
+part of ThreeD;
+
 class PolyhedronGeometry extends Geometry {
-  
+
   List _midpoints;
-  
+
   // nelsonsilva - We're using a PolyhedronGeometryVertex decorator to allow adding index and uv properties
   List<PolyhedronGeometryVertex> _p = [];
-  
+
   PolyhedronGeometry(List<List<num>> lvertices, List<List<num>> lfaces, [num radius = 1, num detail = 0]) : super() {
-    
+
     _midpoints = [];
-    
+
     lvertices.forEach( (vertex) {
       _prepare( new PolyhedronGeometryVertex(vertex[ 0 ], vertex[ 1 ], vertex[ 2 ]));
     });
-    
+
     lfaces.forEach((face) => _make( _p[ face[ 0 ] ], _p[ face[ 1 ] ], _p[ face[ 2 ] ], detail ));
 
     // now unwrapp and add the original Vector3 to the vertices
     _p.forEach((v) => this.vertices.add(v.vertex));
-    
+
     mergeVertices();
-    
+
     // Apply radius
 
     this.vertices.forEach((vertex) => vertex.multiplyScalar( radius ));
-    
+
     computeCentroids();
 
     boundingSphere = new BoundingSphere(radius: radius);
-    
+
   }
-  
+
   // Project vector onto sphere's surface
   PolyhedronGeometryVertex _prepare( PolyhedronGeometryVertex vertex) {
 
     vertex.normalize();
     _p.add( vertex );
     vertex.index = _p.length - 1;
-    
+
     // Texture coords are equivalent to map coords, calculate angle and convert to fraction of a circle.
 
     var u = _azimuth( vertex ) / 2 / Math.PI + 0.5;
@@ -89,7 +91,7 @@ class PolyhedronGeometry extends Geometry {
       _midpoints.length = v1.index + 1;
       _midpoints[ v1.index ] = [];
     }
-    if ( _midpoints.length < v2.index + 1) { 
+    if ( _midpoints.length < v2.index + 1) {
       _midpoints.length = v2.index + 1;
       _midpoints[ v2.index ] = [];
     }
@@ -98,20 +100,20 @@ class PolyhedronGeometry extends Geometry {
     if (_midpoints[ v1.index ] == null ) {
       _midpoints[ v1.index ] = [];
     }
-    
+
     if (_midpoints[ v1.index ].length < v2.index + 1) {
       _midpoints[ v1.index ].length = v2.index + 1;
     }
-    
+
     // prepare _midpoints[ v2.index ][ v1.index ]
     if (_midpoints[ v2.index ] == null ) {
       _midpoints[ v2.index ] = [];
     }
-    
+
     if (_midpoints[ v2.index ].length < v1.index + 1) {
       _midpoints[ v2.index ].length = v1.index + 1;
     }
-    
+
     var mid = _midpoints[ v1.index ][ v2.index ];
 
     if ( mid == null ) {
@@ -145,7 +147,7 @@ class PolyhedronGeometry extends Geometry {
   }
 }
 
-/** 
+/**
  * [PolyhedronGeometryVertex] is a [Vector3] decorator to allow introducing [index] and [uv].
  * */
 class PolyhedronGeometryVertex implements IVector3 {
@@ -153,15 +155,15 @@ class PolyhedronGeometryVertex implements IVector3 {
   num index;
   UV uv;
   PolyhedronGeometryVertex([num x = 0, num y = 0, num z = 0]) : vertex = new Vector3(x, y, z);
-  
+
   normalize() => vertex.normalize();
   PolyhedronGeometryVertex add( IVector3 v1, IVector3 v2 ) { vertex.add(v1, v2); return this;}
   PolyhedronGeometryVertex divideScalar( num s ) { vertex.divideScalar(s); return this; }
-  
+
   num get x => vertex.x;
   num get y => vertex.y;
   num get z => vertex.z;
-  
+
   clone() => new PolyhedronGeometryVertex(x, y, z);
-  
+
 }

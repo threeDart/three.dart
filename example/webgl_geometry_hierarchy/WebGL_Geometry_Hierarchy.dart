@@ -1,6 +1,6 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
 
 class WebGL_Geometry_Hierarchy  {
   Element container;
@@ -11,21 +11,21 @@ class WebGL_Geometry_Hierarchy  {
 
   var windowHalfX, windowHalfY;
   var mouseX = 0, mouseY = 0;
-  
+
   Object3D group;
-  
+
   void run() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     document.on.mouseMove.add(onDocumentMouseMove, false );
-    
+
     init();
     animate(0);
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -35,14 +35,14 @@ class WebGL_Geometry_Hierarchy  {
     scene = new Scene();
     scene.fog = new FogLinear( 0xffffff, 1, 10000 );
     scene.add(camera);
-    
+
     var geometry = new CubeGeometry( 100, 100, 100 );
     var material = new MeshNormalMaterial();
 
     group = new Object3D();
 
     var rnd = new Math.Random();
-    
+
     for ( var i = 0; i < 1000; i ++ ) {
 
       var mesh = new Mesh( geometry, material );
@@ -65,16 +65,16 @@ class WebGL_Geometry_Hierarchy  {
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(event) {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -85,12 +85,12 @@ class WebGL_Geometry_Hierarchy  {
     mouseX = ( event.clientX - windowHalfX ) * 10;
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
-  
+
   animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }
-  
+
   render() {
 
     var time = new Date.now().millisecondsSinceEpoch * 0.001;
@@ -111,7 +111,7 @@ class WebGL_Geometry_Hierarchy  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

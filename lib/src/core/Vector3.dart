@@ -1,10 +1,12 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author kile / http://kile.stravaganza.org/
  * @author philogb / http://blog.thejit.org/
  * @author mikael emtinger / http://gomo.se/
  * @author egraether / http://egraether.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -13,9 +15,9 @@ class Vector3 implements IVector3 {
   num x;
   num y;
   num z;
-  
+
   Vector3( [this.x = 0, this.y = 0, this.z = 0] );
-  
+
   // changed "set" to "setValues" as "set" is reserved.
   Vector3 setValues( num x, num y, num z ) {
     this.x = x;
@@ -24,13 +26,13 @@ class Vector3 implements IVector3 {
 
     return this;
   }
-  
+
   Vector3 setX( num x ) {
     this.x = x;
 
     return this;
   }
-  
+
   Vector3 setY( num y ) {
     this.y = y;
 
@@ -42,7 +44,7 @@ class Vector3 implements IVector3 {
 
     return this;
   }
-  
+
   Vector3 copy( Vector3 v ) {
     x = v.x;
     y = v.y;
@@ -50,7 +52,7 @@ class Vector3 implements IVector3 {
 
     return this;
   }
-  
+
   Vector3 add( IVector3 v1, IVector3 v2 ) {
     x = v1.x + v2.x;
     y = v1.y + v2.y;
@@ -74,7 +76,7 @@ class Vector3 implements IVector3 {
 
     return this;
   }
-  
+
   Vector3 sub( Vector3 v1, Vector3 v2 ) {
     x = v1.x - v2.x;
     y = v1.y - v2.y;
@@ -106,7 +108,7 @@ class Vector3 implements IVector3 {
 
     return this;
   }
-  
+
   Vector3 multiplyScalar( num s ) {
     x *= s;
     y *= s;
@@ -142,13 +144,13 @@ class Vector3 implements IVector3 {
   num dot( Vector3 v ) => x * v.x + y * v.y + z * v.z;
 
   // TODO - These should probably be getters
-  
+
   num lengthSq() => x * x + y * y + z * z;
 
   num length() => Math.sqrt( lengthSq() );
-  
+
   num lengthManhattan() =>  x.abs() + y.abs() + z.abs();
-  
+
 
   Vector3 normalize() => divideScalar( length() );
 
@@ -163,12 +165,12 @@ class Vector3 implements IVector3 {
     return this;
 
   }
-  
-  Vector3 cross( Vector3 a, Vector3 b ) {    
+
+  Vector3 cross( Vector3 a, Vector3 b ) {
     x = a.y * b.z - a.z * b.y;
     y = a.z * b.x - a.x * b.z;
     z = a.x * b.y - a.y * b.x;
-   
+
     return this;
   }
 
@@ -225,7 +227,7 @@ class Vector3 implements IVector3 {
 
       }
 
-    } else if ( order === 'YXZ' ) {
+    } else if ( order == 'YXZ' ) {
 
       this.x = Math.asin( - clamp( m23 ) );
 
@@ -241,7 +243,7 @@ class Vector3 implements IVector3 {
 
       }
 
-    } else if ( order === 'ZXY' ) {
+    } else if ( order == 'ZXY' ) {
 
       this.x = Math.asin( clamp( m32 ) );
 
@@ -257,7 +259,7 @@ class Vector3 implements IVector3 {
 
       }
 
-    } else if ( order === 'ZYX' ) {
+    } else if ( order == 'ZYX' ) {
 
       this.y = Math.asin( - clamp( m31 ) );
 
@@ -273,7 +275,7 @@ class Vector3 implements IVector3 {
 
       }
 
-    } else if ( order === 'YZX' ) {
+    } else if ( order == 'YZX' ) {
 
       this.z = Math.asin( clamp( m21 ) );
 
@@ -289,7 +291,7 @@ class Vector3 implements IVector3 {
 
       }
 
-    } else if ( order === 'XZY' ) {
+    } else if ( order == 'XZY' ) {
 
       this.z = Math.asin( - clamp( m12 ) );
 
@@ -310,7 +312,7 @@ class Vector3 implements IVector3 {
     return this;
 
   }
-  
+
   setEulerFromQuaternion( q, [String order = 'XYZ'] ) {
 
     // q is assumed to be normalized
@@ -326,37 +328,37 @@ class Vector3 implements IVector3 {
     var sqz = q.z * q.z;
     var sqw = q.w * q.w;
 
-    if ( order === 'XYZ' ) {
+    if ( order == 'XYZ' ) {
 
       this.x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );
       this.y = Math.asin(  clamp( 2 * ( q.x * q.z + q.y * q.w ) ) );
       this.z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );
 
-    } else if ( order ===  'YXZ' ) {
+    } else if ( order ==  'YXZ' ) {
 
       this.x = Math.asin(  clamp( 2 * ( q.x * q.w - q.y * q.z ) ) );
       this.y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw - sqx - sqy + sqz ) );
       this.z = Math.atan2( 2 * ( q.x * q.y + q.z * q.w ), ( sqw - sqx + sqy - sqz ) );
 
-    } else if ( order === 'ZXY' ) {
+    } else if ( order == 'ZXY' ) {
 
       this.x = Math.asin(  clamp( 2 * ( q.x * q.w + q.y * q.z ) ) );
       this.y = Math.atan2( 2 * ( q.y * q.w - q.z * q.x ), ( sqw - sqx - sqy + sqz ) );
       this.z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw - sqx + sqy - sqz ) );
 
-    } else if ( order === 'ZYX' ) {
+    } else if ( order == 'ZYX' ) {
 
       this.x = Math.atan2( 2 * ( q.x * q.w + q.z * q.y ), ( sqw - sqx - sqy + sqz ) );
       this.y = Math.asin(  clamp( 2 * ( q.y * q.w - q.x * q.z ) ) );
       this.z = Math.atan2( 2 * ( q.x * q.y + q.z * q.w ), ( sqw + sqx - sqy - sqz ) );
 
-    } else if ( order === 'YZX' ) {
+    } else if ( order == 'YZX' ) {
 
       this.x = Math.atan2( 2 * ( q.x * q.w - q.z * q.y ), ( sqw - sqx + sqy - sqz ) );
       this.y = Math.atan2( 2 * ( q.y * q.w - q.x * q.z ), ( sqw + sqx - sqy - sqz ) );
       this.z = Math.asin(  clamp( 2 * ( q.x * q.y + q.z * q.w ) ) );
 
-    } else if ( order === 'XZY' ) {
+    } else if ( order == 'XZY' ) {
 
       this.x = Math.atan2( 2 * ( q.x * q.w + q.y * q.z ), ( sqw - sqx + sqy - sqz ) );
       this.y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw + sqx - sqy - sqz ) );
@@ -367,8 +369,8 @@ class Vector3 implements IVector3 {
     return this;
 
   }
-  
-  
+
+
   Vector3 getScaleFromMatrix( m ) {
 
     var sx = this.setValues( m.elements[0], m.elements[1], m.elements[2] ).length();
@@ -386,9 +388,9 @@ class Vector3 implements IVector3 {
     if (v == null) return false;
     return ( ( v.x == this.x ) && ( v.y == this.y ) && ( v.z == this.z ) );
   }
-  
+
   bool isZero() => ( lengthSq() < 0.0001 /* almostZero */ );
-  
+
   Vector3 clone() => new Vector3( x, y, z );
 
 }

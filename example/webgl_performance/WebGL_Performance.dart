@@ -1,6 +1,6 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
 //#import('package:stats/stats.dart');
 
 class WebGL_Performance  {
@@ -11,24 +11,24 @@ class WebGL_Performance  {
   WebGLRenderer renderer;
 
   //Stats stats;
-  
+
   var windowHalfX, windowHalfY;
   var mouseX = 0, mouseY = 0;
-  
+
   List objects = [];
-  
+
   void run() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     document.on.mouseMove.add(onDocumentMouseMove, false );
-    
+
     init();
     animate(0);
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -45,7 +45,7 @@ class WebGL_Performance  {
       geometry.computeVertexNormals();
 
       var rnd = new Math.Random();
-      
+
       for ( var i = 0; i < 5000; i ++ ) {
 
         var mesh = new Mesh( geometry, material );
@@ -79,11 +79,11 @@ class WebGL_Performance  {
 
     window.on.resize.add( onWindowResize, false );
   }
-  
+
   onWindowResize(event) {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -94,13 +94,13 @@ class WebGL_Performance  {
     mouseX = ( event.clientX - windowHalfX ) * 10;
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
-  
+
   animate(int time) {
     window.requestAnimationFrame( animate );
     render();
     //stats.update();
   }
-  
+
   render() {
 
     camera.position.x += ( mouseX - camera.position.x ) * .05;
@@ -118,7 +118,7 @@ class WebGL_Performance  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

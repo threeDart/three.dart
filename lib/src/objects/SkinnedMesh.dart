@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class SkinnedMesh extends Mesh {
 	bool useVertexTexture;
 	num boneTextureWidth, boneTextureHeight;
@@ -5,13 +7,13 @@ class SkinnedMesh extends Mesh {
 	List boneMatrices;
 	Matrix4 identityMatrix;
 	DataTexture boneTexture;
-	
-	SkinnedMesh( geometry, material, [this.useVertexTexture = true] )
+
+	SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
       : identityMatrix = new Matrix4(),
         bones = [],
         boneMatrices = [],
         super(geometry, material) {
-        
+
     var gbone, bone;
     var p, q, s;
 
@@ -47,7 +49,7 @@ class SkinnedMesh extends Mesh {
         gbone = geometry["bones"][ b ];
         bone = bones[ b ];
 
-        if ( gbone.parent === -1 ) {
+        if ( gbone.parent == -1 ) {
 
           this.add( bone );
 
@@ -74,14 +76,15 @@ class SkinnedMesh extends Mesh {
 
         var size;
 
-        if ( nBones > 256 )
+        if ( nBones > 256 ) {
           size = 64;
-        else if ( nBones > 64 )
+        } else if ( nBones > 64 ) {
           size = 32;
-        else if ( nBones > 16 )
+        } else if ( nBones > 16 ) {
           size = 16;
-        else
+        } else {
           size = 8;
+        }
 
         boneTextureWidth = size;
         boneTextureHeight = size;
@@ -177,7 +180,7 @@ class SkinnedMesh extends Mesh {
 	  updateMatrixWorld( true );
 
 	  var bim, bone;
-	  
+
 	  List<Matrix4> boneInverses = [];
 
 	  for ( var b = 0; b < bones.length; b ++ ) {

@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class BufferGeometry {
 
 	int id;
@@ -19,9 +21,9 @@ class BufferGeometry {
 
 	bool verticesNeedUpdate, normalsNeedUpdate, tangentsNeedUpdate;
 	bool elementsNeedUpdate, uvsNeedUpdate,colorsNeedUpdate;
-  
+
 	var offsets;
-	
+
 	BufferGeometry() :
 		id = Three.GeometryCount ++,
 		attributes = {},
@@ -118,7 +120,7 @@ class BufferGeometry {
 
 		}
 
-		if ( positions == null || positions.length === 0 ) {
+		if ( positions == null || positions.length == 0 ) {
 
 			this.boundingBox.min.set( 0, 0, 0 );
 			this.boundingBox.max.set( 0, 0, 0 );
@@ -166,7 +168,7 @@ class BufferGeometry {
 
 			if ( this.attributes[ "normal" ] == null ) {
 
-			  var normal = new Dynamic();
+			  var normal = new dynamic();
 			  normal.itemSize = 3;
 			  normal.array = new Float32Array( nVertexElements );
 			  normal.numItems = nVertexElements;
@@ -176,7 +178,7 @@ class BufferGeometry {
 
 				// reset existing normals to zero
 			  il = attributes[ "normal" ].array.length;
-			  
+
 				for ( i = 0; i < il; i ++ ) {
 
 					attributes[ "normal" ].array[ i ] = 0;
@@ -295,7 +297,7 @@ class BufferGeometry {
 
 			var nTangentElements = 4 * nVertices;
 
-			var tangent = new Dynamic();
+			var tangent = new dynamic();
 			tangent.itemSize = 4;
 			tangent.array = new Float32Array( nTangentElements );
       tangent.numItems = nTangentElements;
@@ -325,7 +327,7 @@ class BufferGeometry {
 			x1, x2, y1, y2, z1, z2,
 			s1, s2, t1, t2, r;
 
-		var sdir = new Vector3(), 
+		var sdir = new Vector3(),
 		    tdir = new Vector3();
 
 		var handleTriangle = ( a, b, c ) {
@@ -414,9 +416,9 @@ class BufferGeometry {
 
 		}
 
-		var tmp = new Vector3(), 
+		var tmp = new Vector3(),
 		    tmp2 = new Vector3();
-		var n = new Vector3(), 
+		var n = new Vector3(),
 		    n2 = new Vector3();
 		var w, t, test;
 		var nx, ny, nz;

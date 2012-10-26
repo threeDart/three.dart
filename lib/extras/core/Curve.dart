@@ -1,3 +1,5 @@
+part of ThreeD;
+
 /**************************************************************
  *	Abstract Curve base class
  **************************************************************/
@@ -6,7 +8,7 @@ abstract class Curve<V extends IVector2> {
   int _arcLengthDivisions = null;
   List cacheArcLengths = null;
   bool needsUpdate = false;
-  
+
 	// Virtual base class method to overwrite and implement in subclasses
 	//	- t [0 .. 1]
   abstract V getPoint(t);
@@ -20,10 +22,10 @@ abstract class Curve<V extends IVector2> {
 
 	// Get sequence of points using getPoint( t )
   // TODO(nelsonsilva) - closedPath is only used in Path
-	List<V> getPoints( [num divisions = null, closedPath = false] ) { 
+	List<V> getPoints( [num divisions = null, closedPath = false] ) {
 
 	  if (divisions == null) divisions = 5;
-	  
+
 		var d, pts = [];
 
 		for ( d = 0; d <= divisions; d ++ ) {
@@ -56,7 +58,7 @@ abstract class Curve<V extends IVector2> {
 		if (divisions == null) divisions = (_arcLengthDivisions != null) ? (_arcLengthDivisions): 200;
 
 		if ( cacheArcLengths != null
-			&& ( cacheArcLengths.length == divisions + 1 ) 
+			&& ( cacheArcLengths.length == divisions + 1 )
 			&& !needsUpdate) {
 
 			//console.log( "cached", this.cacheArcLengths );
@@ -75,16 +77,16 @@ abstract class Curve<V extends IVector2> {
 		for ( var p = 1; p <= divisions; p ++ ) {
 
 			current = getPoint ( p / divisions );
-			
+
 			var distance;
-			
+
 			// TODO(nelsonsilva) - Must move distanceTo to IVector interface os create a new IHasDistance
 			if (current is Vector3) {
 			  distance = (current as Vector3).distanceTo( last as Vector3 );
 			} else {
         distance = (current as Vector2).distanceTo( last as Vector2);
       }
-			
+
 			sum += distance;
 			cache.add( sum );
 			last = current;

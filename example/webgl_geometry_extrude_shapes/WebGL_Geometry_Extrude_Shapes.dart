@@ -1,7 +1,7 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
-#import('package:three.dart/extras/SceneUtils.dart', prefix:'SceneUtils');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
+import 'package:three.dart/extras/SceneUtils.dart' as SceneUtils;
 
 class WebGL_Geometry_Extrude_Shapes  {
   Element container;
@@ -13,26 +13,26 @@ class WebGL_Geometry_Extrude_Shapes  {
   var windowHalfX, windowHalfY;
   var mouseX = 0;
   var mouseXOnMouseDown = 0;
-  
+
   var targetRotation = 0;
   var targetRotationOnMouseDown = 0;
-  
+
   Object3D parent, text, plane;
-  
+
   void run() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     init();
     animate(0);
   }
-  
+
   _addGeometry( geometry, color, x, y, z, rx, ry, rz, s ) {
 
     // 3d shape
 
-    var mesh = SceneUtils.createMultiMaterialObject( geometry, 
-        [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ), 
+    var mesh = SceneUtils.createMultiMaterialObject( geometry,
+        [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
           new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
     mesh.position.setValues( x, y, z - 75 );
@@ -44,9 +44,9 @@ class WebGL_Geometry_Extrude_Shapes  {
     parent.add( mesh );
 
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -54,7 +54,7 @@ class WebGL_Geometry_Extrude_Shapes  {
     camera.position.setValues( 0, 150, 500 );
 
     scene = new Scene();
-    
+
     var light = new DirectionalLight( 0xffffff );
     light.position.setValues( 0, 0, 1 );
     scene.add( light );
@@ -64,8 +64,8 @@ class WebGL_Geometry_Extrude_Shapes  {
     scene.add( parent );
 
     var extrude_amount = 200,
-        extrude_bevelEnabled = true, 
-        extrude_bevelSegments = 2, 
+        extrude_bevelEnabled = true,
+        extrude_bevelSegments = 2,
         extrude_steps = 150; // bevelSegments: 2, steps: 2 , bevelSegments: 5, bevelSize: 8, bevelThickness:5,
 
     // var extrudePath = new Path();
@@ -90,33 +90,33 @@ class WebGL_Geometry_Extrude_Shapes  {
         ]);
 
     var pipeSpline = new SplineCurve3([
-      new Vector3(0, 10, -10), 
-      new Vector3(10, 0, -10), 
-      new Vector3(20, 0, 0), 
-      new Vector3(30, 0, 10), 
-      new Vector3(30, 0, 20), 
-      new Vector3(20, 0, 30), 
-      new Vector3(10, 0, 30), 
-      new Vector3(0, 0, 30), 
-      new Vector3(-10, 10, 30), 
-      new Vector3(-10, 20, 30), 
-      new Vector3(0, 30, 30), 
-      new Vector3(10, 30, 30), 
-      new Vector3(20, 30, 15), 
-      new Vector3(10, 30, 10), 
-      new Vector3(0, 30, 10), 
-      new Vector3(-10, 20, 10), 
-      new Vector3(-10, 10, 10), 
-      new Vector3(0, 0, 10), 
-      new Vector3(10, -10, 10), 
-      new Vector3(20, -15, 10), 
-      new Vector3(30, -15, 10), 
-      new Vector3(40, -15, 10), 
-      new Vector3(50, -15, 10), 
-      new Vector3(60, 0, 10), 
-      new Vector3(70, 0, 0), 
-      new Vector3(80, 0, 0), 
-      new Vector3(90, 0, 0), 
+      new Vector3(0, 10, -10),
+      new Vector3(10, 0, -10),
+      new Vector3(20, 0, 0),
+      new Vector3(30, 0, 10),
+      new Vector3(30, 0, 20),
+      new Vector3(20, 0, 30),
+      new Vector3(10, 0, 30),
+      new Vector3(0, 0, 30),
+      new Vector3(-10, 10, 30),
+      new Vector3(-10, 20, 30),
+      new Vector3(0, 30, 30),
+      new Vector3(10, 30, 30),
+      new Vector3(20, 30, 15),
+      new Vector3(10, 30, 10),
+      new Vector3(0, 30, 10),
+      new Vector3(-10, 20, 10),
+      new Vector3(-10, 10, 10),
+      new Vector3(0, 0, 10),
+      new Vector3(10, -10, 10),
+      new Vector3(20, -15, 10),
+      new Vector3(30, -15, 10),
+      new Vector3(40, -15, 10),
+      new Vector3(50, -15, 10),
+      new Vector3(60, 0, 10),
+      new Vector3(70, 0, 0),
+      new Vector3(80, 0, 0),
+      new Vector3(90, 0, 0),
       new Vector3(100, 0, 0)]
     );
 
@@ -130,7 +130,7 @@ class WebGL_Geometry_Extrude_Shapes  {
 
     var randomPoints = [];
     var rnd = new Math.Random();
-    
+
     for ( var i = 0; i < 10; i ++ ) {
 
       randomPoints.add( new Vector3(rnd.nextDouble() * 200, rnd.nextDouble() * 200, rnd.nextDouble() * 200 ) );
@@ -209,7 +209,7 @@ class WebGL_Geometry_Extrude_Shapes  {
 
     smileyShape.holes.add( smileyMouthPath );
 
-    var circle3d = starShape.extrude( 
+    var circle3d = starShape.extrude(
         amount: extrude_amount,
         bevelSegments: extrude_bevelSegments,
         bevelEnabled: extrude_bevelEnabled,
@@ -223,24 +223,24 @@ class WebGL_Geometry_Extrude_Shapes  {
 
     _addGeometry( circle3d, 0xff1111,  -100,  0, 0,     0, 0, 0, 1 );
     _addGeometry( tube, 0x00ff11,  0,  0, 0,     0, 0, 0, 1 );
-      
+
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     document.on.mouseDown.add(onDocumentMouseDown, false);
     document.on.touchStart.add(onDocumentTouchStart, false);
     document.on.touchMove.add(onDocumentTouchMove, false);
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(event) {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -257,12 +257,12 @@ class WebGL_Geometry_Extrude_Shapes  {
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
   }
-  
+
   onDocumentMouseMove(MouseEvent event) {
     mouseX = event.clientX - windowHalfX;
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
   }
-  
+
   onDocumentMouseUp( event ) {
     document.on.mouseMove.remove(onDocumentMouseMove, false );
     document.on.mouseUp.remove(onDocumentMouseUp, false );
@@ -303,12 +303,12 @@ class WebGL_Geometry_Extrude_Shapes  {
     }
 
   }
-  
+
   animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }
-  
+
   render() {
 
     parent.rotation.y += ( targetRotation - parent.rotation.y ) * 0.05;
@@ -316,7 +316,7 @@ class WebGL_Geometry_Extrude_Shapes  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

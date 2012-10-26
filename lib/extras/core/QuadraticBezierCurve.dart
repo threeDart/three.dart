@@ -1,7 +1,9 @@
+part of ThreeD;
+
 class QuadraticBezierCurve extends Curve2D {
-  
+
   Vector2 v0, v1, v2;
-  
+
   QuadraticBezierCurve( this.v0, this.v1, this.v2 );
 
   getPoint( t ) {

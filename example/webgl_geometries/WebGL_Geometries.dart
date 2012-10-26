@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
-#import('package:three.dart/extras/ImageUtils.dart', prefix:'ImageUtils');
-#import('package:three.dart/extras/SceneUtils.dart', prefix:'SceneUtils');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
+import 'package:three.dart/extras/ImageUtils.dart' as ImageUtils;
+import 'package:three.dart/extras/SceneUtils.dart' as SceneUtils;
 
 class WebGL_Geometries  {
   Element container;
@@ -11,14 +11,14 @@ class WebGL_Geometries  {
   Scene scene;
   WebGLRenderer renderer;
 
-  
-  void run() {   
+
+  void run() {
     init();
     animate(0);
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -26,7 +26,7 @@ class WebGL_Geometries  {
     camera.position.y = 400;
 
     scene = new Scene();
-    
+
     scene.add( new AmbientLight( 0x404040 ) );
 
     var light = new DirectionalLight( 0xffffff );
@@ -43,16 +43,16 @@ class WebGL_Geometries  {
                  ];
 
     var object;
-    
+
     object = SceneUtils.createMultiMaterialObject( new CubeGeometry( 100, 100, 100, 4, 4, 4 ), materials );
     object.position.setValues( -200, 0, 400 );
     scene.add( object );
 
-    
+
     object = SceneUtils.createMultiMaterialObject( new CylinderGeometry( 25, 75, 100, 40, 5 ), materials );
     object.position.setValues( 0, 0, 400 );
     scene.add( object );
-    
+
     object = SceneUtils.createMultiMaterialObject( new IcosahedronGeometry( 75, 1 ), materials );
     object.position.setValues( -200, 0, 200 );
     scene.add( object );
@@ -108,29 +108,29 @@ class WebGL_Geometries  {
     object = new ArrowHelper( new Vector3( 0, 1, 0 ), new Vector3( 0, 0, 0 ), 50 );
     object.position.setValues( 200, 0, 400 );
     scene.add( object );
-    
+
     renderer = new WebGLRenderer(); // TODO - {antialias: true}
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(event) {
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
   }
-  
+
   animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }
-  
+
   render() {
 
     var timer = new Date.now().millisecondsSinceEpoch * 0.0001;
@@ -148,7 +148,7 @@ class WebGL_Geometries  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

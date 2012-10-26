@@ -1,5 +1,6 @@
-interface ITextureMapMaterial extends IMaterial
-{
-  Texture get map;
-  Dynamic get envMap;
+part of ThreeD;
+
+abstract class ITextureMapMaterial extends IMaterial {
+  Texture map;
+  var envMap;
 }

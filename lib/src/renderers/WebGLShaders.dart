@@ -1,3 +1,5 @@
+part of ThreeD;
+
 var __ShaderChunk;
 
 get ShaderChunk  {
@@ -1567,7 +1569,7 @@ class UniformsUtils {
 
       var parameter_src = u.value;
       var parameter_dst;
-      
+
       if ( parameter_src is Color ||
           parameter_src is Vector2 ||
           parameter_src is Vector3 ||
@@ -1586,7 +1588,7 @@ class UniformsUtils {
         parameter_dst = parameter_src;
 
       }
-      
+
       uniforms_dst[ k ] = new Uniform( type: u.type, value: parameter_dst, texture: u.texture);
 
     });

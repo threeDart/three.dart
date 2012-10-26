@@ -1,4 +1,6 @@
-class WebGLRenderTarget { 
+part of ThreeD;
+
+class WebGLRenderTarget {
 
 	num width, height;
 
@@ -14,16 +16,16 @@ class WebGLRenderTarget {
 	var format;
 	var type;
 
-	bool depthBuffer, 
+	bool depthBuffer,
 		 stencilBuffer;
 
 	bool generateMipmaps;
-	
+
 	WebGLTexture __webglTexture;
 	var __webglFramebuffer; // List<WebGLFramebuffer> or WebGLFramebuffer
 	var __webglRenderbuffer; // List<WebGLRenderbuffer> or WebGLRenderbuffer
-	
-	WebGLRenderTarget ( this.width, this.height, 
+
+	WebGLRenderTarget ( this.width, this.height,
 						[ this.wrapS = Three.ClampToEdgeWrapping,
 						  this.wrapT = Three.ClampToEdgeWrapping,
 						  this.magFilter = Three.LinearFilter,
@@ -41,8 +43,8 @@ class WebGLRenderTarget {
     if (repeat == null) repeat = new Vector2( 1, 1 );
 	}
 
-  WebGLRenderTarget clone() => new WebGLRenderTarget( 
-						width, 
+  WebGLRenderTarget clone() => new WebGLRenderTarget(
+						width,
 						height ,
 
 						wrapS: this.wrapS,

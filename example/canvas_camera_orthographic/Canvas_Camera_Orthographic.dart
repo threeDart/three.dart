@@ -1,6 +1,6 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
 
 class Canvas_Camera_Orthographic {
   Element container;
@@ -11,16 +11,16 @@ class Canvas_Camera_Orthographic {
 
   num windowHalfX;
   num windowHalfY;
-  
+
   void run() {
     init();
     animate(0);
   }
-  
+
   void init() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -36,11 +36,11 @@ class Canvas_Camera_Orthographic {
     camera.position.x = 200;
     camera.position.y = 100;
     camera.position.z = 200;
-    
+
     scene = new Scene();
-    
+
     var geometry, material;
-    
+
     // Grid
     geometry = new Geometry();
     geometry.vertices.add( new Vector3( - 500, 0, 0 ) );
@@ -58,14 +58,14 @@ class Canvas_Camera_Orthographic {
       scene.add( line );
 
     }
-    
+
     // Cubes
 
     geometry = new CubeGeometry( 50, 50, 50 );
     material = new MeshLambertMaterial( color: 0xffffff, overdraw: true );
 
     var rnd = new Math.Random();
-    
+
     for ( var i = 0; i < 100; i ++ ) {
 
       var cube = new Mesh( geometry, material );
@@ -79,7 +79,7 @@ class Canvas_Camera_Orthographic {
       scene.add( cube );
 
     }
-    
+
 
     // Lights
 
@@ -102,9 +102,9 @@ class Canvas_Camera_Orthographic {
 
     renderer = new CanvasRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    
+
     container.nodes.add( renderer.domElement );
-   
+
     window.on.resize.add(onWindowResize);
   }
 
@@ -112,7 +112,7 @@ class Canvas_Camera_Orthographic {
 
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.left = -windowHalfX;
     camera.right = windowHalfX;
     camera.top = windowHalfY;
@@ -123,8 +123,8 @@ class Canvas_Camera_Orthographic {
     renderer.setSize( window.innerWidth, window.innerHeight );
 
   }
-  
-  
+
+
   animate(int time) {
     window.requestAnimationFrame(animate);
 

@@ -1,12 +1,14 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class DirectionalLight extends Light 
+class DirectionalLight extends Light
 {
   Vector3 _position;
   Object3D target;
@@ -19,7 +21,7 @@ class DirectionalLight extends Light
   num _shadowMapSize;
   Camera _shadowCamera;
   Matrix4 _shadowMatrix;
-  
+
   DirectionalLight( num hex, [this.intensity = 1, this.distance = 0]) : super( hex )
   {
     //THREE.Light.call( this, hex );

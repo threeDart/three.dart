@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class UVMapping {}
 
 class CubeReflectionMapping {}

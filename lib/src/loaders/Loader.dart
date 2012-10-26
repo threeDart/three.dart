@@ -1,9 +1,11 @@
+part of ThreeD;
+
 /**
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author nelson silva / http://www.inevo.pt/
- * 
+ *
  * based on r51
  */
 
@@ -15,20 +17,20 @@ typedef void LoadedCallback(Geometry geometry);
 class Loader {
 
   Element statusDomElement;
-  
+
   LoadStartCallback onLoadStart;
   LoadProgressCallback onLoadProgress;
   LoadCompleteCallback onLoadComplete;
-  
+
   String crossOrigin = 'anonymous';
-  
+
   Loader( [bool showStatus = false] ) :
     statusDomElement = showStatus ? Loader.addStatusElement() : null {
     onLoadStart = () {};
     onLoadProgress = (data) {};
     onLoadComplete = () {};
   }
-   
+
   static addStatusElement() {
     var e = new Element.tag('div');
     e.style
@@ -42,9 +44,9 @@ class Loader {
       ..width("120px")
       ..padding("0.5em 0.5em 0.5em 0.5em")
       ..zIndex(1000);
-    
+
     e.innerHTML = "Loading ...";
-   
+
     return e;
   }
 
@@ -54,7 +56,7 @@ class Loader {
 
     if ( progress.total ) {
 
-      message = "$message${ ( 100 * progress.loaded / progress.total ).toFixed(0)}%";
+      message = "$message${ ( 100 * progress.loaded / progress.total ).toStringAsFixed(0)}%";
 
 
     } else {
@@ -101,24 +103,24 @@ class Loader {
 
   _is_pow2( n ) {
     var l = Math.log( n ) / Math.LN2;
-    return floor( l ) == l;
+    return l.floor() == l;
   }
 
   _nearest_pow2( n ) {
     var l = Math.log( n ) / Math.LN2;
-    return pow( 2, round(  l ) );
+    return Math.pow( 2, l.round() );
   }
-  
+
   _load_image( where, url ) {
 
-    var image = new Image();
+    var image = new ImageElement();
 
     image.on.load.add((Event evt) {
 
-      if ( !is_pow2( this.width ) || !is_pow2( this.height ) ) {
+      if ( !_is_pow2( image.width ) || !_is_pow2( image.height ) ) {
 
-        var width = nearest_pow2( this.width );
-        var height = nearest_pow2( this.height );
+        var width = _nearest_pow2( image.width );
+        var height = _nearest_pow2( image.height );
 
         where.image.width = width;
         where.image.height = height;
@@ -134,17 +136,18 @@ class Loader {
 
     });
 
-    image.crossOrigin = _this.crossOrigin;
+    image.crossOrigin = crossOrigin;
     image.src = url;
 
   }
-  
-  _create_texture( sourceFile, repeat, offset, wrap, anisotropy ) {
+
+  _create_texture( texturePath, sourceFile, repeat, offset, wrap, anisotropy ) {
 
     var isCompressed = sourceFile.toLowerCase().endsWith( ".dds" );
     var fullPath = texturePath + "/" + sourceFile;
     var result;
-    
+    var texture;
+
     if ( isCompressed ) {
 
       texture = ImageUtils.loadCompressedTexture( fullPath );
@@ -152,26 +155,27 @@ class Loader {
 
     } else {
 
-      var texture = document.createElement( 'canvas' );
+      var texture = new Element.tag('canvas' );
 
       result = new Texture( texture );
 
     }
 
-    result.sourceFile = sourceFile;
+    // TODO(nelsonsilva) - do whe need this?
+    // result.sourceFile = sourceFile;
 
     if( repeat ) {
 
-      result.repeat.set( repeat[ 0 ], repeat[ 1 ] );
+      result.repeat.setValues( repeat[ 0 ], repeat[ 1 ] );
 
-      if ( repeat[ 0 ] !== 1 ) result.wrapS = Three.RepeatWrapping;
-      if ( repeat[ 1 ] !== 1 ) result.wrapT = Three.RepeatWrapping;
+      if ( repeat[ 0 ] != 1 ) result.wrapS = Three.RepeatWrapping;
+      if ( repeat[ 1 ] != 1 ) result.wrapT = Three.RepeatWrapping;
 
     }
 
     if ( offset ) {
 
-      result.offset.set( offset[ 0 ], offset[ 1 ] );
+      result.offset.setValues( offset[ 0 ], offset[ 1 ] );
 
     }
 
@@ -195,24 +199,24 @@ class Loader {
 
     if ( ! isCompressed ) {
 
-      load_image( result, fullPath );
+      _load_image( result, fullPath );
 
     }
-    
+
     return result;
 
   }
 
   _rgb2hex( rgb ) => ( rgb[ 0 ] * 255 << 16 ) + ( rgb[ 1 ] * 255 << 8 ) + rgb[ 2 ] * 255;
 
-  
+
   _createMaterial( Map m, String texturePath ) {
     IMaterial material;
-    
+
     // defaults
 
     var mtype = "MeshLambertMaterial";
-    
+
     // mpars
     var color = 0xeeeeee,
         opacity = 1.0,
@@ -240,7 +244,7 @@ class Loader {
 
       var shading = m["shading"].toLowerCase();
 
-      if ( shading == "phong" ) { 
+      if ( shading == "phong" ) {
         mtype = "MeshPhongMaterial";
       } else if ( shading == "basic" ) {
         mtype = "MeshBasicMaterial";
@@ -248,8 +252,17 @@ class Loader {
 
     }
 
-    if ( m.containsKey("blending") ) { // TODO - && THREE[ m.blending ] !== undefined ) {
-      blending = THREE[ m.blending ];
+    if ( m.containsKey("blending") ) { // TODO - && THREE[ m.blending ] != undefined ) {
+      // TODO - Check if we're missing some blend modes or come up with a better way to make this work
+      var blendmodes = {
+        "NoBlending": Three.NoBlending,
+        "NormalBlending": Three.NormalBlending,
+        "AdditiveBlending": Three.AdditiveBlending,
+        "SubtractiveBlending": Three.SubtractiveBlending,
+        "MultiplyBlending": Three.MultiplyBlending,
+        "CustomBlending": Three.CustomBlending
+      };
+      blending = blendmodes[ m["blending"] ];
     }
 
     if ( m.containsKey("transparent") || ( m.containsKey("opacity") && m["opacity"] < 1.0) ) {
@@ -297,11 +310,11 @@ class Loader {
     }
 
     if ( m.containsKey("colorSpecular") ) {
-      specular = rgb2hex( m["colorSpecular"] );
+      specular = _rgb2hex( m["colorSpecular"] );
     }
 
     if ( m.containsKey("colorAmbient") ) {
-      ambient = rgb2hex( m["colorAmbient"] );
+      ambient = _rgb2hex( m["colorAmbient"] );
     }
 
     // modifiers
@@ -317,23 +330,23 @@ class Loader {
     // textures
 
     if ( m.containsKey("mapDiffuse") && (texturePath != null) ) {
-      map = _create_texture( m["mapDiffuse"], m["mapDiffuseRepeat"], m["mapDiffuseOffset"], m["mapDiffuseWrap"], m["mapDiffuseAnisotropy"] );
+      map = _create_texture( texturePath, m["mapDiffuse"], m["mapDiffuseRepeat"], m["mapDiffuseOffset"], m["mapDiffuseWrap"], m["mapDiffuseAnisotropy"] );
     }
 
     if ( m.containsKey("mapLight") && (texturePath != null) ) {
-      lightMap = _create_texture( m["mapLight"], m["mapLightRepeat"], m["mapLightOffset"], m["mapLightWrap"], m["mapLightAnisotropy"] );
+      lightMap = _create_texture( texturePath, m["mapLight"], m["mapLightRepeat"], m["mapLightOffset"], m["mapLightWrap"], m["mapLightAnisotropy"] );
     }
 
     if ( m.containsKey("mapBump") && (texturePath != null) ) {
-      bumpMap = _create_texture( m["mapBump"], m["mapBumpRepeat"], m["mapBumpOffset"], m["mapBumpWrap"], m["mapBumpAnisotropy"] );
+      bumpMap = _create_texture( texturePath, m["mapBump"], m["mapBumpRepeat"], m["mapBumpOffset"], m["mapBumpWrap"], m["mapBumpAnisotropy"] );
     }
 
     if ( m.containsKey("mapNormal") && (texturePath != null) ) {
-      normalMap = _create_texture( m["mapNormal"], m["mapNormalRepeat"], m["mapNormalOffset"], m["mapNormalWrap"], m["mapNormalAnisotropy"] );
+      normalMap = _create_texture( texturePath, m["mapNormal"], m["mapNormalRepeat"], m["mapNormalOffset"], m["mapNormalWrap"], m["mapNormalAnisotropy"] );
     }
 
     if ( m.containsKey("mapSpecular") && (texturePath != null) ) {
-      specularMap = _create_texture( m["mapSpecular"], m["mapSpecularRepeat"], m["mapSpecularOffset"], m["mapSpecularWrap"], m["mapSpecularAnisotropy"] );
+      specularMap = _create_texture( texturePath, m["mapSpecular"], m["mapSpecularRepeat"], m["mapSpecularOffset"], m["mapSpecularWrap"], m["mapSpecularAnisotropy"] );
     }
 
     //
@@ -381,8 +394,8 @@ class Loader {
       if ( opacity != null ) {
         uniforms[ "uOpacity" ].value = opacity;
       }
-      
-      material = new ShaderMaterial( 
+
+      material = new ShaderMaterial(
                         fragmentShader: shader.fragmentShader,
                         vertexShader: shader.vertexShader,
                         uniforms: uniforms
@@ -391,28 +404,28 @@ class Loader {
                         );
 
     } else {
-      
+
       switch (mtype) {
         case "MeshLambertMaterial" :
-          material = new MeshLambertMaterial(                                
+          material = new MeshLambertMaterial(
                                  map: map,
                                  color: color,
                                  ambient: ambient,
                                  lightMap: lightMap,
                                  specularMap: specularMap,
                                  vertexColors: vertexColors,
-                                 wireframe: wireframe,                           
-                                 side: Three.FrontSide,                                
+                                 wireframe: wireframe,
+                                 side: Three.FrontSide,
                                  opacity: opacity,
-                                 transparent: transparent,                             
-                                 blending: blending,                            
+                                 transparent: transparent,
+                                 blending: blending,
                                  depthTest: depthTest,
-                                 depthWrite: depthWrite,                             
+                                 depthWrite: depthWrite,
                                  visible: visible);
           break;
-          
+
         case "MeshPhongMaterial":
-          material = new MeshPhongMaterial(                                
+          material = new MeshPhongMaterial(
               map: map,
               color: color,
               ambient: ambient,
@@ -422,41 +435,41 @@ class Loader {
               bumpScale: bumpScale,
               specularMap: specularMap,
               vertexColors: vertexColors,
-              wireframe: wireframe,                           
-              side: Three.FrontSide,                                
+              wireframe: wireframe,
+              side: Three.FrontSide,
               opacity: opacity,
-              transparent: transparent,                             
-              blending: blending,                            
+              transparent: transparent,
+              blending: blending,
               depthTest: depthTest,
-              depthWrite: depthWrite,                             
+              depthWrite: depthWrite,
               visible: visible);
           break;
-          
+
         case "MeshBasicMaterial":
-          material = new MeshBasicMaterial(                                
+          material = new MeshBasicMaterial(
               map: map,
               color: color,
               lightMap: lightMap,
               specularMap: specularMap,
               vertexColors: vertexColors,
-              wireframe: wireframe,                           
-              side: Three.FrontSide,                                
+              wireframe: wireframe,
+              side: Three.FrontSide,
               opacity: opacity,
-              transparent: transparent,                             
-              blending: blending,                            
+              transparent: transparent,
+              blending: blending,
               depthTest: depthTest,
-              depthWrite: depthWrite,                             
+              depthWrite: depthWrite,
               visible: visible);
           break;
-          
+
         default:
           print("Unknow material type!");
       }
-     
+
 
     }
 
-    if ( m.containsKey("DbgName") ) { 
+    if ( m.containsKey("DbgName") ) {
       material.name = m["DbgName"];
     }
 

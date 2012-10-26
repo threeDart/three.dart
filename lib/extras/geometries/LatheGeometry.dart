@@ -1,13 +1,15 @@
+part of ThreeD;
+
 class LatheGeometry extends Geometry {
-  
+
   int steps;
   num angle;
-  
+
   LatheGeometry(points, [this.steps = 12, this.angle = 2 * Math.PI] ) : super() {
-    
+
     var newV = points.map((pt) => pt.clone());
     vertices.addAll(newV);
-    
+
     var matrix = new Matrix4().makeRotationZ( angle / steps );
 
     var i, il = steps + 1;

@@ -1,9 +1,11 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author philogb / http://blog.thejit.org/
  * @author egraether / http://egraether.com/
  * @author zz85 / http://www.lab4games.net/zz85/blog
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -11,9 +13,9 @@
 class Vector2 implements IVector2 {
   num x;
   num y;
-  
+
   Vector2( [this.x = 0, this.y = 0] );
-   
+
   Vector2 setValues( num x, num y ) {
     this.x = x;
     this.y = y;
@@ -101,11 +103,11 @@ class Vector2 implements IVector2 {
     return this;
 
   }
-  
-  bool equals( Vector2 v ) => ( ( v.x === x ) && ( v.y === y ) );
-  
+
+  bool equals( Vector2 v ) => ( ( v.x == x ) && ( v.y == y ) );
+
   bool isZero() => ( lengthSq() < 0.0001 /* almostZero */ );
-  
+
   Vector2 clone() => new Vector2( x, y );
-  
+
 }

@@ -1,14 +1,16 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
 
 class UV {
   num u, v;
-  
-  
+
+
   UV( [this.u = 0, this.v = 0] );
 
   UV setValues( num u, num v ) {
@@ -33,7 +35,7 @@ class UV {
     return this;
 
   }
-  
+
   UV clone()=> new UV( u, v );
-  
+
 }

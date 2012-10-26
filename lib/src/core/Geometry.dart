@@ -1,20 +1,22 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author kile / http://kile.stravaganza.org/
  * @author alteredq / http://alteredqualia.com/
  * @author mikael emtinger / http://gomo.se/
  * @author zz85 / http://www.lab4games.net/zz85/blog
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
 
 class Geometry {
-  
+
   int id;
 
   String name;
-  
+
   List<Vector3> vertices;
 
   List colors; // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
@@ -28,47 +30,47 @@ class Geometry {
   List skinWeights, skinIndices;
 
   List<Vector3> __tmpVertices;
-  
+
   BoundingBox boundingBox;
   BoundingSphere boundingSphere;
 
   bool hasTangents, _dynamic;
-  
+
   // Used in JSONLoader
   var bones, animation;
-  
-  Geometry() 
+
+  Geometry()
       : id = Three.GeometryCount ++,
 
         name = '',
-        
+
         vertices = <Vector3>[],
         colors = [], // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
-    
+
         materials = [],
-    
+
         faces = [],
-    
+
         faceUvs = [[]],
         faceVertexUvs = [[]],
-    
+
         morphTargets = [],
         morphColors = [],
         morphNormals = [],
-        
+
         skinWeights = [],
         skinIndices = [],
-    
+
         boundingBox = null,
         boundingSphere = null,
-    
+
         hasTangents = false,
-    
+
         _dynamic = false; // unless set to true the *Arrays will be deleted once sent to a buffer.
 
   // dynamic is a reserved word in Dart
   bool get isDynamic => _dynamic;
-  
+
   void applyMatrix( Matrix4 matrix ) {
     Matrix4 matrixRotation = new Matrix4();
     matrixRotation.extractRotation( matrix);
@@ -78,7 +80,7 @@ class Geometry {
     faces.forEach((face) {
 
       matrixRotation.multiplyVector3( face.normal );
-      
+
       face.vertexNormals.forEach((normal) => matrixRotation.multiplyVector3( normal ));
 
       matrix.multiplyVector3( face.centroid );
@@ -104,18 +106,18 @@ class Geometry {
         face4.centroid.addSelf( vertices[ face4.d ] );
         face4.centroid.divideScalar( 4 );
       }
-      
+
     });
   }
 
   void computeFaceNormals() {
-    num n, nl, v, vl, f;  
+    num n, nl, v, vl, f;
     Vertex vertex;
 
     Vector3 vA, vB, vC;
     Vector3 cb = new Vector3(), ab = new Vector3();
 
-    faces.forEach((face) { 
+    faces.forEach((face) {
 
       vA = vertices[ face.a ];
       vB = vertices[ face.b ];
@@ -130,21 +132,21 @@ class Geometry {
       }
 
       face.normal.copy( cb );
-      
+
     });
   }
 
   void computeVertexNormals() {
 
     List<Vector3> vertices;
-    
+
 
     // create internal buffers for reuse when calling this method repeatedly
     // (otherwise memory allocation / deallocation every frame is big resource hog)
-    if ( __tmpVertices === null ) {
-      
+    if ( __tmpVertices == null ) {
+
       __tmpVertices = [];
-      this.vertices.forEach((_) => __tmpVertices.add(new Vector3())); 
+      this.vertices.forEach((_) => __tmpVertices.add(new Vector3()));
       vertices = __tmpVertices;
 
       faces.forEach((face) {
@@ -159,15 +161,15 @@ class Geometry {
 
     } else {
       vertices = __tmpVertices;
-      
+
       var vl = this.vertices.length;
       for ( var v = 0; v < vl; v ++ ) {
         vertices[ v ].setValues( 0, 0, 0 );
       }
-      
+
     }
 
-    faces.forEach((face) { 
+    faces.forEach((face) {
 
       if ( face is Face3 ) {
         vertices[ face.a ].addSelf( face.normal );
@@ -181,10 +183,10 @@ class Geometry {
         vertices[ face4.d ].addSelf( face4.normal );
       }
     });
-    
+
     vertices.forEach((v) => v.normalize());
 
-    faces.forEach((face) { 
+    faces.forEach((face) {
 
       if ( face is Face3 ) {
         face.vertexNormals[ 0 ].copy( vertices[ face.a ] );
@@ -201,24 +203,24 @@ class Geometry {
   }
 
   // TODO - computeMorphNormals
-  
+
   void computeTangents() {
     // based on http://www.terathon.com/code/tangent.html
     // tangents go to vertices
 
     var f, fl, face;
     num i, il, vertexIndex, test, w;
-    Vector3 vA, vB, vC; 
+    Vector3 vA, vB, vC;
     UV uvA, uvB, uvC;
-    
+
     List uv;
-    
+
     num x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
-      
+
     Vector3 sdir = new Vector3(),
             tdir = new Vector3(),
             tmp = new Vector3(),
-            tmp2 = new Vector3(), 
+            tmp2 = new Vector3(),
             n = new Vector3(),
             t;
 
@@ -226,7 +228,7 @@ class Geometry {
                   tan2 = vertices.map((_) => new Vector3()) as List;
 
     var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
-      
+
       vA = context.vertices[ a ];
       vB = context.vertices[ b ];
       vC = context.vertices[ c ];
@@ -254,19 +256,19 @@ class Geometry {
       tdir.setValues( ( s1 * x2 - s2 * x1 ) * r,
             ( s1 * y2 - s2 * y1 ) * r,
             ( s1 * z2 - s2 * z1 ) * r );
-  
+
       tan1[ a ].addSelf( sdir );
       tan1[ b ].addSelf( sdir );
       tan1[ c ].addSelf( sdir );
-  
+
       tan2[ a ].addSelf( tdir );
       tan2[ b ].addSelf( tdir );
       tan2[ c ].addSelf( tdir );
-  
+
     };
-    
+
     fl = this.faces.length;
-    
+
     for ( f = 0; f < fl; f ++ ) {
 
       face = this.faces[ f ];
@@ -284,16 +286,16 @@ class Geometry {
     var faceIndex = [ 'a', 'b', 'c', 'd' ];
 
     faces.forEach((face) {
-     
+
       il = face.vertexNormals.length;
-      
+
       for ( i = 0; i < il; i++ ) {
-        
+
         n.copy( face.vertexNormals[ i ] );
-      
+
         // TODO: Check if this works instead
         // vertexIndex = face.dynamic[ faceIndex[ i ] ];
-        
+
         if ( faceIndex[i] == "a") {
           vertexIndex = face.a;
         } else if ( faceIndex[i] == "b") {
@@ -303,20 +305,20 @@ class Geometry {
         } else if ( faceIndex[i] == "d") {
           vertexIndex = (face as Face4).d;
         }
-        
+
         t = tan1[ vertexIndex ];
-      
+
         // Gram-Schmidt orthogonalize
-      
+
         tmp.copy( t );
         tmp.subSelf( n.multiplyScalar( n.dot( t ) ) ).normalize();
-      
+
         // Calculate handedness
-      
+
         tmp2.cross( face.vertexNormals[ i ], t );
         test = tmp2.dot( tan2[ vertexIndex ] );
         w = (test < 0.0) ? -1.0 : 1.0;
-      
+
         face.vertexTangents[ i ] = new Vector4( tmp.x, tmp.y, tmp.z, w );
 
       }
@@ -328,10 +330,10 @@ class Geometry {
   }
 
   void computeBoundingBox() {
-    if ( boundingBox === null ) {
+    if ( boundingBox == null ) {
       boundingBox = new BoundingBox( min: new Vector3(), max: new Vector3() );
     }
-    
+
     if ( vertices.length > 0 ) {
       Vector3 position, firstPosition = vertices[ 0 ];
 
@@ -368,7 +370,7 @@ class Geometry {
 
   void computeBoundingSphere() {
     num radiusSq;
-    
+
     var maxRadiusSq = vertices.reduce(0, (num curMaxRadiusSq, Vector3 vertex) {
       radiusSq = vertex.lengthSq();
       return ( radiusSq > curMaxRadiusSq ) ?  radiusSq : curMaxRadiusSq;
@@ -382,7 +384,7 @@ class Geometry {
    * Duplicated vertices are removed
    * and faces' vertices are updated.
    */
-  
+
   int mergeVertices() {
     Map verticesMap = {}; // Hashmap for looking up vertice by position coordinates (and making sure they are unique)
     List<Vertex> unique = [];
@@ -393,17 +395,17 @@ class Geometry {
     num precision = Math.pow( 10, precisionPoints );
     int i, il;
     var abcd = 'abcd', o, k, j, jl, u;
-    
+
     Vector3 v;
     il = this.vertices.length;
-    
+
     for( i = 0; i < il; i++) {
       v = this.vertices[i];
-      
-      key = Strings.join( [ ( v.x * precision ).round().toStringAsFixed(0), 
-                            ( v.y * precision ).round().toStringAsFixed(0), 
+
+      key = Strings.join( [ ( v.x * precision ).round().toStringAsFixed(0),
+                            ( v.y * precision ).round().toStringAsFixed(0),
                             ( v.z * precision ).round().toStringAsFixed(0) ], '_' );
-      
+
       if ( verticesMap[ key ] == null ) {
         verticesMap[ key ] = i;
         unique.add( v );
@@ -416,16 +418,16 @@ class Geometry {
         //changes[ i ] = changes[ verticesMap[ key ] ];
         changes.add( changes[ verticesMap[ key ] ] );
       }
-    
+
     }
 
-    
+
     // Start to patch face indices
-    
+
     il = faces.length;
     for( i = 0; i < il; i ++ ) {
       IFace3 face = faces[ i ];
-      
+
       if ( face is Face3 ) {
         face.a = changes[ face.a ];
         face.b = changes[ face.b ];
@@ -436,16 +438,16 @@ class Geometry {
         face4.b = changes[ face4.b ];
         face4.c = changes[ face4.c ];
         face4.d = changes[ face4.d ];
-        
+
         /* TODO
-        
+
         // check dups in (a, b, c, d) and convert to -> face3
 
         var o = [ face.a, face.b, face.c, face.d ];
 
         for ( var k = 3; k > 0; k -- ) {
 
-          if ( o.indexOf( face[ abcd[ k ] ] ) !== k ) {
+          if ( o.indexOf( face[ abcd[ k ] ] ) != k ) {
 
             // console.log('faces', face.a, face.b, face.c, face.d, 'dup at', k);
 
@@ -466,10 +468,10 @@ class Geometry {
           }
 
         }*/
-        
+
       }
     }
-    
+
     // Use unique set of vertices
     var diff = vertices.length - unique.length;
     vertices = unique;
@@ -481,17 +483,17 @@ class Geometry {
     // TODO
 
   }
-  
+
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
-  
+
   get _data {
     if (__data == null) {
       __data = {};
     }
     return __data;
   }
-  
+
   operator [] (String key) => _data[key];
   operator []= (String key, value) => _data[key] = value;
 }

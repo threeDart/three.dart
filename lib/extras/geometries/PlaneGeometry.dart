@@ -1,9 +1,11 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * based on http://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Plane.as
- * 
+ *
  * Ported to Dart from JS by:
- * @author rob silverton / http://www.unwrong.com/ 
+ * @author rob silverton / http://www.unwrong.com/
  */
 
 class PlaneGeometry extends Geometry {
@@ -43,7 +45,7 @@ class PlaneGeometry extends Geometry {
         face.vertexNormals.addAll( [normal.clone(), normal.clone(), normal.clone(), normal.clone()] );
 
         faces.add( face );
-        
+
         List faceVertexUV = faceVertexUvs[ 0 ];
         List newUVs = new List();
         newUVs.addAll([
@@ -52,7 +54,7 @@ class PlaneGeometry extends Geometry {
                        new UV( ( ix + 1 ) / gridX, ( iy + 1 ) / gridY ),
                        new UV( ( ix + 1 ) / gridX, iy / gridY )
                      ]);
-        faceVertexUV.add( newUVs );        
+        faceVertexUV.add( newUVs );
       }
     }
 

@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
 
-class Canvas_Geometry_Cube 
+class Canvas_Geometry_Cube
 {
   Element container;
 
@@ -21,18 +21,18 @@ class Canvas_Geometry_Cube
 
   num windowHalfX;
   num windowHalfY;
-  
-  Canvas_Geometry_Cube() 
+
+  Canvas_Geometry_Cube()
   {
-    
+
   }
-  
-  void run() 
+
+  void run()
   {
     init();
     animate();
   }
-  
+
   void init()
   {
     targetRotation = 0;
@@ -43,7 +43,7 @@ class Canvas_Geometry_Cube
 
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     container = new Element.tag('div');
     //document.body.appendChild( container );
     document.body.nodes.add( container );
@@ -87,11 +87,11 @@ class Canvas_Geometry_Cube
 
     renderer = new CanvasRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    
-    
+
+
     //container.appendChild( renderer.domElement );
     container.nodes.add( renderer.domElement );
-   
+
     document.on.mouseDown.add(onDocumentMouseDown);
     document.on.touchStart.add(onDocumentTouchStart);
     document.on.touchMove.add(onDocumentTouchMove);
@@ -102,23 +102,23 @@ class Canvas_Geometry_Cube
   void onDocumentMouseDown( event )
   {
     event.preventDefault();
-    
+
     document.on.mouseMove.add(onDocumentMouseMove);
     document.on.mouseUp.add(onDocumentMouseUp);
     document.on.mouseOut.add(onDocumentMouseOut);
 
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
-    
+
     print('onMouseDown mouseX = $mouseXOnMouseDown targRot = $targetRotationOnMouseDown');
   }
 
-  void onDocumentMouseMove( event ) 
+  void onDocumentMouseMove( event )
   {
     mouseX = event.clientX - windowHalfX;
 
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
-    
+
     print('onMouseMove mouseX = $mouseX targRot = $targetRotation');
   }
 
@@ -127,19 +127,19 @@ class Canvas_Geometry_Cube
     print('onDocumentMouseUp');
     document.on.mouseMove.remove(onDocumentMouseMove);
     document.on.mouseUp.remove(onDocumentMouseUp);
-    document.on.mouseOut.remove(onDocumentMouseOut);    
+    document.on.mouseOut.remove(onDocumentMouseOut);
   }
 
-  void onDocumentMouseOut( event ) 
+  void onDocumentMouseOut( event )
   {
     document.on.mouseMove.remove(onDocumentMouseMove);
     document.on.mouseUp.remove(onDocumentMouseUp);
-    document.on.mouseOut.remove(onDocumentMouseOut);  
+    document.on.mouseOut.remove(onDocumentMouseOut);
   }
 
   void onDocumentTouchStart( event )
   {
-    if ( event.touches.length == 1 ) 
+    if ( event.touches.length == 1 )
     {
       event.preventDefault();
 
@@ -150,7 +150,7 @@ class Canvas_Geometry_Cube
 
   void onDocumentTouchMove( event )
   {
-    if ( event.touches.length == 1 ) 
+    if ( event.touches.length == 1 )
     {
       event.preventDefault();
 
@@ -158,8 +158,8 @@ class Canvas_Geometry_Cube
       targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
     }
   }
-  
-  
+
+
   void animate()
   {
 //    window.webkitRequestAnimationFrame(animate);

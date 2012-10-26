@@ -1,3 +1,5 @@
+part of ThreeD;
+
 class AxisHelper extends Object3D {
   AxisHelper() {
     var lineGeometry = new Geometry();

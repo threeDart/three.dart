@@ -1,12 +1,12 @@
-#library("ImageUtils");
+library ImageUtils;
 
-#import("dart:html");
-#import("dart:math", prefix:'Math');
-#import("package:three.dart/ThreeD.dart");
+import "dart:html";
+import "dart:math" as Math;
+import "package:three.dart/ThreeD.dart";
 
 var crossOrigin = 'anonymous';
 
-Texture loadTexture ( url, [mapping, onLoad, onError] ) {
+Texture loadTexture ( url, {mapping, onLoad, onError} ) {
 
 	var image = new ImageElement();
 	var texture = new Texture( image, mapping );
@@ -79,13 +79,13 @@ Texture loadTextureCube ( array, mapping, onLoad ) {
 
 	var i, l;
 	List<ImageElement> images = [];
-	
+
 	var texture = new Texture( images, mapping );
 
 	texture.flipY = false;
 
 	// TODO - List does not have loadCount
-	(images as Dynamic).loadCount = 0;
+	(images as dynamic).loadCount = 0;
 
 	l = array.length;
 	for ( i = 0; i < l; ++ i ) {
@@ -93,9 +93,9 @@ Texture loadTextureCube ( array, mapping, onLoad ) {
 		images[ i ] = new ImageElement();
 		images[ i ].on.load.add((_) {
 
-		  (images as Dynamic).loadCount += 1;
+		  (images as dynamic).loadCount += 1;
 
-			if ( (images as Dynamic).loadCount === 6 ) {
+			if ( (images as dynamic).loadCount == 6 ) {
 
 				texture.needsUpdate = true;
 				if ( onLoad != null ) onLoad();
@@ -165,12 +165,12 @@ parseDDS( buffer, loadMipmaps ) {
 
   int32ToFourCC( value ) {
 
-    return String.fromCharCode(
+    return new String.fromCharCodes([
       value & 0xff,
       (value >> 8) & 0xff,
       (value >> 16) & 0xff,
       (value >> 24) & 0xff
-    );
+    ]);
   }
 
   var FOURCC_DXT1 = fourCCToInt32("DXT1");
@@ -213,13 +213,13 @@ parseDDS( buffer, loadMipmaps ) {
 
   if( fourCC == FOURCC_DXT1 ) {
       blockBytes = 8;
-      dds["format"] = THREE.RGB_S3TC_DXT1_Format;
+      dds["format"] = Three.RGB_S3TC_DXT1_Format;
   } else if(fourCC == FOURCC_DXT3) {
       blockBytes = 16;
-      dds["format"] = THREE.RGBA_S3TC_DXT3_Format;
+      dds["format"] = Three.RGBA_S3TC_DXT3_Format;
   } else if(fourCC == FOURCC_DXT5) {
       blockBytes = 16;
-      dds["format"] = THREE.RGBA_S3TC_DXT5_Format;
+      dds["format"] = Three.RGBA_S3TC_DXT5_Format;
   } else {
       print( "ImageUtils.parseDDS(): Unsupported FourCC code: ${int32ToFourCC( fourCC )}" );
   }
@@ -240,10 +240,10 @@ parseDDS( buffer, loadMipmaps ) {
   var width = dds["width"];
   var height = dds["height"];
 
-  for ( var i = 0; i < dds.mipmapCount; i ++ ) {
+  for ( var i = 0; i < dds["mipmapCount"]; i ++ ) {
 
-    var dataLength = Math.max( 4, width ) / 4 * Math.max( 4, height ) / 4 * blockBytes;
-    var byteArray = new Uint8Array.fromBuffer( buffer, dataOffset, dataLength );
+    int dataLength = Math.max( 4, width ) ~/ 4 * Math.max( 4, height ) ~/ 4 * blockBytes;
+    var byteArray = new Uint8Array.fromBuffer( buffer, dataOffset, dataLength);
 
     var mipmap = { "data": byteArray, "width": width, "height": height };
     dds["mipmaps"].add( mipmap );

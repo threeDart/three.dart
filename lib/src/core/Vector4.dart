@@ -1,9 +1,11 @@
+part of ThreeD;
+
 /**
  * @author supereggbert / http://www.paulbrunt.co.uk/
  * @author philogb / http://blog.thejit.org/
  * @author mikael emtinger / http://gomo.se/
  * @author egraether / http://egraether.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -13,8 +15,8 @@ class Vector4 implements IVector4 {
   num y;
   num z;
   num w;
-  
-  
+
+
   Vector4( [this.x = 0, this.y = 0, this.z = 0, this.w = 1] );
 
   setValues( num x, num y, num z, num w ) {
@@ -25,7 +27,7 @@ class Vector4 implements IVector4 {
 
     return this;
   }
-  
+
   //TODO: Interface IVector3 has been introduced here due to line 216 in Projector.dart:
   // _vertex.positionScreen.copy( _vertex.positionWorld );
   // ..where a Vector4 is instructed to copy a Vector3. Obviously this doesn't cause any issues in JS,
@@ -36,7 +38,7 @@ class Vector4 implements IVector4 {
     x = v.x;
     y = v.y;
     z = v.z;
-    
+
     if ( v is IVector4 ) {
      Vector4 v4 = v;
      w = v4.w;
@@ -92,7 +94,7 @@ class Vector4 implements IVector4 {
   }
 
   Vector4 divideScalar( num s ) {
-    if ( s !== null ) {
+    if ( s != null ) {
       x /= s;
       y /= s;
       z /= s;
@@ -128,12 +130,12 @@ class Vector4 implements IVector4 {
     return this;
 
   }
-  
-  Vector4 clone() 
+
+  Vector4 clone()
   {
     return new Vector4( x, y, z, w );
   }
-  
+
   Vector4 setAxisAngleFromQuaternion( Quaternion q ) {
 
     // http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToAngle/index.htm
@@ -161,7 +163,7 @@ class Vector4 implements IVector4 {
     return this;
 
   }
-  
+
   setAxisAngleFromRotationMatrix( m ) {
 
     // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToAngle/index.htm
@@ -240,7 +242,7 @@ class Vector4 implements IVector4 {
           x = xy / y;
           z = yz / y;
 
-        } 
+        }
 
       } else { // m33 is the largest diagonal term so base result on this
 
@@ -272,7 +274,7 @@ class Vector4 implements IVector4 {
              + ( m13 - m31 ) * ( m13 - m31 )
              + ( m21 - m12 ) * ( m21 - m12 ) ); // used to normalize
 
-    if ( s.abs() < 0.001 ) s = 1; 
+    if ( s.abs() < 0.001 ) s = 1;
 
     // prevent divide by zero, should not happen if matrix is orthogonal and should be
     // caught by singularity test above, but I've left it in just in case

@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three.dart/ThreeD.dart');
-#import('package:three.dart/extras/SceneUtils.dart', prefix:'SceneUtils');
-#import('package:three.dart/extras/GeometryUtils.dart', prefix:'GeometryUtils');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three.dart/ThreeD.dart';
+import 'package:three.dart/extras/SceneUtils.dart' as SceneUtils;
+import 'package:three.dart/extras/GeometryUtils.dart' as GeometryUtils;
 
 class NyanCat {
   Math.Random rand = new Math.Random();
@@ -12,17 +12,17 @@ class NyanCat {
   var mouseX = 0, mouseY = 0;
   var windowHalfX = window.innerWidth / 2;
   var windowHalfY = window.innerHeight / 2;
-  var deltaSum=0, 
-      tick=0, 
-      frame=0, 
+  var deltaSum=0,
+      tick=0,
+      frame=0,
       running=true;
 //  var song = document.createElement('audio'), song2 = document.createElement('audio');
   AudioElement song, song2;
-  
+
   NyanCat() {
     song = new AudioElement();
     song2 = new AudioElement();
-   
+
     document.body.elements.add(song);
     document.body.elements.add(song2);
 
@@ -31,16 +31,16 @@ class NyanCat {
     song.loop = true;
     song2.loop = true;
     song.play();
-    
+
     document.on.mouseMove.add(onDocumentMouseMove, false);
     document.on.mouseDown.add(onDocumentMouseDown, false);
   }
-  
+
   run() {
     init();
     animate(0);
   }
-  
+
   init(){
     container = new DivElement();
     document.body.elements.add(container);
@@ -49,25 +49,25 @@ class NyanCat {
     camera.position.z = 30;
     camera.position.x = 0;
     camera.position.y = 0;
-    
+
     scene = new Scene();
-    // TODO: FogExp2 does not inherit correctly. 
+    // TODO: FogExp2 does not inherit correctly.
     scene.fog = new FogExp2( 0x003366, 0.0095 );
-    
+
     //POPTART
     poptart = new Object3D();
     //    object     x    y    z    w    h    d   color
     helper( poptart,   0,  -2,  -1,  21,  14,   3, 0x222222);
     helper( poptart,   1,  -1,  -1,  19,  16,   3, 0x222222);
     helper( poptart,   2,   0,  -1,  17,  18,   3, 0x222222);
-    
+
     helper( poptart,   1,  -2,-1.5,  19,  14,   4, 0xffcc99);
     helper( poptart,   2,  -1,-1.5,  17,  16,   4, 0xffcc99);
-    
+
     helper( poptart,   2,  -4,   2,  17,  10,  .6, 0xff99ff);
     helper( poptart,   3,  -3,   2,  15,  12,  .6, 0xff99ff);
     helper( poptart,   4,  -2,   2,  13,  14,  .6, 0xff99ff);
-    
+
     helper( poptart,   4,  -4,   2,   1,   1,  .7, 0xff3399);
     helper( poptart,   9,  -3,   2,   1,   1,  .7, 0xff3399);
     helper( poptart,  12,  -3,   2,   1,   1,  .7, 0xff3399);
@@ -78,36 +78,36 @@ class NyanCat {
     helper( poptart,   3, -11,   2,   1,   1,  .7, 0xff3399);
     helper( poptart,   7, -13,   2,   1,   1,  .7, 0xff3399);
     helper( poptart,   4, -14,   2,   1,   1,  .7, 0xff3399);
-    
+
     poptart.position.x=-10.5;
     poptart.position.y=9;
     scene.add( poptart );
-    
+
     //FEET
     feet = new Object3D();
     helper( feet,   0,  -2, .49,  3,  3,   1, 0x222222);
     helper( feet,   1,  -1, .49,  3,  3,   1, 0x222222);
     helper( feet,   1,  -2,-.01,  2,  2,   2, 0x999999);
     helper( feet,   2,  -1,-.01,  2,  2,   2, 0x999999);
-    
+
     helper( feet,   6,  -2, -.5,  3,  3,   1, 0x222222);
     helper( feet,   6,  -2, -.5,  4,  2,   1, 0x222222);
     helper( feet,   7,  -2,-.99,  2,  2,   2, 0x999999);
-    
+
     helper( feet,   16, -3, .49,  3,  2,   1, 0x222222);
     helper( feet,   15, -2, .49,  3,  2,   1, 0x222222);
     helper( feet,   15, -2,-.01,  2,  1,   2, 0x999999);
     helper( feet,   16, -3,-.01,  2,  1,   2, 0x999999);
-    
+
     helper( feet,   21, -3, -.5,  3,  2,   1, 0x222222);
     helper( feet,   20, -2, -.5,  3,  2,   1, 0x222222);
     helper( feet,   20, -2,-.99,  2,  1,   2, 0x999999);
     helper( feet,   21, -3,-.99,  2,  1,   2, 0x999999);
-    
+
     feet.position.x=-12.5;
     feet.position.y=-6;
     scene.add( feet );
-    
+
     //TAIL
     tail=new Object3D();
     helper( tail,   0,  0,-.25,  4,  3, 1.5, 0x222222);
@@ -118,11 +118,11 @@ class NyanCat {
     helper( tail,   2, -2, -.5,  2,  1,   2, 0x999999);
     helper( tail,   3, -3, -.5,  2,  1,   2, 0x999999);
     helper( tail,   4, -4, -.5,  2,  1,   2, 0x999999);
-    
+
     tail.position.x=-16.5;
     tail.position.y=2;
     scene.add( tail );
-    
+
     //FACE
     face=new Object3D();
     helper(    face,   2,  -3,  -3,  12,   9,   4, 0x222222);
@@ -134,7 +134,7 @@ class NyanCat {
     helper(    face,   4,  -2,   0,   2,   2,   1, 0x222222);
     helper(    face,  12,   0,   0,   2,   2,   1, 0x222222);
     helper(    face,  10,  -2,   0,   2,   2,   1, 0x222222);
-    
+
     helper(    face,   1, -5,   .5,  14,   5,   1, 0x999999);
     helper(    face,   3, -4,   .5,  10,   8,   1, 0x999999);
     helper(    face,   2, -1,   .5,   2,  10,   1, 0x999999);
@@ -156,12 +156,12 @@ class NyanCat {
     //CHEEKS
     helper(    face,   2,  -8,  .6,   2,   2, .91, 0xff9999);
     helper(    face,  13,  -8,  .6,   2,   2, .91, 0xff9999);
-    
+
     face.position.x=-.5;
     face.position.y=4;
     face.position.z=4;
     scene.add(face);
-    
+
     //RAINBOW
     rainbow=new Object3D();
     for(var c=0;c<numRainChunks-1;c++){
@@ -176,7 +176,7 @@ class NyanCat {
       helper( rainbow,xOffset,yOffset-15, 0, 8, 3, 1, 0x6633ff);
     }
     scene.add( rainbow );
-    
+
     rainChunk=new Object3D();
     helper( rainChunk, -16.5,  7,  0, 8,  3,   1, 0xff0000);
     helper( rainChunk, -16.5,  4,  0, 8,  3,   1, 0xff9900);
@@ -186,7 +186,7 @@ class NyanCat {
     helper( rainChunk, -16.5, -8,  0, 8,  3,   1, 0x6633ff);
     rainChunk.position.x-=(8*(numRainChunks-1));
     scene.add( rainChunk );
-    
+
     stars=new List();
     for(var state=0;state<6;state++){
       stars.add(new List());
@@ -200,11 +200,11 @@ class NyanCat {
         stars[state].add(star);
       }
     }
-    
+
     var pointLight = new PointLight( 0xFFFFFF );
     pointLight.position.z = 1000;
     scene.add(pointLight);
-    
+
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.elements.add( renderer.domElement );
@@ -230,7 +230,7 @@ class NyanCat {
           star.position.x=star2.position.x-8;
           star.position.y=star2.position.y;
           star.position.z=star2.position.z;
-          
+
           if(star.position.x<-100){
             star.position.x+=200;
             star.position.y = rand.nextDouble() * 200 - 100;
@@ -309,7 +309,7 @@ class NyanCat {
     camera.lookAt( scene.position );
     renderer.render( scene, camera );
   }
-  
+
   helper(o, x, y, z, w, h, d, c){
     var material = new MeshLambertMaterial(color: c);
     var geometry = new CubeGeometry(w, h, d, 1, 1, 1);
@@ -319,7 +319,7 @@ class NyanCat {
     mesh.position.z=z+(d/2);
     o.add( mesh );
   }
-  
+
   buildStar(star, state) {
     switch(state){
       case 0:
@@ -376,7 +376,7 @@ class NyanCat {
       song2.play();
     }
   }
-  
+
 }
 
 void main() {

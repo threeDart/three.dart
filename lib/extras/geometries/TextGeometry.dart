@@ -1,33 +1,35 @@
+part of ThreeD;
+
 class TextGeometry extends ExtrudeGeometry {
   factory TextGeometry( text, [ height = 50, // height <=> amount,
                                 bend = false,
-                                
+
                                 // ExtrudeGeometry parameters
                                 bevelThickness = 10,
                                 bevelSize = 8,
                                 bevelSegments = 3,
                                 bevelEnabled = false,
-                                
-                                
+
+
                                 curveSegments = 12,
                                 steps = 1,
                                 bendPath,
                                 extrudePath,
                                 material,
                                 extrudeMaterial,
-                                
+
                                 // FontUtils.generateShapes parameters
                                 size = 100,
                                 font = "helvetiker",
                                 weight = "normal",
                                 style = "normal"
                                 ] ) {
-    
+
     var textShapes = FontUtils.generateShapes( text, size, curveSegments, font, weight, style);
-    
+
     var amount = height;
     var bendPath = null;
-    
+
     if (bend) {
       var b = textShapes[ textShapes.length - 1 ].getBoundingBox();
       var max = b.maxX;
@@ -38,9 +40,9 @@ class TextGeometry extends ExtrudeGeometry {
           new Vector2( max, 0 )
       );
     }
-    
-    return new TextGeometry._internal(  textShapes,   
-                                        amount, 
+
+    return new TextGeometry._internal(  textShapes,
+                                        amount,
                                         bevelThickness,
                                         bevelSize,
                                         bevelSegments,
@@ -52,9 +54,9 @@ class TextGeometry extends ExtrudeGeometry {
                                         material,
                                         extrudeMaterial);
   }
-  
-  TextGeometry._internal( shapes,   
-                          amount, 
+
+  TextGeometry._internal( shapes,
+                          amount,
                           bevelThickness,
                           bevelSize,
                           bevelSegments,
@@ -64,8 +66,8 @@ class TextGeometry extends ExtrudeGeometry {
                           bendPath,
                           extrudePath,
                           material,
-                          extrudeMaterial) : super( shapes,   
-                                                    amount, 
+                          extrudeMaterial) : super( shapes,
+                                                    amount,
                                                     bevelThickness,
                                                     bevelSize,
                                                     bevelSegments,
@@ -75,5 +77,5 @@ class TextGeometry extends ExtrudeGeometry {
                                                     bendPath,
                                                     extrudePath,
                                                     material,
-                                                    extrudeMaterial);   
+                                                    extrudeMaterial);
 }

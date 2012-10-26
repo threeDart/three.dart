@@ -1,3 +1,5 @@
+part of ThreeD;
+
 /**
  * @author zz85 / http://www.lab4games.net/zz85/blog
  * Defines a 2d shape plane using paths.
@@ -12,25 +14,25 @@
 class Shape extends Path {
 
   List holes;
-  
+
 	Shape([List points]) : holes = [], super(points);
-	
+
   // Convenience method to return ExtrudeGeometry
-  extrude( [amount = 100, 
-            bevelThickness = 6,
-            bevelSize = null,
-            bevelSegments = 3,
-            bevelEnabled = true,
-            curveSegments = 12,
-            steps = 1,
+  extrude( {amount: 100,
+            bevelThickness: 6,
+            bevelSize: null,
+            bevelSegments: 3,
+            bevelEnabled: true,
+            curveSegments: 12,
+            steps: 1,
             bendPath,
             extrudePath,
             material,
-            extrudeMaterial] ) {
-    
+            extrudeMaterial} ) {
+
     if (bevelSize == null) bevelSize = bevelThickness - 2;
-    
-    return new ExtrudeGeometry( [this], amount, 
+
+    return new ExtrudeGeometry( [this], amount,
                                         bevelThickness,
                                         bevelSize,
                                         bevelSegments,
@@ -42,63 +44,63 @@ class Shape extends Path {
                                         material,
                                         extrudeMaterial );
   }
-  
-  
+
+
   // Get points of holes
   getPointsHoles( divisions ) {
-  
+
   	var i, il = holes.length;
   	var holesPts = new List(il);
-  
+
   	for ( i = 0; i < il; i ++ ) {
-  
+
   		holesPts[ i ] = holes[ i ].getTransformedPoints( divisions, _bends );
-  
+
   	}
-  
+
   	return holesPts;
-  
+
   }
-  
+
   // Get points of holes (spaced by regular distance)
   getSpacedPointsHoles ( divisions ) {
-  
+
   	var i, il = holes.length;
   	var holesPts = new List(il);
-  
+
   	for ( i = 0; i < il; i ++ ) {
-  
+
   		holesPts[ i ] = holes[ i ].getTransformedSpacedPoints( divisions, _bends );
-  
+
   	}
-  
+
   	return holesPts;
-  
+
   }
-  
-  
+
+
   // Get points of shape and holes (keypoints based on segments parameter)
   extractAllPoints( divisions ) {
-  
+
   	return {
-  
+
   		"shape": getTransformedPoints( divisions ),
   		"holes": getPointsHoles( divisions )
-  
+
   	};
-  
+
   }
-  
+
   extractPoints( [num divisions] ) {
-  
+
   	if (useSpacedPoints) {
   		return extractAllSpacedPoints(divisions);
   	}
-  
+
   	return extractAllPoints(divisions);
-  
+
   }
-  
+
   //
   // THREE.Shape.prototype.extractAllPointsWithBend = function ( divisions, bend ) {
   //
@@ -110,13 +112,13 @@ class Shape extends Path {
   // 	};
   //
   // };
-  
+
   // Get points of shape and holes (spaced by regular distance)
   extractAllSpacedPoints( [num divisions] ) {
   	return {
   		"shape": getTransformedSpacedPoints( divisions ),
   		"holes": getSpacedPointsHoles( divisions )
-  
+
   	};
   }
 

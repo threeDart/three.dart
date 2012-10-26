@@ -1,8 +1,10 @@
+part of ThreeD;
+
 /**
  * @author mr.doob / http://mrdoob.com/
  * @author mikael emtinger / http://gomo.se/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -12,18 +14,18 @@ class Object3D {
   int id;
   String name;
   Map properties;
-  
+
   Object3D parent;
   List children;
-  
+
   Vector3 up, position, rotation, scale;
-  
+
   String eulerOrder;
-  
+
   bool _dynamic, doubleSided, flipSided, rotationAutoUpdate;
-  
+
   int renderDepth;
-  
+
   Matrix4 matrix, matrixWorld, matrixRotationWorld;
 
   bool matrixAutoUpdate = false, matrixWorldNeedsUpdate = false;
@@ -35,61 +37,61 @@ class Object3D {
 
   bool visible = false, castShadow = false, receiveShadow = false, frustumCulled = false;
 
-  Vector3 _vector; 
-  
-  
+  Vector3 _vector;
+
+
   Object3D()
       : id = Three.Object3DCount++,
-      
+
         name = '',
         properties = {},
-            
+
         parent = null,
         children = [],
-    
+
         up = new Vector3( 0, 1, 0),
-    
+
         position = new Vector3(),
         rotation = new Vector3(),
         eulerOrder = 'XYZ',
         scale = new Vector3( 1, 1, 1 ),
-    
+
         renderDepth = null,
-    
+
         rotationAutoUpdate = true,
-    
+
         matrix = new Matrix4(),
         matrixWorld = new Matrix4(),
         matrixRotationWorld = new Matrix4(),
-    
+
         matrixAutoUpdate = true,
         matrixWorldNeedsUpdate = true,
-    
+
         quaternion = new Quaternion(),
         useQuaternion = false,
-    
+
         boundRadius = 0.0,
         boundRadiusScale = 1.0,
-    
+
         visible = true,
-    
+
         castShadow = false,
         receiveShadow = false,
-    
+
         frustumCulled = true,
-    
+
         _vector = new Vector3();
-  
+
         // TODO - These are not in three.js
         //_dynamic = false, // when true it retains arrays so they can be updated with __dirty*
-            
+
         //doubleSided = false,
         //flipSided = false,
-  
-  // dynamic 
+
+  // dynamic
   bool get isDynamic => _dynamic;
        set isDynamic(bool flag) => _dynamic = flag;
-  
+
   void applyMatrix ( matrix ) {
 
     this.matrix.multiply(matrix, this.matrix);
@@ -102,7 +104,7 @@ class Object3D {
     this.position.getPositionFromMatrix( this.matrix );
 
   }
-  
+
   void translate( num distance, Vector3 axis ) {
     matrix.rotateAxis( axis );
     position.addSelf( axis.multiplyScalar( distance ) );
@@ -125,11 +127,11 @@ class Object3D {
   }
 
   void add( Object3D object ) {
-    if ( object === this ) {
+    if ( object == this ) {
       print( 'THREE.Object3D.add: An object can\'t be added as a child of itself.' );
       return;
     }
-    
+
 
     if ( object.parent != null ) {
       object.parent.remove( object );
@@ -140,23 +142,23 @@ class Object3D {
 
     // add to scene
     Object3D scene = this;
-    
-    while ( scene.parent !== null ) {
+
+    while ( scene.parent != null ) {
       scene = scene.parent;
     }
 
     if ( scene is Scene ) {
       scene.addObject( object );
     }
-    
+
   }
 
   void remove( Object3D object ) {
-    
+
     int index = children.indexOf( object );
 
-    if ( index !== - 1 ){
-      
+    if ( index != - 1 ){
+
       object.parent = null;
       children.removeRange(index, 1);
       // children.splice( index, 1 );
@@ -164,7 +166,7 @@ class Object3D {
       // remove from scene
       Object3D scene = this;
 
-      while ( scene.parent !== null ) {
+      while ( scene.parent != null ) {
         scene = scene.parent;
       }
 
@@ -181,7 +183,7 @@ class Object3D {
 
     children.forEach((child){
 
-      if ( child.name === name ) {
+      if ( child.name == name ) {
         return child;
       }
 
@@ -206,7 +208,7 @@ class Object3D {
       matrix.setRotationFromEuler( rotation, eulerOrder );
     }
 
-    if ( scale.x !== 1 || scale.y !== 1 || scale.z !== 1 ) {
+    if ( scale.x != 1 || scale.y != 1 || scale.z != 1 ) {
       matrix.scale( scale );
       boundRadiusScale = Math.max( scale.x, Math.max( scale.y, scale.z ) );
     }
@@ -235,7 +237,7 @@ class Object3D {
     children.forEach((c) => c.updateMatrixWorld( force ) );
 
   }
-  
+
   worldToLocal( vector ) => __m1.getInverse( this.matrixWorld ).multiplyVector3( vector );
 
   localToWorld( vector ) => matrixWorld.multiplyVector3( vector );
@@ -245,7 +247,7 @@ class Object3D {
     // TODO
 
   }
-  
+
   static Matrix4 ___m1;
   static Matrix4 get __m1 {
     if (___m1 == null) {
@@ -253,17 +255,17 @@ class Object3D {
     }
     return ___m1;
   }
-  
+
   // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
-  
+
   get _data {
     if (__data == null) {
       __data = {};
     }
     return __data;
   }
-  
+
   operator [] (String key) => _data[key];
   operator []= (String key, value) => _data[key] = value;
 }

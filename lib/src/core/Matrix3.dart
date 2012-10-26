@@ -1,20 +1,22 @@
-/** 
+part of ThreeD;
+
+/**
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
 
 class Matrix3  {
   Float32Array elements;
-  
+
   Matrix3() : elements = new Float32Array(9);
-  
+
   getInverse( Matrix4 matrix ) {
 
     // input: THREE.Matrix4
     // ( based on http://code.google.com/p/webgl-mjs/ )
 
     var me = matrix.elements;
-        
+
     var a11 =   me[10] * me[5] - me[6] * me[9];
     var a21 = - me[10] * me[1] + me[2] * me[9];
     var a31 =   me[6] * me[1] - me[2] * me[5];
@@ -29,7 +31,7 @@ class Matrix3  {
 
     // no inverse
 
-    if ( det === 0 ) {
+    if ( det == 0 ) {
 
       print( "Matrix3.getInverse(): determinant == 0" );
 
@@ -46,7 +48,7 @@ class Matrix3  {
     return this;
 
   }
-  
+
   Matrix3 transpose() {
     var tmp, m = elements;
 
@@ -56,7 +58,7 @@ class Matrix3  {
 
     return this;
   }
-  
+
   Matrix3 transposeIntoArray( List r ) {
     var m = elements;
 
@@ -71,6 +73,6 @@ class Matrix3  {
     r[ 8 ] = m[ 8 ];
 
     return this;
-  } 
+  }
 
 }

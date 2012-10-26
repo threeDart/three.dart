@@ -1,7 +1,9 @@
+part of ThreeD;
+
 /**
  * @author mikael emtinger / http://gomo.se/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
@@ -11,7 +13,7 @@ class Quaternion implements IVector4 {
   num y;
   num z;
   num w;
-  
+
   Quaternion( [num this.x=0, num this.y=0, num this.z=0, num this.w=1] );
 
   Quaternion setValues( num newX, num newY, num newZ, num newW ) {
@@ -44,42 +46,42 @@ class Quaternion implements IVector4 {
     var s2 = Math.sin( v.y / 2 );
     var s3 = Math.sin( v.z / 2 );
 
-    if ( order === 'XYZ' ) {
+    if ( order == 'XYZ' ) {
 
       this.x = s1 * c2 * c3 + c1 * s2 * s3;
       this.y = c1 * s2 * c3 - s1 * c2 * s3;
       this.z = c1 * c2 * s3 + s1 * s2 * c3;
       this.w = c1 * c2 * c3 - s1 * s2 * s3;
 
-    } else if ( order === 'YXZ' ) {
+    } else if ( order == 'YXZ' ) {
 
       this.x = s1 * c2 * c3 + c1 * s2 * s3;
       this.y = c1 * s2 * c3 - s1 * c2 * s3;
       this.z = c1 * c2 * s3 - s1 * s2 * c3;
       this.w = c1 * c2 * c3 + s1 * s2 * s3;
 
-    } else if ( order === 'ZXY' ) {
+    } else if ( order == 'ZXY' ) {
 
       this.x = s1 * c2 * c3 - c1 * s2 * s3;
       this.y = c1 * s2 * c3 + s1 * c2 * s3;
       this.z = c1 * c2 * s3 + s1 * s2 * c3;
       this.w = c1 * c2 * c3 - s1 * s2 * s3;
 
-    } else if ( order === 'ZYX' ) {
+    } else if ( order == 'ZYX' ) {
 
       this.x = s1 * c2 * c3 - c1 * s2 * s3;
       this.y = c1 * s2 * c3 + s1 * c2 * s3;
       this.z = c1 * c2 * s3 - s1 * s2 * c3;
       this.w = c1 * c2 * c3 + s1 * s2 * s3;
 
-    } else if ( order === 'YZX' ) {
+    } else if ( order == 'YZX' ) {
 
       this.x = s1 * c2 * c3 + c1 * s2 * s3;
       this.y = c1 * s2 * c3 + s1 * c2 * s3;
       this.z = c1 * c2 * s3 - s1 * s2 * c3;
       this.w = c1 * c2 * c3 - s1 * s2 * s3;
 
-    } else if ( order === 'XZY' ) {
+    } else if ( order == 'XZY' ) {
 
       this.x = s1 * c2 * c3 - c1 * s2 * s3;
       this.y = c1 * s2 * c3 - s1 * c2 * s3;
@@ -108,7 +110,7 @@ class Quaternion implements IVector4 {
   }
 
   Quaternion setFromRotationMatrix( Matrix4 m ) {
-    
+
     // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
     // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
@@ -162,7 +164,7 @@ class Quaternion implements IVector4 {
 
     return this;
   }
-  
+
 
   Quaternion calculateW() {
     this.w = - Math.sqrt( ( 1.0 - x * x - y * y - z * z ).abs() );
@@ -182,7 +184,7 @@ class Quaternion implements IVector4 {
   Quaternion normalize() {
     num l = Math.sqrt( x * x + y * y + z * z + w * w );
 
-    if ( l === 0 ) {
+    if ( l == 0 ) {
       this.x = 0;
       this.y = 0;
       this.z = 0;
@@ -209,7 +211,7 @@ class Quaternion implements IVector4 {
 
     return this;
   }
-  
+
   Quaternion multiplySelf( Vector4 quat2 ) {
     num qax = x,  qay = y,  qaz = z,  qaw = w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
@@ -301,9 +303,9 @@ class Quaternion implements IVector4 {
     return this;
 
   }
-  
+
   clone() => new Quaternion( this.x, this.y, this.z, this.w );
-  
+
   static Vector4 slerp( Vector4 qa, Vector4 qb, Vector4 qm, num t ) {
     // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
@@ -315,8 +317,8 @@ class Quaternion implements IVector4 {
     } else {
       qm.copy(qb);
     }
-    
-    if ( cosHalfTheta.abs() >= 1.0 ) 
+
+    if ( cosHalfTheta.abs() >= 1.0 )
     {
       qm.w = qa.w; qm.x = qa.x; qm.y = qa.y; qm.z = qa.z;
       return qm;
@@ -324,8 +326,8 @@ class Quaternion implements IVector4 {
 
     num halfTheta = Math.acos( cosHalfTheta ),
     sinHalfTheta = Math.sqrt( 1.0 - cosHalfTheta * cosHalfTheta );
- 
-    if ( sinHalfTheta.abs() < 0.001 ) 
+
+    if ( sinHalfTheta.abs() < 0.001 )
     {
       qm.w = 0.5 * ( qa.w + qb.w );
       qm.x = 0.5 * ( qa.x + qb.x );

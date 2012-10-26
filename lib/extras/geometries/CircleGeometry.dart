@@ -1,12 +1,14 @@
+part of ThreeD;
+
 class CircleGeometry extends Geometry {
   num radius, segments, thetaStart, thetaLength;
-  
+
   CircleGeometry( [this.radius = 50, this.segments = 8, this.thetaStart = 0, thetaLength =  Math.PI * 2]) : super() {
     segments = Math.max(3, segments);
-    
-    var i, 
+
+    var i,
         uvs = [],
-        center = new Vector3(), 
+        center = new Vector3(),
         centerUV = new UV( 0.5, 0.5 );
 
     vertices.add(center);
@@ -43,5 +45,5 @@ class CircleGeometry extends Geometry {
     boundingSphere = new BoundingSphere(radius: radius );
 
   }
-  
+
 }

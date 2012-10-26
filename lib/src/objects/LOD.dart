@@ -1,8 +1,10 @@
+part of ThreeD;
+
 class LOD extends Object3D {
   List LODs;
-  
+
   LOD() : LODs = [], super();
-  
+
   addLevel(Object3D object3D, [num visibleAtDistance = 0]) {
 
     visibleAtDistance = visibleAtDistance.abs();
@@ -30,7 +32,7 @@ class LOD extends Object3D {
       LODs[ 0 ].object3D.visible = true;
 
       var l;
-      
+
       for ( l = 1; l < LODs.length; l ++ ) {
 
         if( distance >= LODs[ l ].visibleAtDistance ) {

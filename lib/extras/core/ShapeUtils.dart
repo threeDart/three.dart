@@ -1,10 +1,10 @@
 /**************************************************************
  *  Utils
  **************************************************************/
-#library('ShapeUtils');
+library ShapeUtils;
 
-#import('../../ThreeD.dart');
-#import('../FontUtils.dart', prefix:'FontUtils');
+import "package:three.dart/ThreeD.dart";
+import '../FontUtils.dart' as FontUtils;
 
 /*
   contour - array of vector2 for contour
@@ -20,9 +20,9 @@ removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
 
   var prevShapeVert, nextShapeVert,
     prevHoleVert, nextHoleVert;
-  
+
   int holeIndex, shapeIndex;
-  
+
   var shapeId, shapeGroup,
     h, h2,
     hole, shortest, d,
@@ -186,7 +186,7 @@ removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
     verts.add( triangleb );
 
     shape = [];
-    shape.addAll(tmpShape1); 
+    shape.addAll(tmpShape1);
     shape.addAll(tmpHole1 );
     shape.addAll( tmpHole2 );
     shape.addAll( tmpShape2 );
@@ -283,7 +283,7 @@ triangulateShape( contour, holes ) {
   triangles.addAll( isolatedPts );
   return triangles;
 
-} 
+}
 
 isClockWise( pts ) => FontUtils.area( pts ) < 0;
 

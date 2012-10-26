@@ -1,25 +1,27 @@
+part of ThreeD;
+
 /**
  * @author mrdoob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
- * 
+ *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  */
 
 class Frustum {
   List<Vector4> planes;
-  
+
   //TODO: where/how should this be instantiated?
-  
+
   static Vector3 ___v1;// = new Vector3();
-  
+
   static Vector3 get __v1 {
     if (___v1 == null) {
       ___v1 = new Vector3();
     }
     return ___v1;
   }
-  
+
   Frustum()
       : planes = [
                   new Vector4(),
@@ -54,14 +56,14 @@ class Frustum {
 
     }
   }
-  
+
   bool contains( Object3D object ) {
     num distance = 0.0;
-   
+
     Matrix4 matrix = object.matrixWorld;
     var me = matrix.elements;
-    num radius = - (object as Dynamic).geometry.boundingSphere.radius * matrix.getMaxScaleOnAxis();
-   
+    num radius = - (object as dynamic).geometry.boundingSphere.radius * matrix.getMaxScaleOnAxis();
+
     for ( int i = 0; i < 6; i ++ ) {
       distance = planes[ i ].x * me[12] + planes[ i ].y * me[13] + planes[ i ].z * me[14] + planes[ i ].w;
       if ( distance <= radius ) return false;
