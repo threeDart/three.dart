@@ -23,29 +23,29 @@ class Material implements IMaterial
 
   bool needsUpdate;
 
-  Material( [ this.name = '',
-              this.side = Three.FrontSide,
+  Material( { this.name: '',
+              this.side: Three.FrontSide,
 
-              this.opacity = 1,
-              this.transparent = false,
+              this.opacity: 1,
+              this.transparent: false,
 
-              this.blending = Three.NormalBlending,
-              this.blendSrc = Three.SrcAlphaFactor,
-              this.blendDst = Three.OneMinusSrcAlphaFactor,
-              this.blendEquation = Three.AddEquation,
+              this.blending: Three.NormalBlending,
+              this.blendSrc: Three.SrcAlphaFactor,
+              this.blendDst: Three.OneMinusSrcAlphaFactor,
+              this.blendEquation: Three.AddEquation,
 
-              this.depthTest = true,
-              this.depthWrite = true,
+              this.depthTest: true,
+              this.depthWrite: true,
 
-              this.polygonOffset = false,
-              this.polygonOffsetFactor = 0,
-              this.polygonOffsetUnits =  0,
+              this.polygonOffset: false,
+              this.polygonOffsetFactor: 0,
+              this.polygonOffsetUnits:  0,
 
-              this.alphaTest = 0,
+              this.alphaTest: 0,
 
-              this.overdraw = false, // Boolean for fixing antialiasing gaps in CanvasRenderer
+              this.overdraw: false, // Boolean for fixing antialiasing gaps in CanvasRenderer
 
-              this.visible = true ])
+              this.visible: true })
       :
 
             id = Three.MaterialCount ++,

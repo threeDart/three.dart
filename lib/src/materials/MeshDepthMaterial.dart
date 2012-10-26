@@ -24,36 +24,36 @@ class MeshDepthMaterial extends Material {
   bool wireframe;
   num wireframeLinewidth;
 
-  MeshDepthMaterial( [ // MeshDepthMaterial
-                       this.shading = Three.SmoothShading, // doesn't really apply here, normals are not used
-                       this.wireframe = false,
-                       this.wireframeLinewidth = 1,
+  MeshDepthMaterial( { // MeshDepthMaterial
+                       this.shading: Three.SmoothShading, // doesn't really apply here, normals are not used
+                       this.wireframe: false,
+                       this.wireframeLinewidth: 1,
 
 
                        // Material
-                       name = '',
-                       side = Three.FrontSide,
+                       name: '',
+                       side: Three.FrontSide,
 
-                       opacity = 1,
-                       transparent = false,
+                       opacity: 1,
+                       transparent: false,
 
-                       blending = Three.NormalBlending,
-                       blendSrc = Three.SrcAlphaFactor,
-                       blendDst = Three.OneMinusSrcAlphaFactor,
-                       blendEquation = Three.AddEquation,
+                       blending: Three.NormalBlending,
+                       blendSrc: Three.SrcAlphaFactor,
+                       blendDst: Three.OneMinusSrcAlphaFactor,
+                       blendEquation: Three.AddEquation,
 
-                       depthTest = true,
-                       depthWrite = true,
+                       depthTest: true,
+                       depthWrite: true,
 
-                       polygonOffset = false,
-                       polygonOffsetFactor = 0,
-                       polygonOffsetUnits =  0,
+                       polygonOffset: false,
+                       polygonOffsetFactor: 0,
+                       polygonOffsetUnits:  0,
 
-                       alphaTest = 0,
+                       alphaTest: 0,
 
-                       overdraw = false,
+                       overdraw: false,
 
-                       visible = true ])
+                       visible: true })
                        :
 
                          super(  name: name,

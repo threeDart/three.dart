@@ -26,49 +26,49 @@ class ShaderMaterial extends Material {
 
   Map attributes;
 
-  ShaderMaterial( [ // ShaderMaterial
+  ShaderMaterial( { // ShaderMaterial
                     this.attributes,
-                    this.fragmentShader = "void main() {}",
-                    this.vertexShader = "void main() {}",
+                    this.fragmentShader: "void main() {}",
+                    this.vertexShader: "void main() {}",
                     Map uniforms,
 
-                    this.shading = Three.SmoothShading,
+                    this.shading: Three.SmoothShading,
 
-                    this.vertexColors = Three.NoColors,
+                    this.vertexColors: Three.NoColors,
 
-                    this.fog = true,
+                    this.fog: true,
 
-                    this.wireframe = false,
-                    this.wireframeLinewidth = 1,
+                    this.wireframe: false,
+                    this.wireframeLinewidth: 1,
 
-                    this.skinning = false,
-                    this.morphTargets = false,
-                    this.morphNormals = false,
+                    this.skinning: false,
+                    this.morphTargets: false,
+                    this.morphNormals: false,
 
                     // Material
-                    name = '',
-                    side = Three.FrontSide,
+                    name: '',
+                    side: Three.FrontSide,
 
-                    opacity = 1,
-                    transparent = false,
+                    opacity: 1,
+                    transparent: false,
 
-                    blending = Three.NormalBlending,
-                    blendSrc = Three.SrcAlphaFactor,
-                    blendDst = Three.OneMinusSrcAlphaFactor,
-                    blendEquation = Three.AddEquation,
+                    blending: Three.NormalBlending,
+                    blendSrc: Three.SrcAlphaFactor,
+                    blendDst: Three.OneMinusSrcAlphaFactor,
+                    blendEquation: Three.AddEquation,
 
-                    depthTest = true,
-                    depthWrite = true,
+                    depthTest: true,
+                    depthWrite: true,
 
-                    polygonOffset = false,
-                    polygonOffsetFactor = 0,
-                    polygonOffsetUnits =  0,
+                    polygonOffset: false,
+                    polygonOffsetFactor: 0,
+                    polygonOffsetUnits:  0,
 
-                    alphaTest = 0,
+                    alphaTest: 0,
 
-                    overdraw = false,
+                    overdraw: false,
 
-                    visible = true ])
+                    visible: true })
                     : super(  name: name,
                               side: side,
                               opacity: opacity,

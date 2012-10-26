@@ -1603,7 +1603,7 @@ class Uniform {
   String type;
   var value;
   var texture;
-  Uniform([this.type, this.value, this.texture]);
+  Uniform({this.type, this.value, this.texture});
 }
 
 var __UniformsLib;

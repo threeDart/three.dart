@@ -28,7 +28,7 @@ class Path extends CurvePath {
   List _points;
   List<PathAction> actions;
 
-	Path( {List points} ) : actions = [],  super(){
+	Path( [List points] ) : actions = [],  super(){
 	  if (points != null) {
 	    _fromPoints(points);
 	  }

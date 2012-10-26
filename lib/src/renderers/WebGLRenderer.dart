@@ -4665,7 +4665,7 @@ class WebGLRenderer implements Renderer {
 
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
-			if ( objlist[ o ] == object ) {
+      if ( identical(objlist[ o ], object) ) {
 
 				objlist.splice( o, 1 );
 
@@ -4885,7 +4885,7 @@ class WebGLRenderer implements Renderer {
 			p_uniforms = program.uniforms,
 			m_uniforms = material.uniforms;
 
-		if ( program != _currentProgram ) {
+    if ( !identical(program, _currentProgram) ) {
 
 			_gl.useProgram( program.glProgram );
 			_currentProgram = program;
@@ -4901,11 +4901,11 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( refreshMaterial || camera != _currentCamera ) {
+    if ( refreshMaterial || !identical(camera, _currentCamera) ) {
 
 			_gl.uniformMatrix4fv( p_uniforms["projectionMatrix"], false, camera._projectionMatrixArray );
 
-			if ( camera != _currentCamera ) _currentCamera = camera;
+      if ( !identical(camera, _currentCamera) ) _currentCamera = camera;
 
 		}
 
@@ -5994,9 +5994,10 @@ class WebGLRenderer implements Renderer {
 
 			Program program = _programs[ p ];
 
-			if ( program.code == code ) {
+			// TODO - why do we need identical here ?!
+      if ( identical(program.code, code) ) {
 
-				// console.log( "Code already compiled." /*: \n\n" + code*/ );
+				//print( "Code already compiled: $program$code" );
 
 			  program.usedTimes ++;
 
@@ -6006,7 +6007,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		//console.log( "building new program " );
+		//print( "building new program " );
 
 		//
 
@@ -6659,7 +6660,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( framebuffer != _currentFramebuffer ) {
+    if ( !identical(framebuffer, _currentFramebuffer) ) {
 
 			_gl.bindFramebuffer( WebGLRenderingContext.FRAMEBUFFER, framebuffer );
 			_gl.viewport( vx, vy, width, height );
