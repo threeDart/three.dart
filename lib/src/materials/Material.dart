@@ -15,7 +15,7 @@ class Material implements IMaterial
 
   num opacity;
   int blending, blendSrc, blendDst, blendEquation;
-  int alphaTest;
+  num alphaTest;
   bool polygonOffset;
   int polygonOffsetFactor, polygonOffsetUnits;
   bool transparent, depthTest, depthWrite, overdraw;

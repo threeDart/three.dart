@@ -5941,7 +5941,7 @@ class WebGLRenderer implements Renderer {
 		      bool useFog = false,
 		      int maxMorphTargets = 8,
 		      int maxMorphNormals = 4,
-		      int alphaTest = 0,
+		      num alphaTest = 0,
 		      bool metal = false] ) {
 
 		var p, pl, glprogram, code;
@@ -7200,7 +7200,7 @@ class WebGLMaterial { // implements Material {
   int get blendSrc => _material.blendSrc;
   int get blendDst => _material.blendDst;
   int get blendEquation => _material.blendEquation;
-  int get alphaTest => _material.alphaTest;
+  num get alphaTest => _material.alphaTest;
   int get polygonOffsetFactor => _material.polygonOffsetFactor;
   int get polygonOffsetUnits => _material.polygonOffsetUnits;
   bool get transparent => _material.transparent;
