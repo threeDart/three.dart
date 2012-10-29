@@ -10,7 +10,7 @@ library TrackballControls;
 
 import "dart:html";
 import "dart:math" as Math;
-import "package:three.dart/ThreeD.dart";
+import "package:three/ThreeD.dart";
 
 class STATE {
  static const NONE = -1; 

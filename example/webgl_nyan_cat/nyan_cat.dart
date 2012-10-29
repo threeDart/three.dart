@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:three.dart/ThreeD.dart';
-import 'package:three.dart/extras/SceneUtils.dart' as SceneUtils;
-import 'package:three.dart/extras/GeometryUtils.dart' as GeometryUtils;
+import 'package:three/ThreeD.dart';
+import 'package:three/extras/SceneUtils.dart' as SceneUtils;
+import 'package:three/extras/GeometryUtils.dart' as GeometryUtils;
 
 class NyanCat {
   Math.Random rand = new Math.Random();

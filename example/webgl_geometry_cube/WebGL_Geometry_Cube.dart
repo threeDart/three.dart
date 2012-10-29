@@ -1,6 +1,6 @@
 import 'dart:html';
-import 'package:three.dart/ThreeD.dart';
-import 'package:three.dart/extras/ImageUtils.dart' as ImageUtils; // TODO - Use Re-export
+import 'package:three/ThreeD.dart';
+import 'package:three/extras/ImageUtils.dart' as ImageUtils; // TODO - Use Re-export
 
 class WebGL_Geometry_Cube  {
   Element container;

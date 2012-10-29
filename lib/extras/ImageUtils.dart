@@ -2,7 +2,7 @@ library ImageUtils;
 
 import "dart:html";
 import "dart:math" as Math;
-import "package:three.dart/ThreeD.dart";
+import "package:three/ThreeD.dart";
 
 var crossOrigin = 'anonymous';
 

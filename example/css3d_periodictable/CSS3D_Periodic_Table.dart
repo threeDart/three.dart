@@ -1,9 +1,9 @@
 
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:three.dart/ThreeD.dart' as THREE;
-import 'package:three.dart/extras/controls/TrackballControls.dart';
-import 'package:three.dart/extras/Tween.dart' as TWEEN;
+import 'package:three/ThreeD.dart' as THREE;
+import 'package:three/extras/controls/TrackballControls.dart';
+import 'package:three/extras/Tween.dart' as TWEEN;
 
 part 'periodic_table.dart';
 

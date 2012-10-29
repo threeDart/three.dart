@@ -3,7 +3,7 @@
  **************************************************************/
 library ShapeUtils;
 
-import "package:three.dart/ThreeD.dart";
+import "package:three/ThreeD.dart";
 import '../FontUtils.dart' as FontUtils;
 
 /*

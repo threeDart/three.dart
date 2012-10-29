@@ -1,6 +1,6 @@
 library SceneUtils;
 
-import "package:three.dart/ThreeD.dart";
+import "package:three/ThreeD.dart";
 
 showHierarchy( root, visible ) => traverseHierarchy( root, (node) => node.visible = visible);
 
