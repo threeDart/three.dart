@@ -18,10 +18,10 @@ class Matrix4 {
   Float32Array elements;
 
 
-  Matrix4( {num n11: 1, num n12: 0, num n13: 0, num n14: 0,
-            num n21: 0, num n22: 1, num n23: 0, num n24: 0,
-            num n31: 0, num n32: 0, num n33: 1, num n34: 0,
-            num n41: 0, num n42: 0, num n43: 0, num n44: 1} )
+  Matrix4( [num n11 = 1, num n12 = 0, num n13 = 0, num n14 = 0,
+            num n21 = 0, num n22 = 1, num n23 = 0, num n24 = 0,
+            num n31 = 0, num n32 = 0, num n33 = 1, num n34 = 0,
+            num n41 = 0, num n42 = 0, num n43 = 0, num n44 = 1] )
       : elements = new Float32Array(16) {
 
     setValues(n11, n12, n13, n14,
