@@ -137,6 +137,7 @@ part 'src/renderers/WebGLRenderTarget.dart';
 part 'src/renderers/WebGLRenderTargetCube.dart';
 part 'src/renderers/WebGLShaders.dart';
 part 'src/renderers/CanvasRenderer.dart';
+part 'src/renderers/CSS3DRenderer.dart';
 
 part 'src/renderers/renderables/IRenderableObj.dart';
 part 'src/renderers/renderables/IRenderableFace3.dart';

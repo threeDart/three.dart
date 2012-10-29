@@ -393,4 +393,5 @@ class Vector3 implements IVector3 {
 
   Vector3 clone() => new Vector3( x, y, z );
 
+  toString() => "($x, $y, $z)";
 }

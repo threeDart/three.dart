@@ -7,6 +7,9 @@ part of ThreeD;
  *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
+ * @author nelson silva / http://www.inevo.pt
+ * 
+ * updated to 81ef5c3b32 - Made Projector.projectObject more open for custom rendererers.
  */
 
 class Projector {
@@ -97,6 +100,87 @@ class Projector {
     return new Ray( vector, end );
   }
 
+  _projectObject( Object3D parent ) {
+    var cl = parent.children.length;
+    for ( var c = 0; c < cl; c ++ ) {
+
+      var object = parent.children[ c ];
+
+      if ( !object.visible ) continue;
+      
+      if ( object is Light ) {
+
+        _renderData.lights.add( object );
+
+      } else if ( object is Mesh || object is Line ) {
+
+        if ( !object.frustumCulled || _frustum.contains( object ) ) {
+
+          _object = getNextObjectInPool();
+          _object.object = object;
+
+          if ( object.renderDepth !== null ) {
+
+            _object.z = object.renderDepth;
+
+          } else {
+
+            _vector3.copy( object.matrixWorld.getPosition() );
+            _viewProjectionMatrix.multiplyVector3( _vector3 );
+            _object.z = _vector3.z;
+
+          }
+
+          _renderData.objects.add( _object );
+
+        }
+
+      } else if ( object is Sprite || object is Particle ) {
+
+        _object = getNextObjectInPool();
+        _object.object = object;
+
+        // TODO: Find an elegant and performant solution and remove this dupe code.
+
+        if ( object.renderDepth !== null ) {
+
+          _object.z = object.renderDepth;
+
+        } else {
+
+          _vector3.copy( object.matrixWorld.getPosition() );
+          _viewProjectionMatrix.multiplyVector3( _vector3 );
+          _object.z = _vector3.z;
+
+        }
+
+        _renderData.sprites.add( _object );
+
+      } else {
+
+        _object = getNextObjectInPool();
+        _object.object = object;
+
+        if ( object.renderDepth != null ) {
+
+          _object.z = object.renderDepth;
+
+        } else {
+
+          _vector3.copy( object.matrixWorld.getPosition() );
+          _viewProjectionMatrix.multiplyVector3( _vector3 );
+          _object.z = _vector3.z;
+
+        }
+
+        _renderData.objects.add( _object );
+
+      }
+
+      _projectObject( object );
+    }
+  }
+  
   ProjectorRenderData projectGraph( Object3D root, bool sort ) {
     _objectCount = 0;
 
@@ -104,43 +188,7 @@ class Projector {
     _renderData.sprites = [];
     _renderData.lights = [];
 
-    var projectObject;
-
-    projectObject = ( Object3D object ) {
-      if ( !object.visible ) return null;
-
-      if ( ( object is Mesh || object is Line ) &&
-          ( object.frustumCulled == false || _frustum.contains( object ) ) ) {
-
-        _vector3.copy( object.matrixWorld.getPosition() );
-        _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
-
-        _object = getNextObjectInPool();
-        _object.object = object;
-        _object.z = _vector3.z;
-
-        _renderData.objects.add( _object );
-
-      } else if ( object is Sprite || object is Particle ) {
-
-        _vector3.copy( object.matrixWorld.getPosition() );
-        _viewProjectionMatrix.multiplyVector3( _vector3.copy( object.position ) );
-
-        _object = getNextObjectInPool();
-        _object.object = object;
-        _object.z = _vector3.z;
-
-        _renderData.sprites.add( _object );
-
-      } else if ( object is Light ) {
-        _renderData.lights.add( object );
-      }
-
-     object.children.forEach(projectObject);
-
-    };
-
-    projectObject( root );
+    _projectObject( root );
 
     //TODO: assuming this is a form of 'if' statement.
     //sort && _renderData.objects.sort( painterSort );
@@ -194,9 +242,9 @@ class Projector {
     _viewProjectionMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
 
     _frustum.setFromMatrix( _viewProjectionMatrix );
-
+    
     _renderData = projectGraph( scene, false );
-
+    
     _renderData.objects.forEach((o) {
 
       object = o.object;
