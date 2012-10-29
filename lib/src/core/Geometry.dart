@@ -40,7 +40,7 @@ class Geometry {
   var bones, animation;
 
   Geometry()
-      : id = Three.GeometryCount ++,
+      : id = GeometryCount ++,
 
         name = '',
 

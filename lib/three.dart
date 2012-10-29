@@ -16,8 +16,6 @@ import 'extras/ShaderUtils.dart' as ShaderUtils;
 import 'extras/core/CurveUtils.dart' as CurveUtils;
 import 'extras/core/ShapeUtils.dart' as ShapeUtils;
 
-part 'src/Three.dart';
-
 part 'src/cameras/Camera.dart';
 part 'src/cameras/PerspectiveCamera.dart';
 part 'src/cameras/OrthographicCamera.dart';
@@ -154,3 +152,109 @@ part 'src/textures/CompressedTexture.dart';
 
 part 'src/UVMapping.dart';
 part 'src/materials/Mappings.dart';
+
+// from Geometry
+int GeometryCount = 0;
+
+// from Object3D
+int Object3DCount = 0;
+
+// from Material
+int MaterialCount = 0;
+
+// MATERIAL CONSTANTS
+
+// side
+const int FrontSide = 0;
+const int BackSide = 1;
+const int DoubleSide = 2;
+
+const int NoShading = 0;
+const int FlatShading = 1;
+const int SmoothShading = 2;
+
+const int NoColors = 0;
+const int FaceColors = 1;
+const int VertexColors = 2;
+
+// blending modes
+
+const int NoBlending = 0;
+const int NormalBlending = 1;
+const int AdditiveBlending = 2;
+const int SubtractiveBlending = 3;
+const int MultiplyBlending = 4;
+const int CustomBlending = 5;
+
+// custom blending equations
+// (numbers start from 100 not to clash with other
+//  mappings to OpenGL constants defined in Texture.js)
+
+const int AddEquation = 100;
+const int SubtractEquation = 101;
+const int ReverseSubtractEquation = 102;
+
+// custom blending destination factors
+
+const int ZeroFactor = 200;
+const int OneFactor = 201;
+const int SrcColorFactor = 202;
+const int OneMinusSrcColorFactor = 203;
+const int SrcAlphaFactor = 204;
+const int OneMinusSrcAlphaFactor = 205;
+const int DstAlphaFactor = 206;
+const int OneMinusDstAlphaFactor = 207;
+
+// custom blending source factors
+
+const int DstColorFactor = 208;
+const int OneMinusDstColorFactor = 209;
+const int SrcAlphaSaturateFactor = 210;
+
+// from MeshBasicMaterial
+
+// from Texture
+int TextureCount = 0;
+
+const int MultiplyOperation = 0;
+const int MixOperation = 1;
+
+// Wrapping modes
+const int RepeatWrapping = 0;
+const int ClampToEdgeWrapping = 1;
+const int MirroredRepeatWrapping = 2;
+
+// Filters
+const int NearestFilter = 3;
+const int NearestMipMapNearestFilter = 4;
+const int NearestMipMapLinearFilter = 5;
+const int LinearFilter = 6;
+const int LinearMipMapNearestFilter = 7;
+const int LinearMipMapLinearFilter = 8;
+
+// Data Types
+const int ByteType = 9;
+const int UnsignedByteType = 10;
+const int ShortType = 11;
+const int UnsignedShortType = 12;
+const int IntType = 13;
+const int UnsignedIntType = 14;
+const int FloatType = 15;
+
+// Pixel types
+const int UnsignedShort4444Type = 1016;
+const int UnsignedShort5551Type = 1017;
+const int UnsignedShort565Type = 1018;
+
+// Pixel Formats
+const int AlphaFormat = 16;
+const int RGBFormat = 17;
+const int RGBAFormat = 18;
+const int LuminanceFormat = 19;
+const int LuminanceAlphaFormat = 20;
+
+// Compressed texture formats
+const int RGB_S3TC_DXT1_Format = 2001;
+const int RGBA_S3TC_DXT1_Format = 2002;
+const int RGBA_S3TC_DXT3_Format = 2003;
+const int RGBA_S3TC_DXT5_Format = 2004;

@@ -165,7 +165,7 @@ class Ray {
 
         if ( scalar < 0 ) continue;
 
-        if ( side == Three.DoubleSide || ( side == Three.FrontSide ? dot < 0 : dot > 0 ) ) {
+        if ( side == DoubleSide || ( side == FrontSide ? dot < 0 : dot > 0 ) ) {
 
           intersectPoint.add( originCopy, directionCopy.multiplyScalar( scalar ) );
 

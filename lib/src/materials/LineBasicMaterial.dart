@@ -42,21 +42,21 @@ class LineBasicMaterial extends Material {
                       this.linecap: 'round',
                       this.linejoin: 'round',
 
-                      this.vertexColors: Three.NoColors,
+                      this.vertexColors: NoColors,
 
                       this.fog: true,
 
                       // Material
                       name: '',
-                      side: Three.FrontSide,
+                      side: FrontSide,
 
                       opacity: 1,
                       transparent: false,
 
-                      blending: Three.NormalBlending,
-                      blendSrc: Three.SrcAlphaFactor,
-                      blendDst: Three.OneMinusSrcAlphaFactor,
-                      blendEquation: Three.AddEquation,
+                      blending: NormalBlending,
+                      blendSrc: SrcAlphaFactor,
+                      blendDst: OneMinusSrcAlphaFactor,
+                      blendEquation: AddEquation,
 
                       depthTest: true,
                       depthWrite: true,

@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:three/ThreeD.dart';
+import 'package:three/three.dart';
 //#import('package:stats/stats.dart');
 
 class WebGL_Performance  {
@@ -37,7 +37,7 @@ class WebGL_Performance  {
 
     scene = new Scene();
 
-    var material = new MeshNormalMaterial( shading: Three.SmoothShading );
+    var material = new MeshNormalMaterial( shading: SmoothShading );
 
     var loader = new JSONLoader();
     loader.load( 'obj/Suzanne.js', ( geometry ) {

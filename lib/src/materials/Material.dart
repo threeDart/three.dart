@@ -24,15 +24,15 @@ class Material implements IMaterial
   bool needsUpdate;
 
   Material( { this.name: '',
-              this.side: Three.FrontSide,
+              this.side: FrontSide,
 
               this.opacity: 1,
               this.transparent: false,
 
-              this.blending: Three.NormalBlending,
-              this.blendSrc: Three.SrcAlphaFactor,
-              this.blendDst: Three.OneMinusSrcAlphaFactor,
-              this.blendEquation: Three.AddEquation,
+              this.blending: NormalBlending,
+              this.blendSrc: SrcAlphaFactor,
+              this.blendDst: OneMinusSrcAlphaFactor,
+              this.blendEquation: AddEquation,
 
               this.depthTest: true,
               this.depthWrite: true,
@@ -48,7 +48,7 @@ class Material implements IMaterial
               this.visible: true })
       :
 
-            id = Three.MaterialCount ++,
+            id = MaterialCount ++,
             needsUpdate = true;
 
   // Quick hack to allow setting new properties (used by the renderer)

@@ -21,7 +21,7 @@
 
 library FontUtils;
 
-import "package:three/ThreeD.dart";
+import "package:three/three.dart";
 import "core/ShapeUtils.dart" as ShapeUtils;
 
 var  face = "helvetiker",

@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
-#import('package:three/ThreeD.dart');
+#import('package:three/three.dart');
 #import('package:three/extras/SceneUtils.dart', prefix:'SceneUtils');
 
 class WebGL_Geometry_Extrude_By_U_Shapes  {

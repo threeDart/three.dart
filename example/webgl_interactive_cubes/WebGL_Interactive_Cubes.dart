@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:three/ThreeD.dart';
+import 'package:three/three.dart';
 
 class WebGL_Interactive_Cubes  {
   Element container;

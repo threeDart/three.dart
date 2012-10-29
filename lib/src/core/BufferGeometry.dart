@@ -25,7 +25,7 @@ class BufferGeometry {
 	var offsets;
 
 	BufferGeometry() :
-		id = Three.GeometryCount ++,
+		id = GeometryCount ++,
 		attributes = {},
 		_dynamic = false,
 		boundingBox = null,

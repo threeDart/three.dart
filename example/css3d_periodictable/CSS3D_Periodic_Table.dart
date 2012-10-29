@@ -1,7 +1,7 @@
 
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:three/ThreeD.dart' as THREE;
+import 'package:three/three.dart' as THREE;
 import 'package:three/extras/controls/TrackballControls.dart';
 import 'package:three/extras/Tween.dart' as TWEEN;
 

@@ -168,8 +168,8 @@ class Loader {
 
       result.repeat.setValues( repeat[ 0 ], repeat[ 1 ] );
 
-      if ( repeat[ 0 ] != 1 ) result.wrapS = Three.RepeatWrapping;
-      if ( repeat[ 1 ] != 1 ) result.wrapT = Three.RepeatWrapping;
+      if ( repeat[ 0 ] != 1 ) result.wrapS = RepeatWrapping;
+      if ( repeat[ 1 ] != 1 ) result.wrapT = RepeatWrapping;
 
     }
 
@@ -182,8 +182,8 @@ class Loader {
     if ( wrap ) {
 
       var wrapMap = {
-                     "repeat": Three.RepeatWrapping,
-                     "mirror": Three.MirroredRepeatWrapping
+                     "repeat": RepeatWrapping,
+                     "mirror": MirroredRepeatWrapping
       };
 
       if ( wrapMap.containsKey( wrap[ 0 ] ) ) { result.wrapS = wrapMap[ wrap[ 0 ] ]; }
@@ -223,12 +223,12 @@ class Loader {
         map = null,
         wireframe = false,
         vertexColors = null,
-        blending = Three.NormalBlending,
+        blending = NormalBlending,
         transparent = false,
         depthTest = true,
         depthWrite = true,
         visible = true,
-        side = Three.FrontSide,
+        side = FrontSide,
         specular = 0x111111,
         ambient = 0xffffff,
         shininess = null,
@@ -255,12 +255,12 @@ class Loader {
     if ( m.containsKey("blending") ) { // TODO - && THREE[ m.blending ] != undefined ) {
       // TODO - Check if we're missing some blend modes or come up with a better way to make this work
       var blendmodes = {
-        "NoBlending": Three.NoBlending,
-        "NormalBlending": Three.NormalBlending,
-        "AdditiveBlending": Three.AdditiveBlending,
-        "SubtractiveBlending": Three.SubtractiveBlending,
-        "MultiplyBlending": Three.MultiplyBlending,
-        "CustomBlending": Three.CustomBlending
+        "NoBlending": NoBlending,
+        "NormalBlending": NormalBlending,
+        "AdditiveBlending": AdditiveBlending,
+        "SubtractiveBlending": SubtractiveBlending,
+        "MultiplyBlending": MultiplyBlending,
+        "CustomBlending": CustomBlending
       };
       blending = blendmodes[ m["blending"] ];
     }
@@ -282,11 +282,11 @@ class Loader {
     }
 
     if ( m.containsKey("flipSided") ) {
-      side = Three.BackSide;
+      side = BackSide;
     }
 
     if ( m.containsKey("doubleSided") ) {
-      side = Three.DoubleSide;
+      side = DoubleSide;
     }
 
     if ( m.containsKey("wireframe") ) {
@@ -295,9 +295,9 @@ class Loader {
 
     if ( m.containsKey("vertexColors") ) {
       if ( m["vertexColors"] == "face" ) {
-        vertexColors = Three.FaceColors;
+        vertexColors = FaceColors;
       } else if ( !m["vertexColors"] ) {
-        vertexColors = Three.VertexColors;
+        vertexColors = VertexColors;
       }
     }
 
@@ -415,7 +415,7 @@ class Loader {
                                  specularMap: specularMap,
                                  vertexColors: vertexColors,
                                  wireframe: wireframe,
-                                 side: Three.FrontSide,
+                                 side: FrontSide,
                                  opacity: opacity,
                                  transparent: transparent,
                                  blending: blending,
@@ -436,7 +436,7 @@ class Loader {
               specularMap: specularMap,
               vertexColors: vertexColors,
               wireframe: wireframe,
-              side: Three.FrontSide,
+              side: FrontSide,
               opacity: opacity,
               transparent: transparent,
               blending: blending,
@@ -453,7 +453,7 @@ class Loader {
               specularMap: specularMap,
               vertexColors: vertexColors,
               wireframe: wireframe,
-              side: Three.FrontSide,
+              side: FrontSide,
               opacity: opacity,
               transparent: transparent,
               blending: blending,

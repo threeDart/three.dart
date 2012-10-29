@@ -1,6 +1,6 @@
 library GeometryUtils;
 
-import "package:three/ThreeD.dart";
+import "package:three/three.dart";
 
 // TODO(nelsonsilva) - Add remaining functions
 clone( Geometry geometry ) {

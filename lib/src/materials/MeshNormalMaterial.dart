@@ -27,21 +27,21 @@ class MeshNormalMaterial extends Material {
 
 
   MeshNormalMaterial( { // MeshNormalMaterial
-                        this.shading: Three.FlatShading, // doesn't really apply here, normals are not used
+                        this.shading: FlatShading, // doesn't really apply here, normals are not used
                         this.wireframe: false,
                         this.wireframeLinewidth: 1,
 
                         // Material
                         name: '',
-                        side: Three.FrontSide,
+                        side: FrontSide,
 
                         opacity: 1,
                         transparent: false,
 
-                        blending: Three.NormalBlending,
-                        blendSrc: Three.SrcAlphaFactor,
-                        blendDst: Three.OneMinusSrcAlphaFactor,
-                        blendEquation: Three.AddEquation,
+                        blending: NormalBlending,
+                        blendSrc: SrcAlphaFactor,
+                        blendDst: OneMinusSrcAlphaFactor,
+                        blendEquation: AddEquation,
 
                         depthTest: true,
                         depthWrite: true,

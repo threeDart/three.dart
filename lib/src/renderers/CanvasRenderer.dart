@@ -211,7 +211,7 @@ class CanvasRenderer implements Renderer
       }
 
       if ( _clearOpacity > 0 ) {
-        setBlending( Three.NormalBlending );
+        setBlending( NormalBlending );
         setOpacity( 1 );
 
         setFillStyle( 'rgba(${( _clearColor.r * 255 ).floor()}, ${( _clearColor.g * 255 ).floor()},${( _clearColor.b * 255 ).floor()},${_clearOpacity})' );
@@ -645,12 +645,12 @@ class CanvasRenderer implements Renderer
           patternPath( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _uvs[ uv1 ].u, _uvs[ uv1 ].v, _uvs[ uv2 ].u, _uvs[ uv2 ].v, _uvs[ uv3 ].u, _uvs[ uv3 ].v, mlMaterial.map );
         }
 
-        setBlending( Three.SubtractiveBlending );
+        setBlending( SubtractiveBlending );
       }
 
       if ( _enableLighting )
       {
-        if ( !mlMaterial.wireframe && mlMaterial.shading == Three.SmoothShading && element.vertexNormalsWorld.length == 3 )
+        if ( !mlMaterial.wireframe && mlMaterial.shading == SmoothShading && element.vertexNormalsWorld.length == 3 )
         {
           _color1.r = _color2.r = _color3.r = _ambientLight.r;
           _color1.g = _color2.g = _color3.g = _ambientLight.g;
@@ -791,7 +791,7 @@ class CanvasRenderer implements Renderer
 
       if ( _enableLighting )
       {
-        if ( !mlMaterial.wireframe && mlMaterial.shading == Three.SmoothShading && element.vertexNormalsWorld.length == 4 )
+        if ( !mlMaterial.wireframe && mlMaterial.shading == SmoothShading && element.vertexNormalsWorld.length == 4 )
         {
           _color1.r = _color2.r = _color3.r = _color4.r = _ambientLight.r;
           _color1.g = _color2.g = _color3.g = _color4.g = _ambientLight.g;
@@ -949,8 +949,8 @@ class CanvasRenderer implements Renderer
 
     if ( texture.needsUpdate == true || _patterns[ texture.id ] == null ) {
 
-      var repeatX = texture.wrapS == Three.RepeatWrapping;
-      var repeatY = texture.wrapT == Three.RepeatWrapping;
+      var repeatX = texture.wrapS == RepeatWrapping;
+      var repeatY = texture.wrapT == RepeatWrapping;
 
       _patterns[ texture.id ] = _context.createPattern( texture.image, repeatX && repeatY ? 'repeat' : repeatX && !repeatY ? 'repeat-x' : !repeatX && repeatY ? 'repeat-y' : 'no-repeat' );
 
@@ -1141,19 +1141,19 @@ class CanvasRenderer implements Renderer
     {
       switch ( value )
       {
-        case Three.NormalBlending:
+        case NormalBlending:
 
           _context.globalCompositeOperation = 'source-over';
 
           break;
 
-        case Three.AdditiveBlending:
+        case AdditiveBlending:
 
           _context.globalCompositeOperation = 'lighter';
 
           break;
 
-        case Three.SubtractiveBlending:
+        case SubtractiveBlending:
 
           _context.globalCompositeOperation = 'darker';
 

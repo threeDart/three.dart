@@ -39,21 +39,21 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
                        num color: 0xffffff,
                        this.size: 1,
                        this.sizeAttenuation: true,
-                       this.vertexColors: Three.NoColors,
+                       this.vertexColors: NoColors,
 
                        this.fog: true,
 
                        // Material
                        name: '',
-                       side: Three.FrontSide,
+                       side: FrontSide,
 
                        opacity: 1,
                        transparent: false,
 
-                       blending: Three.NormalBlending,
-                       blendSrc: Three.SrcAlphaFactor,
-                       blendDst: Three.OneMinusSrcAlphaFactor,
-                       blendEquation: Three.AddEquation,
+                       blending: NormalBlending,
+                       blendSrc: SrcAlphaFactor,
+                       blendDst: OneMinusSrcAlphaFactor,
+                       blendEquation: AddEquation,
 
                        depthTest: true,
                        depthWrite: true,

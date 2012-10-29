@@ -26,15 +26,15 @@ class ParticleCanvasMaterial extends Material implements IParticleMaterial {
                              this.program,
                              // Material
                              name: '',
-                             side: Three.FrontSide,
+                             side: FrontSide,
 
                              opacity: 1,
                              transparent: false,
 
-                             blending: Three.NormalBlending,
-                             blendSrc: Three.SrcAlphaFactor,
-                             blendDst: Three.OneMinusSrcAlphaFactor,
-                             blendEquation: Three.AddEquation,
+                             blending: NormalBlending,
+                             blendSrc: SrcAlphaFactor,
+                             blendDst: OneMinusSrcAlphaFactor,
+                             blendEquation: AddEquation,
 
                              depthTest: true,
                              depthWrite: true,

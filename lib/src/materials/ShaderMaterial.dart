@@ -32,9 +32,9 @@ class ShaderMaterial extends Material {
                     this.vertexShader: "void main() {}",
                     Map uniforms,
 
-                    this.shading: Three.SmoothShading,
+                    this.shading: SmoothShading,
 
-                    this.vertexColors: Three.NoColors,
+                    this.vertexColors: NoColors,
 
                     this.fog: true,
 
@@ -47,15 +47,15 @@ class ShaderMaterial extends Material {
 
                     // Material
                     name: '',
-                    side: Three.FrontSide,
+                    side: FrontSide,
 
                     opacity: 1,
                     transparent: false,
 
-                    blending: Three.NormalBlending,
-                    blendSrc: Three.SrcAlphaFactor,
-                    blendDst: Three.OneMinusSrcAlphaFactor,
-                    blendEquation: Three.AddEquation,
+                    blending: NormalBlending,
+                    blendSrc: SrcAlphaFactor,
+                    blendDst: OneMinusSrcAlphaFactor,
+                    blendEquation: AddEquation,
 
                     depthTest: true,
                     depthWrite: true,

@@ -41,7 +41,7 @@ class Object3D {
 
 
   Object3D()
-      : id = Three.Object3DCount++,
+      : id = Object3DCount++,
 
         name = '',
         properties = {},

@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:three/ThreeD.dart';
+import 'package:three/three.dart';
 import 'package:three/extras/SceneUtils.dart' as SceneUtils;
 
 class WebGL_Geometry_Extrude_Shapes  {

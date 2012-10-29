@@ -2,7 +2,7 @@ library ImageUtils;
 
 import "dart:html";
 import "dart:math" as Math;
-import "package:three/ThreeD.dart";
+import "package:three/three.dart";
 
 var crossOrigin = 'anonymous';
 
@@ -213,13 +213,13 @@ parseDDS( buffer, loadMipmaps ) {
 
   if( fourCC == FOURCC_DXT1 ) {
       blockBytes = 8;
-      dds["format"] = Three.RGB_S3TC_DXT1_Format;
+      dds["format"] = RGB_S3TC_DXT1_Format;
   } else if(fourCC == FOURCC_DXT3) {
       blockBytes = 16;
-      dds["format"] = Three.RGBA_S3TC_DXT3_Format;
+      dds["format"] = RGBA_S3TC_DXT3_Format;
   } else if(fourCC == FOURCC_DXT5) {
       blockBytes = 16;
-      dds["format"] = Three.RGBA_S3TC_DXT5_Format;
+      dds["format"] = RGBA_S3TC_DXT5_Format;
   } else {
       print( "ImageUtils.parseDDS(): Unsupported FourCC code: ${int32ToFourCC( fourCC )}" );
   }
@@ -379,7 +379,7 @@ generateDataTexture( width, height, color ) {
 
 	}
 
-	var texture = new DataTexture( data, width, height, Three.RGBFormat );
+	var texture = new DataTexture( data, width, height, RGBFormat );
 	texture.needsUpdate = true;
 
 	return texture;

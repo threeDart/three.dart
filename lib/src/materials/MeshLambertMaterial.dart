@@ -80,13 +80,13 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
                          this.specularMap,
                          this.envMap,
 
-                         this.combine: Three.MultiplyOperation,
+                         this.combine: MultiplyOperation,
                          this.reflectivity: 1,
                          this.refractionRatio: 0.98,
 
-                         this.shading: Three.SmoothShading,
+                         this.shading: SmoothShading,
 
-                         this.vertexColors: Three.NoColors,
+                         this.vertexColors: NoColors,
 
                          this.fog: true,
 
@@ -101,15 +101,15 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
 
                          // Material
                          name: '',
-                         side: Three.FrontSide,
+                         side: FrontSide,
 
                          opacity: 1,
                          transparent: false,
 
-                         blending: Three.NormalBlending,
-                         blendSrc: Three.SrcAlphaFactor,
-                         blendDst: Three.OneMinusSrcAlphaFactor,
-                         blendEquation: Three.AddEquation,
+                         blending: NormalBlending,
+                         blendSrc: SrcAlphaFactor,
+                         blendDst: OneMinusSrcAlphaFactor,
+                         blendEquation: AddEquation,
 
                          depthTest: true,
                          depthWrite: true,

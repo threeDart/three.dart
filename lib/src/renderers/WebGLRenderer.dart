@@ -770,7 +770,7 @@ class WebGLRenderer implements Renderer {
 
 		geometryGroup.__vertexArray = new Float32Array( nvertices * 3 );
 
-		if ( normalType != Three.NoShading ) {
+		if ( normalType != NoShading ) {
 
 			geometryGroup.__normalArray = new Float32Array( nvertices * 3 );
 
@@ -933,16 +933,16 @@ class WebGLRenderer implements Renderer {
 		// only MeshBasicMaterial and MeshDepthMaterial don't need normals
 
 		if ( !material.needsNormals  ) {
-			return Three.NoShading;
+			return NoShading;
 		}
 
 		if ( material.needsSmoothNormals ) {
 
-			return Three.SmoothShading;
+			return SmoothShading;
 
 		} else {
 
-			return Three.FlatShading;
+			return FlatShading;
 
 		}
 
@@ -950,7 +950,7 @@ class WebGLRenderer implements Renderer {
 
 	bool bufferGuessVertexColorType ( material ) {
 
-		if ( (material.vertexColors != null) &&  (material.vertexColors != Three.NoColors) ) {
+		if ( (material.vertexColors != null) &&  (material.vertexColors != NoColors) ) {
 
 			return material.vertexColors;
 
@@ -1557,7 +1557,7 @@ class WebGLRenderer implements Renderer {
 		vertexColorType = bufferGuessVertexColorType( material ),
 		uvType = bufferGuessUVType( material ),
 
-		needsSmoothNormals = ( normalType == Three.SmoothShading );
+		needsSmoothNormals = ( normalType == SmoothShading );
 
 		var f, fl, fi, face,
 		vertexNormals, faceNormal, normal,
@@ -2112,7 +2112,7 @@ class WebGLRenderer implements Renderer {
 				vertexColors = face.vertexColors;
 				faceColor = face.color;
 
-				if ( vertexColors.length == 3 && vertexColorType == Three.VertexColors ) {
+				if ( vertexColors.length == 3 && vertexColorType == VertexColors ) {
 
 					c1 = vertexColors[ 0 ];
 					c2 = vertexColors[ 1 ];
@@ -2150,7 +2150,7 @@ class WebGLRenderer implements Renderer {
 				vertexColors = face.vertexColors;
 				faceColor = face.color;
 
-				if ( vertexColors.length == 4 && vertexColorType == Three.VertexColors ) {
+				if ( vertexColors.length == 4 && vertexColorType == VertexColors ) {
 
 					c1 = vertexColors[ 0 ];
 					c2 = vertexColors[ 1 ];
@@ -2268,7 +2268,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( dirtyNormals && (normalType != Three.NoShading) ) {
+		if ( dirtyNormals && (normalType != NoShading) ) {
 
 			fl = chunk_faces3.length;
 			for ( f = 0; f < fl; f ++ ) {
@@ -3210,7 +3210,7 @@ class WebGLRenderer implements Renderer {
 
 			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, object["__webglNormalBuffer"] );
 
-			if ( material.shading == Three.FlatShading ) {
+			if ( material.shading == FlatShading ) {
 
 				var nx, ny, nz,
 					nax, nbx, ncx, nay, nby, ncy, naz, nbz, ncz,
@@ -3268,7 +3268,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( object.hasColors && material.vertexColors != Three.NoColors ) {
+		if ( object.hasColors && material.vertexColors != NoColors ) {
 
 			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, object["__webglColorBuffer"] );
 			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, object.colorArray, WebGLRenderingContext.DYNAMIC_DRAW );
@@ -3923,7 +3923,7 @@ class WebGLRenderer implements Renderer {
 
 			// opaque pass (front-to-back order)
 
-			setBlending( Three.NormalBlending );
+			setBlending( NormalBlending );
 
 			renderObjects( scene["__webglObjects"], true, "opaque", camera, lights, fog, false );
 			renderObjectsImmediate( scene["__webglObjectsImmediate"], "opaque", camera, lights, fog, false );
@@ -3942,7 +3942,7 @@ class WebGLRenderer implements Renderer {
 
 		// Generate mipmap if we're using any kind of mipmap filtering
 
-		if ( (renderTarget != null ) && renderTarget.generateMipmaps && renderTarget.minFilter != Three.NearestFilter && renderTarget.minFilter != Three.LinearFilter ) {
+		if ( (renderTarget != null ) && renderTarget.generateMipmaps && renderTarget.minFilter != NearestFilter && renderTarget.minFilter != LinearFilter ) {
 
 			updateRenderTargetMipmap( renderTarget );
 
@@ -4772,7 +4772,7 @@ class WebGLRenderer implements Renderer {
 			metal: material.metal,
 			perPixel: material.perPixel,
 			wrapAround: material.wrapAround,
-			doubleSided: material.side == Three.DoubleSide );
+			doubleSided: material.side == DoubleSide );
 
 		var attributes = material.program.attributes;
 
@@ -5727,8 +5727,8 @@ class WebGLRenderer implements Renderer {
 
 	setMaterialFaces( material ) {
 
-		var doubleSided = material.side == Three.DoubleSide;
-		var flipSided = material.side == Three.BackSide;
+		var doubleSided = material.side == DoubleSide;
+		var flipSided = material.side == BackSide;
 
 		if ( _oldDoubleSided != doubleSided ) {
 
@@ -5840,31 +5840,31 @@ class WebGLRenderer implements Renderer {
 
 		if ( blending != _oldBlending ) {
 
-			if ( blending == Three.NoBlending ) {
+			if ( blending == NoBlending ) {
 
 				_gl.disable( WebGLRenderingContext.BLEND );
 
-			} else if ( blending == Three.AdditiveBlending ) {
+			} else if ( blending == AdditiveBlending ) {
 
 				_gl.enable( WebGLRenderingContext.BLEND );
 				_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
 				_gl.blendFunc( WebGLRenderingContext.SRC_ALPHA, WebGLRenderingContext.ONE );
 
-			} else if ( blending == Three.SubtractiveBlending ) {
+			} else if ( blending == SubtractiveBlending ) {
 
 				// TODO: Find blendFuncSeparate() combination
 				_gl.enable( WebGLRenderingContext.BLEND );
 				_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
 				_gl.blendFunc( WebGLRenderingContext.ZERO, WebGLRenderingContext.ONE_MINUS_SRC_COLOR );
 
-			} else if ( blending == Three.MultiplyBlending ) {
+			} else if ( blending == MultiplyBlending ) {
 
 				// TODO: Find blendFuncSeparate() combination
 				_gl.enable( WebGLRenderingContext.BLEND );
 				_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
 				_gl.blendFunc( WebGLRenderingContext.ZERO, WebGLRenderingContext.SRC_COLOR );
 
-			} else if ( blending == Three.CustomBlending ) {
+			} else if ( blending == CustomBlending ) {
 
 				_gl.enable( WebGLRenderingContext.BLEND );
 
@@ -5880,7 +5880,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( blending == Three.CustomBlending ) {
+		if ( blending == CustomBlending ) {
 
 			if ( blendEquation != _oldBlendEquation ) {
 
@@ -5922,7 +5922,7 @@ class WebGLRenderer implements Renderer {
 					bool lightMap = false,
 					bool bumpMap = false,
 					bool specularMap = false,
-					int vertexColors = Three.NoColors,
+					int vertexColors = NoColors,
 					bool skinning = false,
 					bool useVertexTexture = false,
 					num boneTextureWidth = null,
@@ -6036,7 +6036,7 @@ class WebGLRenderer implements Renderer {
 			(lightMap != null) ? "#define USE_LIGHTMAP" : "",
 			(bumpMap != null) ? "#define USE_BUMPMAP" : "",
 			(specularMap != null) ? "#define USE_SPECULARMAP" : "",
-			(vertexColors != Three.NoColors) ? "#define USE_COLOR" : "",
+			(vertexColors != NoColors) ? "#define USE_COLOR" : "",
 
 			skinning ? "#define USE_SKINNING" : "",
 			useVertexTexture ? "#define BONE_TEXTURE" : "",
@@ -6138,7 +6138,7 @@ class WebGLRenderer implements Renderer {
 			(lightMap != null) ? "#define USE_LIGHTMAP" : "",
 			(bumpMap != null) ? "#define USE_BUMPMAP" : "",
 			(specularMap != null) ? "#define USE_SPECULARMAP" : "",
-			(vertexColors != Three.NoColors) ? "#define USE_COLOR" : "",
+			(vertexColors != NoColors) ? "#define USE_COLOR" : "",
 
 			metal ? "#define METAL" : "",
 			perPixel ? "#define PHONG_PER_PIXEL" : "",
@@ -6347,7 +6347,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( (_glExtensionTextureFilterAnisotropic != null) && texture.type != Three.FloatType ) {
+		if ( (_glExtensionTextureFilterAnisotropic != null) && texture.type != FloatType ) {
 
 			if ( texture.anisotropy > 1 || ( texture["__oldAnisotropy"] != null) ) {
 
@@ -6696,7 +6696,7 @@ class WebGLRenderer implements Renderer {
 
 	filterFallback ( f ) {
 
-		if ( f == Three.NearestFilter || f == Three.NearestMipMapNearestFilter || f == Three.NearestMipMapLinearFilter ) {
+		if ( f == NearestFilter || f == NearestMipMapNearestFilter || f == NearestMipMapLinearFilter ) {
 
 			return WebGLRenderingContext.NEAREST;
 
@@ -6710,52 +6710,52 @@ class WebGLRenderer implements Renderer {
 
 	paramThreeToGL ( p ) {
 
-		if ( p == Three.RepeatWrapping ) return WebGLRenderingContext.REPEAT;
-		if ( p == Three.ClampToEdgeWrapping ) return WebGLRenderingContext.CLAMP_TO_EDGE;
-		if ( p == Three.MirroredRepeatWrapping ) return WebGLRenderingContext.MIRRORED_REPEAT;
+		if ( p == RepeatWrapping ) return WebGLRenderingContext.REPEAT;
+		if ( p == ClampToEdgeWrapping ) return WebGLRenderingContext.CLAMP_TO_EDGE;
+		if ( p == MirroredRepeatWrapping ) return WebGLRenderingContext.MIRRORED_REPEAT;
 
-		if ( p == Three.NearestFilter ) return WebGLRenderingContext.NEAREST;
-		if ( p == Three.NearestMipMapNearestFilter ) return WebGLRenderingContext.NEAREST_MIPMAP_NEAREST;
-		if ( p == Three.NearestMipMapLinearFilter ) return WebGLRenderingContext.NEAREST_MIPMAP_LINEAR;
+		if ( p == NearestFilter ) return WebGLRenderingContext.NEAREST;
+		if ( p == NearestMipMapNearestFilter ) return WebGLRenderingContext.NEAREST_MIPMAP_NEAREST;
+		if ( p == NearestMipMapLinearFilter ) return WebGLRenderingContext.NEAREST_MIPMAP_LINEAR;
 
-		if ( p == Three.LinearFilter ) return WebGLRenderingContext.LINEAR;
-		if ( p == Three.LinearMipMapNearestFilter ) return WebGLRenderingContext.LINEAR_MIPMAP_NEAREST;
-		if ( p == Three.LinearMipMapLinearFilter ) return WebGLRenderingContext.LINEAR_MIPMAP_LINEAR;
+		if ( p == LinearFilter ) return WebGLRenderingContext.LINEAR;
+		if ( p == LinearMipMapNearestFilter ) return WebGLRenderingContext.LINEAR_MIPMAP_NEAREST;
+		if ( p == LinearMipMapLinearFilter ) return WebGLRenderingContext.LINEAR_MIPMAP_LINEAR;
 
-		if ( p == Three.UnsignedByteType ) return WebGLRenderingContext.UNSIGNED_BYTE;
-		if ( p == Three.UnsignedShort4444Type ) return WebGLRenderingContext.UNSIGNED_SHORT_4_4_4_4;
-		if ( p == Three.UnsignedShort5551Type ) return WebGLRenderingContext.UNSIGNED_SHORT_5_5_5_1;
-		if ( p == Three.UnsignedShort565Type ) return WebGLRenderingContext.UNSIGNED_SHORT_5_6_5;
+		if ( p == UnsignedByteType ) return WebGLRenderingContext.UNSIGNED_BYTE;
+		if ( p == UnsignedShort4444Type ) return WebGLRenderingContext.UNSIGNED_SHORT_4_4_4_4;
+		if ( p == UnsignedShort5551Type ) return WebGLRenderingContext.UNSIGNED_SHORT_5_5_5_1;
+		if ( p == UnsignedShort565Type ) return WebGLRenderingContext.UNSIGNED_SHORT_5_6_5;
 
-		if ( p == Three.ByteType ) return WebGLRenderingContext.BYTE;
-		if ( p == Three.ShortType ) return WebGLRenderingContext.SHORT;
-		if ( p == Three.UnsignedShortType ) return WebGLRenderingContext.UNSIGNED_SHORT;
-		if ( p == Three.IntType ) return WebGLRenderingContext.INT;
-		if ( p == Three.UnsignedIntType ) return WebGLRenderingContext.UNSIGNED_INT;
-		if ( p == Three.FloatType ) return WebGLRenderingContext.FLOAT;
+		if ( p == ByteType ) return WebGLRenderingContext.BYTE;
+		if ( p == ShortType ) return WebGLRenderingContext.SHORT;
+		if ( p == UnsignedShortType ) return WebGLRenderingContext.UNSIGNED_SHORT;
+		if ( p == IntType ) return WebGLRenderingContext.INT;
+		if ( p == UnsignedIntType ) return WebGLRenderingContext.UNSIGNED_INT;
+		if ( p == FloatType ) return WebGLRenderingContext.FLOAT;
 
-		if ( p == Three.AlphaFormat ) return WebGLRenderingContext.ALPHA;
-		if ( p == Three.RGBFormat ) return WebGLRenderingContext.RGB;
-		if ( p == Three.RGBAFormat ) return WebGLRenderingContext.RGBA;
-		if ( p == Three.LuminanceFormat ) return WebGLRenderingContext.LUMINANCE;
-		if ( p == Three.LuminanceAlphaFormat ) return WebGLRenderingContext.LUMINANCE_ALPHA;
+		if ( p == AlphaFormat ) return WebGLRenderingContext.ALPHA;
+		if ( p == RGBFormat ) return WebGLRenderingContext.RGB;
+		if ( p == RGBAFormat ) return WebGLRenderingContext.RGBA;
+		if ( p == LuminanceFormat ) return WebGLRenderingContext.LUMINANCE;
+		if ( p == LuminanceAlphaFormat ) return WebGLRenderingContext.LUMINANCE_ALPHA;
 
-		if ( p == Three.AddEquation ) return WebGLRenderingContext.FUNC_ADD;
-		if ( p == Three.SubtractEquation ) return WebGLRenderingContext.FUNC_SUBTRACT;
-		if ( p == Three.ReverseSubtractEquation ) return WebGLRenderingContext.FUNC_REVERSE_SUBTRACT;
+		if ( p == AddEquation ) return WebGLRenderingContext.FUNC_ADD;
+		if ( p == SubtractEquation ) return WebGLRenderingContext.FUNC_SUBTRACT;
+		if ( p == ReverseSubtractEquation ) return WebGLRenderingContext.FUNC_REVERSE_SUBTRACT;
 
-		if ( p == Three.ZeroFactor ) return WebGLRenderingContext.ZERO;
-		if ( p == Three.OneFactor ) return WebGLRenderingContext.ONE;
-		if ( p == Three.SrcColorFactor ) return WebGLRenderingContext.SRC_COLOR;
-		if ( p == Three.OneMinusSrcColorFactor ) return WebGLRenderingContext.ONE_MINUS_SRC_COLOR;
-		if ( p == Three.SrcAlphaFactor ) return WebGLRenderingContext.SRC_ALPHA;
-		if ( p == Three.OneMinusSrcAlphaFactor ) return WebGLRenderingContext.ONE_MINUS_SRC_ALPHA;
-		if ( p == Three.DstAlphaFactor ) return WebGLRenderingContext.DST_ALPHA;
-		if ( p == Three.OneMinusDstAlphaFactor ) return WebGLRenderingContext.ONE_MINUS_DST_ALPHA;
+		if ( p == ZeroFactor ) return WebGLRenderingContext.ZERO;
+		if ( p == OneFactor ) return WebGLRenderingContext.ONE;
+		if ( p == SrcColorFactor ) return WebGLRenderingContext.SRC_COLOR;
+		if ( p == OneMinusSrcColorFactor ) return WebGLRenderingContext.ONE_MINUS_SRC_COLOR;
+		if ( p == SrcAlphaFactor ) return WebGLRenderingContext.SRC_ALPHA;
+		if ( p == OneMinusSrcAlphaFactor ) return WebGLRenderingContext.ONE_MINUS_SRC_ALPHA;
+		if ( p == DstAlphaFactor ) return WebGLRenderingContext.DST_ALPHA;
+		if ( p == OneMinusDstAlphaFactor ) return WebGLRenderingContext.ONE_MINUS_DST_ALPHA;
 
-		if ( p == Three.DstColorFactor ) return WebGLRenderingContext.DST_COLOR;
-		if ( p == Three.OneMinusDstColorFactor ) return WebGLRenderingContext.ONE_MINUS_DST_COLOR;
-		if ( p == Three.SrcAlphaSaturateFactor ) return WebGLRenderingContext.SRC_ALPHA_SATURATE;
+		if ( p == DstColorFactor ) return WebGLRenderingContext.DST_COLOR;
+		if ( p == OneMinusDstColorFactor ) return WebGLRenderingContext.ONE_MINUS_DST_COLOR;
+		if ( p == SrcAlphaSaturateFactor ) return WebGLRenderingContext.SRC_ALPHA_SATURATE;
 
 		print("[paramThreeToGL] Unknown param $p");
 		return 0;
@@ -7186,7 +7186,7 @@ class WebGLMaterial { // implements Material {
   set uniforms(v) => (isShaderMaterial)? (_material as ShaderMaterial).uniforms = v : _uniforms = v;
 
   bool get needsSmoothNormals
-    => (_material != null) && (shading != null) && (shading == Three.SmoothShading);
+    => (_material != null) && (shading != null) && (shading == SmoothShading);
 
   // only MeshBasicMaterial and MeshDepthMaterial don't need normals
   bool get needsNormals
@@ -7214,7 +7214,7 @@ class WebGLMaterial { // implements Material {
 
 
   // TODO - Define proper interfaces to remove use of Dynamic
-  int get vertexColors => _hasVertexColors ? (_material as dynamic).vertexColors : Three.NoColors;
+  int get vertexColors => _hasVertexColors ? (_material as dynamic).vertexColors : NoColors;
   get color => (_material as dynamic).color;
   get ambient => (_material as dynamic).ambient;
   get emissive => (_material as dynamic).emissive;

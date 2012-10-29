@@ -25,10 +25,10 @@ class Sprite extends Object3D {
 
   Sprite({  num hexColor: 0xffffff,
             this.map,
-            this.blending: Three.NormalBlending,
-            this.blendSrc: Three.SrcAlphaFactor,
-            this.blendDst: Three.OneMinusSrcAlphaFactor,
-            this.blendEquation: Three.AddEquation,
+            this.blending: NormalBlending,
+            this.blendSrc: SrcAlphaFactor,
+            this.blendDst: OneMinusSrcAlphaFactor,
+            this.blendEquation: AddEquation,
 
             this.useScreenCoordinates: true,
 

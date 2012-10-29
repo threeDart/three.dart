@@ -90,9 +90,9 @@ class SkinnedMesh extends Mesh {
         boneTextureHeight = size;
 
         boneMatrices = new Float32Array( boneTextureWidth * boneTextureHeight * 4 ); // 4 floats per RGBA pixel
-        boneTexture = new DataTexture( boneMatrices, boneTextureWidth, boneTextureHeight, Three.RGBAFormat, Three.FloatType );
-        boneTexture.minFilter = Three.NearestFilter;
-        boneTexture.magFilter = Three.NearestFilter;
+        boneTexture = new DataTexture( boneMatrices, boneTextureWidth, boneTextureHeight, RGBAFormat, FloatType );
+        boneTexture.minFilter = NearestFilter;
+        boneTexture.magFilter = NearestFilter;
         boneTexture.generateMipmaps = false;
         boneTexture.flipY = false;
 

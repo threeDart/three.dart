@@ -25,22 +25,22 @@ class MeshDepthMaterial extends Material {
   num wireframeLinewidth;
 
   MeshDepthMaterial( { // MeshDepthMaterial
-                       this.shading: Three.SmoothShading, // doesn't really apply here, normals are not used
+                       this.shading: SmoothShading, // doesn't really apply here, normals are not used
                        this.wireframe: false,
                        this.wireframeLinewidth: 1,
 
 
                        // Material
                        name: '',
-                       side: Three.FrontSide,
+                       side: FrontSide,
 
                        opacity: 1,
                        transparent: false,
 
-                       blending: Three.NormalBlending,
-                       blendSrc: Three.SrcAlphaFactor,
-                       blendDst: Three.OneMinusSrcAlphaFactor,
-                       blendEquation: Three.AddEquation,
+                       blending: NormalBlending,
+                       blendSrc: SrcAlphaFactor,
+                       blendDst: OneMinusSrcAlphaFactor,
+                       blendEquation: AddEquation,
 
                        depthTest: true,
                        depthWrite: true,
