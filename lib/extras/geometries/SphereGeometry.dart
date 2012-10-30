@@ -87,7 +87,7 @@ class SphereGeometry extends Geometry {
     this.computeCentroids();
     this.computeFaceNormals();
 
-    this.boundingSphere = new BoundingSphere( radius );
+    this.boundingSphere = new BoundingSphere( radius: radius );
 
   }
 

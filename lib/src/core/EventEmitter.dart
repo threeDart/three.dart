@@ -4,7 +4,7 @@ class EventEmitterEvent {
   String type;
   String message;
   var content;
-  EventEmitterEvent([this.type, this.message, this.content]);
+  EventEmitterEvent({this.type, this.message, this.content});
 }
 
 class EventEmitter {

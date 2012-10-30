@@ -232,7 +232,7 @@ class Intersect {
   IFace3 face;
   Object3D object;
 
-  Intersect([this.distance, this.point, this.face, this.object] );
+  Intersect({this.distance, this.point, this.face, this.object});
 }
 
 
