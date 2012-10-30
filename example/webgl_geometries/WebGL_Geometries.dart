@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart';
-import 'package:three/extras/ImageUtils.dart' as ImageUtils;
-import 'package:three/extras/SceneUtils.dart' as SceneUtils;
+import 'package:three/extras/image_utils.dart' as ImageUtils;
+import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
 class WebGL_Geometries  {
   Element container;

@@ -7,14 +7,14 @@ import 'dart:json';
 import 'src/core/ThreeMath.dart' as ThreeMath;
 
 // TODO - Use M1 Re-export ( see: http://code.google.com/p/dart/issues/detail?id=760)
-import 'extras/ImageUtils.dart' as ImageUtils;
-import 'extras/SceneUtils.dart' as SceneUtils;
-import 'extras/FontUtils.dart' as FontUtils;
-import 'extras/GeometryUtils.dart' as GeometryUtils;
-import 'extras/ShaderUtils.dart' as ShaderUtils;
+import 'extras/image_utils.dart' as ImageUtils;
+import 'extras/scene_utils.dart' as SceneUtils;
+import 'extras/font_utils.dart' as FontUtils;
+import 'extras/geometry_utils.dart' as GeometryUtils;
+import 'extras/shader_utils.dart' as ShaderUtils;
 
-import 'extras/core/CurveUtils.dart' as CurveUtils;
-import 'extras/core/ShapeUtils.dart' as ShapeUtils;
+import 'extras/core/curve_utils.dart' as CurveUtils;
+import 'extras/core/shape_utils.dart' as ShapeUtils;
 
 part 'src/cameras/Camera.dart';
 part 'src/cameras/PerspectiveCamera.dart';

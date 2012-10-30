@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart';
-import 'package:three/extras/SceneUtils.dart' as SceneUtils;
+import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
 class WebGL_Geometry_Extrude_By_U_Shapes  {
   Element container;
