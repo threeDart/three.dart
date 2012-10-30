@@ -138,7 +138,7 @@ class JSONLoader extends Loader {
 
     for ( i = 0; i < json["uvs"].length; i++ ) {
 
-      if ( !json["uvs"][ i ].isEmpty() ) nUvLayers ++;
+      if ( !json["uvs"][ i ].isEmpty ) nUvLayers ++;
 
     }
 

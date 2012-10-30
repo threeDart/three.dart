@@ -125,7 +125,7 @@ class Canvas_Camera_Orthographic {
   }
 
 
-  animate(int time) {
+  animate(num time) {
     window.requestAnimationFrame(animate);
 
     render();

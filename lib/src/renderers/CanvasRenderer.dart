@@ -201,7 +201,7 @@ class CanvasRenderer implements Renderer
   {
     _context.setTransform( 1, 0, 0, - 1, _canvasWidthHalf, _canvasHeightHalf );
 
-    if ( !_clearRect.isEmpty() )
+    if ( !_clearRect.isEmpty )
     {
       _clearRect.minSelf( _clipRect );
       _clearRect.inflate( 2 );

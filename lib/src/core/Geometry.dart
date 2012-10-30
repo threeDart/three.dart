@@ -506,5 +506,5 @@ class BoundingBox {
 
 class BoundingSphere {
   num radius;
-  BoundingSphere([this.radius]);
+  BoundingSphere({this.radius});
 }

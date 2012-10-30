@@ -35,19 +35,20 @@ class ExtrudeGeometry extends Geometry {
 
   var shapebb;
 
-  ExtrudeGeometry( [this.shapes = null,
-                    amount = 100,
-                    bevelThickness = 6,
-                    bevelSize = null,
-                    bevelSegments = 3,
-                    bevelEnabled = true,
-                    curveSegments = 12,
-                    steps = 1, //can assume a number of steps or a List with all U's of steps
+  ExtrudeGeometry( this.shapes,
+                  {
+                    amount: 100,
+                    bevelThickness: 6,
+                    bevelSize: null,
+                    bevelSegments: 3,
+                    bevelEnabled: true,
+                    curveSegments: 12,
+                    steps: 1, //can assume a number of steps or a List with all U's of steps
                     bendPath,
                     extrudePath,
                     frames,
                     material,
-                    extrudeMaterial] ) : super() {
+                    extrudeMaterial } ) : super() {
 
     if (bevelSize == null) bevelSize = bevelThickness - 2;
 

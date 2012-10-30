@@ -52,7 +52,7 @@ class WebGL_Geometry_Cube  {
 
   }
 
-  animate(int time) {
+  animate(num time) {
 
     window.requestAnimationFrame( animate );
 

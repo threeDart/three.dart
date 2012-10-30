@@ -201,7 +201,7 @@ onWindowResize(_) {
 
 }
 
-animate(int time) {
+animate(num time) {
 
   window.requestAnimationFrame( animate );
 

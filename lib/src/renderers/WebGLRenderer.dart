@@ -1872,7 +1872,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( !obj_skinWeights.isEmpty()) {
+		if ( !obj_skinWeights.isEmpty) {
 
 			fl = chunk_faces3.length;
 			for ( f = 0; f < fl; f ++ ) {
@@ -2351,7 +2351,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( dirtyUvs && !obj_uvs.isEmpty() && uvType ) {
+		if ( dirtyUvs && !obj_uvs.isEmpty && uvType ) {
 
 			fl = chunk_faces3.length;
 			for ( f = 0; f < fl; f ++ ) {
@@ -3959,7 +3959,7 @@ class WebGLRenderer implements Renderer {
 
 	renderPlugins( plugins, scene, camera ) {
 
-		if ( plugins.isEmpty() ) return;
+		if ( plugins.isEmpty ) return;
 
 		var il = plugins.length;
 
@@ -5912,37 +5912,37 @@ class WebGLRenderer implements Renderer {
 	// Shaders
 
 	Program buildProgram( String shaderID, String fragmentShader, String vertexShader, uniforms, attributes,
-				[	int maxDirLights = 0,
-					int maxPointLights = 0,
-					int maxSpotLights = 0,
-					int maxShadows = 0,
-					int maxBones = 0,
-					Texture map = null,
-					bool envMap = false,
-					bool lightMap = false,
-					bool bumpMap = false,
-					bool specularMap = false,
-					int vertexColors = NoColors,
-					bool skinning = false,
-					bool useVertexTexture = false,
-					num boneTextureWidth = null,
-					num boneTextureHeight = null,
-					bool morphTargets = false,
-					bool morphNormals = false,
-					bool perPixel = false,
-					bool wrapAround = false,
-					bool doubleSided = false,
-					bool shadowMapEnabled = false,
-					bool shadowMapSoft = false,
-					bool shadowMapDebug = false,
-					bool shadowMapCascade = false,
-					bool sizeAttenuation = false,
-					Fog fog = null,
-		      bool useFog = false,
-		      int maxMorphTargets = 8,
-		      int maxMorphNormals = 4,
-		      num alphaTest = 0,
-		      bool metal = false] ) {
+	                      {	int maxDirLights: 0,
+					int maxPointLights: 0,
+					int maxSpotLights: 0,
+					int maxShadows: 0,
+					int maxBones: 0,
+					Texture map: null,
+					bool envMap: false,
+					bool lightMap: false,
+					bool bumpMap: false,
+					bool specularMap: false,
+					int vertexColors: NoColors,
+					bool skinning: false,
+					bool useVertexTexture: false,
+					num boneTextureWidth: null,
+					num boneTextureHeight: null,
+					bool morphTargets: false,
+					bool morphNormals: false,
+					bool perPixel: false,
+					bool wrapAround: false,
+					bool doubleSided: false,
+					bool shadowMapEnabled: false,
+					bool shadowMapSoft: false,
+					bool shadowMapDebug: false,
+					bool shadowMapCascade: false,
+					bool sizeAttenuation: false,
+					Fog fog: null,
+		      bool useFog: false,
+		      int maxMorphTargets: 8,
+		      int maxMorphNormals: 4,
+		      num alphaTest: 0,
+		      bool metal: false} ) {
 
 		var p, pl, glprogram, code;
 		var chunks = [];
@@ -6879,8 +6879,10 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		// TODO(nelsonsilva) - Check if getExtension should really return void
+		// TODO(nelsonsilva) - There is a bug in getExtension since it is returning void!
 		// @see https://groups.google.com/a/dartlang.org/forum/?fromgroups=#!topic/misc/FNNgnutae5g
+		
+		/*
 		_glExtensionTextureFloat = _gl.getExtension( 'OES_texture_float' );
 		_glExtensionStandardDerivatives = _gl.getExtension( 'OES_standard_derivatives' );
 
@@ -6909,7 +6911,7 @@ class WebGLRenderer implements Renderer {
 
 		  print( 'THREE.WebGLRenderer: Anisotropic texture filtering not supported.' );
 
-		}
+		}*/
 
 	}
 
@@ -6973,7 +6975,7 @@ class Program {
 	Map attributes;
 	Map uniforms;
 
-	Program( this.id, this.glProgram, this.code, [this.usedTimes = 0] ) : uniforms = {}, attributes = {};
+	Program( this.id, this.glProgram, this.code, {this.usedTimes: 0} ) : uniforms = {}, attributes = {};
 }
 
 class Buffer {
@@ -7102,12 +7104,12 @@ class WebGLGeometry {
 
   Geometry _geometry;
 
-  WebGLGeometry([this.faces3,
+  WebGLGeometry({ this.faces3,
                   this.faces4,
-                  this.materialIndex = 0,
-                  int vertices = null,
-                  this.numMorphTargets = 0,
-                  this.numMorphNormals = 0]) : _vertices = vertices;
+                  this.materialIndex: 0,
+                  int vertices: null,
+                  this.numMorphTargets: 0,
+                  this.numMorphNormals: 0}) : _vertices = vertices;
 
   WebGLGeometry._internal(Geometry geometry)
   :   _geometry = geometry,

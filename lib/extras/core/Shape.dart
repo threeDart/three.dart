@@ -32,17 +32,17 @@ class Shape extends Path {
 
     if (bevelSize == null) bevelSize = bevelThickness - 2;
 
-    return new ExtrudeGeometry( [this], amount,
-                                        bevelThickness,
-                                        bevelSize,
-                                        bevelSegments,
-                                        bevelEnabled,
-                                        curveSegments,
-                                        steps,
-                                        bendPath,
-                                        extrudePath,
-                                        material,
-                                        extrudeMaterial );
+    return new ExtrudeGeometry( [this], amount: amount,
+                                        bevelThickness: bevelThickness,
+                                        bevelSize: bevelSize,
+                                        bevelSegments: bevelSegments,
+                                        bevelEnabled: bevelEnabled,
+                                        curveSegments: curveSegments,
+                                        steps: steps,
+                                        bendPath: bendPath,
+                                        extrudePath: extrudePath,
+                                        material: material,
+                                        extrudeMaterial: extrudeMaterial );
   }
 
 

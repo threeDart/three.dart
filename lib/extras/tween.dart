@@ -118,7 +118,7 @@ class Tween {
       if ( value != null ) {
 
         // check if an Array was provided as property value
-        if ( _valuesEnd[ property ] is List && ! _valuesEnd[ property ].isEmpty()) {
+        if ( _valuesEnd[ property ] is List && ! _valuesEnd[ property ].isEmpty) {
 
           // create a local copy of the Array with the start value at the front
           _valuesEnd[ property ] = [ value ]..add( _valuesEnd[ property ] );

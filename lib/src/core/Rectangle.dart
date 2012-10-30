@@ -133,6 +133,6 @@ class Rectangle {
     resize();
   }
 
-  bool isEmpty() => _isEmpty;
+  bool get isEmpty => _isEmpty;
 
 }

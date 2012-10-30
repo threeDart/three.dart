@@ -279,7 +279,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
   }
 
-  void animate(int time) {
+  void animate(num time) {
     window.requestAnimationFrame( animate );
     render();
   }
