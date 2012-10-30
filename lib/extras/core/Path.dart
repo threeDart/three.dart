@@ -57,7 +57,7 @@ class Path extends CurvePath {
 
   	var args = [x, y];
 
-  	var lastargs = actions.last().args;
+  	var lastargs = actions.last.args;
 
   	var x0 = lastargs[ lastargs.length - 2 ];
   	var y0 = lastargs[ lastargs.length - 1 ];
@@ -72,7 +72,7 @@ class Path extends CurvePath {
 
   	var args = [aCPx, aCPy, aX, aY];
 
-  	var lastargs = actions.last().args;
+  	var lastargs = actions.last.args;
 
   	var x0 = lastargs[ lastargs.length - 2 ];
   	var y0 = lastargs[ lastargs.length - 1 ];
@@ -93,7 +93,7 @@ class Path extends CurvePath {
                  aCP2x, aCP2y,
                  aX, aY];
 
-  	var lastargs = actions.last().args;
+  	var lastargs = actions.last.args;
 
   	var x0 = lastargs[ lastargs.length - 2 ];
   	var y0 = lastargs[ lastargs.length - 1 ];
@@ -111,7 +111,7 @@ class Path extends CurvePath {
   splineThru( List<Vector2> pts) {
 
   	var args = [pts];
-  	var lastargs = actions.last().args;
+  	var lastargs = actions.last.args;
 
   	var x0 = lastargs[ lastargs.length - 2 ];
   	var y0 = lastargs[ lastargs.length - 1 ];
@@ -148,7 +148,7 @@ class Path extends CurvePath {
 
   ellipse( aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise ) {
 
-    var lastargs = actions.last().args;
+    var lastargs = actions.last.args;
     var x0 = lastargs[ lastargs.length - 2 ];
     var y0 = lastargs[ lastargs.length - 1 ];
 

@@ -1,9 +1,9 @@
 part of ThreeD;
 
 class CSS3DObject extends Object3D {
-  
+
   Element element;
-  
+
   CSS3DObject( this.element ) : super() {
     element.style.position = "absolute";
     element.style.transformStyle = "preserve-3d";
@@ -15,7 +15,7 @@ class CSS3DRenderer implements Renderer {
   Element domElement;
   Element cameraElement;
   num _width, _height, _widthHalf, _heightHalf;
-  
+
   CSS3DRenderer() {
 
      _projector = new Projector();
@@ -32,7 +32,7 @@ class CSS3DRenderer implements Renderer {
 
     domElement.elements.add( cameraElement );
   }
-  
+
   setSize( num width, num height ) {
 
     _width = width;
@@ -115,13 +115,13 @@ class CSS3DRenderer implements Renderer {
     var objects = _projector.projectScene( scene, camera, false ).objects;
 
     var il = objects.length;
-    
+
     for ( var i = 0; i < il; i ++ ) {
 
       var object = objects[ i ].object;
 
       if ( object is CSS3DObject ) {
-        
+
         var element = object.element;
 
         style = getObjectCSSMatrix( object.matrixWorld );
@@ -134,5 +134,5 @@ class CSS3DRenderer implements Renderer {
       }
     }
   }
-  
+
 }

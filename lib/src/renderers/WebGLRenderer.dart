@@ -804,7 +804,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( !object.geometry.skinWeights.isEmpty() && !object.geometry.skinIndices.isEmpty() ) {
+		if ( !object.geometry.skinWeights.isEmpty && !object.geometry.skinIndices.isEmpty ) {
 
 			geometryGroup.__skinVertexAArray = new Float32Array( nvertices * 4 );
 			geometryGroup.__skinVertexBArray = new Float32Array( nvertices * 4 );
@@ -3710,7 +3710,7 @@ class WebGLRenderer implements Renderer {
 
 			while ( m < material.numSupportedMorphTargets ) {
 
-				if ( activeInfluenceIndices[ m ] != null && !activeInfluenceIndices[ m ].isEmpty()) {
+				if ( activeInfluenceIndices[ m ] != null && !activeInfluenceIndices[ m ].isEmpty) {
 
 					influenceIndex = activeInfluenceIndices[ m ][ 0 ];
 
@@ -6879,6 +6879,8 @@ class WebGLRenderer implements Renderer {
 
 		}
 
+		// TODO(nelsonsilva) - Check if getExtension should really return void
+		// @see https://groups.google.com/a/dartlang.org/forum/?fromgroups=#!topic/misc/FNNgnutae5g
 		_glExtensionTextureFloat = _gl.getExtension( 'OES_texture_float' );
 		_glExtensionStandardDerivatives = _gl.getExtension( 'OES_standard_derivatives' );
 

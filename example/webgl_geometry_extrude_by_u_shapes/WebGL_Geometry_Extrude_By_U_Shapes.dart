@@ -1,7 +1,7 @@
-#import('dart:html');
-#import('dart:math', prefix:'Math');
-#import('package:three/three.dart');
-#import('package:three/extras/SceneUtils.dart', prefix:'SceneUtils');
+import 'dart:html';
+import 'dart:math' as Math;
+import 'package:three/three.dart';
+import 'package:three/extras/SceneUtils.dart' as SceneUtils;
 
 class WebGL_Geometry_Extrude_By_U_Shapes  {
   Element container;
@@ -13,26 +13,26 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
   var windowHalfX, windowHalfY;
   var mouseX = 0;
   var mouseXOnMouseDown = 0;
-  
+
   var targetRotation = 0;
   var targetRotationOnMouseDown = 0;
-  
+
   Object3D parent, text, plane;
-  
+
   void run() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     init();
     animate(0);
   }
-  
+
   _addGeometry( geometry, color, x, y, z, rx, ry, rz, s ) {
 
     // 3d shape
 
-    var mesh = SceneUtils.createMultiMaterialObject( geometry, 
-        [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ), 
+    var mesh = SceneUtils.createMultiMaterialObject( geometry,
+        [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
           new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
     mesh.position.setValues( x, y, z - 75 );
@@ -44,9 +44,9 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     parent.add( mesh );
 
   }
-  
+
   void init() {
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -54,7 +54,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     camera.position.setValues( 0, 150, 500 );
 
     scene = new Scene();
-    
+
     var light = new DirectionalLight( 0xffffff );
     light.position.setValues( 0, 0, 1 );
     scene.add( light );
@@ -64,11 +64,11 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     scene.add( parent );
 
     var extrudeAmount = 200,
-        extrudeBevelEnabled = true, 
+        extrudeBevelEnabled = true,
         extrudeBevelSegments = 2;
 
     extrudeBevelEnabled = false;
-    
+
     var pts = [], starPoints = 5, l;
 
     for ( var i = 0; i < starPoints * 2; i ++ ) {
@@ -111,30 +111,30 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     var randomSpline =  new SplineCurve3( randomPoints );
     curvepath.add(randomSpline);
 
-    
-    
+
+
     var extrudeUSteps = new List();
     var curvepathLength = curvepath.length;
     var initU = 0;
     var curveSteps = 40;
-    
+
     for(var curve in curvepath.curves){
-      
-      if(curve is LineCurve3){ 
+
+      if(curve is LineCurve3){
         // Straight so we only need one step
         initU += curve.length / curvepathLength;
         extrudeUSteps.add(initU);
 
-      } else { 
+      } else {
         // Not Straight so we subdivide the curve steps in 'curve_steps' divisions
           for ( var d = 0; d <= curveSteps; d ++ ) {
             extrudeUSteps.add(initU + ((d / curveSteps) * (curve.length / curvepathLength)) );
           }
-          initU = extrudeUSteps.last();
+          initU = extrudeUSteps.last;
         }
     }
     print("[WebGL_Geometry_Extrude_By_U_Shapes] ${extrudeUSteps}");
-    
+
     var extrude_extrudePath =  curvepath;
 
     // Circle
@@ -184,7 +184,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     smileyShape.holes.add( smileyMouthPath );
 
-    var circle3d = starShape.extrude( 
+    var circle3d = starShape.extrude(
         amount: extrudeAmount,
         bevelSegments: extrudeBevelSegments,
         bevelEnabled: extrudeBevelEnabled,
@@ -198,24 +198,24 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     _addGeometry( circle3d, 0xff1111,  -100,  0, 0,     0, 0, 0, 1 );
     _addGeometry( tube, 0x00ff11,  0,  0, 0,     0, 0, 0, 1 );
-      
+
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
-    
+
     container.nodes.add( renderer.domElement );
-    
+
     document.on.mouseDown.add(onDocumentMouseDown, false);
     document.on.touchStart.add(onDocumentTouchStart, false);
     document.on.touchMove.add(onDocumentTouchMove, false);
-    
+
     window.on.resize.add(onWindowResize);
   }
-  
+
   onWindowResize(event) {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -232,12 +232,12 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
   }
-  
+
   onDocumentMouseMove(MouseEvent event) {
     mouseX = event.clientX - windowHalfX;
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
   }
-  
+
   onDocumentMouseUp( event ) {
     document.on.mouseMove.remove(onDocumentMouseMove, false );
     document.on.mouseUp.remove(onDocumentMouseUp, false );
@@ -278,12 +278,12 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     }
 
   }
-  
+
   void animate(int time) {
     window.requestAnimationFrame( animate );
     render();
   }
-  
+
   render() {
 
     parent.rotation.y += ( targetRotation - parent.rotation.y ) * 0.05;
@@ -291,7 +291,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     renderer.render( scene, camera );
 
   }
-  
+
 }
 
 void main() {

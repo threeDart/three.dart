@@ -15,9 +15,9 @@ var controls;
 var objects = [];
 
 init() {
-  
+
   var targets = { "table": [], "sphere": [], "helix": [], "grid": [] };
-  
+
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 );
   camera.position.z = 1800;
 
@@ -38,7 +38,7 @@ init() {
     var details = new Element.tag( 'div' )
     ..classes.add('details')
     ..innerHTML = '${item[ 1 ]}<br>${item[ 2 ]}';
-    
+
     var element = new Element.tag( 'div' )
     ..classes.add('element')
     ..style.backgroundColor = 'rgba(0,127,127,${( new Math.Random().nextDouble() * 0.5 + 0.25 ) })'
@@ -50,7 +50,7 @@ init() {
     ..position.x = new Math.Random().nextInt(4000) - 2000
     ..position.y = new Math.Random().nextInt(4000) - 2000
     ..position.z = new Math.Random().nextInt(4000) - 2000;
-    
+
     scene.add( object );
 
     objects.add( object );
@@ -66,7 +66,7 @@ init() {
 
     targets["table"].add( new THREE.Object3D()
     ..position.x = ( item[ 3 ] * 160 ) - 1540
-    ..position.y = - ( item[ 4 ] * 200 ) + 1100 
+    ..position.y = - ( item[ 4 ] * 200 ) + 1100
     );
 
   }

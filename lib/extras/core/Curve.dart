@@ -48,7 +48,7 @@ abstract class Curve<V extends IVector2> {
 
 		return pts;
 	}
-	
+
 	 // Get sequence of points using getPointAt( u )
   // TODO(tiagocardoso) - closedPath is only used in Path
   List<V> getUPoints( [List uList , closedPath = false] ) {
@@ -63,7 +63,7 @@ abstract class Curve<V extends IVector2> {
 
 
 	// Get total curve arc length
-	num get length => getLengths().last();
+	num get length => getLengths().last;
 
 	// Get list of cumulative segment lengths
 	List getLengths( [num divisions = null] ) {

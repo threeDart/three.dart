@@ -8,7 +8,7 @@ part of ThreeD;
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
  * @author nelson silva / http://www.inevo.pt
- * 
+ *
  * updated to 81ef5c3b32 - Made Projector.projectObject more open for custom rendererers.
  */
 
@@ -107,7 +107,7 @@ class Projector {
       var object = parent.children[ c ];
 
       if ( !object.visible ) continue;
-      
+
       if ( object is Light ) {
 
         _renderData.lights.add( object );
@@ -119,7 +119,7 @@ class Projector {
           _object = getNextObjectInPool();
           _object.object = object;
 
-          if ( object.renderDepth !== null ) {
+          if ( object.renderDepth != null ) {
 
             _object.z = object.renderDepth;
 
@@ -142,7 +142,7 @@ class Projector {
 
         // TODO: Find an elegant and performant solution and remove this dupe code.
 
-        if ( object.renderDepth !== null ) {
+        if ( object.renderDepth != null ) {
 
           _object.z = object.renderDepth;
 
@@ -180,7 +180,7 @@ class Projector {
       _projectObject( object );
     }
   }
-  
+
   ProjectorRenderData projectGraph( Object3D root, bool sort ) {
     _objectCount = 0;
 
@@ -242,9 +242,9 @@ class Projector {
     _viewProjectionMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
 
     _frustum.setFromMatrix( _viewProjectionMatrix );
-    
+
     _renderData = projectGraph( scene, false );
-    
+
     _renderData.objects.forEach((o) {
 
       object = o.object;

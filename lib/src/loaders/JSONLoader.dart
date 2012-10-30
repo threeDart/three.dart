@@ -36,7 +36,7 @@ class JSONLoader extends Loader {
 
         if ( xhr.status == 200 || xhr.status == 0 ) {
 
-          if ( !xhr.responseText.isEmpty() ) {
+          if ( !xhr.responseText.isEmpty ) {
 
             var json = JSON.parse( xhr.responseText );
             _createModel( json, callback, texturePath );

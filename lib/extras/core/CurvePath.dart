@@ -90,7 +90,7 @@ class CurvePath extends Curve {
 	// We cannot use the default THREE.Curve getPoint() with getLength() because in
 	// THREE.Curve, getLength() depends on getPoint() but in THREE.CurvePath
 	// getPoint() depends on getLength
-	num get length => getCurveLengths().last();
+	num get length => getCurveLengths().last;
 
 	// Compute lengths and cache them
 	// We cannot overwrite getLengths() because UtoT mapping uses it.

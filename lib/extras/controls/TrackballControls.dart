@@ -3,7 +3,7 @@
  *
  * Ported to Dart from JS by:
  * @author nelson silva / http://www.inevo.pt/
- * 
+ *
  * based on rev 5816003656
  **/
 library TrackballControls;
@@ -13,10 +13,10 @@ import "dart:math" as Math;
 import "package:three/three.dart";
 
 class STATE {
- static const NONE = -1; 
+ static const NONE = -1;
  static const ROTATE =  0;
  static const ZOOM = 1;
- static const PAN = 2;           
+ static const PAN = 2;
 }
 
 class Screen {
@@ -24,15 +24,15 @@ class Screen {
   Screen({this.width, this.height, this.offsetLeft, this.offsetTop});
 }
 class TrackballControls extends EventEmitter {
-  
+
   int _state, _prevState;
   Object3D object;
   Element domElement;
   bool enabled;
   Screen screen;
   num radius;
-  num rotateSpeed, 
-      zoomSpeed, 
+  num rotateSpeed,
+      zoomSpeed,
       panSpeed;
   bool noRotate,
        noZoom,
@@ -42,16 +42,16 @@ class TrackballControls extends EventEmitter {
   num minDistance, maxDistance;
   List keys;
   Vector3 target;
-  
+
   Vector3 _eye;
-  
+
   Vector3 _rotateStart, _rotateEnd;
   Vector2 _zoomStart, _zoomEnd;
   Vector2 _panStart, _panEnd;
   Vector3 lastPosition;
-  
+
   EventEmitterEvent changeEvent;
-  
+
   TrackballControls( this.object, [Element domElement] ) {
 
     this.domElement = ( ?domElement ) ? domElement : document;
@@ -98,9 +98,9 @@ class TrackballControls extends EventEmitter {
 
     _panStart = new Vector2();
     _panEnd = new Vector2();
-    
+
     changeEvent = new EventEmitterEvent('change');
-    
+
     domElement.on
     ..contextMenu.add(( event ) => event.preventDefault())
     ..mouseDown.add(mousedown)
@@ -139,9 +139,9 @@ class TrackballControls extends EventEmitter {
           ( clientX - screen.offsetLeft ) / radius * 0.5,
           ( clientY - screen.offsetTop ) / radius * 0.5
       );
-    
+
     getMouseProjectionOnBall( clientX, clientY ) {
-     
+
       var mouseOnBall = new Vector3(
           ( clientX - screen.width * 0.5 - screen.offsetLeft ) / radius,
           ( screen.height * 0.5 + screen.offsetTop - clientY ) / radius,
@@ -171,11 +171,11 @@ class TrackballControls extends EventEmitter {
     }
 
     rotateCamera() {
-      
+
       var angle = Math.acos( _rotateStart.dot( _rotateEnd ) / _rotateStart.length() / _rotateEnd.length() );
 
-      if ( !angle.isNaN() && angle != 0) {
-        
+      if ( !angle.isNaN && angle != 0) {
+
         var axis = ( new Vector3() ).cross( _rotateStart, _rotateEnd ).normalize(),
             quaternion = new Quaternion();
 
@@ -274,9 +274,9 @@ class TrackballControls extends EventEmitter {
     }
 
     update() {
-      
+
       _eye.copy( object.position ).subSelf( target );
-      
+
       if ( !noRotate ) {
         rotateCamera();
       }
@@ -290,7 +290,7 @@ class TrackballControls extends EventEmitter {
       }
 
       object.position.add( target, _eye );
-    
+
       checkDistances();
 
       object.lookAt( target );
@@ -358,7 +358,7 @@ class TrackballControls extends EventEmitter {
       }
 
       if ( _state == STATE.ROTATE && !noRotate ) {
-        
+
         _rotateStart = getMouseProjectionOnBall( event.clientX, event.clientY );
         _rotateEnd = _rotateStart;
 

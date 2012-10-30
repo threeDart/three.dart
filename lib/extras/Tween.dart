@@ -1,6 +1,6 @@
 /**
  * Based on Tween.js
- * 
+ *
  * @author sole / http://soledadpenades.com
  * @author mrdoob / http://mrdoob.com
  * @author Robert Eisele / http://www.xarg.org
@@ -10,11 +10,11 @@
  * @author lechecacharro
  * @author Josh Faul / http://jocafa.com/
  * @author egraether / http://egraether.com/
- * 
+ *
  * Ported to Dart by
- * 
+ *
  * @author nelson silva / http://www.inevo.pt
- * 
+ *
  */
 
 library tween;
@@ -22,7 +22,7 @@ library tween;
 import 'dart:math' as Math;
 
 const REVISION = '7';
-  
+
 List<Tween> _tweens = [];
 
 get all => _tweens;
@@ -35,7 +35,7 @@ remove( tween ) => _tweens.removeAt(_tweens.indexOf(tween));
 
 update( [num time] ) {
 
-  if ( _tweens.isEmpty() ) { return false; }
+  if ( _tweens.isEmpty ) { return false; }
 
   var i = 0, l = _tweens.length;
 
@@ -68,9 +68,9 @@ class Tween {
   bool _onStartCallbackFired = false;
   var _onUpdateCallback = null;
   var _onCompleteCallback = null;
-  
+
   Tween(this.object);
-  
+
   to( properties, [duration] ) {
     if ( ?duration ) {
       _duration = duration;
@@ -84,23 +84,23 @@ class Tween {
     switch(name) {
       case "x": object.x = value; break;
       case "y": object.y = value; break;
-      case "z": object.z = value; break;  
+      case "z": object.z = value; break;
       default:
         throw new Exception("The supplied property name ('$name') is not supported at this time.");
     }
   }
-  
+
   // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet :(
   Object _getPropertyValue(String name) {
     switch(name) {
       case "x": return object.x;
-      case "y": return object.y; 
+      case "y": return object.y;
       case "z": return object.z;
       default:
         throw new Exception("The supplied property name ('$name') is not supported at this time.");
     }
   }
-  
+
   start( [num time] ) {
 
     add( this );
@@ -113,18 +113,18 @@ class Tween {
     _valuesEnd.forEach((property, _) {
 
       var value = _getPropertyValue(property);
-      
+
       // This prevents the engine from interpolating null values
       if ( value != null ) {
 
         // check if an Array was provided as property value
         if ( _valuesEnd[ property ] is List && ! _valuesEnd[ property ].isEmpty()) {
-  
+
           // create a local copy of the Array with the start value at the front
           _valuesEnd[ property ] = [ value ]..add( _valuesEnd[ property ] );
-  
+
         }
-  
+
         _valuesStart[ property ] = value;
       }
 
@@ -184,7 +184,7 @@ class Tween {
 
     if ( elapsed == 1 ) {
 
-      if ( _onCompleteCallback !== null ) {
+      if ( _onCompleteCallback != null ) {
         _onCompleteCallback( object );
       }
 
@@ -207,9 +207,9 @@ class Easing {
 
 class Interpolation {
   static Linear( v, k ) {
-    var m = v.length - 1, 
-        f = m * k, 
-        i = f.floor(), 
+    var m = v.length - 1,
+        f = m * k,
+        i = f.floor(),
         fn = _InterpolationUtils.Linear;
 
     if ( k < 0 ) return fn( v[ 0 ], v[ 1 ], f );
@@ -238,7 +238,7 @@ class _EasingQuadratic {
 class _EasingExponential {
   const _EasingExponential();
   In(k) => k == 0 ? 0 : Math.pow( 1024, k - 1 );
-  Out(k) =>  k === 1 ? 1 : 1 - Math.pow( 2, - 10 * k );
+  Out(k) =>  k == 1 ? 1 : 1 - Math.pow( 2, - 10 * k );
   InOut(k) {
     if ( k == 0 ) return 0;
     if ( k == 1 ) return 1;

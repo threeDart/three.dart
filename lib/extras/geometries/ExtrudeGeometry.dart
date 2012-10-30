@@ -11,7 +11,7 @@ part of ThreeD;
  *  height:     <float>,  // thickness to extrude text
  *  curveSegments:  <int>,    // number of points on the curves
  *  steps:      <int> | <List>,    // number of points or list of U positions for z-side extrusions / used for subdividing segements of extrude spline too
- *  amount: <int>,  // Amount 
+ *  amount: <int>,  // Amount
  *
  *  bevelEnabled: <bool>,     // turn on bevel
  *  bevelThickness: <float>,    // how deep into text bevel goes
@@ -56,12 +56,12 @@ class ExtrudeGeometry extends Geometry {
       return;
     }
 
-    shapebb = shapes.last().getBoundingBox();
+    shapebb = shapes.last.getBoundingBox();
 
     addShapeList( shapes,
       amount, bevelThickness, bevelSize, bevelSegments,bevelEnabled,
       curveSegments, steps, bendPath, extrudePath, frames, material, extrudeMaterial );
-  
+
     computeCentroids();
     computeFaceNormals();
 
@@ -227,12 +227,12 @@ class ExtrudeGeometry extends Geometry {
    }
 
   addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments, bevelEnabled,
-            curveSegments, steps, bendPath, extrudePath, TubeGeometry frames, material, extrudeMaterial, 
+            curveSegments, steps, bendPath, extrudePath, TubeGeometry frames, material, extrudeMaterial,
             [ExtrudeGeometryWorldUVGenerator UVGenerator ]) {
-  
-  
+
+
     var extrudePts, extrudeByPath = false;
-     
+
     //shapebb = shape.getBoundingBox();
 
     // set UV generator
@@ -242,9 +242,9 @@ class ExtrudeGeometry extends Geometry {
     Vector3 binormal, normal, position2;
 
     var nSteps = (steps is List)? steps.length : steps;
-    
+
     if ( extrudePath != null ) {
-  
+
       if(steps is List){
         List divisions = [0];
         divisions.addAll(steps);
@@ -252,7 +252,7 @@ class ExtrudeGeometry extends Geometry {
       } else{
         extrudePts =  extrudePath.getSpacedPoints( steps );
       }
-      
+
       extrudeByPath = true;
       bevelEnabled = false; // bevels not supported for path extrusion
 
@@ -494,15 +494,15 @@ class ExtrudeGeometry extends Geometry {
     var s;
 
     for ( s = 1; s <= nSteps; s ++ ) {
-  
+
       for ( i = 0; i < vlen; i ++ ) {
 
         vert = bevelEnabled ? _scalePt2( vertices[ i ], verticesMovements[ i ], bs ) : vertices[ i ];
 
         if ( !extrudeByPath ) {
-  
+
           _v( vert.x, vert.y, amount / nSteps * s );
-  
+
         } else {
 
           // v( vert.x, vert.y + extrudePts[ s - 1 ].y, extrudePts[ s - 1 ].x );
@@ -556,9 +556,9 @@ class ExtrudeGeometry extends Geometry {
             _v( vert.x, vert.y,  amount + z );
 
           } else {
-  
+
             _v( vert.x, vert.y + extrudePts[ nSteps - 1 ].y, extrudePts[ nSteps - 1 ].x + z );
-  
+
           }
 
         }
@@ -652,9 +652,9 @@ class ExtrudeGeometry extends Geometry {
         if ( k < 0 ) k = contour.length - 1;
 
         //console.log('b', i,j, i-1, k,vertices.length);
-  
+
         var s = 0, sl = nSteps  + bevelSegments * 2;
-  
+
         for ( s = 0; s < sl; s ++ ) {
           var slen1 = vlen * s;
           var slen2 = vlen * ( s + 1 );
