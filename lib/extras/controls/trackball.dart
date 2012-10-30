@@ -99,7 +99,7 @@ class TrackballControls extends EventEmitter {
     _panStart = new Vector2();
     _panEnd = new Vector2();
 
-    changeEvent = new EventEmitterEvent('change');
+    changeEvent = new EventEmitterEvent(type: 'change');
 
     domElement.on
     ..contextMenu.add(( event ) => event.preventDefault())
