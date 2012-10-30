@@ -2,7 +2,7 @@ name: three
 version: 0.2.1
 description: >
   A port of the three.js JavaScript 3D engine to Dart.
-author:
+authors:
 - Robert Silverton <rob@unwrong.com>
 - Nelson Silva <nelson.silva@inevo.pt>
 - Adam Singer <financeCoding@gmail.com>
