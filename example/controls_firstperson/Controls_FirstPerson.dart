@@ -26,7 +26,6 @@ class Game {
     document.body.nodes.add(container);
     
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1000;
     
     scene = new THREE.Scene();
         
@@ -40,20 +39,20 @@ class Game {
     container.nodes.add(renderer.domElement);
     
     controls = new FirstPersonControls(camera, renderer.domElement);
+    controls.movementSpeed = 2;
   }
    
   void makeParticles() {
     var rng = new Math.Random();
-    for (var zpos = -1000; zpos < 1000; zpos += 20) {
-      var material = new THREE.ParticleCanvasMaterial(color: 0xffffff, program: particleRender);
+    for (var i = 0; i < 500; i++) {
+      var material = new THREE.ParticleCanvasMaterial(color: rng.nextDouble() * 0x808080 + 0x808080, program: particleRender);
       var particle = new THREE.Particle(material);
-      
       
       particle.position.x = rng.nextDouble() * 1000 - 500;
       particle.position.y = rng.nextDouble() * 1000 - 500;
-      particle.position.z = zpos;
+      particle.position.z = rng.nextDouble() * 1000 - 500;
       
-      particle.scale.x = particle.scale.y = 10;
+      particle.scale.x = particle.scale.y =  rng.nextDouble() * 10 + 10;
       
       scene.add(particle);
       
@@ -63,13 +62,13 @@ class Game {
   
   void particleRender(var context) {
     context.beginPath();
-    context.arc(0,0,1,0, Math.PI * 2, true);
+    context.arc(0, 0, 1, 0, Math.PI * 2, true);
     context.fill();
   }
   
   void animate(timestamp) {
     window.requestAnimationFrame( animate );
-    controls.update(1.0);
+    controls.update(1);
     render();
   } 
   
@@ -81,5 +80,5 @@ class Game {
 void main() { 
   var game = new Game();
   game.init();
-  game.animate(null);
+  game.animate(0);
 }
