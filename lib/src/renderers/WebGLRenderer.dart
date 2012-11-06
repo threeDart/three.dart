@@ -4652,8 +4652,7 @@ class WebGLRenderer implements Renderer {
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
 			if ( objlist[ o ].object == object ) {
-
-				objlist.splice( o, 1 );
+				objlist.removeRange( o, 1 );
 
 			}
 
@@ -4667,7 +4666,7 @@ class WebGLRenderer implements Renderer {
 
       if ( identical(objlist[ o ], object) ) {
 
-				objlist.splice( o, 1 );
+				objlist.removeRange( o, 1 );
 
 			}
 

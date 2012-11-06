@@ -451,14 +451,14 @@ class Geometry {
 
             // console.log('faces', face.a, face.b, face.c, face.d, 'dup at', k);
 
-            o.splice( k, 1 );
+            o.removeRange( k, 1 );
 
             this.faces[ i ] = new THREE.Face3( o[0], o[1], o[2], face.normal, face.color, face.materialIndex );
 
             for ( j = 0, jl = this.faceVertexUvs.length; j < jl; j ++ ) {
 
               u = this.faceVertexUvs[ j ][ i ];
-              if ( u ) u.splice( k, 1 );
+              if ( u ) u.removeRange( k, 1 );
 
             }
 
