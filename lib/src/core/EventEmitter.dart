@@ -28,7 +28,7 @@ class EventEmitter {
 	dispatchEvent( event ) {
 		if ( listeners[ event.type ] != null ) {
 			listeners[ event.type ].forEach((listener) => listener( event ));
-                }
+		}
 	}
 
 	removeEventListener ( type, listener ) {
