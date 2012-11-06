@@ -11,7 +11,7 @@ abstract class Curve<V extends IVector2> {
 
 	// Virtual base class method to overwrite and implement in subclasses
 	//	- t [0 .. 1]
-  abstract V getPoint(t);
+  V getPoint(t);
 
 	// Get point at relative position in curve according to arc length
 	// - u [0 .. 1]

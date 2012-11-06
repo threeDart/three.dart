@@ -1,3 +1,4 @@
+library periodic_table;
 
 import 'dart:html';
 import 'dart:math' as Math;

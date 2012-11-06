@@ -266,8 +266,8 @@ class FontFace {
 
   num resolution;
 
-  FontFace( [ this.size = 150,
-              this.divisions = 10] ) : glyphs = {};
+  FontFace( { this.size: 150,
+              this.divisions: 10} ) : glyphs = {};
 
   Map operator [](String weight) => _data[weight];
 }

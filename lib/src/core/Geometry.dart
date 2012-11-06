@@ -501,7 +501,7 @@ class Geometry {
 class BoundingBox {
   Vector3 min;
   Vector3 max;
-  BoundingBox([this.min, this.max]);
+  BoundingBox({this.min, this.max});
 }
 
 class BoundingSphere {

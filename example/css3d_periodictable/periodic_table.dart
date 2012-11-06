@@ -1,3 +1,5 @@
+part of periodic_table;
+
 var table = [
         [ "H", "Hydrogen", "1.00794", 1, 1 ],
         [ "He", "Helium", "4.002602", 18, 1 ],

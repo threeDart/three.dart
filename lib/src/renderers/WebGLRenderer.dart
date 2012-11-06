@@ -6877,14 +6877,9 @@ class WebGLRenderer implements Renderer {
 			print( error );
 
 		}
-
-		// TODO(nelsonsilva) - There is a bug in getExtension since it is returning void!
-		// @see https://groups.google.com/a/dartlang.org/forum/?fromgroups=#!topic/misc/FNNgnutae5g
-		
-		/*
 		_glExtensionTextureFloat = _gl.getExtension( 'OES_texture_float' );
 		_glExtensionStandardDerivatives = _gl.getExtension( 'OES_standard_derivatives' );
-
+		
 		_glExtensionTextureFilterAnisotropic = _gl.getExtension( 'EXT_texture_filter_anisotropic' );
 		if (_glExtensionTextureFilterAnisotropic == null) {
 		  _glExtensionTextureFilterAnisotropic = _gl.getExtension( 'MOZ_EXT_texture_filter_anisotropic' );
@@ -6910,7 +6905,7 @@ class WebGLRenderer implements Renderer {
 
 		  print( 'THREE.WebGLRenderer: Anisotropic texture filtering not supported.' );
 
-		}*/
+		}
 
 	}
 
