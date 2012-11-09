@@ -1,4 +1,4 @@
-library ThreeD;
+library three;
 
 import 'dart:html';
 import 'dart:math' as Math;
