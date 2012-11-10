@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class SkinnedMesh extends Mesh {
 	bool useVertexTexture;

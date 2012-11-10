@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class FogExp2 implements Fog {
   Color color;

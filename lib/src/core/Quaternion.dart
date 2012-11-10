@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 /**
  * @author mikael emtinger / http://gomo.se/

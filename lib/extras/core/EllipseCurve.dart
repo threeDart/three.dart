@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class EllipseCurve extends Curve2D {
   num aX, aY;

@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class SplineCurve extends Curve2D {
   List<Vector2> points;

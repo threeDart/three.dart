@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 /**
  * Ported to Dart from JS by:

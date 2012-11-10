@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class ParticleSystem extends Object3D {
   Geometry geometry;

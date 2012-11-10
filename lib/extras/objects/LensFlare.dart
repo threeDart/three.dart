@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class LensFlare extends Object3D {
 	List lensFlares;

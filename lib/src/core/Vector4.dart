@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 /**
  * @author supereggbert / http://www.paulbrunt.co.uk/

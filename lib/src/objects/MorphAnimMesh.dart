@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class MorphAnimMesh extends Mesh {
   num duration;

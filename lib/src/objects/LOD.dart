@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class LOD extends Object3D {
   List LODs;

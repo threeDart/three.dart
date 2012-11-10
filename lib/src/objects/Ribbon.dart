@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class Ribbon extends Object3D {
   Geometry geometry;

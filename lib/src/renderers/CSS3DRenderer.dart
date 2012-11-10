@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class CSS3DObject extends Object3D {
 

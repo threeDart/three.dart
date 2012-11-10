@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class CircleGeometry extends Geometry {
   num radius, segments, thetaStart, thetaLength;

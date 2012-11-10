@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class ImmediateRenderObject extends Object3D {
 	render(renderCallback) {}

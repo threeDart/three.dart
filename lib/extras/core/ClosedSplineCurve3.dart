@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class ClosedSplineCurve3 extends Curve3D {
 

@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class Sprite extends Object3D {
   Color color;

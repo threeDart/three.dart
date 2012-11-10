@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 abstract class IFace3 {
   num a, b, c;

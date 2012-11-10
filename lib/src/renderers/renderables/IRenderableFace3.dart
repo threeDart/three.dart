@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 abstract class IRenderableFace3 extends IRenderableObj {
   RenderableVertex v1;

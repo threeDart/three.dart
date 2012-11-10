@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class QuadraticBezierCurve3 extends Curve3D {
   Vector3 v0, v1, v2;

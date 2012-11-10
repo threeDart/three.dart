@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class TorusGeometry extends Geometry {
   num radius, tube, segmentsR, segmentsT, arc;

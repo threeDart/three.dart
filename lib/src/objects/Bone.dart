@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class Bone extends Object3D {
 

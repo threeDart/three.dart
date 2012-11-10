@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class LineCurve extends Curve2D {
 

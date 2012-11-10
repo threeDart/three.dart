@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 /**
  * @author WestLangley / https://github.com/WestLangley

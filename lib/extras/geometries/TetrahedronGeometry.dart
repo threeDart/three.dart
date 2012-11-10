@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class TetrahedronGeometry extends PolyhedronGeometry {
   factory TetrahedronGeometry( radius, detail ) {

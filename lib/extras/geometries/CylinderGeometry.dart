@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class CylinderGeometry extends Geometry {
   num radiusTop, radiusBottom, height, segmentsRadius, segmentsHeight, openEnded;

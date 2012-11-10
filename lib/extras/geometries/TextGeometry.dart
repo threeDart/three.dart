@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 class TextGeometry extends ExtrudeGeometry {
   factory TextGeometry( text, [ height = 50, // height <=> amount,

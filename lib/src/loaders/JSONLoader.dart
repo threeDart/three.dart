@@ -1,4 +1,4 @@
-part of ThreeD;
+part of three;
 
 /**
  * @author mrdoob / http://mrdoob.com/
