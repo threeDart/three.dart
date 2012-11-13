@@ -9,7 +9,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class ImageList implements List<ImageElement> {
+class ImageList {
   int loadCount;
   List<ImageElement> _images;
   Map<String,dynamic> props;
