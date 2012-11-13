@@ -6,22 +6,22 @@ import 'package:three/three.dart' as THREE;
 var lib = {
     "normal": "",
     'cube': new THREE.ShaderMaterial(
-    
-      uniforms: { 
+
+      uniforms: {
         "tCube": new THREE.Uniform(type: "t", value: null ),
         "tFlip": new THREE.Uniform(type: "f", value: -1 )
         },
-      
-      vertexShader: 
+
+      vertexShader:
          '''varying vec3 vViewPosition;
             void main() {
               vec4 mPosition = modelMatrix * vec4( position, 1.0 );
               vViewPosition = cameraPosition - mPosition.xyz;
               gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
             }''',
-      
-      
-      fragmentShader: 
+
+
+      fragmentShader:
          '''uniform samplerCube tCube;
             uniform float tFlip;
             varying vec3 vViewPosition;
@@ -30,6 +30,6 @@ var lib = {
               gl_FragColor = textureCube( tCube, vec3( tFlip * wPos.x, wPos.yz ) );
             }'''
           )
-    
+
 };
 

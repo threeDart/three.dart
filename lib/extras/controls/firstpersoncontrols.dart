@@ -5,7 +5,7 @@
   *
   * Ported to Dart from JS by:
   * @author jessevogt / http://jvogt.net/
-  * 
+  *
   * based on rev 04b652ae26e228796f67838c0ec4d555e8b16528
   */
 library FirstPersonControls;
@@ -64,11 +64,11 @@ class FirstPersonControls {
 
   FirstPersonControls(this.object, [Element domElement]) {
     this.domElement = (?domElement) ? domElement : document;
-    
+
     if ( this.domElement !== document ) {
       this.domElement.attributes["tabindex"] = -1;
     }
-    
+
     this.domElement.on.contextMenu.add((event) => event.preventDefault(), false);
 
     this.domElement.on.mouseMove.add(this.onMouseMove, false);
@@ -76,7 +76,7 @@ class FirstPersonControls {
     this.domElement.on.mouseUp.add(this.onMouseUp, false);
     this.domElement.on.keyDown.add(this.onKeyDown, false);
     this.domElement.on.keyUp.add(this.onKeyUp, false);
-    
+
     this.handleResize();
   }
 

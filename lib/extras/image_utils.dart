@@ -87,7 +87,7 @@ Texture loadTextureCube ( array, [mapping = null, onLoad ]) {
 	texture.flipY = false;
 
 	images.loadCount = 0;
-	
+
 	for ( i = 0; i < l; ++ i ) {
 
 		images[ i ] = new ImageElement();

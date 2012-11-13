@@ -13,14 +13,14 @@ class ImageList {
   int loadCount;
   List<ImageElement> _images;
   Map<String,dynamic> props;
-  
+
   ImageList(size): props = {},_images = new List<ImageElement>(size);
-  
+
   ImageElement operator [](int index) => _images[index];
   void operator []=(int index, ImageElement img) { _images[index] = img; }
   int get length => _images.length;
   List<ImageElement> getRange(int start, int length) => _images.getRange(start, length);
-  
+
 }
 
 class Texture {

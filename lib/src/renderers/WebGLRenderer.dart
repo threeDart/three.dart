@@ -6445,7 +6445,7 @@ class WebGLRenderer implements Renderer {
 	}
 
 	setCubeTexture ( Texture texture, slot ) {
-    
+
 		if ( texture.image.length == 6 ) {
 		  if(texture.image is ImageList){
 		    texture.image = new WebGLImageList(texture.image);
@@ -6882,7 +6882,7 @@ class WebGLRenderer implements Renderer {
 		}
 		_glExtensionTextureFloat = _gl.getExtension( 'OES_texture_float' );
 		_glExtensionStandardDerivatives = _gl.getExtension( 'OES_standard_derivatives' );
-		
+
 		_glExtensionTextureFilterAnisotropic = _gl.getExtension( 'EXT_texture_filter_anisotropic' );
 		if (_glExtensionTextureFilterAnisotropic == null) {
 		  _glExtensionTextureFilterAnisotropic = _gl.getExtension( 'MOZ_EXT_texture_filter_anisotropic' );
@@ -7315,9 +7315,9 @@ class WebGLCamera { // implements Camera {
 class WebGLImageList { // implements ImageList
   ImageList _imageList;
   var webglTextureCube;
-  
+
   WebGLImageList._internal(ImageList imageList) : _imageList = imageList;
-  
+
   factory WebGLImageList(ImageList imageList) {
     if (imageList.props["__webglImageList"] == null) {
       var __webglImageList = new WebGLImageList._internal(imageList);
@@ -7325,11 +7325,11 @@ class WebGLImageList { // implements ImageList
     }
 
     return imageList.props["__webglImageList"];
-  
+
   }
-  
+
   ImageElement operator [](int index) => _imageList[index];
   void operator []=(int index, ImageElement img) { _imageList[index] = img; }
   int get length => _imageList.length;
-  
+
 }
