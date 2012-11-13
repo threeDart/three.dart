@@ -75,27 +75,27 @@ Texture loadCompressedTexture( url, [mapping, onLoad, onError] ) {
 
 }
 
-Texture loadTextureCube ( array, mapping, onLoad ) {
+
+Texture loadTextureCube ( array, [mapping = null, onLoad ]) {
 
 	var i, l;
-	List<ImageElement> images = [];
-
-	var texture = new Texture( images, mapping );
+	l = array.length;
+	ImageList images = new ImageList(l);
+	var texture = new Texture( images );
+	mapping = (mapping == null)? texture.mapping:mapping;
 
 	texture.flipY = false;
 
-	// TODO - List does not have loadCount
-	(images as dynamic).loadCount = 0;
-
-	l = array.length;
+	images.loadCount = 0;
+	
 	for ( i = 0; i < l; ++ i ) {
 
 		images[ i ] = new ImageElement();
 		images[ i ].on.load.add((_) {
 
-		  (images as dynamic).loadCount += 1;
+		  images.loadCount += 1;
 
-			if ( (images as dynamic).loadCount == 6 ) {
+			if ( images.loadCount == 6 ) {
 
 				texture.needsUpdate = true;
 				if ( onLoad != null ) onLoad();

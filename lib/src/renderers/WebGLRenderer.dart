@@ -4652,6 +4652,7 @@ class WebGLRenderer implements Renderer {
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
 			if ( objlist[ o ].object == object ) {
+
 				objlist.removeRange( o, 1 );
 
 			}
@@ -5125,7 +5126,7 @@ class WebGLRenderer implements Renderer {
 
 		uniforms["refractionRatio"].value = material.refractionRatio;
 		uniforms["combine"].value = material.combine;
-		uniforms["useRefract"].value = (material.envMap != null) && (material.envMap.mapping is CubeRefractionMapping);
+		uniforms["useRefract"].value = ((material.envMap != null) && (material.envMap.mapping is CubeRefractionMapping))? 1:0;
 
 	}
 
@@ -5432,7 +5433,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( texture == null ) continue;
 
-				if ( texture.image is List && texture.image.length == 6 ) {
+				if ( (texture.image is ImageList || texture.image is WebGLImageList) && texture.image.length == 6 ) {
 
 					setCubeTexture( texture, value );
 
@@ -5917,7 +5918,7 @@ class WebGLRenderer implements Renderer {
 					int maxShadows: 0,
 					int maxBones: 0,
 					Texture map: null,
-					bool envMap: false,
+					Texture envMap: null,
 					bool lightMap: false,
 					bool bumpMap: false,
 					bool specularMap: false,
@@ -6444,23 +6445,25 @@ class WebGLRenderer implements Renderer {
 	}
 
 	setCubeTexture ( Texture texture, slot ) {
-
+    
 		if ( texture.image.length == 6 ) {
-
+		  if(texture.image is ImageList){
+		    texture.image = new WebGLImageList(texture.image);
+		  }
 			if ( texture.needsUpdate ) {
 
-				if ( ! texture.image["__webglTextureCube"] ) {
+				if ( texture.image.webglTextureCube == null ) {
 
-					texture.image["__webglTextureCube"] = _gl.createTexture();
+					texture.image.webglTextureCube = _gl.createTexture();
 
 				}
 
 				_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image["__webglTextureCube"] );
+				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image.webglTextureCube);
 
 				_gl.pixelStorei( WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
 
-				var cubeImage = [];
+				var cubeImage = new List(6);
 
 				for ( var i = 0; i < 6; i ++ ) {
 
@@ -6497,12 +6500,12 @@ class WebGLRenderer implements Renderer {
 
 				texture.needsUpdate = false;
 
-				if ( texture.onUpdate ) texture.onUpdate();
+				if ( texture.onUpdate != null) texture.onUpdate();
 
 			} else {
 
 				_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image["__webglTextureCube"] );
+				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image.webglTextureCube );
 
 			}
 
@@ -7307,4 +7310,26 @@ class WebGLCamera { // implements Camera {
   get projectionMatrix => _camera.projectionMatrix;
 
   void updateMatrixWorld( [bool force=false] ) => _camera.updateMatrixWorld();
+}
+
+class WebGLImageList { // implements ImageList
+  ImageList _imageList;
+  var webglTextureCube;
+  
+  WebGLImageList._internal(ImageList imageList) : _imageList = imageList;
+  
+  factory WebGLImageList(ImageList imageList) {
+    if (imageList.props["__webglImageList"] == null) {
+      var __webglImageList = new WebGLImageList._internal(imageList);
+      imageList.props["__webglImageList"] = __webglImageList;
+    }
+
+    return imageList.props["__webglImageList"];
+  
+  }
+  
+  ImageElement operator [](int index) => _imageList[index];
+  void operator []=(int index, ImageElement img) { _imageList[index] = img; }
+  int get length => _imageList.length;
+  
 }
