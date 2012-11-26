@@ -4329,7 +4329,7 @@ class WebGLRenderer implements Renderer {
     WebGLGeometry geometry = webglobject.webglgeometry;
 
 		if (  !webglobject.__webglInit ) {
-
+		  
 		  webglobject.__webglInit = true;
 
 		  webglobject._modelViewMatrix = new Matrix4();
@@ -4413,10 +4413,10 @@ class WebGLRenderer implements Renderer {
 				}
 
 			}
-
+			webglobject.__webglActive = false;
 		}
 
-		if ( webglobject.__webglActive == null) {
+		if (!webglobject.__webglActive) {
 
 			if ( object is Mesh ) {
 
