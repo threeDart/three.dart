@@ -117,9 +117,9 @@ class WebGLRenderer implements Renderer {
   bool _lightsNeedUpdate;
 
   // GL Extensions
-  OESTextureFloat _glExtensionTextureFloat;
-  OESStandardDerivatives _glExtensionStandardDerivatives;
-	EXTTextureFilterAnisotropic _glExtensionTextureFilterAnisotropic;
+  OesTextureFloat _glExtensionTextureFloat;
+  OesStandardDerivatives _glExtensionStandardDerivatives;
+	ExtTextureFilterAnisotropic _glExtensionTextureFilterAnisotropic;
 
   var maxAnisotropy;
 
@@ -267,7 +267,7 @@ class WebGLRenderer implements Renderer {
 	  maxTextureSize = _gl.getParameter( WebGLRenderingContext.MAX_TEXTURE_SIZE );
 	  maxCubemapSize = _gl.getParameter( WebGLRenderingContext.MAX_CUBE_MAP_TEXTURE_SIZE );
 
-  	maxAnisotropy = (_glExtensionTextureFilterAnisotropic != null) ? _gl.getParameter( EXTTextureFilterAnisotropic.MAX_TEXTURE_MAX_ANISOTROPY_EXT ) : 0;
+  	maxAnisotropy = (_glExtensionTextureFilterAnisotropic != null) ? _gl.getParameter( ExtTextureFilterAnisotropic.MAX_TEXTURE_MAX_ANISOTROPY_EXT ) : 0;
 
   	supportsVertexTextures = ( maxVertexTextures > 0 );
   	supportsBoneTextures = supportsVertexTextures && (_glExtensionTextureFloat != null);
@@ -6351,7 +6351,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( texture.anisotropy > 1 || ( texture["__oldAnisotropy"] != null) ) {
 
-				_gl.texParameterf( textureType, EXTTextureFilterAnisotropic.TEXTURE_MAX_ANISOTROPY_EXT, Math.min( texture.anisotropy, maxAnisotropy ) );
+				_gl.texParameterf( textureType, ExtTextureFilterAnisotropic.TEXTURE_MAX_ANISOTROPY_EXT, Math.min( texture.anisotropy, maxAnisotropy ) );
 				texture["__oldAnisotropy"] = texture.anisotropy;
 
 			}
