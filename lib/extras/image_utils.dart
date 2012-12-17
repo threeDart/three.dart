@@ -13,7 +13,7 @@ Texture loadTexture ( url, {mapping, onLoad, onError} ) {
 
 	var loader = new ImageLoader();
 
-	loader.addEventListener( 'load', function ( event ) {
+	loader.addEventListener( 'load',  ( event ) {
 
 		texture.image = event.content;
 		texture.needsUpdate = true;
@@ -22,7 +22,7 @@ Texture loadTexture ( url, {mapping, onLoad, onError} ) {
 
 	} );
 
-	loader.addEventListener( 'error', function ( event ) {
+	loader.addEventListener( 'error',  ( event ) {
 
 		if ( onError != null ) onError( event.message );
 

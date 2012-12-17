@@ -65,8 +65,8 @@ class FirstPersonControls {
   FirstPersonControls(this.object, [Element domElement]) {
     this.domElement = (?domElement) ? domElement : document;
 
-    if ( this.domElement !== document ) {
-      this.domElement.attributes["tabindex"] = -1;
+    if ( this.domElement != document ) {
+      this.domElement.tabIndex = -1;
     }
 
     this.domElement.on.contextMenu.add((event) => event.preventDefault(), false);
@@ -81,7 +81,7 @@ class FirstPersonControls {
   }
 
    void handleResize() {
-    if ( this.domElement === document ) {
+    if ( this.domElement == document ) {
       this.viewHalfX = window.innerWidth / 2;
       this.viewHalfY = window.innerHeight / 2;
     } else {
@@ -92,7 +92,7 @@ class FirstPersonControls {
 
   void onMouseDown(event) {
 
-    if ( this.domElement !== document ) {
+    if ( this.domElement != document ) {
       this.domElement.focus();
     }
 
@@ -123,7 +123,7 @@ class FirstPersonControls {
   }
 
   void onMouseMove(event) {
-    if ( this.domElement === document ) {
+    if ( this.domElement == document ) {
       this.mouseX = event.pageX - this.viewHalfX;
       this.mouseY = event.pageY - this.viewHalfY;
     } else {

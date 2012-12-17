@@ -34,16 +34,16 @@ class Loader {
   static addStatusElement() {
     var e = new Element.tag('div');
     e.style
-      ..position("absolute")
-      ..right("0px")
-      ..top("0px")
-      ..fontSize("0.8em")
-      ..textAlign("left")
-      ..background("rgba(0,0,0,0.25)")
-      ..color("#fff")
-      ..width("120px")
-      ..padding("0.5em 0.5em 0.5em 0.5em")
-      ..zIndex(1000);
+      ..position = "absolute"
+      ..right = "0px"
+      ..top = "0px"
+      ..fontSize = "0.8em"
+      ..textAlign = "left"
+      ..background = "rgba(0,0,0,0.25)"
+      ..color = "#fff"
+      ..width = "120px"
+      ..padding = "0.5em 0.5em 0.5em 0.5em"
+      ..zIndex = "1000";
 
     e.innerHTML = "Loading ...";
 

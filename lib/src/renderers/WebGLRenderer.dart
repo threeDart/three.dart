@@ -1049,7 +1049,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			sortArray.sort( function( a, b ) { return b[ 0 ] - a[ 0 ]; } );
+			sortArray.sort( ( a, b ) { return b[ 0 ] - a[ 0 ]; } );
 
 			for ( v = 0; v < vl; v ++ ) {
 
@@ -4124,7 +4124,7 @@ class WebGLRenderer implements Renderer {
 
 		} else {
 
-			object.render( function( object ) { renderBufferImmediate( object, program, material ); } );
+			object.render( ( object ) { renderBufferImmediate( object, program, material ); } );
 
 		}
 
@@ -4329,7 +4329,7 @@ class WebGLRenderer implements Renderer {
     WebGLGeometry geometry = webglobject.webglgeometry;
 
 		if (  !webglobject.__webglInit ) {
-		  
+
 		  webglobject.__webglInit = true;
 
 		  webglobject._modelViewMatrix = new Matrix4();

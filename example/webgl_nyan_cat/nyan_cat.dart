@@ -23,8 +23,8 @@ class NyanCat {
     song = new AudioElement();
     song2 = new AudioElement();
 
-    document.body.elements.add(song);
-    document.body.elements.add(song2);
+    document.body.children.add(song);
+    document.body.children.add(song2);
 
     song.src = "nyanlooped.mp3";
     song2.src = "nyanslow.mp3";
@@ -43,7 +43,7 @@ class NyanCat {
 
   init(){
     container = new DivElement();
-    document.body.elements.add(container);
+    document.body.children.add(container);
 
     camera = new PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 10000 );
     camera.position.z = 30;

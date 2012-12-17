@@ -43,9 +43,9 @@ init() {
     var element = new Element.tag( 'div' )
     ..classes.add('element')
     ..style.backgroundColor = 'rgba(0,127,127,${( new Math.Random().nextDouble() * 0.5 + 0.25 ) })'
-    ..elements.add( number )
-    ..elements.add( symbol )
-    ..elements.add( details );
+    ..children.add( number )
+    ..children.add( symbol )
+    ..children.add( details );
 
     var object = new THREE.CSS3DObject( element )
     ..position.x = new Math.Random().nextInt(4000) - 2000
@@ -142,7 +142,7 @@ init() {
   ..setSize( window.innerWidth, window.innerHeight )
   ..domElement.style.position = 'absolute'
   ..domElement.style.top = "0";
-  document.query( '#container' ).elements.add( renderer.domElement );
+  document.query( '#container' ).children.add( renderer.domElement );
 
   //
 

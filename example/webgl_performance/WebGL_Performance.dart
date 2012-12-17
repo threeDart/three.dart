@@ -67,7 +67,7 @@ class WebGL_Performance  {
 
     renderer = new WebGLRenderer( clearColorHex: 0xffffff );
     renderer.setSize( window.innerWidth, window.innerHeight );
-    container.elements.add( renderer.domElement );
+    container.children.add( renderer.domElement );
 
     /*
     stats = new Stats();

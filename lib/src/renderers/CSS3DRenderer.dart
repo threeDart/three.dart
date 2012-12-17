@@ -30,7 +30,7 @@ class CSS3DRenderer implements Renderer {
     cameraElement = new Element.tag( 'div' )
     ..style.transformStyle = 'preserve-3d';
 
-    domElement.elements.add( cameraElement );
+    domElement.children.add( cameraElement );
   }
 
   setSize( num width, num height ) {
@@ -129,7 +129,7 @@ class CSS3DRenderer implements Renderer {
         element.style.transform = style;
 
         if ( element.parent != cameraElement ) {
-          cameraElement.elements.add( element );
+          cameraElement.children.add( element );
         }
       }
     }

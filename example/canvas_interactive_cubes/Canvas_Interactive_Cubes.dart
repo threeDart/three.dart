@@ -109,7 +109,7 @@ class Canvas_Interactive_Cubes
 
     document.on.mouseDown.add(onDocumentMouseDown, false);
 
-    window.setInterval(f() => animate(), 10);
+    window.setInterval(() => animate(), 10);
   }
 
   void onDocumentMouseDown( event )

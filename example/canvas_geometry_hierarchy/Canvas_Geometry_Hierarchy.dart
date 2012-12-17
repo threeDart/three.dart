@@ -93,7 +93,7 @@ class Canvas_Geometry_Hierarchy
 //    stats.domElement.style.zIndex = 100;
 //    container.appendChild( stats.domElement );
 
-    window.setInterval(f() => animate(), 10);
+    window.setInterval(() => animate(), 10);
   }
 
   void onDocumentMouseMove(event)

@@ -77,7 +77,7 @@ class Canvas_Lines {
     document.on.touchStart.add(onDocumentTouchStart);
     document.on.touchMove.add(onDocumentTouchMove);
 
-    window.setInterval(f() => animate(), 10);
+    window.setInterval(() => animate(), 10);
   }
 
   onDocumentMouseMove(MouseEvent event) {
