@@ -24,7 +24,7 @@ class JSONLoader extends Loader {
     _loadAjaxJSON(url, callback, texturePath );
   }
 
-  _loadAjaxJSON(String url, LoadedCallback callback, String texturePath, [LoadProgressCallback callbackProgress = null] ) {
+  _loadAjaxJSON(String url, LoadedCallback callback, String texturePath, {LoadProgressCallback callbackProgress: null} ) {
 
     HttpRequest xhr = new HttpRequest();
 

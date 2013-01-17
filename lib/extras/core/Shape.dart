@@ -50,11 +50,11 @@ class Shape extends Path {
   getPointsHoles( divisions ) {
 
   	var i, il = holes.length;
-  	var holesPts = new List(il);
+  	var holesPts = new List.fixedLength(il);
 
   	for ( i = 0; i < il; i ++ ) {
 
-  		holesPts[ i ] = holes[ i ].getTransformedPoints( divisions, _bends );
+  		holesPts[ i ] = holes[ i ].getTransformedPoints( divisions, bends: _bends );
 
   	}
 
@@ -66,7 +66,7 @@ class Shape extends Path {
   getSpacedPointsHoles ( divisions ) {
 
   	var i, il = holes.length;
-  	var holesPts = new List(il);
+  	var holesPts = new List.fixedLength(il);
 
   	for ( i = 0; i < il; i ++ ) {
 
@@ -91,7 +91,7 @@ class Shape extends Path {
 
   }
 
-  extractPoints( [num divisions] ) {
+  extractPoints( {num divisions} ) {
 
   	if (useSpacedPoints) {
   		return extractAllSpacedPoints(divisions);

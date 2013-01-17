@@ -2,7 +2,7 @@ library three;
 
 import 'dart:html';
 import 'dart:math' as Math;
-import 'dart:json';
+import 'dart:json' as JSON;
 
 import 'src/core/ThreeMath.dart' as ThreeMath;
 

@@ -3767,7 +3767,7 @@ class WebGLRenderer implements Renderer {
 	// Rendering
 	render ( Scene scene, Camera camera) => _render( scene, camera);
 
-	_render ( Scene scene, Camera c, [renderTarget = null, forceClear = false] ) {
+	_render ( Scene scene, Camera c, {renderTarget: null, forceClear: false} ) {
 
 		var i, il;
 
@@ -6463,7 +6463,7 @@ class WebGLRenderer implements Renderer {
 
 				_gl.pixelStorei( WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
 
-				var cubeImage = new List(6);
+				var cubeImage = new List.fixedLength(6);
 
 				for ( var i = 0; i < 6; i ++ ) {
 
@@ -7008,11 +7008,11 @@ class WebGLObject {
 
 	WebGLObject._internal(this.object, this.opaque, this.transparent, this.buffer, this.render, this.z) ;
 
-	factory WebGLObject(Object3D object, [WebGLMaterial opaque,
+	factory WebGLObject(Object3D object, {WebGLMaterial opaque,
 	                                      WebGLMaterial transparent,
 	                                      WebGLGeometry buffer,
-	                                      bool render = true,
-	                                      num z = 0]) {
+	                                      bool render: true,
+	                                      num z: 0}) {
 	  if (object["__webglObject"] == null) {
       var webglObject = new WebGLObject._internal(object, opaque, transparent, buffer, render, z );
       object["__webglObject"] = webglObject;
@@ -7311,7 +7311,7 @@ class WebGLCamera { // implements Camera {
   get matrixWorldInverse => _camera.matrixWorldInverse;
   get projectionMatrix => _camera.projectionMatrix;
 
-  void updateMatrixWorld( [bool force=false] ) => _camera.updateMatrixWorld();
+  void updateMatrixWorld( {bool force: false} ) => _camera.updateMatrixWorld();
 }
 
 class WebGLImageList { // implements ImageList

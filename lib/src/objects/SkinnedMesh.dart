@@ -106,7 +106,7 @@ class SkinnedMesh extends Mesh {
     }
 	}
 
-	addBone( [Bone bone] ) {
+	addBone( {Bone bone} ) {
 
 	  if ( bone == null ) {
 	    bone = new Bone( this );
@@ -118,7 +118,7 @@ class SkinnedMesh extends Mesh {
 
 	}
 
-	updateMatrixWorld([force = false]) {
+	updateMatrixWorld({force: false}) {
 
 	  if(matrixAutoUpdate) updateMatrix();
 
@@ -176,7 +176,7 @@ class SkinnedMesh extends Mesh {
 
 	pose() {
 
-	  updateMatrixWorld( true );
+	  updateMatrixWorld( force: true );
 
 	  var bim, bone;
 
