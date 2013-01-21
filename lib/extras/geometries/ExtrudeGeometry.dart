@@ -229,7 +229,7 @@ class ExtrudeGeometry extends Geometry {
 
   addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments, bevelEnabled,
             curveSegments, steps, bendPath, extrudePath, TubeGeometry frames, material, extrudeMaterial,
-            [ExtrudeGeometryWorldUVGenerator UVGenerator ]) {
+            {ExtrudeGeometryWorldUVGenerator UVGenerator }) {
 
 
     var extrudePts, extrudeByPath = false;
@@ -365,7 +365,7 @@ class ExtrudeGeometry extends Geometry {
 
 
 
-    var contourMovements = new List(contour.length);
+    var contourMovements = new List.fixedLength(contour.length);
 
     num i = 0,
         il = contour.length,
@@ -395,7 +395,7 @@ class ExtrudeGeometry extends Geometry {
 
       ahole = holes[ h ];
 
-      oneHoleMovements = new List(ahole.length);
+      oneHoleMovements = new List.fixedLength(ahole.length);
 
       i = 0;
       il = ahole.length;

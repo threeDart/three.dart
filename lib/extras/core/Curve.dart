@@ -66,7 +66,7 @@ abstract class Curve<V extends IVector2> {
 	num get length => getLengths().last;
 
 	// Get list of cumulative segment lengths
-	List getLengths( [num divisions = null] ) {
+	List getLengths( {num divisions: null} ) {
 
 		if (divisions == null) divisions = (_arcLengthDivisions != null) ? (_arcLengthDivisions): 200;
 
@@ -118,7 +118,7 @@ abstract class Curve<V extends IVector2> {
 	}
 
 	// Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equi distance
-	getUtoTmapping( u, [distance = null] ) {
+	getUtoTmapping( u, {distance: null} ) {
 
 		var arcLengths = getLengths();
 

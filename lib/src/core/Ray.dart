@@ -64,7 +64,7 @@ class Ray {
     return ( u >= 0 ) && ( v >= 0 ) && ( u + v < 1 );
   }
 
-  List<Intersect> intersectObject( Object3D object, [bool recursive = false] ) {
+  List<Intersect> intersectObject( Object3D object, {bool recursive: false} ) {
     Vector3 a = new Vector3();
     Vector3 b = new Vector3();
     Vector3 c = new Vector3();

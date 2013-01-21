@@ -223,7 +223,7 @@ class CurvePath extends Curve {
 
 	addWrapPath( bendpath ) => _bends.add( bendpath );
 
-	getTransformedPoints( segments, [List bends = null] ) {
+	getTransformedPoints( segments, {List bends: null} ) {
 
 		var oldPts = this.getPoints( segments ); // getPoints getSpacedPoints
 		var i, il;

@@ -33,7 +33,7 @@ add( tween ) => _tweens.add( tween );
 
 remove( tween ) => _tweens.removeAt(_tweens.indexOf(tween));
 
-update( [num time] ) {
+update( {num time} ) {
 
   if ( _tweens.isEmpty ) { return false; }
 
@@ -101,7 +101,7 @@ class Tween {
     }
   }
 
-  start( [num time] ) {
+  start( {num time} ) {
 
     add( this );
 

@@ -22,10 +22,10 @@ clone( Geometry geometry ) {
     }
 
     // vertices
-    cloneGeo.vertices = vertices.map((vertex) => vertex.clone());
+    cloneGeo.vertices = vertices.mappedBy((vertex) => vertex.clone()).toList();
 
     // faces
-    cloneGeo.faces = faces.map((face) => face.clone());
+    cloneGeo.faces = faces.mappedBy((face) => face.clone()).toList();
 
     // uvs
     il = uvs.length;
