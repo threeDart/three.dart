@@ -7241,8 +7241,10 @@ class WebGLMaterial { // implements Material {
   get specularMap => _hasSpecularMap ? (_material as dynamic).specularMap : null;
 
   get wireframe => !isLineBasicMaterial && !isParticleBasicMaterial && (_material as dynamic).wireframe;
-  get wireframeLinewidth => (isLineBasicMaterial) ? (_material as dynamic).wireframeLinewidth : null;
-
+  get wireframeLinewidth => (wireframe) ? (_material as dynamic).wireframeLinewidth : null;
+  get wireframeLinecap => (wireframe) ? (_material as dynamic).wireframeLinecap : null;
+  get wireframeLinejoin => (wireframe) ? (_material as dynamic).wireframeLinejoin : null;
+  
   get linewidth => (isLineBasicMaterial) ? (_material as dynamic).linewidth : null;
   get reflectivity => (_material as dynamic).reflectivity;
   get refractionRatio => (_material as dynamic).refractionRatio;
