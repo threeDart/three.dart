@@ -10,13 +10,13 @@ class ImageLoader extends EventEmitter {
 
 		if ( image == null ) image = new ImageElement();
 
-		image.on.load.add((_) {
+		image.onLoad.listen((_) {
 			dispatchEvent( new EventEmitterEvent(type: 'load', content: image) );
-		}, false );
+		});
 
-		image.on.error.add( (_) {
+		image.onError.listen( (_) {
 			dispatchEvent( new EventEmitterEvent(type: 'error', message: "Couldn\'t load URL [$url]" ) );
-		}, false );
+		});
 
 		if ( crossOrigin != null ) image.crossOrigin = crossOrigin;
 

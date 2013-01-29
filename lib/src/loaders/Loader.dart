@@ -45,7 +45,7 @@ class Loader {
       ..padding = "0.5em 0.5em 0.5em 0.5em"
       ..zIndex = "1000";
 
-    e.innerHTML = "Loading ...";
+    e.innerHtml = "Loading ...";
 
     return e;
   }
@@ -65,7 +65,7 @@ class Loader {
 
     }
 
-    statusDomElement.innerHTML = message;
+    statusDomElement.innerHtml = message;
 
   }
 
@@ -115,7 +115,7 @@ class Loader {
 
     var image = new ImageElement();
 
-    image.on.load.add((Event evt) {
+    image.onLoad.listen((Event evt) {
 
       if ( !_is_pow2( image.width ) || !_is_pow2( image.height ) ) {
 
