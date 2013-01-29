@@ -371,9 +371,7 @@ class JSONLoader extends Loader {
       l = json["morphTargets"].length;
       for ( i = 0; i < l; i ++ ) {
 
-        geometry.morphTargets[ i ] = {};
-        geometry.morphTargets[ i ].name = json["morphTargets"][ i ]["name"];
-        geometry.morphTargets[ i ].vertices = [];
+        geometry.morphTargets[ i ] = new MorphTarget(name: json["morphTargets"][ i ]["name"], vertices: []);
 
         dstVertices = geometry.morphTargets[ i ].vertices;
         srcVertices = json["morphTargets"][ i ]["vertices"];

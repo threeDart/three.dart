@@ -11,7 +11,7 @@ class WebGL_MorphTargets  {
   num windowHalfX = window.innerWidth / 2,
       windowHalfY = window.innerHeight / 2;
   num mouseX = 0, mouseY = 0;
-  
+
   void run() {
     init();
     animate(0);
@@ -24,7 +24,7 @@ class WebGL_MorphTargets  {
       var n = idx++;
       input.onChange.listen((_) => mesh.morphTargetInfluences[ n ] = input.valueAsNumber / 100 );
     });
-    
+
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
@@ -32,11 +32,11 @@ class WebGL_MorphTargets  {
     camera.position.z = 500;
 
     scene = new Scene();
-    
+
     var light = new PointLight( 0xff2200 );
     light.position.setValues( 100, 100, 100 );
     scene.add( light );
-    
+
     scene.add( new AmbientLight( 0x111111 ) );
 
     var geometry = new CubeGeometry( 100, 100, 100 );
@@ -68,7 +68,7 @@ class WebGL_MorphTargets  {
     mesh = new Mesh( geometry, material );
 
     scene.add( mesh );
-    
+
 
     renderer = new WebGLRenderer(clearColorHex: 0x222222, clearAlpha: 1);
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -78,14 +78,14 @@ class WebGL_MorphTargets  {
 
     window.onResize.listen(onWindowResize);
     document.onMouseMove.listen(onDocumentMouseMove);
-    
+
   }
 
   onWindowResize(event) {
 
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -96,7 +96,7 @@ class WebGL_MorphTargets  {
     mouseX = ( event.clientX - windowHalfX );
     mouseY = ( event.clientY - windowHalfY ) * 2;
   }
-  
+
   animate(num time) {
     window.requestAnimationFrame( animate );
     render();
@@ -107,9 +107,9 @@ class WebGL_MorphTargets  {
     mesh.rotation.y += 0.01;
 
     camera.position.y += ( - mouseY - camera.position.y ) * .01;
-    
+
     camera.lookAt( scene.position );
-    
+
     renderer.render( scene, camera );
   }
 
