@@ -69,13 +69,13 @@ class FirstPersonControls {
       this.domElement.tabIndex = -1;
     }
 
-    this.domElement.on.contextMenu.add((event) => event.preventDefault(), false);
+    this.domElement.onContextMenu.listen((event) => event.preventDefault());
 
-    this.domElement.on.mouseMove.add(this.onMouseMove, false);
-    this.domElement.on.mouseDown.add(this.onMouseDown, false);
-    this.domElement.on.mouseUp.add(this.onMouseUp, false);
-    this.domElement.on.keyDown.add(this.onKeyDown, false);
-    this.domElement.on.keyUp.add(this.onKeyUp, false);
+    this.domElement.onMouseMove.listen(this.onMouseMove);
+    this.domElement.onMouseDown.listen(this.onMouseDown);
+    this.domElement.onMouseUp.listen(this.onMouseUp);
+    this.domElement.onKeyDown.listen(this.onKeyDown);
+    this.domElement.onKeyUp.listen(this.onKeyUp);
 
     this.handleResize();
   }
