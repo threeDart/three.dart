@@ -9,6 +9,7 @@
 library TrackballControls;
 
 import "dart:html";
+import "dart:async";
 import "dart:math" as Math;
 import "package:three/three.dart";
 
@@ -49,6 +50,10 @@ class TrackballControls extends EventEmitter {
   Vector2 _zoomStart, _zoomEnd;
   Vector2 _panStart, _panEnd;
   Vector3 lastPosition;
+
+  StreamSubscription<MouseEvent> mouseMoveStream;
+  StreamSubscription<MouseEvent> mouseUpStream;
+  StreamSubscription<KeyboardEvent> keydownStream;
 
   EventEmitterEvent changeEvent;
 
@@ -101,19 +106,19 @@ class TrackballControls extends EventEmitter {
 
     changeEvent = new EventEmitterEvent(type: 'change');
 
-    domElement.on
-    ..contextMenu.add(( event ) => event.preventDefault())
-    ..mouseDown.add(mousedown)
-    ..mouseWheel.add(mousewheel)
-    ..touchStart.add(touchstart)
-    ..touchEnd.add(touchstart)
-    ..touchMove.add(touchmove);
+    domElement
+    ..onContextMenu.listen(( event ) => event.preventDefault())
+    ..onMouseDown.listen(mousedown)
+    ..onMouseWheel.listen(mousewheel)
+    ..onTouchStart.listen(touchstart)
+    ..onTouchEnd.listen(touchstart)
+    ..onTouchMove.listen(touchmove);
 
     //this.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
 
-    window.on
-    ..keyDown.add(keydown)
-    ..keyUp.add(keyup);
+    keydownStream = window.onKeyDown.listen(keydown);
+    window.onKeyUp.listen(keyup);
+
 
     handleResize();
   }
@@ -311,7 +316,7 @@ class TrackballControls extends EventEmitter {
 
       if ( !enabled ) return;
 
-      window.on.keyDown.remove( keydown );
+      keydownStream.cancel();
 
       _prevState = _state;
 
@@ -341,7 +346,7 @@ class TrackballControls extends EventEmitter {
 
       _state = _prevState;
 
-      window.on.keyDown.add( keydown, false );
+      keydownStream = window.onKeyDown.listen( keydown );
 
     }
 
@@ -374,8 +379,8 @@ class TrackballControls extends EventEmitter {
 
       }
 
-      document.on.mouseMove.add( mousemove, false );
-      document.on.mouseUp.add( mouseup, false );
+      mouseMoveStream = document.onMouseMove.listen( mousemove );
+      mouseUpStream = document.onMouseUp.listen( mouseup );
 
     }
 
@@ -408,8 +413,8 @@ class TrackballControls extends EventEmitter {
 
       _state = STATE.NONE;
 
-      document.on.mouseMove.remove( mousemove );
-      document.on.mouseUp.remove( mouseup );
+      mouseMoveStream.cancel();
+      mouseUpStream.cancel();
 
     }
 
