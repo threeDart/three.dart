@@ -30,6 +30,7 @@ part 'src/core/Color.dart';
 part 'src/core/Face3.dart';
 part 'src/core/Face4.dart';
 part 'src/core/Frustum.dart';
+part 'src/core/MorphTarget.dart';
 part 'src/core/Geometry.dart';
 part 'src/core/Vertex.dart';
 part 'src/core/Projector.dart';

@@ -3440,7 +3440,7 @@ class WebGLRenderer implements Renderer {
 
 		// vertices
 
-		if ( !material.morphTargets && attributes["position"] >= 0 ) {
+		if ( (material.morphTargets == null) && attributes["position"] >= 0 ) {
 
 			if ( updateBuffers ) {
 
@@ -3451,7 +3451,7 @@ class WebGLRenderer implements Renderer {
 
 		} else {
 
-			if ( webglobject.morphTargetBase ) {
+			if ( webglobject.morphTargetBase != 0 ) {
 
 				setupMorphTargets( material, geometryGroup, webglobject );
 
@@ -3645,7 +3645,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( object.morphTargetForcedOrder.length ) {
+		if ( object.morphTargetForcedOrder.length > 0) {
 
 			// set forced order
 
@@ -3710,7 +3710,7 @@ class WebGLRenderer implements Renderer {
 
 			while ( m < material.numSupportedMorphTargets ) {
 
-				if ( activeInfluenceIndices[ m ] != null && !activeInfluenceIndices[ m ].isEmpty) {
+				if ( m < activeInfluenceIndices.length && activeInfluenceIndices[ m ] != null && !activeInfluenceIndices[ m ].isEmpty) {
 
 					influenceIndex = activeInfluenceIndices[ m ][ 0 ];
 
@@ -4871,7 +4871,7 @@ class WebGLRenderer implements Renderer {
 
 		if ( material.morphTargets ) {
 
-			if ( ! object.__webglMorphTargetInfluences ) {
+			if ( object.__webglMorphTargetInfluences == null) {
 
 				object.__webglMorphTargetInfluences = new Float32Array( maxMorphTargets );
 
@@ -7161,7 +7161,7 @@ class WebGLMaterial { // implements Material {
   var _uniforms;
   var uniformsList;
 
-  num numSupportedMorphTargets, numSupportedMorphNormals;
+  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   // Used by ShadowMapPlugin
   bool _shadowPass;
@@ -7223,7 +7223,6 @@ class WebGLMaterial { // implements Material {
   get lights => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
 
   get morphTargets => _hasMorhTargets ?  (_material as dynamic).morphTargets : false;
-
   get morphNormals => _hasMorphNormals ?  (_material as dynamic).morphNormals : false;
 
   bool get metal => isMeshPhongMaterial ? (_material as MeshPhongMaterial).metal : false; //null;

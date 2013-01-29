@@ -14,7 +14,7 @@ class Mesh extends Object3D {
   Geometry geometry;
   Material material;
 
-  num _morphTargetBase;
+  num morphTargetBase;
   List morphTargetForcedOrder;
   List morphTargetInfluences;
   Map _morphTargetDictionary;
@@ -35,7 +35,7 @@ class Mesh extends Object3D {
 
       // setup morph targets
       if( geometry.morphTargets.length != 0 ) {
-        _morphTargetBase = -1;
+        morphTargetBase = -1;
         morphTargetForcedOrder = [];
         morphTargetInfluences = [];
         _morphTargetDictionary = {};
