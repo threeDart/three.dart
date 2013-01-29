@@ -42,7 +42,7 @@ Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
 
   var request = new HttpRequest();
 
-  request.on.load.add( (Event e) {
+  request.onLoad.listen( (Event e) {
 
     var buffer = request.response;
     var dds = parseDDS( buffer, true );
@@ -65,7 +65,7 @@ Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
 
   });
 
-  request.on.error.add(onError);
+  request.onError.listen(onError);
 
   request.open( 'GET', url, true );
   request.responseType = "arraybuffer";
@@ -91,7 +91,7 @@ Texture loadTextureCube ( array, [mapping = null, onLoad ]) {
 	for ( i = 0; i < l; ++ i ) {
 
 		images[ i ] = new ImageElement();
-		images[ i ].on.load.add((_) {
+		images[ i ].onLoad.listen((_) {
 
 		  images.loadCount += 1;
 
