@@ -26,7 +26,7 @@ class Geometry {
   List faceUvs;
   List<List> faceVertexUvs;
 
-  List <MorphTarget> morphTargets;
+  List<MorphTarget> morphTargets;
   List morphColors, morphNormals;
   List skinWeights, skinIndices;
 
