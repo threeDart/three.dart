@@ -35,7 +35,7 @@ Texture loadTexture ( url, {mapping, onLoad, onError} ) {
 
 }
 
-Texture loadCompressedTexture( url, [mapping, onLoad, onError] ) {
+Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
 
   var texture = new CompressedTexture();
   texture.mapping = mapping;

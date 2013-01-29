@@ -215,7 +215,7 @@ class Object3D {
     matrixWorldNeedsUpdate = true;
   }
 
-  void updateMatrixWorld( [bool force=false] ) {
+  void updateMatrixWorld( {bool force: false} ) {
 
    if (matrixAutoUpdate) updateMatrix();
 
@@ -233,7 +233,7 @@ class Object3D {
     }
 
     // update children
-    children.forEach((c) => c.updateMatrixWorld( force ) );
+    children.forEach((c) => c.updateMatrixWorld( force: force ) );
 
   }
 
