@@ -30,7 +30,7 @@ class JSONLoader extends Loader {
 
     var length = 0;
 
-    xhr.on.readyStateChange.add((Event e) {
+    xhr.onReadyStateChange.listen((Event e) {
 
       if ( xhr.readyState == HttpRequest.DONE ) {
 
