@@ -26,9 +26,17 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 [![canvas_interactive_cubes](http://threedart.github.com/three.dart/example/canvas_interactive_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_interactive_cubes/Canvas_Interactive_Cubes.html)
 [![canvas_lines](http://threedart.github.com/three.dart/example/canvas_lines/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_lines/Canvas_Lines.html)
 [![canvas_camera_orthographic](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/Canvas_Camera_Orthographic.html)
+[![controls_firstperson](http://threedart.github.com/three.dart/example/controls_firstperson/thumb_small.png)](http://threedart.github.com/three.dart/example/controls_firstperson/Controls_FirstPerson.html)
+
 
 ### Change Log ###
-
+2013 01 30 - **v 0.2.4**
+* Minor refactoring to M3 ([adam](https://github.com/financeCoding))
+  * Updated Streams for events
+  
+* WebGL added MorphTargets ([nelsonsilva](https://github.com/nelsonsilva))
+  * Including examples
+  
 2012 10 01 - **v 0.2.3** 
 * Nyan Cat example added ([adam](https://github.com/financeCoding))
 
