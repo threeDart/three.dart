@@ -3440,7 +3440,7 @@ class WebGLRenderer implements Renderer {
 
 		// vertices
 
-		if ( (material.morphTargets == null) && attributes["position"] >= 0 ) {
+		if ( !material.morphTargets && attributes["position"] >= 0 ) {
 
 			if ( updateBuffers ) {
 

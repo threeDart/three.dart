@@ -14,7 +14,7 @@ class Mesh extends Object3D {
   Geometry geometry;
   Material material;
 
-  num morphTargetBase;
+  num morphTargetBase = 0;
   List morphTargetForcedOrder;
   List morphTargetInfluences;
   Map _morphTargetDictionary;
