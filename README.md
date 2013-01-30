@@ -31,9 +31,9 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 ### Change Log ###
 2013 01 30 - **v 0.2.4**
+
 * Minor refactoring to M3 ([adam](https://github.com/financeCoding))
   * Updated Streams for events
-  
 * WebGL added MorphTargets ([nelsonsilva](https://github.com/nelsonsilva))
   * Including examples
   
