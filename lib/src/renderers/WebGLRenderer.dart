@@ -1628,7 +1628,7 @@ class WebGLRenderer implements Renderer {
 		chunk_faces4 = geometryGroup.faces4,
 		obj_faces = geometry.faces,
 
-		obj_uvs  = geometry.faceVertexUvs[ 0 ],
+		obj_uvs  = (geometry.faceVertexUvs.length == 0) ? [] : geometry.faceVertexUvs[ 0 ],
 		obj_uvs2 = (geometry.faceVertexUvs.length > 1) ? geometry.faceVertexUvs[ 1 ] : null,
 
 		obj_colors = geometry.colors,
