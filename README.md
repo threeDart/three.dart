@@ -18,6 +18,13 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 [![webgl_geometry_hierarchy](http://threedart.github.com/three.dart/example/webgl_geometry_hierarchy/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometry_hierarchy/WebGL_Geometry_Hierarchy.html)
 [![webgl_geometry_shapes](http://threedart.github.com/three.dart/example/webgl_geometry_shapes/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometry_shapes/WebGL_Geometry_Shapes.html)
 [![webgl_interactive_cubes](http://threedart.github.com/three.dart/example/webgl_interactive_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_interactive_cubes/WebGL_Interactive_Cubes.html)
+[![webgl_performance](http://threedart.github.com/three.dart/example/webgl_performance/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_performance/WebGL_Performance.html)
+[![webgl_morphtargets](http://threedart.github.com/three.dart/example/webgl_morphtargets/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_morphtargets/WebGL_MorphTargets.html)
+[![webgl_morphtargets_horse](http://threedart.github.com/three.dart/example/webgl_morphtargets_horse/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_morphtargets_horse/WebGL_MorphTargets_Horse.html)
+
+#### CSS3D examples ####
+
+[![css3d_periodictable](http://threedart.github.com/three.dart/example/css3d_periodictable/thumb_small.png)](http://threedart.github.com/three.dart/example/css3d_periodictable/CSS3D_Periodic_Table.html)
 
 #### Canvas examples ####
 
@@ -27,7 +34,6 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 [![canvas_lines](http://threedart.github.com/three.dart/example/canvas_lines/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_lines/Canvas_Lines.html)
 [![canvas_camera_orthographic](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/Canvas_Camera_Orthographic.html)
 [![controls_firstperson](http://threedart.github.com/three.dart/example/controls_firstperson/thumb_small.png)](http://threedart.github.com/three.dart/example/controls_firstperson/Controls_FirstPerson.html)
-
 
 ### Change Log ###
 2013 01 30 - **v 0.2.4**
