@@ -1,5 +1,5 @@
 name: three
-version: 0.2.4
+version: 0.2.4+1
 description: >
   A port of the three.js JavaScript 3D engine to Dart.
 authors:
