@@ -1,6 +1,8 @@
 three.dart
 ========
 
+[![Build Status](https://drone.io/github.com/threeDart/three.dart/status.png)](https://drone.io/github.com/threeDart/three.dart/)
+
 #### Dart 3D Engine ####
 
 This project aims to port the [three.js](https://github.com/mrdoob/three.js) JavaScript 3D engine to [Dart](http://www.dartlang.org/).
