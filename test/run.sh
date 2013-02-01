@@ -22,10 +22,10 @@ echo
 echo "dart_analyzer lib/*.dart"
 
 results=`dart_analyzer lib/*.dart 2>&1`
-
+analyzer_exitcode=$?
 echo "$results"
-
-if [ -n "$results" ]; then
+echo "analyzer exitcode $analyzer_exitcode"
+if [ $analyzer_exitcode -ne 0 ]; then
     exit 1
 else
     echo "Passed analysis."
