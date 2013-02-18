@@ -91,7 +91,7 @@ class WebGL_MorphTargets_Horse  {
 
       // Alternate morph targets
 
-      var time = new Date.now().millisecondsSinceEpoch % duration;
+      var time = new DateTime.now().millisecondsSinceEpoch % duration;
 
       var keyframe = ( time / interpolation ).floor().toInt();
 

@@ -40,7 +40,7 @@ update( {num time} ) {
   var i = 0, l = _tweens.length;
 
   if (!?time) {
-    time = new Date.now().millisecondsSinceEpoch;
+    time = new DateTime.now().millisecondsSinceEpoch;
   }
 
   while ( i < l ) {
@@ -107,7 +107,7 @@ class Tween {
 
     _onStartCallbackFired = false;
 
-    _startTime = (?time)? time : new Date.now().millisecondsSinceEpoch;
+    _startTime = (?time)? time : new DateTime.now().millisecondsSinceEpoch;
     _startTime += _delayTime;
 
     _valuesEnd.forEach((property, _) {

@@ -118,7 +118,7 @@ class Canvas_Geometry_Hierarchy
     camera.lookAt( scene.position );
 
     //TODO describe how this oscillation affects the example
-    num t = new Date.now().millisecondsSinceEpoch;
+    num t = new DateTime.now().millisecondsSinceEpoch;
     var oscillate = (num rate) => Math.sin(t * rate) * 0.5;
     group.rotation.x = oscillate( 0.0007 );
     group.rotation.y = oscillate( 0.0003 );

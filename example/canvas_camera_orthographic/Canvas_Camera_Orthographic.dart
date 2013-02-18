@@ -133,7 +133,7 @@ class Canvas_Camera_Orthographic {
 
   void render() {
 
-    var timer = new Date.now().millisecondsSinceEpoch * 0.0001;
+    var timer = new DateTime.now().millisecondsSinceEpoch * 0.0001;
 
     camera.position.x = Math.cos( timer ) * 200;
     camera.position.z = Math.sin( timer ) * 200;

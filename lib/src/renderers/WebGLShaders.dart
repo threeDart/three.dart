@@ -7,7 +7,7 @@ get ShaderChunk  {
     __ShaderChunk = {
 // FOG
 
-  "fog_pars_fragment": Strings.join([
+  "fog_pars_fragment": [
 
     "#ifdef USE_FOG",
 
@@ -26,9 +26,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "fog_fragment": Strings.join([
+  "fog_fragment": [
 
     "#ifdef USE_FOG",
 
@@ -50,11 +50,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // ENVIRONMENT MAP
 
-  "envmap_pars_fragment": Strings.join([
+  "envmap_pars_fragment": [
 
     "#ifdef USE_ENVMAP",
 
@@ -76,9 +76,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "envmap_fragment": Strings.join([
+  "envmap_fragment": [
 
     "#ifdef USE_ENVMAP",
 
@@ -133,9 +133,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "envmap_pars_vertex": Strings.join([
+  "envmap_pars_vertex": [
 
     "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP )",
 
@@ -146,9 +146,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "envmap_vertex" : Strings.join([
+  "envmap_vertex" : [
 
     "#ifdef USE_ENVMAP",
 
@@ -172,11 +172,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
   // COLOR MAP (particles)
 
-  "map_particle_pars_fragment": Strings.join([
+  "map_particle_pars_fragment": [
 
     "#ifdef USE_MAP",
 
@@ -184,10 +184,10 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
 
-  "map_particle_fragment": Strings.join([
+  "map_particle_fragment": [
 
     "#ifdef USE_MAP",
 
@@ -195,11 +195,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // COLOR MAP (triangles)
 
-  "map_pars_vertex": Strings.join([
+  "map_pars_vertex": [
 
     "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_SPECULARMAP )",
 
@@ -208,9 +208,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "map_pars_fragment": Strings.join([
+  "map_pars_fragment": [
 
     "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_SPECULARMAP )",
 
@@ -224,9 +224,9 @@ get ShaderChunk  {
 
     "#endif",
 
-  ],"\n"),
+  ].join("\n"),
 
-  "map_vertex": Strings.join([
+  "map_vertex": [
 
     "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_SPECULARMAP )",
 
@@ -234,9 +234,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "map_fragment": Strings.join([
+  "map_fragment": [
 
     "#ifdef USE_MAP",
 
@@ -255,11 +255,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // LIGHT MAP
 
-  "lightmap_pars_fragment": Strings.join([
+  "lightmap_pars_fragment": [
 
     "#ifdef USE_LIGHTMAP",
 
@@ -268,9 +268,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "lightmap_pars_vertex": Strings.join([
+  "lightmap_pars_vertex": [
 
     "#ifdef USE_LIGHTMAP",
 
@@ -278,9 +278,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "lightmap_fragment": Strings.join([
+  "lightmap_fragment": [
 
     "#ifdef USE_LIGHTMAP",
 
@@ -288,9 +288,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "lightmap_vertex": Strings.join([
+  "lightmap_vertex": [
 
     "#ifdef USE_LIGHTMAP",
 
@@ -298,11 +298,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // BUMP MAP
 
-  "bumpmap_pars_fragment": Strings.join([
+  "bumpmap_pars_fragment": [
 
     "#ifdef USE_BUMPMAP",
 
@@ -345,11 +345,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // SPECULAR MAP
 
-  "specularmap_pars_fragment": Strings.join([
+  "specularmap_pars_fragment": [
 
     "#ifdef USE_SPECULARMAP",
 
@@ -357,9 +357,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "specularmap_fragment": Strings.join([
+  "specularmap_fragment": [
 
     "float specularStrength;",
 
@@ -374,11 +374,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // LIGHTS LAMBERT
 
-  "lights_lambert_pars_vertex": Strings.join([
+  "lights_lambert_pars_vertex": [
 
     "uniform vec3 ambient;",
     "uniform vec3 diffuse;",
@@ -418,9 +418,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "lights_lambert_vertex": Strings.join([
+  "lights_lambert_vertex": [
 
     "vLightFront = vec3( 0.0 );",
 
@@ -601,11 +601,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // LIGHTS PHONG
 
-  "lights_phong_pars_vertex": Strings.join([
+  "lights_phong_pars_vertex": [
 
     "#ifndef PHONG_PER_PIXEL",
 
@@ -635,10 +635,10 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
 
-  "lights_phong_vertex": Strings.join([
+  "lights_phong_vertex": [
 
     "#ifndef PHONG_PER_PIXEL",
 
@@ -684,9 +684,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "lights_phong_pars_fragment": Strings.join([
+  "lights_phong_pars_fragment": [
 
     "uniform vec3 ambientLightColor;",
 
@@ -749,9 +749,9 @@ get ShaderChunk  {
     "varying vec3 vViewPosition;",
     "varying vec3 vNormal;"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "lights_phong_fragment": Strings.join([
+  "lights_phong_fragment": [
 
     "vec3 normal = normalize( vNormal );",
     "vec3 viewPosition = normalize( vViewPosition );",
@@ -1023,11 +1023,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
   // VERTEX COLORS
 
-  "color_pars_fragment": Strings.join([
+  "color_pars_fragment": [
 
     "#ifdef USE_COLOR",
 
@@ -1035,10 +1035,10 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
 
-  "color_fragment": Strings.join([
+  "color_fragment": [
 
     "#ifdef USE_COLOR",
 
@@ -1046,9 +1046,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "color_pars_vertex": Strings.join([
+  "color_pars_vertex": [
 
     "#ifdef USE_COLOR",
 
@@ -1056,10 +1056,10 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
 
-  "color_vertex": Strings.join([
+  "color_vertex": [
 
     "#ifdef USE_COLOR",
 
@@ -1075,11 +1075,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // SKINNING
 
-  "skinning_pars_vertex": Strings.join([
+  "skinning_pars_vertex": [
 
     "#ifdef USE_SKINNING",
 
@@ -1124,9 +1124,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
-  "skinbase_vertex": Strings.join([
+  "skinbase_vertex": [
 
     "#ifdef USE_SKINNING",
 
@@ -1135,9 +1135,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "skinning_vertex": Strings.join([
+  "skinning_vertex": [
 
     "#ifdef USE_SKINNING",
 
@@ -1148,11 +1148,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // MORPHING
 
-  "morphtarget_pars_vertex": Strings.join([
+  "morphtarget_pars_vertex": [
 
     "#ifdef USE_MORPHTARGETS",
 
@@ -1168,9 +1168,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "morphtarget_vertex": Strings.join([
+  "morphtarget_vertex": [
 
     "#ifdef USE_MORPHTARGETS",
 
@@ -1195,9 +1195,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
-  "default_vertex" : Strings.join([
+  "default_vertex" : [
 
     "#ifndef USE_MORPHTARGETS",
     "#ifndef USE_SKINNING",
@@ -1207,9 +1207,9 @@ get ShaderChunk  {
     "#endif",
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "morphnormal_vertex": Strings.join([
+  "morphnormal_vertex": [
 
     "#ifdef USE_MORPHNORMALS",
 
@@ -1224,9 +1224,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
-  "skinnormal_vertex": Strings.join([
+  "skinnormal_vertex": [
 
     "#ifdef USE_SKINNING",
 
@@ -1237,9 +1237,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "defaultnormal_vertex": Strings.join([
+  "defaultnormal_vertex": [
 
     "vec3 transformedNormal;",
 
@@ -1265,7 +1265,7 @@ get ShaderChunk  {
 
     "transformedNormal = normalMatrix * transformedNormal;",
 
-  ],"\n"),
+  ].join("\n"),
 
   // SHADOW MAP
 
@@ -1273,7 +1273,7 @@ get ShaderChunk  {
   //  http://spidergl.org/example.php?id=6
   //  http://fabiensanglard.net/shadowmapping
 
-  "shadowmap_pars_fragment": Strings.join([
+  "shadowmap_pars_fragment": [
 
     "#ifdef USE_SHADOWMAP",
 
@@ -1295,9 +1295,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
-  "shadowmap_fragment": Strings.join([
+  "shadowmap_fragment": [
 
     "#ifdef USE_SHADOWMAP",
 
@@ -1466,9 +1466,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
-  "shadowmap_pars_vertex": Strings.join([
+  "shadowmap_pars_vertex": [
 
     "#ifdef USE_SHADOWMAP",
 
@@ -1477,9 +1477,9 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
-  "shadowmap_vertex": Strings.join([
+  "shadowmap_vertex": [
 
     "#ifdef USE_SHADOWMAP",
 
@@ -1509,11 +1509,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ], "\n"),
+  ].join("\n"),
 
   // ALPHATEST
 
-  "alphatest_fragment": Strings.join([
+  "alphatest_fragment": [
 
     "#ifdef ALPHATEST",
 
@@ -1521,11 +1521,11 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 
   // LINEAR SPACE
 
-  "linear_to_gamma_fragment": Strings.join([
+  "linear_to_gamma_fragment": [
 
     "#ifdef GAMMA_OUTPUT",
 
@@ -1533,7 +1533,7 @@ get ShaderChunk  {
 
     "#endif"
 
-  ],"\n"),
+  ].join("\n"),
 };
   }
   return __ShaderChunk;
@@ -1717,7 +1717,7 @@ get ShaderLib  {
 
     },
 
-    'vertexShader': Strings.join([
+    'vertexShader': [
 
       "void main() {",
 
@@ -1725,9 +1725,9 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n"),
+    ].join("\n"),
 
-    'fragmentShader': Strings.join([
+    'fragmentShader': [
 
       "uniform float mNear;",
       "uniform float mFar;",
@@ -1741,7 +1741,7 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n")
+    ].join("\n")
 
   },
 
@@ -1753,7 +1753,7 @@ get ShaderLib  {
 
     },
 
-    'vertexShader': Strings.join([
+    'vertexShader': [
 
       "varying vec3 vNormal;",
 
@@ -1766,9 +1766,9 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n"),
+    ].join("\n"),
 
-    'fragmentShader': Strings.join([
+    'fragmentShader': [
 
       "uniform float opacity;",
       "varying vec3 vNormal;",
@@ -1779,7 +1779,7 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n")
+    ].join("\n")
 
   },
 
@@ -1788,7 +1788,7 @@ get ShaderLib  {
                                     UniformsLib[ "fog" ],
                                     UniformsLib[ "shadowmap" ]] ),
 
-  'vertexShader': Strings.join([
+  'vertexShader': [
 
                  ShaderChunk[ "map_pars_vertex" ],
                  ShaderChunk[ "lightmap_pars_vertex" ],
@@ -1814,9 +1814,9 @@ get ShaderLib  {
 
                  "}"
 
-                 ], "\n"),
+                 ].join("\n"),
 
-   'fragmentShader': Strings.join([
+   'fragmentShader': [
 
                     "uniform vec3 diffuse;",
                     "uniform float opacity;",
@@ -1847,7 +1847,7 @@ get ShaderLib  {
 
                     "}"
 
-                    ],"\n")
+                    ].join("\n")
 
   },
 
@@ -1868,7 +1868,7 @@ get ShaderLib  {
 
     ] ),
 
-    'vertexShader': Strings.join([
+    'vertexShader': [
 
       "varying vec3 vLightFront;",
 
@@ -1915,9 +1915,9 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n"),
+    ].join("\n"),
 
-    'fragmentShader': Strings.join([
+    'fragmentShader': [
 
       "uniform float opacity;",
 
@@ -1972,7 +1972,7 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n")
+    ].join("\n")
 
   },
 
@@ -1996,7 +1996,7 @@ get ShaderLib  {
 
     ] ),
 
-    'vertexShader': Strings.join([
+    'vertexShader': [
 
       "varying vec3 vViewPosition;",
       "varying vec3 vNormal;",
@@ -2042,9 +2042,9 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n"),
+    ].join("\n"),
 
-    'fragmentShader': Strings.join([
+    'fragmentShader': [
 
       "uniform vec3 diffuse;",
       "uniform float opacity;",
@@ -2085,7 +2085,7 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n")
+    ].join("\n")
 
   },
 
@@ -2098,7 +2098,7 @@ get ShaderLib  {
 
     ] ),
 
-    'vertexShader': Strings.join([
+    'vertexShader': [
 
       "uniform float size;",
       "uniform float scale;",
@@ -2124,9 +2124,9 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n"),
+    ].join("\n"),
 
-    'fragmentShader': Strings.join([
+    'fragmentShader': [
 
       "uniform vec3 psColor;",
       "uniform float opacity;",
@@ -2148,7 +2148,7 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n")
+    ].join("\n")
 
   },
 
@@ -2164,7 +2164,7 @@ get ShaderLib  {
 
     'uniforms': {},
 
-    'vertexShader': Strings.join([
+    'vertexShader': [
 
       ShaderChunk[ "skinning_pars_vertex" ],
       ShaderChunk[ "morphtarget_pars_vertex" ],
@@ -2180,9 +2180,9 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n"),
+    ].join("\n"),
 
-    'fragmentShader': Strings.join([
+    'fragmentShader': [
 
       "vec4 pack_depth( const in float depth ) {",
 
@@ -2205,7 +2205,7 @@ get ShaderLib  {
 
       "}"
 
-    ], "\n")
+    ].join("\n")
 
   }
 

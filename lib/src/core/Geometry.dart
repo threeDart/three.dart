@@ -403,9 +403,9 @@ class Geometry {
     for( i = 0; i < il; i++) {
       v = this.vertices[i];
 
-      key = Strings.join( [ ( v.x * precision ).round().toStringAsFixed(0),
+      key = [ ( v.x * precision ).round().toStringAsFixed(0),
                             ( v.y * precision ).round().toStringAsFixed(0),
-                            ( v.z * precision ).round().toStringAsFixed(0) ], '_' );
+                            ( v.z * precision ).round().toStringAsFixed(0) ].join('_' );
 
       if ( verticesMap[ key ] == null ) {
         verticesMap[ key ] = i;

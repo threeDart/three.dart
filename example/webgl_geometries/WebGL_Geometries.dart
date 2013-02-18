@@ -133,7 +133,7 @@ class WebGL_Geometries  {
 
   render() {
 
-    var timer = new Date.now().millisecondsSinceEpoch * 0.0001;
+    var timer = new DateTime.now().millisecondsSinceEpoch * 0.0001;
 
     camera.position.x = Math.cos( timer ) * 800;
     camera.position.z = Math.sin( timer ) * 800;

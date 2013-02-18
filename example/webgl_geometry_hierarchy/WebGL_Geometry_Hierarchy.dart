@@ -93,7 +93,7 @@ class WebGL_Geometry_Hierarchy  {
 
   render() {
 
-    var time = new Date.now().millisecondsSinceEpoch * 0.001;
+    var time = new DateTime.now().millisecondsSinceEpoch * 0.001;
 
     var rx = Math.sin( time * 0.7 ) * 0.5,
         ry = Math.sin( time * 0.3 ) * 0.5,
