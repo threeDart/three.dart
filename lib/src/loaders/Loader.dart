@@ -72,7 +72,7 @@ class Loader {
   static _extractUrlBase( url ) {
     var parts = url.split( '/' );
     parts.removeLast();
-    return "${( parts.length < 1 ? '.' : Strings.join(parts,  '/' ) )}/";
+    return "${( parts.length < 1 ? '.' : parts.join( '/' ) )}/";
   }
 
   _initMaterials( Geometry geometry, List materials, String texturePath ) {

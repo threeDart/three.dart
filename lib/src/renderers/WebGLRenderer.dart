@@ -6013,7 +6013,7 @@ class WebGLRenderer implements Renderer {
 
 		glprogram = _gl.createProgram();
 
-		var prefix_vertex = Strings.join([
+		var prefix_vertex = [
 
 			"precision $precision float;",
 
@@ -6110,9 +6110,9 @@ class WebGLRenderer implements Renderer {
 
 			""
 
-		],"\n");
+		].join("\n");
 
-		var prefix_fragment = Strings.join([
+		var prefix_fragment = [
 
 			"precision $precision float;",
 
@@ -6154,7 +6154,7 @@ class WebGLRenderer implements Renderer {
 			"uniform vec3 cameraPosition;",
 			""
 
-		], "\n");
+		].join("\n");
 
 		var glFragmentShader = getShader( "fragment", "$prefix_fragment$fragmentShader" );
 		var glVertexShader = getShader( "vertex", "$prefix_vertex$vertexShader" );
