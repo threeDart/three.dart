@@ -7,10 +7,9 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class MeshFaceMaterial extends Material
-{
-  MeshFaceMaterial()
-  {
+class MeshFaceMaterial extends Material {
+  List materials = [];
+  
+  MeshFaceMaterial([this.materials]);
 
-  }
 }
