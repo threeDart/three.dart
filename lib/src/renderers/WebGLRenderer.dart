@@ -6869,7 +6869,7 @@ class WebGLRenderer implements Renderer {
 	initGL () {
 
 		try {
-			_gl = canvas.getContext( 'experimental-webgl'); //, { alpha: _alpha, premultipliedAlpha: _premultipliedAlpha, antialias: _antialias, stencil: _stencil, preserveDrawingBuffer: _preserveDrawingBuffer } )
+			_gl = canvas.getContext3d(alpha: alpha, premultipliedAlpha: premultipliedAlpha, antialias: antialias, stencil: stencil, preserveDrawingBuffer: preserveDrawingBuffer );
 			if ( _gl == null ) {
 
 				throw 'Error creating WebGL context.';
