@@ -7220,6 +7220,9 @@ class WebGLMaterial { // implements Material {
   get ambient => (_material as dynamic).ambient;
   get emissive => (_material as dynamic).emissive;
 
+  get shininess => (isMeshPhongMaterial) ? (_material as dynamic).shininess : null;
+  get specular => (isMeshPhongMaterial) ? (_material as dynamic).specular : null;
+  
   get lights => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
 
   get morphTargets => _hasMorhTargets ?  (_material as dynamic).morphTargets : false;
