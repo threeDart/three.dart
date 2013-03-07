@@ -6,48 +6,55 @@ part of three;
  *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
+ * @author Nelson Silva
+ *
+ * rev: r56
  */
 
-class DirectionalLight extends Light
-{
-  Vector3 _position;
+class DirectionalLight extends ShadowCaster {
+  Vector3 position;
   Object3D target;
   num intensity, distance;
-  bool _castShadow, onlyShadow;
-  num _shadowCameraLeft, _shadowCameraRight, _shadowCameraTop, _shadowCameraBottom;
-  bool _shadowCameraVisible;
-  num _shadowBias, _shadowDarkness, _shadowMapWidth, _shadowMapHeight;
-  Texture _shadowMap;
-  num _shadowMapSize;
-  Camera _shadowCamera;
-  Matrix4 _shadowMatrix;
 
-  DirectionalLight( num hex, [this.intensity = 1, this.distance = 0]) : super( hex )
-  {
-    //THREE.Light.call( this, hex );
+  num shadowCameraLeft, shadowCameraRight, shadowCameraTop, shadowCameraBottom;
 
-    _position = new Vector3( 0, 1, 0 );
+  bool shadowCascade;
+
+  Vector3 shadowCascadeOffset;
+  num shadowCascadeCount;
+
+  List shadowCascadeBias,
+      shadowCascadeWidth,
+      shadowCascadeHeight,
+      shadowCascadeNearZ,
+      shadowCascadeFarZ,
+      shadowCascadeArray;
+
+  DirectionalLight( num hex, [this.intensity = 1, this.distance = 0]) : super( hex ) {
+
+    position = new Vector3( 0, 1, 0 );
     target = new Object3D();
 
-    _castShadow = false;
-    onlyShadow = false;
+    shadowCameraLeft = -500;
+    shadowCameraRight = 500;
+    shadowCameraTop = 500;
+    shadowCameraBottom = -500;
 
-    _shadowCameraLeft = -500;
-    _shadowCameraRight = 500;
-    _shadowCameraTop = 500;
-    _shadowCameraBottom = -500;
+    //
 
-    _shadowCameraVisible = false;
+    shadowCascade = false;
 
-    _shadowBias = 0;
-    _shadowDarkness = 0.5;
+    shadowCascadeOffset = new Vector3( 0, 0, -1000 );
+    shadowCascadeCount = 2;
 
-    _shadowMapWidth = 512;
-    _shadowMapHeight = 512;
+    shadowCascadeBias = [ 0, 0, 0 ];
+    shadowCascadeWidth = [ 512, 512, 512 ];
+    shadowCascadeHeight = [ 512, 512, 512 ];
 
-    _shadowMap = null;
-    _shadowMapSize = null;
-    _shadowCamera = null;
-    _shadowMatrix = null;
+    shadowCascadeNearZ = [ -1.000, 0.990, 0.998 ];
+    shadowCascadeFarZ  = [  0.990, 0.998, 1.000 ];
+
+    shadowCascadeArray = [];
+
   }
 }

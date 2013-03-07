@@ -98,6 +98,7 @@ part 'src/lights/DirectionalLight.dart';
 part 'src/lights/PointLight.dart';
 part 'src/lights/SpotLight.dart';
 part 'src/lights/Light.dart';
+part 'src/lights/ShadowCaster.dart';
 
 part 'src/materials/Material.dart';
 part 'src/materials/MeshBasicMaterial.dart';
