@@ -16,7 +16,7 @@ class NyanCat {
       tick=0,
       frame=0,
       running=true;
-//  var song = document.createElement('audio'), song2 = document.createElement('audio');
+
   AudioElement song, song2;
 
   NyanCat() {
@@ -26,14 +26,14 @@ class NyanCat {
     document.body.children.add(song);
     document.body.children.add(song2);
 
-    song.src = "nyanlooped.mp3";
-    song2.src = "nyanslow.mp3";
+    song.src = "nyanlooped.ogg";
+    song2.src = "nyanslow.ogg";
     song.loop = true;
     song2.loop = true;
     song.play();
 
-    document.on.mouseMove.add(onDocumentMouseMove, false);
-    document.on.mouseDown.add(onDocumentMouseDown, false);
+    document.onMouseMove.listen(onDocumentMouseMove);
+    document.onMouseDown.listen(onDocumentMouseDown);
   }
 
   run() {
@@ -207,11 +207,10 @@ class NyanCat {
 
     renderer = new WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    container.elements.add( renderer.domElement );
+    container.nodes.add( renderer.domElement );
   }
   animate(t){
     window.requestAnimationFrame(animate);
-    //requestAnimationFrame( animate );
     render(t);
   }
   render(t){
@@ -366,6 +365,7 @@ class NyanCat {
     mouseX = ( event.clientX - windowHalfX );
     mouseY = ( event.clientY - windowHalfY );
   }
+
   onDocumentMouseDown(event){
     running=!running;
     if(running){
