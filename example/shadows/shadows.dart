@@ -12,7 +12,6 @@ init(){
 
   renderer = new WebGLRenderer(antialias: true);
   renderer.shadowMapEnabled = true;
-  renderer.shadowMapDebug = false;
   renderer.shadowMapSoft    = true;
   renderer.setClearColorHex( 0x000000, 1 );
 
@@ -24,7 +23,7 @@ init(){
 
   // put a camera in the scene
   camera = new PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000 );
-  camera.position.setValues(0, 5, 15);
+  camera.position.setValues(0, 2, 14);
   scene.add(camera);
 
   // create a camera contol
@@ -46,7 +45,7 @@ init(){
   spot1.castShadow    = true;
   spot1.shadowDarkness    = 0.5;
   //light.shadowCameraVisible = true;
-  //scene.add( spot1 );
+  scene.add( spot1 );
 
 
   spot2 = new SpotLight( 0xFFAA88, 2 );
@@ -63,7 +62,12 @@ init(){
   sundial.position.y  = -1;
   scene.add(sundial);
 
-  var geometry  = new TorusGeometry( 25, 8, 75, 20 );
+  // var geometry  = new TorusGeometry( 2, 1, 16, 32 );
+  var geometry  = new TorusKnotGeometry(25, 8, 75, 20);
+  //var geometry  = new THREE.OctahedronGeometry( 1, 1 );
+  //var geometry  = new THREE.CubeGeometry( 3, 3, 3 );
+  //var geometry  = new THREE.SphereGeometry( 3, 32,16 );
+  //var geometry  = new THREE.CylinderGeometry(1, 1, 4, 16)
 
   var texture = loadTexture( "images/water.jpg" );
   texture.repeat.setValues( 0.7, 1 );
