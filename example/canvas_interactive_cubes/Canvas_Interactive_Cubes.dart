@@ -2,8 +2,8 @@ import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart';
 
-class Canvas_Interactive_Cubes
-{
+class Canvas_Interactive_Cubes {
+
   Element container;//, stats;
   PerspectiveCamera camera;
   Scene scene;
@@ -16,19 +16,12 @@ class Canvas_Interactive_Cubes
   final num radius = 600;
   num theta = 0;
 
-  Canvas_Interactive_Cubes()
-  {
-
-  }
-
-  void run()
-  {
+  void run() {
     init();
-    animate();
+    animate(0);
   }
 
-  void init()
-  {
+  void init() {
     objects = [];
 
     container = new Element.tag('div');
@@ -39,7 +32,7 @@ class Canvas_Interactive_Cubes
     info.style.top = '10px';
     info.style.width = '100%';
     info.style.textAlign = 'center';
-    info.innerHTML = '<a href="http://github.com/robsilv/three.dart" target="_blank">three.dart</a> - clickable objects';
+    info.innerHtml = '<a href="http://github.com/robsilv/three.dart" target="_blank">three.dart</a> - clickable objects';
     container.nodes.add( info );
 
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -52,8 +45,7 @@ class Canvas_Interactive_Cubes
     CubeGeometry geometry = new CubeGeometry( 100, 100, 100 );
 
     var rnd = new Math.Random();
-    for ( int i = 0; i < 10; i ++ )
-    {
+    for ( int i = 0; i < 10; i ++ ) {
       Particle particle = new Particle( particleMaterial );
       particle.position.x = rnd.nextInt(800) - 400;
       particle.position.y = rnd.nextInt(800) - 400;
@@ -95,7 +87,7 @@ class Canvas_Interactive_Cubes
     projector = new Projector();
 
     var options;
-//    options = {"debug" : true};
+
     renderer = new CanvasRenderer(options);
     //renderer.debug = true;
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -107,13 +99,10 @@ class Canvas_Interactive_Cubes
     //stats.domElement.style.top = '0px';
     //container.appendChild( stats.domElement );
 
-    document.on.mouseDown.add(onDocumentMouseDown, false);
-
-    window.setInterval(() => animate(), 10);
+    document.onMouseDown.listen(onDocumentMouseDown);
   }
 
-  void onDocumentMouseDown( event )
-  {
+  void onDocumentMouseDown( event ) {
     event.preventDefault();
 
     Vector3 vector = new Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
@@ -123,8 +112,7 @@ class Canvas_Interactive_Cubes
 
     List<Intersect> intersects = ray.intersectObjects( objects );
 
-    if ( intersects.length > 0 )
-    {
+    if ( intersects.length > 0 ) {
       Intersect intersect = intersects[0];
       Mesh mesh = intersect.object;
       MeshBasicMaterial material = mesh.material;
@@ -148,16 +136,13 @@ class Canvas_Interactive_Cubes
 
   //
 
-  void animate()
-  {
-    //requestAnimationFrame( animate );
+  void animate(num time) {
+    window.requestAnimationFrame(animate);
 
     render();
-    //stats.update()
   }
 
-  void render()
-  {
+  void render() {
     theta += 0.2;
 
     camera.position.x = radius * Math.sin( theta * Math.PI / 360 );

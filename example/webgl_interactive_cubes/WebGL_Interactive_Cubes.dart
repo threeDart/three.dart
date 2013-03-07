@@ -73,9 +73,9 @@ class WebGL_Interactive_Cubes  {
 
     container.nodes.add( renderer.domElement );
 
-    document.on.mouseMove.add(onDocumentMouseMove, false);
+    document.onMouseMove.listen(onDocumentMouseMove);
 
-    window.on.resize.add(onWindowResize);
+    window.onResize.listen(onWindowResize);
   }
 
   onWindowResize(_) {

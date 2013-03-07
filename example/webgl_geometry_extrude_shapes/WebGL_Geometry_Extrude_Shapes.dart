@@ -13,6 +13,7 @@ class WebGL_Geometry_Extrude_Shapes  {
   var windowHalfX, windowHalfY;
   var mouseX = 0;
   var mouseXOnMouseDown = 0;
+  var mouseEvts = [];
 
   var targetRotation = 0;
   var targetRotationOnMouseDown = 0;
@@ -230,11 +231,13 @@ class WebGL_Geometry_Extrude_Shapes  {
 
     container.nodes.add( renderer.domElement );
 
-    document.on.mouseDown.add(onDocumentMouseDown, false);
-    document.on.touchStart.add(onDocumentTouchStart, false);
-    document.on.touchMove.add(onDocumentTouchMove, false);
+    mouseEvts = [
+      document.onMouseDown.listen(onDocumentMouseDown),
+      document.onTouchStart.listen(onDocumentTouchStart),
+      document.onTouchMove.listen(onDocumentTouchMove)
+   ];
 
-    window.on.resize.add(onWindowResize);
+    window.onResize.listen(onWindowResize);
   }
 
   onWindowResize(event) {
@@ -247,12 +250,19 @@ class WebGL_Geometry_Extrude_Shapes  {
     renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
+  void cancelMouseEvts() {
+    mouseEvts.forEach((s) => s.cancel());
+    mouseEvts = [];
+  }
+
   onDocumentMouseDown(MouseEvent event) {
     event.preventDefault();
 
-    document.on.mouseMove.add(onDocumentMouseMove, false );
-    document.on.mouseUp.add(onDocumentMouseUp, false );
-    document.on.mouseOut.add( onDocumentMouseOut, false );
+    mouseEvts = [
+      document.onMouseMove.listen(onDocumentMouseMove ),
+      document.onMouseUp.listen(onDocumentMouseUp ),
+      document.onMouseOut.listen( onDocumentMouseOut )
+    ];
 
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
@@ -264,18 +274,11 @@ class WebGL_Geometry_Extrude_Shapes  {
   }
 
   onDocumentMouseUp( event ) {
-    document.on.mouseMove.remove(onDocumentMouseMove, false );
-    document.on.mouseUp.remove(onDocumentMouseUp, false );
-    document.on.mouseOut.remove(onDocumentMouseOut, false );
-
+    cancelMouseEvts();
   }
 
   onDocumentMouseOut( event ) {
-
-    document.on.mouseMove.remove(onDocumentMouseMove, false );
-    document.on.mouseUp.remove(onDocumentMouseUp, false );
-    document.on.mouseOut.remove(onDocumentMouseOut, false );
-
+    cancelMouseEvts();
   }
 
   onDocumentTouchStart( TouchEvent event ) {

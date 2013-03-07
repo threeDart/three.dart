@@ -21,7 +21,7 @@ class WebGL_Performance  {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
 
-    document.on.mouseMove.add(onDocumentMouseMove, false );
+    document.onMouseMove.listen( onDocumentMouseMove );
 
     init();
     animate(0);
@@ -77,7 +77,7 @@ class WebGL_Performance  {
     container.elements.add( stats.container );
     */
 
-    window.on.resize.add( onWindowResize, false );
+    window.onResize.listen( onWindowResize );
   }
 
   onWindowResize(event) {

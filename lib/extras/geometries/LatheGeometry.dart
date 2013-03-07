@@ -7,7 +7,7 @@ class LatheGeometry extends Geometry {
 
   LatheGeometry(points, [this.steps = 12, this.angle = 2 * Math.PI] ) : super() {
 
-    var newV = points.mappedBy((pt) => pt.clone()).toList();
+    var newV = points.map((pt) => pt.clone()).toList();
     vertices.addAll(newV);
 
     var matrix = new Matrix4().makeRotationZ( angle / steps );

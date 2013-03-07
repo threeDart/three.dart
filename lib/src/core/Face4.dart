@@ -41,9 +41,9 @@ class Face4 implements IFace4 {
 
     face.materialIndex = this.materialIndex;
 
-    face.vertexNormals = vertexNormals.mappedBy((Vector3 v) => v.clone()).toList();
-    face.vertexColors = vertexColors.mappedBy((Vector3 v) => v.clone()).toList();
-    face.vertexTangents = vertexTangents.mappedBy((Vector3 v) => v.clone()).toList();
+    face.vertexNormals = vertexNormals.map((Vector3 v) => v.clone()).toList();
+    face.vertexColors = vertexColors.map((Vector3 v) => v.clone()).toList();
+    face.vertexTangents = vertexTangents.map((Vector3 v) => v.clone()).toList();
 
     return face;
 

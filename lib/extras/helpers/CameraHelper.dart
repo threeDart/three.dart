@@ -100,8 +100,9 @@ class CameraHelper extends Line {
     geometry.vertices.add( new Vector3() );
     geometry.colors.add( new Color( hex ) );
 
-    if ( !pointMap.containsKey( id ))
+    if ( !pointMap.containsKey( id )) {
       pointMap[ id ] = [];
+    }
 
     pointMap[ id ].add( geometry.vertices.length - 1 );
 

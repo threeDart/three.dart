@@ -32,27 +32,27 @@ class WebGL_Material {
 
     var line_material = new LineBasicMaterial( color: 0x303030 ),
         geometry = new Geometry(),
-        floor = -75, 
+        floor = -75,
         step = 25;
 
     for ( var i = 0; i <= 40; i ++ ) {
-  
+
       geometry.vertices
       ..add( new Vector3( - 500, floor, i * step - 500 ) )
       ..add( new Vector3(   500, floor, i * step - 500 ) )
       ..add( new Vector3( i * step - 500, floor, -500 ) )
       ..add( new Vector3( i * step - 500, floor,  500 ) );
-  
+
     }
-  
+
     var line = new Line( geometry, line_material, LinePieces );
     scene.add( line );
-  
+
     // Materials
-  
+
     var texture = new Texture( generateTexture() )
     ..needsUpdate = true;
-  
+
     materials
     ..add( new MeshLambertMaterial( map: texture, transparent: true ) )
     ..add( new MeshLambertMaterial( color: 0xdddddd, shading: FlatShading ) )
@@ -60,87 +60,87 @@ class WebGL_Material {
     ..add( new MeshNormalMaterial( ) )
     ..add( new MeshBasicMaterial( color: 0xffaa00, transparent: true, blending: AdditiveBlending ) )
     //materials.push( new THREE.MeshBasicMaterial( { color: 0xff0000, blending: THREE.SubtractiveBlending } ) );
-  
+
     ..add( new MeshLambertMaterial( color: 0xdddddd, shading: SmoothShading ) )
     ..add( new MeshPhongMaterial( ambient: 0x030303, color: 0xdddddd, specular: 0x009900, shininess: 30, shading: SmoothShading, map: texture, transparent: true ) )
     ..add( new MeshNormalMaterial( shading: SmoothShading ) )
     ..add( new MeshBasicMaterial( color: 0xffaa00, wireframe: true ) )
-  
+
     ..add( new MeshDepthMaterial() )
-  
+
     ..add( new MeshLambertMaterial( color: 0x666666, emissive: 0xff0000, ambient: 0x000000, shading: SmoothShading ) )
     ..add( new MeshPhongMaterial( color: 0x000000, specular: 0x666666, emissive: 0xff0000, ambient: 0x000000, shininess: 10, shading: SmoothShading, opacity: 0.9, transparent: true ) )
-  
+
     ..add( new MeshBasicMaterial( map: texture, transparent: true ) );
-  
+
     // Spheres geometry
-  
+
     var geometry_smooth = new SphereGeometry( 70, 32, 16 );
     var geometry_flat = new SphereGeometry( 70, 32, 16 );
     var geometry_pieces = new SphereGeometry( 70, 32, 16 ); // Extra geometry to be broken down for MeshFaceMaterial
-  
+
     var rnd = new Math.Random();
     geometry_pieces.faces.forEach((face) {
       face.materialIndex = rnd.nextInt(materials.length);
     });
-  
+
     geometry_pieces.materials = materials;
-  
+
     materials.add( new MeshFaceMaterial( materials ) );
-  
+
     objects = [];
-  
+
     var sphere, material;
-  
+
     for ( var i = 0, l = materials.length; i < l; i ++ ) {
-  
+
       material = materials[ i ];
-  
+
       geometry = material is MeshFaceMaterial ? geometry_pieces :
              ( material.shading == FlatShading ? geometry_flat : geometry_smooth );
-  
+
       sphere = new Mesh( geometry, material )
       ..position.x = ( i % 4 ) * 200 - 400
       ..position.z = ( i / 4 ).floor() * 200 - 200
-  
+
       ..rotation.x = rnd.nextInt(200) - 100
       ..rotation.y = rnd.nextInt(200) - 100
       ..rotation.z = rnd.nextInt(200) - 100;
-  
+
       objects.add( sphere );
-  
+
       scene.add( sphere );
-  
+
     }
-  
+
     particleLight = new Mesh( new SphereGeometry( 4, 8, 8 ), new MeshBasicMaterial( color: 0xffffff ) );
     scene.add( particleLight );
-  
+
     // Lights
-  
+
     scene.add( new AmbientLight( 0x111111 ) );
-  
+
     var directionalLight = new DirectionalLight( /*Math.random() * */ 0xffffff, 0.125 );
-  
+
     directionalLight.position.x = rnd.nextDouble() - 0.5;
     directionalLight.position.y = rnd.nextDouble() - 0.5;
     directionalLight.position.z = rnd.nextDouble() - 0.5;
-  
+
     directionalLight.position.normalize();
-  
+
     scene.add( directionalLight );
-  
+
     pointLight = new PointLight( 0xffffff );
     scene.add( pointLight );
-  
+
     //
-  
+
     renderer = new WebGLRenderer( antialias: true );
     renderer.setSize( window.innerWidth, window.innerHeight );
-  
+
     container.nodes.add( renderer.domElement );
     //
-  
+
     window.onResize.listen(onWindowResize);
 
   }

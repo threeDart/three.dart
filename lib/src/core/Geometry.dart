@@ -225,8 +225,8 @@ class Geometry {
             n = new Vector3(),
             t;
 
-    List<Vector3> tan1 = vertices.mappedBy((_) => new Vector3()).toList() as List,
-                  tan2 = vertices.mappedBy((_) => new Vector3()).toList() as List;
+    List<Vector3> tan1 = vertices.map((_) => new Vector3()).toList(),
+                  tan2 = vertices.map((_) => new Vector3()).toList();
 
     var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
 

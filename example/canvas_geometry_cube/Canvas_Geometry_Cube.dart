@@ -2,8 +2,7 @@ import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart';
 
-class Canvas_Geometry_Cube
-{
+class Canvas_Geometry_Cube {
   Element container;
 
   PerspectiveCamera camera;
@@ -22,19 +21,14 @@ class Canvas_Geometry_Cube
   num windowHalfX;
   num windowHalfY;
 
-  Canvas_Geometry_Cube()
-  {
+  var evtSubscriptions = [];
 
-  }
-
-  void run()
-  {
+  void run() {
     init();
-    animate();
+    animate(0);
   }
 
-  void init()
-  {
+  void init() {
     targetRotation = 0;
     targetRotationOnMouseDown = 0;
 
@@ -53,7 +47,7 @@ class Canvas_Geometry_Cube
     info.style.top = '10px';
     info.style.width = '100%';
     info.style.textAlign = 'center';
-    info.innerHTML = 'Drag to spin the cube';
+    info.innerHtml = 'Drag to spin the cube';
     //container.appendChild( info );
     container.nodes.add( info );
 
@@ -92,20 +86,22 @@ class Canvas_Geometry_Cube
     //container.appendChild( renderer.domElement );
     container.nodes.add( renderer.domElement );
 
-    document.on.mouseDown.add(onDocumentMouseDown);
-    document.on.touchStart.add(onDocumentTouchStart);
-    document.on.touchMove.add(onDocumentTouchMove);
+    evtSubscriptions = [
+      document.onMouseDown.listen(onDocumentMouseDown),
+      document.onTouchStart.listen(onDocumentTouchStart),
+      document.onTouchMove.listen(onDocumentTouchMove)
+      ];
 
-    window.setInterval(() => animate(), 10);
   }
 
-  void onDocumentMouseDown( event )
-  {
+  void onDocumentMouseDown( event ) {
     event.preventDefault();
 
-    document.on.mouseMove.add(onDocumentMouseMove);
-    document.on.mouseUp.add(onDocumentMouseUp);
-    document.on.mouseOut.add(onDocumentMouseOut);
+    evtSubscriptions = [
+      document.onMouseMove.listen(onDocumentMouseMove),
+      document.onMouseUp.listen(onDocumentMouseUp),
+      document.onMouseOut.listen(onDocumentMouseOut)
+      ];
 
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
@@ -113,8 +109,7 @@ class Canvas_Geometry_Cube
     print('onMouseDown mouseX = $mouseXOnMouseDown targRot = $targetRotationOnMouseDown');
   }
 
-  void onDocumentMouseMove( event )
-  {
+  void onDocumentMouseMove( event ) {
     mouseX = event.clientX - windowHalfX;
 
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
@@ -122,25 +117,21 @@ class Canvas_Geometry_Cube
     print('onMouseMove mouseX = $mouseX targRot = $targetRotation');
   }
 
-  void onDocumentMouseUp( event )
-  {
-    print('onDocumentMouseUp');
-    document.on.mouseMove.remove(onDocumentMouseMove);
-    document.on.mouseUp.remove(onDocumentMouseUp);
-    document.on.mouseOut.remove(onDocumentMouseOut);
+  void cancelEvtSubscriptions() {
+    evtSubscriptions.forEach((s) => s.cancel());
+    evtSubscriptions = [];
   }
 
-  void onDocumentMouseOut( event )
-  {
-    document.on.mouseMove.remove(onDocumentMouseMove);
-    document.on.mouseUp.remove(onDocumentMouseUp);
-    document.on.mouseOut.remove(onDocumentMouseOut);
+  void onDocumentMouseUp( event ){
+    cancelEvtSubscriptions();
   }
 
-  void onDocumentTouchStart( event )
-  {
-    if ( event.touches.length == 1 )
-    {
+  void onDocumentMouseOut( event ) {
+    cancelEvtSubscriptions();
+  }
+
+  void onDocumentTouchStart( event ) {
+    if ( event.touches.length == 1 ) {
       event.preventDefault();
 
       mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
@@ -148,10 +139,8 @@ class Canvas_Geometry_Cube
     }
   }
 
-  void onDocumentTouchMove( event )
-  {
-    if ( event.touches.length == 1 )
-    {
+  void onDocumentTouchMove( event ) {
+    if ( event.touches.length == 1 ) {
       event.preventDefault();
 
       mouseX = event.touches[ 0 ].pageX - windowHalfX;
@@ -159,19 +148,13 @@ class Canvas_Geometry_Cube
     }
   }
 
-
-  void animate()
-  {
-//    window.webkitRequestAnimationFrame(animate);
-//    print('win dynamic ${window.dynamic['requestAnimationFrame']}');
-//    if ( window.dynamic['requestAnimationFrame'] != null )
-//      window.dynamic['requestAnimationFrame']( animate );
+  animate(num time) {
+    window.requestAnimationFrame(animate);
 
     render();
   }
 
-  void render()
-  {
+  void render() {
     plane.rotation.z = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
     renderer.render( scene, camera );
   }

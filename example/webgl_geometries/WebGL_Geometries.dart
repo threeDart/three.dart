@@ -115,7 +115,7 @@ class WebGL_Geometries  {
 
     container.nodes.add( renderer.domElement );
 
-    window.on.resize.add(onWindowResize);
+    window.onResize.listen(onWindowResize);
   }
 
   onWindowResize(event) {

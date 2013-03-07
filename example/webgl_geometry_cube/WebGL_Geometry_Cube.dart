@@ -40,7 +40,7 @@ class WebGL_Geometry_Cube  {
 
     container.nodes.add( renderer.domElement );
 
-    window.on.resize.add(onWindowResize);
+    window.onResize.listen(onWindowResize);
   }
 
   onWindowResize(e) {

@@ -2,8 +2,7 @@ import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart';
 
-class Canvas_Geometry_Hierarchy
-{
+class Canvas_Geometry_Hierarchy {
   Element container;// stats;
 
   PerspectiveCamera camera;
@@ -18,27 +17,17 @@ class Canvas_Geometry_Hierarchy
   num windowHalfX;
   num windowHalfY;
 
-  Canvas_Geometry_Hierarchy()
-  {
-
-  }
-
-  void run()
-  {
-    document.on.mouseMove.add( onDocumentMouseMove, false );
+  void run() {
+    document.onMouseMove.listen( onDocumentMouseMove);
 
     init();
-    animate();
+    animate(0);
   }
 
 
-  void init()
-  {
+  void init() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-
-//    container = document.createElement( 'div' );
-//    document.body.appendChild( container );
 
     container = new Element.tag('div');
     document.body.nodes.add( container );
@@ -48,7 +37,6 @@ class Canvas_Geometry_Hierarchy
     camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
     camera.position.z = 500;
 
-    //camera.target = new Vector3(); //TODO: No such property?
     scene.add( camera );
 
     List materials = [];
@@ -63,8 +51,7 @@ class Canvas_Geometry_Hierarchy
 
     group = new Object3D();
 
-    for ( var i = 0; i < 200; i ++ )
-    {
+    for ( var i = 0; i < 200; i ++ ) {
       Mesh mesh = new Mesh( geometry, material );
       //mesh.overdraw = true; //TODO: No such property?
       mesh.position.x = rnd.nextInt(2000) - 1000;
@@ -80,39 +67,27 @@ class Canvas_Geometry_Hierarchy
     scene.add( group );
 
     var options;
-//    options = {"debug": true};
+
     renderer = new CanvasRenderer(options);
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
     //container.appendChild( renderer.domElement );
     container.nodes.add( renderer.domElement );
 
-//    stats = new Stats();
-//    stats.domElement.style.position = 'absolute';
-//    stats.domElement.style.top = '0px';
-//    stats.domElement.style.zIndex = 100;
-//    container.appendChild( stats.domElement );
-
-    window.setInterval(() => animate(), 10);
   }
 
-  void onDocumentMouseMove(event)
-  {
+  void onDocumentMouseMove(event) {
     mouseX = ( event.clientX - windowHalfX ) * 10;
     mouseY = ( event.clientY - windowHalfY ) * 10;
   }
 
-  void animate()
-  {
-    //requestAnimationFrame( animate );
-   //window.webkitRequestAnimationFrame(callback)
+  void animate(num time) {
+    window.requestAnimationFrame(animate);
 
     render();
-    //stats.update();
   }
 
-  void render()
-  {
+  void render() {
     camera.position.x += ( mouseX - camera.position.x ) * .05;
     camera.position.y += ( - mouseY - camera.position.y ) * .05;
     camera.lookAt( scene.position );

@@ -38,7 +38,7 @@ init() {
 
     var details = new Element.tag( 'div' )
     ..classes.add('details')
-    ..innerHTML = '${item[ 1 ]}<br>${item[ 2 ]}';
+    ..innerHtml = '${item[ 1 ]}<br>${item[ 2 ]}';
 
     var element = new Element.tag( 'div' )
     ..classes.add('element')
@@ -150,19 +150,19 @@ init() {
   ..rotateSpeed = 0.5
   ..addEventListener( 'change', (_) => render() );
 
-  document.query( '#table' ).on.click.add((e) => transform( e.target, targets["table"], 2000 ));
+  document.query( '#table' ).onClick.listen((e) => transform( e.target, targets["table"], 2000 ));
 
-  document.query( '#sphere' ).on.click.add((e) => transform( e.target, targets["sphere"], 2000 ));
+  document.query( '#sphere' ).onClick.listen((e) => transform( e.target, targets["sphere"], 2000 ));
 
-  document.query( '#helix' ).on.click.add((e) => transform( e.target, targets["helix"], 2000 ));
+  document.query( '#helix' ).onClick.listen((e) => transform( e.target, targets["helix"], 2000 ));
 
-  document.query( '#grid' ).on.click.add((e) => transform( e.target, targets["grid"], 2000 ));
+  document.query( '#grid' ).onClick.listen((e) => transform( e.target, targets["grid"], 2000 ));
 
   transform( window, targets["table"], 5000 );
 
   //
 
-  window.on.resize.add(onWindowResize);
+  window.onResize.listen(onWindowResize);
 
 }
 

@@ -14,9 +14,6 @@ class Canvas_Lines {
   int windowHalfX = 0;
   int windowHalfY = 0;
 
-  Canvas_Lines() {
-  }
-
   init() {
     Particle particle;
     windowHalfX = window.innerWidth ~/ 2;
@@ -32,7 +29,7 @@ class Canvas_Lines {
     scene.add( camera );
 
     var options;
-//    options = {"debug": true};
+
     renderer = new CanvasRenderer(options);
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.nodes.add( renderer.domElement );
@@ -73,11 +70,10 @@ class Canvas_Lines {
     var line = new Line( geometry, new LineBasicMaterial( color: 0xffffff, opacity: 0.5 ) );
     scene.add( line );
 
-    document.on.mouseMove.add(onDocumentMouseMove);
-    document.on.touchStart.add(onDocumentTouchStart);
-    document.on.touchMove.add(onDocumentTouchMove);
+    document.onMouseMove.listen(onDocumentMouseMove);
+    document.onTouchStart.listen(onDocumentTouchStart);
+    document.onTouchMove.listen(onDocumentTouchMove);
 
-    window.setInterval(() => animate(), 10);
   }
 
   onDocumentMouseMove(MouseEvent event) {
@@ -105,7 +101,9 @@ class Canvas_Lines {
     }
   }
 
-  animate() {
+  void animate(num time) {
+    window.requestAnimationFrame(animate);
+
     render();
   }
 
@@ -119,7 +117,7 @@ class Canvas_Lines {
 
   void run() {
     init();
-    animate();
+    animate(0);
   }
 
 }

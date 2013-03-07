@@ -9,7 +9,7 @@ part of three;
 
 class MeshFaceMaterial extends Material {
   List materials = [];
-  
+
   MeshFaceMaterial([this.materials]);
 
 }

@@ -18,7 +18,7 @@ class WebGL_Geometry_Hierarchy  {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
 
-    document.on.mouseMove.add(onDocumentMouseMove, false );
+    document.onMouseMove.listen(onDocumentMouseMove);
 
     init();
     animate(0);
@@ -68,7 +68,7 @@ class WebGL_Geometry_Hierarchy  {
 
     container.nodes.add( renderer.domElement );
 
-    window.on.resize.add(onWindowResize);
+    window.onResize.listen(onWindowResize);
   }
 
   onWindowResize(event) {

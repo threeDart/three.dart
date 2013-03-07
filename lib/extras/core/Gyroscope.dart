@@ -19,8 +19,9 @@ class Gyroscope extends Object3D {
 
   updateMatrixWorld( {bool force: false} ) {
 
-    if (matrixAutoUpdate)
+    if (matrixAutoUpdate) {
       updateMatrix();
+    }
 
     // update matrixWorld
 
