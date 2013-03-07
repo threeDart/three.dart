@@ -1603,6 +1603,7 @@ class Uniform {
   String type;
   var value;
   var texture;
+  var _array;
   Uniform({this.type, this.value, this.texture});
 }
 

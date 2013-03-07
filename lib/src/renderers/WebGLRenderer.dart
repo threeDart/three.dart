@@ -5235,7 +5235,7 @@ class WebGLRenderer implements Renderer {
 
 	refreshUniformsShadow ( uniforms, lights ) {
 
-		if ( uniforms["shadowMatrix"] ) {
+		if ( uniforms.containsKey("shadowMatrix") ) {
 
 			var j = 0;
 
@@ -5247,6 +5247,15 @@ class WebGLRenderer implements Renderer {
 
 				if ( light is SpotLight || ( light is DirectionalLight && ! light.shadowCascade ) ) {
 
+				  // Grow the arrays
+				  if (uniforms["shadowMap"].texture.length < j + 1) {
+				    uniforms["shadowMap"].texture.length = j + 1;
+				    uniforms["shadowMapSize"].value.length = j + 1;
+				    uniforms["shadowMatrix"].value.length = j + 1;
+				    uniforms["shadowDarkness"].value.length = j + 1;
+				    uniforms["shadowBias"].value.length = j + 1;
+				  }
+				  
 					uniforms["shadowMap"].texture[ j ] = light.shadowMap;
 					uniforms["shadowMapSize"].value[ j ] = light.shadowMapSize;
 
@@ -5451,7 +5460,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = [];
+				  uniform._array = new Int32Array( uniform.texture.length );
 
 					il = uniform.texture.length;
 					for( i = 0; i < il; i ++ ) {
@@ -5469,7 +5478,7 @@ class WebGLRenderer implements Renderer {
 
 					texture = uniform.texture[ i ];
 
-					if ( !texture ) continue;
+					if ( texture == null) continue;
 
 					setTexture( texture, uniform._array[ i ] );
 
@@ -5659,6 +5668,10 @@ class WebGLRenderer implements Renderer {
 				sdirections[ soffset + 1 ] = _direction.y;
 				sdirections[ soffset + 2 ] = _direction.z;
 
+				// grow the arrays
+				sangles.length = slength + 1;
+				sexponents.length = slength + 1;
+				
 				sangles[ slength ] = Math.cos( light.angle );
 				sexponents[ slength ] = light.exponent;
 
@@ -7164,7 +7177,7 @@ class WebGLMaterial { // implements Material {
   num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   // Used by ShadowMapPlugin
-  bool _shadowPass;
+  bool _shadowPass = false;
 
   WebGLMaterial._internal(Material material) : _material = material;
 
