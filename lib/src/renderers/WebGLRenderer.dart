@@ -275,8 +275,8 @@ class WebGLRenderer implements Renderer {
 
   	// default plugins (order is important)
 
-  	//shadowMapPlugin = new ShadowMapPlugin();
-  	//addPrePlugin( shadowMapPlugin );
+  	shadowMapPlugin = new ShadowMapPlugin();
+  	addPrePlugin( shadowMapPlugin );
 
   	//addPostPlugin( new SpritePlugin() );
   	//addPostPlugin( new LensFlarePlugin() );
@@ -3415,15 +3415,20 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderBuffer ( camera, lights, fog, material, WebGLGeometry geometryGroup, WebGLObject webglobject ) {
+	renderBuffer ( camera, lights, fog, material, WebGLGeometry geometryGroup, object ) {
 
-	  Object3D object = webglobject.object;
+	  // Wrap these into proper WebGL objects since this method is called from plugins
+	  WebGLObject webglobject = (object is WebGLObject) ? object : new WebGLObject(object);
+      object = webglobject.object;
+
+      WebGLCamera webglcamera = (camera is WebGLCamera) ? camera : new WebGLCamera(camera);
+      camera = webglcamera._camera;
 
 		if ( !material.visible ) return;
 
 		var program, attributes, linewidth, primitives, a, attribute, i, il;
 
-		program = setProgram( camera, lights, fog, material, webglobject );
+		program = setProgram( webglcamera, lights, fog, material, webglobject );
 
 		attributes = program.attributes;
 
@@ -3959,12 +3964,7 @@ class WebGLRenderer implements Renderer {
 
 	renderPlugins( plugins, scene, camera ) {
 
-		if ( plugins.isEmpty ) return;
-
-		var il = plugins.length;
-
-		for ( var i = 0; i < il; i ++ ) {
-
+		plugins.forEach((plugin) {
 			// reset state for plugin (to start from clean slate)
 
 			_currentProgram = null;
@@ -3980,7 +3980,7 @@ class WebGLRenderer implements Renderer {
 
 			_lightsNeedUpdate = true;
 
-			plugins[ i ].render( scene, camera, _currentWidth, _currentHeight );
+			plugin.render( scene, camera._camera, _currentWidth, _currentHeight );
 
 			// reset state after plugin (anything could have changed)
 
@@ -3997,7 +3997,7 @@ class WebGLRenderer implements Renderer {
 
 			_lightsNeedUpdate = true;
 
-		}
+		});
 
 	}
 
@@ -4972,7 +4972,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			if ( object.receiveShadow && ! material._shadowPass ) {
+			if ( object.receiveShadow && ! material.shadowPass ) {
 
 				refreshUniformsShadow( m_uniforms, lights );
 
@@ -5255,7 +5255,7 @@ class WebGLRenderer implements Renderer {
 				    uniforms["shadowDarkness"].value.length = j + 1;
 				    uniforms["shadowBias"].value.length = j + 1;
 				  }
-				  
+
 					uniforms["shadowMap"].texture[ j ] = light.shadowMap;
 					uniforms["shadowMapSize"].value[ j ] = light.shadowMapSize;
 
@@ -5671,7 +5671,7 @@ class WebGLRenderer implements Renderer {
 				// grow the arrays
 				sangles.length = slength + 1;
 				sexponents.length = slength + 1;
-				
+
 				sangles[ slength ] = Math.cos( light.angle );
 				sexponents[ slength ] = light.exponent;
 
@@ -6380,7 +6380,7 @@ class WebGLRenderer implements Renderer {
     }
 	}
 
-	setTexture( texture, slot ) {
+	setTexture( Texture texture, slot ) {
 
 		if ( texture.needsUpdate ) {
 
@@ -6538,7 +6538,7 @@ class WebGLRenderer implements Renderer {
 	setupFrameBuffer ( framebuffer, renderTarget, textureTarget ) {
 
 		_gl.bindFramebuffer( WebGLRenderingContext.FRAMEBUFFER, framebuffer );
-		_gl.framebufferTexture2D( WebGLRenderingContext.FRAMEBUFFER, WebGLRenderingContext.COLOR_ATTACHMENT0, textureTarget, renderTarget["__webglTexture"], 0 );
+		_gl.framebufferTexture2D( WebGLRenderingContext.FRAMEBUFFER, WebGLRenderingContext.COLOR_ATTACHMENT0, textureTarget, renderTarget.__webglTexture, 0 );
 
 	}
 
@@ -6946,6 +6946,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
+
 }
 
 //
@@ -7068,7 +7069,7 @@ class WebGLGeometry {
   int materialIndex, numMorphTargets, numMorphNormals;
 
   var geometryGroups, geometryGroupsList;
-  var verticesNeedUpdate,
+  var
     morphTargetsNeedUpdate,
     elementsNeedUpdate,
     uvsNeedUpdate,
@@ -7147,6 +7148,9 @@ class WebGLGeometry {
     return _vertices;
   }
 
+  get verticesNeedUpdate => _geometry["verticesNeedUpdate"];
+  set verticesNeedUpdate(bool flag) { _geometry["verticesNeedUpdate"] = flag; }
+
   get morphTargets => _geometry.morphTargets;
   get morphNormals => _geometry.morphNormals;
 
@@ -7177,7 +7181,7 @@ class WebGLMaterial { // implements Material {
   num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   // Used by ShadowMapPlugin
-  bool _shadowPass = false;
+  bool shadowPass = false;
 
   WebGLMaterial._internal(Material material) : _material = material;
 
@@ -7235,7 +7239,7 @@ class WebGLMaterial { // implements Material {
 
   get shininess => (isMeshPhongMaterial) ? (_material as dynamic).shininess : null;
   get specular => (isMeshPhongMaterial) ? (_material as dynamic).specular : null;
-  
+
   get lights => isShaderMaterial ? (_material as ShaderMaterial).lights : false;
 
   get morphTargets => _hasMorhTargets ?  (_material as dynamic).morphTargets : false;

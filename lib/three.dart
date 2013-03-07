@@ -87,11 +87,16 @@ part 'extras/core/CubicBezierCurve3.dart';
 part 'extras/core/SplineCurve3.dart';
 part 'extras/core/ClosedSplineCurve3.dart';
 
+part 'extras/core/Gyroscope.dart';
+
 part 'extras/objects/LensFlare.dart';
 part 'extras/objects/ImmediateRenderObject.dart';
 
 part 'extras/helpers/ArrowHelper.dart';
 part 'extras/helpers/AxisHelper.dart';
+part 'extras/helpers/CameraHelper.dart';
+
+part 'extras/renderers/plugins/ShadowMapPlugin.dart';
 
 part 'src/lights/AmbientLight.dart';
 part 'src/lights/DirectionalLight.dart';
