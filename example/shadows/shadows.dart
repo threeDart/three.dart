@@ -10,10 +10,11 @@ var camera, cameraControls, spot1, spot2, dirLight, mainObj, sunDial;
 // init the scene
 init(){
 
-  renderer = new WebGLRenderer(antialias   : true);
-    renderer.shadowMapEnabled = true;
-    renderer.shadowMapSoft    = true;
-    renderer.setClearColorHex( 0x000000, 1 );
+  renderer = new WebGLRenderer(antialias: true);
+  renderer.shadowMapEnabled = true;
+  renderer.shadowMapDebug = false;
+  renderer.shadowMapSoft    = true;
+  renderer.setClearColorHex( 0x000000, 1 );
 
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.append(renderer.domElement);
@@ -22,9 +23,8 @@ init(){
   scene = new Scene();
 
   // put a camera in the scene
-  camera = new PerspectiveCamera(70, window.innerWidth /
-window.innerHeight, 1, 10000 );
-  camera.position.setValues(0, 2, 14);
+  camera = new PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000 );
+  camera.position.setValues(0, 5, 15);
   scene.add(camera);
 
   // create a camera contol
@@ -46,9 +46,9 @@ window.innerHeight, 1, 10000 );
   spot1.castShadow    = true;
   spot1.shadowDarkness    = 0.5;
   //light.shadowCameraVisible = true;
-  scene.add( spot1 );
+  //scene.add( spot1 );
 
-  /*
+
   spot2 = new SpotLight( 0xFFAA88, 2 );
   spot2.target.position.setValues( 0, 2, 0 );
   spot2.shadowCameraNear    = 0.01;
@@ -56,26 +56,53 @@ window.innerHeight, 1, 10000 );
   spot2.shadowDarkness    = 0.5;
   spot2.shadowCameraVisible = true;
   scene.add( spot2);
-*/
-  var geometry  = new CubeGeometry( 10, 0.5, 10);
-  var cTexture = loadTexture( "images/water.jpg" );
-  cTexture.repeat.setValues( 0.5, 0.8 );
-  cTexture.wrapS = cTexture.wrapT = RepeatWrapping;
-  var cMaterial  = new MeshPhongMaterial(
+
+  // create the sundial
+
+  var sundial = new Object3D();
+  sundial.position.y  = -1;
+  scene.add(sundial);
+
+  var geometry  = new TorusGeometry( 25, 8, 75, 20 );
+
+  var texture = loadTexture( "images/water.jpg" );
+  texture.repeat.setValues( 0.7, 1 );
+  texture.wrapS = texture.wrapT = RepeatWrapping;
+  var material  = new MeshPhongMaterial(
+    ambient   : 0x444444,
+    color   : 0x8844AA,
+    shininess : 300,
+    specular  : 0x33AA33,
+    shading   : SmoothShading,
+    map   : texture
+  );
+  var mesh  = new Mesh( geometry, material );
+  mesh.scale.multiplyScalar(1/18);
+  mesh.castShadow   = true;
+  mesh.receiveShadow  = false;
+  mesh.position.y   = 4;
+  sundial.add( mesh );
+  mainObj  = mesh;
+
+  // Add the ground cube
+  geometry  = new CubeGeometry( 10, 0.5, 10);
+  texture = loadTexture( "images/water.jpg" );
+  texture.repeat.setValues( 0.5, 0.8 );
+  texture.wrapS = texture.wrapT = RepeatWrapping;
+  material  = new MeshPhongMaterial(
         ambient   : 0x444444,
         color   : 0x66aa66,
         shininess : 150,
         specular  : 0x888888,
         shading   : SmoothShading,
-        map   : cTexture);
-    var cMesh    = new Mesh( geometry, cMaterial );
-    cMesh.scale.multiplyScalar(3);
-    cMesh.flipSided    = false;
-    cMesh.castShadow   = false;
-    cMesh.receiveShadow  = true;
-    cMesh.position.y   = -0.5/2;
-    scene.add( cMesh );
-    mainObj = cMesh;
+        map   : texture);
+  mesh    = new Mesh( geometry, material );
+  mesh.scale.multiplyScalar(3);
+  mesh.flipSided    = false;
+  mesh.castShadow   = false;
+  mesh.receiveShadow  = true;
+  mesh.position.y   = -0.5/2;
+  scene.add( mesh );
 }
 
 // animation loop
@@ -87,16 +114,16 @@ animate(time) {
 // render the scene
 render() {
 
-//  var seconds   = new DateTime.now().millisecondsSinceEpoch / 1000;
-//  var piPerSeconds  = seconds * Math.PI;
+  var seconds   = new DateTime.now().millisecondsSinceEpoch / 1000;
+  var piPerSeconds  = seconds * Math.PI;
 
-//  spot1.position.x  = Math.cos(piPerSeconds*0.05)*12;
-//  spot1.position.y  = 10;
-//  spot1.position.z  = Math.sin(piPerSeconds*0.05)*12;
+  spot1.position.x  = Math.cos(piPerSeconds*0.05)*12;
+  spot1.position.y  = 10;
+  spot1.position.z  = Math.sin(piPerSeconds*0.05)*12;
 
-//  spot2.position.x  = Math.cos(piPerSeconds*-0.1)*15;
-//  spot2.position.y  = 8 + Math.sin(piPerSeconds*0.5)*4;
-//  spot2.position.z  = Math.sin(piPerSeconds*-0.1)*15;
+  spot2.position.x  = Math.cos(piPerSeconds*-0.1)*15;
+  spot2.position.y  = 8 + Math.sin(piPerSeconds*0.5)*4;
+  spot2.position.z  = Math.sin(piPerSeconds*-0.1)*15;
 
   mainObj.rotation.x += 0.005;
   mainObj.rotation.y += 0.03;
