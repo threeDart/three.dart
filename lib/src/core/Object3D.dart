@@ -39,6 +39,7 @@ class Object3D {
 
   Vector3 _vector;
 
+  var customDepthMaterial;
 
   Object3D()
       : id = Object3DCount++,
