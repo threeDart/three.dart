@@ -1,47 +1,40 @@
 part of three;
 
-class WebGLRenderTarget {
+class WebGLRenderTarget extends Texture {
 
 	num width, height;
 
-	var wrapS, wrapT;
-
-	var magFilter, minFilter;
-
-	int anisotropy;
-
 	Vector2 offset;
 	Vector2 repeat;
-
-	var format;
-	var type;
 
 	bool depthBuffer,
 		 stencilBuffer;
 
 	bool generateMipmaps;
 
-	WebGLTexture __webglTexture;
 	var __webglFramebuffer; // List<WebGLFramebuffer> or WebGLFramebuffer
 	var __webglRenderbuffer; // List<WebGLRenderbuffer> or WebGLRenderbuffer
 
 	WebGLRenderTarget ( this.width, this.height, {
-	  this.wrapS: ClampToEdgeWrapping,
-	  this.wrapT: ClampToEdgeWrapping,
-	  this.magFilter: LinearFilter,
-	  this.minFilter: LinearMipMapLinearFilter,
-	  this.anisotropy: 1,
-	  this.format: RGBAFormat,
-	  this.type: UnsignedByteType,
+	  int wrapS: ClampToEdgeWrapping,
+	  int wrapT: ClampToEdgeWrapping,
+	  int magFilter: LinearFilter,
+	  int minFilter: LinearMipMapLinearFilter,
+	  int anisotropy: 1,
+	  int format: RGBAFormat,
+	  int type: UnsignedByteType,
 	  this.depthBuffer: true,
 	  this.stencilBuffer: true,
 	  this.offset: null, //new Vector2( 0, 0 ),
 	  this.repeat: null, //new Vector2( 1, 1 ),
 	  this.generateMipmaps: true
-	} ) {
+	} ) : super(null, null, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy){
     if (offset == null) offset = new Vector2( 0, 0 );
     if (repeat == null) repeat = new Vector2( 1, 1 );
 	}
+
+	WebGLTexture get __webglTexture => this["__webglTexture"];
+  set __webglTexture(WebGLTexture tex) { this["__webglTexture"] = tex; }
 
   WebGLRenderTarget clone() => new WebGLRenderTarget(
 						width,
