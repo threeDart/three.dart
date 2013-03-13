@@ -3764,7 +3764,7 @@ class WebGLRenderer implements Renderer {
 
 	// Sorting
 
-	painterSort ( a, b ) => (b.z - a.z).toInt();
+	painterSort ( a, b ) => (a.z.isNaN || b.z.isNaN) ? 0 : (b.z - a.z).toInt();
 
 	numericalSort ( a, b ) => (b[ 1 ] - a[ 1 ]).toInt();
 
