@@ -12,7 +12,7 @@ class ShadowMapPlugin {
   Matrix4 _projScreenMatrix;
   Vector3 _min, _max;
 
-  WebGLRenderingContext _gl;
+  gl.RenderingContext _gl;
   WebGLRenderer _renderer;
   WebGLMaterial _depthMaterial, _depthMaterialMorph, _depthMaterialSkin, _depthMaterialMorphSkin;
 
@@ -67,18 +67,18 @@ class ShadowMapPlugin {
     // set GL state for depth map
 
     _gl.clearColor( 1, 1, 1, 1 );
-    _gl.disable( WebGLRenderingContext.BLEND );
+    _gl.disable( gl.BLEND );
 
-    _gl.enable( WebGLRenderingContext.CULL_FACE );
-    _gl.frontFace( WebGLRenderingContext.CCW );
+    _gl.enable( gl.CULL_FACE );
+    _gl.frontFace( gl.CCW );
 
     if ( _renderer.shadowMapCullFrontFaces ) {
 
-      _gl.cullFace( WebGLRenderingContext.FRONT );
+      _gl.cullFace( gl.FRONT );
 
     } else {
 
-      _gl.cullFace( WebGLRenderingContext.BACK );
+      _gl.cullFace( gl.BACK );
 
     }
 
@@ -340,11 +340,11 @@ class ShadowMapPlugin {
     var clearAlpha = _renderer.clearAlpha;
 
     _gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
-    _gl.enable( WebGLRenderingContext.BLEND );
+    _gl.enable( gl.BLEND );
 
     if ( _renderer.shadowMapCullFrontFaces ) {
 
-      _gl.cullFace( WebGLRenderingContext.BACK );
+      _gl.cullFace( gl.BACK );
 
     }
 

@@ -81,7 +81,7 @@ class JSONLoader extends Loader {
 
     });
 
-    xhr.open( "GET", url, true );
+    xhr.open( "GET", url);
     xhr.send( null );
 
   }

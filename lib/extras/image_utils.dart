@@ -67,7 +67,7 @@ Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
 
   request.onError.listen(onError);
 
-  request.open( 'GET', url, true );
+  request.open( 'GET', url, async: true );
   request.responseType = "arraybuffer";
   request.send( null );
 

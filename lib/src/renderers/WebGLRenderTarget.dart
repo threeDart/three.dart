@@ -33,8 +33,8 @@ class WebGLRenderTarget extends Texture {
     if (repeat == null) repeat = new Vector2( 1, 1 );
 	}
 
-	WebGLTexture get __webglTexture => this["__webglTexture"];
-  set __webglTexture(WebGLTexture tex) { this["__webglTexture"] = tex; }
+	gl.Texture get __webglTexture => this["__webglTexture"];
+  set __webglTexture(gl.Texture tex) { this["__webglTexture"] = tex; }
 
   WebGLRenderTarget clone() => new WebGLRenderTarget(
 						width,

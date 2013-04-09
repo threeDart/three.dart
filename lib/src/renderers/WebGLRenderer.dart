@@ -5,7 +5,7 @@ class WebGLRenderer implements Renderer {
   static const String PRECISION_HIGH = 'highp';
 
   CanvasElement canvas;
-  WebGLRenderingContext _gl;
+  gl.RenderingContext _gl;
 
   String precision;
 
@@ -117,9 +117,9 @@ class WebGLRenderer implements Renderer {
   bool _lightsNeedUpdate;
 
   // GL Extensions
-  OesTextureFloat _glExtensionTextureFloat;
-  OesStandardDerivatives _glExtensionStandardDerivatives;
-	ExtTextureFilterAnisotropic _glExtensionTextureFilterAnisotropic;
+  gl.OesTextureFloat _glExtensionTextureFloat;
+  gl.OesStandardDerivatives _glExtensionStandardDerivatives;
+	gl.ExtTextureFilterAnisotropic _glExtensionTextureFilterAnisotropic;
 
   var maxAnisotropy;
 
@@ -263,11 +263,11 @@ class WebGLRenderer implements Renderer {
 
   	// GPU capabilities
 
-  	maxVertexTextures = _gl.getParameter( WebGLRenderingContext.MAX_VERTEX_TEXTURE_IMAGE_UNITS );
-	  maxTextureSize = _gl.getParameter( WebGLRenderingContext.MAX_TEXTURE_SIZE );
-	  maxCubemapSize = _gl.getParameter( WebGLRenderingContext.MAX_CUBE_MAP_TEXTURE_SIZE );
+  	maxVertexTextures = _gl.getParameter( gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS );
+	  maxTextureSize = _gl.getParameter( gl.MAX_TEXTURE_SIZE );
+	  maxCubemapSize = _gl.getParameter( gl.MAX_CUBE_MAP_TEXTURE_SIZE );
 
-  	maxAnisotropy = (_glExtensionTextureFilterAnisotropic != null) ? _gl.getParameter( ExtTextureFilterAnisotropic.MAX_TEXTURE_MAX_ANISOTROPY_EXT ) : 0;
+  	maxAnisotropy = (_glExtensionTextureFilterAnisotropic != null) ? _gl.getParameter( gl.ExtTextureFilterAnisotropic.MAX_TEXTURE_MAX_ANISOTROPY_EXT ) : 0;
 
   	supportsVertexTextures = ( maxVertexTextures > 0 );
   	supportsBoneTextures = supportsVertexTextures && (_glExtensionTextureFloat != null);
@@ -316,7 +316,7 @@ class WebGLRenderer implements Renderer {
 	}
 
 	enableScissorTest( enable ) {
-		enable ? _gl.enable( WebGLRenderingContext.SCISSOR_TEST ) : _gl.disable( WebGLRenderingContext.SCISSOR_TEST );
+		enable ? _gl.enable( gl.SCISSOR_TEST ) : _gl.disable( gl.SCISSOR_TEST );
 	}
 
 	// Clearing
@@ -343,9 +343,9 @@ class WebGLRenderer implements Renderer {
 
 		var bits = 0;
 
-		if ( color ) bits |= WebGLRenderingContext.COLOR_BUFFER_BIT;
-		if ( depth ) bits |= WebGLRenderingContext.DEPTH_BUFFER_BIT;
-		if ( stencil ) bits |= WebGLRenderingContext.STENCIL_BUFFER_BIT;
+		if ( color ) bits |= gl.COLOR_BUFFER_BIT;
+		if ( depth ) bits |= gl.DEPTH_BUFFER_BIT;
+		if ( stencil ) bits |= gl.STENCIL_BUFFER_BIT;
 
 		_gl.clear( bits );
 
@@ -988,11 +988,11 @@ class WebGLRenderer implements Renderer {
 
 			if ( a == "index" ) {
 
-				type = WebGLRenderingContext.ELEMENT_ARRAY_BUFFER;
+				type = gl.ELEMENT_ARRAY_BUFFER;
 
 			} else {
 
-				type = WebGLRenderingContext.ARRAY_BUFFER;
+				type = gl.ARRAY_BUFFER;
 
 			}
 
@@ -1001,7 +1001,7 @@ class WebGLRenderer implements Renderer {
 			attribute.buffer = _gl.createBuffer();
 
 			_gl.bindBuffer( type, attribute.buffer );
-			_gl.bufferData( type, attribute.array, WebGLRenderingContext.STATIC_DRAW );
+			_gl.bufferData( type, attribute.array, gl.STATIC_DRAW );
 
 		});
 
@@ -1301,15 +1301,15 @@ class WebGLRenderer implements Renderer {
 
 		if ( dirtyVertices || object.sortParticles ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglVertexBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglVertexBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
 		if ( dirtyColors || object.sortParticles ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
@@ -1322,8 +1322,8 @@ class WebGLRenderer implements Renderer {
 
 				if ( customAttribute.needsUpdate || object.sortParticles ) {
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, customAttribute.buffer );
-					_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, customAttribute.array, hint );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+					_gl.bufferData( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
 
@@ -1369,8 +1369,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglVertexBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglVertexBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
@@ -1388,8 +1388,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
@@ -1478,8 +1478,8 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, customAttribute.buffer );
-					_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, customAttribute.array, hint );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+					_gl.bufferData( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
 
@@ -1518,8 +1518,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglVertexBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglVertexBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
@@ -1537,8 +1537,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
@@ -1699,8 +1699,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
@@ -1858,13 +1858,13 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ vk ] );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, morphTargetsArrays[ vk ], hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ vk ] );
+				_gl.bufferData( gl.ARRAY_BUFFER, morphTargetsArrays[ vk ], hint );
 
 				if ( material.morphNormals ) {
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ vk ] );
-					_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, morphNormalsArrays[ vk ], hint );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ vk ] );
+					_gl.bufferData( gl.ARRAY_BUFFER, morphNormalsArrays[ vk ], hint );
 
 				}
 
@@ -2086,17 +2086,17 @@ class WebGLRenderer implements Renderer {
 
 			if ( offset_skin > 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinVertexABuffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, skinVertexAArray, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinVertexABuffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, skinVertexAArray, hint );
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinVertexBBuffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, skinVertexBArray, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinVertexBBuffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, skinVertexBArray, hint );
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinIndicesBuffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, skinIndexArray, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinIndicesBuffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, skinIndexArray, hint );
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinWeightsBuffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, skinWeightArray, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinWeightsBuffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, skinWeightArray, hint );
 
 			}
 
@@ -2188,8 +2188,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( offset_color > 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglColorBuffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, colorArray, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglColorBuffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
 
 			}
 
@@ -2263,8 +2263,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglTangentBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, tangentArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglTangentBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, tangentArray, hint );
 
 		}
 
@@ -2346,8 +2346,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglNormalBuffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, normalArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglNormalBuffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, normalArray, hint );
 
 		}
 
@@ -2401,8 +2401,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( offset_uv > 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglUVBuffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, uvArray, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglUVBuffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, uvArray, hint );
 
 			}
 
@@ -2458,8 +2458,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( offset_uv2 > 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglUV2Buffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, uv2Array, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglUV2Buffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, uv2Array, hint );
 
 			}
 
@@ -2526,11 +2526,11 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglFaceBuffer );
-			_gl.bufferData( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, faceArray, hint );
+			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglFaceBuffer );
+			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, faceArray, hint );
 
-			_gl.bindBuffer( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
-			_gl.bufferData( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, lineArray, hint );
+			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
+			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, lineArray, hint );
 
 		}
 
@@ -3097,8 +3097,8 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, customAttribute.buffer );
-				_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, customAttribute.array, hint );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+				_gl.bufferData( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 			}
 
@@ -3137,43 +3137,43 @@ class WebGLRenderer implements Renderer {
 
 		if ( geometry.elementsNeedUpdate && index != null ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, index.buffer );
-			_gl.bufferData( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, index.array, hint );
+			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, index.buffer );
+			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, index.array, hint );
 
 		}
 
 		if ( geometry.verticesNeedUpdate && position != null ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, position.buffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, position.array, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, position.buffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, position.array, hint );
 
 		}
 
 		if ( geometry.normalsNeedUpdate && normal != null ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, normal.buffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, normal.array, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, normal.buffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, normal.array, hint );
 
 		}
 
 		if ( geometry.uvsNeedUpdate && uv != null ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, uv.buffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, uv.array, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, uv.buffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, uv.array, hint );
 
 		}
 
 		if ( geometry.colorsNeedUpdate && color != null ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, color.buffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, color.array, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, color.buffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, color.array, hint );
 
 		}
 
 		if ( geometry.tangentsNeedUpdate && tangent != null ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, tangent.buffer );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, tangent.array, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, tangent.buffer );
+			_gl.bufferData( gl.ARRAY_BUFFER, tangent.array, hint );
 
 		}
 
@@ -3199,16 +3199,16 @@ class WebGLRenderer implements Renderer {
 
 		if ( object.hasPositions ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, object["__webglVertexBuffer"] );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, object.positionArray, WebGLRenderingContext.DYNAMIC_DRAW );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglVertexBuffer"] );
+			_gl.bufferData( gl.ARRAY_BUFFER, object.positionArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["position"] );
-			_gl.vertexAttribPointer( program.attributes["position"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+			_gl.vertexAttribPointer( program.attributes["position"], 3, gl.FLOAT, false, 0, 0 );
 
 		}
 
 		if ( object.hasNormals ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, object["__webglNormalBuffer"] );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglNormalBuffer"] );
 
 			if ( material.shading == FlatShading ) {
 
@@ -3253,31 +3253,31 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, object.normalArray, WebGLRenderingContext.DYNAMIC_DRAW );
+			_gl.bufferData( gl.ARRAY_BUFFER, object.normalArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["normal"] );
-			_gl.vertexAttribPointer( program.attributes["normal"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+			_gl.vertexAttribPointer( program.attributes["normal"], 3, gl.FLOAT, false, 0, 0 );
 
 		}
 
 		if ( object.hasUvs && material.map ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, object["__webglUVBuffer"] );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, object.uvArray, WebGLRenderingContext.DYNAMIC_DRAW );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglUVBuffer"] );
+			_gl.bufferData( gl.ARRAY_BUFFER, object.uvArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["uv"] );
-			_gl.vertexAttribPointer( program.attributes["uv"], 2, WebGLRenderingContext.FLOAT, false, 0, 0 );
+			_gl.vertexAttribPointer( program.attributes["uv"], 2, gl.FLOAT, false, 0, 0 );
 
 		}
 
 		if ( object.hasColors && material.vertexColors != NoColors ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, object["__webglColorBuffer"] );
-			_gl.bufferData( WebGLRenderingContext.ARRAY_BUFFER, object.colorArray, WebGLRenderingContext.DYNAMIC_DRAW );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglColorBuffer"] );
+			_gl.bufferData( gl.ARRAY_BUFFER, object.colorArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["color"] );
-			_gl.vertexAttribPointer( program.attributes["color"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+			_gl.vertexAttribPointer( program.attributes["color"], 3, gl.FLOAT, false, 0, 0 );
 
 		}
 
-		_gl.drawArrays( WebGLRenderingContext.TRIANGLES, 0, object.count );
+		_gl.drawArrays( gl.TRIANGLES, 0, object.count );
 
 		object.count = 0;
 
@@ -3328,8 +3328,8 @@ class WebGLRenderer implements Renderer {
 					var position = geometry.attributes[ "position" ];
 					var positionSize = position.itemSize;
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, position.buffer );
-					_gl.vertexAttribPointer( attributes["position"], positionSize, WebGLRenderingContext.FLOAT, false, 0, startIndex * positionSize * 4 ); // 4 bytes per Float32
+					_gl.bindBuffer( gl.ARRAY_BUFFER, position.buffer );
+					_gl.vertexAttribPointer( attributes["position"], positionSize, gl.FLOAT, false, 0, startIndex * positionSize * 4 ); // 4 bytes per Float32
 
 					// normals
 
@@ -3339,8 +3339,8 @@ class WebGLRenderer implements Renderer {
 
 						var normalSize = normal.itemSize;
 
-						_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, normal.buffer );
-						_gl.vertexAttribPointer( attributes["normal"], normalSize, WebGLRenderingContext.FLOAT, false, 0, startIndex * normalSize * 4 );
+						_gl.bindBuffer( gl.ARRAY_BUFFER, normal.buffer );
+						_gl.vertexAttribPointer( attributes["normal"], normalSize, gl.FLOAT, false, 0, startIndex * normalSize * 4 );
 
 					}
 
@@ -3354,8 +3354,8 @@ class WebGLRenderer implements Renderer {
 
 							var uvSize = uv.itemSize;
 
-							_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, uv.buffer );
-							_gl.vertexAttribPointer( attributes["uv"], uvSize, WebGLRenderingContext.FLOAT, false, 0, startIndex * uvSize * 4 );
+							_gl.bindBuffer( gl.ARRAY_BUFFER, uv.buffer );
+							_gl.vertexAttribPointer( attributes["uv"], uvSize, gl.FLOAT, false, 0, startIndex * uvSize * 4 );
 
 							_gl.enableVertexAttribArray( attributes["uv"] );
 
@@ -3375,8 +3375,8 @@ class WebGLRenderer implements Renderer {
 
 						var colorSize = color.itemSize;
 
-						_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, color.buffer );
-						_gl.vertexAttribPointer( attributes["color"], colorSize, WebGLRenderingContext.FLOAT, false, 0, startIndex * colorSize * 4 );
+						_gl.bindBuffer( gl.ARRAY_BUFFER, color.buffer );
+						_gl.vertexAttribPointer( attributes["color"], colorSize, gl.FLOAT, false, 0, startIndex * colorSize * 4 );
 
 					}
 
@@ -3388,8 +3388,8 @@ class WebGLRenderer implements Renderer {
 
 						var tangentSize = tangent.itemSize;
 
-						_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, tangent.buffer );
-						_gl.vertexAttribPointer( attributes["tangent"], tangentSize, WebGLRenderingContext.FLOAT, false, 0, startIndex * tangentSize * 4 );
+						_gl.bindBuffer( gl.ARRAY_BUFFER, tangent.buffer );
+						_gl.vertexAttribPointer( attributes["tangent"], tangentSize, gl.FLOAT, false, 0, startIndex * tangentSize * 4 );
 
 					}
 
@@ -3397,13 +3397,13 @@ class WebGLRenderer implements Renderer {
 
 					var index = geometry.attributes[ "index" ];
 
-					_gl.bindBuffer( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, index.buffer );
+					_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, index.buffer );
 
 				}
 
 				// render indexed triangles
 
-				_gl.drawElements( WebGLRenderingContext.TRIANGLES, offsets[ i ].count, WebGLRenderingContext.UNSIGNED_SHORT, offsets[ i ].start * 2 ); // 2 bytes per Uint16
+				_gl.drawElements( gl.TRIANGLES, offsets[ i ].count, gl.UNSIGNED_SHORT, offsets[ i ].start * 2 ); // 2 bytes per Uint16
 
 				info.render.calls ++;
 				info.render.vertices += offsets[ i ].count; // not really true, here vertices can be shared
@@ -3449,8 +3449,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( updateBuffers ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
-				_gl.vertexAttribPointer( attributes["position"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
+				_gl.vertexAttribPointer( attributes["position"], 3, gl.FLOAT, false, 0, 0 );
 
 			}
 
@@ -3480,8 +3480,8 @@ class WebGLRenderer implements Renderer {
 
 					if( attributes[ attribute.buffer.belongsToAttribute ] >= 0 ) {
 
-						_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, attribute.buffer );
-						_gl.vertexAttribPointer( attributes[ attribute.buffer.belongsToAttribute ], attribute.size, WebGLRenderingContext.FLOAT, false, 0, 0 );
+						_gl.bindBuffer( gl.ARRAY_BUFFER, attribute.buffer );
+						_gl.vertexAttribPointer( attributes[ attribute.buffer.belongsToAttribute ], attribute.size, gl.FLOAT, false, 0, 0 );
 
 					}
 
@@ -3494,8 +3494,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( attributes["color"] >= 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglColorBuffer );
-				_gl.vertexAttribPointer( attributes["color"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglColorBuffer );
+				_gl.vertexAttribPointer( attributes["color"], 3, gl.FLOAT, false, 0, 0 );
 
 			}
 
@@ -3503,8 +3503,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( attributes["normal"] >= 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglNormalBuffer );
-				_gl.vertexAttribPointer( attributes["normal"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglNormalBuffer );
+				_gl.vertexAttribPointer( attributes["normal"], 3, gl.FLOAT, false, 0, 0 );
 
 			}
 
@@ -3512,8 +3512,8 @@ class WebGLRenderer implements Renderer {
 
 			if ( attributes["tangent"] >= 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglTangentBuffer );
-				_gl.vertexAttribPointer( attributes["tangent"], 4, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglTangentBuffer );
+				_gl.vertexAttribPointer( attributes["tangent"], 4, gl.FLOAT, false, 0, 0 );
 
 			}
 
@@ -3523,8 +3523,8 @@ class WebGLRenderer implements Renderer {
 
 				if ( geometryGroup.__webglUVBuffer != null ) {
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglUVBuffer );
-					_gl.vertexAttribPointer( attributes["uv"], 2, WebGLRenderingContext.FLOAT, false, 0, 0 );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglUVBuffer );
+					_gl.vertexAttribPointer( attributes["uv"], 2, gl.FLOAT, false, 0, 0 );
 
 					_gl.enableVertexAttribArray( attributes["uv"] );
 
@@ -3540,8 +3540,8 @@ class WebGLRenderer implements Renderer {
 
 				if ( geometryGroup.__webglUV2Buffer != null) {
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglUV2Buffer );
-					_gl.vertexAttribPointer( attributes["uv2"], 2, WebGLRenderingContext.FLOAT, false, 0, 0 );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglUV2Buffer );
+					_gl.vertexAttribPointer( attributes["uv2"], 2, gl.FLOAT, false, 0, 0 );
 
 					_gl.enableVertexAttribArray( attributes["uv2"] );
 
@@ -3557,17 +3557,17 @@ class WebGLRenderer implements Renderer {
 				 attributes["skinVertexA"] >= 0 && attributes["skinVertexB"] >= 0 &&
 				 attributes["skinIndex"] >= 0 && attributes["skinWeight"] >= 0 ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinVertexABuffer );
-				_gl.vertexAttribPointer( attributes["skinVertexA"], 4, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinVertexABuffer );
+				_gl.vertexAttribPointer( attributes["skinVertexA"], 4, gl.FLOAT, false, 0, 0 );
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinVertexBBuffer );
-				_gl.vertexAttribPointer( attributes["skinVertexB"], 4, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinVertexBBuffer );
+				_gl.vertexAttribPointer( attributes["skinVertexB"], 4, gl.FLOAT, false, 0, 0 );
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinIndicesBuffer );
-				_gl.vertexAttribPointer( attributes["skinIndex"], 4, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinIndicesBuffer );
+				_gl.vertexAttribPointer( attributes["skinIndex"], 4, gl.FLOAT, false, 0, 0 );
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglSkinWeightsBuffer );
-				_gl.vertexAttribPointer( attributes["skinWeight"], 4, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinWeightsBuffer );
+				_gl.vertexAttribPointer( attributes["skinWeight"], 4, gl.FLOAT, false, 0, 0 );
 
 			}
 
@@ -3583,15 +3583,15 @@ class WebGLRenderer implements Renderer {
 
 				setLineWidth( material.wireframeLinewidth );
 
-				if ( updateBuffers ) _gl.bindBuffer( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
-				_gl.drawElements( WebGLRenderingContext.LINES, geometryGroup.__webglLineCount, WebGLRenderingContext.UNSIGNED_SHORT, 0 );
+				if ( updateBuffers ) _gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
+				_gl.drawElements( gl.LINES, geometryGroup.__webglLineCount, gl.UNSIGNED_SHORT, 0 );
 
 			// triangles
 
 			} else {
 
-				if ( updateBuffers ) _gl.bindBuffer( WebGLRenderingContext.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglFaceBuffer );
-				_gl.drawElements( WebGLRenderingContext.TRIANGLES, geometryGroup.__webglFaceCount, WebGLRenderingContext.UNSIGNED_SHORT, 0 );
+				if ( updateBuffers ) _gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglFaceBuffer );
+				_gl.drawElements( gl.TRIANGLES, geometryGroup.__webglFaceCount, gl.UNSIGNED_SHORT, 0 );
 
 			}
 
@@ -3603,7 +3603,7 @@ class WebGLRenderer implements Renderer {
 
 		} else if ( object is Line ) {
 
-			primitives = ( (object as Line).type == LineStrip ) ? WebGLRenderingContext.LINE_STRIP : WebGLRenderingContext.LINES;
+			primitives = ( (object as Line).type == LineStrip ) ? gl.LINE_STRIP : gl.LINES;
 
 			setLineWidth( material.linewidth );
 
@@ -3615,7 +3615,7 @@ class WebGLRenderer implements Renderer {
 
 		} else if ( object is ParticleSystem ) {
 
-			_gl.drawArrays( WebGLRenderingContext.POINTS, 0, geometryGroup.__webglParticleCount );
+			_gl.drawArrays( gl.POINTS, 0, geometryGroup.__webglParticleCount );
 
 			info.render.calls ++;
 			info.render.points += geometryGroup.__webglParticleCount;
@@ -3624,7 +3624,7 @@ class WebGLRenderer implements Renderer {
 
 		} else if ( object is Ribbon ) {
 
-			_gl.drawArrays( WebGLRenderingContext.TRIANGLE_STRIP, 0, geometryGroup.__webglVertexCount );
+			_gl.drawArrays( gl.TRIANGLE_STRIP, 0, geometryGroup.__webglVertexCount );
 
 			info.render.calls ++;
 
@@ -3640,13 +3640,13 @@ class WebGLRenderer implements Renderer {
 
 		if ( object.morphTargetBase != -1 ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ object.morphTargetBase ] );
-			_gl.vertexAttribPointer( attributes["position"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ object.morphTargetBase ] );
+			_gl.vertexAttribPointer( attributes["position"], 3, gl.FLOAT, false, 0, 0 );
 
 		} else if ( attributes["position"] >= 0 ) {
 
-			_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
-			_gl.vertexAttribPointer( attributes["position"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
+			_gl.vertexAttribPointer( attributes["position"], 3, gl.FLOAT, false, 0, 0 );
 
 		}
 
@@ -3660,13 +3660,13 @@ class WebGLRenderer implements Renderer {
 
 			while ( m < material.numSupportedMorphTargets && m < order.length ) {
 
-				_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ order[ m ] ] );
-				_gl.vertexAttribPointer( attributes[ "morphTarget$m"], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ order[ m ] ] );
+				_gl.vertexAttribPointer( attributes[ "morphTarget$m"], 3, gl.FLOAT, false, 0, 0 );
 
 				if ( material.morphNormals ) {
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ order[ m ] ] );
-					_gl.vertexAttribPointer( attributes[ "morphNormal$m" ], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ order[ m ] ] );
+					_gl.vertexAttribPointer( attributes[ "morphNormal$m" ], 3, gl.FLOAT, false, 0, 0 );
 
 				}
 
@@ -3719,14 +3719,14 @@ class WebGLRenderer implements Renderer {
 
 					influenceIndex = activeInfluenceIndices[ m ][ 0 ];
 
-					_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ influenceIndex ] );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ influenceIndex ] );
 
-					_gl.vertexAttribPointer( attributes[ "morphTarget$m" ], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+					_gl.vertexAttribPointer( attributes[ "morphTarget$m" ], 3, gl.FLOAT, false, 0, 0 );
 
 					if ( material.morphNormals ) {
 
-						_gl.bindBuffer( WebGLRenderingContext.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ influenceIndex ] );
-						_gl.vertexAttribPointer( attributes[ "morphNormal$m" ], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+						_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ influenceIndex ] );
+						_gl.vertexAttribPointer( attributes[ "morphNormal$m" ], 3, gl.FLOAT, false, 0, 0 );
 
 					}
 
@@ -3734,11 +3734,11 @@ class WebGLRenderer implements Renderer {
 
 				} else {
 
-					_gl.vertexAttribPointer( attributes[ "morphTarget$m" ], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+					_gl.vertexAttribPointer( attributes[ "morphTarget$m" ], 3, gl.FLOAT, false, 0, 0 );
 
 					if ( material.morphNormals ) {
 
-						_gl.vertexAttribPointer( attributes[ "morphNormal$m" ], 3, WebGLRenderingContext.FLOAT, false, 0, 0 );
+						_gl.vertexAttribPointer( attributes[ "morphNormal$m" ], 3, gl.FLOAT, false, 0, 0 );
 
 					}
 
@@ -4496,7 +4496,7 @@ class WebGLRenderer implements Renderer {
 					 geometry.uvsNeedUpdate || geometry.normalsNeedUpdate ||
 					 geometry.colorsNeedUpdate || geometry.tangentsNeedUpdate ) {
 
-					setDirectBuffers( geometry, WebGLRenderingContext.DYNAMIC_DRAW, !(geometry as dynamic) );
+					setDirectBuffers( geometry, gl.DYNAMIC_DRAW, !(geometry as dynamic) );
 
 				}
 
@@ -4523,7 +4523,7 @@ class WebGLRenderer implements Renderer {
 						 geometry.uvsNeedUpdate || geometry.normalsNeedUpdate ||
 						 geometry.colorsNeedUpdate || geometry.tangentsNeedUpdate || customAttributesDirty ) {
 
-						setMeshBuffers( geometryGroup, webglobject, WebGLRenderingContext.DYNAMIC_DRAW, !geometry.isDynamic, material );
+						setMeshBuffers( geometryGroup, webglobject, gl.DYNAMIC_DRAW, !geometry.isDynamic, material );
 
 					}
 
@@ -4547,7 +4547,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.verticesNeedUpdate || geometry.colorsNeedUpdate ) {
 
-				setRibbonBuffers( geometry, WebGLRenderingContext.DYNAMIC_DRAW );
+				setRibbonBuffers( geometry, gl.DYNAMIC_DRAW );
 
 			}
 
@@ -4562,7 +4562,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.verticesNeedUpdate ||  geometry.colorsNeedUpdate || customAttributesDirty ) {
 
-				setLineBuffers( geometry, WebGLRenderingContext.DYNAMIC_DRAW );
+				setLineBuffers( geometry, gl.DYNAMIC_DRAW );
 
 			}
 
@@ -4579,7 +4579,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.verticesNeedUpdate || geometry.colorsNeedUpdate || object.sortParticles || customAttributesDirty ) {
 
-				setParticleBuffers( geometry, WebGLRenderingContext.DYNAMIC_DRAW, object );
+				setParticleBuffers( geometry, gl.DYNAMIC_DRAW, object );
 
 			}
 
@@ -5706,33 +5706,33 @@ class WebGLRenderer implements Renderer {
 
 			if ( !frontFace || frontFace == "ccw" ) {
 
-				_gl.frontFace( WebGLRenderingContext.CCW );
+				_gl.frontFace( gl.CCW );
 
 			} else {
 
-				_gl.frontFace( WebGLRenderingContext.CW );
+				_gl.frontFace( gl.CW );
 
 			}
 
 			if( cullFace == "back" ) {
 
-				_gl.cullFace( WebGLRenderingContext.BACK );
+				_gl.cullFace( gl.BACK );
 
 			} else if( cullFace == "front" ) {
 
-				_gl.cullFace( WebGLRenderingContext.FRONT );
+				_gl.cullFace( gl.FRONT );
 
 			} else {
 
-				_gl.cullFace( WebGLRenderingContext.FRONT_AND_BACK );
+				_gl.cullFace( gl.FRONT_AND_BACK );
 
 			}
 
-			_gl.enable( WebGLRenderingContext.CULL_FACE );
+			_gl.enable( gl.CULL_FACE );
 
 		} else {
 
-			_gl.disable( WebGLRenderingContext.CULL_FACE );
+			_gl.disable( gl.CULL_FACE );
 
 		}
 
@@ -5747,11 +5747,11 @@ class WebGLRenderer implements Renderer {
 
 			if ( doubleSided ) {
 
-				_gl.disable( WebGLRenderingContext.CULL_FACE );
+				_gl.disable( gl.CULL_FACE );
 
 			} else {
 
-				_gl.enable( WebGLRenderingContext.CULL_FACE );
+				_gl.enable( gl.CULL_FACE );
 
 			}
 
@@ -5763,11 +5763,11 @@ class WebGLRenderer implements Renderer {
 
 			if ( flipSided ) {
 
-				_gl.frontFace( WebGLRenderingContext.CW );
+				_gl.frontFace( gl.CW );
 
 			} else {
 
-				_gl.frontFace( WebGLRenderingContext.CCW );
+				_gl.frontFace( gl.CCW );
 
 			}
 
@@ -5783,11 +5783,11 @@ class WebGLRenderer implements Renderer {
 
 			if ( depthTest ) {
 
-				_gl.enable( WebGLRenderingContext.DEPTH_TEST );
+				_gl.enable( gl.DEPTH_TEST );
 
 			} else {
 
-				_gl.disable( WebGLRenderingContext.DEPTH_TEST );
+				_gl.disable( gl.DEPTH_TEST );
 
 			}
 
@@ -5826,11 +5826,11 @@ class WebGLRenderer implements Renderer {
 
 			if ( polygonoffset ) {
 
-				_gl.enable( WebGLRenderingContext.POLYGON_OFFSET_FILL );
+				_gl.enable( gl.POLYGON_OFFSET_FILL );
 
 			} else {
 
-				_gl.disable( WebGLRenderingContext.POLYGON_OFFSET_FILL );
+				_gl.disable( gl.POLYGON_OFFSET_FILL );
 
 			}
 
@@ -5855,37 +5855,37 @@ class WebGLRenderer implements Renderer {
 
 			if ( blending == NoBlending ) {
 
-				_gl.disable( WebGLRenderingContext.BLEND );
+				_gl.disable( gl.BLEND );
 
 			} else if ( blending == AdditiveBlending ) {
 
-				_gl.enable( WebGLRenderingContext.BLEND );
-				_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
-				_gl.blendFunc( WebGLRenderingContext.SRC_ALPHA, WebGLRenderingContext.ONE );
+				_gl.enable( gl.BLEND );
+				_gl.blendEquation( gl.FUNC_ADD );
+				_gl.blendFunc( gl.SRC_ALPHA, gl.ONE );
 
 			} else if ( blending == SubtractiveBlending ) {
 
 				// TODO: Find blendFuncSeparate() combination
-				_gl.enable( WebGLRenderingContext.BLEND );
-				_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
-				_gl.blendFunc( WebGLRenderingContext.ZERO, WebGLRenderingContext.ONE_MINUS_SRC_COLOR );
+				_gl.enable( gl.BLEND );
+				_gl.blendEquation( gl.FUNC_ADD );
+				_gl.blendFunc( gl.ZERO, gl.ONE_MINUS_SRC_COLOR );
 
 			} else if ( blending == MultiplyBlending ) {
 
 				// TODO: Find blendFuncSeparate() combination
-				_gl.enable( WebGLRenderingContext.BLEND );
-				_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
-				_gl.blendFunc( WebGLRenderingContext.ZERO, WebGLRenderingContext.SRC_COLOR );
+				_gl.enable( gl.BLEND );
+				_gl.blendEquation( gl.FUNC_ADD );
+				_gl.blendFunc( gl.ZERO, gl.SRC_COLOR );
 
 			} else if ( blending == CustomBlending ) {
 
-				_gl.enable( WebGLRenderingContext.BLEND );
+				_gl.enable( gl.BLEND );
 
 			} else {
 
-				_gl.enable( WebGLRenderingContext.BLEND );
-				_gl.blendEquationSeparate( WebGLRenderingContext.FUNC_ADD, WebGLRenderingContext.FUNC_ADD );
-				_gl.blendFuncSeparate( WebGLRenderingContext.SRC_ALPHA, WebGLRenderingContext.ONE_MINUS_SRC_ALPHA, WebGLRenderingContext.ONE, WebGLRenderingContext.ONE_MINUS_SRC_ALPHA );
+				_gl.enable( gl.BLEND );
+				_gl.blendEquationSeparate( gl.FUNC_ADD, gl.FUNC_ADD );
+				_gl.blendFuncSeparate( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA );
 
 			}
 
@@ -6177,9 +6177,9 @@ class WebGLRenderer implements Renderer {
 
 		_gl.linkProgram( glprogram );
 
-		if ( !_gl.getProgramParameter( glprogram, WebGLRenderingContext.LINK_STATUS ) ) {
+		if ( !_gl.getProgramParameter( glprogram, gl.LINK_STATUS ) ) {
 
-		  var status = _gl.getProgramParameter( glprogram, WebGLRenderingContext.VALIDATE_STATUS );
+		  var status = _gl.getProgramParameter( glprogram, gl.VALIDATE_STATUS );
 		  var error = _gl.getError();
 			print( "Could not initialise shader\nVALIDATE_STATUS: $status, gl error [$error]" );
 
@@ -6312,18 +6312,18 @@ class WebGLRenderer implements Renderer {
 
 		if ( type == "fragment" ) {
 
-			shader = _gl.createShader( WebGLRenderingContext.FRAGMENT_SHADER );
+			shader = _gl.createShader( gl.FRAGMENT_SHADER );
 
 		} else if ( type == "vertex" ) {
 
-			shader = _gl.createShader( WebGLRenderingContext.VERTEX_SHADER );
+			shader = _gl.createShader( gl.VERTEX_SHADER );
 
 		}
 
 		_gl.shaderSource( shader, string );
 		_gl.compileShader( shader );
 
-		if ( !_gl.getShaderParameter( shader, WebGLRenderingContext.COMPILE_STATUS ) ) {
+		if ( !_gl.getShaderParameter( shader, gl.COMPILE_STATUS ) ) {
 
 			print( _gl.getShaderInfoLog( shader ) );
 			print( addLineNumbers( string ) );
@@ -6344,19 +6344,19 @@ class WebGLRenderer implements Renderer {
 
 		if ( isImagePowerOfTwo ) {
 
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_WRAP_S, paramThreeToGL( texture.wrapS ) );
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_WRAP_T, paramThreeToGL( texture.wrapT ) );
+			_gl.texParameteri( textureType, gl.TEXTURE_WRAP_S, paramThreeToGL( texture.wrapS ) );
+			_gl.texParameteri( textureType, gl.TEXTURE_WRAP_T, paramThreeToGL( texture.wrapT ) );
 
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_MAG_FILTER, paramThreeToGL( texture.magFilter ) );
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_MIN_FILTER, paramThreeToGL( texture.minFilter ) );
+			_gl.texParameteri( textureType, gl.TEXTURE_MAG_FILTER, paramThreeToGL( texture.magFilter ) );
+			_gl.texParameteri( textureType, gl.TEXTURE_MIN_FILTER, paramThreeToGL( texture.minFilter ) );
 
 		} else {
 
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_WRAP_S, WebGLRenderingContext.CLAMP_TO_EDGE );
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_WRAP_T, WebGLRenderingContext.CLAMP_TO_EDGE );
+			_gl.texParameteri( textureType, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE );
+			_gl.texParameteri( textureType, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE );
 
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_MAG_FILTER, filterFallback( texture.magFilter ) );
-			_gl.texParameteri( textureType, WebGLRenderingContext.TEXTURE_MIN_FILTER, filterFallback( texture.minFilter ) );
+			_gl.texParameteri( textureType, gl.TEXTURE_MAG_FILTER, filterFallback( texture.magFilter ) );
+			_gl.texParameteri( textureType, gl.TEXTURE_MIN_FILTER, filterFallback( texture.minFilter ) );
 
 		}
 
@@ -6364,7 +6364,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( texture.anisotropy > 1 || ( texture["__oldAnisotropy"] != null) ) {
 
-				_gl.texParameterf( textureType, ExtTextureFilterAnisotropic.TEXTURE_MAX_ANISOTROPY_EXT, Math.min( texture.anisotropy, maxAnisotropy ) );
+				_gl.texParameterf( textureType, gl.ExtTextureFilterAnisotropic.TEXTURE_MAX_ANISOTROPY_EXT, Math.min( texture.anisotropy, maxAnisotropy ) );
 				texture["__oldAnisotropy"] = texture.anisotropy;
 
 			}
@@ -6393,30 +6393,30 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-			_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, texture["__webglTexture"] );
+			_gl.activeTexture( gl.TEXTURE0 + slot );
+			_gl.bindTexture( gl.TEXTURE_2D, texture["__webglTexture"] );
 
-			_gl.pixelStorei( WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
-			_gl.pixelStorei( WebGLRenderingContext.UNPACK_PREMULTIPLY_ALPHA_WEBGL, (texture.premultiplyAlpha) ? 1 : 0 );
+			_gl.pixelStorei( gl.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
+			_gl.pixelStorei( gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, (texture.premultiplyAlpha) ? 1 : 0 );
 
 			var image = texture.image,
 			isImagePowerOfTwo = isPowerOfTwo( image.width ) && isPowerOfTwo( image.height ),
 			glFormat = paramThreeToGL( texture.format ),
 			glType = paramThreeToGL( texture.type );
 
-			setTextureParameters( WebGLRenderingContext.TEXTURE_2D, texture, isImagePowerOfTwo );
+			setTextureParameters( gl.TEXTURE_2D, texture, isImagePowerOfTwo );
 
 			if ( texture is DataTexture ) {
 
-				_gl.texImage2D( WebGLRenderingContext.TEXTURE_2D, 0, glFormat, image.width, image.height, 0, glFormat, glType, image.data );
+				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, image.width, image.height, 0, glFormat, glType, image.data );
 
 			} else {
 
-				_gl.texImage2D( WebGLRenderingContext.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
+				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
 
 			}
 
-			if ( texture.generateMipmaps && isImagePowerOfTwo ) _gl.generateMipmap( WebGLRenderingContext.TEXTURE_2D );
+			if ( texture.generateMipmaps && isImagePowerOfTwo ) _gl.generateMipmap( gl.TEXTURE_2D );
 
 			texture.needsUpdate = false;
 
@@ -6424,8 +6424,8 @@ class WebGLRenderer implements Renderer {
 
 		} else {
 
-			_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-			_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, texture["__webglTexture"] );
+			_gl.activeTexture( gl.TEXTURE0 + slot );
+			_gl.bindTexture( gl.TEXTURE_2D, texture["__webglTexture"] );
 
 		}
 
@@ -6451,7 +6451,7 @@ class WebGLRenderer implements Renderer {
 		canvas.height = newHeight;
 
 		var ctx = canvas.context2d;
-		ctx.drawImage( image, 0, 0, image.width, image.height, 0, 0, newWidth, newHeight );
+		ctx.drawImageScaledFromSource( image, 0, 0, image.width, image.height, 0, 0, newWidth, newHeight );
 
 		return canvas;
 
@@ -6471,12 +6471,12 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image.webglTextureCube);
+				_gl.activeTexture( gl.TEXTURE0 + slot );
+				_gl.bindTexture( gl.TEXTURE_CUBE_MAP, texture.image.webglTextureCube);
 
-				_gl.pixelStorei( WebGLRenderingContext.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
+				_gl.pixelStorei( gl.UNPACK_FLIP_Y_WEBGL, (texture.flipY) ? 1 : 0 );
 
-				var cubeImage = new List.fixedLength(6);
+				var cubeImage = new List(6);
 
 				for ( var i = 0; i < 6; i ++ ) {
 
@@ -6497,17 +6497,17 @@ class WebGLRenderer implements Renderer {
 				glFormat = paramThreeToGL( texture.format ),
 				glType = paramThreeToGL( texture.type );
 
-				setTextureParameters( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture, isImagePowerOfTwo );
+				setTextureParameters( gl.TEXTURE_CUBE_MAP, texture, isImagePowerOfTwo );
 
 				for ( var i = 0; i < 6; i ++ ) {
 
-					_gl.texImage2D( WebGLRenderingContext.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, glFormat, glType, cubeImage[ i ] );
+					_gl.texImage2D( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, glFormat, glType, cubeImage[ i ] );
 
 				}
 
 				if ( texture.generateMipmaps && isImagePowerOfTwo ) {
 
-					_gl.generateMipmap( WebGLRenderingContext.TEXTURE_CUBE_MAP );
+					_gl.generateMipmap( gl.TEXTURE_CUBE_MAP );
 
 				}
 
@@ -6517,8 +6517,8 @@ class WebGLRenderer implements Renderer {
 
 			} else {
 
-				_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture.image.webglTextureCube );
+				_gl.activeTexture( gl.TEXTURE0 + slot );
+				_gl.bindTexture( gl.TEXTURE_CUBE_MAP, texture.image.webglTextureCube );
 
 			}
 
@@ -6528,8 +6528,8 @@ class WebGLRenderer implements Renderer {
 
 	setCubeTextureDynamic ( texture, slot ) {
 
-		_gl.activeTexture( WebGLRenderingContext.TEXTURE0 + slot );
-		_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, texture["__webglTexture"] );
+		_gl.activeTexture( gl.TEXTURE0 + slot );
+		_gl.bindTexture( gl.TEXTURE_CUBE_MAP, texture["__webglTexture"] );
 
 	}
 
@@ -6537,34 +6537,34 @@ class WebGLRenderer implements Renderer {
 
 	setupFrameBuffer ( framebuffer, renderTarget, textureTarget ) {
 
-		_gl.bindFramebuffer( WebGLRenderingContext.FRAMEBUFFER, framebuffer );
-		_gl.framebufferTexture2D( WebGLRenderingContext.FRAMEBUFFER, WebGLRenderingContext.COLOR_ATTACHMENT0, textureTarget, renderTarget.__webglTexture, 0 );
+		_gl.bindFramebuffer( gl.FRAMEBUFFER, framebuffer );
+		_gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, textureTarget, renderTarget.__webglTexture, 0 );
 
 	}
 
 	setupRenderBuffer ( renderbuffer, renderTarget  ) {
 
-		_gl.bindRenderbuffer( WebGLRenderingContext.RENDERBUFFER, renderbuffer );
+		_gl.bindRenderbuffer( gl.RENDERBUFFER, renderbuffer );
 
 		if ( renderTarget.depthBuffer && ! renderTarget.stencilBuffer ) {
 
-			_gl.renderbufferStorage( WebGLRenderingContext.RENDERBUFFER, WebGLRenderingContext.DEPTH_COMPONENT16, renderTarget.width, renderTarget.height );
-			_gl.framebufferRenderbuffer( WebGLRenderingContext.FRAMEBUFFER, WebGLRenderingContext.DEPTH_ATTACHMENT, WebGLRenderingContext.RENDERBUFFER, renderbuffer );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, renderTarget.width, renderTarget.height );
+			_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderbuffer );
 
 		/* For some reason this is not working. Defaulting to RGBA4.
 		} else if( ! renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
 
-			_gl.renderbufferStorage( WebGLRenderingContext.RENDERBUFFER, WebGLRenderingContext.STENCIL_INDEX8, renderTarget.width, renderTarget.height );
-			_gl.framebufferRenderbuffer( WebGLRenderingContext.FRAMEBUFFER, WebGLRenderingContext.STENCIL_ATTACHMENT, WebGLRenderingContext.RENDERBUFFER, renderbuffer );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.STENCIL_INDEX8, renderTarget.width, renderTarget.height );
+			_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, WebGLRenderingContext.RENDERBUFFER, renderbuffer );
 		*/
 		} else if( renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
 
-			_gl.renderbufferStorage( WebGLRenderingContext.RENDERBUFFER, WebGLRenderingContext.DEPTH_STENCIL, renderTarget.width, renderTarget.height );
-			_gl.framebufferRenderbuffer( WebGLRenderingContext.FRAMEBUFFER, WebGLRenderingContext.DEPTH_STENCIL_ATTACHMENT, WebGLRenderingContext.RENDERBUFFER, renderbuffer );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_STENCIL, renderTarget.width, renderTarget.height );
+			_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderbuffer );
 
 		} else {
 
-			_gl.renderbufferStorage( WebGLRenderingContext.RENDERBUFFER, WebGLRenderingContext.RGBA4, renderTarget.width, renderTarget.height );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.RGBA4, renderTarget.width, renderTarget.height );
 
 		}
 
@@ -6592,37 +6592,37 @@ class WebGLRenderer implements Renderer {
 				renderTarget.__webglFramebuffer = [];
 				renderTarget.__webglRenderbuffer = [];
 
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, renderTarget.__webglTexture );
-				setTextureParameters( WebGLRenderingContext.TEXTURE_CUBE_MAP, renderTarget, isTargetPowerOfTwo );
+				_gl.bindTexture( gl.TEXTURE_CUBE_MAP, renderTarget.__webglTexture );
+				setTextureParameters( gl.TEXTURE_CUBE_MAP, renderTarget, isTargetPowerOfTwo );
 
 				for ( var i = 0; i < 6; i ++ ) {
 
 					renderTarget.__webglFramebuffer[ i ] = _gl.createFramebuffer();
 					renderTarget.__webglRenderbuffer[ i ] = _gl.createRenderbuffer();
 
-					_gl.texImage2D( WebGLRenderingContext.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
+					_gl.texImage2D( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
 
-					setupFrameBuffer( renderTarget.__webglFramebuffer[ i ], renderTarget, WebGLRenderingContext.TEXTURE_CUBE_MAP_POSITIVE_X + i );
+					setupFrameBuffer( renderTarget.__webglFramebuffer[ i ], renderTarget, gl.TEXTURE_CUBE_MAP_POSITIVE_X + i );
 					setupRenderBuffer( renderTarget.__webglRenderbuffer[ i ], renderTarget );
 
 				}
 
-				if ( isTargetPowerOfTwo ) _gl.generateMipmap( WebGLRenderingContext.TEXTURE_CUBE_MAP );
+				if ( isTargetPowerOfTwo ) _gl.generateMipmap( gl.TEXTURE_CUBE_MAP );
 
 			} else {
 
 				renderTarget.__webglFramebuffer = _gl.createFramebuffer();
 				renderTarget.__webglRenderbuffer = _gl.createRenderbuffer();
 
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, renderTarget.__webglTexture );
-				setTextureParameters( WebGLRenderingContext.TEXTURE_2D, renderTarget, isTargetPowerOfTwo );
+				_gl.bindTexture( gl.TEXTURE_2D, renderTarget.__webglTexture );
+				setTextureParameters( gl.TEXTURE_2D, renderTarget, isTargetPowerOfTwo );
 
-				_gl.texImage2D( WebGLRenderingContext.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
+				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
 
-				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, WebGLRenderingContext.TEXTURE_2D );
+				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, gl.TEXTURE_2D );
 				setupRenderBuffer( renderTarget.__webglRenderbuffer, renderTarget );
 
-				if ( isTargetPowerOfTwo ) _gl.generateMipmap( WebGLRenderingContext.TEXTURE_2D );
+				if ( isTargetPowerOfTwo ) _gl.generateMipmap( gl.TEXTURE_2D );
 
 			}
 
@@ -6630,16 +6630,16 @@ class WebGLRenderer implements Renderer {
 
 			if ( isCube ) {
 
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, null );
+				_gl.bindTexture( gl.TEXTURE_CUBE_MAP, null );
 
 			} else {
 
-				_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, null );
+				_gl.bindTexture( gl.TEXTURE_2D, null );
 
 			}
 
-			_gl.bindRenderbuffer( WebGLRenderingContext.RENDERBUFFER, null );
-			_gl.bindFramebuffer( WebGLRenderingContext.FRAMEBUFFER, null);
+			_gl.bindRenderbuffer( gl.RENDERBUFFER, null );
+			_gl.bindFramebuffer( gl.FRAMEBUFFER, null);
 
 		}
 
@@ -6677,7 +6677,7 @@ class WebGLRenderer implements Renderer {
 
     if ( !identical(framebuffer, _currentFramebuffer) ) {
 
-			_gl.bindFramebuffer( WebGLRenderingContext.FRAMEBUFFER, framebuffer );
+			_gl.bindFramebuffer( gl.FRAMEBUFFER, framebuffer );
 			_gl.viewport( vx, vy, width, height );
 
 			_currentFramebuffer = framebuffer;
@@ -6693,15 +6693,15 @@ class WebGLRenderer implements Renderer {
 
 		if ( renderTarget is WebGLRenderTargetCube ) {
 
-			_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, renderTarget.__webglTexture );
-			_gl.generateMipmap( WebGLRenderingContext.TEXTURE_CUBE_MAP );
-			_gl.bindTexture( WebGLRenderingContext.TEXTURE_CUBE_MAP, null );
+			_gl.bindTexture( gl.TEXTURE_CUBE_MAP, renderTarget.__webglTexture );
+			_gl.generateMipmap( gl.TEXTURE_CUBE_MAP );
+			_gl.bindTexture( gl.TEXTURE_CUBE_MAP, null );
 
 		} else {
 
-			_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, renderTarget.__webglTexture );
-			_gl.generateMipmap( WebGLRenderingContext.TEXTURE_2D );
-			_gl.bindTexture( WebGLRenderingContext.TEXTURE_2D, null );
+			_gl.bindTexture( gl.TEXTURE_2D, renderTarget.__webglTexture );
+			_gl.generateMipmap( gl.TEXTURE_2D );
+			_gl.bindTexture( gl.TEXTURE_2D, null );
 
 		}
 
@@ -6713,11 +6713,11 @@ class WebGLRenderer implements Renderer {
 
 		if ( f == NearestFilter || f == NearestMipMapNearestFilter || f == NearestMipMapLinearFilter ) {
 
-			return WebGLRenderingContext.NEAREST;
+			return gl.NEAREST;
 
 		}
 
-		return WebGLRenderingContext.LINEAR;
+		return gl.LINEAR;
 
 	}
 
@@ -6725,52 +6725,52 @@ class WebGLRenderer implements Renderer {
 
 	paramThreeToGL ( p ) {
 
-		if ( p == RepeatWrapping ) return WebGLRenderingContext.REPEAT;
-		if ( p == ClampToEdgeWrapping ) return WebGLRenderingContext.CLAMP_TO_EDGE;
-		if ( p == MirroredRepeatWrapping ) return WebGLRenderingContext.MIRRORED_REPEAT;
+		if ( p == RepeatWrapping ) return gl.REPEAT;
+		if ( p == ClampToEdgeWrapping ) return gl.CLAMP_TO_EDGE;
+		if ( p == MirroredRepeatWrapping ) return gl.MIRRORED_REPEAT;
 
-		if ( p == NearestFilter ) return WebGLRenderingContext.NEAREST;
-		if ( p == NearestMipMapNearestFilter ) return WebGLRenderingContext.NEAREST_MIPMAP_NEAREST;
-		if ( p == NearestMipMapLinearFilter ) return WebGLRenderingContext.NEAREST_MIPMAP_LINEAR;
+		if ( p == NearestFilter ) return gl.NEAREST;
+		if ( p == NearestMipMapNearestFilter ) return gl.NEAREST_MIPMAP_NEAREST;
+		if ( p == NearestMipMapLinearFilter ) return gl.NEAREST_MIPMAP_LINEAR;
 
-		if ( p == LinearFilter ) return WebGLRenderingContext.LINEAR;
-		if ( p == LinearMipMapNearestFilter ) return WebGLRenderingContext.LINEAR_MIPMAP_NEAREST;
-		if ( p == LinearMipMapLinearFilter ) return WebGLRenderingContext.LINEAR_MIPMAP_LINEAR;
+		if ( p == LinearFilter ) return gl.LINEAR;
+		if ( p == LinearMipMapNearestFilter ) return gl.LINEAR_MIPMAP_NEAREST;
+		if ( p == LinearMipMapLinearFilter ) return gl.LINEAR_MIPMAP_LINEAR;
 
-		if ( p == UnsignedByteType ) return WebGLRenderingContext.UNSIGNED_BYTE;
-		if ( p == UnsignedShort4444Type ) return WebGLRenderingContext.UNSIGNED_SHORT_4_4_4_4;
-		if ( p == UnsignedShort5551Type ) return WebGLRenderingContext.UNSIGNED_SHORT_5_5_5_1;
-		if ( p == UnsignedShort565Type ) return WebGLRenderingContext.UNSIGNED_SHORT_5_6_5;
+		if ( p == UnsignedByteType ) return gl.UNSIGNED_BYTE;
+		if ( p == UnsignedShort4444Type ) return gl.UNSIGNED_SHORT_4_4_4_4;
+		if ( p == UnsignedShort5551Type ) return gl.UNSIGNED_SHORT_5_5_5_1;
+		if ( p == UnsignedShort565Type ) return gl.UNSIGNED_SHORT_5_6_5;
 
-		if ( p == ByteType ) return WebGLRenderingContext.BYTE;
-		if ( p == ShortType ) return WebGLRenderingContext.SHORT;
-		if ( p == UnsignedShortType ) return WebGLRenderingContext.UNSIGNED_SHORT;
-		if ( p == IntType ) return WebGLRenderingContext.INT;
-		if ( p == UnsignedIntType ) return WebGLRenderingContext.UNSIGNED_INT;
-		if ( p == FloatType ) return WebGLRenderingContext.FLOAT;
+		if ( p == ByteType ) return gl.BYTE;
+		if ( p == ShortType ) return gl.SHORT;
+		if ( p == UnsignedShortType ) return gl.UNSIGNED_SHORT;
+		if ( p == IntType ) return gl.INT;
+		if ( p == UnsignedIntType ) return gl.UNSIGNED_INT;
+		if ( p == FloatType ) return gl.FLOAT;
 
-		if ( p == AlphaFormat ) return WebGLRenderingContext.ALPHA;
-		if ( p == RGBFormat ) return WebGLRenderingContext.RGB;
-		if ( p == RGBAFormat ) return WebGLRenderingContext.RGBA;
-		if ( p == LuminanceFormat ) return WebGLRenderingContext.LUMINANCE;
-		if ( p == LuminanceAlphaFormat ) return WebGLRenderingContext.LUMINANCE_ALPHA;
+		if ( p == AlphaFormat ) return gl.ALPHA;
+		if ( p == RGBFormat ) return gl.RGB;
+		if ( p == RGBAFormat ) return gl.RGBA;
+		if ( p == LuminanceFormat ) return gl.LUMINANCE;
+		if ( p == LuminanceAlphaFormat ) return gl.LUMINANCE_ALPHA;
 
-		if ( p == AddEquation ) return WebGLRenderingContext.FUNC_ADD;
-		if ( p == SubtractEquation ) return WebGLRenderingContext.FUNC_SUBTRACT;
-		if ( p == ReverseSubtractEquation ) return WebGLRenderingContext.FUNC_REVERSE_SUBTRACT;
+		if ( p == AddEquation ) return gl.FUNC_ADD;
+		if ( p == SubtractEquation ) return gl.FUNC_SUBTRACT;
+		if ( p == ReverseSubtractEquation ) return gl.FUNC_REVERSE_SUBTRACT;
 
-		if ( p == ZeroFactor ) return WebGLRenderingContext.ZERO;
-		if ( p == OneFactor ) return WebGLRenderingContext.ONE;
-		if ( p == SrcColorFactor ) return WebGLRenderingContext.SRC_COLOR;
-		if ( p == OneMinusSrcColorFactor ) return WebGLRenderingContext.ONE_MINUS_SRC_COLOR;
-		if ( p == SrcAlphaFactor ) return WebGLRenderingContext.SRC_ALPHA;
-		if ( p == OneMinusSrcAlphaFactor ) return WebGLRenderingContext.ONE_MINUS_SRC_ALPHA;
-		if ( p == DstAlphaFactor ) return WebGLRenderingContext.DST_ALPHA;
-		if ( p == OneMinusDstAlphaFactor ) return WebGLRenderingContext.ONE_MINUS_DST_ALPHA;
+		if ( p == ZeroFactor ) return gl.ZERO;
+		if ( p == OneFactor ) return gl.ONE;
+		if ( p == SrcColorFactor ) return gl.SRC_COLOR;
+		if ( p == OneMinusSrcColorFactor ) return gl.ONE_MINUS_SRC_COLOR;
+		if ( p == SrcAlphaFactor ) return gl.SRC_ALPHA;
+		if ( p == OneMinusSrcAlphaFactor ) return gl.ONE_MINUS_SRC_ALPHA;
+		if ( p == DstAlphaFactor ) return gl.DST_ALPHA;
+		if ( p == OneMinusDstAlphaFactor ) return gl.ONE_MINUS_DST_ALPHA;
 
-		if ( p == DstColorFactor ) return WebGLRenderingContext.DST_COLOR;
-		if ( p == OneMinusDstColorFactor ) return WebGLRenderingContext.ONE_MINUS_DST_COLOR;
-		if ( p == SrcAlphaSaturateFactor ) return WebGLRenderingContext.SRC_ALPHA_SATURATE;
+		if ( p == DstColorFactor ) return gl.DST_COLOR;
+		if ( p == OneMinusDstColorFactor ) return gl.ONE_MINUS_DST_COLOR;
+		if ( p == SrcAlphaSaturateFactor ) return gl.SRC_ALPHA_SATURATE;
 
 		print("[paramThreeToGL] Unknown param $p");
 		return 0;
@@ -6795,7 +6795,7 @@ class WebGLRenderer implements Renderer {
 			//  - limit here is ANGLE's 254 max uniform vectors
 			//    (up to 54 should be safe)
 
-			int nVertexUniforms = _gl.getParameter( WebGLRenderingContext.MAX_VERTEX_UNIFORM_VECTORS );
+			int nVertexUniforms = _gl.getParameter( gl.MAX_VERTEX_UNIFORM_VECTORS );
 			int nVertexMatrices = ( ( nVertexUniforms - 20 ) / 4 ).floor().toInt();
 
 			var maxBones = nVertexMatrices;
@@ -6931,16 +6931,16 @@ class WebGLRenderer implements Renderer {
 		_gl.clearDepth( 1 );
 		_gl.clearStencil( 0 );
 
-		_gl.enable( WebGLRenderingContext.DEPTH_TEST );
-		_gl.depthFunc( WebGLRenderingContext.LEQUAL );
+		_gl.enable( gl.DEPTH_TEST );
+		_gl.depthFunc( gl.LEQUAL );
 
-		_gl.frontFace( WebGLRenderingContext.CCW );
-		_gl.cullFace( WebGLRenderingContext.BACK );
-		_gl.enable( WebGLRenderingContext.CULL_FACE );
+		_gl.frontFace( gl.CCW );
+		_gl.cullFace( gl.BACK );
+		_gl.enable( gl.CULL_FACE );
 
-		_gl.enable( WebGLRenderingContext.BLEND );
-		_gl.blendEquation( WebGLRenderingContext.FUNC_ADD );
-		_gl.blendFunc( WebGLRenderingContext.SRC_ALPHA, WebGLRenderingContext.ONE_MINUS_SRC_ALPHA );
+		_gl.enable( gl.BLEND );
+		_gl.blendEquation( gl.FUNC_ADD );
+		_gl.blendFunc( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA );
 
 		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
 
@@ -6980,7 +6980,7 @@ class WebGLRendererRenderInfo {
 //
 class Program {
 	int id;
-	WebGLProgram glProgram;
+	gl.Program glProgram;
 	String code;
 	int usedTimes;
 	Map attributes;
@@ -6990,7 +6990,7 @@ class Program {
 }
 
 class Buffer {
-  WebGLBuffer glbuffer;
+  gl.Buffer glbuffer;
   var belongsToAttribute;
   Buffer(this.glbuffer);
 }
@@ -7096,7 +7096,7 @@ class WebGLGeometry {
 
   var __webglCustomAttributesList;
 
-  WebGLBuffer __webglVertexBuffer,
+  gl.Buffer __webglVertexBuffer,
               __webglNormalBuffer,
               __webglTangentBuffer,
               __webglColorBuffer,
@@ -7111,7 +7111,7 @@ class WebGLGeometry {
               __webglFaceBuffer,
               __webglLineBuffer;
 
-  List <WebGLBuffer> __webglMorphTargetsBuffers, __webglMorphNormalsBuffers;
+  List <gl.Buffer> __webglMorphTargetsBuffers, __webglMorphNormalsBuffers;
 
   Geometry _geometry;
 

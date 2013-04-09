@@ -364,17 +364,17 @@ class TrackballControls extends EventEmitter {
 
       if ( _state == STATE.ROTATE && !noRotate ) {
 
-        _rotateStart = getMouseProjectionOnBall( event.clientX, event.clientY );
+        _rotateStart = getMouseProjectionOnBall( event.client.x, event.client.y );
         _rotateEnd = _rotateStart;
 
       } else if ( _state == STATE.ZOOM && !noZoom ) {
 
-        _zoomStart = getMouseOnScreen( event.clientX, event.clientY );
+        _zoomStart = getMouseOnScreen( event.client.x, event.client.y );
         _zoomEnd = _zoomStart;
 
       } else if ( _state == STATE.PAN && !noPan ) {
 
-        _panStart = getMouseOnScreen( event.clientX, event.clientY );
+        _panStart = getMouseOnScreen( event.client.x, event.client.y );
         _panEnd = _panStart;
 
       }
@@ -451,13 +451,13 @@ class TrackballControls extends EventEmitter {
       switch ( event.touches.length ) {
 
         case 1:
-          _rotateStart = _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+          _rotateStart = _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
         case 2:
-          _zoomStart = _zoomEnd = getMouseOnScreen( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+          _zoomStart = _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
         case 3:
-          _panStart = _panEnd = getMouseOnScreen( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+          _panStart = _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
 
       }
@@ -473,13 +473,13 @@ class TrackballControls extends EventEmitter {
       switch ( event.touches.length ) {
 
         case 1:
-          _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+          _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
         case 2:
-          _zoomEnd = getMouseOnScreen( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+          _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
         case 3:
-          _panEnd = getMouseOnScreen( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+          _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
 
       }

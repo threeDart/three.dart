@@ -264,12 +264,12 @@ class WebGL_Geometry_Extrude_Shapes  {
       document.onMouseOut.listen( onDocumentMouseOut )
     ];
 
-    mouseXOnMouseDown = event.clientX - windowHalfX;
+    mouseXOnMouseDown = event.client.x - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
   }
 
   onDocumentMouseMove(MouseEvent event) {
-    mouseX = event.clientX - windowHalfX;
+    mouseX = event.client.x - windowHalfX;
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
   }
 
@@ -287,7 +287,7 @@ class WebGL_Geometry_Extrude_Shapes  {
 
       event.preventDefault();
 
-      mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+      mouseXOnMouseDown = event.touches[ 0 ].page.x - windowHalfX;
       targetRotationOnMouseDown = targetRotation;
 
     }
@@ -300,7 +300,7 @@ class WebGL_Geometry_Extrude_Shapes  {
 
       event.preventDefault();
 
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
+      mouseX = event.touches[ 0 ].page.x - windowHalfX;
       targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
 
     }

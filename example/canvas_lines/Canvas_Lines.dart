@@ -77,8 +77,8 @@ class Canvas_Lines {
   }
 
   onDocumentMouseMove(MouseEvent event) {
-    mouseX = event.clientX - windowHalfX;
-    mouseY = event.clientY - windowHalfY;
+    mouseX = event.client.x - windowHalfX;
+    mouseY = event.client.y - windowHalfY;
   }
 
   onDocumentTouchStart(TouchEvent event) {
@@ -86,8 +86,8 @@ class Canvas_Lines {
 
       event.preventDefault();
 
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
-      mouseY = event.touches[ 0 ].pageY - windowHalfY;
+      mouseX = event.touches[ 0 ].page.x - windowHalfX;
+      mouseY = event.touches[ 0 ].page.y - windowHalfY;
     }
   }
 
@@ -96,8 +96,8 @@ class Canvas_Lines {
 
       event.preventDefault();
 
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
-      mouseY = event.touches[ 0 ].pageY - windowHalfY;
+      mouseX = event.touches[ 0 ].page.x - windowHalfX;
+      mouseY = event.touches[ 0 ].page.y - windowHalfY;
     }
   }
 

@@ -1,6 +1,7 @@
 library three;
 
 import 'dart:html';
+import 'dart:web_gl' as gl;
 import 'dart:math' as Math;
 import 'dart:json' as JSON;
 
