@@ -372,7 +372,7 @@ class Geometry {
   void computeBoundingSphere() {
     num radiusSq;
 
-    var maxRadiusSq = vertices.reduce(0, (num curMaxRadiusSq, Vector3 vertex) {
+    var maxRadiusSq = vertices.fold(0, (num curMaxRadiusSq, Vector3 vertex) {
       radiusSq = vertex.lengthSq();
       return ( radiusSq > curMaxRadiusSq ) ?  radiusSq : curMaxRadiusSq;
     });
