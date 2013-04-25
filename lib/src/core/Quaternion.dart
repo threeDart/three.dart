@@ -245,6 +245,44 @@ class Quaternion implements IVector4 {
 
     return dest;
   }
+  
+  //https://bitbucket.org/sinbad/ogre/src/9db75e3ba05c/OgreMain/include/OgreVector3.h#cl-651
+  Quaternion rotationBetween(Vector3 v1, Vector3 v2 ){
+    v1 = v1.clone().normalize();
+    v2 = v2.clone().normalize();
+    num dot = v1.dot(v2);
+    
+    if( dot >= 1.0 ){
+      setValues(1,0,0,0); //Identity;
+      return this;
+    }
+    
+    if( dot < (1e-6 - 1.0) ){
+      Vector3 axis = new Vector3(1,0,0).crossSelf(v1);
+      
+      if( axis.isZero() ){
+        axis.setValues(0, 1, 0);
+        axis.crossSelf(v1);
+      }
+      axis.normalize();
+      
+      setFromAxisAngle(axis, Math.PI);    
+    } else {
+      
+      num s = Math.sqrt ((1+dot) * 2);
+      num invs = 1 / s;
+      Vector3 c = v1.clone().crossSelf(v2);
+      
+      x = c.x * invs;
+      y = c.y * invs;
+      z = c.z * invs;
+      w = s * 0.5;
+      
+      normalize();
+    }
+    
+    return this;
+  }
 
   slerpSelf(Vector4 qb, num t ) {
 
