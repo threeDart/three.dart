@@ -201,7 +201,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
-  Quaternion multiply( Vector4 q1, Vector4 q2 ) {
+  Quaternion multiply( IVector4 q1, IVector4 q2 ) {
     // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
     this.x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
@@ -212,7 +212,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
-  Quaternion multiplySelf( Vector4 quat2 ) {
+  Quaternion multiplySelf( IVector4 quat2 ) {
     num qax = x,  qay = y,  qaz = z,  qaw = w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
 
