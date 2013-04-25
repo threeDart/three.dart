@@ -247,10 +247,10 @@ class Quaternion implements IVector4 {
   }
   
   //https://bitbucket.org/sinbad/ogre/src/9db75e3ba05c/OgreMain/include/OgreVector3.h#cl-651
-  Quaternion rotationBetween(Vector3 v1, Vector3 v2 ){
+  Quaternion rotationBetween(IVector3 v1, IVector3 v2 ){
     v1 = v1.clone().normalize();
     v2 = v2.clone().normalize();
-    num dot = v1.dot(v2);
+    num dot = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
     
     if( dot >= 1.0 ){
       setValues(1,0,0,0); //Identity;
