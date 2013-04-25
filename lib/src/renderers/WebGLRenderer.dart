@@ -5973,7 +5973,8 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		code =  "maxDirLights$maxDirLights"
+		code =  "${chunks.join()}"
+		        "maxDirLights$maxDirLights"
 		        "maxPointLights$maxPointLights"
 		        "maxSpotLights$maxSpotLights"
 		        "maxShadows$maxShadows"
@@ -6008,7 +6009,7 @@ class WebGLRenderer implements Renderer {
 			Program program = _programs[ p ];
 
 			// TODO - why do we need identical here ?!
-      if ( identical(program.code, code) ) {
+      if ( program.code == code ) {
 
 				//print( "Code already compiled: $program$code" );
 
