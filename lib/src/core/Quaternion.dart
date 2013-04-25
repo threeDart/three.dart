@@ -257,7 +257,7 @@ class Quaternion implements IVector4 {
       return this;
     }
     
-    if( dot < (1e-6 - 1.0) ){
+    if( dot < (1e-10 - 1.0) ){
       Vector3 axis = new Vector3(1,0,0).crossSelf(v1);
       
       if( axis.isZero() ){
