@@ -201,7 +201,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
-  Quaternion multiply( Vector4 q1, Vector4 q2 ) {
+  Quaternion multiply( IVector4 q1, IVector4 q2 ) {
     // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
     this.x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
@@ -212,7 +212,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
-  Quaternion multiplySelf( Vector4 quat2 ) {
+  Quaternion multiplySelf( IVector4 quat2 ) {
     num qax = x,  qay = y,  qaz = z,  qaw = w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
 
@@ -244,6 +244,44 @@ class Quaternion implements IVector4 {
     dest.z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
 
     return dest;
+  }
+  
+  //https://bitbucket.org/sinbad/ogre/src/9db75e3ba05c/OgreMain/include/OgreVector3.h#cl-651
+  Quaternion rotationBetween(IVector3 v1, IVector3 v2 ){
+    v1 = v1.clone().normalize();
+    v2 = v2.clone().normalize();
+    num dot = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
+    
+    if( dot >= 1.0 ){
+      setValues(1,0,0,0); //Identity;
+      return this;
+    }
+    
+    if( dot < (1e-10 - 1.0) ){
+      Vector3 axis = new Vector3(1,0,0).crossSelf(v1);
+      
+      if( axis.isZero() ){
+        axis.setValues(0, 1, 0);
+        axis.crossSelf(v1);
+      }
+      axis.normalize();
+      
+      setFromAxisAngle(axis, Math.PI);    
+    } else {
+      
+      num s = Math.sqrt ((1+dot) * 2);
+      num invs = 1 / s;
+      Vector3 c = v1.clone().crossSelf(v2);
+      
+      x = c.x * invs;
+      y = c.y * invs;
+      z = c.z * invs;
+      w = s * 0.5;
+      
+      normalize();
+    }
+    
+    return this;
   }
 
   slerpSelf(Vector4 qb, num t ) {
