@@ -16,7 +16,7 @@ class LOD extends Object3D {
       }
     }
 
-    LODs.insertRange(l, 1, { "visibleAtDistance": visibleAtDistance, "object3D": object3D } );
+    LODs.insert(l, { "visibleAtDistance": visibleAtDistance, "object3D": object3D } );
     add( object3D );
   }
 

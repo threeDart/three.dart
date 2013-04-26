@@ -57,7 +57,7 @@ class MorphAnimMesh extends Mesh {
     for ( var i = 0; i < il; i ++ ) {
 
       var morph = geometry.morphTargets[ i ];
-      var parts = morph.name.allMatches( pattern );
+      var parts = morph.name.allMatches( pattern ).toList();
 
       if ( parts && parts.length > 1 ) {
 

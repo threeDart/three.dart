@@ -142,8 +142,8 @@ class JSONLoader extends Loader {
 
     }
 
-    geometry.faceUvs = new List.fixedLength(nUvLayers);
-    geometry.faceVertexUvs = new List.fixedLength(nUvLayers);
+    geometry.faceUvs = new List(nUvLayers);
+    geometry.faceVertexUvs = new List(nUvLayers);
 
     for ( i = 0; i < nUvLayers; i++ ) {
 

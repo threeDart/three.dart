@@ -212,8 +212,8 @@ class ShadowMapPlugin {
       // update camera matrices and frustum
 
       var webglCamera = new WebGLCamera(shadowCamera);
-      if ( webglCamera._viewMatrixArray == null) webglCamera._viewMatrixArray = new Float32Array( 16 );
-      if ( webglCamera._projectionMatrixArray == null ) webglCamera._projectionMatrixArray = new Float32Array( 16 );
+      if ( webglCamera._viewMatrixArray == null) webglCamera._viewMatrixArray = new Float32List( 16 );
+      if ( webglCamera._projectionMatrixArray == null ) webglCamera._projectionMatrixArray = new Float32List( 16 );
 
       shadowCamera.matrixWorldInverse.flattenToArray( webglCamera._viewMatrixArray );
       shadowCamera.projectionMatrix.flattenToArray( webglCamera._projectionMatrixArray );

@@ -12,35 +12,46 @@ part of three;
  */
 
 class Vector3 implements IVector3 {
-  num x;
-  num y;
-  num z;
+  double _x;
+  double _y;
+  double _z;
 
-  Vector3( [this.x = 0, this.y = 0, this.z = 0] );
+  Vector3( [num x = 0, num y = 0, num z = 0.0] ) {
+    setValues(x, y, z);
+  }
 
   // changed "set" to "setValues" as "set" is reserved.
   Vector3 setValues( num x, num y, num z ) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    this.x = x.toDouble();
+    this.y = y.toDouble();
+    this.z = z.toDouble();
 
     return this;
   }
 
+  set x(num x) { _x = x.toDouble();}
+  get x => _x;
+
+  set y(num y) { _y = y.toDouble();}
+  get y => _y;
+
+  set z(num z) { _z = z.toDouble();}
+  get z => _z;
+
   Vector3 setX( num x ) {
-    this.x = x;
+    this.x = x.toDouble();
 
     return this;
   }
 
   Vector3 setY( num y ) {
-    this.y = y;
+    this.y = y.toDouble();
 
     return this;
   }
 
   Vector3 setZ( num z ) {
-    this.z = z;
+    this.z = z.toDouble();
 
     return this;
   }
