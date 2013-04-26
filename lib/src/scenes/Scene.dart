@@ -62,20 +62,20 @@ class Scene extends Object3D {
       int i = lights.indexOf( object );
 
       if ( i != -1 ) {
-        lights.removeAt(i, 1);
+        lights.removeAt(i);
       }
     } else if ( !( object is Camera ) ) {
       int i = objects.indexOf( object );
 
       if( i != -1 ) {
-        objects.removeAt(i, 1);
+        objects.removeAt(i);
         __objectsRemoved.add( object );
 
         // check if previously added
         var ai = __objectsAdded.indexOf( object );
 
         if ( ai != -1 ) {
-          __objectsAdded.removeAt(ai, 1);
+          __objectsAdded.removeAt(ai);
         }
       }
     }
