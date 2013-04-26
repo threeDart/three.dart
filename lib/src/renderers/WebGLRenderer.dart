@@ -3106,7 +3106,7 @@ class WebGLRenderer implements Renderer {
 
 		if ( dispose ) {
 
-			geometryGroup.__inittedArrays = null; //delete geometryGroup.__inittedArrays"];
+			geometryGroup.__inittedArrays = false; //delete geometryGroup.__inittedArrays"];
 			geometryGroup.__colorArray = null; //delete geometryGroup.__colorArray"];
 			geometryGroup.__normalArray = null; //delete geometryGroup.__normalArray"];
 			geometryGroup.__tangentArray = null; //delete geometryGroup.__tangentArray"];
