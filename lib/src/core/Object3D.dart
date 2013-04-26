@@ -161,7 +161,7 @@ class Object3D {
     if ( index != - 1 ){
 
       object.parent = null;
-      children.removeRange(index, 1);
+      children.removeAt(index);
 
       // remove from scene
       Object3D scene = this;
