@@ -46,7 +46,7 @@ class Scene extends Object3D {
         int i = __objectsRemoved.indexOf( object );
 
         if ( i != -1 ) {
-          __objectsRemoved.removeRange(i, 1);
+          __objectsRemoved.removeAt(i);
         }
       }
     }
@@ -62,26 +62,20 @@ class Scene extends Object3D {
       int i = lights.indexOf( object );
 
       if ( i != -1 ) {
-        //TODO: removeRange replaces splice?
-        lights.removeRange(i, 1);
-        //lights.splice( i, 1 );
+        lights.removeAt(i, 1);
       }
     } else if ( !( object is Camera ) ) {
       int i = objects.indexOf( object );
 
       if( i != -1 ) {
-        //TODO: removeRange replaces splice?
-        objects.removeRange(i, 1);
-        //objects.splice( i, 1 );
+        objects.removeAt(i, 1);
         __objectsRemoved.add( object );
 
         // check if previously added
         var ai = __objectsAdded.indexOf( object );
 
         if ( ai != -1 ) {
-          //TODO: removeRange replaces splice?
-          __objectsAdded.removeRange(ai, 1);
-          //__objectsAdded.splice( ai, 1 );
+          __objectsAdded.removeAt(ai, 1);
         }
       }
     }

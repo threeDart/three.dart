@@ -465,7 +465,7 @@ class WebGLRenderer implements Renderer {
 
 			// -avoid using array.splice, this is costlier than creating new array from scratch
 
-			_programs.removeRange(_programs.indexOf(program), 1);
+			_programs.removeAt(_programs.indexOf(program));
 
 			_gl.deleteProgram( program.glProgram );
 
@@ -4297,14 +4297,14 @@ class WebGLRenderer implements Renderer {
 		while ( scene.__objectsAdded.length > 0 ) {
 
 			addObject( scene.__objectsAdded[ 0 ], scene );
-			scene.__objectsAdded.removeRange( 0, 1 );
+			scene.__objectsAdded.removeAt( 0 );
 
 		}
 
 		while ( scene.__objectsRemoved.length > 0) {
 
 			removeObject( scene.__objectsRemoved[ 0 ], scene );
-			scene.__objectsRemoved.removeRange( 0, 1 );
+			scene.__objectsRemoved.removeAt( 0 );
 
 		}
 
@@ -4653,7 +4653,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( objlist[ o ].object == object ) {
 
-				objlist.removeRange( o, 1 );
+				objlist.removeAt( o );
 
 			}
 
@@ -4667,7 +4667,7 @@ class WebGLRenderer implements Renderer {
 
       if ( identical(objlist[ o ], object) ) {
 
-				objlist.removeRange( o, 1 );
+				objlist.removeAt( o );
 
 			}
 

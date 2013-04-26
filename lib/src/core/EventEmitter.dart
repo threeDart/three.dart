@@ -36,7 +36,7 @@ class EventEmitter {
 		var index = listeners[ type ].indexOf( listener );
 
 		if ( index != - 1 ) {
-			listeners[ type ].removeRange( index, 1 );
+			listeners[ type ].removeAt( index );
 		}
 
 	}
