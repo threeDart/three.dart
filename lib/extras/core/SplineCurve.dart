@@ -10,7 +10,7 @@ class SplineCurve extends Curve2D {
   getPoint( t ) {
 
     var v = new Vector2();
-    var c = new List.fixedLength(4);
+    var c = new List(4);
     var point, intPoint, weight;
     point = ( points.length - 1 ) * t;
 

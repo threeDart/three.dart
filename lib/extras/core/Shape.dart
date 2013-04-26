@@ -50,7 +50,7 @@ class Shape extends Path {
   getPointsHoles( divisions ) {
 
   	var i, il = holes.length;
-  	var holesPts = new List.fixedLength(il);
+  	var holesPts = new List(il);
 
   	for ( i = 0; i < il; i ++ ) {
 
@@ -66,7 +66,7 @@ class Shape extends Path {
   getSpacedPointsHoles ( divisions ) {
 
   	var i, il = holes.length;
-  	var holesPts = new List.fixedLength(il);
+  	var holesPts = new List(il);
 
   	for ( i = 0; i < il; i ++ ) {
 
