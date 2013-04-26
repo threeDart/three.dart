@@ -71,6 +71,7 @@ class Geometry {
 
   // dynamic is a reserved word in Dart
   bool get isDynamic => _dynamic;
+  set isDynamic(bool value) => _dynamic = value;
 
   void applyMatrix( Matrix4 matrix ) {
     Matrix4 matrixRotation = new Matrix4();
