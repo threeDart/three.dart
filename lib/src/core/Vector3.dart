@@ -22,9 +22,9 @@ class Vector3 implements IVector3 {
 
   // changed "set" to "setValues" as "set" is reserved.
   Vector3 setValues( num x, num y, num z ) {
-    this.x = x.toDouble();
-    this.y = y.toDouble();
-    this.z = z.toDouble();
+    _x = x.toDouble();
+    _y = y.toDouble();
+    _z = z.toDouble();
 
     return this;
   }
@@ -39,19 +39,19 @@ class Vector3 implements IVector3 {
   get z => _z;
 
   Vector3 setX( num x ) {
-    this.x = x.toDouble();
+    _x = x.toDouble();
 
     return this;
   }
 
   Vector3 setY( num y ) {
-    this.y = y.toDouble();
+    _y = y.toDouble();
 
     return this;
   }
 
   Vector3 setZ( num z ) {
-    this.z = z.toDouble();
+    _z = z.toDouble();
 
     return this;
   }
