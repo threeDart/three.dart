@@ -123,7 +123,10 @@ class Object3D {
     matrix.lookAt( vector, position, up );
 
     if ( rotationAutoUpdate ) {
-      rotation.setEulerFromRotationMatrix( matrix, eulerOrder );
+      if(useQuaternion)
+        quaternion.setFromRotationMatrix(matrix);
+      else
+        rotation.setEulerFromRotationMatrix( matrix, eulerOrder );
     }
   }
 
@@ -200,13 +203,15 @@ class Object3D {
   }
 
   void updateMatrix() {
-    matrix.setPosition( position );
+    
 
     if ( useQuaternion ) {
       matrix.setRotationFromQuaternion( quaternion );
     } else {
       matrix.setRotationFromEuler( rotation, eulerOrder );
     }
+    
+    matrix.setPosition( position );
 
     if ( scale.x != 1 || scale.y != 1 || scale.z != 1 ) {
       matrix.scale( scale );
