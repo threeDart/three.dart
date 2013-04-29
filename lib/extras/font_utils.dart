@@ -297,7 +297,7 @@ List<List<Vector2>> process( List<Vector2> contour, bool indices ) {
   if ( n < 3 ) return null;
 
   var result = [],
-    verts = new List.fixedLength(n),
+    verts = new List(n),
     vertIndices = [];
 
   /* we want a counter-clockwise polygon in verts */

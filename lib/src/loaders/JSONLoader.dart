@@ -243,7 +243,7 @@ class JSONLoader extends Loader {
 
           uvLayer = json["uvs"][ i ];
 
-          uvs = new List.fixedLength(nVertices);
+          uvs = new List(nVertices);
 
           for ( j = 0; j < nVertices; j ++ ) {
 

@@ -365,7 +365,7 @@ class ExtrudeGeometry extends Geometry {
 
 
 
-    var contourMovements = new List.fixedLength(contour.length);
+    var contourMovements = new List(contour.length);
 
     num i = 0,
         il = contour.length,
@@ -395,7 +395,7 @@ class ExtrudeGeometry extends Geometry {
 
       ahole = holes[ h ];
 
-      oneHoleMovements = new List.fixedLength(ahole.length);
+      oneHoleMovements = new List(ahole.length);
 
       i = 0;
       il = ahole.length;
