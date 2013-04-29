@@ -344,7 +344,7 @@ class Quaternion implements IVector4 {
 
   clone() => new Quaternion( this.x, this.y, this.z, this.w );
 
-  static Vector4 slerp( Vector4 qa, Vector4 qb, Vector4 qm, num t ) {
+  static IVector4 slerp( IVector4 qa, IVector4 qb, IVector4 qm, num t ) {
     // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
     num cosHalfTheta = qa.w * qb.w + qa.x * qb.x + qa.y * qb.y + qa.z * qb.z;
