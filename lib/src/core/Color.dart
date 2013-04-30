@@ -69,9 +69,9 @@ class Color {
   }
 
   Color setRGB( num newR, num newG, num newB ) {
-    r = newR;
-    g = newG;
-    b = newB;
+    r = newR.toDouble();
+    g = newG.toDouble();
+    b = newB.toDouble();
 
     return this;
   }
