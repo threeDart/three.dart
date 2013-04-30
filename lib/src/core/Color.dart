@@ -9,18 +9,27 @@ part of three;
 
 class Color {
 
-  double r;
-  double g;
-  double b;
+  double _r;
+  double _g;
+  double _b;
+
+  set r(num r) { _r = r.toDouble();}
+  get r => _r;
+
+  set g(num g) { _g = g.toDouble();}
+  get g => _g;
+
+  set b(num b) { _b = b.toDouble();}
+  get b => _b;
 
   int get _rr => (r*255).floor().toInt();
   int get _gg => (g*255).floor().toInt();
   int get _bb => (b*255).floor().toInt();
 
   Color( [num hex] )
-      : r = 1.0,
-        g = 1.0,
-        b = 1.0 {
+      : _r = 1.0,
+        _g = 1.0,
+        _b = 1.0 {
 
     if ( hex is num ) setHex( hex );
   }
@@ -82,7 +91,7 @@ class Color {
     num i, f, p, q, t;
 
     if ( v == 0 ) {
-      r = g = b = 0;
+      r = g = b = 0.0;
     } else {
       i = ( h * 6 ).floor();
       f = ( h * 6 ) - i;
