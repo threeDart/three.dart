@@ -5502,7 +5502,7 @@ class WebGLRenderer implements Renderer {
 	setupLights ( Program program, List<Light> lights ) {
 
 		var l, ll, light, n,
-		r = 0, g = 0, b = 0,
+		r = 0.0, g = 0.0, b = 0.0,
 		color, position, intensity, distance,
 
 		zlights = _lights;
