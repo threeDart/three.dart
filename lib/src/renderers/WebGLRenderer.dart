@@ -6451,7 +6451,7 @@ class WebGLRenderer implements Renderer {
 		canvas.width = newWidth;
 		canvas.height = newHeight;
 
-		var ctx = canvas.context2d;
+		var ctx = canvas.context2D;
 		ctx.drawImageScaledFromSource( image, 0, 0, image.width, image.height, 0, 0, newWidth, newHeight );
 
 		return canvas;

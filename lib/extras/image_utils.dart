@@ -293,7 +293,7 @@ getNormalMap ( image, depth ) {
 	canvas.width = width;
 	canvas.height = height;
 
-	var context = canvas.context2d;
+	var context = canvas.context2D;
 	context.drawImage( image, 0, 0 );
 
 	var data = context.getImageData( 0, 0, width, height ).data;
