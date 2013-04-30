@@ -197,7 +197,7 @@ parseDDS( buffer, loadMipmaps ) {
 
   // Parse header
 
-  var header = new Int32List.fromBuffer( buffer, 0, headerLengthInt );
+  var header = new Int32List.view(buffer, 0, headerLengthInt);
 
   if ( header[ off_magic ] != DDS_MAGIC ) {
       print( "ImageUtils.parseDDS(): Invalid magic number in DDS header" );
@@ -245,7 +245,7 @@ parseDDS( buffer, loadMipmaps ) {
   for ( var i = 0; i < dds["mipmapCount"]; i ++ ) {
 
     int dataLength = Math.max( 4, width ) ~/ 4 * Math.max( 4, height ) ~/ 4 * blockBytes;
-    var byteArray = new Uint8List.fromBuffer( buffer, dataOffset, dataLength);
+    var byteArray = new Uint8List.view(buffer, dataOffset, dataLength);
 
     var mipmap = { "data": byteArray, "width": width, "height": height };
     dds["mipmaps"].add( mipmap );
