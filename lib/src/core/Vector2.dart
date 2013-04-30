@@ -11,17 +11,25 @@ part of three;
  */
 
 class Vector2 implements IVector2 {
-  num x;
-  num y;
+  double _x;
+  double _y;
 
-  Vector2( [this.x = 0, this.y = 0] );
+  Vector2( [num x = 0, num y = 0] ) {
+    setValues(x, y);
+  }
 
   Vector2 setValues( num x, num y ) {
-    this.x = x;
-    this.y = y;
+    _x = x.toDouble();
+    _y = y.toDouble();
 
     return this;
   }
+
+  set x(num x) { _x = x.toDouble();}
+  get x => _x;
+
+  set y(num y) { _y = y.toDouble();}
+  get y => _y;
 
   Vector2 copy( Vector2 v ) {
     x = v.x;

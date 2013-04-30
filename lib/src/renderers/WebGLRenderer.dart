@@ -694,7 +694,7 @@ class WebGLRenderer implements Renderer {
 
 					attribute.size = size;
 
-					attribute.array = new Float32Array( nvertices * size );
+					attribute.array = new Float32List( nvertices * size );
 
 					attribute.buffer = new Buffer(_gl.createBuffer());
 					attribute.buffer.belongsToAttribute = a;
@@ -715,8 +715,8 @@ class WebGLRenderer implements Renderer {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry.__vertexArray = new Float32Array( nvertices * 3 );
-		geometry.__colorArray = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32List( nvertices * 3 );
+		geometry.__colorArray = new Float32List( nvertices * 3 );
 
 		geometry.__sortArray = [];
 
@@ -730,8 +730,8 @@ class WebGLRenderer implements Renderer {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry.__vertexArray = new Float32Array( nvertices * 3 );
-		geometry.__colorArray = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32List( nvertices * 3 );
+		geometry.__colorArray = new Float32List( nvertices * 3 );
 
 		geometry.__webglLineCount = nvertices;
 
@@ -743,8 +743,8 @@ class WebGLRenderer implements Renderer {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry.__vertexArray = new Float32Array( nvertices * 3 );
-		geometry.__colorArray = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32List( nvertices * 3 );
+		geometry.__colorArray = new Float32List( nvertices * 3 );
 
 		geometry.__webglVertexCount = nvertices;
 
@@ -768,23 +768,23 @@ class WebGLRenderer implements Renderer {
 
 		//console.log( "uvType", uvType, "normalType", normalType, "vertexColorType", vertexColorType, object, geometryGroup, material );
 
-		geometryGroup.__vertexArray = new Float32Array( nvertices * 3 );
+		geometryGroup.__vertexArray = new Float32List( nvertices * 3 );
 
 		if ( normalType != NoShading ) {
 
-			geometryGroup.__normalArray = new Float32Array( nvertices * 3 );
+			geometryGroup.__normalArray = new Float32List( nvertices * 3 );
 
 		}
 
 		if ( geometry.hasTangents ) {
 
-			geometryGroup.__tangentArray = new Float32Array( nvertices * 4 );
+			geometryGroup.__tangentArray = new Float32List( nvertices * 4 );
 
 		}
 
 		if ( vertexColorType ) {
 
-			geometryGroup.__colorArray = new Float32Array( nvertices * 3 );
+			geometryGroup.__colorArray = new Float32List( nvertices * 3 );
 
 		}
 
@@ -792,13 +792,13 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.faceUvs.length > 0 || geometry.faceVertexUvs.length > 0 ) {
 
-				geometryGroup.__uvArray = new Float32Array( nvertices * 2 );
+				geometryGroup.__uvArray = new Float32List( nvertices * 2 );
 
 			}
 
 			if ( geometry.faceUvs.length > 1 || geometry.faceVertexUvs.length > 1 ) {
 
-				geometryGroup.__uv2Array = new Float32Array( nvertices * 2 );
+				geometryGroup.__uv2Array = new Float32List( nvertices * 2 );
 
 			}
 
@@ -806,15 +806,15 @@ class WebGLRenderer implements Renderer {
 
 		if ( !object.geometry.skinWeights.isEmpty && !object.geometry.skinIndices.isEmpty ) {
 
-			geometryGroup.__skinVertexAArray = new Float32Array( nvertices * 4 );
-			geometryGroup.__skinVertexBArray = new Float32Array( nvertices * 4 );
-			geometryGroup.__skinIndexArray = new Float32Array( nvertices * 4 );
-			geometryGroup.__skinWeightArray = new Float32Array( nvertices * 4 );
+			geometryGroup.__skinVertexAArray = new Float32List( nvertices * 4 );
+			geometryGroup.__skinVertexBArray = new Float32List( nvertices * 4 );
+			geometryGroup.__skinIndexArray = new Float32List( nvertices * 4 );
+			geometryGroup.__skinWeightArray = new Float32List( nvertices * 4 );
 
 		}
 
-		geometryGroup.__faceArray = new Uint16Array( ntris * 3 );
-		geometryGroup.__lineArray = new Uint16Array( nlines * 2 );
+		geometryGroup.__faceArray = new Uint16List( ntris * 3 );
+		geometryGroup.__lineArray = new Uint16List( nlines * 2 );
 
 		var m, ml;
 
@@ -826,7 +826,7 @@ class WebGLRenderer implements Renderer {
 
 			for ( m = 0; m < ml; m ++ ) {
 
-				geometryGroup.__morphTargetsArrays.add( new Float32Array( nvertices * 3 ) );
+				geometryGroup.__morphTargetsArrays.add( new Float32List( nvertices * 3 ) );
 
 			}
 
@@ -840,7 +840,7 @@ class WebGLRenderer implements Renderer {
 
 			for ( m = 0; m < ml; m ++ ) {
 
-				geometryGroup.__morphNormalsArrays.add( new Float32Array( nvertices * 3 ) );
+				geometryGroup.__morphNormalsArrays.add( new Float32List( nvertices * 3 ) );
 
 			}
 
@@ -889,7 +889,7 @@ class WebGLRenderer implements Renderer {
 
 					attribute["size"] = size;
 
-					attribute["array"] = new Float32Array( nvertices * size );
+					attribute["array"] = new Float32List( nvertices * size );
 
 					var buffer = new Buffer(_gl.createBuffer());
 					buffer.belongsToAttribute = a;
@@ -1700,7 +1700,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint);
 
 		}
 
@@ -1930,17 +1930,17 @@ class WebGLRenderer implements Renderer {
 				skinVertexAArray[ offset_skin ]     = sa1.x;
 				skinVertexAArray[ offset_skin + 1 ] = sa1.y;
 				skinVertexAArray[ offset_skin + 2 ] = sa1.z;
-				skinVertexAArray[ offset_skin + 3 ] = 1; // pad for faster vertex shader
+				skinVertexAArray[ offset_skin + 3 ] = 1.0; // pad for faster vertex shader
 
 				skinVertexAArray[ offset_skin + 4 ] = sa2.x;
 				skinVertexAArray[ offset_skin + 5 ] = sa2.y;
 				skinVertexAArray[ offset_skin + 6 ] = sa2.z;
-				skinVertexAArray[ offset_skin + 7 ] = 1;
+				skinVertexAArray[ offset_skin + 7 ] = 1.0;
 
 				skinVertexAArray[ offset_skin + 8 ]  = sa3.x;
 				skinVertexAArray[ offset_skin + 9 ]  = sa3.y;
 				skinVertexAArray[ offset_skin + 10 ] = sa3.z;
-				skinVertexAArray[ offset_skin + 11 ] = 1;
+				skinVertexAArray[ offset_skin + 11 ] = 1.0;
 
 				// vertices B
 
@@ -1951,17 +1951,17 @@ class WebGLRenderer implements Renderer {
 				skinVertexBArray[ offset_skin ]     = sb1.x;
 				skinVertexBArray[ offset_skin + 1 ] = sb1.y;
 				skinVertexBArray[ offset_skin + 2 ] = sb1.z;
-				skinVertexBArray[ offset_skin + 3 ] = 1; // pad for faster vertex shader
+				skinVertexBArray[ offset_skin + 3 ] = 1.0; // pad for faster vertex shader
 
 				skinVertexBArray[ offset_skin + 4 ] = sb2.x;
 				skinVertexBArray[ offset_skin + 5 ] = sb2.y;
 				skinVertexBArray[ offset_skin + 6 ] = sb2.z;
-				skinVertexBArray[ offset_skin + 7 ] = 1;
+				skinVertexBArray[ offset_skin + 7 ] = 1.0;
 
 				skinVertexBArray[ offset_skin + 8 ]  = sb3.x;
 				skinVertexBArray[ offset_skin + 9 ]  = sb3.y;
 				skinVertexBArray[ offset_skin + 10 ] = sb3.z;
-				skinVertexBArray[ offset_skin + 11 ] = 1;
+				skinVertexBArray[ offset_skin + 11 ] = 1.0;
 
 				offset_skin += 12;
 
@@ -2036,22 +2036,22 @@ class WebGLRenderer implements Renderer {
 				skinVertexAArray[ offset_skin ]     = sa1.x;
 				skinVertexAArray[ offset_skin + 1 ] = sa1.y;
 				skinVertexAArray[ offset_skin + 2 ] = sa1.z;
-				skinVertexAArray[ offset_skin + 3 ] = 1; // pad for faster vertex shader
+				skinVertexAArray[ offset_skin + 3 ] = 1.0; // pad for faster vertex shader
 
 				skinVertexAArray[ offset_skin + 4 ] = sa2.x;
 				skinVertexAArray[ offset_skin + 5 ] = sa2.y;
 				skinVertexAArray[ offset_skin + 6 ] = sa2.z;
-				skinVertexAArray[ offset_skin + 7 ] = 1;
+				skinVertexAArray[ offset_skin + 7 ] = 1.0;
 
 				skinVertexAArray[ offset_skin + 8 ]  = sa3.x;
 				skinVertexAArray[ offset_skin + 9 ]  = sa3.y;
 				skinVertexAArray[ offset_skin + 10 ] = sa3.z;
-				skinVertexAArray[ offset_skin + 11 ] = 1;
+				skinVertexAArray[ offset_skin + 11 ] = 1.0;
 
 				skinVertexAArray[ offset_skin + 12 ] = sa4.x;
 				skinVertexAArray[ offset_skin + 13 ] = sa4.y;
 				skinVertexAArray[ offset_skin + 14 ] = sa4.z;
-				skinVertexAArray[ offset_skin + 15 ] = 1;
+				skinVertexAArray[ offset_skin + 15 ] = 1.0;
 
 				// vertices B
 
@@ -2063,22 +2063,22 @@ class WebGLRenderer implements Renderer {
 				skinVertexBArray[ offset_skin ]     = sb1.x;
 				skinVertexBArray[ offset_skin + 1 ] = sb1.y;
 				skinVertexBArray[ offset_skin + 2 ] = sb1.z;
-				skinVertexBArray[ offset_skin + 3 ] = 1; // pad for faster vertex shader
+				skinVertexBArray[ offset_skin + 3 ] = 1.0; // pad for faster vertex shader
 
 				skinVertexBArray[ offset_skin + 4 ] = sb2.x;
 				skinVertexBArray[ offset_skin + 5 ] = sb2.y;
 				skinVertexBArray[ offset_skin + 6 ] = sb2.z;
-				skinVertexBArray[ offset_skin + 7 ] = 1;
+				skinVertexBArray[ offset_skin + 7 ] = 1.0;
 
 				skinVertexBArray[ offset_skin + 8 ]  = sb3.x;
 				skinVertexBArray[ offset_skin + 9 ]  = sb3.y;
 				skinVertexBArray[ offset_skin + 10 ] = sb3.z;
-				skinVertexBArray[ offset_skin + 11 ] = 1;
+				skinVertexBArray[ offset_skin + 11 ] = 1.0;
 
 				skinVertexBArray[ offset_skin + 12 ] = sb4.x;
 				skinVertexBArray[ offset_skin + 13 ] = sb4.y;
 				skinVertexBArray[ offset_skin + 14 ] = sb4.z;
-				skinVertexBArray[ offset_skin + 15 ] = 1;
+				skinVertexBArray[ offset_skin + 15 ] = 1.0;
 
 				offset_skin += 16;
 
@@ -4873,7 +4873,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( object.__webglMorphTargetInfluences == null) {
 
-				object.__webglMorphTargetInfluences = new Float32Array( maxMorphTargets );
+				object.__webglMorphTargetInfluences = new Float32List( maxMorphTargets );
 
 			}
 
@@ -5329,25 +5329,25 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "iv1" ) { // flat array of integers (JS or typed array)
 
-				_gl.uniform1iv( location, (value is List) ? new Int32Array.fromList(value) : value );
+				_gl.uniform1iv( location, (value is List) ? new Int32List.fromList(value) : value );
 
 			} else if ( type == "iv" ) { // flat array of integers with 3 x N size (JS or typed array)
 
-				_gl.uniform3iv( location, (value is List) ? new Int32Array.fromList(value) : value );
+				_gl.uniform3iv( location, (value is List) ? new Int32List.fromList(value) : value );
 
 			} else if ( type == "fv1" ) { // flat array of floats (JS or typed array)
 
-				_gl.uniform1fv( location, (value is List) ? new Float32Array.fromList(value) : value );
+				_gl.uniform1fv( location, (value is List) ? new Float32List.fromList(value) : value );
 
 			} else if ( type == "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
 
-				_gl.uniform3fv( location, (value is List) ? new Float32Array.fromList(value) : value );
+				_gl.uniform3fv( location, (value is List) ? new Float32List.fromList(value) : value );
 
 			} else if ( type == "v2v" ) { // array of THREE.Vector2
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 2 * value.length );
+					uniform._array = new Float32List( 2 * value.length );
 
 				}
 
@@ -5367,7 +5367,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 3 * value.length );
+					uniform._array = new Float32List( 3 * value.length );
 
 				}
 
@@ -5388,7 +5388,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 4 * value.length );
+					uniform._array = new Float32List( 4 * value.length );
 
 				}
 
@@ -5410,7 +5410,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 16 );
+					uniform._array = new Float32List( 16 );
 
 				}
 
@@ -5421,7 +5421,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 16 * value.length );
+					uniform._array = new Float32List( 16 * value.length );
 
 				}
 
@@ -5460,7 +5460,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-				  uniform._array = new Int32Array( uniform.texture.length );
+				  uniform._array = new Int32List( uniform.texture.length );
 
 					il = uniform.texture.length;
 					for( i = 0; i < il; i ++ ) {
@@ -6618,7 +6618,7 @@ class WebGLRenderer implements Renderer {
 				_gl.bindTexture( gl.TEXTURE_2D, renderTarget.__webglTexture );
 				setTextureParameters( gl.TEXTURE_2D, renderTarget, isTargetPowerOfTwo );
 
-				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
+				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null);
 
 				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, gl.TEXTURE_2D );
 				setupRenderBuffer( renderTarget.__webglRenderbuffer, renderTarget );
@@ -7079,7 +7079,7 @@ class WebGLGeometry {
     colorsNeedUpdate;
 
   bool __inittedArrays;
-  Float32Array __vertexArray,
+  Float32List __vertexArray,
                __normalArray,
                __tangentArray,
                __colorArray,
@@ -7089,8 +7089,8 @@ class WebGLGeometry {
                __skinVertexBArray,
                __skinIndexArray,
                __skinWeightArray;
-  Uint16Array __faceArray, __lineArray;
-  List<Float32Array> __morphTargetsArrays, __morphNormalsArrays;
+  Uint16List __faceArray, __lineArray;
+  List<Float32List> __morphTargetsArrays, __morphNormalsArrays;
   int __webglFaceCount, __webglLineCount, __webglParticleCount, __webglVertexCount;
 
   List __sortArray;
@@ -7307,13 +7307,13 @@ class WebGLMaterial { // implements Material {
 class WebGLCamera { // implements Camera {
 
   Camera _camera;
-  Float32Array _viewMatrixArray,
+  Float32List _viewMatrixArray,
   _projectionMatrixArray;
 
   WebGLCamera._internal(Camera camera)
       :   _camera = camera,
-          _viewMatrixArray = new Float32Array( 16 ),
-          _projectionMatrixArray = new Float32Array( 16 );
+          _viewMatrixArray = new Float32List( 16 ),
+          _projectionMatrixArray = new Float32List( 16 );
 
   factory WebGLCamera(Camera camera) {
     if (camera["__webglCamera"] == null) {

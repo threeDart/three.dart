@@ -11,22 +11,36 @@ part of three;
  */
 
 class Vector4 implements IVector4 {
-  num x;
-  num y;
-  num z;
-  num w;
+  double _x;
+  double _y;
+  double _z;
+  double _w;
 
 
-  Vector4( [this.x = 0, this.y = 0, this.z = 0, this.w = 1] );
+  Vector4( [num x = 0, num y = 0, num z = 0, num w = 1] ) {
+    setValues(x, y, z, w);
+  }
 
   setValues( num x, num y, num z, num w ) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.w = w;
+    _x = x.toDouble();
+    _y = y.toDouble();
+    _z = z.toDouble();
+    _w = w.toDouble();
 
     return this;
   }
+
+  set x(num x) { _x = x.toDouble();}
+  get x => _x;
+
+  set y(num y) { _y = y.toDouble();}
+  get y => _y;
+
+  set z(num z) { _z = z.toDouble();}
+  get z => _z;
+
+  set w(num w) { _w = w.toDouble();}
+  get w => _w;
 
   //TODO: Interface IVector3 has been introduced here due to line 216 in Projector.dart:
   // _vertex.positionScreen.copy( _vertex.positionWorld );
@@ -43,7 +57,7 @@ class Vector4 implements IVector4 {
      Vector4 v4 = v;
      w = v4.w;
     } else {
-      w = 1;
+      w = 1.0;
     }
   }
 

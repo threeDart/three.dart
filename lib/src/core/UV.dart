@@ -8,14 +8,16 @@ part of three;
  */
 
 class UV {
-  num u, v;
+  double u, v;
 
 
-  UV( [this.u = 0, this.v = 0] );
+  UV( [num u = 0, num v = 0] ) {
+    setValues(u , v);
+  }
 
   UV setValues( num u, num v ) {
-    this.u = u;
-    this.v = v;
+    this.u = u.toDouble();
+    this.v = v.toDouble();
 
     return this;
   }

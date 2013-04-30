@@ -9,9 +9,9 @@ part of three;
 
 class Color {
 
-  num r;
-  num g;
-  num b;
+  double r;
+  double g;
+  double b;
 
   int get _rr => (r*255).floor().toInt();
   int get _gg => (g*255).floor().toInt();

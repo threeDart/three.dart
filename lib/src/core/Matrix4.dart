@@ -15,14 +15,14 @@ part of three;
  */
 
 class Matrix4 {
-  Float32Array elements;
+  Float32List elements;
 
 
   Matrix4( [num n11 = 1, num n12 = 0, num n13 = 0, num n14 = 0,
             num n21 = 0, num n22 = 1, num n23 = 0, num n24 = 0,
             num n31 = 0, num n32 = 0, num n33 = 1, num n34 = 0,
             num n41 = 0, num n42 = 0, num n43 = 0, num n44 = 1] )
-      : elements = new Float32Array(16) {
+      : elements = new Float32List(16) {
 
     setValues(n11, n12, n13, n14,
               n21, n22, n23, n24,
@@ -38,10 +38,10 @@ class Matrix4 {
                      num n41, num n42, num n43, num n44 ) {
     var te = this.elements;
 
-    te[0] = n11; te[4] = n12; te[8] = n13; te[12] = n14;
-    te[1] = n21; te[5] = n22; te[9] = n23; te[13] = n24;
-    te[2] = n31; te[6] = n32; te[10] = n33; te[14] = n34;
-    te[3] = n41; te[7] = n42; te[11] = n43; te[15] = n44;
+    te[0] = n11.toDouble(); te[4] = n12.toDouble(); te[8] = n13.toDouble(); te[12] = n14.toDouble();
+    te[1] = n21.toDouble(); te[5] = n22.toDouble(); te[9] = n23.toDouble(); te[13] = n24.toDouble();
+    te[2] = n31.toDouble(); te[6] = n32.toDouble(); te[10] = n33.toDouble(); te[14] = n34.toDouble();
+    te[3] = n41.toDouble(); te[7] = n42.toDouble(); te[11] = n43.toDouble(); te[15] = n44.toDouble();
 
     return this;
   }
@@ -919,10 +919,10 @@ class Matrix4 {
     c = - ( far + near ) / ( far - near );
     d = - 2 * far * near / ( far - near );
 
-    te[0] = x;  te[4] = 0;  te[8] = a;   te[12] = 0;
-    te[1] = 0;  te[5] = y;  te[9] = b;   te[13] = 0;
-    te[2] = 0;  te[6] = 0;  te[10] = c;   te[14] = d;
-    te[3] = 0;  te[7] = 0;  te[11] = - 1; te[15] = 0;
+    te[0] = x;  te[4] = 0.0;  te[8] = a;   te[12] = 0.0;
+    te[1] = 0.0;  te[5] = y;  te[9] = b;   te[13] = 0.0;
+    te[2] = 0.0;  te[6] = 0.0;  te[10] = c;   te[14] = d;
+    te[3] = 0.0;  te[7] = 0.0;  te[11] = - 1.0; te[15] = 0.0;
 
     return this;
   }
@@ -951,10 +951,10 @@ class Matrix4 {
     y = ( top + bottom ) / h;
     z = ( far + near ) / p;
 
-    te[0] = 2 / w; te[4] = 0;     te[8] = 0;      te[12] = -x;
-    te[1] = 0;     te[5] = 2 / h; te[9] = 0;      te[13] = -y;
-    te[2] = 0;     te[6] = 0;     te[10] = -2 / p; te[14] = -z;
-    te[3] = 0;     te[7] = 0;     te[11] = 0;      te[15] = 1;
+    te[0] = 2 / w; te[4] = 0.0;     te[8] = 0.0;      te[12] = -x;
+    te[1] = 0.0;     te[5] = 2 / h; te[9] = 0.0;      te[13] = -y;
+    te[2] = 0.0;     te[6] = 0.0;     te[10] = -2 / p; te[14] = -z;
+    te[3] = 0.0;     te[7] = 0.0;     te[11] = 0.0;      te[15] = 1.0;
 
     return this;
   }
