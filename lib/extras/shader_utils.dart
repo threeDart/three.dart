@@ -8,8 +8,8 @@ var lib = {
     'cube': new THREE.ShaderMaterial(
 
       uniforms: {
-        "tCube": new THREE.Uniform(type: "t", value: null ),
-        "tFlip": new THREE.Uniform(type: "f", value: -1 )
+        "tCube": new THREE.Uniform.float(null),
+        "tFlip": new THREE.Uniform.float(-1)
         },
 
       vertexShader:

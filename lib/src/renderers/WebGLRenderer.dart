@@ -5054,7 +5054,7 @@ class WebGLRenderer implements Renderer {
 
 	// Uniforms (refresh uniforms objects)
 
-	refreshUniformsCommon ( uniforms, material ) {
+	refreshUniformsCommon ( Map<String, Uniform> uniforms, material ) {
 
 		uniforms["opacity"].value = material.opacity;
 
@@ -5068,13 +5068,13 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		uniforms["map"].texture = material.map;
-		uniforms["lightMap"].texture = material.lightMap;
-		uniforms["specularMap"].texture = material.specularMap;
+		uniforms["map"]._texture = material.map;
+		uniforms["lightMap"]._texture = material.lightMap;
+		uniforms["specularMap"]._texture = material.specularMap;
 
 		if ( material.bumpMap != null ) {
 
-			uniforms["bumpMap"].texture = material.bumpMap;
+			uniforms["bumpMap"]._texture = material.bumpMap;
 			uniforms["bumpScale"].value = material.bumpScale;
 
 		}
@@ -5109,7 +5109,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		uniforms["envMap"].texture = material.envMap;
+		uniforms["envMap"]._texture = material.envMap;
 		uniforms["flipEnvMap"].value = ( material.envMap is WebGLRenderTargetCube ) ? 1 : -1;
 
 		if ( gammaInput ) {
@@ -5143,7 +5143,7 @@ class WebGLRenderer implements Renderer {
 		uniforms["size"].value = material.size;
 		uniforms["scale"].value = canvas.height / 2.0; // TODO: Cache
 
-		uniforms["map"].texture = material.map;
+		uniforms["map"]._texture = material.map;
 
 	}
 
@@ -5232,7 +5232,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsShadow ( uniforms, lights ) {
+	refreshUniformsShadow ( Map<String, Uniform> uniforms, lights ) {
 
 		if ( uniforms.containsKey("shadowMatrix") ) {
 
@@ -5247,15 +5247,15 @@ class WebGLRenderer implements Renderer {
 				if ( light is SpotLight || ( light is DirectionalLight && ! light.shadowCascade ) ) {
 
 				  // Grow the arrays
-				  if (uniforms["shadowMap"].texture.length < j + 1) {
-				    uniforms["shadowMap"].texture.length = j + 1;
+				  if (uniforms["shadowMap"]._texture.length < j + 1) {
+				    uniforms["shadowMap"]._texture.length = j + 1;
 				    uniforms["shadowMapSize"].value.length = j + 1;
 				    uniforms["shadowMatrix"].value.length = j + 1;
 				    uniforms["shadowDarkness"].value.length = j + 1;
 				    uniforms["shadowBias"].value.length = j + 1;
 				  }
 
-					uniforms["shadowMap"].texture[ j ] = light.shadowMap;
+					uniforms["shadowMap"]._texture[ j ] = light.shadowMap;
 					uniforms["shadowMapSize"].value[ j ] = light.shadowMapSize;
 
 					uniforms["shadowMatrix"].value[ j ] = light.shadowMatrix;
@@ -5300,7 +5300,7 @@ class WebGLRenderer implements Renderer {
 			uniform = uniforms[ j ][ 0 ];
 
 			type = uniform.type;
-			value = uniform.value;
+			value = uniform.typedValue; // Get the value properly typed
 
 			if ( type == "i" ) { // single integer
 
@@ -5328,124 +5328,45 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "iv1" ) { // flat array of integers (JS or typed array)
 
-				_gl.uniform1iv( location, (value is List) ? new Int32List.fromList(value) : value );
+				_gl.uniform1iv( location, value );
 
 			} else if ( type == "iv" ) { // flat array of integers with 3 x N size (JS or typed array)
 
-				_gl.uniform3iv( location, (value is List) ? new Int32List.fromList(value) : value );
+				_gl.uniform3iv( location, value );
 
 			} else if ( type == "fv1" ) { // flat array of floats (JS or typed array)
-
-			  if (value is List) {
-			    value = new Float32List.fromList(value.map((_) => _.toDouble()).toList());
-			  }
 
 				_gl.uniform1fv( location, value );
 
 			} else if ( type == "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
 
-			  if (value is List) {
-			    value = new Float32List.fromList(value.map((_) => _.toDouble()).toList());
-        }
-
 				_gl.uniform3fv( location, value );
 
 			} else if ( type == "v2v" ) { // array of THREE.Vector2
 
-				if ( uniform._array == null ) {
-
-					uniform._array = new Float32List( 2 * value.length );
-
-				}
-
-				il = value.length;
-				for ( i = 0; i < il; i ++ ) {
-
-					offset = i * 2;
-
-					uniform._array[ offset ] 	 = value[ i ].x;
-					uniform._array[ offset + 1 ] = value[ i ].y;
-
-				}
-
-				_gl.uniform2fv( location, uniform._array );
+				_gl.uniform2fv( location, value );
 
 			} else if ( type == "v3v" ) { // array of THREE.Vector3
 
-				if ( uniform._array == null ) {
-
-					uniform._array = new Float32List( 3 * value.length );
-
-				}
-
-				il = value.length;
-				for ( i = 0; i < il; i ++ ) {
-
-					offset = i * 3;
-
-					uniform._array[ offset ] 	 = value[ i ].x;
-					uniform._array[ offset + 1 ] = value[ i ].y;
-					uniform._array[ offset + 2 ] = value[ i ].z;
-
-				}
-
-				_gl.uniform3fv( location, uniform._array );
+				_gl.uniform3fv( location, value );
 
 			} else if ( type == "v4v" ) { // array of THREE.Vector4
 
-				if ( uniform._array == null ) {
-
-					uniform._array = new Float32List( 4 * value.length );
-
-				}
-
-				il = value.length;
-				for ( i = 0; i < il; i ++ ) {
-
-					offset = i * 4;
-
-					uniform._array[ offset ] 	 = value[ i ].x;
-					uniform._array[ offset + 1 ] = value[ i ].y;
-					uniform._array[ offset + 2 ] = value[ i ].z;
-					uniform._array[ offset + 3 ] = value[ i ].w;
-
-				}
-
-				_gl.uniform4fv( location, uniform._array );
+				_gl.uniform4fv( location, value );
 
 			} else if ( type == "m4") { // single THREE.Matrix4
 
-				if ( uniform._array == null ) {
-
-					uniform._array = new Float32List( 16 );
-
-				}
-
-				value.flattenToArray( uniform._array );
-				_gl.uniformMatrix4fv( location, false, uniform._array );
+				_gl.uniformMatrix4fv( location, false, value );
 
 			} else if ( type == "m4v" ) { // array of THREE.Matrix4
 
-				if ( uniform._array == null ) {
-
-					uniform._array = new Float32List( 16 * value.length );
-
-				}
-
-				il = value.length;
-				for ( i = 0; i < il; i ++ ) {
-
-					value[ i ].copyIntoArray( uniform._array, i * 16 );
-
-				}
-
-				_gl.uniformMatrix4fv( location, false, uniform._array );
+				_gl.uniformMatrix4fv( location, false, value );
 
 			} else if ( type == "t" ) { // single THREE.Texture (2d or cube)
 
 				_gl.uniform1i( location, value );
 
-				texture = uniform.texture;
+				texture = uniform._texture;
 
 				if ( texture == null ) continue;
 
@@ -5465,29 +5386,16 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "tv" ) { // array of THREE.Texture (2d)
 
-				if ( uniform._array == null ) {
+				_gl.uniform1iv( location, value );
 
-				  uniform._array = new Int32List( uniform.texture.length );
-
-					il = uniform.texture.length;
-					for( i = 0; i < il; i ++ ) {
-
-						uniform._array[ i ] = value + i;
-
-					}
-
-				}
-
-				_gl.uniform1iv( location, uniform._array );
-
-				il = uniform.texture.length;
+				il = uniform._texture.length;
 				for( i = 0; i < il; i ++ ) {
 
-					texture = uniform.texture[ i ];
+					texture = uniform._texture[ i ];
 
 					if ( texture == null) continue;
 
-					setTexture( texture, uniform._array[ i ] );
+					setTexture( texture, value[ i ] );
 
 				}
 
