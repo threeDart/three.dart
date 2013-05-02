@@ -3670,7 +3670,7 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				object.__webglMorphTargetInfluences[ m ] = influences[ order[ m ] ];
+				object.__webglMorphTargetInfluences[ m ] = influences[ order[ m ] ].toDouble();
 
 				m ++;
 			}
@@ -3730,7 +3730,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					object.__webglMorphTargetInfluences[ m ] = influences[ influenceIndex ];
+					object.__webglMorphTargetInfluences[ m ] = influences[ influenceIndex ].toDouble();
 
 				} else {
 
@@ -3742,7 +3742,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					object.__webglMorphTargetInfluences[ m ] = 0;
+					object.__webglMorphTargetInfluences[ m ] = 0.0;
 
 				}
 
@@ -5337,11 +5337,19 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "fv1" ) { // flat array of floats (JS or typed array)
 
-				_gl.uniform1fv( location, (value is List) ? new Float32List.fromList(value) : value );
+			  if (value is List) {
+			    value = new Float32List.fromList(value.map((_) => _.toDouble()).toList());
+			  }
+
+				_gl.uniform1fv( location, value );
 
 			} else if ( type == "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
 
-				_gl.uniform3fv( location, (value is List) ? new Float32List.fromList(value) : value );
+			  if (value is List) {
+			    value = new Float32List.fromList(value.map((_) => _.toDouble()).toList());
+        }
+
+				_gl.uniform3fv( location, value );
 
 			} else if ( type == "v2v" ) { // array of THREE.Vector2
 
