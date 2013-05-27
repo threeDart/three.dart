@@ -52,8 +52,8 @@ class Texture {
 
     this.mapping = mapping != null ? mapping : new UVMapping();
 
-    offset = new Vector2( 0, 0 );
-    repeat = new Vector2( 1, 1 );
+    offset = new Vector2.zero();
+    repeat = new Vector2( 1.0, 1.0 );
 
     generateMipmaps = true;
     premultiplyAlpha = false;

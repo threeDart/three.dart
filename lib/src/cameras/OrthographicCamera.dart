@@ -11,17 +11,17 @@ part of three;
 
 class OrthographicCamera extends Camera {
 
-	num left,
+	double left,
 		right,
 		top,
 		bottom;
 
 	OrthographicCamera( this.left, this.right, this.top, this.bottom,
-						[near = 0.1, far = 2000] ) : super(near, far) {
+						[near = 0.1, far = 2000.0] ) : super(near, far) {
 		updateProjectionMatrix();
 	}
 
 	updateProjectionMatrix() {
-		projectionMatrix.makeOrthographic( left, right, top, bottom, near, far);
+		projectionMatrix = makeOrthographic( left, right, top, bottom, near, far);
 	}
 }

@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 
 class WebGL_MorphTargets_Horse  {
@@ -22,8 +23,8 @@ class WebGL_MorphTargets_Horse  {
     document.body.nodes.add( container );
 
     camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.y = 300;
-    cameraTarget = new Vector3( 0, 150, 0 );
+    camera.position.y = 300.0;
+    cameraTarget = new Vector3( 0.0, 150.0, 0.0 );
 
     scene = new Scene();
 

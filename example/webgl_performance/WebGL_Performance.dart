@@ -32,8 +32,8 @@ class WebGL_Performance  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 3200;
+    camera = new PerspectiveCamera( 60.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
+    camera.position.z = 3200.0;
 
     scene = new Scene();
 
@@ -46,7 +46,7 @@ class WebGL_Performance  {
 
       var rnd = new Math.Random();
 
-      for ( var i = 0; i < 5000; i ++ ) {
+      for ( int i = 0; i < 5000; i ++ ) {
 
         var mesh = new Mesh( geometry, material );
 

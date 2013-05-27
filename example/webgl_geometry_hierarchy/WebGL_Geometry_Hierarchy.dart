@@ -29,14 +29,14 @@ class WebGL_Geometry_Hierarchy  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 500;
+    camera = new PerspectiveCamera( 60.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
+    camera.position.z = 500.0;
 
     scene = new Scene();
-    scene.fog = new FogLinear( 0xffffff, 1, 10000 );
+    scene.fog = new FogLinear( 0xffffff, 1.0, 10000.0 );
     scene.add(camera);
 
-    var geometry = new CubeGeometry( 100, 100, 100 );
+    var geometry = new CubeGeometry( 100.0, 100.0, 100.0 );
     var material = new MeshNormalMaterial();
 
     group = new Object3D();
@@ -46,12 +46,12 @@ class WebGL_Geometry_Hierarchy  {
     for ( var i = 0; i < 1000; i ++ ) {
 
       var mesh = new Mesh( geometry, material );
-      mesh.position.x = rnd.nextInt(2000) - 1000;
-      mesh.position.y = rnd.nextInt(2000) - 1000;
-      mesh.position.z = rnd.nextInt(2000) - 1000;
+      mesh.position.x = rnd.nextInt(2000).toDouble() - 1000.0;
+      mesh.position.y = rnd.nextInt(2000).toDouble() - 1000.0;
+      mesh.position.z = rnd.nextInt(2000).toDouble() - 1000.0;
 
-      mesh.rotation.x = rnd.nextDouble() * 360 * ( Math.PI / 180 );
-      mesh.rotation.y = rnd.nextDouble() * 360 * ( Math.PI / 180 );
+      mesh.rotation.x = rnd.nextDouble() * 360.0 * ( Math.PI / 180.0 );
+      mesh.rotation.y = rnd.nextDouble() * 360.0 * ( Math.PI / 180.0 );
 
       mesh.matrixAutoUpdate = false;
       mesh.updateMatrix();

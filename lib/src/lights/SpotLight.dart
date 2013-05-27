@@ -4,11 +4,11 @@ class SpotLight extends ShadowCaster {
 
   Object3D target;
 
-  num intensity, distance;
-  num angle;
+  double intensity, distance;
+  double angle;
   num exponent;
 
-  SpotLight( num hex, [this.intensity = 1, this.distance = 0, this.angle = Math.PI / 2, this.exponent = 10] ) : super( hex ) {
+  SpotLight( num hex, [this.intensity = 1.0, this.distance = 0.0, this.angle = Math.PI / 2, this.exponent = 10] ) : super( hex ) {
     //THREE.Light.call( this, hex );
 
     position = new Vector3( 0, 1, 0 );

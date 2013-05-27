@@ -22,8 +22,8 @@ class Canvas_Lines {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 100;
+    camera = new PerspectiveCamera( 75.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
+    camera.position.z = 100.0;
 
     scene = new Scene();
     scene.add( camera );
@@ -52,14 +52,15 @@ class Canvas_Lines {
     geometry = new Geometry();
 
     var rnd = new Math.Random();
-    for ( var i = 0; i < 100; i ++ ) {
+    for ( int i = 0; i < 100; i ++ ) {
       particle = new Particle( material );
-      particle.position.x = rnd.nextDouble() * 2 - 1;
-      particle.position.y = rnd.nextDouble() * 2 - 1;
-      particle.position.z = rnd.nextDouble() * 2 - 1;
+      particle.position.x = rnd.nextDouble() * 2.0 - 1.0;
+      particle.position.y = rnd.nextDouble() * 2.0 - 1.0;
+      particle.position.z = rnd.nextDouble() * 2.0 - 1.0;
       particle.position.normalize();
-      particle.position.multiplyScalar( rnd.nextDouble() * 10 + 450 );
-      particle.scale.x = particle.scale.y = 5;
+      particle.position.scale( rnd.nextDouble() * 10.0 + 450.0 );
+      particle.scale.x = 5.0;
+      particle.scale.y = 5.0;
       scene.add( particle );
 
       geometry.vertices.add( particle.position );
@@ -109,7 +110,7 @@ class Canvas_Lines {
 
   render() {
     camera.position.x += ( mouseX - camera.position.x ) * .05;
-    camera.position.y += ( - mouseY + 200 - camera.position.y ) * .05;
+    camera.position.y += ( - mouseY + 200.0 - camera.position.y ) * .05;
     camera.lookAt( scene.position );
 
     renderer.render( scene, camera );

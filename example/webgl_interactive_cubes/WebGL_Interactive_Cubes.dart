@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 
 class WebGL_Interactive_Cubes  {
@@ -50,9 +51,9 @@ class WebGL_Interactive_Cubes  {
 
       var object = new Mesh( geometry, new MeshLambertMaterial( color: rnd.nextInt(0xffffff) ) );
 
-      object.position.x = rnd.nextInt(800) - 400;
-      object.position.y = rnd.nextInt(800) - 400;
-      object.position.z = rnd.nextInt(800) - 400;
+      object.position.x = rnd.nextInt(800) - 400.0;
+      object.position.y = rnd.nextInt(800) - 400.0;
+      object.position.z = rnd.nextInt(800) - 400.0;
 
       object.rotation.x = ( rnd.nextDouble() * 360 ) * Math.PI / 180;
       object.rotation.y = ( rnd.nextDouble() * 360 ) * Math.PI / 180;

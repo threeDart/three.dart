@@ -10,31 +10,30 @@ part of three;
 
 class PlaneGeometry extends Geometry {
 
-  PlaneGeometry( num width, num height, [num segmentsWidth, num segmentsHeight] ) : super() {
+  PlaneGeometry( double width, double height, [int segmentsWidth, int segmentsHeight] ) : super() {
     //THREE.Geometry.call( this );
 
-    int ix, iy;
-    num width_half = width / 2,
-        height_half = height / 2,
-        gridX = segmentsWidth != null ? segmentsWidth : 1,
-        gridY = segmentsHeight != null ? segmentsHeight : 1,
-        gridX1 = gridX + 1,
-        gridY1 = gridY + 1,
-        segment_width = width / gridX,
-        segment_height = height / gridY;
-    Vector3 normal = new Vector3( 0, 0, 1 );
+    double width_half = width / 2;
+    double height_half = height / 2;
+    int gridX = segmentsWidth != null ? segmentsWidth : 1;
+    int gridY = segmentsHeight != null ? segmentsHeight : 1;
+    int gridX1 = gridX + 1;
+    int gridY1 = gridY + 1;
+    double segment_width = width / gridX;
+    double segment_height = height / gridY;
+    Vector3 normal = new Vector3( 0.0, 0.0, 1.0 );
 
-    for ( iy = 0; iy < gridY1; iy++ ) {
-      for ( ix = 0; ix < gridX1; ix++ ) {
+    for ( int iy = 0; iy < gridY1; iy++ ) {
+      for ( int ix = 0; ix < gridX1; ix++ ) {
         num x = ix * segment_width - width_half;
         num y = iy * segment_height - height_half;
 
-        vertices.add( new Vector3( x, - y, 0 ) );
+        vertices.add( new Vector3( x, - y, 0.0 ) );
       }
     }
 
-    for ( iy = 0; iy < gridY; iy++ ) {
-      for ( ix = 0; ix < gridX; ix++ ) {
+    for ( int iy = 0; iy < gridY; iy++ ) {
+      for ( int ix = 0; ix < gridX; ix++ ) {
         num a = ix + gridX1 * iy;
         num b = ix + gridX1 * ( iy + 1 );
         num c = ( ix + 1 ) + gridX1 * ( iy + 1 );

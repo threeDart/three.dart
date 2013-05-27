@@ -93,47 +93,39 @@ class Geometry {
 
     faces.forEach((face) {
 
-      face.centroid.setValues( 0, 0, 0 );
+      face.centroid.setValues( 0.0, 0.0, 0.0 );
 
       if ( face is Face3 ) {
-        face.centroid.addSelf( vertices[ face.a ] );
-        face.centroid.addSelf( vertices[ face.b ] );
-        face.centroid.addSelf( vertices[ face.c ] );
-        face.centroid.divideScalar( 3 );
+        face.centroid.add( vertices[ face.a ] );
+        face.centroid.add( vertices[ face.b ] );
+        face.centroid.add( vertices[ face.c ] );
+        face.centroid /= 3.0;
       } else if ( face is Face4 ) {
         Face4 face4 = face;
-        face4.centroid.addSelf( vertices[ face4.a ] );
-        face4.centroid.addSelf( vertices[ face4.b ] );
-        face4.centroid.addSelf( vertices[ face4.c ] );
-        face4.centroid.addSelf( vertices[ face4.d ] );
-        face4.centroid.divideScalar( 4 );
+        face4.centroid.add( vertices[ face4.a ] );
+        face4.centroid.add( vertices[ face4.b ] );
+        face4.centroid.add( vertices[ face4.c ] );
+        face4.centroid.add( vertices[ face4.d ] );
+        face4.centroid /= 4.0;
       }
 
     });
   }
 
   void computeFaceNormals() {
-    num n, nl, v, vl, f;
-    Vertex vertex;
-
-    Vector3 vA, vB, vC;
-    Vector3 cb = new Vector3(), ab = new Vector3();
-
     faces.forEach((face) {
 
-      vA = vertices[ face.a ];
-      vB = vertices[ face.b ];
-      vC = vertices[ face.c ];
+      Vector3 vA = vertices[ face.a ];
+      Vector3 vB = vertices[ face.b ];
+      Vector3 vC = vertices[ face.c ];
 
-      cb.sub( vC, vB );
-      ab.sub( vA, vB );
-      cb.crossSelf( ab );
+      Vector3 cb = vC - vB;
+      Vector3 ab = vA - vB;
+      cb.cross( ab );
 
-      if ( !cb.isZero() ) {
-        cb.normalize();
-      }
+      cb.normalize();
 
-      face.normal.copy( cb );
+      face.normal = cb;
 
     });
   }
@@ -374,7 +366,7 @@ class Geometry {
     num radiusSq;
 
     var maxRadiusSq = vertices.fold(0, (num curMaxRadiusSq, Vector3 vertex) {
-      radiusSq = vertex.lengthSq();
+      radiusSq = vertex.length2;
       return ( radiusSq > curMaxRadiusSq ) ?  radiusSq : curMaxRadiusSq;
     });
 

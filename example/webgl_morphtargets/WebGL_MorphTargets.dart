@@ -29,7 +29,7 @@ class WebGL_MorphTargets  {
     document.body.nodes.add( container );
 
     camera = new PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 15000 );
-    camera.position.z = 500;
+    camera.position.z = 500.0;
 
     scene = new Scene();
 

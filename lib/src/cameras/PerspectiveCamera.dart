@@ -11,18 +11,18 @@ part of three;
 
 class PerspectiveCamera extends Camera {
 
-  num fov;
-  num aspect;
+  double fov;
+  double aspect;
 
-  num _fullWidth;
-  num _fullHeight;
-  num _x;
-  num _y;
-  num _width;
-  num _height;
+  double _fullWidth;
+  double _fullHeight;
+  double _x;
+  double _y;
+  double _width;
+  double _height;
 
 
-  PerspectiveCamera( [this.fov = 50, this.aspect = 1, near = 0.1, far = 2000] )
+  PerspectiveCamera( [this.fov = 50.0, this.aspect = 1.0, near = 0.1, far = 2000.0] )
     : super(near, far){
 
     updateProjectionMatrix();
@@ -34,11 +34,11 @@ class PerspectiveCamera extends Camera {
    * Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
    */
 
-  void setLens( num focalLength, num frameSize ) {
+  void setLens( double focalLength, double frameSize ) {
     frameSize = frameSize != null ? frameSize : 43.25; // 36x24mm
 
-    fov = 2 * Math.atan( frameSize / ( focalLength * 2 ) );
-    fov = 180 / Math.PI * fov;
+    fov = 2.0 * Math.atan( frameSize / ( focalLength * 2.0 ) );
+    fov = 180.0 / Math.PI * fov;
 
     updateProjectionMatrix();
   }
@@ -80,7 +80,7 @@ class PerspectiveCamera extends Camera {
    *   Note there is no reason monitors have to be the same size or in a grid.
    */
 
-  void setViewOffset( num fullWidth, num fullHeight, num x, num y, num width, num height ) {
+  void setViewOffset( double fullWidth, double fullHeight, double x, double y, double width, double height ) {
     _fullWidth = fullWidth;
     _fullHeight = fullHeight;
     _x = x;
@@ -94,15 +94,15 @@ class PerspectiveCamera extends Camera {
 
   void updateProjectionMatrix() {
     if ( _fullWidth != null ) {
-      num aspect = _fullWidth / _fullHeight;
-      num top = Math.tan( fov * Math.PI / 360 ) * near;
-      num bottom = -top;
-      num left = aspect * bottom;
-      num right = aspect * top;
-      num width = ( right - left ).abs();
-      num height = ( top - bottom ).abs();
+      double aspect = _fullWidth / _fullHeight;
+      double top = Math.tan( fov * Math.PI / 360.0 ) * near;
+      double bottom = -top;
+      double left = aspect * bottom;
+      double right = aspect * top;
+      double width = ( right - left ).abs();
+      double height = ( top - bottom ).abs();
 
-      projectionMatrix.makeFrustum(
+      projectionMatrix = makeFrustum(
         left + _x * width / _fullWidth,
         left + ( _x + width ) * width / _fullWidth,
         top - ( _y + height ) * height / _fullHeight,
@@ -110,7 +110,7 @@ class PerspectiveCamera extends Camera {
         near,
         far );
     } else {
-      projectionMatrix.makePerspective( fov, aspect, near, far );
+      projectionMatrix = makePerspective( fov, aspect, near, far );
     }
   }
 }

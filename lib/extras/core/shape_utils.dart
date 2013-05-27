@@ -4,6 +4,7 @@
 library ShapeUtils;
 
 import "package:three/three.dart";
+import "package:vector_math/vector_math.dart";
 import 'package:three/extras/font_utils.dart' as FontUtils;
 
 /*

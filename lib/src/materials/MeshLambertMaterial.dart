@@ -128,7 +128,7 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
                            this.ambient = new Color(ambient),
                            this.emissive = new Color(emissive),
 
-                           this.wrapRGB = wrapRGB == null ? new Vector3( 1, 1, 1 ) : wrapRGB,
+                           this.wrapRGB = wrapRGB == null ? new Vector3( 1.0, 1.0, 1.0 ) : wrapRGB,
 
                            super(  name: name,
                                    side: side,

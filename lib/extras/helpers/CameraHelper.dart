@@ -13,7 +13,7 @@ class CameraHelper extends Line {
 
   static Projector __projector = new Projector();
   static Vector3 __v = new Vector3();
-  static Camera __c = new Camera(0 ,0);
+  static Camera __c = new Camera(0.0 ,0.0);
 
   Camera camera;
 
@@ -108,7 +108,7 @@ class CameraHelper extends Line {
 
   }
 
-  setPoint( point, x, y, z ) {
+  setPoint( Vector3 point, double x, double y, double z ) {
 
     __v.setValues( x, y, z );
     __projector.unprojectVector( __v, __c );

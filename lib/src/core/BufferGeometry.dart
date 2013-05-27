@@ -170,7 +170,7 @@ class BufferGeometry {
 
 			  var normal = new dynamic();
 			  normal.itemSize = 3;
-			  normal.array = new Float32Array( nVertexElements );
+			  normal.array = new Float32List( nVertexElements );
 			  normal.numItems = nVertexElements;
 				this.attributes[ "normal" ] = normal;
 
@@ -299,7 +299,7 @@ class BufferGeometry {
 
 			var tangent = new dynamic();
 			tangent.itemSize = 4;
-			tangent.array = new Float32Array( nTangentElements );
+			tangent.array = new Float32List( nTangentElements );
       tangent.numItems = nTangentElements;
 			attributes[ "tangent" ] = tangent;
 

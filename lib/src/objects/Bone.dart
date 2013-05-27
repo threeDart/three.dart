@@ -26,7 +26,7 @@ class Bone extends Object3D {
 
       } else {
 
-        skinMatrix.copy( matrix );
+        skinMatrix = matrix.clone();
 
       }
 

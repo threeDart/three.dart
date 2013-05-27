@@ -18,9 +18,9 @@ class ShadowMapPlugin {
 
   ShadowMapPlugin() :
     _frustum = new Frustum(),
-    _projScreenMatrix = new Matrix4(),
-    _min = new Vector3(),
-    _max = new Vector3();
+    _projScreenMatrix = new Matrix4.identity(),
+    _min = new Vector3.zero(),
+    _max = new Vector3.zero();
 
 
   init( WebGLRenderer renderer ) {
@@ -190,8 +190,8 @@ class ShadowMapPlugin {
       shadowMatrix = light.shadowMatrix;
       shadowCamera = light.shadowCamera;
 
-      shadowCamera.position.copy( light.matrixWorld.getPosition() );
-      shadowCamera.lookAt( light.target.matrixWorld.getPosition() );
+      shadowCamera.position = light.matrixWorld.getTranslation();
+      shadowCamera.lookAt( light.target.matrixWorld.getTranslation() );
       shadowCamera.updateMatrixWorld();
 
       shadowCamera.matrixWorldInverse.getInverse( shadowCamera.matrixWorld );

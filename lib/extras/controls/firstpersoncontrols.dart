@@ -12,12 +12,13 @@ library FirstPersonControls;
 
 import "dart:html";
 import "dart:math" as Math;
+import 'package:vector_math/vector_math.dart';
 import "package:three/three.dart" as THREE;
 import 'package:three/src/core/ThreeMath.dart' as THREEMath;
 
 class FirstPersonControls {
   THREE.Object3D object;
-  THREE.Vector3 target = new THREE.Vector3( 0, 0, 0 );
+  Vector3 target = new THREE.Vector3( 0, 0, 0 );
 
   Element domElement;
 

@@ -1,5 +1,6 @@
-import 'dart:html';
+import 'dart:html' hide Path;
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
@@ -61,7 +62,7 @@ class WebGL_Geometry_Extrude_Shapes  {
     scene.add( light );
 
     parent = new Object3D();
-    parent.position.y = 50;
+    parent.position.y = 50.0;
     scene.add( parent );
 
     var extrude_amount = 200,

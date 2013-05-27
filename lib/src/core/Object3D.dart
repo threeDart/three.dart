@@ -30,7 +30,7 @@ class Object3D {
 
   bool matrixAutoUpdate = false, matrixWorldNeedsUpdate = false;
 
-  Quaternion quaternion;
+  var quaternion;
   bool useQuaternion;
 
   num boundRadius, boundRadiusScale;
@@ -50,25 +50,25 @@ class Object3D {
         parent = null,
         children = [],
 
-        up = new Vector3( 0, 1, 0),
+        up = new Vector3( 0.0, 1.0, 0.0),
 
-        position = new Vector3(),
-        rotation = new Vector3(),
+        position = new Vector3(0.0, 0.0, 0.0),
+        rotation = new Vector3(0.0, 0.0, 0.0),
         eulerOrder = 'XYZ',
-        scale = new Vector3( 1, 1, 1 ),
+        scale = new Vector3( 1.0, 1.0, 1.0 ),
 
         renderDepth = null,
 
         rotationAutoUpdate = true,
 
-        matrix = new Matrix4(),
-        matrixWorld = new Matrix4(),
-        matrixRotationWorld = new Matrix4(),
+        matrix = new Matrix4.identity(),
+        matrixWorld = new Matrix4.identity(),
+        matrixRotationWorld = new Matrix4.identity(),
 
         matrixAutoUpdate = true,
         matrixWorldNeedsUpdate = true,
 
-        quaternion = new Quaternion(),
+        quaternion = new Quaternion.identity(),
         useQuaternion = false,
 
         boundRadius = 0.0,
@@ -81,7 +81,7 @@ class Object3D {
 
         frustumCulled = true,
 
-        _vector = new Vector3();
+        _vector = new Vector3.zero();
 
         // TODO - These are not in three.js
         //_dynamic = false, // when true it retains arrays so they can be updated with __dirty*
@@ -111,11 +111,11 @@ class Object3D {
     position.addSelf( axis.multiplyScalar( distance ) );
   }
 
-  void translateX( num distance ) => translate( distance, _vector.setValues( 1, 0, 0 ) );
+  void translateX( num distance ) => translate( distance, _vector.setValues( 1.0, 0.0, 0.0 ) );
 
-  void translateY( num distance ) => translate( distance, _vector.setValues( 0, 1, 0 ) );
+  void translateY( num distance ) => translate( distance, _vector.setValues( 0.0, 1.0, 0.0 ) );
 
-  void translateZ( num distance ) => translate( distance, _vector.setValues( 0, 0, 1 ) );
+  void translateZ( num distance ) => translate( distance, _vector.setValues( 0.0, 0.0, 1.0 ) );
 
   void lookAt( Vector3 vector ) {
     // TODO: Add hierarchy support.
@@ -200,15 +200,15 @@ class Object3D {
   }
 
   void updateMatrix() {
-    matrix.setPosition( position );
+    matrix.setTranslation( position );
 
     if ( useQuaternion ) {
-      matrix.setRotationFromQuaternion( quaternion );
+      matrix = calcRotationFromQuaternion( quaternion );
     } else {
-      matrix.setRotationFromEuler( rotation, eulerOrder );
+      matrix = calcRotationFromEuler( rotation, eulerOrder );
     }
 
-    if ( scale.x != 1 || scale.y != 1 || scale.z != 1 ) {
+    if ( scale.x != 1.0 || scale.y != 1.0 || scale.z != 1.0 ) {
       matrix.scale( scale );
       boundRadiusScale = Math.max( scale.x, Math.max( scale.y, scale.z ) );
     }
@@ -223,9 +223,9 @@ class Object3D {
     // update matrixWorld
     if ( matrixWorldNeedsUpdate || force ) {
       if ( parent != null ) {
-        matrixWorld.multiply( parent.matrixWorld, matrix );
+        matrixWorld = parent.matrixWorld * matrix;
       } else {
-        matrixWorld.copy( matrix );
+        matrixWorld = matrix.clone();
       }
 
       matrixWorldNeedsUpdate = false;

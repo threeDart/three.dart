@@ -3,7 +3,7 @@ part of three;
 /**************************************************************
  *	Abstract Curve base class
  **************************************************************/
-abstract class Curve<V extends IVector2> {
+abstract class Curve<V> {
 
   int _arcLengthDivisions = null;
   List cacheArcLengths = null;

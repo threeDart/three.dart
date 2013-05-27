@@ -202,7 +202,7 @@ class NyanCat {
     }
 
     var pointLight = new PointLight( 0xFFFFFF );
-    pointLight.position.z = 1000;
+    pointLight.position.z = 1000.0;
     scene.add(pointLight);
 
     renderer = new WebGLRenderer();

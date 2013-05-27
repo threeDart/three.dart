@@ -117,7 +117,7 @@ class CanvasRenderer implements Renderer
     _directionalLights = new Color();
     _pointLights = new Color();
 
-    _vector3 = new Vector3(); // Needed for PointLight
+    _vector3 = new Vector3(0.0, 0.0, 0.0); // Needed for PointLight
 
     _gradientMapQuality = 16;
 
@@ -424,7 +424,7 @@ class CanvasRenderer implements Renderer
 
       if ( light is DirectionalLight ) {
         DirectionalLight dLight = light;
-        lightPosition = light.matrixWorld.getPosition();
+        lightPosition = light.matrixWorld.getTranslation();
 
         amount = normal.dot( lightPosition );
 
@@ -439,7 +439,7 @@ class CanvasRenderer implements Renderer
       } else if ( light is PointLight ) {
         PointLight pLight = light;
 
-        lightPosition = light.matrixWorld.getPosition();
+        lightPosition = light.matrixWorld.getTranslation();
 
         amount = normal.dot( _vector3.sub( lightPosition, position ).normalize() );
 

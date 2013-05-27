@@ -1,5 +1,6 @@
-import 'dart:html';
+import 'dart:html' hide Path;
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 import 'package:three/extras/geometry_utils.dart' as GeometryUtils;
@@ -113,7 +114,7 @@ class WebGL_Geometry_Shapes  {
     scene.add( light );
 
     parent = new Object3D();
-    parent.position.y = 50;
+    parent.position.y = 50.0;
     scene.add( parent );
 
     var extrude_amount = 20,
@@ -125,28 +126,28 @@ class WebGL_Geometry_Shapes  {
 
     var californiaPts = [];
 
-    californiaPts.add( new Vector2 ( 610, 320 ) );
-    californiaPts.add( new Vector2 ( 450, 300 ) );
-    californiaPts.add( new Vector2 ( 392, 392 ) );
-    californiaPts.add( new Vector2 ( 266, 438 ) );
-    californiaPts.add( new Vector2 ( 190, 570 ) );
-    californiaPts.add( new Vector2 ( 190, 600 ) );
-    californiaPts.add( new Vector2 ( 160, 620 ) );
-    californiaPts.add( new Vector2 ( 160, 650 ) );
-    californiaPts.add( new Vector2 ( 180, 640 ) );
-    californiaPts.add( new Vector2 ( 165, 680 ) );
-    californiaPts.add( new Vector2 ( 150, 670 ) );
-    californiaPts.add( new Vector2 (  90, 737 ) );
-    californiaPts.add( new Vector2 (  80, 795 ) );
-    californiaPts.add( new Vector2 (  50, 835 ) );
-    californiaPts.add( new Vector2 (  64, 870 ) );
-    californiaPts.add( new Vector2 (  60, 945 ) );
-    californiaPts.add( new Vector2 ( 300, 945 ) );
-    californiaPts.add( new Vector2 ( 300, 743 ) );
-    californiaPts.add( new Vector2 ( 600, 473 ) );
-    californiaPts.add( new Vector2 ( 626, 425 ) );
-    californiaPts.add( new Vector2 ( 600, 370 ) );
-    californiaPts.add( new Vector2 ( 610, 320 ) );
+    californiaPts.add( new Vector2 ( 610.0, 320.0 ) );
+    californiaPts.add( new Vector2 ( 450.0, 300.0 ) );
+    californiaPts.add( new Vector2 ( 392.0, 392.0 ) );
+    californiaPts.add( new Vector2 ( 266.0, 438.0 ) );
+    californiaPts.add( new Vector2 ( 190.0, 570.0 ) );
+    californiaPts.add( new Vector2 ( 190.0, 600.0 ) );
+    californiaPts.add( new Vector2 ( 160.0, 620.0 ) );
+    californiaPts.add( new Vector2 ( 160.0, 650.0 ) );
+    californiaPts.add( new Vector2 ( 180.0, 640.0 ) );
+    californiaPts.add( new Vector2 ( 165.0, 680.0 ) );
+    californiaPts.add( new Vector2 ( 150.0, 670.0 ) );
+    californiaPts.add( new Vector2 (  90.0, 737.0 ) );
+    californiaPts.add( new Vector2 (  80.0, 795.0 ) );
+    californiaPts.add( new Vector2 (  50.0, 835.0 ) );
+    californiaPts.add( new Vector2 (  64.0, 870.0 ) );
+    californiaPts.add( new Vector2 (  60.0, 945.0 ) );
+    californiaPts.add( new Vector2 ( 300.0, 945.0 ) );
+    californiaPts.add( new Vector2 ( 300.0, 743.0 ) );
+    californiaPts.add( new Vector2 ( 600.0, 473.0 ) );
+    californiaPts.add( new Vector2 ( 626.0, 425.0 ) );
+    californiaPts.add( new Vector2 ( 600.0, 370.0 ) );
+    californiaPts.add( new Vector2 ( 610.0, 320.0 ) );
 
     var californiaShape = new Shape( californiaPts );
 

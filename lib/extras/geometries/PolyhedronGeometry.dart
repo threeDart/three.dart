@@ -154,7 +154,7 @@ class PolyhedronGeometryVertex implements IVector3 {
   Vector3 vertex;
   num index;
   UV uv;
-  PolyhedronGeometryVertex([num x = 0, num y = 0, num z = 0]) : vertex = new Vector3(x, y, z);
+  PolyhedronGeometryVertex([num x = 0.0, num y = 0.0, num z = 0.0]) : vertex = new Vector3(x, y, z);
 
   normalize() => vertex.normalize();
   PolyhedronGeometryVertex add( IVector3 v1, IVector3 v2 ) { vertex.add(v1, v2); return this;}

@@ -8,12 +8,12 @@ part of three;
  */
 
 class UV {
-  num u, v;
+  double u, v;
 
 
-  UV( [this.u = 0, this.v = 0] );
+  UV( [this.u = 0.0, this.v = 0.0] );
 
-  UV setValues( num u, num v ) {
+  UV setValues( double u, double v ) {
     this.u = u;
     this.v = v;
 

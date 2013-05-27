@@ -13,22 +13,22 @@ class Camera extends Object3D {
   Matrix4 projectionMatrix;
   Matrix4 projectionMatrixInverse;
 
-  num near;
-  num far;
+  double near;
+  double far;
 
   Camera(this.near, this.far)
-    : matrixWorldInverse = new Matrix4(),
-      projectionMatrix = new Matrix4(),
-      projectionMatrixInverse = new Matrix4(),
+    : matrixWorldInverse = new Matrix4.identity(),
+      projectionMatrix = new Matrix4.identity(),
+      projectionMatrixInverse = new Matrix4.identity(),
       super();
 
-  void lookAt( vector ) {
+  void lookAt(Vector3 vector ) {
     // TODO: Add hierarchy support.
 
-    matrix.lookAt( position, vector, up );
+    Matrix4 matrix = makeLookAt( position, vector, up );
 
     if ( rotationAutoUpdate ) {
-      rotation.setEulerFromRotationMatrix( matrix, eulerOrder );
+      rotation = calcEulerFromRotationMatrix( matrix, eulerOrder );
     }
   }
 }

@@ -11,6 +11,7 @@ library TrackballControls;
 import "dart:html";
 import "dart:async";
 import "dart:math" as Math;
+import 'package:vector_math/vector_math.dart';
 import "package:three/three.dart";
 
 class STATE {
@@ -153,7 +154,7 @@ class TrackballControls extends EventEmitter {
           0.0
       );
 
-      var length = mouseOnBall.length();
+      var length = mouseOnBall.length;
 
       if ( length > 1.0 ) {
 
@@ -165,11 +166,11 @@ class TrackballControls extends EventEmitter {
 
       }
 
-      _eye.copy( object.position ).subSelf( target );
+      _eye.copyInto( object.position )..sub( target );
 
-      var projection = object.up.clone().setLength( mouseOnBall.y );
-      projection.addSelf( object.up.clone().crossSelf( _eye ).setLength( mouseOnBall.x ) );
-      projection.addSelf( _eye.setLength( mouseOnBall.z ) );
+      var projection = object.up.clone().normalize().scale( mouseOnBall.y );
+      projection.addSelf( object.up.clone().cross( _eye ).normalize().scale( mouseOnBall.x ) );
+      projection.addSelf( _eye.normalize().scale( mouseOnBall.z ) );
 
       return projection;
 
@@ -177,12 +178,12 @@ class TrackballControls extends EventEmitter {
 
     rotateCamera() {
 
-      var angle = Math.acos( _rotateStart.dot( _rotateEnd ) / _rotateStart.length() / _rotateEnd.length() );
+      var angle = Math.acos( _rotateStart.dot( _rotateEnd ) / _rotateStart.length / _rotateEnd.length );
 
       if ( !angle.isNaN && angle != 0) {
 
         var axis = ( new Vector3() ).cross( _rotateStart, _rotateEnd ).normalize(),
-            quaternion = new Quaternion();
+            quaternion = new Quaternion.identity();
 
         angle *= rotateSpeed;
 
@@ -195,7 +196,7 @@ class TrackballControls extends EventEmitter {
 
         if ( staticMoving ) {
 
-          _rotateStart.copy( _rotateEnd );
+          _rotateStart.copyInto( _rotateEnd );
 
         } else {
 
@@ -214,11 +215,11 @@ class TrackballControls extends EventEmitter {
 
       if ( factor != 1.0 && factor > 0.0 ) {
 
-        _eye.multiplyScalar( factor );
+        _eye.scale( factor );
 
         if ( staticMoving ) {
 
-          _zoomStart.copy( _zoomEnd );
+          _zoomStart = _zoomEnd.clone();
 
         } else {
 
@@ -232,17 +233,17 @@ class TrackballControls extends EventEmitter {
 
     panCamera() {
 
-      var mouseChange = _panEnd.clone().subSelf( _panStart );
+      Vector2 mouseChange = _panEnd - _panStart;
 
-      if ( mouseChange.lengthSq() != 0) {
+      if ( mouseChange.length != 0.0) {
 
-        mouseChange.multiplyScalar( _eye.length() * panSpeed );
+        mouseChange.scale( _eye.length * panSpeed );
 
-        var pan = _eye.clone().crossSelf( object.up ).setLength( mouseChange.x );
-        pan.addSelf( object.up.clone().setLength( mouseChange.y ) );
+        Vector3 pan = _eye.clone().cross( object.up ).normalize().scale( mouseChange.x );
+        pan += object.up.clone().normalize().scale( mouseChange.y );
 
-        object.position.addSelf( pan );
-        target.addSelf( pan );
+        object.position.add( pan );
+        target.add( pan );
 
         if ( staticMoving ) {
 
@@ -250,7 +251,7 @@ class TrackballControls extends EventEmitter {
 
         } else {
 
-          _panStart.addSelf( mouseChange.sub( _panEnd, _panStart ).multiplyScalar( dynamicDampingFactor ) );
+          _panStart += (_panEnd - _panStart).scale(dynamicDampingFactor);
 
         }
 
@@ -262,15 +263,15 @@ class TrackballControls extends EventEmitter {
 
       if ( !noZoom || !noPan ) {
 
-        if ( object.position.lengthSq() > maxDistance * maxDistance ) {
+        if ( object.position.length2 > maxDistance * maxDistance ) {
 
-          object.position.setLength( maxDistance );
+          object.position.normalize().scale( maxDistance );
 
         }
 
-        if ( _eye.lengthSq() < minDistance * minDistance ) {
+        if ( _eye.length2 < minDistance * minDistance ) {
 
-          object.position.add( target, _eye.setLength( minDistance ) );
+          object.position.add( target, _eye.normalize().scale( minDistance ) );
 
         }
 
@@ -280,7 +281,7 @@ class TrackballControls extends EventEmitter {
 
     update() {
 
-      _eye.copy( object.position ).subSelf( target );
+      _eye.copyInto( object.position ).sub( target );
 
       if ( !noRotate ) {
         rotateCamera();
@@ -300,11 +301,12 @@ class TrackballControls extends EventEmitter {
 
       object.lookAt( target );
 
-      if ( lastPosition.distanceToSquared( object.position ) > 0 ) {
-
+      // distanceToSquared
+      if ( new Vector3.copy(lastPosition).sub( object.position ).length2 > 0.0 ) {
+        //
         dispatchEvent( changeEvent );
 
-        lastPosition.copy( object.position );
+        lastPosition.copyInto( object.position );
 
       }
 

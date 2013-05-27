@@ -15,14 +15,14 @@ part of three;
  */
 
 class Matrix4 {
-  Float32Array elements;
+  final Float32List elements;
 
 
-  Matrix4( [num n11 = 1, num n12 = 0, num n13 = 0, num n14 = 0,
-            num n21 = 0, num n22 = 1, num n23 = 0, num n24 = 0,
-            num n31 = 0, num n32 = 0, num n33 = 1, num n34 = 0,
-            num n41 = 0, num n42 = 0, num n43 = 0, num n44 = 1] )
-      : elements = new Float32Array(16) {
+  Matrix4( [num n11 = 1.0, num n12 = 0.0, num n13 = 0.0, num n14 = 0.0,
+            num n21 = 0.0, num n22 = 1.0, num n23 = 0.0, num n24 = 0.0,
+            num n31 = 0.0, num n32 = 0.0, num n33 = 1.0, num n34 = 0.0,
+            num n41 = 0.0, num n42 = 0.0, num n43 = 0.0, num n44 = 1.0] )
+      : elements = new Float32List(16) {
 
     setValues(n11, n12, n13, n14,
               n21, n22, n23, n24,
@@ -48,10 +48,10 @@ class Matrix4 {
 
   Matrix4 identity() {
     setValues(
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 1, 0,
-      0, 0, 0, 1
+      1.0, 0.0, 0.0, 0.0,
+      0.0, 1.0, 0.0, 0.0,
+      0.0, 0.0, 1.0, 0.0,
+      0.0, 0.0, 0.0, 1.0
     );
 
     return this;
@@ -83,7 +83,7 @@ class Matrix4 {
     z.sub( eye, center ).normalize();
 
     if ( z.length() == 0 ) {
-      z.z = 1;
+      z.z = 1.0;
     }
 
     x.cross( up, z ).normalize();
@@ -171,7 +171,7 @@ class Matrix4 {
     var te = elements;
 
     var vx = v.x, vy = v.y, vz = v.z;
-    var d = 1 / ( te[3] * vx + te[7] * vy + te[11] * vz + te[15] );
+    var d = 1.0 / ( te[3] * vx + te[7] * vy + te[11] * vz + te[15] );
 
     v.x = ( te[0] * vx + te[4] * vy + te[8] * vz + te[12] ) * d;
     v.y = ( te[1] * vx + te[5] * vy + te[9] * vz + te[13] ) * d;
@@ -512,17 +512,17 @@ class Matrix4 {
     yy = y * y2, yz = y * z2, zz = z * z2,
     wx = w * x2, wy = w * y2, wz = w * z2;
 
-    te[0] = 1 - ( yy + zz );
+    te[0] = 1.0 - ( yy + zz );
     te[4] = xy - wz;
     te[8] = xz + wy;
 
     te[1] = xy + wz;
-    te[5] = 1 - ( xx + zz );
+    te[5] = 1.0 - ( xx + zz );
     te[9] = yz - wx;
 
     te[2] = xz - wy;
     te[6] = yz + wx;
-    te[10] = 1 - ( xx + yy );
+    te[10] = 1.0 - ( xx + yy );
 
     return this;
   }
@@ -561,9 +561,9 @@ class Matrix4 {
     y.setValues( te[4], te[5], te[6] );
     z.setValues( te[8], te[9], te[10] );
 
-    translation = ( translation is Vector3 ) ? translation : new Vector3();
+    translation = ( translation is Vector3 ) ? translation : new Vector3(0.0, 0.0, 0.0);
     rotation = ( rotation is Quaternion ) ? rotation : new Quaternion();
-    scale = ( scale is Vector3 ) ? scale : new Vector3();
+    scale = ( scale is Vector3 ) ? scale : new Vector3(0.0, 0.0, 0.0);
 
     scale.x = x.length();
     scale.y = y.length();
@@ -613,9 +613,9 @@ class Matrix4 {
 
     Vector3 vector = __v1;
 
-    var scaleX = 1 / vector.setValues( me[0], me[1], me[2] ).length();
-    var scaleY = 1 / vector.setValues( me[4], me[5], me[6] ).length();
-    var scaleZ = 1 / vector.setValues( me[8], me[9], me[10] ).length();
+    var scaleX = 1.0 / vector.setValues( me[0], me[1], me[2] ).length();
+    var scaleY = 1.0 / vector.setValues( me[4], me[5], me[6] ).length();
+    var scaleZ = 1.0 / vector.setValues( me[8], me[9], me[10] ).length();
 
     te[0] = me[0] * scaleX;
     te[1] = me[1] * scaleX;
@@ -726,11 +726,11 @@ class Matrix4 {
     var te = elements;
 
     // optimize by checking axis
-    if ( axis.x == 1 && axis.y == 0 && axis.z == 0 ) {
+    if ( axis.x == 1.0 && axis.y == 0.0 && axis.z == 0.0 ) {
       return rotateX( angle );
-    } else if ( axis.x == 0 && axis.y == 1 && axis.z == 0 ) {
+    } else if ( axis.x == 0.0 && axis.y == 1.0 && axis.z == 0.0 ) {
       return rotateY( angle );
-    } else if ( axis.x == 0 && axis.y == 0 && axis.z == 1 ) {
+    } else if ( axis.x == 0.0 && axis.y == 0.0 && axis.z == 1.0 ) {
       return rotateZ( angle );
     }
 
@@ -748,7 +748,7 @@ class Matrix4 {
       zz = z * z,
       c = Math.cos(angle),
       s = Math.sin(angle),
-      oneMinusCosine = 1 - c,
+      oneMinusCosine = 1.0 - c,
       xy = x * y * oneMinusCosine,
       xz = x * z * oneMinusCosine,
       yz = y * z * oneMinusCosine,
@@ -817,10 +817,10 @@ class Matrix4 {
 
   Matrix4 makeTranslation( num x, num y, num z ) {
     setValues(
-      1, 0, 0, x,
-      0, 1, 0, y,
-      0, 0, 1, z,
-      0, 0, 0, 1
+      1.0, 0.0, 0.0, x,
+      0.0, 1.0, 0.0, y,
+      0.0, 0.0, 1.0, z,
+      0.0, 0.0, 0.0, 1.0
     );
 
     return this;
@@ -830,10 +830,10 @@ class Matrix4 {
     num c = Math.cos( theta ), s = Math.sin( theta );
 
     setValues(
-      1, 0,  0, 0,
-      0, c, -s, 0,
-      0, s,  c, 0,
-      0, 0,  0, 1
+      1.0, 0.0,  0.0, 0.0,
+      0.0, c, -s, 0.0,
+      0.0, s,  c, 0.0,
+      0.0, 0.0,  0.0, 1.0
     );
 
     return this;
@@ -843,10 +843,10 @@ class Matrix4 {
     num c = Math.cos( theta ), s = Math.sin( theta );
 
     setValues(
-       c, 0, s, 0,
-       0, 1, 0, 0,
-      -s, 0, c, 0,
-       0, 0, 0, 1
+       c, 0.0, s, 0.0,
+       0.0, 1.0, 0.0, 0.0,
+      -s, 0.0, c, 0.0,
+       0.0, 0.0, 0.0, 1.0
     );
 
     return this;
@@ -856,10 +856,10 @@ class Matrix4 {
     num c = Math.cos( theta ), s = Math.sin( theta );
 
     setValues(
-      c, -s, 0, 0,
-      s,  c, 0, 0,
-      0,  0, 1, 0,
-      0,  0, 0, 1
+      c, -s, 0.0, 0.0,
+      s,  c, 0.0, 0.0,
+      0.0,  0.0, 1.0, 0.0,
+      0.0,  0.0, 0.0, 1.0
     );
 
     return this;
@@ -870,15 +870,15 @@ class Matrix4 {
 
     num c = Math.cos( angle ),
     s = Math.sin( angle ),
-    t = 1 - c,
+    t = 1.0 - c,
     x = axis.x, y = axis.y, z = axis.z,
     tx = t * x, ty = t * y;
 
     setValues(
-      tx * x + c, tx * y - s * z, tx * z + s * y, 0,
-      tx * y + s * z, ty * y + c, ty * z - s * x, 0,
-      tx * z - s * y, ty * z + s * x, t * z * z + c, 0,
-      0, 0, 0, 1
+      tx * x + c, tx * y - s * z, tx * z + s * y, 0.0,
+      tx * y + s * z, ty * y + c, ty * z - s * x, 0.0,
+      tx * z - s * y, ty * z + s * x, t * z * z + c, 0.0,
+      0.0, 0.0, 0.0, 1.0
     );
 
      return this;
@@ -886,10 +886,10 @@ class Matrix4 {
 
   Matrix4 makeScale( num x, num y, num z ) {
     setValues(
-      x, 0, 0, 0,
-      0, y, 0, 0,
-      0, 0, z, 0,
-      0, 0, 0, 1
+      x, 0.0, 0.0, 0.0,
+      0.0, y, 0.0, 0.0,
+      0.0, 0.0, z, 0.0,
+      0.0, 0.0, 0.0, 1.0
     );
 
     return this;
@@ -908,10 +908,10 @@ class Matrix4 {
     c = - ( far + near ) / ( far - near );
     d = - 2 * far * near / ( far - near );
 
-    te[0] = x;  te[4] = 0;  te[8] = a;   te[12] = 0;
-    te[1] = 0;  te[5] = y;  te[9] = b;   te[13] = 0;
-    te[2] = 0;  te[6] = 0;  te[10] = c;   te[14] = d;
-    te[3] = 0;  te[7] = 0;  te[11] = - 1; te[15] = 0;
+    te[0] = x;  te[4] = 0.0;  te[8] = a;   te[12] = 0.0;
+    te[1] = 0.0;  te[5] = y;  te[9] = b;   te[13] = 0.0;
+    te[2] = 0.0;  te[6] = 0.0;  te[10] = c;   te[14] = d;
+    te[3] = 0.0;  te[7] = 0.0;  te[11] = - 1.0; te[15] = 0.0;
 
     return this;
   }
@@ -940,10 +940,10 @@ class Matrix4 {
     y = ( top + bottom ) / h;
     z = ( far + near ) / p;
 
-    te[0] = 2 / w; te[4] = 0;     te[8] = 0;      te[12] = -x;
-    te[1] = 0;     te[5] = 2 / h; te[9] = 0;      te[13] = -y;
-    te[2] = 0;     te[6] = 0;     te[10] = -2 / p; te[14] = -z;
-    te[3] = 0;     te[7] = 0;     te[11] = 0;      te[15] = 1;
+    te[0] = 2 / w; te[4] = 0.0;     te[8] = 0.0;      te[12] = -x;
+    te[1] = 0.0;     te[5] = 2 / h; te[9] = 0.0;      te[13] = -y;
+    te[2] = 0.0;     te[6] = 0.0;     te[10] = -2 / p; te[14] = -z;
+    te[3] = 0.0;     te[7] = 0.0;     te[11] = 0.0;      te[15] = 1.0;
 
     return this;
   }
@@ -974,21 +974,21 @@ class Matrix4 {
 
   static Vector3 get __v1 {
     if (___v1 == null) {
-      ___v1 = new Vector3();
+      ___v1 = new Vector3(0.0, 0.0, 0.0);
     }
     return ___v1;
   }
 
   static Vector3 get __v2 {
     if (___v2 == null) {
-      ___v2 = new Vector3();
+      ___v2 = new Vector3(0.0, 0.0, 0.0);
     }
     return ___v2;
   }
 
   static Vector3 get __v3 {
     if (___v3 == null) {
-      ___v3 = new Vector3();
+      ___v3 = new Vector3(0.0, 0.0, 0.0);
     }
     return ___v3;
   }

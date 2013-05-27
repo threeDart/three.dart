@@ -88,7 +88,7 @@ class Ray {
     }
 
     if ( object is Particle ) {
-      num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getPosition() );
+      num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getTranslation() );
 
       if ( distance > object.scale.x ) {
         return [];
@@ -106,7 +106,7 @@ class Ray {
     } else if ( object is Mesh ) {
       Mesh mesh = object;
       // Checking boundingSphere
-      num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getPosition() );
+      num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getTranslation() );
       Vector3 scale = Frustum.__v1.setValues( object.matrixWorld.getColumnX().length(), object.matrixWorld.getColumnY().length(), object.matrixWorld.getColumnZ().length() );
 
       if ( distance > mesh.geometry.boundingSphere.radius * Math.max( scale.x, Math.max( scale.y, scale.z ) ) ) {

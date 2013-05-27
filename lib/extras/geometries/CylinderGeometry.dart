@@ -1,20 +1,22 @@
 part of three;
 
 class CylinderGeometry extends Geometry {
-  num radiusTop, radiusBottom, height, segmentsRadius, segmentsHeight, openEnded;
+  double radiusTop, radiusBottom, height;
+  int segmentsRadius, segmentsHeight;
+  bool openEnded;
 
-  CylinderGeometry( [ this.radiusTop = 20,
-                      this.radiusBottom = 20,
-                      this.height = 100,
-                      num segmentsRadius = 8,
-                      num segmentsHeight = 1,
-                      openEnded = false] ) : super() {
+  CylinderGeometry( [ this.radiusTop = 20.0,
+                      this.radiusBottom = 20.0,
+                      this.height = 100.0,
+                      this.segmentsRadius = 8,
+                      this.segmentsHeight = 1,
+                      this.openEnded = false] ) : super() {
 
-    var heightHalf = height / 2;
-    var segmentsX = segmentsRadius;
-    var segmentsY = segmentsHeight;
+    double heightHalf = height / 2;
+    int segmentsX = segmentsRadius;
+    int segmentsY = segmentsHeight;
 
-    var x, y;
+    int x, y;
 
     List vertices = [], uvs = [];
 
@@ -23,14 +25,14 @@ class CylinderGeometry extends Geometry {
       var verticesRow = [];
       var uvsRow = [];
 
-      var v = y / segmentsY;
+      double v = y / segmentsY;
       var radius = v * ( radiusBottom - radiusTop ) + radiusTop;
 
       for ( x = 0; x <= segmentsX; x ++ ) {
 
-        var u = x / segmentsX;
+        double u = x / segmentsX;
 
-        var vertex = new Vector3();
+        var vertex = new Vector3.zero();
         vertex.x = radius * Math.sin( u * Math.PI * 2 );
         vertex.y = - v * height + heightHalf;
         vertex.z = radius * Math.cos( u * Math.PI * 2 );
@@ -64,8 +66,10 @@ class CylinderGeometry extends Geometry {
 
       }
 
-      na.setY( Math.sqrt( na.x * na.x + na.z * na.z ) * tanTheta ).normalize();
-      nb.setY( Math.sqrt( nb.x * nb.x + nb.z * nb.z ) * tanTheta ).normalize();
+      na[1] = Math.sqrt( na.x * na.x + na.z * na.z ) * tanTheta;
+      na.normalize();
+      nb[1] = Math.sqrt( nb.x * nb.x + nb.z * nb.z ) * tanTheta;
+      na.normalize();
 
       for ( y = 0; y < segmentsY; y ++ ) {
 
@@ -95,7 +99,7 @@ class CylinderGeometry extends Geometry {
 
     if ( !openEnded && radiusTop > 0 ) {
 
-      this.vertices.add( new Vector3( 0, heightHalf, 0 ) );
+      this.vertices.add( new Vector3( 0.0, heightHalf, 0.0 ) );
 
       for ( x = 0; x < segmentsX; x ++ ) {
 
@@ -103,13 +107,13 @@ class CylinderGeometry extends Geometry {
         var v2 = vertices[ 0 ][ x + 1 ];
         var v3 = this.vertices.length - 1;
 
-        var n1 = new Vector3( 0, 1, 0 );
-        var n2 = new Vector3( 0, 1, 0 );
-        var n3 = new Vector3( 0, 1, 0 );
+        var n1 = new Vector3( 0.0, 1.0, 0.0 );
+        var n2 = new Vector3( 0.0, 1.0, 0.0 );
+        var n3 = new Vector3( 0.0, 1.0, 0.0 );
 
         var uv1 = uvs[ 0 ][ x ].clone();
         var uv2 = uvs[ 0 ][ x + 1 ].clone();
-        var uv3 = new UV( uv2.u, 0 );
+        var uv3 = new UV( uv2.u, 0.0 );
 
         this.faces.add( new Face3( v1, v2, v3, [ n1, n2, n3 ] ) );
         this.faceVertexUvs[ 0 ].add( [ uv1, uv2, uv3 ] );
@@ -122,7 +126,7 @@ class CylinderGeometry extends Geometry {
 
     if ( !openEnded && radiusBottom > 0 ) {
 
-      this.vertices.add( new Vector3( 0, - heightHalf, 0 ) );
+      this.vertices.add( new Vector3( 0.0, - heightHalf, 0.0 ) );
 
       for ( x = 0; x < segmentsX; x ++ ) {
 
@@ -130,13 +134,13 @@ class CylinderGeometry extends Geometry {
         var v2 = vertices[ y ][ x ];
         var v3 = this.vertices.length - 1;
 
-        var n1 = new Vector3( 0, - 1, 0 );
-        var n2 = new Vector3( 0, - 1, 0 );
-        var n3 = new Vector3( 0, - 1, 0 );
+        var n1 = new Vector3( 0.0, -1.0, 0.0 );
+        var n2 = new Vector3( 0.0, -1.0, 0.0 );
+        var n3 = new Vector3( 0.0, -1.0, 0.0 );
 
         var uv1 = uvs[ y ][ x + 1 ].clone();
         var uv2 = uvs[ y ][ x ].clone();
-        var uv3 = new UV( uv2.u, 1 );
+        var uv3 = new UV( uv2.u, 1.0 );
 
         this.faces.add( new Face3( v1, v2, v3, [ n1, n2, n3 ] ) );
         this.faceVertexUvs[ 0 ].add( [ uv1, uv2, uv3 ] );

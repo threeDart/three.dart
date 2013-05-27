@@ -11,24 +11,24 @@ part of three;
 class CubeGeometry extends Geometry {
   //List materials;
   CubeGeomSides _sides;
-  num segmentsWidth;
-  num segmentsHeight;
-  num segmentsDepth;
+  int segmentsWidth;
+  int segmentsHeight;
+  int segmentsDepth;
 
   /**
    * [materialOrList] is a [Material] or a [List] of [Material]. */
-  CubeGeometry( num width, num height, num depth, [this.segmentsWidth = 1,
+  CubeGeometry( double width, double height, double depth, [this.segmentsWidth = 1,
                                                    this.segmentsHeight = 1,
                                                    this.segmentsDepth = 1,
                                                    materialOrList,
                                                    List sides] )
                                                    : super() {
 
-    num width_half = width / 2,
+    double width_half = width / 2,
         height_half = height / 2,
         depth_half = depth / 2;
 
-    num mpx, mpy, mpz, mnx, mny, mnz;
+    int mpx, mpy, mpz, mnx, mny, mnz;
 
     if ( materialOrList != null ) {
       if ( materialOrList is List ) {
@@ -59,25 +59,24 @@ class CubeGeometry extends Geometry {
       }
     }
 
-    if (_sides.px)  buildPlane( 'z', 'y', - 1, - 1, depth, height, width_half, mpx ); // px
-    if (_sides.nx)  buildPlane( 'z', 'y',   1, - 1, depth, height, - width_half, mnx ); // nx
-    if (_sides.py)  buildPlane( 'x', 'z',   1,   1, width, depth, height_half, mpy ); // py
-    if (_sides.ny)  buildPlane( 'x', 'z',   1, - 1, width, depth, - height_half, mny ); // ny
-    if (_sides.pz)  buildPlane( 'x', 'y',   1, - 1, width, height, depth_half, mpz ); // pz
-    if (_sides.nz)  buildPlane( 'x', 'y', - 1, - 1, width, height, - depth_half, mnz ); // nz
+    if (_sides.px)  buildPlane( 'z', 'y', -1.0, -1.0, depth, height, width_half, mpx ); // px
+    if (_sides.nx)  buildPlane( 'z', 'y',  1.0, -1.0, depth, height, - width_half, mnx ); // nx
+    if (_sides.py)  buildPlane( 'x', 'z',  1.0,  1.0, width, depth, height_half, mpy ); // py
+    if (_sides.ny)  buildPlane( 'x', 'z',  1.0, -1.0, width, depth, - height_half, mny ); // ny
+    if (_sides.pz)  buildPlane( 'x', 'y',  1.0, -1.0, width, height, depth_half, mpz ); // pz
+    if (_sides.nz)  buildPlane( 'x', 'y', -1.0, -1.0, width, height, - depth_half, mnz ); // nz
 
     computeCentroids();
     mergeVertices();
   }
 
-  void buildPlane( String u, String v, num udir, num vdir, num width, num height, num depth, num material ) {
+  void buildPlane( String u, String v, double udir, double vdir, double width, double height, double depth, int material ) {
     String w;
-    num ix, iy,
-    gridX = ( segmentsWidth != null ) ? segmentsWidth : 1,
-    gridY = ( segmentsHeight != null ) ? segmentsHeight : 1,
-    width_half = width / 2,
-    height_half = height / 2,
-    offset = vertices.length;
+    int gridX = ( segmentsWidth != null ) ? segmentsWidth : 1;
+    int gridY = ( segmentsHeight != null ) ? segmentsHeight : 1;
+    double width_half = width / 2.0;
+    double height_half = height / 2.0;
+    int offset = vertices.length;
 
     if ( ( u == 'x' && v == 'y' ) || ( u == 'y' && v == 'x' ) ) {
       w = 'z';
@@ -93,18 +92,18 @@ class CubeGeometry extends Geometry {
     gridY1 = gridY + 1,
     segment_width = width / gridX,
     segment_height = height / gridY;
-    Vector3 normal = new Vector3();
+    Vector3 normal = new Vector3.zero();
 
     //TODO: find out how to do this sort of casting in Dart...
     // normal.dynamic[ w ] = depth > 0 ? 1 : - 1;
 
-    if ( w == 'x' ) {         normal.x = depth > 0 ? 1 : - 1;
-    } else if ( w == 'y' ) {    normal.y = depth > 0 ? 1 : - 1;
-    } else if ( w == 'z' )    normal.z = depth > 0 ? 1 : - 1;
+    if ( w == 'x' ) {        normal.x = depth > 0 ? 1.0 : - 1.0;
+    } else if ( w == 'y' ) { normal.y = depth > 0 ? 1.0 : - 1.0;
+    } else if ( w == 'z' )   normal.z = depth > 0 ? 1.0 : - 1.0;
 
-    for ( iy = 0; iy < gridY1; iy ++ )  {
-      for ( ix = 0; ix < gridX1; ix ++ ) {
-        Vector3 vector = new Vector3();
+    for ( int iy = 0; iy < gridY1; iy ++ )  {
+      for ( int ix = 0; ix < gridX1; ix ++ ) {
+        Vector3 vector = new Vector3.zero();
         //TODO: find out how to do this sort of casting in Dart...
 //        vector[ u ] = ( ix * segment_width - width_half ) * udir;
 //        vector[ v ] = ( iy * segment_height - height_half ) * vdir;
@@ -126,15 +125,15 @@ class CubeGeometry extends Geometry {
       }
     }
 
-    for ( iy = 0; iy < gridY; iy++ ) {
-      for ( ix = 0; ix < gridX; ix++ ) {
+    for ( int iy = 0; iy < gridY; iy++ ) {
+      for ( int ix = 0; ix < gridX; ix++ ) {
         num a = ix + gridX1 * iy;
         num b = ix + gridX1 * ( iy + 1 );
         num c = ( ix + 1 ) + gridX1 * ( iy + 1 );
         num d = ( ix + 1 ) + gridX1 * iy;
 
         Face4 face = new Face4( a + offset, b + offset, c + offset, d + offset );
-        face.normal.copy( normal );
+        face.normal = normal.clone();
         face.vertexNormals.addAll( [normal.clone(), normal.clone(), normal.clone(), normal.clone()] );
         face.materialIndex = material;
 
