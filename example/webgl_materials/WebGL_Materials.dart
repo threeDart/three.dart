@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 
 class WebGL_Material {
@@ -23,25 +24,25 @@ class WebGL_Material {
     container = new DivElement();
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-    camera.position.setValues( 0, 200, 800 );
+    camera = new PerspectiveCamera( 45.0, window.innerWidth / window.innerHeight, 1.0, 2000.0 );
+    camera.position.setValues( 0.0, 200.0, 800.0 );
 
     scene = new Scene();
 
     // Grid
 
-    var line_material = new LineBasicMaterial( color: 0x303030 ),
-        geometry = new Geometry(),
-        floor = -75,
-        step = 25;
+    var line_material = new LineBasicMaterial( color: 0x303030 );
+    Geometry geometry = new Geometry();
+    double floor = -75.0;
+    double step = 25.0;
 
-    for ( var i = 0; i <= 40; i ++ ) {
+    for ( int i = 0; i <= 40; i ++ ) {
 
       geometry.vertices
-      ..add( new Vector3( - 500, floor, i * step - 500 ) )
-      ..add( new Vector3(   500, floor, i * step - 500 ) )
-      ..add( new Vector3( i * step - 500, floor, -500 ) )
-      ..add( new Vector3( i * step - 500, floor,  500 ) );
+      ..add( new Vector3( - 500.0, floor, i * step - 500.0 ) )
+      ..add( new Vector3(   500.0, floor, i * step - 500.0 ) )
+      ..add( new Vector3( i * step - 500.0, floor, -500.0 ) )
+      ..add( new Vector3( i * step - 500.0, floor,  500.0 ) );
 
     }
 
@@ -75,9 +76,9 @@ class WebGL_Material {
 
     // Spheres geometry
 
-    var geometry_smooth = new SphereGeometry( 70, 32, 16 );
-    var geometry_flat = new SphereGeometry( 70, 32, 16 );
-    var geometry_pieces = new SphereGeometry( 70, 32, 16 ); // Extra geometry to be broken down for MeshFaceMaterial
+    var geometry_smooth = new SphereGeometry( 70.0, 32, 16 );
+    var geometry_flat = new SphereGeometry( 70.0, 32, 16 );
+    var geometry_pieces = new SphereGeometry( 70.0, 32, 16 ); // Extra geometry to be broken down for MeshFaceMaterial
 
     var rnd = new Math.Random();
     geometry_pieces.faces.forEach((face) {
@@ -100,12 +101,12 @@ class WebGL_Material {
              ( material.shading == FlatShading ? geometry_flat : geometry_smooth );
 
       sphere = new Mesh( geometry, material )
-      ..position.x = ( i % 4 ) * 200 - 400
-      ..position.z = ( i / 4 ).floor() * 200 - 200
+      ..position.x = ( i % 4 ) * 200.0 - 400.0
+      ..position.z = ( i / 4 ).floor() * 200.0 - 200.0
 
-      ..rotation.x = rnd.nextInt(200) - 100
-      ..rotation.y = rnd.nextInt(200) - 100
-      ..rotation.z = rnd.nextInt(200) - 100;
+      ..rotation.x = rnd.nextInt(200) - 100.0
+      ..rotation.y = rnd.nextInt(200) - 100.0
+      ..rotation.z = rnd.nextInt(200) - 100.0;
 
       objects.add( sphere );
 
@@ -113,7 +114,7 @@ class WebGL_Material {
 
     }
 
-    particleLight = new Mesh( new SphereGeometry( 4, 8, 8 ), new MeshBasicMaterial( color: 0xffffff ) );
+    particleLight = new Mesh( new SphereGeometry( 4.0, 8, 8 ), new MeshBasicMaterial( color: 0xffffff ) );
     scene.add( particleLight );
 
     // Lights

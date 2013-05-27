@@ -14,7 +14,7 @@ class Quaternion implements IVector4 {
   num z;
   num w;
 
-  Quaternion( [num this.x=0, num this.y=0, num this.z=0, num this.w=1] );
+  Quaternion( [num this.x=0.0, num this.y=0.0, num this.z=0.0, num this.w=1.0] );
 
   Quaternion setValues( num newX, num newY, num newZ, num newW ) {
     this.x = newX;
@@ -39,12 +39,12 @@ class Quaternion implements IVector4 {
     //  20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
     //  content/SpinCalc.m
 
-    var c1 = Math.cos( v.x / 2 );
-    var c2 = Math.cos( v.y / 2 );
-    var c3 = Math.cos( v.z / 2 );
-    var s1 = Math.sin( v.x / 2 );
-    var s2 = Math.sin( v.y / 2 );
-    var s3 = Math.sin( v.z / 2 );
+    var c1 = Math.cos( v.x / 2.0 );
+    var c2 = Math.cos( v.y / 2.0 );
+    var c3 = Math.cos( v.z / 2.0 );
+    var s1 = Math.sin( v.x / 2.0 );
+    var s2 = Math.sin( v.y / 2.0 );
+    var s3 = Math.sin( v.z / 2.0 );
 
     if ( order == 'XYZ' ) {
 
@@ -98,7 +98,7 @@ class Quaternion implements IVector4 {
     // from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
     // axis have to be normalized
 
-    num halfAngle = angle / 2,
+    num halfAngle = angle / 2.0,
       s = Math.sin( halfAngle );
 
     this.x = axis.x * s;
@@ -245,42 +245,42 @@ class Quaternion implements IVector4 {
 
     return dest;
   }
-  
+
   //https://bitbucket.org/sinbad/ogre/src/9db75e3ba05c/OgreMain/include/OgreVector3.h#cl-651
   Quaternion rotationBetween(IVector3 v1, IVector3 v2 ){
     v1 = v1.clone().normalize();
     v2 = v2.clone().normalize();
     num dot = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
-    
+
     if( dot >= 1.0 ){
       setValues(1,0,0,0); //Identity;
       return this;
     }
-    
+
     if( dot < (1e-10 - 1.0) ){
       Vector3 axis = new Vector3(1,0,0).crossSelf(v1);
-      
+
       if( axis.isZero() ){
         axis.setValues(0, 1, 0);
         axis.crossSelf(v1);
       }
       axis.normalize();
-      
-      setFromAxisAngle(axis, Math.PI);    
+
+      setFromAxisAngle(axis, Math.PI);
     } else {
-      
+
       num s = Math.sqrt ((1+dot) * 2);
       num invs = 1 / s;
       Vector3 c = v1.clone().crossSelf(v2);
-      
+
       x = c.x * invs;
       y = c.y * invs;
       z = c.z * invs;
       w = s * 0.5;
-      
+
       normalize();
     }
-    
+
     return this;
   }
 

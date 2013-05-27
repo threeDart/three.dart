@@ -157,7 +157,7 @@ class JSONLoader extends Loader {
 
     while ( offset < zLength ) {
 
-      vertex = new Vector3();
+      vertex = new Vector3.zero();
 
       vertex.x = vertices[ offset ++ ] * scale;
       vertex.y = vertices[ offset ++ ] * scale;
@@ -266,7 +266,7 @@ class JSONLoader extends Loader {
 
         normalIndex = faces[ offset ++ ] * 3;
 
-        normal = new Vector3();
+        normal = new Vector3.zero();
 
         normal.x = normals[ normalIndex ++ ];
         normal.y = normals[ normalIndex ++ ];
@@ -282,7 +282,7 @@ class JSONLoader extends Loader {
 
           normalIndex = faces[ offset ++ ] * 3;
 
-          normal = new Vector3();
+          normal = new Vector3.zero();
 
           normal.x = normals[ normalIndex ++ ];
           normal.y = normals[ normalIndex ++ ];
@@ -335,8 +335,8 @@ class JSONLoader extends Loader {
 
         x = json["skinWeights"][ i     ];
         y = json["skinWeights"][ i + 1 ];
-        z = 0;
-        w = 0;
+        z = 0.0;
+        w = 0.0;
 
         geometry.skinWeights.add( new Vector4( x, y, z, w ) );
 
@@ -351,8 +351,8 @@ class JSONLoader extends Loader {
 
         a = json["skinIndices"][ i     ];
         b = json["skinIndices"][ i + 1 ];
-        c = 0;
-        d = 0;
+        c = 0.0;
+        d = 0.0;
 
         geometry.skinIndices.add( new Vector4( a, b, c, d ) );
 
@@ -383,7 +383,7 @@ class JSONLoader extends Loader {
         vl = srcVertices.length;
         for( v = 0; v < vl; v += 3 ) {
 
-          var vertex = new Vector3();
+          var vertex = new Vector3.zero();
           vertex.x = srcVertices[ v ] * scale;
           vertex.y = srcVertices[ v + 1 ] * scale;
           vertex.z = srcVertices[ v + 2 ] * scale;

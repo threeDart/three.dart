@@ -14,11 +14,11 @@ class RenderableVertex implements IRenderableObj {
   bool visible = true;
 
   RenderableVertex()
-      : positionWorld = new Vector3(),
-        positionScreen = new Vector4();
+      : positionWorld = new Vector3.zero(),
+        positionScreen = new Vector4(0.0, 0.0, 0.0, 1.0);
 
   copy( RenderableVertex vertex ) {
-    positionWorld.copy( vertex.positionWorld );
-    positionScreen.copy( vertex.positionScreen );
+    positionWorld.setFrom( vertex.positionWorld );
+    positionScreen.setFrom( vertex.positionScreen );
   }
 }

@@ -22,9 +22,9 @@ class Color {
   set b(num b) { _b = b.toDouble();}
   get b => _b;
 
-  int get _rr => (r*255).floor().toInt();
-  int get _gg => (g*255).floor().toInt();
-  int get _bb => (b*255).floor().toInt();
+  int get _rr => (r*255).floor();
+  int get _gg => (g*255).floor();
+  int get _bb => (b*255).floor();
 
   Color( [num hex] )
       : _r = 1.0,

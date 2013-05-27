@@ -115,7 +115,7 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
                          this.emissive = new Color(emissive),
                          this.specular = new Color(specular),
 
-                         this.wrapRGB = wrapRGB == null ? new Vector3( 1, 1, 1 ) : wrapRGB,
+                         this.wrapRGB = wrapRGB == null ? new Vector3( 1.0, 1.0, 1.0 ) : wrapRGB,
 
                              super(  name: name,
                                  side: side,

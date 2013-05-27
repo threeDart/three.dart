@@ -1618,7 +1618,7 @@ get UniformsLib {
     "opacity" : new Uniform( type: "f", value: 1.0 ),
 
     "map" : new Uniform( type: "t", value: 0, texture: null ),
-    "offsetRepeat" : new Uniform( type: "v4", value: new Vector4( 0, 0, 1, 1 ) ),
+    "offsetRepeat" : new Uniform( type: "v4", value: new Vector4( 0.0, 0.0, 1.0, 1.0 ) ),
 
     "lightMap" : new Uniform( type: "t", value: 2, texture: null ),
     "specularMap" : new Uniform( type: "t", value: 3, texture: null ),
@@ -1864,7 +1864,7 @@ get ShaderLib  {
       {
         "ambient"  : new Uniform( type: "c", value: new Color( 0xffffff ) ),
         "emissive" : new Uniform( type: "c", value: new Color( 0x000000 ) ),
-        "wrapRGB"  : new Uniform( type: "v3", value: new Vector3( 1, 1, 1 ) )
+        "wrapRGB"  : new Uniform( type: "v3", value: new Vector3( 1.0, 1.0, 1.0 ) )
       }
 
     ] ),
@@ -1992,7 +1992,7 @@ get ShaderLib  {
         "emissive" : new Uniform( type: "c", value: new Color( 0x000000 ) ),
         "specular" : new Uniform( type: "c", value: new Color( 0x111111 ) ),
         "shininess": new Uniform( type: "f", value: 30 ),
-        "wrapRGB"  : new Uniform( type: "v3", value: new Vector3( 1, 1, 1 ) )
+        "wrapRGB"  : new Uniform( type: "v3", value: new Vector3( 1.0, 1.0, 1.0 ) )
       }
 
     ] ),

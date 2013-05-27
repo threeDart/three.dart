@@ -74,18 +74,18 @@ class Geometry {
   set isDynamic(bool value) => _dynamic = value;
 
   void applyMatrix( Matrix4 matrix ) {
-    Matrix4 matrixRotation = new Matrix4();
-    matrixRotation.extractRotation( matrix);
+    Matrix4 matrixRotation = new Matrix4.identity();
+    extractRotation( matrixRotation, matrix);
 
-    vertices.forEach((vertex) => matrix.multiplyVector3( vertex ));
+    vertices.forEach((vertex) =>  vertex.applyProjection(matrix));
 
     faces.forEach((face) {
 
-      matrixRotation.multiplyVector3( face.normal );
+      face.normal.applyProjection(matrixRotation);
 
-      face.vertexNormals.forEach((normal) => matrixRotation.multiplyVector3( normal ));
+      face.vertexNormals.forEach((normal) => normal.applyProjection(matrixRotation));
 
-      matrix.multiplyVector3( face.centroid );
+      face.centroid.applyProjection(matrix);
     });
   }
 
@@ -93,47 +93,39 @@ class Geometry {
 
     faces.forEach((face) {
 
-      face.centroid.setValues( 0, 0, 0 );
+      face.centroid.setValues( 0.0, 0.0, 0.0 );
 
       if ( face is Face3 ) {
-        face.centroid.addSelf( vertices[ face.a ] );
-        face.centroid.addSelf( vertices[ face.b ] );
-        face.centroid.addSelf( vertices[ face.c ] );
-        face.centroid.divideScalar( 3 );
+        face.centroid.add( vertices[ face.a ] );
+        face.centroid.add( vertices[ face.b ] );
+        face.centroid.add( vertices[ face.c ] );
+        face.centroid /= 3.0;
       } else if ( face is Face4 ) {
         Face4 face4 = face;
-        face4.centroid.addSelf( vertices[ face4.a ] );
-        face4.centroid.addSelf( vertices[ face4.b ] );
-        face4.centroid.addSelf( vertices[ face4.c ] );
-        face4.centroid.addSelf( vertices[ face4.d ] );
-        face4.centroid.divideScalar( 4 );
+        face4.centroid.add( vertices[ face4.a ] );
+        face4.centroid.add( vertices[ face4.b ] );
+        face4.centroid.add( vertices[ face4.c ] );
+        face4.centroid.add( vertices[ face4.d ] );
+        face4.centroid /= 4.0;
       }
 
     });
   }
 
   void computeFaceNormals() {
-    num n, nl, v, vl, f;
-    Vertex vertex;
-
-    Vector3 vA, vB, vC;
-    Vector3 cb = new Vector3(), ab = new Vector3();
-
     faces.forEach((face) {
 
-      vA = vertices[ face.a ];
-      vB = vertices[ face.b ];
-      vC = vertices[ face.c ];
+      Vector3 vA = vertices[ face.a ];
+      Vector3 vB = vertices[ face.b ];
+      Vector3 vC = vertices[ face.c ];
 
-      cb.sub( vC, vB );
-      ab.sub( vA, vB );
-      cb.crossSelf( ab );
+      Vector3 cb = vC - vB;
+      Vector3 ab = vA - vB;
+      cb.cross( ab );
 
-      if ( !cb.isZero() ) {
-        cb.normalize();
-      }
+      cb.normalize();
 
-      face.normal.copy( cb );
+      face.normal = cb;
 
     });
   }
@@ -148,16 +140,16 @@ class Geometry {
     if ( __tmpVertices == null ) {
 
       __tmpVertices = [];
-      this.vertices.forEach((_) => __tmpVertices.add(new Vector3()));
+      this.vertices.forEach((_) => __tmpVertices.add(new Vector3.zero()));
       vertices = __tmpVertices;
 
       faces.forEach((face) {
 
         if ( face is Face3 ) {
-          face.vertexNormals = [ new Vector3(), new Vector3(), new Vector3() ];
+          face.vertexNormals = [ new Vector3.zero(), new Vector3.zero(), new Vector3.zero() ];
 
         } else if ( face is Face4 ) {
-          face.vertexNormals = [ new Vector3(), new Vector3(), new Vector3(), new Vector3() ];
+          face.vertexNormals = [ new Vector3.zero(), new Vector3.zero(), new Vector3.zero(), new Vector3.zero() ];
         }
       });
 
@@ -166,7 +158,7 @@ class Geometry {
 
       var vl = this.vertices.length;
       for ( var v = 0; v < vl; v ++ ) {
-        vertices[ v ].setValues( 0, 0, 0 );
+        vertices[ v ].setValues( 0.0, 0.0, 0.0 );
       }
 
     }
@@ -174,15 +166,15 @@ class Geometry {
     faces.forEach((face) {
 
       if ( face is Face3 ) {
-        vertices[ face.a ].addSelf( face.normal );
-        vertices[ face.b ].addSelf( face.normal );
-        vertices[ face.c ].addSelf( face.normal );
+        vertices[ face.a ].add( face.normal );
+        vertices[ face.b ].add( face.normal );
+        vertices[ face.c ].add( face.normal );
       } else if ( face is Face4 ) {
         Face4 face4 = face;
-        vertices[ face4.a ].addSelf( face4.normal );
-        vertices[ face4.b ].addSelf( face4.normal );
-        vertices[ face4.c ].addSelf( face4.normal );
-        vertices[ face4.d ].addSelf( face4.normal );
+        vertices[ face4.a ].add( face4.normal );
+        vertices[ face4.b ].add( face4.normal );
+        vertices[ face4.c ].add( face4.normal );
+        vertices[ face4.d ].add( face4.normal );
       }
     });
 
@@ -191,15 +183,15 @@ class Geometry {
     faces.forEach((face) {
 
       if ( face is Face3 ) {
-        face.vertexNormals[ 0 ].copy( vertices[ face.a ] );
-        face.vertexNormals[ 1 ].copy( vertices[ face.b ] );
-        face.vertexNormals[ 2 ].copy( vertices[ face.c ] );
+        face.vertexNormals[ 0 ].setFrom( vertices[ face.a ] );
+        face.vertexNormals[ 1 ].setFrom( vertices[ face.b ] );
+        face.vertexNormals[ 2 ].setFrom( vertices[ face.c ] );
       } else if ( face is Face4 ) {
         Face4 face4 = face;
-        face4.vertexNormals[ 0 ].copy( vertices[ face4.a ] );
-        face4.vertexNormals[ 1 ].copy( vertices[ face4.b ] );
-        face4.vertexNormals[ 2 ].copy( vertices[ face4.c ] );
-        face4.vertexNormals[ 3 ].copy( vertices[ face4.d ] );
+        face4.vertexNormals[ 0 ].setFrom( vertices[ face4.a ] );
+        face4.vertexNormals[ 1 ].setFrom( vertices[ face4.b ] );
+        face4.vertexNormals[ 2 ].setFrom( vertices[ face4.c ] );
+        face4.vertexNormals[ 3 ].setFrom( vertices[ face4.d ] );
       }
     });
   }
@@ -219,15 +211,15 @@ class Geometry {
 
     num x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
 
-    Vector3 sdir = new Vector3(),
-            tdir = new Vector3(),
-            tmp = new Vector3(),
-            tmp2 = new Vector3(),
-            n = new Vector3(),
+    Vector3 sdir = new Vector3.zero(),
+            tdir = new Vector3.zero(),
+            tmp = new Vector3.zero(),
+            tmp2 = new Vector3.zero(),
+            n = new Vector3.zero(),
             t;
 
-    List<Vector3> tan1 = vertices.map((_) => new Vector3()).toList(),
-                  tan2 = vertices.map((_) => new Vector3()).toList();
+    List<Vector3> tan1 = vertices.map((_) => new Vector3.zero()).toList(),
+                  tan2 = vertices.map((_) => new Vector3.zero()).toList();
 
     var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
 
@@ -259,13 +251,13 @@ class Geometry {
             ( s1 * y2 - s2 * y1 ) * r,
             ( s1 * z2 - s2 * z1 ) * r );
 
-      tan1[ a ].addSelf( sdir );
-      tan1[ b ].addSelf( sdir );
-      tan1[ c ].addSelf( sdir );
+      tan1[ a ].add( sdir );
+      tan1[ b ].add( sdir );
+      tan1[ c ].add( sdir );
 
-      tan2[ a ].addSelf( tdir );
-      tan2[ b ].addSelf( tdir );
-      tan2[ c ].addSelf( tdir );
+      tan2[ a ].add( tdir );
+      tan2[ b ].add( tdir );
+      tan2[ c ].add( tdir );
 
     };
 
@@ -293,7 +285,7 @@ class Geometry {
 
       for ( i = 0; i < il; i++ ) {
 
-        n.copy( face.vertexNormals[ i ] );
+        n.setFrom( face.vertexNormals[ i ] );
 
         // TODO: Check if this works instead
         // vertexIndex = face.dynamic[ faceIndex[ i ] ];
@@ -312,12 +304,12 @@ class Geometry {
 
         // Gram-Schmidt orthogonalize
 
-        tmp.copy( t );
-        tmp.subSelf( n.multiplyScalar( n.dot( t ) ) ).normalize();
+        tmp.setFrom( t );
+        tmp.sub( n.scale( n.dot( t ) ) ).normalize();
 
         // Calculate handedness
 
-        tmp2.cross( face.vertexNormals[ i ], t );
+        tmp2 = face.vertexNormals[i].cross(t);
         test = tmp2.dot( tan2[ vertexIndex ] );
         w = (test < 0.0) ? -1.0 : 1.0;
 
@@ -333,14 +325,14 @@ class Geometry {
 
   void computeBoundingBox() {
     if ( boundingBox == null ) {
-      boundingBox = new BoundingBox( min: new Vector3(), max: new Vector3() );
+      boundingBox = new BoundingBox( min: new Vector3.zero(), max: new Vector3.zero() );
     }
 
     if ( vertices.length > 0 ) {
       Vector3 position, firstPosition = vertices[ 0 ];
 
-      boundingBox.min.copy( firstPosition );
-      boundingBox.max.copy( firstPosition );
+      boundingBox.min.setFrom( firstPosition );
+      boundingBox.max.setFrom( firstPosition );
 
       Vector3 min = boundingBox.min,
               max = boundingBox.max;
@@ -374,7 +366,7 @@ class Geometry {
     num radiusSq;
 
     var maxRadiusSq = vertices.fold(0, (num curMaxRadiusSq, Vector3 vertex) {
-      radiusSq = vertex.lengthSq();
+      radiusSq = vertex.length2;
       return ( radiusSq > curMaxRadiusSq ) ?  radiusSq : curMaxRadiusSq;
     });
 

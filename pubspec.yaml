@@ -1,17 +1,19 @@
 name: three
 version: 0.2.5+1
-description: >
-  A port of the three.js JavaScript 3D engine to Dart.
 authors:
 - Robert Silverton <rob.silverton@gmail.com>
-- Nelson Silva <nelson.silva@inevo.pt>
-- Adam Singer <financeCoding@gmail.com>
-- John <jwbito@gmail.com>
+- ' Nelson Silva <nelson.silva@inevo.pt>'
+- ' Adam Singer <financeCoding@gmail.com>'
+- ' John <jwbito@gmail.com>'
+- ' Anders Forsell http://aforsell.blogspot.com/'
+description: A port of the three.js JavaScript 3D engine to Dart.
 homepage: http://threedart.github.com/three.dart/
 environment:
   sdk: '>=0.5.0+1.r21823'
 dependencies:
-  browser: ">=0.4.5"
+  browser: '>=0.4.5'
+  vector_math:
+    git: https://github.com/johnmccutchan/vector_math.git
 dev_dependencies:
+  hop: '>=0.21.0 <0.22.0'
   unittest: any
-  hop: ">=0.21.0 <0.22.0"

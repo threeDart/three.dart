@@ -2,6 +2,7 @@ library periodic_table;
 
 import 'dart:html';
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart' as THREE;
 import 'package:three/extras/controls/trackball.dart';
 import 'package:three/extras/tween.dart' as TWEEN;
@@ -19,12 +20,12 @@ init() {
 
   var targets = { "table": [], "sphere": [], "helix": [], "grid": [] };
 
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000 );
-  camera.position.z = 1800;
+  camera = new THREE.PerspectiveCamera( 75.0, window.innerWidth / window.innerHeight, 1.0, 5000.0 );
+  camera.position.z = 1800.0;
 
   scene = new THREE.Scene();
 
-  for ( var i = 0; i < table.length; i ++ ) {
+  for ( int i = 0; i < table.length; i ++ ) {
 
     var item = table[ i ];
 
@@ -48,9 +49,9 @@ init() {
     ..children.add( details );
 
     var object = new THREE.CSS3DObject( element )
-    ..position.x = new Math.Random().nextInt(4000) - 2000
-    ..position.y = new Math.Random().nextInt(4000) - 2000
-    ..position.z = new Math.Random().nextInt(4000) - 2000;
+    ..position.x = new Math.Random().nextDouble() * 4000 - 2000.0
+    ..position.y = new Math.Random().nextDouble() * 4000 - 2000.0
+    ..position.z = new Math.Random().nextDouble() * 4000 - 2000.0;
 
     scene.add( object );
 
@@ -60,23 +61,23 @@ init() {
 
   // table
 
-  for ( var i = 0; i < objects.length; i ++ ) {
+  for ( int i = 0; i < objects.length; i ++ ) {
 
     var item = table[ i ];
     var object = objects[ i ];
 
     targets["table"].add( new THREE.Object3D()
-    ..position.x = ( item[ 3 ] * 160 ) - 1540
-    ..position.y = - ( item[ 4 ] * 200 ) + 1100
+    ..position.x = ( item[ 3 ] * 160.0 ) - 1540.0
+    ..position.y = - ( item[ 4 ] * 200.0 ) + 1100.0
     );
 
   }
 
   // sphere
 
-  var vector = new THREE.Vector3();
+  var vector = new Vector3.zero();
 
-  for ( var i = 0, l = objects.length; i < l; i ++ ) {
+  for ( int i = 0, l = objects.length; i < l; i ++ ) {
 
     var object = objects[ i ];
 
@@ -84,11 +85,11 @@ init() {
     var theta = Math.sqrt( l * Math.PI ) * phi;
 
     object = new THREE.Object3D()
-    ..position.x = 1000 * Math.cos( theta ) * Math.sin( phi )
-    ..position.y = 1000 * Math.sin( theta ) * Math.sin( phi )
-    ..position.z = 1000 * Math.cos( phi );
+    ..position.x = 1000.0 * Math.cos( theta ) * Math.sin( phi )
+    ..position.y = 1000.0 * Math.sin( theta ) * Math.sin( phi )
+    ..position.z = 1000.0 * Math.cos( phi );
 
-    vector.copy( object.position ).multiplyScalar( 2 );
+    vector = object.position.clone().scale( 2.0 );
 
     object.lookAt( vector );
 
@@ -98,20 +99,20 @@ init() {
 
   // helix
 
-  vector = new THREE.Vector3();
+  vector = new Vector3.zero();
 
-  for ( var i = 0, l = objects.length; i < l; i ++ ) {
+  for ( int i = 0, l = objects.length; i < l; i ++ ) {
 
     var object = objects[ i ];
 
-    var phi = i * 0.2 + Math.PI;
+    var phi = i * 0.175 + Math.PI;
 
     object = new THREE.Object3D()
-    ..position.x = 1000 * Math.sin( phi )
-    ..position.y = i * 10 - 600
-    ..position.z = 1000 * Math.cos( phi );
+    ..position.x = 1100.0 * Math.sin( phi )
+    ..position.y = -(i * 8.0) + 450.0
+    ..position.z = 1100.0 * Math.cos( phi );
 
-    vector.copy( object.position );
+    vector.setFrom(object.position);
     vector.x *= 2;
     vector.z *= 2;
 
@@ -123,14 +124,14 @@ init() {
 
   // grid
 
-  for ( var i = 0; i < objects.length; i ++ ) {
+  for ( int i = 0; i < objects.length; i ++ ) {
 
     var object = objects[ i ];
 
     object = new THREE.Object3D()
-    ..position.x = ( ( i % 5 ) * 400 ) - 800
-    ..position.y = ( - ( ( i ~/ 5 ) % 5 ) * 400 ) + 800
-    ..position.z = ( ( i ~/ 25 ) ) * 1000 - 2000;
+    ..position.x = ( ( i % 5 ) * 400.0 ) - 800.0
+    ..position.y = ( - ( ( i ~/ 5 ) % 5 ) * 400.0 ) + 800.0
+    ..position.z = ( ( i ~/ 25 ) ) * 1000.0 - 2000.0;
 
     targets["grid"].add( object );
 

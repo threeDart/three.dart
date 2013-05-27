@@ -50,8 +50,8 @@ class BufferGeometry {
 
 		if ( normalArray != null ) {
 
-			var matrixRotation = new Matrix4();
-			matrixRotation.extractRotation( matrix );
+			var matrixRotation = new Matrix4.identity();
+			extractRotation( matrixRotation, matrix );
 
 			matrixRotation.multiplyVector3Array( normalArray );
 			this.normalsNeedUpdate = true;
@@ -193,12 +193,12 @@ class BufferGeometry {
 
 			var vA, vB, vC, x, y, z,
 
-			pA = new Vector3(),
-			pB = new Vector3(),
-			pC = new Vector3(),
+			pA = new Vector3.zero(),
+			pB = new Vector3.zero(),
+			pC = new Vector3.zero(),
 
-			cb = new Vector3(),
-			ab = new Vector3();
+			cb = new Vector3.zero(),
+			ab = new Vector3.zero();
 
 			jl = offsets.length;
 			for ( j = 0; j < jl; ++ j ) {
@@ -229,9 +229,9 @@ class BufferGeometry {
 					z = positions[ vC * 3 + 2 ];
 					pC.setValues( x, y, z );
 
-					cb.sub( pC, pB );
-					ab.sub( pA, pB );
-					cb.crossSelf( ab );
+					cb = pC - pB;
+					ab = pA - pB;
+					cb.cross( ab );
 
 					normals[ vA * 3 ] += cb.x;
 					normals[ vA * 3 + 1 ] += cb.y;
@@ -311,8 +311,8 @@ class BufferGeometry {
 
 		for ( var k = 0; k < nVertices; k ++ ) {
 
-			tan1[ k ] = new Vector3();
-			tan2[ k ] = new Vector3();
+			tan1[ k ] = new Vector3.zero();
+			tan2[ k ] = new Vector3.zero();
 
 		}
 
@@ -327,8 +327,8 @@ class BufferGeometry {
 			x1, x2, y1, y2, z1, z2,
 			s1, s2, t1, t2, r;
 
-		var sdir = new Vector3(),
-		    tdir = new Vector3();
+		var sdir = new Vector3.zero(),
+		    tdir = new Vector3.zero();
 
 		var handleTriangle = ( a, b, c ) {
 
@@ -382,13 +382,13 @@ class BufferGeometry {
 				( s1 * z2 - s2 * z1 ) * r
 			);
 
-			tan1[ a ].addSelf( sdir );
-			tan1[ b ].addSelf( sdir );
-			tan1[ c ].addSelf( sdir );
+			tan1[ a ].add( sdir );
+			tan1[ b ].add( sdir );
+			tan1[ c ].add( sdir );
 
-			tan2[ a ].addSelf( tdir );
-			tan2[ b ].addSelf( tdir );
-			tan2[ c ].addSelf( tdir );
+			tan2[ a ].add( tdir );
+			tan2[ b ].add( tdir );
+			tan2[ c ].add( tdir );
 
 		};
 
@@ -416,10 +416,10 @@ class BufferGeometry {
 
 		}
 
-		var tmp = new Vector3(),
-		    tmp2 = new Vector3();
-		var n = new Vector3(),
-		    n2 = new Vector3();
+		var tmp = new Vector3.zero(),
+		    tmp2 = new Vector3.zero();
+		var n = new Vector3.zero(),
+		    n2 = new Vector3.zero();
 		var w, t, test;
 		var nx, ny, nz;
 
@@ -436,11 +436,11 @@ class BufferGeometry {
 			// Gram-Schmidt orthogonalize
 
 			tmp.copy( t );
-			tmp.subSelf( n.multiplyScalar( n.dot( t ) ) ).normalize();
+			tmp.sub( n.scale( n.dot( t ) ) ).normalize();
 
 			// Calculate handedness
 
-			tmp2.cross( n2, t );
+			tmp2 = n2.cross( t );
 			test = tmp2.dot( tan2[ v ] );
 			w = ( test < 0.0 ) ? -1.0 : 1.0;
 

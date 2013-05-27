@@ -74,12 +74,12 @@ class Path extends CurvePath {
 
   	var lastargs = actions.last.args;
 
-  	var x0 = lastargs[ lastargs.length - 2 ];
-  	var y0 = lastargs[ lastargs.length - 1 ];
+  	var x0 = lastargs[ lastargs.length - 2 ].toDouble();
+  	var y0 = lastargs[ lastargs.length - 1 ].toDouble();
 
   	var curve = new QuadraticBezierCurve( new Vector2( x0, y0 ),
-  												new Vector2( aCPx, aCPy ),
-  												new Vector2( aX, aY ) );
+  												new Vector2( aCPx.toDouble(), aCPy.toDouble() ),
+  												new Vector2( aX.toDouble(), aY.toDouble() ) );
   	curves.add( curve );
 
   	addAction( PathAction.QUADRATIC_CURVE_TO, args );
@@ -95,13 +95,13 @@ class Path extends CurvePath {
 
   	var lastargs = actions.last.args;
 
-  	var x0 = lastargs[ lastargs.length - 2 ];
-  	var y0 = lastargs[ lastargs.length - 1 ];
+  	var x0 = lastargs[ lastargs.length - 2 ].toDouble();
+  	var y0 = lastargs[ lastargs.length - 1 ].toDouble();
 
   	var curve = new CubicBezierCurve( new Vector2( x0, y0 ),
-  											new Vector2( aCP1x, aCP1y ),
-  											new Vector2( aCP2x, aCP2y ),
-  											new Vector2( aX, aY ) );
+  											new Vector2( aCP1x.toDouble(), aCP1y.toDouble() ),
+  											new Vector2( aCP2x.toDouble(), aCP2y.toDouble() ),
+  											new Vector2( aX.toDouble(), aY.toDouble() ) );
   	curves.add( curve );
 
   	addAction( PathAction.BEZIER_CURVE_TO, args );

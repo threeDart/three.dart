@@ -10,15 +10,11 @@ part of three;
 class UV {
   double u, v;
 
+  UV( [this.u = 0.0, this.v = 0.0] );
 
-  UV( [num u = 0, num v = 0] ) {
-    setValues(u , v);
-  }
-
-  UV setValues( num u, num v ) {
-    this.u = u.toDouble();
-    this.v = v.toDouble();
-
+  UV setValues( double u, double v ) {
+    this.u = u;
+    this.v = v;
     return this;
   }
 

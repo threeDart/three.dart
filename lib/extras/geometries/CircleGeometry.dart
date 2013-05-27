@@ -8,7 +8,7 @@ class CircleGeometry extends Geometry {
 
     var i,
         uvs = [],
-        center = new Vector3(),
+        center = new Vector3.zero(),
         centerUV = new UV( 0.5, 0.5 );
 
     vertices.add(center);
@@ -16,7 +16,7 @@ class CircleGeometry extends Geometry {
 
     for ( i = 0; i <= segments; i ++ ) {
 
-        var vertex = new Vector3();
+        var vertex = new Vector3.zero();
 
         vertex.x = radius * Math.cos( thetaStart + i / segments * thetaLength );
         vertex.y = radius * Math.sin( thetaStart + i / segments * thetaLength );
@@ -26,7 +26,7 @@ class CircleGeometry extends Geometry {
 
     }
 
-    var n = new Vector3( 0, 0, -1 );
+    var n = new Vector3( 0.0, 0.0, -1.0 );
 
     for ( i = 1; i <= segments; i ++ ) {
 

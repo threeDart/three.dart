@@ -136,13 +136,14 @@ class CurvePath extends Curve {
 		maxX = maxY = double.NEGATIVE_INFINITY;
 		minX = minY = double.INFINITY;
 
-		var p, i, il, sum;
+		var p, i, sum;
 
 		var v3 = points[0] is Vector3;
 
-		sum = (v3) ? new Vector3() : new Vector2();
+		sum = (v3) ? new Vector3.zero() : new Vector2.zero();
 
-		for ( i = 0; i < points.length; i ++ ) {
+		int il = points.length;
+		for ( i = 0; i < il; i ++ ) {
 
 			p = points[ i ];
 
@@ -157,9 +158,9 @@ class CurvePath extends Curve {
 	      if ( p.z > maxZ ) { maxZ = p.z;
 	      } else if ( p.z < minZ ) minZ = p.z;
 
-	      (sum as Vector3).addSelf( p );
+	      (sum as Vector3).add( p );
 	    } else {
-	      (sum as Vector2).addSelf( p );
+	      (sum as Vector2).add( p );
 	    }
 
 
@@ -172,7 +173,7 @@ class CurvePath extends Curve {
 			"minY": minY,
 			"maxX": maxX,
 			"maxY": maxY,
-			"centroid": (sum as dynamic).divideScalar( il )
+			"centroid": (sum as dynamic).scale( 1.0 / il )
 
 		};
 
@@ -283,7 +284,7 @@ class CurvePath extends Curve {
 			// check for out of bounds?
 
 			var pathPt = path.getPoint( xNorm );
-			var normal = path.getNormalVector( xNorm ).multiplyScalar( oldY );
+			var normal = path.getNormalVector( xNorm ).scale( oldY );
 
 			p.x = pathPt.x + normal.x;
 			p.y = pathPt.y + normal.y;

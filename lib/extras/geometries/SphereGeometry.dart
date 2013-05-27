@@ -1,33 +1,32 @@
 part of three;
 
 class SphereGeometry extends Geometry {
-  num radius;
+  double radius;
 
-  SphereGeometry([this.radius = 50,
-                  num segmentsWidth = 8,
-                  num segmentsHeight = 6,
-                  num phiStart = 0,
-                  num phiLength = Math.PI * 2,
-                  num thetaStart = 0,
-                  num thetaLength = Math.PI]) : super() {
+  SphereGeometry([this.radius = 50.0,
+                  int segmentsWidth = 8,
+                  int segmentsHeight = 6,
+                  double phiStart = 0.0,
+                  double phiLength = Math.PI * 2.0,
+                  double thetaStart = 0.0,
+                  double thetaLength = Math.PI]) : super() {
 
-    num segmentsX = Math.max( 3, segmentsWidth.floor()),
-        segmentsY = Math.max( 2, segmentsHeight.floor());
+    int segmentsX = Math.max( 3, segmentsWidth);
+    int segmentsY = Math.max( 2, segmentsHeight);
 
     List vertices = [], uvs = [];
-    var x, y;
 
-    for (y = 0; y <= segmentsY; y++ ) {
+    for (int y = 0; y <= segmentsY; y++ ) {
 
       var verticesRow = [];
       var uvsRow = [];
 
-      for (x = 0; x <= segmentsX; x++ ) {
+      for (int x = 0; x <= segmentsX; x++ ) {
 
-        num u = x / segmentsX;
-        num v = y / segmentsY;
+        double u = x.toDouble() / segmentsX.toDouble();
+        double v = y.toDouble() / segmentsY.toDouble();
 
-        Vector3 vertex = new Vector3();
+        Vector3 vertex = new Vector3.zero();
         vertex.x = - radius * Math.cos( phiStart + u * phiLength ) * Math.sin( thetaStart + v * thetaLength );
         vertex.y = radius * Math.cos( thetaStart + v * thetaLength );
         vertex.z = radius * Math.sin( phiStart + u * phiLength ) * Math.sin( thetaStart + v * thetaLength );
@@ -44,9 +43,9 @@ class SphereGeometry extends Geometry {
 
     }
 
-    for (y = 0; y < segmentsY; y++ ) {
+    for (int y = 0; y < segmentsY; y++ ) {
 
-      for (x = 0; x < segmentsX; x++ ) {
+      for (int x = 0; x < segmentsX; x++ ) {
 
         var v1 = vertices[ y ][ x + 1 ];
         var v2 = vertices[ y ][ x ];

@@ -13,7 +13,7 @@ class SplineCurve3 extends Curve3D {
 
   Vector3 getPoint( t ) {
 
-    var v = new Vector3();
+    var v = new Vector3.zero();
     var c = new List<int>(4);
     var point = ( points.length - 1 ) * t,
         intPoint = point.floor().toInt(),
