@@ -18,7 +18,7 @@ import 'package:three/src/core/ThreeMath.dart' as THREEMath;
 
 class FirstPersonControls {
   THREE.Object3D object;
-  Vector3 target = new THREE.Vector3( 0, 0, 0 );
+  Vector3 target = new Vector3.zero();
 
   Element domElement;
 

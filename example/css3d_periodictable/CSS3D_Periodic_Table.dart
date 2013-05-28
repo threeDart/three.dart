@@ -89,7 +89,7 @@ init() {
     ..position.y = 1000.0 * Math.sin( theta ) * Math.sin( phi )
     ..position.z = 1000.0 * Math.cos( phi );
 
-    vector = object.position.clone().scale( 2.0 );
+    vector.setFrom(object.position).scale( 2.0 );
 
     object.lookAt( vector );
 
@@ -112,7 +112,7 @@ init() {
     ..position.y = i * 10.0 - 600.0
     ..position.z = 1000.0 * Math.cos( phi );
 
-    vector = object.position.clone();
+    vector.setFrom(object.position);
     vector.x *= 2;
     vector.z *= 2;
 

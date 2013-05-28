@@ -54,7 +54,7 @@ Matrix4 makeOrthographic( double left, double right, double top, double bottom, 
                      -x, -y, -z, 1.0);
 }
 
-Matrix4 makeLookAt( Vector3 eye, Vector3 center, Vector3 up ) {
+Matrix4 makeLookAt(Matrix4 m, Vector3 eye, Vector3 center, Vector3 up ) {
   Vector3 z = (eye - center ).normalize();
   if ( z.length == 0.0 ) {
     z.z = 1.0;
@@ -68,10 +68,11 @@ Matrix4 makeLookAt( Vector3 eye, Vector3 center, Vector3 up ) {
 
   Vector3 y = z.cross( x ).normalize();
 
-  return new Matrix4(x.x, x.y, x.z, 0.0,
-                     y.x, y.y, y.z, 0.0,
-                     z.x, z.y, z.z, 0.0,
-                     0.0, 0.0, 0.0, 1.0);
+  m.setValues(x.x, x.y, x.z, 0.0,
+              y.x, y.y, y.z, 0.0,
+              z.x, z.y, z.z, 0.0,
+              0.0, 0.0, 0.0, 1.0);
+  return m;
 }
 
 Matrix4 calcRotationFromEuler( Vector3 v, [String order = 'XYZ'] ) {

@@ -23,10 +23,9 @@ Vector3 calcEulerFromRotationMatrix( Matrix4 m, [String order = 'XYZ'] ) {
 
   var clamp = ( x ) => Math.min( Math.max( x, -1 ), 1 );
 
-  var te = m.storage;
-  var m11 = te[0], m12 = te[4], m13 = te[8];
-  var m21 = te[1], m22 = te[5], m23 = te[9];
-  var m31 = te[2], m32 = te[6], m33 = te[10];
+  var m11 = m[0], m12 = m[4], m13 = m[8];
+  var m21 = m[1], m22 = m[5], m23 = m[9];
+  var m31 = m[2], m32 = m[6], m33 = m[10];
 
   if ( order == 'XYZ' ) {
 

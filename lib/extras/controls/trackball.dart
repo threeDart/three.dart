@@ -196,7 +196,7 @@ class TrackballControls extends EventEmitter {
 
         if ( staticMoving ) {
 
-          _rotateStart.copyInto( _rotateEnd );
+          _rotateStart.setFrom( _rotateEnd );
 
         } else {
 
@@ -219,7 +219,7 @@ class TrackballControls extends EventEmitter {
 
         if ( staticMoving ) {
 
-          _zoomStart = _zoomEnd.clone();
+          _zoomStart.setFrom(_zoomEnd);
 
         } else {
 
@@ -281,7 +281,7 @@ class TrackballControls extends EventEmitter {
 
     update() {
 
-      _eye.copyInto( object.position ).sub( target );
+      _eye.setFrom( object.position ).sub( target );
 
       if ( !noRotate ) {
         rotateCamera();

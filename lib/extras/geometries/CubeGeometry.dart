@@ -133,7 +133,7 @@ class CubeGeometry extends Geometry {
         num d = ( ix + 1 ) + gridX1 * iy;
 
         Face4 face = new Face4( a + offset, b + offset, c + offset, d + offset );
-        face.normal = normal.clone();
+        face.normal.setFrom(normal);
         face.vertexNormals.addAll( [normal.clone(), normal.clone(), normal.clone(), normal.clone()] );
         face.materialIndex = material;
 

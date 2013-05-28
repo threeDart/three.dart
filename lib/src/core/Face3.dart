@@ -34,9 +34,9 @@ class Face3 implements IFace3 {
 
     var face = new Face3( a, b, c );
 
-    face.normal = this.normal.clone();
+    face.normal.setFrom(this.normal);
     face.color.copy( this.color );
-    face.centroid = this.centroid.clone();
+    face.centroid.setFrom(this.centroid);
 
     face.materialIndex = this.materialIndex;
 

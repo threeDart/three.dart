@@ -108,7 +108,7 @@ class WebGLRenderer implements Renderer {
   Matrix4 _projScreenMatrix,
           _projScreenMatrixPS;
 
-  Vector3 _vector3;
+  Vector4 _vector3;
 
   // light arrays cache
   Vector3 _direction;
@@ -229,7 +229,7 @@ class WebGLRenderer implements Renderer {
   _projScreenMatrix = new Matrix4.identity(),
   _projScreenMatrixPS = new Matrix4.identity(),
 
-  _vector3 = new Vector3.zero(),
+  _vector3 = new Vector4(0.0, 0.0, 0.0, 1.0),
 
   // light arrays cache
 
@@ -1042,7 +1042,7 @@ class WebGLRenderer implements Renderer {
 
 				vertex = vertices[ v ];
 
-				_vector3 = vertex.clone();
+				_vector3.setFrom(vertex);
 				_projScreenMatrixPS.multiplyVector3( _vector3 );
 
 				sortArray[ v ] = [ _vector3.z, v ];
@@ -3798,13 +3798,13 @@ class WebGLRenderer implements Renderer {
 
 		if ( camera.parent == null ) camera.updateMatrixWorld();
 
-		camera.matrixWorldInverse = camera.matrixWorld.clone();
+		camera.matrixWorldInverse.setFrom(camera.matrixWorld);
 		camera.matrixWorldInverse.invert();
 
 		camera._viewMatrixArray = camera.matrixWorldInverse.storage;
 		camera._projectionMatrixArray = camera.projectionMatrix.storage;
 
-		_projScreenMatrix = camera.projectionMatrix * camera.matrixWorldInverse;
+		_projScreenMatrix.setFrom(camera.projectionMatrix).multiply(camera.matrixWorldInverse);
 		_frustum.setFromMatrix( _projScreenMatrix );
 
 		// update WebGL objects
@@ -3862,9 +3862,9 @@ class WebGLRenderer implements Renderer {
 							webglObject.z = object.renderDepth;
 
 						} else {
-
-							_vector3 = object.matrixWorld.getTranslation();
-							multiplyVector3(_projScreenMatrix, _vector3 );
+              Vector3 pos = object.matrixWorld.getTranslation();
+							_vector3 = new Vector4(pos[0], pos[1], pos[2], 1.0);
+							multiplyVector3(_projScreenMatrix, pos );
 
 							webglObject.z = _vector3.z;
 

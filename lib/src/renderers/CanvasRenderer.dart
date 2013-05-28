@@ -117,7 +117,7 @@ class CanvasRenderer implements Renderer
     _directionalLights = new Color();
     _pointLights = new Color();
 
-    _vector3 = new Vector3(0.0, 0.0, 0.0); // Needed for PointLight
+    _vector3 = new Vector3.zero(); // Needed for PointLight
 
     _gradientMapQuality = 16;
 

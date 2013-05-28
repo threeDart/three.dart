@@ -35,9 +35,9 @@ class Face4 implements IFace4 {
 
     var face = new Face4( a, b, c, d );
 
-    face.normal.copy( this.normal );
-    face.color.copy( this.color );
-    face.centroid.copy( this.centroid );
+    face.normal.setFrom( this.normal );
+    face.color = this.color.clone();
+    face.centroid.setFrom( this.centroid );
 
     face.materialIndex = this.materialIndex;
 

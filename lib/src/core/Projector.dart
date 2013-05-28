@@ -50,7 +50,7 @@ class Projector {
         //_renderData = { "objects": [], "sprites": [], "lights": [], "elements": [] };
         _renderData = new ProjectorRenderData(),
 
-        _vector3 = new Vector3(0.0, 0.0, 0.0),
+        _vector3 = new Vector3.zero(),
         _vector4 = new Vector4(0.0, 0.0, 0.0, 1.0),
 
         _viewProjectionMatrix = new Matrix4.identity(),
@@ -238,7 +238,7 @@ class Projector {
       camera.updateMatrixWorld();
     }
 
-    camera.matrixWorldInverse = camera.matrixWorld.clone();
+    camera.matrixWorldInverse.setFrom(camera.matrixWorld);
     camera.matrixWorldInverse.invert();
 
     _viewProjectionMatrix = camera.projectionMatrix * camera.matrixWorldInverse;
@@ -271,10 +271,12 @@ class Projector {
 
         vertices.forEach((Vector3 v) {
           _vertex = getNextVertexInPool();
-          _vertex.positionWorld =  v.clone();
+          _vertex.positionWorld.setFrom(v);
 
           multiplyVector3(modelMatrix, _vertex.positionWorld );
-          _vertex.positionScreen = _vertex.positionWorld.clone();
+          _vertex.positionScreen = new Vector4(_vertex.positionWorld[0],
+              _vertex.positionWorld[1],
+              _vertex.positionWorld[2], 1.0); //  _vertex.positionWorld.clone();
           _viewProjectionMatrix.transform( _vertex.positionScreen );
           _vertex.positionScreen.x /= _vertex.positionScreen.w;
           _vertex.positionScreen.y /= _vertex.positionScreen.w;
@@ -422,8 +424,8 @@ class Projector {
 
           v2 = _vertexPool[ _vertexCount - 2 ];
 
-          _clippedVertex1PositionScreen = v1.positionScreen.clone();
-          _clippedVertex2PositionScreen = v2.positionScreen.clone();
+          _clippedVertex1PositionScreen.setFrom(v1.positionScreen);
+          _clippedVertex2PositionScreen.setFrom(v2.positionScreen);
 
           if ( clipLine( _clippedVertex1PositionScreen, _clippedVertex2PositionScreen ) ) {
             // Perform the perspective divide
@@ -431,8 +433,8 @@ class Projector {
             _clippedVertex2PositionScreen /= _clippedVertex2PositionScreen.w;
 
             _line = getNextLineInPool();
-            _line.v1.positionScreen = _clippedVertex1PositionScreen.clone();
-            _line.v2.positionScreen = _clippedVertex2PositionScreen.clone();
+            _line.v1.positionScreen.setFrom(_clippedVertex1PositionScreen);
+            _line.v2.positionScreen.setFrom(_clippedVertex2PositionScreen);
 
             _line.z = Math.max( _clippedVertex1PositionScreen.z, _clippedVertex2PositionScreen.z );
 

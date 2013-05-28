@@ -14,7 +14,7 @@ class RenderableVertex implements IRenderableObj {
   bool visible = true;
 
   RenderableVertex()
-      : positionWorld = new Vector3(0.0, 0.0, 0.0),
+      : positionWorld = new Vector3.zero(),
         positionScreen = new Vector4(0.0, 0.0, 0.0, 1.0);
 
   copy( RenderableVertex vertex ) {

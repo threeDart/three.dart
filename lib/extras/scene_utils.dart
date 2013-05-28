@@ -83,12 +83,12 @@ cloneObject(Object3D source) {
     (object as Sprite).scaleByViewport = source.scaleByViewport;
     (object as Sprite).alignment = source.alignment;
 
-    (object as Sprite).rotation3d = source.rotation3d.clone();
+    (object as Sprite).rotation3d.setFrom(source.rotation3d);
     object.rotation = source.rotation;
     (object as Sprite).opacity = source.opacity;
 
-    (object as Sprite).uvOffset = source.uvOffset.clone();
-    (object as Sprite).uvScale = source.uvScale.clone();
+    (object as Sprite).uvOffset.setFrom(source.uvOffset);
+    (object as Sprite).uvScale.setFrom(source.uvScale);
 
   } else if ( source is LOD ) {
 
@@ -114,19 +114,19 @@ cloneObject(Object3D source) {
 
   object.parent = source.parent;
 
-  object.up = source.up.clone();
+  object.up.setFrom(source.up);
 
-  object.position = source.position.clone();
+  object.position.setFrom(source.position);
 
   // because of Sprite madness
 
   if ( object.rotation is Vector3 ) {
-    object.rotation = source.rotation.clone();
+    object.rotation.setFrom(source.rotation);
   }
 
   object.eulerOrder = source.eulerOrder;
 
-  object.scale = source.scale.clone();
+  object.scale.setFrom(source.scale);
 
   object.isDynamic = source.isDynamic;
 

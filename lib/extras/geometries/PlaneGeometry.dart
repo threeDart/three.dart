@@ -40,7 +40,7 @@ class PlaneGeometry extends Geometry {
         num d = ( ix + 1 ) + gridX1 * iy;
 
         Face4 face = new Face4( a, b, c, d );
-        face.normal.copy( normal );
+        face.normal = normal.clone();
         face.vertexNormals.addAll( [normal.clone(), normal.clone(), normal.clone(), normal.clone()] );
 
         faces.add( face );

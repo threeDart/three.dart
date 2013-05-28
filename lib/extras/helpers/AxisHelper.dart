@@ -3,7 +3,7 @@ part of three;
 class AxisHelper extends Object3D {
   AxisHelper() {
     var lineGeometry = new Geometry();
-    lineGeometry.vertices.add( new Vector3() );
+    lineGeometry.vertices.add( new Vector3.zero() );
     lineGeometry.vertices.add( new Vector3( 0.0, 100.0, 0.0 ) );
 
     var coneGeometry = new CylinderGeometry( 0.0, 5.0, 25.0, 5.0, 1.0 );

@@ -36,14 +36,14 @@ class Canvas_Interactive_Cubes {
     info.innerHtml = '<a href="http://github.com/robsilv/three.dart" target="_blank">three.dart</a> - clickable objects';
     container.nodes.add( info );
 
-    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight.toDouble(), 1, 10000 );
-    camera.position.setValues( 0, 300, 500 );
+    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight.toDouble(), 1.0, 10000.0 );
+    camera.position.setValues( 0.0, 300.0, 500.0 );
 
     scene = new Scene();
 
     scene.add( camera );
 
-    CubeGeometry geometry = new CubeGeometry( 100, 100, 100 );
+    CubeGeometry geometry = new CubeGeometry( 100.0, 100.0, 100.0 );
 
     var rnd = new Math.Random();
     for ( int i = 0; i < 10; i ++ ) {
@@ -59,13 +59,13 @@ class Canvas_Interactive_Cubes {
       object.position.y = rnd.nextInt(800) - 400.0;
       object.position.z = rnd.nextInt(800) - 400.0;
 
-      object.scale.x = rnd.nextDouble() * 2 + 1;
-      object.scale.y = rnd.nextDouble() * 2 + 1;
-      object.scale.z =  rnd.nextDouble() * 2 + 1;
+      object.scale.x = rnd.nextDouble() * 2 + 1.0;
+      object.scale.y = rnd.nextDouble() * 2 + 1.0;
+      object.scale.z =  rnd.nextDouble() * 2 + 1.0;
 
-      object.rotation.x = ( rnd.nextDouble() * 360 ) * Math.PI / 180;
-      object.rotation.y = ( rnd.nextDouble() * 360 ) * Math.PI / 180;
-      object.rotation.z = ( rnd.nextDouble() * 360 ) * Math.PI / 180;
+      object.rotation.x = ( rnd.nextDouble() * 360.0 ) * Math.PI / 180;
+      object.rotation.y = ( rnd.nextDouble() * 360.0 ) * Math.PI / 180;
+      object.rotation.z = ( rnd.nextDouble() * 360.0 ) * Math.PI / 180;
 
       scene.add( object );
 
