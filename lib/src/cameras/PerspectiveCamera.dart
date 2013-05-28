@@ -102,7 +102,7 @@ class PerspectiveCamera extends Camera {
       double width = ( right - left ).abs();
       double height = ( top - bottom ).abs();
 
-      projectionMatrix = makeFrustum(
+      makeFrustum(projectionMatrix,
         left + _x * width / _fullWidth,
         left + ( _x + width ) * width / _fullWidth,
         top - ( _y + height ) * height / _fullHeight,
@@ -110,7 +110,7 @@ class PerspectiveCamera extends Camera {
         near,
         far );
     } else {
-      projectionMatrix = makePerspective( fov, aspect, near, far );
+      makePerspective(projectionMatrix, fov, aspect, near, far );
     }
   }
 }

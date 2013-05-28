@@ -74,8 +74,8 @@ class Geometry {
   set isDynamic(bool value) => _dynamic = value;
 
   void applyMatrix( Matrix4 matrix ) {
-    Matrix4 matrixRotation = new Matrix4();
-    matrixRotation.extractRotation( matrix);
+    Matrix4 matrixRotation = new Matrix4(0.0, 0.0, 0.0, 1.0);
+    extractRotation( matrixRotation, matrix);
 
     vertices.forEach((vertex) => matrix.multiplyVector3( vertex ));
 

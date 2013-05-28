@@ -263,7 +263,7 @@ class Projector {
         faces = geometry.faces;
         faceVertexUvs = geometry.faceVertexUvs;
 
-        object.matrixRotationWorld = extractRotation( modelMatrix );
+        extractRotation( object.matrixRotationWorld, modelMatrix );
         rotationMatrix = object.matrixRotationWorld;
 
         isFaceMaterial = (object.material is MeshFaceMaterial);
@@ -353,15 +353,15 @@ class Projector {
             }
           }
 
-          _face.normalWorld.copy( face.normal );
+          _face.normalWorld.setFrom( face.normal );
 
 		      if ( visible == false && ( side == BackSide || side == DoubleSide ) ) _face.normalWorld.negate();
           multiplyVector3(rotationMatrix, _face.normalWorld );
 
-          _face.centroidWorld.copy( face.centroid );
+          _face.centroidWorld.setFrom( face.centroid );
           multiplyVector3(modelMatrix, _face.centroidWorld );
 
-          _face.centroidScreen.copy( _face.centroidWorld );
+          _face.centroidScreen.setFrom( _face.centroidWorld );
           multiplyVector3(_viewProjectionMatrix, _face.centroidScreen );
 
           faceVertexNormals = face.vertexNormals;
@@ -369,11 +369,11 @@ class Projector {
           nl = faceVertexNormals.length;
           for ( n = 0; n < nl; n ++ ) {
             normal = _face.vertexNormalsWorld[ n ];
-            normal.copy( faceVertexNormals[ n ] );
+            normal.setFrom( faceVertexNormals[ n ] );
 
             if ( !visible && ( side == BackSide || side == DoubleSide ) ) normal.negate();
 
-            rotationMatrix.multiplyVector3( normal );
+            multiplyVector3( rotationMatrix, normal );
           }
 
           cl = faceVertexUvs.length;
@@ -466,8 +466,8 @@ class Projector {
 
           _particle.rotation = object.rotation.z;
 
-          _particle.scale.x = object.scale.x * ( _particle.x - ( _vector4.x + camera.projectionMatrix.elements[0] ) / ( _vector4.w + camera.projectionMatrix.elements[12] ) ).abs();
-          _particle.scale.y = object.scale.y * ( _particle.y - ( _vector4.y + camera.projectionMatrix.elements[5] ) / ( _vector4.w + camera.projectionMatrix.elements[13] ) ).abs();
+          _particle.scale.x = object.scale.x * ( _particle.x - ( _vector4.x + camera.projectionMatrix[0] ) / ( _vector4.w + camera.projectionMatrix[12] ) ).abs();
+          _particle.scale.y = object.scale.y * ( _particle.y - ( _vector4.y + camera.projectionMatrix[5] ) / ( _vector4.w + camera.projectionMatrix[13] ) ).abs();
 
           _particle.material = object.material as Material;
 
@@ -584,7 +584,7 @@ class Projector {
   int painterSort( a, b ) => b.z.compareTo(a.z);
 
   bool clipLine( Vector4 s1, Vector4 s2 ) {
-    num alpha1 = 0, alpha2 = 1,
+    double alpha1 = 0.0, alpha2 = 1.0,
 
     // Calculate the boundary coordinate of each vertex for the near and far clip planes,
     // Z = -1 and Z = +1, respectively.

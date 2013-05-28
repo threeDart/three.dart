@@ -51,7 +51,7 @@ class BufferGeometry {
 		if ( normalArray != null ) {
 
 			var matrixRotation = new Matrix4();
-			matrixRotation.extractRotation( matrix );
+			extractRotation( matrixRotation, matrix );
 
 			matrixRotation.multiplyVector3Array( normalArray );
 			this.normalsNeedUpdate = true;

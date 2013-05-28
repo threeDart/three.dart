@@ -8,7 +8,7 @@ class ArrowHelper extends Object3D {
   ArrowHelper(dir, [Vector3 origin = null, double length = 20.0, hex = 0xffff00] ) : super() {
 
     var lineGeometry = new Geometry();
-    lineGeometry.vertices.add( new Vector3( 0.0, 0.0, 0.0 ) );
+    lineGeometry.vertices.add( new Vector3.zero() );
     lineGeometry.vertices.add( new Vector3( 0.0, 1.0, 0.0 ) );
 
     this.line = new Line( lineGeometry, new LineBasicMaterial( color: hex ) );

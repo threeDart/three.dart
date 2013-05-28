@@ -166,11 +166,11 @@ class TrackballControls extends EventEmitter {
 
       }
 
-      _eye.copyInto( object.position )..sub( target );
+      _eye.setFrom(object.position ).sub( target );
 
-      var projection = object.up.clone().normalize().scale( mouseOnBall.y );
-      projection.addSelf( object.up.clone().cross( _eye ).normalize().scale( mouseOnBall.x ) );
-      projection.addSelf( _eye.normalize().scale( mouseOnBall.z ) );
+      Vector3 projection = object.up.clone().normalize().scale( mouseOnBall.y );
+      projection.add( object.up.clone().cross( _eye ).normalize().scale( mouseOnBall.x ) );
+      projection.add( _eye.normalize().scale( mouseOnBall.z ) );
 
       return projection;
 
@@ -182,17 +182,18 @@ class TrackballControls extends EventEmitter {
 
       if ( !angle.isNaN && angle != 0) {
 
-        var axis = ( new Vector3() ).cross( _rotateStart, _rotateEnd ).normalize(),
-            quaternion = new Quaternion.identity();
+        Vector3 axis = _rotateStart.cross(_rotateEnd ).normalize();
+        Quaternion quaternion = new Quaternion.identity();
 
         angle *= rotateSpeed;
 
-        quaternion.setFromAxisAngle( axis, -angle );
+        quaternion.setAxisAngle( axis, -angle );
 
-        quaternion.multiplyVector3( _eye );
-        quaternion.multiplyVector3( object.up );
+        // TODO Check that vector_math's Quaternion.rotate is equivalent to multiplyVector3
+        quaternion.rotate( _eye );
+        quaternion.rotate( object.up );
 
-        quaternion.multiplyVector3( _rotateEnd );
+        quaternion.rotate( _rotateEnd );
 
         if ( staticMoving ) {
 
@@ -200,8 +201,8 @@ class TrackballControls extends EventEmitter {
 
         } else {
 
-          quaternion.setFromAxisAngle( axis, angle * ( dynamicDampingFactor - 1.0 ) );
-          quaternion.multiplyVector3( _rotateStart );
+          quaternion.setAxisAngle( axis, angle * ( dynamicDampingFactor - 1.0 ) );
+          quaternion.rotate( _rotateStart );
 
         }
 

@@ -129,7 +129,7 @@ class Ray {
       int side = object.material.side;
 
 
-      object.matrixRotationWorld.extractRotation( object.matrixWorld );
+      extractRotation(object.matrixRotationWorld, object.matrixWorld);
 
       int fl = geometry.faces.length;
 

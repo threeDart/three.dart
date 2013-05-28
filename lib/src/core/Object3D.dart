@@ -99,7 +99,7 @@ class Object3D {
 
     this.scale.getScaleFromMatrix( this.matrix );
 
-    var mat = new Matrix4().extractRotation( this.matrix );
+    Matrix4 mat = extractRotation(new Matrix4(0.0, 0.0, 0.0, 1.0), this.matrix );
     this.rotation.setEulerFromRotationMatrix( mat, this.eulerOrder );
 
     this.position.getPositionFromMatrix( this.matrix );
@@ -203,9 +203,9 @@ class Object3D {
     matrix.setTranslation( position );
 
     if ( useQuaternion ) {
-      matrix = calcRotationFromQuaternion( quaternion );
+      setRotationFromQuaternion( matrix, quaternion );
     } else {
-      matrix = calcRotationFromEuler( rotation, eulerOrder );
+      setRotationFromEuler( matrix, rotation, eulerOrder );
     }
 
     if ( scale.x != 1.0 || scale.y != 1.0 || scale.z != 1.0 ) {
