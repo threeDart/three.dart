@@ -22,6 +22,6 @@ class OrthographicCamera extends Camera {
 	}
 
 	updateProjectionMatrix() {
-		projectionMatrix = makeOrthographic( left, right, top, bottom, near, far);
+		setOrthographicMatrix( projectionMatrix, left, right, top, bottom, near, far);
 	}
 }

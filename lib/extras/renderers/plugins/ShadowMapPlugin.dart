@@ -144,9 +144,9 @@ class ShadowMapPlugin {
       if ( light.shadowMap == null ) {
 
         light.shadowMap = new WebGLRenderTarget( light.shadowMapWidth, light.shadowMapHeight, minFilter: LinearFilter, magFilter: LinearFilter, format: RGBAFormat );
-        light.shadowMapSize = new Vector2( light.shadowMapWidth, light.shadowMapHeight );
+        light.shadowMapSize = new Vector2( light.shadowMapWidth.toDouble(), light.shadowMapHeight.toDouble() );
 
-        light.shadowMatrix = new Matrix4();
+        light.shadowMatrix = new Matrix4.identity();
 
       }
 
@@ -194,7 +194,9 @@ class ShadowMapPlugin {
       shadowCamera.lookAt( light.target.matrixWorld.getTranslation() );
       shadowCamera.updateMatrixWorld();
 
-      shadowCamera.matrixWorldInverse.getInverse( shadowCamera.matrixWorld );
+
+      shadowCamera.matrixWorldInverse = shadowCamera.matrixWorld.clone();
+      shadowCamera.matrixWorldInverse.invert();
 
       if ( light.cameraHelper != null ) light.cameraHelper.visible = light.shadowCameraVisible;
       if ( light.shadowCameraVisible ) light.cameraHelper.update();
@@ -206,8 +208,8 @@ class ShadowMapPlugin {
                 0.0, 0.0, 0.5, 0.5,
                 0.0, 0.0, 0.0, 1.0 );
 
-      shadowMatrix.multiplySelf( shadowCamera.projectionMatrix );
-      shadowMatrix.multiplySelf( shadowCamera.matrixWorldInverse );
+      shadowMatrix.multiply( shadowCamera.projectionMatrix );
+      shadowMatrix.multiply( shadowCamera.matrixWorldInverse );
 
       // update camera matrices and frustum
 
@@ -215,10 +217,10 @@ class ShadowMapPlugin {
       if ( webglCamera._viewMatrixArray == null) webglCamera._viewMatrixArray = new Float32Array( 16 );
       if ( webglCamera._projectionMatrixArray == null ) webglCamera._projectionMatrixArray = new Float32Array( 16 );
 
-      shadowCamera.matrixWorldInverse.flattenToArray( webglCamera._viewMatrixArray );
-      shadowCamera.projectionMatrix.flattenToArray( webglCamera._projectionMatrixArray );
+      webglCamera._viewMatrixArray = shadowCamera.matrixWorldInverse.storage;
+      webglCamera._projectionMatrixArray = shadowCamera.projectionMatrix.storage;
 
-      _projScreenMatrix.multiply( shadowCamera.projectionMatrix, shadowCamera.matrixWorldInverse );
+      _projScreenMatrix = shadowCamera.projectionMatrix * shadowCamera.matrixWorldInverse;
       _frustum.setFromMatrix( _projScreenMatrix );
 
       // render shadow map
@@ -242,7 +244,7 @@ class ShadowMapPlugin {
 
           if ( ! ( object is Mesh ) || ! ( object.frustumCulled ) || _frustum.contains( object ) ) {
 
-            webglObject._modelViewMatrix.multiply( shadowCamera.matrixWorldInverse, object.matrixWorld );
+            webglObject._modelViewMatrix = shadowCamera.matrixWorldInverse * object.matrixWorld;
 
             webglObject.render = true;
 

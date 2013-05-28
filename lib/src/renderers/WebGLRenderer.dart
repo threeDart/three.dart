@@ -4992,7 +4992,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( p_uniforms["cameraPosition"] != null ) {
 
-					var position = camera.matrixWorld.getPosition();
+					var position = camera.matrixWorld.getTranslation();
 					_gl.uniform3f( p_uniforms["cameraPosition"], position.x, position.y, position.z );
 
 				}
@@ -5330,11 +5330,11 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "iv1" ) { // flat array of integers (JS or typed array)
 
-				_gl.uniform1iv( location, (value is List) ? new Int32Array.fromList(value) : value );
+				_gl.uniform1iv( location, (value is List) ? new Int32List.fromList(value) : value );
 
 			} else if ( type == "iv" ) { // flat array of integers with 3 x N size (JS or typed array)
 
-				_gl.uniform3iv( location, (value is List) ? new Int32Array.fromList(value) : value );
+				_gl.uniform3iv( location, (value is List) ? new Int32List.fromList(value) : value );
 
 			} else if ( type == "fv1" ) { // flat array of floats (JS or typed array)
         if (value is List) {
@@ -5436,7 +5436,7 @@ class WebGLRenderer implements Renderer {
 				il = value.length;
 				for ( i = 0; i < il; i ++ ) {
 
-					value[ i ].flattenToArrayOffset( uniform._array, i * 16 );
+					value[ i ].copyIntoArray( uniform._array, i * 16 );
 
 				}
 
@@ -5468,7 +5468,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-				  uniform._array = new Int32Array( uniform.texture.length );
+				  uniform._array = new Int32List( uniform.texture.length );
 
 					il = uniform.texture.length;
 					for( i = 0; i < il; i ++ ) {
@@ -5660,7 +5660,7 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				position = light.matrixWorld.getPosition();
+				position = light.matrixWorld.getTranslation();
 
 				spositions[ soffset ]     = position.x;
 				spositions[ soffset + 1 ] = position.y;
@@ -5668,8 +5668,8 @@ class WebGLRenderer implements Renderer {
 
 				sdistances[ slength ] = distance;
 
-				_direction.copy( position );
-				_direction.subSelf( light.target.matrixWorld.getPosition() );
+				_direction.setFrom( position );
+				_direction.sub( light.target.matrixWorld.getTranslation() );
 				_direction.normalize();
 
 				sdirections[ soffset ]     = _direction.x;
@@ -6347,7 +6347,7 @@ class WebGLRenderer implements Renderer {
 	// Textures
 
 
-	isPowerOfTwo ( value ) => ( value & ( value - 1 ) ) == 0;
+	isPowerOfTwo ( int value ) => ( value & ( value - 1 ) ) == 0;
 
 	setTextureParameters ( textureType, texture, isImagePowerOfTwo ) {
 

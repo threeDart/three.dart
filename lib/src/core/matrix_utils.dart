@@ -14,48 +14,6 @@ part of three;
  * @author anders forsell / http://aforsell.blogspot.com/
  */
 
-Matrix4 makeFrustum( Matrix4 m, double left, double right, double bottom, double top, double near, double far ) {
-  double x = 2 * near / ( right - left );
-  double y = 2 * near / ( top - bottom );
-
-  double a = ( right + left ) / ( right - left );
-  double b = ( top + bottom ) / ( top - bottom );
-  double c = - ( far + near ) / ( far - near );
-  double d = - 2 * far * near / ( far - near );
-
-  m.setValues(x, 0.0, 0.0, 0.0,
-              0.0, y, 0.0, 0.0,
-              a, b, c, -1.0,
-              0.0, 0.0, d, 0.0);
-  return m;
-}
-
-Matrix4 makePerspective( Matrix4 m, double fov, double aspect, double near, double far ) {
-
-  double ymax = near * Math.tan( fov * Math.PI / 360 );
-  double ymin = - ymax;
-  double xmin = ymin * aspect;
-  double xmax = ymax * aspect;
-
-  return makeFrustum( m, xmin, xmax, ymin, ymax, near, far );
-}
-
-Matrix4 makeOrthographic(Matrix4 m, double left, double right, double top, double bottom, double near, double far ) {
-  double w = right - left;
-  double h = top - bottom;
-  double p = far - near;
-
-  double x = ( right + left ) / w;
-  double y = ( top + bottom ) / h;
-  double z = ( far + near ) / p;
-
-  m.setValues(2.0 / w, 0.0, 0.0, 0.0,
-              0.0, 2.0 / h, 0.0, 0.0,
-              0.0, 0.0, -2.0 / p, 0.0,
-               -x, -y, -z, 1.0);
-  return m;
-}
-
 Matrix4 makeLookAt(Matrix4 m, Vector3 eye, Vector3 center, Vector3 up ) {
   Vector3 z = (eye - center ).normalize();
   if ( z.length == 0.0 ) {

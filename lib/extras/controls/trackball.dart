@@ -87,23 +87,23 @@ class TrackballControls extends EventEmitter {
 
     // internals
 
-    target = new Vector3();
+    target = new Vector3.zero();
 
-    lastPosition = new Vector3();
+    lastPosition = new Vector3.zero();
 
     _state = STATE.NONE;
     _prevState = STATE.NONE;
 
-    _eye = new Vector3();
+    _eye = new Vector3.zero();
 
-    _rotateStart = new Vector3();
-    _rotateEnd = new Vector3();
+    _rotateStart = new Vector3.zero();
+    _rotateEnd = new Vector3.zero();
 
-    _zoomStart = new Vector2();
-    _zoomEnd = new Vector2();
+    _zoomStart = new Vector2.zero();
+    _zoomEnd = new Vector2.zero();
 
-    _panStart = new Vector2();
-    _panEnd = new Vector2();
+    _panStart = new Vector2.zero();
+    _panEnd = new Vector2.zero();
 
     changeEvent = new EventEmitterEvent(type: 'change');
 
@@ -296,7 +296,7 @@ class TrackballControls extends EventEmitter {
         panCamera();
       }
 
-      object.position.add( target, _eye );
+      object.position =  target + _eye;
 
       checkDistances();
 

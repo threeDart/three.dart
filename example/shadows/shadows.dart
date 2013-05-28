@@ -40,7 +40,7 @@ init(){
   dirLight.position.setValues( 1.0, -1.0, 1.0 ).normalize();
   scene.add( dirLight);
 
-  spot1 = new SpotLight( 0x8888FF, 2 );
+  spot1 = new SpotLight( 0x8888FF, 2.0 );
   spot1.target.position.setValues( 0.0, 2.0, 0.0 );
   spot1.shadowCameraNear    = 0.01;
   spot1.castShadow    = true;
@@ -49,7 +49,7 @@ init(){
   scene.add( spot1 );
 
 
-  spot2 = new SpotLight( 0xFFAA88, 2 );
+  spot2 = new SpotLight( 0xFFAA88, 2.0 );
   spot2.target.position.setValues( 0.0, 2.0, 0.0 );
   spot2.shadowCameraNear    = 0.01;
   spot2.castShadow    = true;
@@ -71,7 +71,7 @@ init(){
   //var geometry  = new THREE.CylinderGeometry(1, 1, 4, 16)
 
   var texture = loadTexture( "images/water.jpg" );
-  texture.repeat.setValues( 0.7, 1 );
+  texture.repeat.setValues( 0.7, 1.0 );
   texture.wrapS = texture.wrapT = RepeatWrapping;
   var material  = new MeshPhongMaterial(
     ambient   : 0x444444,
@@ -123,7 +123,7 @@ render() {
   var piPerSeconds  = seconds * Math.PI;
 
   spot1.position.x  = Math.cos(piPerSeconds*0.05)*12;
-  spot1.position.y  = 10;
+  spot1.position.y  = 10.0;
   spot1.position.z  = Math.sin(piPerSeconds*0.05)*12;
 
   spot2.position.x  = Math.cos(piPerSeconds*-0.1)*15;
@@ -137,7 +137,7 @@ render() {
   // update camera controls
   cameraControls.update();
   // limit camera position to avoid showing shadow on backface
-  camera.position.y = Math.max(camera.position.y, 3);
+  camera.position.y = Math.max(camera.position.y, 3.0);
 
   // actually render the scene
   renderer.render( scene, camera );

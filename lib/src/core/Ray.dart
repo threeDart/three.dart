@@ -18,13 +18,13 @@ class Ray {
   final num precision;
 
   Ray( [this.origin, this.direction, this.near = 0, this.far = double.INFINITY] )
-      : _v0 = new Vector3(),
-        _v1 = new Vector3(),
-        _v2 = new Vector3(),
+      : _v0 = new Vector3.zero(),
+        _v1 = new Vector3.zero(),
+        _v2 = new Vector3.zero(),
         precision = 0.0001 {
 
-    if (this.origin == null) this.origin = new Vector3();
-    if (this.direction == null) this.direction = new Vector3();
+    if (this.origin == null) this.origin = new Vector3.zero();
+    if (this.direction == null) this.direction = new Vector3.zero();
 
       }
 
@@ -32,10 +32,10 @@ class Ray {
     var v0 = _v0, v1 = _v1, v2 = _v2;
 
     var dot, intersect, distance;
-    v0.sub( position, origin );
+    v0 = position - origin;
     dot = v0.dot( direction );
 
-    intersect = v1.add( origin, v2.copy( direction ).multiplyScalar( dot ) );
+    intersect = v1.add( origin, v2.setFrom( direction ).scale( dot ) );
     distance = position.distanceTo( intersect );
 
     return distance;
@@ -65,17 +65,17 @@ class Ray {
   }
 
   List<Intersect> intersectObject( Object3D object, {bool recursive: false} ) {
-    Vector3 a = new Vector3();
-    Vector3 b = new Vector3();
-    Vector3 c = new Vector3();
-    Vector3 d = new Vector3();
+    Vector3 a = new Vector3.zero();
+    Vector3 b = new Vector3.zero();
+    Vector3 c = new Vector3.zero();
+    Vector3 d = new Vector3.zero();
 
-    Vector3 originCopy = new Vector3();
-    Vector3 directionCopy = new Vector3();
+    Vector3 originCopy = new Vector3.zero();
+    Vector3 directionCopy = new Vector3.zero();
 
-    Vector3 vector = new Vector3();
-    Vector3 normal = new Vector3();
-    Vector3 intersectPoint = new Vector3();
+    Vector3 vector = new Vector3.zero();
+    Vector3 normal = new Vector3.zero();
+    Vector3 intersectPoint = new Vector3.zero();
 
     Intersect intersect;
     List intersects = [];

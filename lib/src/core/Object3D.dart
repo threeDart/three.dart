@@ -107,8 +107,9 @@ class Object3D {
   }
 
   void translate( num distance, Vector3 axis ) {
-    matrix.rotateAxis( axis );
-    position.addSelf( axis.multiplyScalar( distance ) );
+    matrix.rotate3( axis );
+    axis.normalize();
+    position.add( axis.scale( distance ) );
   }
 
   void translateX( num distance ) => translate( distance, _vector.setValues( 1.0, 0.0, 0.0 ) );
@@ -120,10 +121,10 @@ class Object3D {
   void lookAt( Vector3 vector ) {
     // TODO: Add hierarchy support.
 
-    matrix.lookAt( vector, position, up );
+    makeLookAt( matrix, vector, position, up );
 
     if ( rotationAutoUpdate ) {
-      rotation.setEulerFromRotationMatrix( matrix, eulerOrder );
+      rotation = calcEulerFromRotationMatrix( matrix, eulerOrder );
     }
   }
 

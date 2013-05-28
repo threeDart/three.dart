@@ -71,10 +71,12 @@ class Projector {
   }
 
   Vector3 unprojectVector( Vector3 vector, Camera camera ) {
-    camera.projectionMatrixInverse.getInverse( camera.projectionMatrix );
+    camera.projectionMatrixInverse = camera.projectionMatrix.clone();
+    camera.projectionMatrixInverse.invert();
 
-    _viewProjectionMatrix.multiply( camera.matrixWorld, camera.projectionMatrixInverse );
-    _viewProjectionMatrix.multiplyVector3( vector );
+    _viewProjectionMatrix = camera.matrixWorld.clone();
+    _viewProjectionMatrix.multiply( camera.projectionMatrixInverse );
+    multiplyVector3(_viewProjectionMatrix, vector );
 
     return vector;
   }
