@@ -74,18 +74,18 @@ class Geometry {
   set isDynamic(bool value) => _dynamic = value;
 
   void applyMatrix( Matrix4 matrix ) {
-    Matrix4 matrixRotation = new Matrix4(0.0, 0.0, 0.0, 1.0);
+    Matrix4 matrixRotation = new Matrix4.identity();
     extractRotation( matrixRotation, matrix);
 
-    vertices.forEach((vertex) => matrix.multiplyVector3( vertex ));
+    vertices.forEach((vertex) => multiplyVector3(matrix, vertex));
 
     faces.forEach((face) {
 
-      matrixRotation.multiplyVector3( face.normal );
+      multiplyVector3(matrixRotation, face.normal);
 
-      face.vertexNormals.forEach((normal) => matrixRotation.multiplyVector3( normal ));
+      face.vertexNormals.forEach((normal) => multiplyVector3( matrixRotation, normal ));
 
-      matrix.multiplyVector3( face.centroid );
+      multiplyVector3( matrix, face.centroid );
     });
   }
 
@@ -211,15 +211,15 @@ class Geometry {
 
     num x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
 
-    Vector3 sdir = new Vector3(),
-            tdir = new Vector3(),
-            tmp = new Vector3(),
-            tmp2 = new Vector3(),
-            n = new Vector3(),
+    Vector3 sdir = new Vector3.zero(),
+            tdir = new Vector3.zero(),
+            tmp = new Vector3.zero(),
+            tmp2 = new Vector3.zero(),
+            n = new Vector3.zero(),
             t;
 
-    List<Vector3> tan1 = vertices.map((_) => new Vector3()).toList(),
-                  tan2 = vertices.map((_) => new Vector3()).toList();
+    List<Vector3> tan1 = vertices.map((_) => new Vector3.zero()).toList(),
+                  tan2 = vertices.map((_) => new Vector3.zero()).toList();
 
     var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
 
@@ -285,7 +285,7 @@ class Geometry {
 
       for ( i = 0; i < il; i++ ) {
 
-        n.copy( face.vertexNormals[ i ] );
+        n.setFrom( face.vertexNormals[ i ] );
 
         // TODO: Check if this works instead
         // vertexIndex = face.dynamic[ faceIndex[ i ] ];
@@ -304,8 +304,8 @@ class Geometry {
 
         // Gram-Schmidt orthogonalize
 
-        tmp.copy( t );
-        tmp.subSelf( n.multiplyScalar( n.dot( t ) ) ).normalize();
+        tmp.setFrom( t );
+        tmp.sub( n.scale( n.dot( t ) ) ).normalize();
 
         // Calculate handedness
 
@@ -325,14 +325,14 @@ class Geometry {
 
   void computeBoundingBox() {
     if ( boundingBox == null ) {
-      boundingBox = new BoundingBox( min: new Vector3(), max: new Vector3() );
+      boundingBox = new BoundingBox( min: new Vector3.zero(), max: new Vector3.zero() );
     }
 
     if ( vertices.length > 0 ) {
       Vector3 position, firstPosition = vertices[ 0 ];
 
-      boundingBox.min.copy( firstPosition );
-      boundingBox.max.copy( firstPosition );
+      boundingBox.min.setFrom( firstPosition );
+      boundingBox.max.setFrom( firstPosition );
 
       Vector3 min = boundingBox.min,
               max = boundingBox.max;

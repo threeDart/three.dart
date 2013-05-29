@@ -10,7 +10,7 @@ class LatheGeometry extends Geometry {
     var newV = points.map((pt) => pt.clone()).toList();
     vertices.addAll(newV);
 
-    var matrix = new Matrix4().makeRotationZ( angle / steps );
+    var matrix = new Matrix4.identity().makeRotationZ( angle / steps );
 
     var i, il = steps + 1;
 

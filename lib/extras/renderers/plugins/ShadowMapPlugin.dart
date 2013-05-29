@@ -383,8 +383,8 @@ class ShadowMapPlugin {
 
     for ( var i = 0; i < 8; i ++ ) {
 
-      pointsWorld[ i ] = new Vector3();
-      pointsFrustum[ i ] = new Vector3();
+      pointsWorld[ i ] = new Vector3.zero();
+      pointsFrustum[ i ] = new Vector3.zero();
 
     }
 

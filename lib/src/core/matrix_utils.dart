@@ -239,13 +239,14 @@ Matrix4 extractRotation( Matrix4 te, Matrix4 m ) {
 }
 
 // TODO Find a suitable replacement in vector_math ( "transform3" ?)
-void multiplyVector3(Matrix4 te, Vector3 v ) {
+Vector3 multiplyVector3(Matrix4 te, Vector3 v ) {
   var vx = v.x, vy = v.y, vz = v.z;
   var d = 1.0 / ( te[3] * vx + te[7] * vy + te[11] * vz + te[15] );
 
   v[0] = ( te[0] * vx + te[4] * vy + te[8] * vz + te[12] ) * d;
   v[1] = ( te[1] * vx + te[5] * vy + te[9] * vz + te[13] ) * d;
   v[2] = ( te[2] * vx + te[6] * vy + te[10] * vz + te[14] ) * d;
+  return v;
 }
 
 

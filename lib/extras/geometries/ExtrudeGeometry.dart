@@ -92,7 +92,7 @@ class ExtrudeGeometry extends Geometry {
   // addShape Helpers
   _scalePt2 ( Vector2 pt, Vector2 vec, num size ) {
     if ( vec == null ) print( "die" );
-    return vec.clone().multiplyScalar( size ).addSelf( pt );
+    return vec.clone().scale( size ).add( pt );
   }
 
   _getBevelVec2( Vector2 pt_i, Vector2 pt_j, Vector2 pt_k ) {
@@ -128,8 +128,8 @@ class ExtrudeGeometry extends Geometry {
 
     // pts from i
 
-    p.copy( pt_i ).addSelf( v_hat );
-    q.copy( pt_i ).addSelf( w_hat );
+    p.copy( pt_i ).add( v_hat );
+    q.copy( pt_i ).add( w_hat );
 
     if ( p.equals( q ) ) {
 
@@ -140,11 +140,11 @@ class ExtrudeGeometry extends Geometry {
 
     // Points from j, k. helps prevents points cross overover most of the time
 
-    p.copy( pt_j ).addSelf( v_hat );
-    q.copy( pt_k ).addSelf( w_hat );
+    p.copy( pt_j ).add( v_hat );
+    q.copy( pt_k ).add( w_hat );
 
     v_dot_w_hat = v.dot( w_hat );
-    q_sub_p_dot_w_hat = q.subSelf( p ).dot( w_hat );
+    q_sub_p_dot_w_hat = q.sub( p ).dot( w_hat );
 
     // We should not reach these conditions
 
@@ -174,9 +174,9 @@ class ExtrudeGeometry extends Geometry {
 
     }
 
-    intersection = v.multiplyScalar( s ).addSelf( p );
+    intersection = v.multiplyScalar( s ).add( p );
 
-    return intersection.subSelf( pt_i ).clone(); // Don't normalize!, otherwise sharp corners become ugly
+    return intersection.sub( pt_i ).clone(); // Don't normalize!, otherwise sharp corners become ugly
 
   }
 
@@ -265,9 +265,9 @@ class ExtrudeGeometry extends Geometry {
 
       // console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
 
-      binormal = new Vector3();
-      normal = new Vector3();
-      position2 = new Vector3();
+      binormal = new Vector3.zero();
+      normal = new Vector3.zero();
+      position2 = new Vector3.zero();
 
     }
 
@@ -478,10 +478,10 @@ class ExtrudeGeometry extends Geometry {
 
         // v( vert.x, vert.y + extrudePts[ 0 ].y, extrudePts[ 0 ].x );
 
-        normal.copy(splineTube.normals[0]).multiplyScalar(vert.x);
-        binormal.copy(splineTube.binormals[0]).multiplyScalar(vert.y);
+        normal.setFrom(splineTube.normals[0]).scale(vert.x);
+        binormal.setFrom(splineTube.binormals[0]).scale(vert.y);
 
-        position2.copy(extrudePts[0]).addSelf(normal).addSelf(binormal);
+        position2.setFrom(extrudePts[0]).add(normal).add(binormal);
 
         _v(position2.x, position2.y, position2.z);
 
@@ -508,10 +508,10 @@ class ExtrudeGeometry extends Geometry {
 
           // v( vert.x, vert.y + extrudePts[ s - 1 ].y, extrudePts[ s - 1 ].x );
 
-          normal.copy(splineTube.normals[s]).multiplyScalar(vert.x);
-          binormal.copy(splineTube.binormals[s]).multiplyScalar(vert.y);
+          normal.setFrom(splineTube.normals[s]).scale(vert.x);
+          binormal.setFrom(splineTube.binormals[s]).scale(vert.y);
 
-          position2.copy(extrudePts[s]).addSelf(normal).addSelf(binormal);
+          position2.setFrom(extrudePts[s]).add(normal).add(binormal);
 
           _v(position2.x, position2.y, position2.z );
 
@@ -686,12 +686,12 @@ class ExtrudeGeometry extends Geometry {
   }
 
 
-  static Vector2 ___v1 = null; static get __v1 => (___v1 == null)? ___v1 = new Vector2() : ___v1;
-  static Vector2 ___v2 = null; static get __v2 => (___v2 == null)? ___v2 = new Vector2() : ___v2;
-  static Vector2 ___v3 = null; static get __v3 => (___v3 == null)? ___v3 = new Vector2() : ___v3;
-  static Vector2 ___v4 = null; static get __v4 => (___v4 == null)? ___v4 = new Vector2() : ___v4;
-  static Vector2 ___v5 = null; static get __v5 => (___v5 == null)? ___v5 = new Vector2() : ___v5;
-  static Vector2 ___v6 = null; static get __v6 => (___v6 == null)? ___v6 = new Vector2() : ___v6;
+  static Vector2 ___v1 = null; static get __v1 => (___v1 == null)? ___v1 = new Vector2.zero() : ___v1;
+  static Vector2 ___v2 = null; static get __v2 => (___v2 == null)? ___v2 = new Vector2.zero() : ___v2;
+  static Vector2 ___v3 = null; static get __v3 => (___v3 == null)? ___v3 = new Vector2.zero() : ___v3;
+  static Vector2 ___v4 = null; static get __v4 => (___v4 == null)? ___v4 = new Vector2.zero() : ___v4;
+  static Vector2 ___v5 = null; static get __v5 => (___v5 == null)? ___v5 = new Vector2.zero() : ___v5;
+  static Vector2 ___v6 = null; static get __v6 => (___v6 == null)? ___v6 = new Vector2.zero() : ___v6;
 }
 
 class ExtrudeGeometryWorldUVGenerator {

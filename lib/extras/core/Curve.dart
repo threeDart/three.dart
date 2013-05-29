@@ -213,7 +213,7 @@ abstract class Curve<V> {
 		var pt1 = getPoint( t1 );
 		var pt2 = getPoint( t2 );
 
-		var vec = pt2.clone().subSelf(pt1);
+		var vec = pt2.clone().sub(pt1);
 		return vec.normalize();
 	}
 

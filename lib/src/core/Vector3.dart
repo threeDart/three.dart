@@ -186,7 +186,7 @@ class Vector3 implements IVector3 {
 
   num distanceTo( Vector3 v ) => Math.sqrt( distanceToSquared( v ) );
 
-  num distanceToSquared( Vector3 v ) => new Vector3().sub( this, v ).lengthSq();
+  num distanceToSquared( Vector3 v ) => new Vector3.zero().sub( this, v ).lengthSq();
 
   Vector3 getPositionFromMatrix( m ) {
 

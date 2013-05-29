@@ -28,18 +28,18 @@ class WebGL_MorphTargets  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 15000 );
+    camera = new PerspectiveCamera( 45.0, window.innerWidth / window.innerHeight, 1, 15000 );
     camera.position.z = 500.0;
 
     scene = new Scene();
 
     var light = new PointLight( 0xff2200 );
-    light.position.setValues( 100, 100, 100 );
+    light.position.setValues( 100.0, 100.0, 100.0 );
     scene.add( light );
 
     scene.add( new AmbientLight( 0x111111 ) );
 
-    var geometry = new CubeGeometry( 100, 100, 100 );
+    var geometry = new CubeGeometry( 100.0, 100.0, 100.0 );
     var material = new MeshLambertMaterial( color: 0xffffff, morphTargets: true );
 
     // construct 8 blend shapes

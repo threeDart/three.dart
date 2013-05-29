@@ -54,20 +54,20 @@ class WebGL_Geometries  {
     object.position.setValues( 0.0, 0.0, 400.0 );
     scene.add( object );
 
-    object = SceneUtils.createMultiMaterialObject( new IcosahedronGeometry( 75, 1 ), materials );
+    object = SceneUtils.createMultiMaterialObject( new IcosahedronGeometry( 75.0, 1 ), materials );
     object.position.setValues( -200.0, 0.0, 200.0 );
     scene.add( object );
 
-    object = SceneUtils.createMultiMaterialObject( new OctahedronGeometry( 75, 2 ), materials );
+    object = SceneUtils.createMultiMaterialObject( new OctahedronGeometry( 75.0, 2 ), materials );
     object.position.setValues( 0.0, 0.0, 200.0 );
     scene.add( object );
 
 
-    object = SceneUtils.createMultiMaterialObject( new TetrahedronGeometry( 75, 0 ), materials );
+    object = SceneUtils.createMultiMaterialObject( new TetrahedronGeometry( 75.0, 0 ), materials );
     object.position.setValues( 200.0, 0.0, 200.0 );
     scene.add( object );
 
-    object = SceneUtils.createMultiMaterialObject( new PlaneGeometry( 100, 100, 4, 4 ), materials );
+    object = SceneUtils.createMultiMaterialObject( new PlaneGeometry( 100.0, 100.0, 4, 4 ), materials );
     object.position.setValues( -200.0, 0.0, 0.0 );
     scene.add( object );
 
@@ -75,7 +75,7 @@ class WebGL_Geometries  {
     object2.rotation.x = Math.PI/2;
     object.add( object2 );
 
-    object = SceneUtils.createMultiMaterialObject( new SphereGeometry( 75, 20, 10 ), materials );
+    object = SceneUtils.createMultiMaterialObject( new SphereGeometry( 75.0, 20, 10 ), materials );
     object.position.setValues( 0.0, 0.0, 0.0 );
     scene.add( object );
 

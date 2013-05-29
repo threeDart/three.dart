@@ -52,13 +52,13 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 150, 500 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.setValues( 0.0, 150.0, 500.0 );
 
     scene = new Scene();
 
     var light = new DirectionalLight( 0xffffff );
-    light.position.setValues( 0, 0, 1 );
+    light.position.setValues( 0.0, 0.0, 1.0 );
     scene.add( light );
 
     parent = new Object3D();
@@ -94,15 +94,15 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     var rnd = new Math.Random();
 
-    var line = new LineCurve3(new Vector3(0,0,0),new Vector3(100,0,0));
-    var line2 = new LineCurve3(new Vector3(100,0,0),new Vector3(200,50,0));
+    var line = new LineCurve3(new Vector3.zero(), new Vector3(100.0, 0.0, 0.0));
+    var line2 = new LineCurve3(new Vector3(100.0, 0.0, 0.0),new Vector3(200.0, 50.0, 0.0));
 
     var curvepath = new CurvePath();
     curvepath.add(line);
     curvepath.add(line2);
 
 
-    var randomPoints = [new Vector3(200,50,0)];
+    var randomPoints = [new Vector3(200.0, 50.0, 0.0)];
 
     for ( var i = 0; i < 5; i ++ ) {
 

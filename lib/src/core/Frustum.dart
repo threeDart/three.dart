@@ -13,11 +13,11 @@ class Frustum {
 
   //TODO: where/how should this be instantiated?
 
-  static Vector3 ___v1;// = new Vector3();
+  static Vector3 ___v1;// = new Vector3.zero();
 
   static Vector3 get __v1 {
     if (___v1 == null) {
-      ___v1 = new Vector3();
+      ___v1 = new Vector3.zero();
     }
     return ___v1;
   }

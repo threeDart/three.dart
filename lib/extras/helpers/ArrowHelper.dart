@@ -14,7 +14,7 @@ class ArrowHelper extends Object3D {
     this.line = new Line( lineGeometry, new LineBasicMaterial( color: hex ) );
     this.add( this.line );
 
-    var coneGeometry = new CylinderGeometry( 0.0, 0.05, 0.25, 5.0, 1.0 );
+    var coneGeometry = new CylinderGeometry( 0.0, 0.05, 0.25, 5, 1 );
 
     this.cone = new Mesh( coneGeometry, new MeshBasicMaterial( color: hex ) );
     this.cone.position.setValues( 0.0, 1.0, 0.0 );

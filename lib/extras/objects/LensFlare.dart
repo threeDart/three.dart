@@ -11,7 +11,7 @@ class LensFlare extends Object3D {
 			customUpdateCallback = null,
 			super() {
 
-		positionScreen = new Vector3();
+		positionScreen = new Vector3.zero();
 
 		// TODO
 		//if( texture != undefined ) {

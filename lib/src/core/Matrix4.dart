@@ -562,7 +562,7 @@ class Matrix4 {
     z.setValues( te[8], te[9], te[10] );
 
     translation = ( translation is Vector3 ) ? translation : new Vector3(0.0, 0.0, 0.0);
-    rotation = ( rotation is Quaternion ) ? rotation : new Quaternion();
+    rotation = ( rotation is Quaternion ) ? rotation : new Quaternion.identity();
     scale = ( scale is Vector3 ) ? scale : new Vector3(0.0, 0.0, 0.0);
 
     scale.x = x.length();
@@ -995,14 +995,14 @@ class Matrix4 {
 
   static Matrix4 get __m1 {
     if (___m1 == null) {
-      ___m1 = new Matrix4();
+      ___m1 = new Matrix4.identity();
     }
     return ___m1;
   }
 
   static Matrix4 get __m2 {
     if (___m2 == null) {
-      ___m2 = new Matrix4();
+      ___m2 = new Matrix4.identity();
     }
     return ___m2;
   }

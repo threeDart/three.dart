@@ -142,16 +142,16 @@ class Ray {
 
         side = material.side;
 
-        originCopy.copy( origin );
-        directionCopy.copy( direction );
+        originCopy.setFrom( origin );
+        directionCopy.setFrom( direction );
 
         objMatrix = object.matrixWorld;
 
         // determine if ray intersects the plane of the face
         // note: this works regardless of the direction of the face normal
 
-        vector = objMatrix.multiplyVector3( vector.copy( face.centroid ) ).subSelf( originCopy );
-        normal = object.matrixRotationWorld.multiplyVector3( normal.copy( face.normal ) );
+        vector = multiplyVector3(objMatrix, vector.setFrom( face.centroid ) ).sub( originCopy );
+        normal = multiplyVector3( object.matrixRotationWorld, normal.setFrom( face.normal ) );
         dot = directionCopy.dot( normal );
 
         // bail if ray and plane are parallel
@@ -167,7 +167,7 @@ class Ray {
 
         if ( side == DoubleSide || ( side == FrontSide ? dot < 0 : dot > 0 ) ) {
 
-          intersectPoint.add( originCopy, directionCopy.multiplyScalar( scalar ) );
+          intersectPoint.add( originCopy, directionCopy.scale( scalar ) );
 
           if ( face is Face3 ) {
 
@@ -189,7 +189,7 @@ class Ray {
 
           } else if ( face is Face4 ) {
             Face4 face4 = face;
-            a = objMatrix.multiplyVector3( a.copy( vertices[ face4.a ] ) );
+            a = objMatrix.multiplyVector3( a.setFrom( vertices[ face4.a ] ) );
             b = objMatrix.multiplyVector3( b.copy( vertices[ face4.b ] ) );
             c = objMatrix.multiplyVector3( c.copy( vertices[ face4.c ] ) );
             d = objMatrix.multiplyVector3( d.copy( vertices[ face4.d ] ) );

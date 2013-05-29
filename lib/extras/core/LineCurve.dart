@@ -7,14 +7,14 @@ class LineCurve extends Curve2D {
   LineCurve( this.v1, this.v2 ) : super();
 
   Vector2 getPoint( t ) {
-    var point = v2.clone().subSelf(v1);
-    point.multiplyScalar( t ).addSelf( v1 );
+    var point = v2.clone().sub(v1);
+    point.multiplyScalar( t ).add( v1 );
     return point;
   }
 
   // Line curve is linear, so we can overwrite default getPointAt
   Vector2 getPointAt( u ) => getPoint( u );
 
-  Vector2 getTangent( t ) => v2.clone().subSelf(v1).normalize();
+  Vector2 getTangent( t ) => v2.clone().sub(v1).normalize();
 
 }

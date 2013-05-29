@@ -7,7 +7,7 @@ class PolyhedronGeometry extends Geometry {
   // nelsonsilva - We're using a PolyhedronGeometryVertex decorator to allow adding index and uv properties
   List<PolyhedronGeometryVertex> _p = [];
 
-  PolyhedronGeometry(List<List<num>> lvertices, List<List<num>> lfaces, [num radius = 1, num detail = 0]) : super() {
+  PolyhedronGeometry(List<List<num>> lvertices, List<List<num>> lfaces, [double radius = 1.0, num detail = 0]) : super() {
 
     _midpoints = [];
 
@@ -57,7 +57,7 @@ class PolyhedronGeometry extends Geometry {
     if ( detail < 1 ) {
 
       var face = new Face3( v1.index, v2.index, v3.index, [ v1.vertex.clone(), v2.vertex.clone(), v3.vertex.clone() ] );
-      face.centroid.addSelf( v1 ).addSelf( v2 ).addSelf( v3 ).divideScalar( 3 );
+      face.centroid.add( v1 ).add( v2 ).add( v3 ).divideScalar( 3 );
       face.normal = face.centroid.clone().normalize();
       this.faces.add( face );
 

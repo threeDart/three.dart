@@ -6,7 +6,7 @@ class AxisHelper extends Object3D {
     lineGeometry.vertices.add( new Vector3.zero() );
     lineGeometry.vertices.add( new Vector3( 0.0, 100.0, 0.0 ) );
 
-    var coneGeometry = new CylinderGeometry( 0.0, 5.0, 25.0, 5.0, 1.0 );
+    var coneGeometry = new CylinderGeometry( 0.0, 5.0, 25.0, 5, 1 );
 
     var line, cone;
 

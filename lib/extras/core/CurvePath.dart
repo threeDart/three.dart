@@ -140,7 +140,7 @@ class CurvePath extends Curve {
 
 		var v3 = points[0] is Vector3;
 
-		sum = (v3) ? new Vector3() : new Vector2();
+		sum = (v3) ? new Vector3.zero() : new Vector2();
 
 		for ( i = 0; i < points.length; i ++ ) {
 
@@ -157,9 +157,9 @@ class CurvePath extends Curve {
 	      if ( p.z > maxZ ) { maxZ = p.z;
 	      } else if ( p.z < minZ ) minZ = p.z;
 
-	      (sum as Vector3).addSelf( p );
+	      (sum as Vector3).add( p );
 	    } else {
-	      (sum as Vector2).addSelf( p );
+	      (sum as Vector2).add( p );
 	    }
 
 

@@ -26,8 +26,8 @@ class WebGL_Interactive_Cubes  {
 
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 300, 500 );
+    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.setValues( 0.0, 300.0, 500.0 );
 
     scene = new Scene();
     scene.add(camera);
@@ -35,15 +35,15 @@ class WebGL_Interactive_Cubes  {
     var light;
 
     light = new DirectionalLight( 0xffffff, 2 );
-    light.position.setValues( 1, 1, 1 ).normalize();
+    light.position.setValues( 1.0, 1.0, 1.0 ).normalize();
     scene.add( light );
 
     light = new DirectionalLight( 0xffffff );
-    light.position.setValues( -1, -1, -1 ).normalize();
+    light.position.setValues( -1.0, -1.0, -1.0 ).normalize();
     scene.add( light );
 
 
-    var geometry = new CubeGeometry( 20, 20, 20 );
+    var geometry = new CubeGeometry( 20.0, 20.0, 20.0 );
 
     var rnd = new Math.Random();
 
@@ -123,7 +123,7 @@ class WebGL_Interactive_Cubes  {
     var vector = new Vector3( mouseX, mouseY, 1 );
     projector.unprojectVector( vector, camera );
 
-    var ray = new Ray( camera.position, vector.subSelf( camera.position ).normalize() );
+    var ray = new Ray( camera.position, vector.sub( camera.position ).normalize() );
 
     var intersects = ray.intersectObjects( scene.children );
 

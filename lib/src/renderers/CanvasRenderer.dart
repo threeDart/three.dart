@@ -441,7 +441,8 @@ class CanvasRenderer implements Renderer
 
         lightPosition = light.matrixWorld.getTranslation();
 
-        amount = normal.dot( _vector3.sub( lightPosition, position ).normalize() );
+        _vector3 = (lightPosition -position).normalize();
+        amount = normal.dot(_vector3);
 
         if ( amount <= 0 ) continue;
 
@@ -607,17 +608,17 @@ class CanvasRenderer implements Renderer
         {
           Matrix4 cameraMatrix = _camera.matrixWorldInverse;
 
-          _vector3.copy( element.vertexNormalsWorld[ uv1 ] );
-          _uv1x = ( _vector3.x * cameraMatrix.elements[0] + _vector3.y * cameraMatrix.elements[4] + _vector3.z * cameraMatrix.elements[8] ) * 0.5 + 0.5;
-          _uv1y = - ( _vector3.x * cameraMatrix.elements[1] + _vector3.y * cameraMatrix.elements[5] + _vector3.z * cameraMatrix.elements[9] ) * 0.5 + 0.5;
+          _vector3.setFrom( element.vertexNormalsWorld[ uv1 ] );
+          _uv1x = ( _vector3.x * cameraMatrix[0] + _vector3.y * cameraMatrix[4] + _vector3.z * cameraMatrix[8] ) * 0.5 + 0.5;
+          _uv1y = - ( _vector3.x * cameraMatrix[1] + _vector3.y * cameraMatrix[5] + _vector3.z * cameraMatrix[9] ) * 0.5 + 0.5;
 
-          _vector3.copy( element.vertexNormalsWorld[ uv2 ] );
-          _uv2x = ( _vector3.x * cameraMatrix.elements[0] + _vector3.y * cameraMatrix.elements[4] + _vector3.z * cameraMatrix.elements[8] ) * 0.5 + 0.5;
-          _uv2y = - ( _vector3.x * cameraMatrix.elements[1] + _vector3.y * cameraMatrix.elements[5] + _vector3.z * cameraMatrix.elements[9] ) * 0.5 + 0.5;
+          _vector3.setFrom( element.vertexNormalsWorld[ uv2 ] );
+          _uv2x = ( _vector3.x * cameraMatrix[0] + _vector3.y * cameraMatrix[4] + _vector3.z * cameraMatrix[8] ) * 0.5 + 0.5;
+          _uv2y = - ( _vector3.x * cameraMatrix[1] + _vector3.y * cameraMatrix[5] + _vector3.z * cameraMatrix[9] ) * 0.5 + 0.5;
 
-          _vector3.copy( element.vertexNormalsWorld[ uv3 ] );
-          _uv3x = ( _vector3.x * cameraMatrix.elements[0] + _vector3.y * cameraMatrix.elements[4] + _vector3.z * cameraMatrix.elements[8] ) * 0.5 + 0.5;
-          _uv3y = - ( _vector3.x * cameraMatrix.elements[1] + _vector3.y * cameraMatrix.elements[5] + _vector3.z * cameraMatrix.elements[9] ) * 0.5 + 0.5;
+          _vector3.setFrom( element.vertexNormalsWorld[ uv3 ] );
+          _uv3x = ( _vector3.x * cameraMatrix[0] + _vector3.y * cameraMatrix[4] + _vector3.z * cameraMatrix[8] ) * 0.5 + 0.5;
+          _uv3y = - ( _vector3.x * cameraMatrix[1] + _vector3.y * cameraMatrix[5] + _vector3.z * cameraMatrix[9] ) * 0.5 + 0.5;
 
           patternPath( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _uv1x, _uv1y, _uv2x, _uv2y, _uv3x, _uv3y, mbMaterial.envMap );
 

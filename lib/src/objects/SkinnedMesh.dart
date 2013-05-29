@@ -9,7 +9,7 @@ class SkinnedMesh extends Mesh {
 	DataTexture boneTexture;
 
 	SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
-      : identityMatrix = new Matrix4(),
+      : identityMatrix = new Matrix4.identity(),
         bones = [],
         boneMatrices = [],
         super(geometry, material) {
@@ -186,7 +186,7 @@ class SkinnedMesh extends Mesh {
 
 	    bone = bones[ b ];
 
-	    var inverseMatrix = new Matrix4();
+	    var inverseMatrix = new Matrix4.identity();
 	    inverseMatrix.getInverse( bone.skinMatrix );
 
 	    boneInverses.add( inverseMatrix );

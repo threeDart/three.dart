@@ -1035,8 +1035,8 @@ class WebGLRenderer implements Renderer {
 
 		if ( object.sortParticles ) {
 
-			_projScreenMatrixPS.copy( _projScreenMatrix );
-			_projScreenMatrixPS.multiplySelf( object.matrixWorld );
+			_projScreenMatrixPS.setFrom( _projScreenMatrix );
+			_projScreenMatrixPS.multiply( object.matrixWorld );
 
 			for ( v = 0; v < vl; v ++ ) {
 

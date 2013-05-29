@@ -40,7 +40,7 @@ class TubeGeometry extends Geometry {
         u, v,
 
         cx, cy,
-        pos, pos2 = new Vector3(),
+        pos, pos2 = new Vector3.zero(),
         i, j,
         ip, jp,
         a, b, c, d,
@@ -143,12 +143,12 @@ class TubeGeometry extends Geometry {
     this.closed = pclosed;
 
     var
-      tangent = new Vector3(),
-      normal = new Vector3(),
-      binormal = new Vector3(),
+      tangent = new Vector3.zero(),
+      normal = new Vector3.zero(),
+      binormal = new Vector3.zero(),
 
-      vec = new Vector3(),
-      mat = new Matrix4(),
+      vec = new Vector3.zero(),
+      mat = new Matrix4.identity(),
       theta,
       epsilon = 0.0001,
       smallest,
@@ -180,8 +180,8 @@ class TubeGeometry extends Geometry {
 
     _initialNormal1([lastBinormal = null]) {
       // fixed start binormal. Has dangers of 0 vectors
-      normals[ 0 ] = new Vector3();
-      binormals[ 0 ] = new Vector3();
+      normals[ 0 ] = new Vector3.zero();
+      binormals[ 0 ] = new Vector3.zero();
       if (lastBinormal==null) lastBinormal = new Vector3( 0, 0, 1 );
       normals[ 0 ].cross( lastBinormal, tangents[ 0 ] ).normalize();
       binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] ).normalize();
@@ -191,8 +191,8 @@ class TubeGeometry extends Geometry {
       // This uses the Frenet-Serret formula for deriving binormal
       var t2 = path.getTangentAt( epsilon );
 
-      normals[ 0 ] = new Vector3().sub( t2, tangents[ 0 ] ).normalize();
-      binormals[ 0 ] = new Vector3().cross( tangents[ 0 ], normals[ 0 ] );
+      normals[ 0 ] = new Vector3.zero().sub( t2, tangents[ 0 ] ).normalize();
+      binormals[ 0 ] = new Vector3.zero().cross( tangents[ 0 ], normals[ 0 ] );
 
       normals[ 0 ].cross( binormals[ 0 ], tangents[ 0 ] ).normalize(); // last binormal x tangent
       binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] ).normalize();
@@ -203,8 +203,8 @@ class TubeGeometry extends Geometry {
       // select an initial normal vector perpenicular to the first tangent vector,
       // and in the direction of the smallest tangent xyz component
 
-      normals[ 0 ] = new Vector3();
-      binormals[ 0 ] = new Vector3();
+      normals[ 0 ] = new Vector3.zero();
+      binormals[ 0 ] = new Vector3.zero();
       smallest = double.INFINITY;
       tx = ( tangents[ 0 ].x ).abs();
       ty = ( tangents[ 0 ].y ).abs();
@@ -217,14 +217,14 @@ class TubeGeometry extends Geometry {
 
       if ( ty <= smallest ) {
         smallest = ty;
-        normal.setValues( 0, 1, 0 );
+        normal.setValues( 0.0, 1.0, 0.0 );
       }
 
       if ( tz <= smallest ) {
-        normal.setValues( 0, 0, 1 );
+        normal.setValues( 0.0, 0.0, 1.0 );
       }
 
-      vec.cross( tangents[ 0 ], normal ).normalize();
+      vec = tangents[0].cross(normal).normalize();
 
       normals[ 0 ].cross( tangents[ 0 ], vec );
       binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] );
@@ -241,9 +241,9 @@ class TubeGeometry extends Geometry {
 
       binormals[ i ] = binormals[ i-1 ].clone();
 
-      vec.cross( tangents[ i-1 ], tangents[ i ] );
+      vec = tangents[ i-1 ].cross( tangents[ i ] );
 
-      if ( vec.length() > epsilon ) {
+      if ( vec.length > epsilon ) {
 
         vec.normalize();
 

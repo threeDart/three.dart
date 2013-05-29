@@ -98,7 +98,7 @@ class Projector {
     unprojectVector( end, camera );
 
     // find direction from vector to end
-    end.subSelf( vector ).normalize();
+    end.sub( vector ).normalize();
 
     return new Ray( vector, end );
   }

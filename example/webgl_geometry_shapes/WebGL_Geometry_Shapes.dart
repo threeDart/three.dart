@@ -104,13 +104,13 @@ class WebGL_Geometry_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 150, 500 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.setValues( 0.0, 150.0, 500.0 );
 
     scene = new Scene();
 
     var light = new DirectionalLight( 0xffffff );
-    light.position.setValues( 0, 0, 1 );
+    light.position.setValues( 0.0, 0.0, 1.0 );
     scene.add( light );
 
     parent = new Object3D();
@@ -352,10 +352,10 @@ class WebGL_Geometry_Shapes  {
     // Spline shape + path extrusion
 
     var splinepts = [];
-    splinepts.add( new Vector2 ( 350, 100 ) );
-    splinepts.add( new Vector2 ( 400, 450 ) );
-    splinepts.add( new Vector2 ( -140, 350 ) );
-    splinepts.add( new Vector2 ( 0, 0 ) );
+    splinepts.add( new Vector2 ( 350.0, 100.0 ) );
+    splinepts.add( new Vector2 ( 400.0, 450.0 ) );
+    splinepts.add( new Vector2 ( -140.0, 350.0 ) );
+    splinepts.add( new Vector2.zero() );
 
     var splineShape = new Shape(  );
     splineShape.moveTo( 0, 0 );
@@ -366,10 +366,10 @@ class WebGL_Geometry_Shapes  {
     // TODO 3d path?
 
     var apath = new SplineCurve3();
-    apath.points.add(new Vector3(-50, 150, 10));
-    apath.points.add(new Vector3(-20, 180, 20));
-    apath.points.add(new Vector3(40, 220, 50));
-    apath.points.add(new Vector3(200, 290, 100));
+    apath.points.add(new Vector3(-50.0, 150.0, 10.0));
+    apath.points.add(new Vector3(-20.0, 180.0, 20.0));
+    apath.points.add(new Vector3(40.0, 220.0, 50.0));
+    apath.points.add(new Vector3(200.0, 290.0, 100.0));
 
     var extrude_extrudePath = apath;
     extrude_bevelEnabled = false;

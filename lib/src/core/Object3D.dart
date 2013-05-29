@@ -241,7 +241,7 @@ class Object3D {
 
   worldToLocal( vector ) => __m1.getInverse( this.matrixWorld ).multiplyVector3( vector );
 
-  localToWorld( vector ) => matrixWorld.multiplyVector3( vector );
+  localToWorld( vector ) => multiplyVector3( matrixWorld, vector );
 
   clone() {
 
@@ -252,7 +252,7 @@ class Object3D {
   static Matrix4 ___m1;
   static Matrix4 get __m1 {
     if (___m1 == null) {
-      ___m1 = new Matrix4();
+      ___m1 = new Matrix4.identity();
     }
     return ___m1;
   }

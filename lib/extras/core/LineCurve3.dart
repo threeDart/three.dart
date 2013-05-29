@@ -8,11 +8,11 @@ class LineCurve3 extends Curve3D {
 
   Vector3 getPoint( t ) {
 
-    var r = new Vector3();
+    var r = new Vector3.zero();
 
     r.sub( v2, v1 ); // diff
     r.multiplyScalar( t );
-    r.addSelf( v1 );
+    r.add( v1 );
 
     return r;
 
