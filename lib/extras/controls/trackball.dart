@@ -272,7 +272,7 @@ class TrackballControls extends EventEmitter {
 
         if ( _eye.length2 < minDistance * minDistance ) {
 
-          object.position.add( target, _eye.normalize().scale( minDistance ) );
+          object.position = target + _eye.normalize().scale(minDistance);
 
         }
 

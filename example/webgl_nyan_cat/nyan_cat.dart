@@ -45,7 +45,7 @@ class NyanCat {
     container = new DivElement();
     document.body.children.add(container);
 
-    camera = new PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 10000 );
+    camera = new PerspectiveCamera( 45.0, window.innerWidth / window.innerHeight, 0.1, 10000 );
     camera.position.z = 30;
     camera.position.x = 0;
     camera.position.y = 0;

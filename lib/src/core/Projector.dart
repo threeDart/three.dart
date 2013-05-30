@@ -62,23 +62,21 @@ class Projector {
         _clippedVertex2PositionScreen = new Vector4(0.0, 0.0, 0.0, 1.0);
 
   Vector3 projectVector( Vector3 vector, Camera camera ) {
-    camera.matrixWorldInverse.getInverse( camera.matrixWorld );
+    camera.matrixWorldInverse.setFrom(camera.matrixWorld);
+    camera.matrixWorldInverse.invert();
 
-    _viewProjectionMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
-    _viewProjectionMatrix.multiplyVector3( vector );
+    _viewProjectionMatrix = camera.projectionMatrix * camera.matrixWorldInverse;
 
-    return vector;
+    return vector.applyProjection(_viewProjectionMatrix);
   }
 
   Vector3 unprojectVector( Vector3 vector, Camera camera ) {
     camera.projectionMatrixInverse = camera.projectionMatrix.clone();
     camera.projectionMatrixInverse.invert();
 
-    _viewProjectionMatrix = camera.matrixWorld.clone();
-    _viewProjectionMatrix.multiply( camera.projectionMatrixInverse );
-    multiplyVector3(_viewProjectionMatrix, vector );
+    _viewProjectionMatrix = camera.matrixWorld * camera.projectionMatrixInverse;
 
-    return vector;
+    return vector.applyProjection(_viewProjectionMatrix);
   }
 
   /**
@@ -129,7 +127,7 @@ class Projector {
           } else {
 
             _vector3 = object.matrixWorld.getTranslation();
-            multiplyVector3(_viewProjectionMatrix, _vector3 );
+            _vector3.applyProjection(_viewProjectionMatrix);
             _object.z = _vector3.z;
 
           }
@@ -152,7 +150,7 @@ class Projector {
         } else {
 
           _vector3 = object.matrixWorld.getTranslation();
-          multiplyVector3(_viewProjectionMatrix, _vector3 );
+          _vector3.applyProjection(_viewProjectionMatrix);
           _object.z = _vector3.z;
 
         }
@@ -171,7 +169,7 @@ class Projector {
         } else {
 
           _vector3 = object.matrixWorld.getTranslation();
-          multiplyVector3(_viewProjectionMatrix, _vector3 );
+          _vector3.applyProjection(_viewProjectionMatrix);
           _object.z = _vector3.z;
 
         }
@@ -275,10 +273,10 @@ class Projector {
           _vertex = getNextVertexInPool();
           _vertex.positionWorld.setFrom(v);
 
-          multiplyVector3(modelMatrix, _vertex.positionWorld );
-          _vertex.positionScreen = new Vector4(_vertex.positionWorld[0],
-              _vertex.positionWorld[1],
-              _vertex.positionWorld[2], 1.0); //  _vertex.positionWorld.clone();
+          _vertex.positionWorld.applyProjection(modelMatrix);
+          _vertex.positionScreen = new Vector4(_vertex.positionWorld.x,
+              _vertex.positionWorld.y,
+              _vertex.positionWorld.z, 1.0); //  _vertex.positionWorld.clone();
           _viewProjectionMatrix.transform( _vertex.positionScreen );
           _vertex.positionScreen.x /= _vertex.positionScreen.w;
           _vertex.positionScreen.y /= _vertex.positionScreen.w;
@@ -358,13 +356,13 @@ class Projector {
           _face.normalWorld.setFrom( face.normal );
 
 		      if ( visible == false && ( side == BackSide || side == DoubleSide ) ) _face.normalWorld.negate();
-          multiplyVector3(rotationMatrix, _face.normalWorld );
+		      _face.normalWorld.applyProjection(rotationMatrix);
 
           _face.centroidWorld.setFrom( face.centroid );
-          multiplyVector3(modelMatrix, _face.centroidWorld );
+          _face.centroidWorld.applyProjection(modelMatrix);
 
           _face.centroidScreen.setFrom( _face.centroidWorld );
-          multiplyVector3(_viewProjectionMatrix, _face.centroidScreen );
+          _face.centroidScreen.applyProjection(_viewProjectionMatrix);
 
           faceVertexNormals = face.vertexNormals;
 
@@ -375,7 +373,7 @@ class Projector {
 
             if ( !visible && ( side == BackSide || side == DoubleSide ) ) normal.negate();
 
-            multiplyVector3( rotationMatrix, normal );
+            normal.applyProjection(rotationMatrix);
           }
 
           cl = faceVertexUvs.length;

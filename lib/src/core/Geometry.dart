@@ -77,15 +77,15 @@ class Geometry {
     Matrix4 matrixRotation = new Matrix4.identity();
     extractRotation( matrixRotation, matrix);
 
-    vertices.forEach((vertex) => multiplyVector3(matrix, vertex));
+    vertices.forEach((vertex) =>  vertex.applyProjection(matrix));
 
     faces.forEach((face) {
 
-      multiplyVector3(matrixRotation, face.normal);
+      face.normal.applyProjection(matrixRotation);
 
-      face.vertexNormals.forEach((normal) => multiplyVector3( matrixRotation, normal ));
+      face.vertexNormals.forEach((normal) => normal.applyProjection(matrixRotation));
 
-      multiplyVector3( matrix, face.centroid );
+      face.centroid.applyProjection(matrix);
     });
   }
 
@@ -309,7 +309,7 @@ class Geometry {
 
         // Calculate handedness
 
-        tmp2.cross( face.vertexNormals[ i ], t );
+        tmp2 = face.vertexNormals[i].cross(t);
         test = tmp2.dot( tan2[ vertexIndex ] );
         w = (test < 0.0) ? -1.0 : 1.0;
 

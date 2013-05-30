@@ -43,9 +43,7 @@ class WebGL_Geometries  {
                  new MeshBasicMaterial( color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1, side: DoubleSide )
                  ];
 
-    var object;
-
-    object = SceneUtils.createMultiMaterialObject( new CubeGeometry( 100.0, 100.0, 100.0, 4, 4, 4 ), materials );
+    var object = SceneUtils.createMultiMaterialObject( new CubeGeometry( 100.0, 100.0, 100.0, 4, 4, 4 ), materials );
     object.position.setValues( -200.0, 0.0, 400.0 );
     scene.add( object );
 
@@ -106,7 +104,7 @@ class WebGL_Geometries  {
     scene.add( object );
 
 
-    object = new ArrowHelper( new Vector3( 0.0, 1.0, 0.0 ), new Vector3( 0.0, 0.0, 0.0 ), 50 );
+    object = new ArrowHelper(new Vector3(0.0, 1.0, 0.0), new Vector3.zero(), 50.0);
     object.position.setValues( 200.0, 0.0, 400.0 );
     scene.add( object );
 

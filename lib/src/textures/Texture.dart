@@ -66,8 +66,8 @@ class Texture {
   Texture clone() {
     Texture clonedTexture = new Texture( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy );
 
-    clonedTexture.offset.copy( offset );
-    clonedTexture.repeat.copy( repeat );
+    clonedTexture.offset.setFrom( offset );
+    clonedTexture.repeat.setFrom( repeat );
 
     return clonedTexture;
   }

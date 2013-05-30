@@ -108,7 +108,7 @@ class WebGLRenderer implements Renderer {
   Matrix4 _projScreenMatrix,
           _projScreenMatrixPS;
 
-  Vector4 _vector3;
+  Vector3 _vector3;
 
   // light arrays cache
   Vector3 _direction;
@@ -229,7 +229,7 @@ class WebGLRenderer implements Renderer {
   _projScreenMatrix = new Matrix4.identity(),
   _projScreenMatrixPS = new Matrix4.identity(),
 
-  _vector3 = new Vector4(0.0, 0.0, 0.0, 1.0),
+  _vector3 = new Vector3.zero(),
 
   // light arrays cache
 
@@ -1043,7 +1043,7 @@ class WebGLRenderer implements Renderer {
 				vertex = vertices[ v ];
 
 				_vector3.setFrom(vertex);
-				_projScreenMatrixPS.multiplyVector3( _vector3 );
+				_vector3.applyProjection(_projScreenMatrixPS);
 
 				sortArray[ v ] = [ _vector3.z, v ];
 
@@ -3862,9 +3862,8 @@ class WebGLRenderer implements Renderer {
 							webglObject.z = object.renderDepth;
 
 						} else {
-              Vector3 pos = object.matrixWorld.getTranslation();
-							_vector3 = new Vector4(pos[0], pos[1], pos[2], 1.0);
-							multiplyVector3(_projScreenMatrix, pos );
+							_vector3 = object.matrixWorld.getTranslation();
+							_vector3.applyProjection(_projScreenMatrix);
 
 							webglObject.z = _vector3.z;
 
@@ -4992,8 +4991,8 @@ class WebGLRenderer implements Renderer {
 
 				if ( p_uniforms["cameraPosition"] != null ) {
 
-					var position = camera.matrixWorld.getTranslation();
-					_gl.uniform3f( p_uniforms["cameraPosition"], position.x, position.y, position.z );
+					_vector3 = camera.matrixWorld.getTranslation();
+					_gl.uniform3f( p_uniforms["cameraPosition"], _vector3.x, _vector3.y, _vector3.z );
 
 				}
 
@@ -5592,9 +5591,16 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				_direction = light.matrixWorld.getTranslation()
-				           - light.target.matrixWorld.getTranslation();
+				_direction = light.matrixWorld.getTranslation();
+				_vector3 = light.target.matrixWorld.getTranslation();
+				_direction.sub(_vector3);
 				_direction.normalize();
+
+        // skip lights with undefined direction
+        // these create troubles in OpenGL (making pixel black)
+
+        if (_direction.x == 0 && _direction.y == 0 && _direction.z == 0)
+          continue;
 
 				dpositions[ doffset ]     = _direction.x;
 				dpositions[ doffset + 1 ] = _direction.y;

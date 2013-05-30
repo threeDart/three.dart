@@ -12,7 +12,7 @@ void traverseHierarchy( root, callback(node) ) {
   });
 }
 
-Object3D createMultiMaterialObject( geometry, materials ) {
+Object3D createMultiMaterialObject( Geometry geometry, materials ) {
   var group = new Object3D();
 
   materials.forEach((material) {

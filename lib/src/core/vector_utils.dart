@@ -128,7 +128,7 @@ Vector3 calcEulerFromRotationMatrix( Matrix4 m, [String order = 'XYZ'] ) {
   return new Vector3(x, y, z);
 }
 
-Vector3 calcEulerFromQuaternion(Vector3 q, [String order = 'XYZ'] ) {
+Vector3 calcEulerFromQuaternion(Vector4 q, [String order = 'XYZ'] ) {
   double x, y, z;
   // q is assumed to be normalized
 

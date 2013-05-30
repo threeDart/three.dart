@@ -107,7 +107,7 @@ class Ray {
       Mesh mesh = object;
       // Checking boundingSphere
       num distance = _distanceFromIntersection( origin, direction, object.matrixWorld.getTranslation() );
-      Vector3 scale = Frustum.__v1.setValues( object.matrixWorld.getColumnX().length(), object.matrixWorld.getColumnY().length(), object.matrixWorld.getColumnZ().length() );
+      Vector3 scale = Frustum.__v1.setValues( object.matrixWorld.getColumn(0).length, object.matrixWorld.getColumn(1).length, object.matrixWorld.getColumn(2).length );
 
       if ( distance > mesh.geometry.boundingSphere.radius * Math.max( scale.x, Math.max( scale.y, scale.z ) ) ) {
         return intersects;
@@ -150,9 +150,11 @@ class Ray {
         // determine if ray intersects the plane of the face
         // note: this works regardless of the direction of the face normal
 
-        vector = multiplyVector3(objMatrix, vector.setFrom( face.centroid ) ).sub( originCopy );
-        normal = multiplyVector3( object.matrixRotationWorld, normal.setFrom( face.normal ) );
-        dot = directionCopy.dot( normal );
+        vector.setFrom(face.centroid);
+        vector.applyProjection(objMatrix).sub(originCopy);
+        normal.setFrom(face.normal);
+        normal.applyProjection(object.matrixRotationWorld);
+        dot = directionCopy.dot(normal);
 
         // bail if ray and plane are parallel
         if ( dot.abs() < 0.0001 ) continue;
@@ -167,13 +169,13 @@ class Ray {
 
         if ( side == DoubleSide || ( side == FrontSide ? dot < 0 : dot > 0 ) ) {
 
-          intersectPoint.add( originCopy, directionCopy.scale( scalar ) );
+          intersectPoint = originCopy + directionCopy.scale(scalar);
 
           if ( face is Face3 ) {
 
-            a = objMatrix.multiplyVector3( a.copy( vertices[ face.a ] ) );
-            b = objMatrix.multiplyVector3( b.copy( vertices[ face.b ] ) );
-            c = objMatrix.multiplyVector3( c.copy( vertices[ face.c ] ) );
+            a.setFrom(vertices[face.a]).applyProjection(objMatrix);
+            b.setFrom(vertices[face.b]).applyProjection(objMatrix);
+            c.setFrom(vertices[face.c]).applyProjection(objMatrix);
 
             if ( _pointInFace3( intersectPoint, a, b, c ) ) {
               intersect = new Intersect(
@@ -189,10 +191,10 @@ class Ray {
 
           } else if ( face is Face4 ) {
             Face4 face4 = face;
-            a = objMatrix.multiplyVector3( a.setFrom( vertices[ face4.a ] ) );
-            b = objMatrix.multiplyVector3( b.copy( vertices[ face4.b ] ) );
-            c = objMatrix.multiplyVector3( c.copy( vertices[ face4.c ] ) );
-            d = objMatrix.multiplyVector3( d.copy( vertices[ face4.d ] ) );
+            a.setFrom(vertices[face4.a]).applyProjection(objMatrix);
+            b.setFrom(vertices[face4.b]).applyProjection(objMatrix);
+            c.setFrom(vertices[face4.c]).applyProjection(objMatrix);
+            d.setFrom(vertices[face4.d]).applyProjection(objMatrix);
 
             if ( _pointInFace3( intersectPoint, a, b, d ) || _pointInFace3( intersectPoint, b, c, d ) )
             {

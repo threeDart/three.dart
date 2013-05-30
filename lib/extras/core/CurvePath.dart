@@ -140,7 +140,7 @@ class CurvePath extends Curve {
 
 		var v3 = points[0] is Vector3;
 
-		sum = (v3) ? new Vector3.zero() : new Vector2();
+		sum = (v3) ? new Vector3.zero() : new Vector2.zero();
 
 		for ( i = 0; i < points.length; i ++ ) {
 

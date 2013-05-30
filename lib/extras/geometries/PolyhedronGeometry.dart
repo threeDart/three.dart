@@ -157,7 +157,7 @@ class PolyhedronGeometryVertex implements IVector3 {
   PolyhedronGeometryVertex([num x = 0.0, num y = 0.0, num z = 0.0]) : vertex = new Vector3(x, y, z);
 
   normalize() => vertex.normalize();
-  PolyhedronGeometryVertex add( IVector3 v1, IVector3 v2 ) { vertex.add(v1, v2); return this;}
+  PolyhedronGeometryVertex add( IVector3 v1, IVector3 v2 ) { vertex.setFrom(v1).add(v2); return this;}
   PolyhedronGeometryVertex divideScalar( num s ) { vertex.divideScalar(s); return this; }
 
   num get x => vertex.x;

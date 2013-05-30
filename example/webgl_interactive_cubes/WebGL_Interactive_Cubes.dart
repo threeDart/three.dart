@@ -120,7 +120,7 @@ class WebGL_Interactive_Cubes  {
 
     // find intersections
 
-    var vector = new Vector3( mouseX, mouseY, 1 );
+    var vector = new Vector3( mouseX, mouseY, 1.0 );
     projector.unprojectVector( vector, camera );
 
     var ray = new Ray( camera.position, vector.sub( camera.position ).normalize() );

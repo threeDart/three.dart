@@ -93,17 +93,15 @@ class Object3D {
   bool get isDynamic => _dynamic;
        set isDynamic(bool flag) => _dynamic = flag;
 
-  void applyMatrix ( matrix ) {
+  void applyMatrix ( Matrix4 matrix ) {
+    this.matrix = matrix * this.matrix;
 
-    this.matrix.multiply(matrix, this.matrix);
+    this.scale = getScaleFromMatrix( this.matrix );
 
-    this.scale.getScaleFromMatrix( this.matrix );
+    Matrix4 mat = extractRotation(new Matrix4.identity(), this.matrix );
+    this.rotation = calcEulerFromRotationMatrix( mat, this.eulerOrder );
 
-    Matrix4 mat = extractRotation(new Matrix4(0.0, 0.0, 0.0, 1.0), this.matrix );
-    this.rotation.setEulerFromRotationMatrix( mat, this.eulerOrder );
-
-    this.position.getPositionFromMatrix( this.matrix );
-
+    this.position = this.matrix.getTranslation();
   }
 
   void translate( num distance, Vector3 axis ) {
@@ -239,9 +237,13 @@ class Object3D {
 
   }
 
-  worldToLocal( vector ) => __m1.getInverse( this.matrixWorld ).multiplyVector3( vector );
+  worldToLocal(Vector3 vector) {
+    Matrix4 m = this.matrixWorld.clone();
+    m.invert();
+    m.transform3( vector );
+  }
 
-  localToWorld( vector ) => multiplyVector3( matrixWorld, vector );
+  localToWorld(Vector3 vector) => vector.applyProjection(matrixWorld);
 
   clone() {
 
