@@ -49,9 +49,9 @@ init() {
     ..children.add( details );
 
     var object = new THREE.CSS3DObject( element )
-    ..position.x = new Math.Random().nextInt(4000).toDouble() - 2000.0
-    ..position.y = new Math.Random().nextInt(4000).toDouble() - 2000.0
-    ..position.z = new Math.Random().nextInt(4000).toDouble() - 2000.0;
+    ..position.x = new Math.Random().nextDouble() * 4000 - 2000.0
+    ..position.y = new Math.Random().nextDouble() * 4000 - 2000.0
+    ..position.z = new Math.Random().nextDouble() * 4000 - 2000.0;
 
     scene.add( object );
 
@@ -105,12 +105,12 @@ init() {
 
     var object = objects[ i ];
 
-    var phi = i * 0.2 + Math.PI;
+    var phi = i * 0.175 + Math.PI;
 
     object = new THREE.Object3D()
-    ..position.x = 1000.0 * Math.sin( phi )
-    ..position.y = i * 10.0 - 600.0
-    ..position.z = 1000.0 * Math.cos( phi );
+    ..position.x = 1100.0 * Math.sin( phi )
+    ..position.y = -(i * 8.0) + 450.0
+    ..position.z = 1100.0 * Math.cos( phi );
 
     vector.setFrom(object.position);
     vector.x *= 2;
