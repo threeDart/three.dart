@@ -245,3 +245,118 @@ Vector3 getScaleFromMatrix(Matrix4 m) {
   return new Vector3(sx, sy, sz);
 }
 
+List decompose(Matrix4 m, Vector3 translation, Quaternion rotation, Vector3 scale ) {
+
+  var te = m.storage;
+
+  // grab the axis vectors
+  Vector3 x = new Vector3( te[0], te[1], te[2] );
+  Vector3 y = new Vector3( te[4], te[5], te[6] );
+  Vector3 z = new Vector3( te[8], te[9], te[10] );
+
+  translation = ( translation is Vector3 ) ? translation : new Vector3.zero();
+  rotation = ( rotation is Quaternion ) ? rotation : new Quaternion.identity();
+  scale = ( scale is Vector3 ) ? scale : new Vector3.zero();
+
+  scale.x = x.length;
+  scale.y = y.length;
+  scale.z = z.length;
+
+  translation.x = te[12];
+  translation.y = te[13];
+  translation.z = te[14];
+
+  // scale the rotation part
+
+  Matrix4 matrix = m.clone();
+
+  matrix.storage[0] /= scale.x;
+  matrix.storage[1] /= scale.x;
+  matrix.storage[2] /= scale.x;
+
+  matrix.storage[4] /= scale.y;
+  matrix.storage[5] /= scale.y;
+  matrix.storage[6] /= scale.y;
+
+  matrix.storage[8] /= scale.z;
+  matrix.storage[9] /= scale.z;
+  matrix.storage[10] /= scale.z;
+
+  setFromRotationMatrix( rotation, matrix );
+
+
+  return [ translation, rotation, scale ];
+}
+
+Quaternion setFromRotationMatrix(Quaternion quaternion, Matrix4 m ) {
+
+  // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+
+  // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
+  quaternion = new Quaternion.identity();
+
+  var te = m.storage,
+      m11 = te[0], m12 = te[4], m13 = te[8],
+      m21 = te[1], m22 = te[5], m23 = te[9],
+      m31 = te[2], m32 = te[6], m33 = te[10],
+      trace = m11 + m22 + m33,
+      s;
+
+  if( trace > 0 ) {
+
+    s = 0.5 / Math.sqrt( trace + 1.0 );
+
+    quaternion.w = 0.25 / s;
+    quaternion.x = ( m32 - m23 ) * s;
+    quaternion.y = ( m13 - m31 ) * s;
+    quaternion.z = ( m21 - m12 ) * s;
+
+  } else if ( m11 > m22 && m11 > m33 ) {
+
+    s = 2.0 * Math.sqrt( 1.0 + m11 - m22 - m33 );
+
+    quaternion.w = (m32 - m23 ) / s;
+    quaternion.x = 0.25 * s;
+    quaternion.y = (m12 + m21 ) / s;
+    quaternion.z = (m13 + m31 ) / s;
+
+  } else if (m22 > m33) {
+
+    s = 2.0 * Math.sqrt( 1.0 + m22 - m11 - m33 );
+
+    quaternion.w = (m13 - m31 ) / s;
+    quaternion.x = (m12 + m21 ) / s;
+    quaternion.y = 0.25 * s;
+    quaternion.z = (m23 + m32 ) / s;
+
+  } else {
+
+    s = 2.0 * Math.sqrt( 1.0 + m33 - m11 - m22 );
+
+    quaternion.w = ( m21 - m12 ) / s;
+    quaternion.x = ( m13 + m31 ) / s;
+    quaternion.y = ( m23 + m32 ) / s;
+    quaternion.z = 0.25 * s;
+
+  }
+
+  return quaternion;
+}
+
+Matrix4 compose( Matrix4 matrix, Vector3 translation, Quaternion rotation, Vector3 s ) {
+
+  var te = matrix.storage;
+
+  Matrix4 mRotation = new Matrix4.identity();
+  setRotationFromQuaternion( mRotation, rotation );
+
+  Matrix4 mScale = new Matrix4.diagonal3Values(s.x, s.y, s.z);
+
+  mRotation.multiply(mScale);
+
+  te[12] = translation.x;
+  te[13] = translation.y;
+  te[14] = translation.z;
+
+  return matrix;
+}

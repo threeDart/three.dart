@@ -13,43 +13,33 @@ class Ray {
   num near,
       far;
 
-  Vector3 _v0, _v1, _v2;
-
   final num precision;
 
   Ray( [this.origin, this.direction, this.near = 0, this.far = double.INFINITY] )
-      : _v0 = new Vector3.zero(),
-        _v1 = new Vector3.zero(),
-        _v2 = new Vector3.zero(),
-        precision = 0.0001 {
+      : precision = 0.0001 {
 
     if (this.origin == null) this.origin = new Vector3.zero();
     if (this.direction == null) this.direction = new Vector3.zero();
 
       }
 
-  num _distanceFromIntersection( Vector3 origin, Vector3 direction, Vector3 position ) {
-    var v0 = _v0, v1 = _v1, v2 = _v2;
+  double _distanceFromIntersection( Vector3 origin, Vector3 direction, Vector3 position ) {
+    Vector3 v0 = position - origin;
+    double dot = v0.dot(direction);
 
-    var dot, intersect, distance;
-    v0 = position - origin;
-    dot = v0.dot( direction );
-
-    intersect = v1.add( origin, v2.setFrom( direction ).scale( dot ) );
-    distance = position.distanceTo( intersect );
+    Vector3 intersect = origin + direction.scaled(dot);
+    double distance = position.absoluteError(intersect);
 
     return distance;
   }
 
   //http://www.blackpawn.com/texts/pointinpoly/default.html
   bool _pointInFace3( Vector3 p, Vector3 a, Vector3 b, Vector3 c ) {
-    var v0 = _v0, v1 = _v1, v2 = _v2;
-
     num dot00, dot01, dot02, dot11, dot12, invDenom, u, v;
 
-    v0.sub( c, a );
-    v1.sub( b, a );
-    v2.sub( p, a );
+    Vector3 v0 = c - a;
+    Vector3 v1 = b - a;
+    Vector3 v2 = p - a;
 
     dot00 = v0.dot( v0 );
     dot01 = v0.dot( v1 );
@@ -179,7 +169,7 @@ class Ray {
 
             if ( _pointInFace3( intersectPoint, a, b, c ) ) {
               intersect = new Intersect(
-                distance: originCopy.distanceTo( intersectPoint ),
+                distance: originCopy.absoluteError( intersectPoint ),
                 point: intersectPoint.clone(),
                 face: face,
                 object: object
@@ -199,7 +189,7 @@ class Ray {
             if ( _pointInFace3( intersectPoint, a, b, d ) || _pointInFace3( intersectPoint, b, c, d ) )
             {
               intersect = new Intersect(
-                  distance: originCopy.distanceTo( intersectPoint ),
+                  distance: originCopy.absoluteError( intersectPoint ),
                   point: intersectPoint.clone(),
                   face: face,
                   object: object

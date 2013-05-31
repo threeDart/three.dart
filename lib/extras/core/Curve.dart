@@ -95,9 +95,9 @@ abstract class Curve<V> {
 
 			// TODO(nelsonsilva) - Must move distanceTo to IVector interface os create a new IHasDistance
 			if (current is Vector3) {
-			  distance = (current as Vector3).distanceTo( last as Vector3 );
+			  distance = (current as Vector3).absoluteError( last as Vector3 );
 			} else {
-        distance = (current as Vector2).distanceTo( last as Vector2);
+        distance = (current as Vector2).absoluteError( last as Vector2);
       }
 
 			sum += distance;

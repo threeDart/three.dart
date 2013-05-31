@@ -17,14 +17,14 @@ class PolyhedronGeometry extends Geometry {
 
     lfaces.forEach((face) => _make( _p[ face[ 0 ] ], _p[ face[ 1 ] ], _p[ face[ 2 ] ], detail ));
 
-    // now unwrapp and add the original Vector3 to the vertices
-    _p.forEach((v) => this.vertices.add(v.vertex));
+    // TODO No need to unwrap ? (now unwrapp and add the original Vector3 to the vertices)
+    _p.forEach((v) => this.vertices.add(v));
 
     mergeVertices();
 
     // Apply radius
 
-    this.vertices.forEach((vertex) => vertex.multiplyScalar( radius ));
+    this.vertices.forEach((Vector3 vertex) => vertex.scale( radius ));
 
     computeCentroids();
 
@@ -56,8 +56,8 @@ class PolyhedronGeometry extends Geometry {
 
     if ( detail < 1 ) {
 
-      var face = new Face3( v1.index, v2.index, v3.index, [ v1.vertex.clone(), v2.vertex.clone(), v3.vertex.clone() ] );
-      face.centroid.add( v1 ).add( v2 ).add( v3 ).divideScalar( 3 );
+      var face = new Face3( v1.index, v2.index, v3.index, [ v1.clone(), v2.clone(), v3.clone() ] );
+      face.centroid.add( v1 ).add( v2 ).add( v3 ).scale( 1.0 / 3.0 );
       face.normal = face.centroid.clone().normalize();
       this.faces.add( face );
 
@@ -120,7 +120,7 @@ class PolyhedronGeometry extends Geometry {
 
       // generate mean point and project to surface with prepare()
       mid = _prepare(
-          new PolyhedronGeometryVertex().add( v1, v2 ).divideScalar( 2 )
+          new PolyhedronGeometryVertex.fromVector3( (v1 + v2).scale(0.5) )
       );
       _midpoints[ v1.index ][ v2.index ] = mid;
       _midpoints[ v2.index ][ v1.index ] = mid;
@@ -150,20 +150,10 @@ class PolyhedronGeometry extends Geometry {
 /**
  * [PolyhedronGeometryVertex] is a [Vector3] decorator to allow introducing [index] and [uv].
  * */
-class PolyhedronGeometryVertex implements IVector3 {
-  Vector3 vertex;
-  num index;
+class PolyhedronGeometryVertex extends Vector3 {
+  int index;
   UV uv;
-  PolyhedronGeometryVertex([num x = 0.0, num y = 0.0, num z = 0.0]) : vertex = new Vector3(x, y, z);
+  PolyhedronGeometryVertex([num x = 0.0, num y = 0.0, num z = 0.0]) : super(x.toDouble(), y.toDouble(), z.toDouble());
 
-  normalize() => vertex.normalize();
-  PolyhedronGeometryVertex add( IVector3 v1, IVector3 v2 ) { vertex.setFrom(v1).add(v2); return this;}
-  PolyhedronGeometryVertex divideScalar( num s ) { vertex.divideScalar(s); return this; }
-
-  num get x => vertex.x;
-  num get y => vertex.y;
-  num get z => vertex.z;
-
-  clone() => new PolyhedronGeometryVertex(x, y, z);
-
+  PolyhedronGeometryVertex.fromVector3(Vector3 other) : super.copy(other);
 }

@@ -446,7 +446,7 @@ class CanvasRenderer implements Renderer
 
         if ( amount <= 0 ) continue;
 
-        amount *= pLight.distance == 0 ? 1 : 1 - Math.min( position.distanceTo( lightPosition ) / pLight.distance, 1 );
+        amount *= pLight.distance == 0 ? 1 : 1 - Math.min( position.absoluteError( lightPosition ) / pLight.distance, 1 );
 
         if ( amount == 0 ) continue;
 
@@ -1071,10 +1071,10 @@ class CanvasRenderer implements Renderer
   {
     // http://mrdoob.com/blog/post/710
 
-    num c1r = ~~ ( color1.r * 255 ), c1g = ~~ ( color1.g * 255 ), c1b = ~~ ( color1.b * 255 ),
-    c2r = ~~ ( color2.r * 255 ), c2g = ~~ ( color2.g * 255 ), c2b = ~~ ( color2.b * 255 ),
-    c3r = ~~ ( color3.r * 255 ), c3g = ~~ ( color3.g * 255 ), c3b = ~~ ( color3.b * 255 ),
-    c4r = ~~ ( color4.r * 255 ), c4g = ~~ ( color4.g * 255 ), c4b = ~~ ( color4.b * 255 );
+    num c1r = color1._rr, c1g = color1._gg, c1b = color1._bb,
+    c2r = color2._rr, c2g = color2._gg, c2b = color2._bb,
+    c3r = color3._rr, c3g = color3._gg, c3b = color3._bb,
+    c4r = color4._rr, c4g = color4._gg, c4b = color4._bb;
 
     _pixelMapData[ 0 ] = c1r < 0 ? 0 : c1r > 255 ? 255 : c1r;
     _pixelMapData[ 1 ] = c1g < 0 ? 0 : c1g > 255 ? 255 : c1g;

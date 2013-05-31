@@ -34,7 +34,7 @@ class WebGL_Geometries  {
     light.position.setValues( 0.0, 1.0, 0.0 );
     scene.add( light );
 
-    var map = ImageUtils.loadTexture( 'textures/ash_uvgrid01.jpg' );
+    Texture map = ImageUtils.loadTexture( 'textures/ash_uvgrid01.jpg' );
     map.wrapS = map.wrapT = RepeatWrapping;
     map.anisotropy = 16;
 
