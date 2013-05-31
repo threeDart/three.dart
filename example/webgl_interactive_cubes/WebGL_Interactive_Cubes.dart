@@ -11,7 +11,7 @@ class WebGL_Interactive_Cubes  {
   WebGLRenderer renderer;
   Projector projector;
 
-  var mouseX = 0, mouseY = 0;
+  double mouseX = 0.0, mouseY = 0.0;
 
   Mesh INTERSECTED;
 
@@ -26,7 +26,7 @@ class WebGL_Interactive_Cubes  {
 
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
     camera.position.setValues( 0.0, 300.0, 500.0 );
 
     scene = new Scene();

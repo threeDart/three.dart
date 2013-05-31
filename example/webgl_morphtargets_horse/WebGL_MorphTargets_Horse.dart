@@ -22,7 +22,7 @@ class WebGL_MorphTargets_Horse  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
     camera.position.y = 300.0;
     cameraTarget = new Vector3( 0.0, 150.0, 0.0 );
 

@@ -41,7 +41,7 @@ class Mesh extends Object3D {
         _morphTargetDictionary = {};
 
         for( int m = 0; m < geometry.morphTargets.length; m ++ ) {
-          morphTargetInfluences.add( 0 );
+          morphTargetInfluences.add( 0.0 );
           _morphTargetDictionary[ geometry.morphTargets[ m ].name ] = m;
         }
       }

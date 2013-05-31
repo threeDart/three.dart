@@ -3742,7 +3742,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					object.__webglMorphTargetInfluences[ m ] = 0;
+					object.__webglMorphTargetInfluences[ m ] = 0.0;
 
 				}
 
@@ -5337,6 +5337,7 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "fv1" ) { // flat array of floats (JS or typed array)
         if (value is List) {
+          // TODO Improve this conversion, did not find where the value was set
           List<double> doubleList = new List<double>(value.length);
           for(int i = 0; i< value.length;i++) {
             doubleList[i] = value[i].toDouble();
@@ -5347,8 +5348,12 @@ class WebGLRenderer implements Renderer {
         }
 
 			} else if ( type == "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
-
-				_gl.uniform3fv( location, (value is List) ? new Float32List.fromList(value) : value );
+        // TODO Improve this conversion, did not find where the value was set
+			  List<double> doubleList = new List<double>(value.length);
+        for(int i = 0; i< value.length;i++) {
+          doubleList[i] = value[i].toDouble();
+        }
+				_gl.uniform3fv( location, (value is List) ? new Float32List.fromList(doubleList) : value );
 
 			} else if ( type == "v2v" ) { // array of THREE.Vector2
 

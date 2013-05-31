@@ -52,7 +52,7 @@ class WebGL_Geometry_Extrude_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
     camera.position.setValues( 0.0, 150.0, 500.0 );
 
     scene = new Scene();

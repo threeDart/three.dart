@@ -82,7 +82,7 @@ abstract class Curve<V> {
 
 		var cache = [];
 		var current;
-		var last = getPoint( 0 );
+		var last = getPoint( 0.0 );
 		var sum = 0;
 
 		cache.add( 0 );
