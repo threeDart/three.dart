@@ -7,8 +7,8 @@ class LineCurve extends Curve2D {
   LineCurve( this.v1, this.v2 ) : super();
 
   Vector2 getPoint( t ) {
-    var point = v2.clone().sub(v1);
-    point.multiplyScalar( t ).add( v1 );
+    Vector2 point = v2.clone().sub(v1);
+    point.scale( t ).add( v1 );
     return point;
   }
 

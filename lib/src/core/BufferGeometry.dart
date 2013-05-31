@@ -436,7 +436,7 @@ class BufferGeometry {
 			// Gram-Schmidt orthogonalize
 
 			tmp.copy( t );
-			tmp.sub( n.multiplyScalar( n.dot( t ) ) ).normalize();
+			tmp.sub( n.scale( n.dot( t ) ) ).normalize();
 
 			// Calculate handedness
 

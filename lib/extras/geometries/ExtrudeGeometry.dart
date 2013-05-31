@@ -174,7 +174,7 @@ class ExtrudeGeometry extends Geometry {
 
     }
 
-    intersection = v.multiplyScalar( s ).add( p );
+    intersection = v.scale( s ).add( p );
 
     return intersection.sub( pt_i ).clone(); // Don't normalize!, otherwise sharp corners become ugly
 
