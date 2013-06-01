@@ -23,7 +23,7 @@ class WebGL_Geometries  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 45.0, window.innerWidth / window.innerHeight, 1.0, 200.00 );
+    camera = new PerspectiveCamera( 45.0, window.innerWidth / window.innerHeight, 1.0, 2000.00 );
     camera.position.y = 400.0;
 
     scene = new Scene();
