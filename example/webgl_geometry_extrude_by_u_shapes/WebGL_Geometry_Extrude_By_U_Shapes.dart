@@ -1,7 +1,7 @@
 import 'dart:html' hide Path;
 import 'dart:math' as Math;
 import 'package:vector_math/vector_math.dart';
-import 'package:three/three.dart' hide Vector2;
+import 'package:three/three.dart';
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
 class WebGL_Geometry_Extrude_By_U_Shapes  {
