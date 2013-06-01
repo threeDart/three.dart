@@ -10,7 +10,7 @@ part of three;
 
 class FogLinear implements Fog {
   Color color;
-  num near;
-  num far;
-  FogLinear( num hex, [this.near = 1, this.far = 1000] ) : color = new Color( hex );
+  double near;
+  double far;
+  FogLinear( num hex, [this.near = 1.0, this.far = 1000.0] ) : color = new Color( hex );
 }

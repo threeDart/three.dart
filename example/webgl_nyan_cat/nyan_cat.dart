@@ -45,10 +45,10 @@ class NyanCat {
     container = new DivElement();
     document.body.children.add(container);
 
-    camera = new PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 10000 );
-    camera.position.z = 30;
-    camera.position.x = 0;
-    camera.position.y = 0;
+    camera = new PerspectiveCamera( 45.0, window.innerWidth / window.innerHeight, 0.1, 10000.0 );
+    camera.position.z = 30.0;
+    camera.position.x = 0.0;
+    camera.position.y = 0.0;
 
     scene = new Scene();
     // TODO: FogExp2 does not inherit correctly.
@@ -80,7 +80,7 @@ class NyanCat {
     helper( poptart,   4, -14,   2,   1,   1,  .7, 0xff3399);
 
     poptart.position.x=-10.5;
-    poptart.position.y=9;
+    poptart.position.y=9.0;
     scene.add( poptart );
 
     //FEET
@@ -105,7 +105,7 @@ class NyanCat {
     helper( feet,   21, -3,-.99,  2,  1,   2, 0x999999);
 
     feet.position.x=-12.5;
-    feet.position.y=-6;
+    feet.position.y=-6.0;
     scene.add( feet );
 
     //TAIL
@@ -120,7 +120,7 @@ class NyanCat {
     helper( tail,   4, -4, -.5,  2,  1,   2, 0x999999);
 
     tail.position.x=-16.5;
-    tail.position.y=2;
+    tail.position.y=2.0;
     scene.add( tail );
 
     //FACE
@@ -158,8 +158,8 @@ class NyanCat {
     helper(    face,  13,  -8,  .6,   2,   2, .91, 0xff9999);
 
     face.position.x=-.5;
-    face.position.y=4;
-    face.position.z=4;
+    face.position.y=4.0;
+    face.position.z=4.0;
     scene.add(face);
 
     //RAINBOW
@@ -202,7 +202,7 @@ class NyanCat {
     }
 
     var pointLight = new PointLight( 0xFFFFFF );
-    pointLight.position.z = 1000;
+    pointLight.position.z = 1000.0;
     scene.add(pointLight);
 
     renderer = new WebGLRenderer();
@@ -250,8 +250,8 @@ class NyanCat {
           feet.position.x++;
           feet.position.y--;
           poptart.position.y--;
-          rainbow.position.x-=9;
-          rainChunk.position.x+=(8*(numRainChunks-1))-1;
+          rainbow.position.x-=9.0;
+          rainChunk.position.x+=(8.0*(numRainChunks-1))-1;
           break;
         case 2:
           feet.position.x--;
@@ -259,8 +259,8 @@ class NyanCat {
         case 3:
           face.position.x--;
           feet.position.x--;
-          rainbow.position.x+=9;
-          rainChunk.position.x-=(8*(numRainChunks-1))-1;
+          rainbow.position.x+=9.0;
+          rainChunk.position.x-=(8.0*(numRainChunks-1))-1;
           break;
         case 4:
           face.position.y++;
@@ -268,8 +268,8 @@ class NyanCat {
         case 5:
           poptart.position.y++;
           feet.position.y++;
-          rainbow.position.x-=9;
-          rainChunk.position.x+=(8*(numRainChunks-1))-1;
+          rainbow.position.x-=9.0;
+          rainChunk.position.x+=(8.0*(numRainChunks-1))-1;
           break;
         case 6://8th frame
         face.position.x++;
@@ -280,8 +280,8 @@ class NyanCat {
           face.position.y--;
           feet.position.x++;
           feet.position.y--;
-          rainbow.position.x+=9;
-          rainChunk.position.x-=(8*(numRainChunks-1))-1;
+          rainbow.position.x+=9.0;
+          rainChunk.position.x-=(8.0*(numRainChunks-1))-1;
           break;
         case 8:
           feet.position.x--;
@@ -289,8 +289,8 @@ class NyanCat {
         case 9:
           face.position.x--;
           feet.position.x--;
-          rainbow.position.x-=9;
-          rainChunk.position.x+=(8*(numRainChunks-1))-1;
+          rainbow.position.x-=9.0;
+          rainChunk.position.x+=(8.0*(numRainChunks-1))-1;
           break;
         case 10:
           face.position.y++;
@@ -298,8 +298,8 @@ class NyanCat {
         case 11://1st frame
         poptart.position.y++;
         feet.position.y++;
-        rainbow.position.x+=9;
-        rainChunk.position.x-=(8*(numRainChunks-1))-1;
+        rainbow.position.x+=9.0;
+        rainChunk.position.x-=(8.0*(numRainChunks-1))-1;
         break;
       }
     }
@@ -311,11 +311,11 @@ class NyanCat {
 
   helper(o, x, y, z, w, h, d, c){
     var material = new MeshLambertMaterial(color: c);
-    var geometry = new CubeGeometry(w, h, d, 1, 1, 1);
+    var geometry = new CubeGeometry(w.toDouble(), h.toDouble(), d.toDouble(), 1, 1, 1);
     var mesh = new Mesh( geometry, material );
-    mesh.position.x=x+(w/2);
-    mesh.position.y=y-(h/2);
-    mesh.position.z=z+(d/2);
+    mesh.position.x=x.toDouble()+(w.toDouble()/2.0);
+    mesh.position.y=y.toDouble()-(h.toDouble()/2.0);
+    mesh.position.z=z.toDouble()+(d.toDouble()/2.0);
     o.add( mesh );
   }
 

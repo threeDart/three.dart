@@ -20,9 +20,9 @@ class TorusKnotGeometry extends Geometry {
 
     grid = new List(segmentsR);
 
-    var tang = new Vector3();
-    var n = new Vector3();
-    var bitan = new Vector3();
+    var tang = new Vector3.zero();
+    var n = new Vector3.zero();
+    var bitan = new Vector3.zero();
 
     for ( var i = 0; i < segmentsR; ++ i ) {
 
@@ -36,11 +36,11 @@ class TorusKnotGeometry extends Geometry {
         var p2 = getPos( u + 0.01, v, this.q, this.p, this.radius, this.heightScale );
         var cx, cy;
 
-        tang.sub( p2, p1 );
-        n.add( p2, p1 );
+        tang = p2 - p1;
+        n = p2 + p1;
 
-        bitan.cross( tang, n );
-        n.cross( bitan, tang );
+        bitan = tang.cross( n );
+        n = bitan.cross( tang );
         bitan.normalize();
         n.normalize();
 

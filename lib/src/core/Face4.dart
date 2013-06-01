@@ -18,7 +18,7 @@ class Face4 implements IFace4 {
 
   /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
   Face4( [this.a, this.b, this.c, this.d, normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
-    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
+    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3.zero();
     vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
 
     color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
@@ -28,16 +28,16 @@ class Face4 implements IFace4 {
 
     materialIndex = materialIndex;
 
-    centroid = new Vector3();
+    centroid = new Vector3.zero();
   }
 
   clone() {
 
     var face = new Face4( a, b, c, d );
 
-    face.normal.copy( this.normal );
-    face.color.copy( this.color );
-    face.centroid.copy( this.centroid );
+    face.normal.setFrom( this.normal );
+    face.color = this.color.clone();
+    face.centroid.setFrom( this.centroid );
 
     face.materialIndex = this.materialIndex;
 

@@ -9,7 +9,7 @@ class SkinnedMesh extends Mesh {
 	DataTexture boneTexture;
 
 	SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
-      : identityMatrix = new Matrix4(),
+      : identityMatrix = new Matrix4.identity(),
         bones = [],
         boneMatrices = [],
         super(geometry, material) {
@@ -88,7 +88,7 @@ class SkinnedMesh extends Mesh {
 
         boneTextureWidth = size;
         boneTextureHeight = size;
-        boneMatrices = new Float32Array( boneTextureWidth * boneTextureHeight * 4 ); // 4 floats per RGBA pixel
+        boneMatrices = new Float32List( boneTextureWidth * boneTextureHeight * 4 ); // 4 floats per RGBA pixel
         boneTexture = new DataTexture( boneMatrices, boneTextureWidth, boneTextureHeight, RGBAFormat, type: FloatType );
         boneTexture.minFilter = NearestFilter;
         boneTexture.magFilter = NearestFilter;
@@ -97,7 +97,7 @@ class SkinnedMesh extends Mesh {
 
       } else {
 
-        boneMatrices = new Float32Array( 16 * nBones );
+        boneMatrices = new Float32List( 16 * nBones );
 
       }
 
@@ -128,11 +128,11 @@ class SkinnedMesh extends Mesh {
 
 	    if ( parent != null) {
 
-	      matrixWorld.multiply( parent.matrixWorld, matrix );
+	      matrixWorld = parent.matrixWorld * matrix;
 
 	    } else {
 
-	      matrixWorld.copy( matrix );
+	      matrixWorld.setFrom( matrix );
 
 	    }
 
@@ -186,7 +186,7 @@ class SkinnedMesh extends Mesh {
 
 	    bone = bones[ b ];
 
-	    var inverseMatrix = new Matrix4();
+	    var inverseMatrix = new Matrix4.identity();
 	    inverseMatrix.getInverse( bone.skinMatrix );
 
 	    boneInverses.add( inverseMatrix );
@@ -212,10 +212,10 @@ class SkinnedMesh extends Mesh {
 	      var indexB = geometry.skinIndices[ i ].y;
 
 	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
-	      geometry["skinVerticesA"].add( boneInverses[ indexA ].multiplyVector3( vertex ) );
+	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexA]));
 
 	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
-	      geometry["skinVerticesA"].add( boneInverses[ indexB ].multiplyVector3( vertex ) );
+	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexB]));
 
 	      // todo: add more influences
 

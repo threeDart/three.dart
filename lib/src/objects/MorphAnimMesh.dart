@@ -51,13 +51,14 @@ class MorphAnimMesh extends Mesh {
 
     var firstAnimation, animations = geometry["animations"];
 
-    var pattern = new RegExp('''([a-z]+)(\d+)''');
+    RegExp pattern = new RegExp('''([a-z]+)(\d+)''');
 
     var il = geometry.morphTargets.length;
     for ( var i = 0; i < il; i ++ ) {
 
       var morph = geometry.morphTargets[ i ];
-      var parts = morph.name.allMatches( pattern ).toList();
+      // TODO(aforsell) Is this really correct use of RegExp?
+      var parts = morph.name.allMatches( pattern.toString() ).toList();
 
       if ( parts && parts.length > 1 ) {
 

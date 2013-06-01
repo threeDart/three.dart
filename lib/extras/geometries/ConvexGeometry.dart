@@ -153,18 +153,13 @@ class ConvexGeometry extends Geometry {
    */
   _normal( va, vb, vc ) {
 
-    var cb = new Vector3();
-    var ab = new Vector3();
+    Vector3 cb = new Vector3.zero();
+    Vector3 ab = new Vector3.zero();
 
-    cb.sub( vc, vb );
-    ab.sub( va, vb );
-    cb.crossSelf( ab );
-
-    if ( !cb.isZero() ) {
-
-      cb.normalize();
-
-    }
+    cb = vc - vb;
+    ab = va - vb;
+    cb = cb.cross( ab );
+    cb.normalize();
 
     return cb;
 

@@ -1,12 +1,15 @@
 library three;
 
 import 'dart:html';
+import 'dart:typed_data';
 import 'dart:web_gl' as gl;
 import 'dart:math' as Math;
 import 'dart:json' as JSON;
 
 import 'src/core/ThreeMath.dart' as ThreeMath;
 export 'src/core/ThreeMath.dart';
+
+import 'package:vector_math/vector_math.dart';
 
 // TODO - Use M1 Re-export ( see: http://code.google.com/p/dart/issues/detail?id=760)
 import 'extras/image_utils.dart' as ImageUtils;
@@ -22,11 +25,13 @@ part 'src/cameras/Camera.dart';
 part 'src/cameras/PerspectiveCamera.dart';
 part 'src/cameras/OrthographicCamera.dart';
 
-part 'src/core/Vector3.dart';
-part 'src/core/Matrix3.dart';
-part 'src/core/Matrix4.dart';
-part 'src/core/Quaternion.dart';
-part 'src/core/Vector4.dart';
+//part 'src/core/Vector3.dart';
+//part 'src/core/Matrix3.dart';
+//part 'src/core/Matrix4.dart';
+part 'src/core/vector_utils.dart';
+part 'src/core/matrix_utils.dart';
+//part 'src/core/Quaternion.dart';
+//part 'src/core/Vector4.dart';
 part 'src/core/Object3D.dart';
 part 'src/core/Color.dart';
 part 'src/core/Face3.dart';
@@ -38,7 +43,7 @@ part 'src/core/Geometry.dart';
 part 'src/core/Vertex.dart';
 part 'src/core/Projector.dart';
 part 'src/core/Ray.dart';
-part 'src/core/Vector2.dart';
+//part 'src/core/Vector2.dart';
 part 'src/core/IVector3.dart';
 part 'src/core/IVector2.dart';
 part 'src/core/IVector4.dart';

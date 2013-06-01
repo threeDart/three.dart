@@ -35,9 +35,9 @@ class TextGeometry extends ExtrudeGeometry {
       var max = b.maxX;
 
       bendPath = new QuadraticBezierCurve(
-          new Vector2( 0, 0 ),
-          new Vector2( max / 2, 120 ),
-          new Vector2( max, 0 )
+          new Vector2.zero(),
+          new Vector2( max / 2, 120.0 ),
+          new Vector2( max, 0.0 )
       );
     }
 

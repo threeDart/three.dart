@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 
 class WebGL_MorphTargets_Horse  {
@@ -21,20 +22,20 @@ class WebGL_MorphTargets_Horse  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.y = 300;
-    cameraTarget = new Vector3( 0, 150, 0 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
+    camera.position.y = 300.0;
+    cameraTarget = new Vector3( 0.0, 150.0, 0.0 );
 
     scene = new Scene();
 
     var light;
 
     light = new DirectionalLight( 0xefefff, 2 );
-    light.position.setValues( 1, 1, 1 ).normalize();
+    light.position.setValues( 1.0, 1.0, 1.0 ).normalize();
     scene.add( light );
 
     light = new DirectionalLight( 0xffefef, 2 );
-    light.position.setValues( -1, -1, -1 ).normalize();
+    light.position.setValues( -1.0, -1.0, -1.0 ).normalize();
     scene.add( light );
 
     var loader = new JSONLoader( showStatus: true );

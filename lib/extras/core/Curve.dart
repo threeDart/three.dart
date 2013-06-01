@@ -3,7 +3,7 @@ part of three;
 /**************************************************************
  *	Abstract Curve base class
  **************************************************************/
-abstract class Curve<V extends IVector2> {
+abstract class Curve<V> {
 
   int _arcLengthDivisions = null;
   List cacheArcLengths = null;
@@ -82,7 +82,7 @@ abstract class Curve<V extends IVector2> {
 
 		var cache = [];
 		var current;
-		var last = getPoint( 0 );
+		var last = getPoint( 0.0 );
 		var sum = 0;
 
 		cache.add( 0 );
@@ -95,9 +95,9 @@ abstract class Curve<V extends IVector2> {
 
 			// TODO(nelsonsilva) - Must move distanceTo to IVector interface os create a new IHasDistance
 			if (current is Vector3) {
-			  distance = (current as Vector3).distanceTo( last as Vector3 );
+			  distance = (current as Vector3).absoluteError( last as Vector3 );
 			} else {
-        distance = (current as Vector2).distanceTo( last as Vector2);
+        distance = (current as Vector2).absoluteError( last as Vector2);
       }
 
 			sum += distance;
@@ -213,7 +213,7 @@ abstract class Curve<V extends IVector2> {
 		var pt1 = getPoint( t1 );
 		var pt2 = getPoint( t2 );
 
-		var vec = pt2.clone().subSelf(pt1);
+		var vec = pt2.clone().sub(pt1);
 		return vec.normalize();
 	}
 

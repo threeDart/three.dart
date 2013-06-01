@@ -1,5 +1,6 @@
-import 'dart:html';
+import 'dart:html' hide Path;
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 import 'package:three/extras/geometry_utils.dart' as GeometryUtils;
@@ -103,17 +104,17 @@ class WebGL_Geometry_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 150, 500 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
+    camera.position.setValues( 0.0, 150.0, 500.0 );
 
     scene = new Scene();
 
     var light = new DirectionalLight( 0xffffff );
-    light.position.setValues( 0, 0, 1 );
+    light.position.setValues( 0.0, 0.0, 1.0 );
     scene.add( light );
 
     parent = new Object3D();
-    parent.position.y = 50;
+    parent.position.y = 50.0;
     scene.add( parent );
 
     var extrude_amount = 20,
@@ -125,28 +126,28 @@ class WebGL_Geometry_Shapes  {
 
     var californiaPts = [];
 
-    californiaPts.add( new Vector2 ( 610, 320 ) );
-    californiaPts.add( new Vector2 ( 450, 300 ) );
-    californiaPts.add( new Vector2 ( 392, 392 ) );
-    californiaPts.add( new Vector2 ( 266, 438 ) );
-    californiaPts.add( new Vector2 ( 190, 570 ) );
-    californiaPts.add( new Vector2 ( 190, 600 ) );
-    californiaPts.add( new Vector2 ( 160, 620 ) );
-    californiaPts.add( new Vector2 ( 160, 650 ) );
-    californiaPts.add( new Vector2 ( 180, 640 ) );
-    californiaPts.add( new Vector2 ( 165, 680 ) );
-    californiaPts.add( new Vector2 ( 150, 670 ) );
-    californiaPts.add( new Vector2 (  90, 737 ) );
-    californiaPts.add( new Vector2 (  80, 795 ) );
-    californiaPts.add( new Vector2 (  50, 835 ) );
-    californiaPts.add( new Vector2 (  64, 870 ) );
-    californiaPts.add( new Vector2 (  60, 945 ) );
-    californiaPts.add( new Vector2 ( 300, 945 ) );
-    californiaPts.add( new Vector2 ( 300, 743 ) );
-    californiaPts.add( new Vector2 ( 600, 473 ) );
-    californiaPts.add( new Vector2 ( 626, 425 ) );
-    californiaPts.add( new Vector2 ( 600, 370 ) );
-    californiaPts.add( new Vector2 ( 610, 320 ) );
+    californiaPts.add( new Vector2 ( 610.0, 320.0 ) );
+    californiaPts.add( new Vector2 ( 450.0, 300.0 ) );
+    californiaPts.add( new Vector2 ( 392.0, 392.0 ) );
+    californiaPts.add( new Vector2 ( 266.0, 438.0 ) );
+    californiaPts.add( new Vector2 ( 190.0, 570.0 ) );
+    californiaPts.add( new Vector2 ( 190.0, 600.0 ) );
+    californiaPts.add( new Vector2 ( 160.0, 620.0 ) );
+    californiaPts.add( new Vector2 ( 160.0, 650.0 ) );
+    californiaPts.add( new Vector2 ( 180.0, 640.0 ) );
+    californiaPts.add( new Vector2 ( 165.0, 680.0 ) );
+    californiaPts.add( new Vector2 ( 150.0, 670.0 ) );
+    californiaPts.add( new Vector2 (  90.0, 737.0 ) );
+    californiaPts.add( new Vector2 (  80.0, 795.0 ) );
+    californiaPts.add( new Vector2 (  50.0, 835.0 ) );
+    californiaPts.add( new Vector2 (  64.0, 870.0 ) );
+    californiaPts.add( new Vector2 (  60.0, 945.0 ) );
+    californiaPts.add( new Vector2 ( 300.0, 945.0 ) );
+    californiaPts.add( new Vector2 ( 300.0, 743.0 ) );
+    californiaPts.add( new Vector2 ( 600.0, 473.0 ) );
+    californiaPts.add( new Vector2 ( 626.0, 425.0 ) );
+    californiaPts.add( new Vector2 ( 600.0, 370.0 ) );
+    californiaPts.add( new Vector2 ( 610.0, 320.0 ) );
 
     var californiaShape = new Shape( californiaPts );
 
@@ -351,10 +352,10 @@ class WebGL_Geometry_Shapes  {
     // Spline shape + path extrusion
 
     var splinepts = [];
-    splinepts.add( new Vector2 ( 350, 100 ) );
-    splinepts.add( new Vector2 ( 400, 450 ) );
-    splinepts.add( new Vector2 ( -140, 350 ) );
-    splinepts.add( new Vector2 ( 0, 0 ) );
+    splinepts.add( new Vector2 ( 350.0, 100.0 ) );
+    splinepts.add( new Vector2 ( 400.0, 450.0 ) );
+    splinepts.add( new Vector2 ( -140.0, 350.0 ) );
+    splinepts.add( new Vector2.zero() );
 
     var splineShape = new Shape(  );
     splineShape.moveTo( 0, 0 );
@@ -365,10 +366,10 @@ class WebGL_Geometry_Shapes  {
     // TODO 3d path?
 
     var apath = new SplineCurve3();
-    apath.points.add(new Vector3(-50, 150, 10));
-    apath.points.add(new Vector3(-20, 180, 20));
-    apath.points.add(new Vector3(40, 220, 50));
-    apath.points.add(new Vector3(200, 290, 100));
+    apath.points.add(new Vector3(-50.0, 150.0, 10.0));
+    apath.points.add(new Vector3(-20.0, 180.0, 20.0));
+    apath.points.add(new Vector3(40.0, 220.0, 50.0));
+    apath.points.add(new Vector3(200.0, 290.0, 100.0));
 
     var extrude_extrudePath = apath;
     extrude_bevelEnabled = false;

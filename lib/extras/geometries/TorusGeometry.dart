@@ -5,7 +5,7 @@ class TorusGeometry extends Geometry {
 
   TorusGeometry ([this.radius = 100, this.tube = 40, this.segmentsR = 8, this.segmentsT = 6, this.arc = Math.PI * 2]) : super() {
 
-    var center = new Vector3();
+    var center = new Vector3.zero();
     var uvs = <UV>[];
     var normals = <Vector3>[];
 
@@ -19,7 +19,7 @@ class TorusGeometry extends Geometry {
         center.x = this.radius * Math.cos( u );
         center.y = this.radius * Math.sin( u );
 
-        var vertex = new Vector3();
+        var vertex = new Vector3.zero();
         vertex.x = ( this.radius + this.tube * Math.cos( v ) ) * Math.cos( u );
         vertex.y = ( this.radius + this.tube * Math.cos( v ) ) * Math.sin( u );
         vertex.z = this.tube * Math.sin( v );
@@ -27,7 +27,7 @@ class TorusGeometry extends Geometry {
         this.vertices.add( vertex );
 
         uvs.add( new UV( i / this.segmentsT, j / this.segmentsR ) );
-        normals.add( vertex.clone().subSelf( center ).normalize() );
+        normals.add( vertex.clone().sub( center ).normalize() );
 
       }
     }
@@ -43,10 +43,10 @@ class TorusGeometry extends Geometry {
         var d = ( this.segmentsT + 1 ) * j + i;
 
         var face = new Face4( a, b, c, d, [ normals[ a ], normals[ b ], normals[ c ], normals[ d ] ] );
-        face.normal.addSelf( normals[ a ] );
-        face.normal.addSelf( normals[ b ] );
-        face.normal.addSelf( normals[ c ] );
-        face.normal.addSelf( normals[ d ] );
+        face.normal.add( normals[ a ] );
+        face.normal.add( normals[ b ] );
+        face.normal.add( normals[ c ] );
+        face.normal.add( normals[ d ] );
         face.normal.normalize();
 
         this.faces.add( face );

@@ -55,49 +55,45 @@ class CSS3DRenderer implements Renderer {
 
   getCameraCSSMatrix( matrix ) {
 
-    var elements = matrix.elements;
-
     return 'matrix3d('
-          '${epsilon( elements[ 0 ] )},'
-          '${epsilon( - elements[ 1 ] )},'
-          '${epsilon( elements[ 2 ] )},'
-          '${epsilon( elements[ 3 ] )},'
-          '${epsilon( elements[ 4 ] )},'
-          '${epsilon( - elements[ 5 ] )},'
-          '${epsilon( elements[ 6 ] )},'
-          '${epsilon( elements[ 7 ] )},'
-          '${epsilon( elements[ 8 ] )},'
-          '${epsilon( - elements[ 9 ] )},'
-          '${epsilon( elements[ 10 ] )},'
-          '${epsilon( elements[ 11 ] )},'
-          '${epsilon( elements[ 12 ] )},'
-          '${epsilon( - elements[ 13 ] )},'
-          '${epsilon( elements[ 14 ] )},'
-          '${epsilon( elements[ 15 ] )}'
+          '${epsilon( matrix[ 0 ] )},'
+          '${epsilon( - matrix[ 1 ] )},'
+          '${epsilon( matrix[ 2 ] )},'
+          '${epsilon( matrix[ 3 ] )},'
+          '${epsilon( matrix[ 4 ] )},'
+          '${epsilon( - matrix[ 5 ] )},'
+          '${epsilon( matrix[ 6 ] )},'
+          '${epsilon( matrix[ 7 ] )},'
+          '${epsilon( matrix[ 8 ] )},'
+          '${epsilon( - matrix[ 9 ] )},'
+          '${epsilon( matrix[ 10 ] )},'
+          '${epsilon( matrix[ 11 ] )},'
+          '${epsilon( matrix[ 12 ] )},'
+          '${epsilon( - matrix[ 13 ] )},'
+          '${epsilon( matrix[ 14 ] )},'
+          '${epsilon( matrix[ 15 ] )}'
           ')';
   }
 
   getObjectCSSMatrix( matrix ) {
 
-    var elements = matrix.elements;
-
     return 'translate3d(-50%,-50%,0px) matrix3d('
-          '${epsilon( elements[ 0 ] )},'
-          '${epsilon( elements[ 1 ] )},'
-          '${epsilon( elements[ 2 ] )},'
-          '${epsilon( elements[ 3 ] )},'
-          '${epsilon( elements[ 4 ] )},'
-          '${epsilon( elements[ 5 ] )},'
-          '${epsilon( elements[ 6 ] )},'
-          '${epsilon( elements[ 7 ] )},'
-          '${epsilon( elements[ 8 ] )},'
-          '${epsilon( elements[ 9 ] )},'
-          '${epsilon( elements[ 10 ] )},'
-          '${epsilon( elements[ 11 ] )},'
-          '${epsilon( elements[ 12 ] )},'
-          '${epsilon( elements[ 13 ] )},'
-          '${epsilon( elements[ 14 ] )},'
-          '${epsilon( elements[ 15 ] )}'
+          '${epsilon( matrix[ 0 ] )},'
+          '${epsilon( matrix[ 1 ] )},'
+          '${epsilon( matrix[ 2 ] )},'
+          '${epsilon( matrix[ 3 ] )},'
+          '${epsilon( matrix[ 4 ] )},'
+          '${epsilon( matrix[ 5 ] )},'
+          '${epsilon( matrix[ 6 ] )},'
+          '${epsilon( matrix[ 7 ] )},'
+          '${epsilon( matrix[ 8 ] )},'
+          '${epsilon( matrix[ 9 ] )},'
+          '${epsilon( matrix[ 10 ] )},'
+          '${epsilon( matrix[ 11 ] )},'
+          '${epsilon( matrix[ 12 ] )},'
+          '${epsilon( matrix[ 13 ] )},'
+          '${epsilon( matrix[ 14 ] )},'
+          '${epsilon( matrix[ 15 ] )}'
           ') scale3d(1,-1,1)';
 
   }

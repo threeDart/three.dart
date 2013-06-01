@@ -16,6 +16,6 @@ class PointLight extends Light
   {
     //THREE.Light.call( this, hex );
 
-    _position = new Vector3( 0, 0, 0 );
+    _position = new Vector3.zero();
   }
 }

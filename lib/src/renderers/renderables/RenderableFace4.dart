@@ -29,11 +29,11 @@ class RenderableFace4 implements IRenderableFace4 {
         v3 = new RenderableVertex(),
         v4 = new RenderableVertex(),
 
-        centroidWorld = new Vector3(),
-        centroidScreen = new Vector3(),
+        centroidWorld = new Vector3.zero(),
+        centroidScreen = new Vector3.zero(),
 
-        normalWorld = new Vector3(),
-        vertexNormalsWorld = [ new Vector3(), new Vector3(), new Vector3(), new Vector3() ],
+        normalWorld = new Vector3.zero(),
+        vertexNormalsWorld = [ new Vector3.zero(), new Vector3.zero(), new Vector3.zero(), new Vector3.zero() ],
 
         material = null,
         uvs = [[]],

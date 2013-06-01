@@ -25,7 +25,7 @@ class Game {
     container = new Element.tag('div');
     document.body.nodes.add(container);
 
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+    camera = new THREE.PerspectiveCamera(75.0, window.innerWidth / window.innerHeight, 1.0, 10000.0);
 
     scene = new THREE.Scene();
 

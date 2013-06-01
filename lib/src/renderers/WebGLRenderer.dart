@@ -108,7 +108,7 @@ class WebGLRenderer implements Renderer {
   Matrix4 _projScreenMatrix,
           _projScreenMatrixPS;
 
-  Vector4 _vector3;
+  Vector3 _vector3;
 
   // light arrays cache
   Vector3 _direction;
@@ -226,14 +226,14 @@ class WebGLRenderer implements Renderer {
   _frustum = new Frustum(),
 
    // camera matrices cache
-  _projScreenMatrix = new Matrix4(),
-  _projScreenMatrixPS = new Matrix4(),
+  _projScreenMatrix = new Matrix4.identity(),
+  _projScreenMatrixPS = new Matrix4.identity(),
 
-  _vector3 = new Vector4(),
+  _vector3 = new Vector3.zero(),
 
   // light arrays cache
 
-  _direction = new Vector3(),
+  _direction = new Vector3.zero(),
 
   _lightsNeedUpdate = true
 
@@ -694,7 +694,7 @@ class WebGLRenderer implements Renderer {
 
 					attribute.size = size;
 
-					attribute.array = new Float32Array( nvertices * size );
+					attribute.array = new Float32List( nvertices * size );
 
 					attribute.buffer = new Buffer(_gl.createBuffer());
 					attribute.buffer.belongsToAttribute = a;
@@ -715,8 +715,8 @@ class WebGLRenderer implements Renderer {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry.__vertexArray = new Float32Array( nvertices * 3 );
-		geometry.__colorArray = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32List( nvertices * 3 );
+		geometry.__colorArray = new Float32List( nvertices * 3 );
 
 		geometry.__sortArray = [];
 
@@ -730,8 +730,8 @@ class WebGLRenderer implements Renderer {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry.__vertexArray = new Float32Array( nvertices * 3 );
-		geometry.__colorArray = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32List( nvertices * 3 );
+		geometry.__colorArray = new Float32List( nvertices * 3 );
 
 		geometry.__webglLineCount = nvertices;
 
@@ -743,8 +743,8 @@ class WebGLRenderer implements Renderer {
 
 		var nvertices = geometry.vertices.length;
 
-		geometry.__vertexArray = new Float32Array( nvertices * 3 );
-		geometry.__colorArray = new Float32Array( nvertices * 3 );
+		geometry.__vertexArray = new Float32List( nvertices * 3 );
+		geometry.__colorArray = new Float32List( nvertices * 3 );
 
 		geometry.__webglVertexCount = nvertices;
 
@@ -768,23 +768,23 @@ class WebGLRenderer implements Renderer {
 
 		//console.log( "uvType", uvType, "normalType", normalType, "vertexColorType", vertexColorType, object, geometryGroup, material );
 
-		geometryGroup.__vertexArray = new Float32Array( nvertices * 3 );
+		geometryGroup.__vertexArray = new Float32List( nvertices * 3 );
 
 		if ( normalType != NoShading ) {
 
-			geometryGroup.__normalArray = new Float32Array( nvertices * 3 );
+			geometryGroup.__normalArray = new Float32List( nvertices * 3 );
 
 		}
 
 		if ( geometry.hasTangents ) {
 
-			geometryGroup.__tangentArray = new Float32Array( nvertices * 4 );
+			geometryGroup.__tangentArray = new Float32List( nvertices * 4 );
 
 		}
 
 		if ( vertexColorType ) {
 
-			geometryGroup.__colorArray = new Float32Array( nvertices * 3 );
+			geometryGroup.__colorArray = new Float32List( nvertices * 3 );
 
 		}
 
@@ -792,13 +792,13 @@ class WebGLRenderer implements Renderer {
 
 			if ( geometry.faceUvs.length > 0 || geometry.faceVertexUvs.length > 0 ) {
 
-				geometryGroup.__uvArray = new Float32Array( nvertices * 2 );
+				geometryGroup.__uvArray = new Float32List( nvertices * 2 );
 
 			}
 
 			if ( geometry.faceUvs.length > 1 || geometry.faceVertexUvs.length > 1 ) {
 
-				geometryGroup.__uv2Array = new Float32Array( nvertices * 2 );
+				geometryGroup.__uv2Array = new Float32List( nvertices * 2 );
 
 			}
 
@@ -806,15 +806,15 @@ class WebGLRenderer implements Renderer {
 
 		if ( !object.geometry.skinWeights.isEmpty && !object.geometry.skinIndices.isEmpty ) {
 
-			geometryGroup.__skinVertexAArray = new Float32Array( nvertices * 4 );
-			geometryGroup.__skinVertexBArray = new Float32Array( nvertices * 4 );
-			geometryGroup.__skinIndexArray = new Float32Array( nvertices * 4 );
-			geometryGroup.__skinWeightArray = new Float32Array( nvertices * 4 );
+			geometryGroup.__skinVertexAArray = new Float32List( nvertices * 4 );
+			geometryGroup.__skinVertexBArray = new Float32List( nvertices * 4 );
+			geometryGroup.__skinIndexArray = new Float32List( nvertices * 4 );
+			geometryGroup.__skinWeightArray = new Float32List( nvertices * 4 );
 
 		}
 
-		geometryGroup.__faceArray = new Uint16Array( ntris * 3 );
-		geometryGroup.__lineArray = new Uint16Array( nlines * 2 );
+		geometryGroup.__faceArray = new Uint16List( ntris * 3 );
+		geometryGroup.__lineArray = new Uint16List( nlines * 2 );
 
 		var m, ml;
 
@@ -826,7 +826,7 @@ class WebGLRenderer implements Renderer {
 
 			for ( m = 0; m < ml; m ++ ) {
 
-				geometryGroup.__morphTargetsArrays.add( new Float32Array( nvertices * 3 ) );
+				geometryGroup.__morphTargetsArrays.add( new Float32List( nvertices * 3 ) );
 
 			}
 
@@ -840,7 +840,7 @@ class WebGLRenderer implements Renderer {
 
 			for ( m = 0; m < ml; m ++ ) {
 
-				geometryGroup.__morphNormalsArrays.add( new Float32Array( nvertices * 3 ) );
+				geometryGroup.__morphNormalsArrays.add( new Float32List( nvertices * 3 ) );
 
 			}
 
@@ -889,7 +889,7 @@ class WebGLRenderer implements Renderer {
 
 					attribute["size"] = size;
 
-					attribute["array"] = new Float32Array( nvertices * size );
+					attribute["array"] = new Float32List( nvertices * size );
 
 					var buffer = new Buffer(_gl.createBuffer());
 					buffer.belongsToAttribute = a;
@@ -1035,15 +1035,15 @@ class WebGLRenderer implements Renderer {
 
 		if ( object.sortParticles ) {
 
-			_projScreenMatrixPS.copy( _projScreenMatrix );
-			_projScreenMatrixPS.multiplySelf( object.matrixWorld );
+			_projScreenMatrixPS.setFrom( _projScreenMatrix );
+			_projScreenMatrixPS.multiply( object.matrixWorld );
 
 			for ( v = 0; v < vl; v ++ ) {
 
 				vertex = vertices[ v ];
 
-				_vector3.copy( vertex );
-				_projScreenMatrixPS.multiplyVector3( _vector3 );
+				_vector3.setFrom(vertex);
+				_vector3.applyProjection(_projScreenMatrixPS);
 
 				sortArray[ v ] = [ _vector3.z, v ];
 
@@ -3742,7 +3742,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					object.__webglMorphTargetInfluences[ m ] = 0;
+					object.__webglMorphTargetInfluences[ m ] = 0.0;
 
 				}
 
@@ -3764,7 +3764,8 @@ class WebGLRenderer implements Renderer {
 
 	// Sorting
 
-	painterSort ( a, b ) => (a.z.isNaN || b.z.isNaN) ? 0 : (b.z - a.z).toInt();
+	painterSort ( a, b ) => (a.z.isNaN || b.z.isNaN
+	                      || a.z.isInfinite || b.z.isInfinite ) ? 0 : (b.z - a.z).toInt();
 
 	numericalSort ( a, b ) => (b[ 1 ] - a[ 1 ]).toInt();
 
@@ -3798,12 +3799,13 @@ class WebGLRenderer implements Renderer {
 
 		if ( camera.parent == null ) camera.updateMatrixWorld();
 
-		camera.matrixWorldInverse.getInverse( camera.matrixWorld );
+		camera.matrixWorldInverse.setFrom(camera.matrixWorld);
+		camera.matrixWorldInverse.invert();
 
-		camera.matrixWorldInverse.flattenToArray( camera._viewMatrixArray );
-		camera.projectionMatrix.flattenToArray( camera._projectionMatrixArray );
+		camera._viewMatrixArray = camera.matrixWorldInverse.storage;
+		camera._projectionMatrixArray = camera.projectionMatrix.storage;
 
-		_projScreenMatrix.multiply( camera.projectionMatrix, camera.matrixWorldInverse );
+		_projScreenMatrix.setFrom(camera.projectionMatrix).multiply(camera.matrixWorldInverse);
 		_frustum.setFromMatrix( _projScreenMatrix );
 
 		// update WebGL objects
@@ -3861,9 +3863,8 @@ class WebGLRenderer implements Renderer {
 							webglObject.z = object.renderDepth;
 
 						} else {
-
-							_vector3.copy( object.matrixWorld.getPosition() );
-							_projScreenMatrix.multiplyVector3( _vector3 );
+							_vector3 = object.matrixWorld.getTranslation();
+							_vector3.applyProjection(_projScreenMatrix);
 
 							webglObject.z = _vector3.z;
 
@@ -4332,8 +4333,8 @@ class WebGLRenderer implements Renderer {
 
 		  webglobject.__webglInit = true;
 
-		  webglobject._modelViewMatrix = new Matrix4();
-		  webglobject._normalMatrix = new Matrix3();
+		  webglobject._modelViewMatrix = new Matrix4.identity();
+		  webglobject._normalMatrix = new Matrix3.zero();
 
 			if ( object is Mesh ) {
 
@@ -4873,7 +4874,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( object.__webglMorphTargetInfluences == null) {
 
-				object.__webglMorphTargetInfluences = new Float32Array( maxMorphTargets );
+				object.__webglMorphTargetInfluences = new Float32List( maxMorphTargets );
 
 			}
 
@@ -4991,8 +4992,8 @@ class WebGLRenderer implements Renderer {
 
 				if ( p_uniforms["cameraPosition"] != null ) {
 
-					var position = camera.matrixWorld.getPosition();
-					_gl.uniform3f( p_uniforms["cameraPosition"], position.x, position.y, position.z );
+					_vector3 = camera.matrixWorld.getTranslation();
+					_gl.uniform3f( p_uniforms["cameraPosition"], _vector3.x, _vector3.y, _vector3.z );
 
 				}
 
@@ -5045,7 +5046,7 @@ class WebGLRenderer implements Renderer {
 
 		if ( p_uniforms["modelMatrix"] != null ) {
 
-			_gl.uniformMatrix4fv( p_uniforms["modelMatrix"], false, object.matrixWorld.elements );
+			_gl.uniformMatrix4fv( p_uniforms["modelMatrix"], false, object.matrixWorld.storage );
 
 		}
 
@@ -5278,11 +5279,11 @@ class WebGLRenderer implements Renderer {
 
 	loadUniformsMatrices ( uniforms, WebGLObject object ) {
 
-		_gl.uniformMatrix4fv( uniforms["modelViewMatrix"], false, object._modelViewMatrix.elements );
+		_gl.uniformMatrix4fv( uniforms["modelViewMatrix"], false, object._modelViewMatrix.storage );
 
 		if ( uniforms["normalMatrix"] != null ) {
 
-			_gl.uniformMatrix3fv( uniforms["normalMatrix"], false, object._normalMatrix.elements );
+			_gl.uniformMatrix3fv( uniforms["normalMatrix"], false, object._normalMatrix.storage );
 
 		}
 
@@ -5329,25 +5330,37 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( type == "iv1" ) { // flat array of integers (JS or typed array)
 
-				_gl.uniform1iv( location, (value is List) ? new Int32Array.fromList(value) : value );
+				_gl.uniform1iv( location, (value is List) ? new Int32List.fromList(value) : value );
 
 			} else if ( type == "iv" ) { // flat array of integers with 3 x N size (JS or typed array)
 
-				_gl.uniform3iv( location, (value is List) ? new Int32Array.fromList(value) : value );
+				_gl.uniform3iv( location, (value is List) ? new Int32List.fromList(value) : value );
 
 			} else if ( type == "fv1" ) { // flat array of floats (JS or typed array)
-
-				_gl.uniform1fv( location, (value is List) ? new Float32Array.fromList(value) : value );
+        if (value is List) {
+          // TODO Improve this conversion, did not find where the value was set
+          List<double> doubleList = new List<double>(value.length);
+          for(int i = 0; i< value.length;i++) {
+            doubleList[i] = value[i].toDouble();
+          }
+          _gl.uniform1fv( location, new Float32List.fromList(doubleList));
+        } else {
+          _gl.uniform1fv( location, value );
+        }
 
 			} else if ( type == "fv" ) { // flat array of floats with 3 x N size (JS or typed array)
-
-				_gl.uniform3fv( location, (value is List) ? new Float32Array.fromList(value) : value );
+        // TODO Improve this conversion, did not find where the value was set
+			  List<double> doubleList = new List<double>(value.length);
+        for(int i = 0; i< value.length;i++) {
+          doubleList[i] = value[i].toDouble();
+        }
+				_gl.uniform3fv( location, (value is List) ? new Float32List.fromList(doubleList) : value );
 
 			} else if ( type == "v2v" ) { // array of THREE.Vector2
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 2 * value.length );
+					uniform._array = new Float32List( 2 * value.length );
 
 				}
 
@@ -5367,7 +5380,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 3 * value.length );
+					uniform._array = new Float32List( 3 * value.length );
 
 				}
 
@@ -5388,7 +5401,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 4 * value.length );
+					uniform._array = new Float32List( 4 * value.length );
 
 				}
 
@@ -5410,7 +5423,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 16 );
+					uniform._array = new Float32List( 16 );
 
 				}
 
@@ -5421,14 +5434,14 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-					uniform._array = new Float32Array( 16 * value.length );
+					uniform._array = new Float32List( 16 * value.length );
 
 				}
 
 				il = value.length;
 				for ( i = 0; i < il; i ++ ) {
 
-					value[ i ].flattenToArrayOffset( uniform._array, i * 16 );
+					value[ i ].copyIntoArray( uniform._array, i * 16 );
 
 				}
 
@@ -5460,7 +5473,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( uniform._array == null ) {
 
-				  uniform._array = new Int32Array( uniform.texture.length );
+				  uniform._array = new Int32List( uniform.texture.length );
 
 					il = uniform.texture.length;
 					for( i = 0; i < il; i ++ ) {
@@ -5492,9 +5505,9 @@ class WebGLRenderer implements Renderer {
 
 	setupMatrices ( WebGLObject object, WebGLCamera camera ) {
 
-		object._modelViewMatrix.multiply( camera.matrixWorldInverse, object.matrixWorld );
+		object._modelViewMatrix = camera.matrixWorldInverse * object.matrixWorld;
 
-		object._normalMatrix.getInverse( object._modelViewMatrix );
+		object._normalMatrix = calcInverse( object._modelViewMatrix );
 		object._normalMatrix.transpose();
 
 	}
@@ -5584,9 +5597,16 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				_direction.copy( light.matrixWorld.getPosition() );
-				_direction.subSelf( light.target.matrixWorld.getPosition() );
+				_direction = light.matrixWorld.getTranslation();
+				_vector3 = light.target.matrixWorld.getTranslation();
+				_direction.sub(_vector3);
 				_direction.normalize();
+
+        // skip lights with undefined direction
+        // these create troubles in OpenGL (making pixel black)
+
+        if (_direction.x == 0 && _direction.y == 0 && _direction.z == 0)
+          continue;
 
 				dpositions[ doffset ]     = _direction.x;
 				dpositions[ doffset + 1 ] = _direction.y;
@@ -5616,7 +5636,7 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				position = light.matrixWorld.getPosition();
+				position = light.matrixWorld.getTranslation();
 
 				ppositions[ poffset ]     = position.x;
 				ppositions[ poffset + 1 ] = position.y;
@@ -5652,7 +5672,7 @@ class WebGLRenderer implements Renderer {
 
 				}
 
-				position = light.matrixWorld.getPosition();
+				position = light.matrixWorld.getTranslation();
 
 				spositions[ soffset ]     = position.x;
 				spositions[ soffset + 1 ] = position.y;
@@ -5660,8 +5680,8 @@ class WebGLRenderer implements Renderer {
 
 				sdistances[ slength ] = distance;
 
-				_direction.copy( position );
-				_direction.subSelf( light.target.matrixWorld.getPosition() );
+				_direction.setFrom( position );
+				_direction.sub( light.target.matrixWorld.getTranslation() );
 				_direction.normalize();
 
 				sdirections[ soffset ]     = _direction.x;
@@ -6339,7 +6359,7 @@ class WebGLRenderer implements Renderer {
 	// Textures
 
 
-	isPowerOfTwo ( value ) => ( value & ( value - 1 ) ) == 0;
+	isPowerOfTwo ( int value ) => ( value & ( value - 1 ) ) == 0;
 
 	setTextureParameters ( textureType, texture, isImagePowerOfTwo ) {
 
@@ -7079,7 +7099,7 @@ class WebGLGeometry {
     colorsNeedUpdate;
 
   bool __inittedArrays;
-  Float32Array __vertexArray,
+  Float32List __vertexArray,
                __normalArray,
                __tangentArray,
                __colorArray,
@@ -7089,8 +7109,8 @@ class WebGLGeometry {
                __skinVertexBArray,
                __skinIndexArray,
                __skinWeightArray;
-  Uint16Array __faceArray, __lineArray;
-  List<Float32Array> __morphTargetsArrays, __morphNormalsArrays;
+  Uint16List __faceArray, __lineArray;
+  List<Float32List> __morphTargetsArrays, __morphNormalsArrays;
   int __webglFaceCount, __webglLineCount, __webglParticleCount, __webglVertexCount;
 
   List __sortArray;
@@ -7307,13 +7327,13 @@ class WebGLMaterial { // implements Material {
 class WebGLCamera { // implements Camera {
 
   Camera _camera;
-  Float32Array _viewMatrixArray,
-  _projectionMatrixArray;
+  Float32List _viewMatrixArray;
+  Float32List _projectionMatrixArray;
 
   WebGLCamera._internal(Camera camera)
       :   _camera = camera,
-          _viewMatrixArray = new Float32Array( 16 ),
-          _projectionMatrixArray = new Float32Array( 16 );
+          _viewMatrixArray = new Float32List( 16 ),
+          _projectionMatrixArray = new Float32List( 16 );
 
   factory WebGLCamera(Camera camera) {
     if (camera["__webglCamera"] == null) {
@@ -7324,12 +7344,13 @@ class WebGLCamera { // implements Camera {
     return camera["__webglCamera"];
   }
 
-  get near => _camera.near;
-  get far => _camera.far;
-  get parent => _camera.parent;
-  get matrixWorld => _camera.matrixWorld;
-  get matrixWorldInverse => _camera.matrixWorldInverse;
-  get projectionMatrix => _camera.projectionMatrix;
+  double get near => _camera.near;
+  double get far => _camera.far;
+  Object3D get parent => _camera.parent;
+  Matrix4 get matrixWorld => _camera.matrixWorld;
+  Matrix4 get matrixWorldInverse => _camera.matrixWorldInverse;
+  set matrixWorldInverse(Matrix4 m) => _camera.matrixWorldInverse = m;
+  Matrix4 get projectionMatrix => _camera.projectionMatrix;
 
   void updateMatrixWorld( {bool force: false} ) => _camera.updateMatrixWorld();
 }

@@ -117,7 +117,7 @@ class CanvasRenderer implements Renderer
     _directionalLights = new Color();
     _pointLights = new Color();
 
-    _vector3 = new Vector3(); // Needed for PointLight
+    _vector3 = new Vector3.zero(); // Needed for PointLight
 
     _gradientMapQuality = 16;
 
@@ -329,8 +329,8 @@ class CanvasRenderer implements Renderer
         _v3.positionScreen.x *= _canvasWidthHalf; _v3.positionScreen.y *= _canvasHeightHalf;
         _v4.positionScreen.x *= _canvasWidthHalf; _v4.positionScreen.y *= _canvasHeightHalf;
 
-        _v5.positionScreen.copy( _v2.positionScreen );
-        _v6.positionScreen.copy( _v4.positionScreen );
+        _v5.positionScreen.setFrom( _v2.positionScreen );
+        _v6.positionScreen.setFrom( _v4.positionScreen );
 
         if ( material.overdraw ) {
           expand( _v1.positionScreen, _v2.positionScreen );
@@ -424,7 +424,7 @@ class CanvasRenderer implements Renderer
 
       if ( light is DirectionalLight ) {
         DirectionalLight dLight = light;
-        lightPosition = light.matrixWorld.getPosition();
+        lightPosition = light.matrixWorld.getTranslation();
 
         amount = normal.dot( lightPosition );
 
@@ -439,13 +439,14 @@ class CanvasRenderer implements Renderer
       } else if ( light is PointLight ) {
         PointLight pLight = light;
 
-        lightPosition = light.matrixWorld.getPosition();
+        lightPosition = light.matrixWorld.getTranslation();
 
-        amount = normal.dot( _vector3.sub( lightPosition, position ).normalize() );
+        _vector3 = (lightPosition -position).normalize();
+        amount = normal.dot(_vector3);
 
         if ( amount <= 0 ) continue;
 
-        amount *= pLight.distance == 0 ? 1 : 1 - Math.min( position.distanceTo( lightPosition ) / pLight.distance, 1 );
+        amount *= pLight.distance == 0 ? 1 : 1 - Math.min( position.absoluteError( lightPosition ) / pLight.distance, 1 );
 
         if ( amount == 0 ) continue;
 
@@ -607,17 +608,17 @@ class CanvasRenderer implements Renderer
         {
           Matrix4 cameraMatrix = _camera.matrixWorldInverse;
 
-          _vector3.copy( element.vertexNormalsWorld[ uv1 ] );
-          _uv1x = ( _vector3.x * cameraMatrix.elements[0] + _vector3.y * cameraMatrix.elements[4] + _vector3.z * cameraMatrix.elements[8] ) * 0.5 + 0.5;
-          _uv1y = - ( _vector3.x * cameraMatrix.elements[1] + _vector3.y * cameraMatrix.elements[5] + _vector3.z * cameraMatrix.elements[9] ) * 0.5 + 0.5;
+          _vector3.setFrom( element.vertexNormalsWorld[ uv1 ] );
+          _uv1x = ( _vector3.x * cameraMatrix[0] + _vector3.y * cameraMatrix[4] + _vector3.z * cameraMatrix[8] ) * 0.5 + 0.5;
+          _uv1y = - ( _vector3.x * cameraMatrix[1] + _vector3.y * cameraMatrix[5] + _vector3.z * cameraMatrix[9] ) * 0.5 + 0.5;
 
-          _vector3.copy( element.vertexNormalsWorld[ uv2 ] );
-          _uv2x = ( _vector3.x * cameraMatrix.elements[0] + _vector3.y * cameraMatrix.elements[4] + _vector3.z * cameraMatrix.elements[8] ) * 0.5 + 0.5;
-          _uv2y = - ( _vector3.x * cameraMatrix.elements[1] + _vector3.y * cameraMatrix.elements[5] + _vector3.z * cameraMatrix.elements[9] ) * 0.5 + 0.5;
+          _vector3.setFrom( element.vertexNormalsWorld[ uv2 ] );
+          _uv2x = ( _vector3.x * cameraMatrix[0] + _vector3.y * cameraMatrix[4] + _vector3.z * cameraMatrix[8] ) * 0.5 + 0.5;
+          _uv2y = - ( _vector3.x * cameraMatrix[1] + _vector3.y * cameraMatrix[5] + _vector3.z * cameraMatrix[9] ) * 0.5 + 0.5;
 
-          _vector3.copy( element.vertexNormalsWorld[ uv3 ] );
-          _uv3x = ( _vector3.x * cameraMatrix.elements[0] + _vector3.y * cameraMatrix.elements[4] + _vector3.z * cameraMatrix.elements[8] ) * 0.5 + 0.5;
-          _uv3y = - ( _vector3.x * cameraMatrix.elements[1] + _vector3.y * cameraMatrix.elements[5] + _vector3.z * cameraMatrix.elements[9] ) * 0.5 + 0.5;
+          _vector3.setFrom( element.vertexNormalsWorld[ uv3 ] );
+          _uv3x = ( _vector3.x * cameraMatrix[0] + _vector3.y * cameraMatrix[4] + _vector3.z * cameraMatrix[8] ) * 0.5 + 0.5;
+          _uv3y = - ( _vector3.x * cameraMatrix[1] + _vector3.y * cameraMatrix[5] + _vector3.z * cameraMatrix[9] ) * 0.5 + 0.5;
 
           patternPath( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _uv1x, _uv1y, _uv2x, _uv2y, _uv3x, _uv3y, mbMaterial.envMap );
 
@@ -1070,10 +1071,10 @@ class CanvasRenderer implements Renderer
   {
     // http://mrdoob.com/blog/post/710
 
-    num c1r = ~~ ( color1.r * 255 ), c1g = ~~ ( color1.g * 255 ), c1b = ~~ ( color1.b * 255 ),
-    c2r = ~~ ( color2.r * 255 ), c2g = ~~ ( color2.g * 255 ), c2b = ~~ ( color2.b * 255 ),
-    c3r = ~~ ( color3.r * 255 ), c3g = ~~ ( color3.g * 255 ), c3b = ~~ ( color3.b * 255 ),
-    c4r = ~~ ( color4.r * 255 ), c4g = ~~ ( color4.g * 255 ), c4b = ~~ ( color4.b * 255 );
+    num c1r = color1._rr, c1g = color1._gg, c1b = color1._bb,
+    c2r = color2._rr, c2g = color2._gg, c2b = color2._bb,
+    c3r = color3._rr, c3g = color3._gg, c3b = color3._bb,
+    c4r = color4._rr, c4g = color4._gg, c4b = color4._bb;
 
     _pixelMapData[ 0 ] = c1r < 0 ? 0 : c1r > 255 ? 255 : c1r;
     _pixelMapData[ 1 ] = c1g < 0 ? 0 : c1g > 255 ? 255 : c1g;

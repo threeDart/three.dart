@@ -1,5 +1,6 @@
-import 'dart:html';
+import 'dart:html' hide Path;
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
@@ -36,9 +37,10 @@ class WebGL_Geometry_Extrude_Shapes  {
         [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
           new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
-    mesh.position.setValues( x, y, z - 75 );
+    mesh.position.setValues( x.toDouble(), y.toDouble(), z.toDouble() - 75 );
     // mesh.rotation.set( rx, ry, rz );
-    mesh.scale.setValues( s, s, s );
+    double ds = s.toDouble();
+    mesh.scale.setValues( ds, ds, ds );
 
     // if ( geometry.debug ) mesh.add( geometry.debug );
 
@@ -51,17 +53,17 @@ class WebGL_Geometry_Extrude_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 150, 500 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
+    camera.position.setValues( 0.0, 150.0, 500.0 );
 
     scene = new Scene();
 
     var light = new DirectionalLight( 0xffffff );
-    light.position.setValues( 0, 0, 1 );
+    light.position.setValues( 0.0, 0.0, 1.0 );
     scene.add( light );
 
     parent = new Object3D();
-    parent.position.y = 50;
+    parent.position.y = 50.0;
     scene.add( parent );
 
     var extrude_amount = 200,
@@ -82,51 +84,51 @@ class WebGL_Geometry_Extrude_Shapes  {
     var extrudeBend = new SplineCurve3( //Closed
         [
 
-          new Vector3( 30, 12, 83),
-          new Vector3( 40, 20, 67),
-          new Vector3( 60, 40, 99),
-          new Vector3( 10, 60, 49),
-          new Vector3( 25, 80, 40)
+          new Vector3( 30.0, 12.0, 83.0),
+          new Vector3( 40.0, 20.0, 67.0),
+          new Vector3( 60.0, 40.0, 99.0),
+          new Vector3( 10.0, 60.0, 49.0),
+          new Vector3( 25.0, 80.0, 40.0)
 
         ]);
 
     var pipeSpline = new SplineCurve3([
-      new Vector3(0, 10, -10),
-      new Vector3(10, 0, -10),
-      new Vector3(20, 0, 0),
-      new Vector3(30, 0, 10),
-      new Vector3(30, 0, 20),
-      new Vector3(20, 0, 30),
-      new Vector3(10, 0, 30),
-      new Vector3(0, 0, 30),
-      new Vector3(-10, 10, 30),
-      new Vector3(-10, 20, 30),
-      new Vector3(0, 30, 30),
-      new Vector3(10, 30, 30),
-      new Vector3(20, 30, 15),
-      new Vector3(10, 30, 10),
-      new Vector3(0, 30, 10),
-      new Vector3(-10, 20, 10),
-      new Vector3(-10, 10, 10),
-      new Vector3(0, 0, 10),
-      new Vector3(10, -10, 10),
-      new Vector3(20, -15, 10),
-      new Vector3(30, -15, 10),
-      new Vector3(40, -15, 10),
-      new Vector3(50, -15, 10),
-      new Vector3(60, 0, 10),
-      new Vector3(70, 0, 0),
-      new Vector3(80, 0, 0),
-      new Vector3(90, 0, 0),
-      new Vector3(100, 0, 0)]
+      new Vector3(0.0, 10.0, -10.0),
+      new Vector3(10.0, 0.0, -10.0),
+      new Vector3(20.0, 0.0, 0.0),
+      new Vector3(30.0, 0.0, 10.0),
+      new Vector3(30.0, 0.0, 20.0),
+      new Vector3(20.0, 0.0, 30.0),
+      new Vector3(10.0, 0.0, 30.0),
+      new Vector3(0.0, 0.0, 30.0),
+      new Vector3(-10.0, 10.0, 30.0),
+      new Vector3(-10.0, 20.0, 30.0),
+      new Vector3(0.0, 30.0, 30.0),
+      new Vector3(10.0, 30.0, 30.0),
+      new Vector3(20.0, 30.0, 15.0),
+      new Vector3(10.0, 30.0, 10.0),
+      new Vector3(0.0, 30.0, 10.0),
+      new Vector3(-10.0, 20.0, 10.0),
+      new Vector3(-10.0, 10.0, 10.0),
+      new Vector3(0.0, 0.0, 10.0),
+      new Vector3(10.0, -10.0, 10.0),
+      new Vector3(20.0, -15.0, 10.0),
+      new Vector3(30.0, -15.0, 10.0),
+      new Vector3(40.0, -15.0, 10.0),
+      new Vector3(50.0, -15.0, 10.0),
+      new Vector3(60.0, 0.0, 10.0),
+      new Vector3(70.0, 0.0, 0.0),
+      new Vector3(80.0, 0.0, 0.0),
+      new Vector3(90.0, 0.0, 0.0),
+      new Vector3(100.0, 0.0, 0.0)]
     );
 
     var sampleClosedSpline = new ClosedSplineCurve3([
-      new Vector3(0, -40, -40),
-      new Vector3(0, 40, -40),
-      new Vector3(0, 140, -40),
-      new Vector3(0, 40, 40),
-      new Vector3(0, -40, 40),
+      new Vector3(0.0, -40.0, -40.0),
+      new Vector3(0.0, 40.0, -40.0),
+      new Vector3(0.0, 140.0, -40.0),
+      new Vector3(0.0, 40.0, 40.0),
+      new Vector3(0.0, -40.0, 40.0),
     ]);
 
     var randomPoints = [];
@@ -144,7 +146,7 @@ class WebGL_Geometry_Extrude_Shapes  {
 
     // Circle
 
-    var circleRadius = 4;
+    var circleRadius = 4.0;
     var circleShape = new Shape();
     circleShape.moveTo( 0, circleRadius );
     circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 );
@@ -218,7 +220,7 @@ class WebGL_Geometry_Extrude_Shapes  {
         extrudePath: extrude_extrudePath ); //circleShape rectShape smileyShape starShape
     // var circle3d = new ExtrudeGeometry(circleShape, extrudeBend, extrudeSettings );
 
-    var tube = new TubeGeometry(extrude_extrudePath, 150, 4, 5, false, true);
+    var tube = new TubeGeometry(extrude_extrudePath, 150, 4.0, 5, false, true);
     // new TubeGeometry(extrudePath, segments, 2, radiusSegments, closed2, debug);
 
 

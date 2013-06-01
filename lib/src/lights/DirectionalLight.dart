@@ -32,7 +32,7 @@ class DirectionalLight extends ShadowCaster {
 
   DirectionalLight( num hex, [this.intensity = 1, this.distance = 0]) : super( hex ) {
 
-    position = new Vector3( 0, 1, 0 );
+    position = new Vector3( 0.0, 1.0, 0.0 );
     target = new Object3D();
 
     shadowCameraLeft = -500;
@@ -44,7 +44,7 @@ class DirectionalLight extends ShadowCaster {
 
     shadowCascade = false;
 
-    shadowCascadeOffset = new Vector3( 0, 0, -1000 );
+    shadowCascadeOffset = new Vector3( 0.0, 0.0, -1000.0 );
     shadowCascadeCount = 2;
 
     shadowCascadeBias = [ 0, 0, 0 ];

@@ -9,7 +9,7 @@ part of three;
  */
 
 class Face3 implements IFace3 {
-  num a, b, c;
+  int a, b, c;
   Vector3 normal;
   List vertexNormals, vertexColors, vertexTangents;
   Color color;
@@ -19,7 +19,7 @@ class Face3 implements IFace3 {
   /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
   Face3( [this.a, this.b, this.c, normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
 
-    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3();
+    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3.zero();
     vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
 
     color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
@@ -27,16 +27,16 @@ class Face3 implements IFace3 {
 
     vertexTangents = [];
 
-    centroid = new Vector3();
+    centroid = new Vector3.zero();
   }
 
   clone() {
 
     var face = new Face3( a, b, c );
 
-    face.normal.copy( this.normal );
+    face.normal.setFrom(this.normal);
     face.color.copy( this.color );
-    face.centroid.copy( this.centroid );
+    face.centroid.setFrom(this.centroid);
 
     face.materialIndex = this.materialIndex;
 

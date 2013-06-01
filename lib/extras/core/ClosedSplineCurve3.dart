@@ -10,7 +10,7 @@ class ClosedSplineCurve3 extends Curve3D {
 
   Vector3 getPoint( t ) {
 
-    var v = new Vector3();
+    var v = new Vector3.zero();
     var c = [];
     var point,
         intPoint,

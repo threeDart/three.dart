@@ -34,8 +34,8 @@ class Canvas_Geometry_Hierarchy {
 
     scene = new Scene();
 
-    camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 500;
+    camera = new PerspectiveCamera( 60.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
+    camera.position.z = 500.0;
 
     scene.add( camera );
 
@@ -46,7 +46,7 @@ class Canvas_Geometry_Hierarchy {
       materials.add( new MeshBasicMaterial( color:  rnd.nextDouble() * 0xffffff ) );
     }
 
-    geometry = new CubeGeometry( 100, 100, 100 );
+    geometry = new CubeGeometry( 100.0, 100.0, 100.0 );
     MeshNormalMaterial material = new MeshNormalMaterial();
 
     group = new Object3D();
@@ -54,11 +54,11 @@ class Canvas_Geometry_Hierarchy {
     for ( var i = 0; i < 200; i ++ ) {
       Mesh mesh = new Mesh( geometry, material );
       //mesh.overdraw = true; //TODO: No such property?
-      mesh.position.x = rnd.nextInt(2000) - 1000;
-      mesh.position.y = rnd.nextInt(2000) - 1000;
-      mesh.position.z = rnd.nextInt(2000) - 1000;
-      mesh.rotation.x = rnd.nextInt(360) * ( Math.PI / 180 );
-      mesh.rotation.y = rnd.nextInt(360) * ( Math.PI / 180 );
+      mesh.position.x = rnd.nextInt(2000).toDouble() - 1000.0;
+      mesh.position.y = rnd.nextInt(2000).toDouble() - 1000.0;
+      mesh.position.z = rnd.nextInt(2000).toDouble() - 1000.0;
+      mesh.rotation.x = rnd.nextInt(360).toDouble() * ( Math.PI / 180.0 );
+      mesh.rotation.y = rnd.nextInt(360).toDouble() * ( Math.PI / 180.0 );
       mesh.matrixAutoUpdate = false;
       mesh.updateMatrix();
       group.add( mesh );

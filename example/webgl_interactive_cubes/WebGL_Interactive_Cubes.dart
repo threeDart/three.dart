@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 
 class WebGL_Interactive_Cubes  {
@@ -10,7 +11,7 @@ class WebGL_Interactive_Cubes  {
   WebGLRenderer renderer;
   Projector projector;
 
-  var mouseX = 0, mouseY = 0;
+  double mouseX = 0.0, mouseY = 0.0;
 
   Mesh INTERSECTED;
 
@@ -25,8 +26,8 @@ class WebGL_Interactive_Cubes  {
 
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 300, 500 );
+    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
+    camera.position.setValues( 0.0, 300.0, 500.0 );
 
     scene = new Scene();
     scene.add(camera);
@@ -34,15 +35,15 @@ class WebGL_Interactive_Cubes  {
     var light;
 
     light = new DirectionalLight( 0xffffff, 2 );
-    light.position.setValues( 1, 1, 1 ).normalize();
+    light.position.setValues( 1.0, 1.0, 1.0 ).normalize();
     scene.add( light );
 
     light = new DirectionalLight( 0xffffff );
-    light.position.setValues( -1, -1, -1 ).normalize();
+    light.position.setValues( -1.0, -1.0, -1.0 ).normalize();
     scene.add( light );
 
 
-    var geometry = new CubeGeometry( 20, 20, 20 );
+    var geometry = new CubeGeometry( 20.0, 20.0, 20.0 );
 
     var rnd = new Math.Random();
 
@@ -50,9 +51,9 @@ class WebGL_Interactive_Cubes  {
 
       var object = new Mesh( geometry, new MeshLambertMaterial( color: rnd.nextInt(0xffffff) ) );
 
-      object.position.x = rnd.nextInt(800) - 400;
-      object.position.y = rnd.nextInt(800) - 400;
-      object.position.z = rnd.nextInt(800) - 400;
+      object.position.x = rnd.nextInt(800) - 400.0;
+      object.position.y = rnd.nextInt(800) - 400.0;
+      object.position.z = rnd.nextInt(800) - 400.0;
 
       object.rotation.x = ( rnd.nextDouble() * 360 ) * Math.PI / 180;
       object.rotation.y = ( rnd.nextDouble() * 360 ) * Math.PI / 180;
@@ -119,10 +120,10 @@ class WebGL_Interactive_Cubes  {
 
     // find intersections
 
-    var vector = new Vector3( mouseX, mouseY, 1 );
+    var vector = new Vector3( mouseX, mouseY, 1.0 );
     projector.unprojectVector( vector, camera );
 
-    var ray = new Ray( camera.position, vector.subSelf( camera.position ).normalize() );
+    var ray = new Ray( camera.position, vector.sub( camera.position ).normalize() );
 
     var intersects = ray.intersectObjects( scene.children );
 

@@ -29,8 +29,8 @@ class WebGLRenderTarget extends Texture {
 	  this.repeat: null, //new Vector2( 1, 1 ),
 	  this.generateMipmaps: true
 	} ) : super(null, null, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy){
-    if (offset == null) offset = new Vector2( 0, 0 );
-    if (repeat == null) repeat = new Vector2( 1, 1 );
+    if (offset == null) offset = new Vector2.zero();
+    if (repeat == null) repeat = new Vector2( 1.0, 1.0 );
 	}
 
 	gl.Texture get __webglTexture => this["__webglTexture"];

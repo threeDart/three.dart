@@ -20,11 +20,11 @@ class TubeGeometry extends Geometry {
   bool closed;
 
   var grid;
-  var tangents, normals, binormals;
+  List<Vector3> tangents, normals, binormals;
 
   Object3D debug;
 
-  TubeGeometry ( path, [segments = 64, this.radius = 1, this.segmentsRadius = 8, closed = false, bool debug])
+  TubeGeometry ( path, [segments = 64, this.radius = 1.0, this.segmentsRadius = 8, closed = false, bool debug])
     : grid = [], super() {
 
     if ( debug ) this.debug = new Object3D();
@@ -40,7 +40,7 @@ class TubeGeometry extends Geometry {
         u, v,
 
         cx, cy,
-        pos, pos2 = new Vector3(),
+        pos, pos2 = new Vector3.zero(),
         i, j,
         ip, jp,
         a, b, c, d,
@@ -78,7 +78,7 @@ class TubeGeometry extends Geometry {
         cx = -this.radius * Math.cos( v ); // TODO: Hack: Negating it so it faces outside.
         cy = this.radius * Math.sin( v );
 
-        pos2.copy( pos );
+        pos2.setFrom( pos );
         pos2.x += cx * normal.x + cy * binormal.x;
         pos2.y += cx * normal.y + cy * binormal.y;
         pos2.z += cx * normal.z + cy * binormal.z;
@@ -143,12 +143,11 @@ class TubeGeometry extends Geometry {
     this.closed = pclosed;
 
     var
-      tangent = new Vector3(),
-      normal = new Vector3(),
-      binormal = new Vector3(),
+      tangent = new Vector3.zero(),
+      normal = new Vector3.zero(),
+      binormal = new Vector3.zero(),
 
-      vec = new Vector3(),
-      mat = new Matrix4(),
+      mat = new Matrix4.identity(),
       theta,
       epsilon = 0.0001,
       smallest,
@@ -167,9 +166,9 @@ class TubeGeometry extends Geometry {
     var numpoints = this.nSegments + 1;
 
     // expose internals
-    tangents = new List(numpoints);
-    normals = new List(numpoints);
-    binormals = new List(numpoints);
+    tangents = new List<Vector3>(numpoints);
+    normals = new List<Vector3>(numpoints);
+    binormals = new List<Vector3>(numpoints);
 
     // compute the tangent vectors for each segment on the path
 
@@ -180,22 +179,21 @@ class TubeGeometry extends Geometry {
 
     _initialNormal1([lastBinormal = null]) {
       // fixed start binormal. Has dangers of 0 vectors
-      normals[ 0 ] = new Vector3();
-      binormals[ 0 ] = new Vector3();
-      if (lastBinormal==null) lastBinormal = new Vector3( 0, 0, 1 );
-      normals[ 0 ].cross( lastBinormal, tangents[ 0 ] ).normalize();
-      binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] ).normalize();
+      if (lastBinormal==null)
+        lastBinormal = new Vector3( 0.0, 0.0, 1.0 );
+      normals[0] = lastBinormal.cross(tangents[0]).normalize();
+      binormals[0] = tangents[0].cross(normals[0]).normalize();
     }
 
     _initialNormal2() {
       // This uses the Frenet-Serret formula for deriving binormal
       var t2 = path.getTangentAt( epsilon );
 
-      normals[ 0 ] = new Vector3().sub( t2, tangents[ 0 ] ).normalize();
-      binormals[ 0 ] = new Vector3().cross( tangents[ 0 ], normals[ 0 ] );
+      normals[0] = (t2 - tangents[0]).normalize();
+      binormals[0] = tangents[0].cross(normals[0]);
 
-      normals[ 0 ].cross( binormals[ 0 ], tangents[ 0 ] ).normalize(); // last binormal x tangent
-      binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] ).normalize();
+      normals[0] = binormals[0].cross(tangents[0]).normalize(); // last binormal x tangent
+      binormals[0] = tangents[0].cross(normals[0]).normalize();
 
     }
 
@@ -203,8 +201,6 @@ class TubeGeometry extends Geometry {
       // select an initial normal vector perpenicular to the first tangent vector,
       // and in the direction of the smallest tangent xyz component
 
-      normals[ 0 ] = new Vector3();
-      binormals[ 0 ] = new Vector3();
       smallest = double.INFINITY;
       tx = ( tangents[ 0 ].x ).abs();
       ty = ( tangents[ 0 ].y ).abs();
@@ -212,22 +208,22 @@ class TubeGeometry extends Geometry {
 
       if ( tx <= smallest ) {
         smallest = tx;
-        normal.setValues( 1, 0, 0 );
+        normal.setValues( 1.0, 0.0, 0.0 );
       }
 
       if ( ty <= smallest ) {
         smallest = ty;
-        normal.setValues( 0, 1, 0 );
+        normal.setValues( 0.0, 1.0, 0.0 );
       }
 
       if ( tz <= smallest ) {
-        normal.setValues( 0, 0, 1 );
+        normal.setValues( 0.0, 0.0, 1.0 );
       }
 
-      vec.cross( tangents[ 0 ], normal ).normalize();
+      Vector3 vec = tangents[0].cross(normal).normalize();
 
-      normals[ 0 ].cross( tangents[ 0 ], vec );
-      binormals[ 0 ].cross( tangents[ 0 ], normals[ 0 ] );
+      normals[0] = tangents[0].cross(vec);
+      binormals[0] = tangents[0].cross(normals[0]);
     }
 
     _initialNormal3();
@@ -241,19 +237,18 @@ class TubeGeometry extends Geometry {
 
       binormals[ i ] = binormals[ i-1 ].clone();
 
-      vec.cross( tangents[ i-1 ], tangents[ i ] );
+      Vector3 vec = tangents[i-1].cross(tangents[i]);
 
-      if ( vec.length() > epsilon ) {
+      if ( vec.length > epsilon ) {
 
         vec.normalize();
 
         theta = Math.acos( tangents[ i-1 ].dot( tangents[ i ] ) );
 
-        mat.makeRotationAxis( vec, theta ).multiplyVector3( normals[ i ] );
-
+        normals[ i ].applyProjection(makeRotationAxis ( mat, vec, theta ));
       }
 
-      binormals[ i ].cross( tangents[ i ], normals[ i ] );
+      binormals[i] = tangents[i].cross(normals[i]);
 
     }
 
@@ -265,7 +260,7 @@ class TubeGeometry extends Geometry {
       theta = Math.acos( normals[ 0 ].dot( normals[ numpoints-1 ] ) );
       theta /= ( numpoints - 1 );
 
-      if ( tangents[ 0 ].dot( vec.cross( normals[ 0 ], normals[ numpoints-1 ] ) ) > 0 ) {
+      if ( tangents[ 0 ].dot( normals[0].cross(normals[numpoints-1]) )  > 0 ) {
 
         theta = -theta;
 
@@ -274,8 +269,8 @@ class TubeGeometry extends Geometry {
       for ( i = 1; i < numpoints; i++ ) {
 
         // twist a little...
-        mat.makeRotationAxis( tangents[ i ], theta * i ).multiplyVector3( normals[ i ] );
-        binormals[ i ].cross( tangents[ i ], normals[ i ] );
+        normals[ i ].applyProjection( makeRotationAxis( mat, tangents[ i ], theta * i ) );
+        binormals[ i ] = tangents[i].cross(normals[i]);
 
       }
 

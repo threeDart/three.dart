@@ -12,8 +12,8 @@ part of three;
 class CameraHelper extends Line {
 
   static Projector __projector = new Projector();
-  static Vector3 __v = new Vector3();
-  static Camera __c = new Camera(0 ,0);
+  static Vector3 __v = new Vector3.zero();
+  static Camera __c = new Camera(0.0 ,0.0);
 
   Camera camera;
 
@@ -97,7 +97,7 @@ class CameraHelper extends Line {
 
   addPoint( id, hex ) {
 
-    geometry.vertices.add( new Vector3() );
+    geometry.vertices.add( new Vector3.zero() );
     geometry.colors.add( new Color( hex ) );
 
     if ( !pointMap.containsKey( id )) {
@@ -108,7 +108,7 @@ class CameraHelper extends Line {
 
   }
 
-  setPoint( point, x, y, z ) {
+  setPoint( String point, double x, double y, double z ) {
 
     __v.setValues( x, y, z );
     __projector.unprojectVector( __v, __c );
@@ -120,7 +120,7 @@ class CameraHelper extends Line {
       var il = points.length;
       for ( var i = 0; i < il; i ++ ) {
 
-        geometry.vertices[ points[ i ] ].copy( __v );
+        geometry.vertices[ points[ i ] ].setFrom( __v );
 
       }
 
@@ -129,49 +129,49 @@ class CameraHelper extends Line {
   }
   update() {
 
-    var w = 1, h = 1;
+    var w = 1.0, h = 1.0;
 
     // we need just camera projection matrix
     // world matrix must be identity
 
-    __c.projectionMatrix.copy( camera.projectionMatrix );
+    __c.projectionMatrix.setFrom( camera.projectionMatrix );
 
     // center / target
 
-    setPoint( "c", 0, 0, -1 );
-    setPoint( "t", 0, 0,  1 );
+    setPoint( "c", 0.0, 0.0, -1.0 );
+    setPoint( "t", 0.0, 0.0,  1.0 );
 
     // near
 
-    setPoint( "n1", -w, -h, -1 );
-    setPoint( "n2",  w, -h, -1 );
-    setPoint( "n3", -w,  h, -1 );
-    setPoint( "n4",  w,  h, -1 );
+    setPoint( "n1", -w, -h, -1.0 );
+    setPoint( "n2",  w, -h, -1.0 );
+    setPoint( "n3", -w,  h, -1.0 );
+    setPoint( "n4",  w,  h, -1.0 );
 
     // far
 
-    setPoint( "f1", -w, -h, 1 );
-    setPoint( "f2",  w, -h, 1 );
-    setPoint( "f3", -w,  h, 1 );
-    setPoint( "f4",  w,  h, 1 );
+    setPoint( "f1", -w, -h, 1.0 );
+    setPoint( "f2",  w, -h, 1.0 );
+    setPoint( "f3", -w,  h, 1.0 );
+    setPoint( "f4",  w,  h, 1.0 );
 
     // up
 
-    setPoint( "u1",  w * 0.7, h * 1.1, -1 );
-    setPoint( "u2", -w * 0.7, h * 1.1, -1 );
-    setPoint( "u3",        0, h * 2,   -1 );
+    setPoint( "u1",  w * 0.7, h * 1.1, -1.0 );
+    setPoint( "u2", -w * 0.7, h * 1.1, -1.0 );
+    setPoint( "u3",      0.0, h * 2.0, -1.0 );
 
     // cross
 
-    setPoint( "cf1", -w,  0, 1 );
-    setPoint( "cf2",  w,  0, 1 );
-    setPoint( "cf3",  0, -h, 1 );
-    setPoint( "cf4",  0,  h, 1 );
+    setPoint( "cf1", -w,  0.0, 1.0 );
+    setPoint( "cf2",  w,  0.0, 1.0 );
+    setPoint( "cf3",  0.0, -h, 1.0 );
+    setPoint( "cf4",  0.0,  h, 1.0 );
 
-    setPoint( "cn1", -w,  0, -1 );
-    setPoint( "cn2",  w,  0, -1 );
-    setPoint( "cn3",  0, -h, -1 );
-    setPoint( "cn4",  0,  h, -1 );
+    setPoint( "cn1", -w,  0.0, -1.0 );
+    setPoint( "cn2",  w,  0.0, -1.0 );
+    setPoint( "cn3",  0.0, -h, -1.0 );
+    setPoint( "cn4",  0.0,  h, -1.0 );
 
 
 

@@ -1,5 +1,6 @@
-import 'dart:html';
+import 'dart:html' hide Path;
 import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
@@ -36,9 +37,10 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
         [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
           new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
-    mesh.position.setValues( x, y, z - 75 );
+    mesh.position.setValues( x.toDouble(), y.toDouble(), z.toDouble() - 75 );
     // mesh.rotation.set( rx, ry, rz );
-    mesh.scale.setValues( s, s, s );
+    double ds = s.toDouble();
+    mesh.scale.setValues( ds, ds, ds );
 
     // if ( geometry.debug ) mesh.add( geometry.debug );
 
@@ -51,17 +53,17 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.setValues( 0, 150, 500 );
+    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
+    camera.position.setValues( 0.0, 150.0, 500.0 );
 
     scene = new Scene();
 
     var light = new DirectionalLight( 0xffffff );
-    light.position.setValues( 0, 0, 1 );
+    light.position.setValues( 0.0, 0.0, 1.0 );
     scene.add( light );
 
     parent = new Object3D();
-    parent.position.y = 50;
+    parent.position.y = 50.0;
     scene.add( parent );
 
     var extrudeAmount = 200,
@@ -93,15 +95,15 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     var rnd = new Math.Random();
 
-    var line = new LineCurve3(new Vector3(0,0,0),new Vector3(100,0,0));
-    var line2 = new LineCurve3(new Vector3(100,0,0),new Vector3(200,50,0));
+    var line = new LineCurve3(new Vector3.zero(), new Vector3(100.0, 0.0, 0.0));
+    var line2 = new LineCurve3(new Vector3(100.0, 0.0, 0.0),new Vector3(200.0, 50.0, 0.0));
 
     var curvepath = new CurvePath();
     curvepath.add(line);
     curvepath.add(line2);
 
 
-    var randomPoints = [new Vector3(200,50,0)];
+    var randomPoints = [new Vector3(200.0, 50.0, 0.0)];
 
     for ( var i = 0; i < 5; i ++ ) {
 
@@ -140,15 +142,15 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     // Circle
 
-    var circleRadius = 4;
+    var circleRadius = 4.0;
     var circleShape = new Shape();
     circleShape.moveTo( 0, circleRadius );
-    circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 );
-    circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0, -circleRadius );
-    circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0 );
-    circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0, circleRadius);
+    circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0.0 );
+    circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0.0, -circleRadius );
+    circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0.0 );
+    circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0.0, circleRadius);
 
-    var rectLength = 12, rectWidth = 4;
+    var rectLength = 12.0, rectWidth = 4.0;
 
     var rectShape = new Shape();
 
@@ -193,7 +195,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
         extrudePath: extrude_extrudePath ); //circleShape rectShape smileyShape starShape
     // var circle3d = new ExtrudeGeometry(circleShape, extrudeBend, extrudeSettings );
 
-    var tube = new TubeGeometry(extrude_extrudePath, 40, 4, 5, false, true);
+    var tube = new TubeGeometry(extrude_extrudePath, 40, 4.0, 5, false, true);
     // new TubeGeometry(extrudePath, segments, 2, radiusSegments, closed2, debug);
 
 
