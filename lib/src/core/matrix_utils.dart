@@ -360,3 +360,22 @@ Matrix4 compose( Matrix4 matrix, Vector3 translation, Quaternion rotation, Vecto
 
   return matrix;
 }
+
+Matrix4 makeRotationAxis( Matrix4 m, Vector3 axis, num angle ) {
+  // Based on http://www.gamedev.net/reference/articles/article1199.asp
+
+  num c = Math.cos( angle ),
+      s = Math.sin( angle ),
+      t = 1.0 - c,
+      x = axis.x, y = axis.y, z = axis.z,
+      tx = t * x, ty = t * y;
+
+  m.setValues(
+      tx * x + c, tx * y - s * z, tx * z + s * y, 0.0,
+      tx * y + s * z, ty * y + c, ty * z - s * x, 0.0,
+      tx * z - s * y, ty * z + s * x, t * z * z + c, 0.0,
+      0.0, 0.0, 0.0, 1.0
+    );
+
+   return m;
+}

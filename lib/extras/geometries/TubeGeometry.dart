@@ -24,7 +24,7 @@ class TubeGeometry extends Geometry {
 
   Object3D debug;
 
-  TubeGeometry ( path, [segments = 64, this.radius = 1, this.segmentsRadius = 8, closed = false, bool debug])
+  TubeGeometry ( path, [segments = 64, this.radius = 1.0, this.segmentsRadius = 8, closed = false, bool debug])
     : grid = [], super() {
 
     if ( debug ) this.debug = new Object3D();
@@ -78,7 +78,7 @@ class TubeGeometry extends Geometry {
         cx = -this.radius * Math.cos( v ); // TODO: Hack: Negating it so it faces outside.
         cy = this.radius * Math.sin( v );
 
-        pos2.copy( pos );
+        pos2.setFrom( pos );
         pos2.x += cx * normal.x + cy * binormal.x;
         pos2.y += cx * normal.y + cy * binormal.y;
         pos2.z += cx * normal.z + cy * binormal.z;
@@ -245,8 +245,7 @@ class TubeGeometry extends Geometry {
 
         theta = Math.acos( tangents[ i-1 ].dot( tangents[ i ] ) );
 
-        mat.makeRotationAxis( vec, theta ).multiplyVector3( normals[ i ] );
-
+        normals[ i ].applyProjection(makeRotationAxis ( mat, vec, theta ));
       }
 
       binormals[i] = tangents[i].cross(normals[i]);
@@ -270,7 +269,7 @@ class TubeGeometry extends Geometry {
       for ( i = 1; i < numpoints; i++ ) {
 
         // twist a little...
-        mat.makeRotationAxis( tangents[ i ], theta * i ).multiplyVector3( normals[ i ] );
+        normals[ i ].applyProjection( makeRotationAxis( mat, tangents[ i ], theta * i ) );
         binormals[ i ] = tangents[i].cross(normals[i]);
 
       }

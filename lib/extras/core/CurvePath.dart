@@ -136,13 +136,14 @@ class CurvePath extends Curve {
 		maxX = maxY = double.NEGATIVE_INFINITY;
 		minX = minY = double.INFINITY;
 
-		var p, i, il, sum;
+		var p, i, sum;
 
 		var v3 = points[0] is Vector3;
 
 		sum = (v3) ? new Vector3.zero() : new Vector2.zero();
 
-		for ( i = 0; i < points.length; i ++ ) {
+		int il = points.length;
+		for ( i = 0; i < il; i ++ ) {
 
 			p = points[ i ];
 

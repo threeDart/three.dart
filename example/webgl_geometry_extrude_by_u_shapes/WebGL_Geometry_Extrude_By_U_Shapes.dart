@@ -37,9 +37,10 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
         [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
           new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
-    mesh.position.setValues( x, y, z - 75 );
+    mesh.position.setValues( x.toDouble(), y.toDouble(), z.toDouble() - 75 );
     // mesh.rotation.set( rx, ry, rz );
-    mesh.scale.setValues( s, s, s );
+    double ds = s.toDouble();
+    mesh.scale.setValues( ds, ds, ds );
 
     // if ( geometry.debug ) mesh.add( geometry.debug );
 
@@ -141,15 +142,15 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     // Circle
 
-    var circleRadius = 4;
+    var circleRadius = 4.0;
     var circleShape = new Shape();
     circleShape.moveTo( 0, circleRadius );
-    circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 );
-    circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0, -circleRadius );
-    circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0 );
-    circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0, circleRadius);
+    circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0.0 );
+    circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0.0, -circleRadius );
+    circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0.0 );
+    circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0.0, circleRadius);
 
-    var rectLength = 12, rectWidth = 4;
+    var rectLength = 12.0, rectWidth = 4.0;
 
     var rectShape = new Shape();
 
@@ -194,7 +195,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
         extrudePath: extrude_extrudePath ); //circleShape rectShape smileyShape starShape
     // var circle3d = new ExtrudeGeometry(circleShape, extrudeBend, extrudeSettings );
 
-    var tube = new TubeGeometry(extrude_extrudePath, 40, 4, 5, false, true);
+    var tube = new TubeGeometry(extrude_extrudePath, 40, 4.0, 5, false, true);
     // new TubeGeometry(extrudePath, segments, 2, radiusSegments, closed2, debug);
 
 
