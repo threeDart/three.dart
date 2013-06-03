@@ -231,7 +231,7 @@ class BufferGeometry {
 
 					cb = pC - pB;
 					ab = pA - pB;
-					cb.cross( ab );
+					cb = cb.cross( ab );
 
 					normals[ vA * 3 ] += cb.x;
 					normals[ vA * 3 + 1 ] += cb.y;
