@@ -1,6 +1,6 @@
 library three;
 
-import 'dart:html';
+import 'dart:html' hide Path;
 import 'dart:typed_data';
 import 'dart:web_gl' as gl;
 import 'dart:math' as Math;

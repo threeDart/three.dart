@@ -1,15 +1,15 @@
-import 'dart:html' hide Path;
+import 'dart:html';
 import 'dart:math' as Math;
 import 'package:vector_math/vector_math.dart';
-import 'package:three/three.dart';
+import 'package:three/three.dart' as THREE;
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
 class WebGL_Geometry_Extrude_By_U_Shapes  {
   Element container;
 
-  PerspectiveCamera camera;
-  Scene scene;
-  WebGLRenderer renderer;
+  THREE.PerspectiveCamera camera;
+  THREE.Scene scene;
+  THREE.WebGLRenderer renderer;
 
   var windowHalfX, windowHalfY;
   var mouseX = 0;
@@ -19,7 +19,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
   var targetRotation = 0;
   var targetRotationOnMouseDown = 0;
 
-  Object3D parent, text, plane;
+  THREE.Object3D parent, text, plane;
 
   void run() {
     windowHalfX = window.innerWidth / 2;
@@ -34,8 +34,8 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     // 3d shape
 
     var mesh = SceneUtils.createMultiMaterialObject( geometry,
-        [ new MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
-          new MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
+        [ new THREE.MeshLambertMaterial( color: color, opacity: 0.2, transparent: true  ),
+          new THREE.MeshBasicMaterial( color: 0x000000, wireframe: true,  opacity: 0.3  ) ] );
 
     mesh.position.setValues( x.toDouble(), y.toDouble(), z.toDouble() - 75 );
     // mesh.rotation.set( rx, ry, rz );
@@ -53,16 +53,16 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     container = new Element.tag('div');
     document.body.nodes.add( container );
 
-    camera = new PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
+    camera = new THREE.PerspectiveCamera( 50.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
     camera.position.setValues( 0.0, 150.0, 500.0 );
 
-    scene = new Scene();
+    scene = new THREE.Scene();
 
-    var light = new DirectionalLight( 0xffffff );
+    var light = new THREE.DirectionalLight( 0xffffff );
     light.position.setValues( 0.0, 0.0, 1.0 );
     scene.add( light );
 
-    parent = new Object3D();
+    parent = new THREE.Object3D();
     parent.position.y = 50.0;
     scene.add( parent );
 
@@ -91,14 +91,14 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     }
 
-    var starShape = new Shape( pts );
+    var starShape = new THREE.Shape( pts );
 
     var rnd = new Math.Random();
 
-    var line = new LineCurve3(new Vector3.zero(), new Vector3(100.0, 0.0, 0.0));
-    var line2 = new LineCurve3(new Vector3(100.0, 0.0, 0.0),new Vector3(200.0, 50.0, 0.0));
+    var line = new THREE.LineCurve3(new Vector3.zero(), new Vector3(100.0, 0.0, 0.0));
+    var line2 = new THREE.LineCurve3(new Vector3(100.0, 0.0, 0.0),new Vector3(200.0, 50.0, 0.0));
 
-    var curvepath = new CurvePath();
+    var curvepath = new THREE.CurvePath();
     curvepath.add(line);
     curvepath.add(line2);
 
@@ -111,7 +111,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     }
 
-    var randomSpline =  new SplineCurve3( randomPoints );
+    var randomSpline =  new THREE.SplineCurve3( randomPoints );
     curvepath.add(randomSpline);
 
 
@@ -123,7 +123,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     for(var curve in curvepath.curves){
 
-      if(curve is LineCurve3){
+      if(curve is THREE.LineCurve3){
         // Straight so we only need one step
         initU += (curve.length / curvepathLength).toInt();
         extrudeUSteps.add(initU);
@@ -143,7 +143,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
     // Circle
 
     var circleRadius = 4.0;
-    var circleShape = new Shape();
+    var circleShape = new THREE.Shape();
     circleShape.moveTo( 0, circleRadius );
     circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0.0 );
     circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0.0, -circleRadius );
@@ -152,7 +152,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     var rectLength = 12.0, rectWidth = 4.0;
 
-    var rectShape = new Shape();
+    var rectShape = new THREE.Shape();
 
     rectShape.moveTo( -rectLength/2, -rectWidth/2 );
     rectShape.lineTo( -rectLength/2, rectWidth/2 );
@@ -163,7 +163,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
     // Smiley
 
-    var smileyShape = new Shape();
+    var smileyShape = new THREE.Shape();
     smileyShape.moveTo( 80, 40 );
     smileyShape.arc( 40, 40, 40, 0, Math.PI*2, false );
 
@@ -195,14 +195,14 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
         extrudePath: extrude_extrudePath ); //circleShape rectShape smileyShape starShape
     // var circle3d = new ExtrudeGeometry(circleShape, extrudeBend, extrudeSettings );
 
-    var tube = new TubeGeometry(extrude_extrudePath, 40, 4.0, 5, false, true);
+    var tube = new THREE.TubeGeometry(extrude_extrudePath, 40, 4.0, 5, false, true);
     // new TubeGeometry(extrudePath, segments, 2, radiusSegments, closed2, debug);
 
 
     _addGeometry( circle3d, 0xff1111,  -100,  0, 0,     0, 0, 0, 1 );
     _addGeometry( tube, 0x00ff11,  0,  0, 0,     0, 0, 0, 1 );
 
-    renderer = new WebGLRenderer();
+    renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.sortObjects = false;
 
