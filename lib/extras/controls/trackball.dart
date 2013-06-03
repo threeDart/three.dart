@@ -169,7 +169,7 @@ class TrackballControls extends EventEmitter {
       _eye.setFrom(object.position ).sub( target );
 
       Vector3 projection = object.up.clone().normalize().scale( mouseOnBall.y );
-      projection.add( object.up.clone().cross( _eye ).normalize().scale( mouseOnBall.x ) );
+      projection.add( object.up.cross( _eye ).normalize().scale( mouseOnBall.x ) );
       projection.add( _eye.normalize().scale( mouseOnBall.z ) );
 
       return projection;
@@ -240,7 +240,7 @@ class TrackballControls extends EventEmitter {
 
         mouseChange.scale( _eye.length * panSpeed );
 
-        Vector3 pan = _eye.clone().cross( object.up ).normalize().scale( mouseChange.x );
+        Vector3 pan = _eye.cross( object.up ).normalize().scale( mouseChange.x );
         pan += object.up.clone().normalize().scale( mouseChange.y );
 
         object.position.add( pan );
