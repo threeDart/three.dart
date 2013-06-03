@@ -115,13 +115,13 @@ class Geometry {
   void computeFaceNormals() {
     faces.forEach((face) {
 
-      Vector3 vA = vertices[ face.a ];
-      Vector3 vB = vertices[ face.b ];
-      Vector3 vC = vertices[ face.c ];
+      var vA = vertices[ face.a ],
+          vB = vertices[ face.b ],
+          vC = vertices[ face.c ];
 
       Vector3 cb = vC - vB;
       Vector3 ab = vA - vB;
-      cb.cross( ab );
+      cb = cb.cross( ab );
 
       cb.normalize();
 
