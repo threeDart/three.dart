@@ -194,9 +194,7 @@ class ShadowMapPlugin {
       shadowCamera.lookAt( light.target.matrixWorld.getTranslation() );
       shadowCamera.updateMatrixWorld();
 
-
-      shadowCamera.matrixWorldInverse = shadowCamera.matrixWorld.clone();
-      shadowCamera.matrixWorldInverse.invert();
+      shadowCamera.matrixWorldInverse.copyInverse(shadowCamera.matrixWorld);
 
       if ( light.cameraHelper != null ) light.cameraHelper.visible = light.shadowCameraVisible;
       if ( light.shadowCameraVisible ) light.cameraHelper.update();
