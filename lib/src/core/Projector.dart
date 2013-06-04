@@ -62,8 +62,7 @@ class Projector {
         _clippedVertex2PositionScreen = new Vector4(0.0, 0.0, 0.0, 1.0);
 
   Vector3 projectVector( Vector3 vector, Camera camera ) {
-    camera.matrixWorldInverse.setFrom(camera.matrixWorld);
-    camera.matrixWorldInverse.invert();
+    camera.matrixWorldInverse.copyInverse(camera.matrixWorld);
 
     _viewProjectionMatrix = camera.projectionMatrix * camera.matrixWorldInverse;
 
@@ -71,8 +70,7 @@ class Projector {
   }
 
   Vector3 unprojectVector( Vector3 vector, Camera camera ) {
-    camera.projectionMatrixInverse = camera.projectionMatrix.clone();
-    camera.projectionMatrixInverse.invert();
+    camera.projectionMatrixInverse.copyInverse(camera.projectionMatrix);
 
     _viewProjectionMatrix = camera.matrixWorld * camera.projectionMatrixInverse;
 
@@ -238,8 +236,7 @@ class Projector {
       camera.updateMatrixWorld();
     }
 
-    camera.matrixWorldInverse.setFrom(camera.matrixWorld);
-    camera.matrixWorldInverse.invert();
+    camera.matrixWorldInverse.copyInverse(camera.matrixWorld);
 
     _viewProjectionMatrix = camera.projectionMatrix * camera.matrixWorldInverse;
 

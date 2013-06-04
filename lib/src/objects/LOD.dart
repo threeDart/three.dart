@@ -24,11 +24,10 @@ class LOD extends Object3D {
 
     if ( LODs.length > 1 ) {
 
-      camera.matrixWorldInverse = camera.matrixWorld.clone();
-      camera.matrixWorldInverse.invert();
+      camera.matrixWorldInverse.copyInverse(camera.matrixWorld);
 
       var inverse  = camera.matrixWorldInverse;
-      var distance = -( inverse.elements[2] * matrixWorld[12] + inverse[6] * matrixWorld[13] + inverse[10] * matrixWorld[14] + inverse[14] );
+      var distance = -( inverse[2] * matrixWorld[12] + inverse[6] * matrixWorld[13] + inverse[10] * matrixWorld[14] + inverse[14] );
 
       LODs[ 0 ].object3D.visible = true;
 
