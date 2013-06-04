@@ -3798,8 +3798,7 @@ class WebGLRenderer implements Renderer {
 
 		if ( camera.parent == null ) camera.updateMatrixWorld();
 
-		camera.matrixWorldInverse.setFrom(camera.matrixWorld);
-		camera.matrixWorldInverse.invert();
+		camera.matrixWorldInverse.copyInverse(camera.matrixWorld);
 
 		camera._viewMatrixArray = camera.matrixWorldInverse.storage;
 		camera._projectionMatrixArray = camera.projectionMatrix.storage;
