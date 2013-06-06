@@ -39,8 +39,6 @@ part 'src/core/Vertex.dart';
 part 'src/core/Projector.dart';
 part 'src/core/Ray.dart';
 part 'src/core/UV.dart';
-part 'src/core/IFace3.dart';
-part 'src/core/IFace4.dart';
 part 'src/core/Rectangle.dart';
 part 'src/core/BufferGeometry.dart';
 part 'src/core/EventEmitter.dart';
