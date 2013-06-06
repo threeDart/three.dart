@@ -211,8 +211,8 @@ class Projector {
     List<Vector3> vertices;
     Vertex vertex;
     Vector3 vertexPositionScreen, normal;
-    List<IFace3> faces;
-    IFace3 face;
+    List faces;
+    var face;
     IRenderableFace3 _face;
     List faceVertexNormals;
     List<List> faceVertexUvs;

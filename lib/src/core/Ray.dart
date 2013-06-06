@@ -107,7 +107,7 @@ class Ray {
 
       int f;
 
-      IFace3 face;
+      var face;
       num dot, scalar;
       Geometry geometry = mesh.geometry;
       List vertices = geometry.vertices;
@@ -221,7 +221,7 @@ class Ray {
 class Intersect {
   num distance;
   Vector3 point;
-  IFace3 face;
+  var face;
   Object3D object;
 
   Intersect({this.distance, this.point, this.face, this.object});

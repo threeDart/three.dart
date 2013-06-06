@@ -8,7 +8,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Face4 implements IFace4 {
+class Face4 {
   num a, b, c, d;
   Vector3 normal;
   List vertexNormals, vertexColors, vertexTangents;

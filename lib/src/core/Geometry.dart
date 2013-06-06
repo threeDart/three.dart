@@ -420,7 +420,7 @@ class Geometry {
 
     il = faces.length;
     for( i = 0; i < il; i ++ ) {
-      IFace3 face = faces[ i ];
+      var face = faces[ i ];
 
       if ( face is Face3 ) {
         face.a = changes[ face.a ];
