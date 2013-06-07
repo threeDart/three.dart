@@ -55,10 +55,7 @@ class Ray {
   }
 
   List<Intersect> intersectObject( Object3D object, {bool recursive: false} ) {
-    Vector3 a = new Vector3.zero();
-    Vector3 b = new Vector3.zero();
-    Vector3 c = new Vector3.zero();
-    Vector3 d = new Vector3.zero();
+    List<Vector3> abcd = new List.generate(4, (_) => new Vector3.zero());
 
     Vector3 originCopy = new Vector3.zero();
     Vector3 directionCopy = new Vector3.zero();
@@ -161,42 +158,32 @@ class Ray {
 
           intersectPoint = originCopy + directionCopy.scale(scalar);
 
+          abcd = face.indices.map((idx) => vertices[idx].clone().applyProjection(objMatrix)).toList();
+
+          var pointInFace;
+
+          // TODO - Make this work a face of arbitrary size
           if ( face is Face3 ) {
 
-            a.setFrom(vertices[face.a]).applyProjection(objMatrix);
-            b.setFrom(vertices[face.b]).applyProjection(objMatrix);
-            c.setFrom(vertices[face.c]).applyProjection(objMatrix);
+            pointInFace =  _pointInFace3( intersectPoint, abcd[0], abcd[1], abcd[2] );
 
-            if ( _pointInFace3( intersectPoint, a, b, c ) ) {
-              intersect = new Intersect(
+          } else if ( face is Face4 ) {
+
+            pointInFace =
+                _pointInFace3( intersectPoint, abcd[0], abcd[1], abcd[3]) ||
+                _pointInFace3( intersectPoint, abcd[1], abcd[2], abcd[3] );
+
+          }
+
+          if ( pointInFace  ) {
+            intersect = new Intersect(
                 distance: originCopy.absoluteError( intersectPoint ),
                 point: intersectPoint.clone(),
                 face: face,
                 object: object
-              );
+            );
 
-              intersects.add( intersect );
-
-            }
-
-          } else if ( face is Face4 ) {
-            Face4 face4 = face;
-            a.setFrom(vertices[face4.a]).applyProjection(objMatrix);
-            b.setFrom(vertices[face4.b]).applyProjection(objMatrix);
-            c.setFrom(vertices[face4.c]).applyProjection(objMatrix);
-            d.setFrom(vertices[face4.d]).applyProjection(objMatrix);
-
-            if ( _pointInFace3( intersectPoint, a, b, d ) || _pointInFace3( intersectPoint, b, c, d ) )
-            {
-              intersect = new Intersect(
-                  distance: originCopy.absoluteError( intersectPoint ),
-                  point: intersectPoint.clone(),
-                  face: face,
-                  object: object
-              );
-
-              intersects.add( intersect );
-            }
+            intersects.add( intersect );
           }
         }
       }
