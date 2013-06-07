@@ -21,7 +21,7 @@ class Geometry {
 
   List colors; // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
   List materials;
-  List faces;
+  List<Face> faces;
 
   List faceUvs;
   List<List> faceVertexUvs;
@@ -91,23 +91,15 @@ class Geometry {
 
   void computeCentroids() {
 
-    faces.forEach((face) {
+    faces.forEach((Face face) {
 
       face.centroid.setValues( 0.0, 0.0, 0.0 );
 
-      if ( face is Face3 ) {
-        face.centroid.add( vertices[ face.a ] );
-        face.centroid.add( vertices[ face.b ] );
-        face.centroid.add( vertices[ face.c ] );
-        face.centroid /= 3.0;
-      } else if ( face is Face4 ) {
-        Face4 face4 = face;
-        face4.centroid.add( vertices[ face4.a ] );
-        face4.centroid.add( vertices[ face4.b ] );
-        face4.centroid.add( vertices[ face4.c ] );
-        face4.centroid.add( vertices[ face4.d ] );
-        face4.centroid /= 4.0;
-      }
+      face.indices.forEach((idx) {
+        face.centroid.add( vertices[ idx ] );
+      });
+
+      face.centroid /= face.size.toDouble();
 
     });
   }
@@ -144,13 +136,7 @@ class Geometry {
       vertices = __tmpVertices;
 
       faces.forEach((face) {
-
-        if ( face is Face3 ) {
-          face.vertexNormals = [ new Vector3.zero(), new Vector3.zero(), new Vector3.zero() ];
-
-        } else if ( face is Face4 ) {
-          face.vertexNormals = [ new Vector3.zero(), new Vector3.zero(), new Vector3.zero(), new Vector3.zero() ];
-        }
+        face.vertexNormals = new List.generate(face.size, (_) => new Vector3.zero(), growable: false);
       });
 
     } else {
@@ -163,36 +149,23 @@ class Geometry {
 
     }
 
-    faces.forEach((face) {
+    faces.forEach((Face face) {
 
-      if ( face is Face3 ) {
-        vertices[ face.a ].add( face.normal );
-        vertices[ face.b ].add( face.normal );
-        vertices[ face.c ].add( face.normal );
-      } else if ( face is Face4 ) {
-        Face4 face4 = face;
-        vertices[ face4.a ].add( face4.normal );
-        vertices[ face4.b ].add( face4.normal );
-        vertices[ face4.c ].add( face4.normal );
-        vertices[ face4.d ].add( face4.normal );
-      }
+      face.indices.forEach((idx) {
+        vertices[ idx ].add( face.normal );
+      });
+
     });
 
     vertices.forEach((v) => v.normalize());
 
-    faces.forEach((face) {
+    faces.forEach((Face face) {
 
-      if ( face is Face3 ) {
-        face.vertexNormals[ 0 ].setFrom( vertices[ face.a ] );
-        face.vertexNormals[ 1 ].setFrom( vertices[ face.b ] );
-        face.vertexNormals[ 2 ].setFrom( vertices[ face.c ] );
-      } else if ( face is Face4 ) {
-        Face4 face4 = face;
-        face4.vertexNormals[ 0 ].setFrom( vertices[ face4.a ] );
-        face4.vertexNormals[ 1 ].setFrom( vertices[ face4.b ] );
-        face4.vertexNormals[ 2 ].setFrom( vertices[ face4.c ] );
-        face4.vertexNormals[ 3 ].setFrom( vertices[ face4.d ] );
-      }
+      var i = 0;
+      face.indices.forEach((idx) {
+        face.vertexNormals[ i++ ].setFrom( vertices[ idx ] );
+      });
+
     });
   }
 
@@ -268,16 +241,19 @@ class Geometry {
       face = this.faces[ f ];
       UV uv = faceVertexUvs[ 0 ][ f ]; // use UV layer 0 for tangents
 
-      if ( face is Face3 ) {
-        handleTriangle( this, face.a, face.b, face.c, 0, 1, 2 );
-      } else if ( face is Face4 ) {
-        Face4 face4 = face;
-        handleTriangle( this, face4.a, face4.b, face4.d, 0, 1, 3 );
-        handleTriangle( this, face4.b, face4.c, face4.d, 1, 2, 3 );
+      // TODO - Come up with a way to handle an arbitrary number of vertexes
+      var triangles = [];
+      if ( face.size == 3 ) {
+        triangles.add([0, 1, 2]);
+      } else if ( face.size == 4 ) {
+        triangles.add([0, 1, 3]);
+        triangles.add([1, 2, 3]);
       }
-    }
 
-    var faceIndex = [ 'a', 'b', 'c', 'd' ];
+      triangles.forEach((t) {
+        handleTriangle( this, face.indices[t[0]], face.indices[t[1]], face.indices[t[2]], t[0], t[1], t[2] );
+      });
+    }
 
     faces.forEach((face) {
 
@@ -287,18 +263,7 @@ class Geometry {
 
         n.setFrom( face.vertexNormals[ i ] );
 
-        // TODO: Check if this works instead
-        // vertexIndex = face.dynamic[ faceIndex[ i ] ];
-
-        if ( faceIndex[i] == "a") {
-          vertexIndex = face.a;
-        } else if ( faceIndex[i] == "b") {
-          vertexIndex = face.b;
-        } else if ( faceIndex[i] == "c") {
-          vertexIndex = face.c;
-        } else if ( faceIndex[i] == "d") {
-          vertexIndex = (face as Face4).d;
-        }
+        vertexIndex = face.indices[i];
 
         t = tan1[ vertexIndex ];
 
@@ -418,20 +383,9 @@ class Geometry {
 
     // Start to patch face indices
 
-    il = faces.length;
-    for( i = 0; i < il; i ++ ) {
-      IFace3 face = faces[ i ];
-
-      if ( face is Face3 ) {
-        face.a = changes[ face.a ];
-        face.b = changes[ face.b ];
-        face.c = changes[ face.c ];
-      } else if ( face is Face4 ) {
-        Face4 face4 = face;
-        face4.a = changes[ face4.a ];
-        face4.b = changes[ face4.b ];
-        face4.c = changes[ face4.c ];
-        face4.d = changes[ face4.d ];
+    faces.forEach((Face face) {
+      for (var i = 0; i < face.size; i++) {
+        face.indices[i] = changes[ i ];
 
         /* TODO
 
@@ -464,7 +418,7 @@ class Geometry {
         }*/
 
       }
-    }
+    });
 
     // Use unique set of vertices
     var diff = vertices.length - unique.length;
