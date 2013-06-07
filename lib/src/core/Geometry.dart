@@ -385,7 +385,7 @@ class Geometry {
 
     faces.forEach((Face face) {
       for (var i = 0; i < face.size; i++) {
-        face.indices[i] = changes[ i ];
+        face.indices[i] = changes[ face.indices[i] ];
 
         /* TODO
 
