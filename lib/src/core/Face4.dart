@@ -1,51 +1,19 @@
 part of three;
 
-/**
- * @author mr.doob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
- *
- * Ported to Dart from JS by:
- * @author rob silverton / http://www.unwrong.com/
- */
+class Face4 extends Face {
 
-class Face4 implements IFace4 {
-  num a, b, c, d;
-  Vector3 normal;
-  List vertexNormals, vertexColors, vertexTangents;
-  Color color;
-  int materialIndex;
-  Vector3 centroid;
+  Face4([List<int> indices, normalOrVertexNormals, colorOrVertexColors, materialIndex]) :
+    super(4, indices, normalOrVertexNormals, colorOrVertexColors, materialIndex);
 
-  /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
-  Face4( [this.a, this.b, this.c, this.d, normalOrVertexNormals, colorOrVertexColors, this.materialIndex] ) {
-    normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3.zero();
-    vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
+  get a => indices[0];
+  set a(int i) { indices[0] = i; }
 
-    color = colorOrVertexColors is Color ? colorOrVertexColors : new Color();
-    vertexColors = colorOrVertexColors is List ? colorOrVertexColors : [];
+  get b => indices[1];
+  set b(int i) { indices[1] = i; }
 
-    vertexTangents = [];
+  get c => indices[2];
+  set c(int i) { indices[2] = i; }
 
-    materialIndex = materialIndex;
-
-    centroid = new Vector3.zero();
-  }
-
-  clone() {
-
-    var face = new Face4( a, b, c, d );
-
-    face.normal.setFrom( this.normal );
-    face.color = this.color.clone();
-    face.centroid.setFrom( this.centroid );
-
-    face.materialIndex = this.materialIndex;
-
-    face.vertexNormals = vertexNormals.map((Vector3 v) => v.clone()).toList();
-    face.vertexColors = vertexColors.map((Vector3 v) => v.clone()).toList();
-    face.vertexTangents = vertexTangents.map((Vector3 v) => v.clone()).toList();
-
-    return face;
-
-  }
+  get d => indices[3];
+  set d(int i) { indices[3] = i; }
 }
