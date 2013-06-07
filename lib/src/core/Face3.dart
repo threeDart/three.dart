@@ -2,8 +2,8 @@ part of three;
 
 class Face3 extends Face {
 
-  Face3([List<int> indices, normalOrVertexNormals, colorOrVertexColors, materialIndex]) :
-    super(3, indices, normalOrVertexNormals, colorOrVertexColors, materialIndex);
+  Face3([int a = 0, int b = 0, int c = 0, normalOrVertexNormals, colorOrVertexColors, materialIndex]) :
+    super([a, b, c], normalOrVertexNormals, colorOrVertexColors, materialIndex);
 
   get a => indices[0];
   set a(int i) { indices[0] = i; }

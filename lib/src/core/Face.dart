@@ -1,7 +1,6 @@
 part of three;
 
 abstract class Face {
-  int size;
   List<int> indices;
   Vector3 normal;
   List vertexNormals, vertexColors, vertexTangents;
@@ -10,11 +9,7 @@ abstract class Face {
   Vector3 centroid;
 
   /// normalOrVertexNormals and colorOrVertexColors can be either a [Vector3] or a [List<Vector3>]
-  Face( this.size, this.indices, normalOrVertexNormals, colorOrVertexColors, this.materialIndex ) {
-
-    if (indices == null) {
-      indices = new List(size);
-    }
+  Face( this.indices, normalOrVertexNormals, colorOrVertexColors, this.materialIndex ) {
 
     normal = normalOrVertexNormals is Vector3 ? normalOrVertexNormals :  new Vector3.zero();
     vertexNormals = normalOrVertexNormals is List ? normalOrVertexNormals : [];
@@ -27,11 +22,13 @@ abstract class Face {
     centroid = new Vector3.zero();
   }
 
+  int get size => indices.length;
+
   clone() {
 
     var cm = reflectClass(this.runtimeType);
 
-    Face face = cm.newInstance(new Symbol(""), [this.indices]).reflectee;
+    Face face = cm.newInstance(new Symbol(""), this.indices).reflectee;
 
     face.normal.setFrom(this.normal);
     face.color.copy( this.color );
