@@ -60,7 +60,8 @@ removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
       for ( p = 0; p < shape.length; p++ ) {
 
         pts2 = shape[ p ];
-        d = pts1.distanceToSquared( pts2 );
+        d = (pts1 - pts2).length2;
+
         dist.add( d );
 
         if ( d < shortest ) {

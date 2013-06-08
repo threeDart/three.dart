@@ -38,7 +38,7 @@ class ExtrudeGeometry extends Geometry {
   ExtrudeGeometry( this.shapes,
                   {
                     amount: 100,
-                    bevelThickness: 6,
+                    bevelThickness: 6.0,
                     bevelSize: null,
                     bevelSegments: 3,
                     bevelEnabled: true,
@@ -50,7 +50,7 @@ class ExtrudeGeometry extends Geometry {
                     material,
                     extrudeMaterial } ) : super() {
 
-    if (bevelSize == null) bevelSize = bevelThickness - 2;
+    if (bevelSize == null) bevelSize = bevelThickness - 2.0;
 
     if (shapes == null) {
       shapes = [];
@@ -472,7 +472,7 @@ class ExtrudeGeometry extends Geometry {
 
       if ( !extrudeByPath ) {
 
-        _v( vert.x, vert.y, 0 );
+        _v( vert.x, vert.y, 0.0 );
 
       } else {
 
