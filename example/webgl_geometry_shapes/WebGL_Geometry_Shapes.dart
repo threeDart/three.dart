@@ -158,10 +158,10 @@ class WebGL_Geometry_Shapes  {
     // Triangle
 
     var triangleShape = new Shape();
-    triangleShape.moveTo(  80, 20 );
-    triangleShape.lineTo(  40, 80 );
-    triangleShape.lineTo( 120, 80 );
-    triangleShape.lineTo(  80, 20 ); // close path
+    triangleShape.moveTo(  80.0, 20.0 );
+    triangleShape.lineTo(  40.0, 80.0 );
+    triangleShape.lineTo( 120.0, 80.0 );
+    triangleShape.lineTo(  80.0, 20.0 ); // close path
 
     var triangle3d = triangleShape.extrude(
         amount: extrude_amount,
@@ -174,7 +174,7 @@ class WebGL_Geometry_Shapes  {
 
     // Heart
 
-    var x = 0, y = 0;
+    var x = 0.0, y = 0.0;
 
     var heartShape = new Shape(); // From http://blog.burlock.org/html5/130-paths
 
@@ -198,14 +198,14 @@ class WebGL_Geometry_Shapes  {
 
     // Square
 
-    var sqLength = 80;
+    var sqLength = 80.0;
 
     var squareShape = new Shape();
-    squareShape.moveTo( 0,0 );
-    squareShape.lineTo( 0, sqLength );
+    squareShape.moveTo( 0.0, 0.0 );
+    squareShape.lineTo( 0.0, sqLength );
     squareShape.lineTo( sqLength, sqLength );
-    squareShape.lineTo( sqLength, 0 );
-    squareShape.lineTo( 0, 0 );
+    squareShape.lineTo( sqLength, 0.0 );
+    squareShape.lineTo( 0.0, 0.0 );
 
     var square3d = squareShape.extrude(
         amount: extrude_amount,
@@ -217,14 +217,14 @@ class WebGL_Geometry_Shapes  {
 
     // Rectangle
 
-    var rectLength = 120, rectWidth = 40;
+    var rectLength = 120.0, rectWidth = 40.0;
 
     var rectShape = new Shape();
-    rectShape.moveTo( 0,0 );
-    rectShape.lineTo( 0, rectWidth );
+    rectShape.moveTo( 0.0, 0.0 );
+    rectShape.lineTo( 0.0, rectWidth );
     rectShape.lineTo( rectLength, rectWidth );
-    rectShape.lineTo( rectLength, 0 );
-    rectShape.lineTo( 0, 0 );
+    rectShape.lineTo( rectLength, 0.0 );
+    rectShape.lineTo( 0.0, 0.0 );
 
     var rect3d = rectShape.extrude(
         amount: extrude_amount,
@@ -237,7 +237,7 @@ class WebGL_Geometry_Shapes  {
     // Rounded rectangle
 
     var roundedRectShape = new Shape();
-    roundedRect( roundedRectShape, 0, 0, 50, 50, 20 );
+    roundedRect( roundedRectShape, 0.0, 0.0, 50.0, 50.0, 20.0 );
 
     var roundedRect3d = roundedRectShape.extrude(
         amount: extrude_amount,
@@ -249,13 +249,13 @@ class WebGL_Geometry_Shapes  {
 
     // Circle
 
-    var circleRadius = 40;
+    var circleRadius = 40.0;
     var circleShape = new Shape();
-    circleShape.moveTo( 0, circleRadius );
-    circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 );
-    circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0, -circleRadius );
-    circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0 );
-    circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0, circleRadius );
+    circleShape.moveTo( 0.0, circleRadius );
+    circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0.0 );
+    circleShape.quadraticCurveTo( circleRadius, -circleRadius, 0.0, -circleRadius );
+    circleShape.quadraticCurveTo( -circleRadius, -circleRadius, -circleRadius, 0.0 );
+    circleShape.quadraticCurveTo( -circleRadius, circleRadius, 0.0, circleRadius );
 
     var circle3d = circleShape.extrude(
         amount: extrude_amount,
@@ -267,7 +267,7 @@ class WebGL_Geometry_Shapes  {
 
     // Fish
 
-    x = y = 0;
+    x = y = 0.0;
 
     var fishShape = new Shape();
 
@@ -289,12 +289,12 @@ class WebGL_Geometry_Shapes  {
     // Arc circle
 
     var arcShape = new Shape();
-    arcShape.moveTo( 50, 10 );
-    arcShape.absarc( 10, 10, 40, 0, Math.PI*2, false );
+    arcShape.moveTo( 50.0, 10.0 );
+    arcShape.absarc( 10.0, 10.0, 40.0, 0.0, Math.PI*2, false );
 
     var holePath = new Path();
-    holePath.moveTo( 20, 10 );
-    holePath.absarc( 10, 10, 10, 0, Math.PI*2, true );
+    holePath.moveTo( 20.0, 10.0 );
+    holePath.absarc( 10.0, 10.0, 10.0, 0.0, Math.PI*2, true );
     arcShape.holes.add( holePath );
 
     var arc3d = arcShape.extrude(
@@ -309,19 +309,19 @@ class WebGL_Geometry_Shapes  {
     // Smiley
 
     var smileyShape = new Shape();
-    smileyShape.moveTo( 80, 40 );
-    smileyShape.absarc( 40, 40, 40, 0, Math.PI*2, false );
+    smileyShape.moveTo( 80.0, 40.0 );
+    smileyShape.absarc( 40.0, 40.0, 40.0, 0.0, Math.PI*2, false );
 
     var smileyEye1Path = new Path();
-    smileyEye1Path.moveTo( 35, 20 );
+    smileyEye1Path.moveTo( 35.0, 20.0 );
     // smileyEye1Path.absarc( 25, 20, 10, 0, Math.PI*2, true );
-    smileyEye1Path.absellipse( 25, 20, 10, 10, 0, Math.PI*2, true );
+    smileyEye1Path.absellipse( 25.0, 20.0, 10.0, 10.0, 0.0, Math.PI*2, true );
 
     smileyShape.holes.add( smileyEye1Path );
 
     var smileyEye2Path = new Path();
-    smileyEye2Path.moveTo( 65, 20 );
-    smileyEye2Path.absarc( 55, 20, 10, 0, Math.PI*2, true );
+    smileyEye2Path.moveTo( 65.0, 20.0 );
+    smileyEye2Path.absarc( 55.0, 20.0, 10.0, 0.0, Math.PI*2, true );
     smileyShape.holes.add( smileyEye2Path );
 
     var smileyMouthPath = new Path();
@@ -332,11 +332,11 @@ class WebGL_Geometry_Shapes  {
     // smileyMouthPath.lineTo( 20, 60 );
     // smileyMouthPath.lineTo( 20, 40 );
 
-    smileyMouthPath.moveTo( 20, 40 );
-    smileyMouthPath.quadraticCurveTo( 40, 60, 60, 40 );
-    smileyMouthPath.bezierCurveTo( 70, 45, 70, 50, 60, 60 );
-    smileyMouthPath.quadraticCurveTo( 40, 80, 20, 60 );
-    smileyMouthPath.quadraticCurveTo( 5, 50, 20, 40 );
+    smileyMouthPath.moveTo( 20.0, 40.0 );
+    smileyMouthPath.quadraticCurveTo( 40.0, 60.0, 60.0, 40.0 );
+    smileyMouthPath.bezierCurveTo( 70.0, 45.0, 70.0, 50.0, 60.0, 60.0 );
+    smileyMouthPath.quadraticCurveTo( 40.0, 80.0, 20.0, 60.0 );
+    smileyMouthPath.quadraticCurveTo( 5.0, 50.0, 20.0, 40.0 );
 
     smileyShape.holes.add( smileyMouthPath );
 
@@ -358,7 +358,7 @@ class WebGL_Geometry_Shapes  {
     splinepts.add( new Vector2.zero() );
 
     var splineShape = new Shape(  );
-    splineShape.moveTo( 0, 0 );
+    splineShape.moveTo( 0.0, 0.0 );
     splineShape.splineThru( splinepts );
 
     //splineShape.debug( document.getElementById("debug") );
@@ -384,16 +384,16 @@ class WebGL_Geometry_Shapes  {
     var splinePoints = splineShape.createPointsGeometry( );
     var splineSpacedPoints = splineShape.createSpacedPointsGeometry( );
 
-    addGeometry( california3d, californiaPoints, californiaSpacedPoints,  0xffaa00, -300, -100, 0,     0, 0, 0, 0.25 );
-    addGeometry( triangle3d, trianglePoints, triangleSpacedPoints,      0xffee00, -180,    0, 0,     0, 0, 0, 1 );
-    addGeometry( roundedRect3d, roundedRectPoints, roundedRectSpacedPoints, 0x005500, -150,  150, 0,     0, 0, 0, 1 );
-    addGeometry( square3d, squarePoints, squareSpacedPoints,        0x0055ff,  150,  100, 0,     0, 0, 0, 1 );
-    addGeometry( heart3d, heartPoints, heartSpacedPoints,         0xff1100,    0,  100, 0,   Math.PI, 0, 0, 1 );
-    addGeometry( circle3d, circlePoints, circleSpacedPoints,        0x00ff11,  120,  250, 0,     0, 0, 0, 1 );
-    addGeometry( fish3d, fishPoints, fishSpacedPoints,            0x222222,  -60,  200, 0,     0, 0, 0, 1 );
-    addGeometry( splineShape3d, splinePoints, splineSpacedPoints,     0x888888,  -50,  -100, -50,  0, 0, 0, 0.2 );
-    addGeometry( arc3d, arcPoints, arcSpacedPoints,             0xbb4422,  150,    0, 0,     0, 0, 0, 1 );
-    addGeometry( smiley3d, smileyPoints, smileySpacedPoints,        0xee00ff,  -270,    250, 0,  Math.PI, 0, 0, 1 );
+    addGeometry( california3d, californiaPoints, californiaSpacedPoints, 0xffaa00, -300.0, -100.0, 0.0, 0.0, 0.0, 0.0, 0.25 );
+    addGeometry( triangle3d, trianglePoints, triangleSpacedPoints, 0xffee00, -180.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 );
+    addGeometry( roundedRect3d, roundedRectPoints, roundedRectSpacedPoints, 0x005500, -150.0, 150.0, 0.0, 0.0, 0.0, 0.0, 1.0 );
+    addGeometry( square3d, squarePoints, squareSpacedPoints, 0x0055ff, 150.0, 100.0, 0.0, 0.0, 0.0, 0.0, 1.0 );
+    addGeometry( heart3d, heartPoints, heartSpacedPoints, 0xff1100, 0.0, 100.0, 0.0, Math.PI, 0.0, 0.0, 1.0 );
+    addGeometry( circle3d, circlePoints, circleSpacedPoints, 0x00ff11, 120.0, 250.0, 0.0, 0.0, 0.0, 0.0, 1.0 );
+    addGeometry( fish3d, fishPoints, fishSpacedPoints, 0x222222, -60.0, 200.0, 0.0, 0.0, 0.0, 0.0, 1.0 );
+    addGeometry( splineShape3d, splinePoints, splineSpacedPoints, 0x888888, -50.0, -100.0, -50.0, 0.0, 0.0, 0.0, 0.2 );
+    addGeometry( arc3d, arcPoints, arcSpacedPoints, 0xbb4422, 150.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 );
+    addGeometry( smiley3d, smileyPoints, smileySpacedPoints, 0xee00ff, -270.0, 250.0, 0.0, Math.PI, 0.0, 0.0, 1.0 );
 
 
     //
