@@ -208,7 +208,7 @@ class CurvePath extends Curve {
 		var geometry = new Geometry();
 
 		for ( var i = 0; i < points.length; i ++ ) {
-		  var z = (points[i] is Vector3) ? points[ i ].z : 0;
+		  var z = (points[i] is Vector3) ? points[ i ].z : 0.0;
 			geometry.vertices.add( new Vector3( points[ i ].x, points[ i ].y, z) );
 		}
 
