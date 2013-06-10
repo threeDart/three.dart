@@ -187,7 +187,7 @@ class TrackballControls extends EventEmitter {
 
         angle *= rotateSpeed;
 
-        quaternion.setAxisAngle( axis, -angle );
+        quaternion.setAxisAngle( axis, angle );
 
         // TODO Check that vector_math's Quaternion.rotate is equivalent to multiplyVector3
         quaternion.rotate( _eye );
@@ -201,7 +201,7 @@ class TrackballControls extends EventEmitter {
 
         } else {
 
-          quaternion.setAxisAngle( axis, angle * ( dynamicDampingFactor - 1.0 ) );
+          quaternion.setAxisAngle( axis, -angle * ( dynamicDampingFactor - 1.0 ) );
           quaternion.rotate( _rotateStart );
 
         }
@@ -303,11 +303,11 @@ class TrackballControls extends EventEmitter {
       object.lookAt( target );
 
       // distanceToSquared
-      if ( new Vector3.copy(lastPosition).sub( object.position ).length2 > 0.0 ) {
+      if ( (lastPosition - object.position).length2 > 0.0 ) {
         //
         dispatchEvent( changeEvent );
 
-        lastPosition.copyInto( object.position );
+        lastPosition.setFrom( object.position );
 
       }
 
