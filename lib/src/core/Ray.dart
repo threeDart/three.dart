@@ -163,11 +163,11 @@ class Ray {
           var pointInFace;
 
           // TODO - Make this work a face of arbitrary size
-          if ( face is Face3 ) {
+          if ( face.size == 3) {
 
             pointInFace =  _pointInFace3( intersectPoint, abcd[0], abcd[1], abcd[2] );
 
-          } else if ( face is Face4 ) {
+          } else if ( face.size == 4 ) {
 
             pointInFace =
                 _pointInFace3( intersectPoint, abcd[0], abcd[1], abcd[3]) ||

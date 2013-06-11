@@ -213,7 +213,7 @@ class Projector {
     Vector3 vertexPositionScreen, normal;
     List<Face> faces;
     Face face;
-    IRenderableFace3 _face;
+    RenderableFace _face;
     List faceVertexNormals;
     List<List> faceVertexUvs;
     RenderableVertex v1, v2, v3, v4;
@@ -292,62 +292,33 @@ class Projector {
 
           side = material.side;
 
-          if ( face is Face3 ) {
-            v1 = _vertexPool[ face.a ];
-            v2 = _vertexPool[ face.b ];
-            v3 = _vertexPool[ face.c ];
+          var vtx = face.indices.map((idx) => _vertexPool[idx]).toList();
 
-            if ( v1.visible && v2.visible && v3.visible ) {
+          var allVtxVisible = vtx.any((v) => v.visible);
 
+          if (allVtxVisible) {
+            if (face.size == 3) {
               visible = (
-                  ( ( v3.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
-                    ( v3.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) ) < 0);
+                  ( ( vtx[2].positionScreen.x - vtx[0].positionScreen.x ) * ( vtx[1].positionScreen.y - vtx[0].positionScreen.y ) -
+                    ( vtx[2].positionScreen.y - vtx[0].positionScreen.y ) * ( vtx[1].positionScreen.x - vtx[0].positionScreen.x ) ) < 0);
+            } else if (face.size == 4) {
+              visible = ( vtx[3].positionScreen.x - vtx[0].positionScreen.x ) * ( vtx[1].positionScreen.y - vtx[0].positionScreen.y ) -
+                  ( vtx[3].positionScreen.y - vtx[0].positionScreen.y ) * ( vtx[1].positionScreen.x - vtx[0].positionScreen.x ) < 0 ||
+                  ( vtx[1].positionScreen.x - vtx[2].positionScreen.x ) * ( vtx[3].positionScreen.y - vtx[2].positionScreen.y ) -
+                  ( vtx[1].positionScreen.y - vtx[2].positionScreen.y ) * ( vtx[3].positionScreen.x - vtx[2].positionScreen.x ) < 0;
+            }
 
-              if ( side == DoubleSide || visible == ( side == FrontSide ) ) {
+            if ( side == DoubleSide || visible == ( side == FrontSide ) ) {
 
+                _face = (face.size == 3) ? getNextFace3InPool() : getNextFace4InPool();
 
-              _face = getNextFace3InPool();
+                _face.vertices = vtx.map((v) => v.clone()).toList(growable: false);
 
-              _face.v1.copy( v1 );
-              _face.v2.copy( v2 );
-              _face.v3.copy( v3 );
-
-              } else {
-                continue;
-              }
             } else {
               continue;
             }
-
-          } else if ( face is Face4 ) {
-
-            Face4 face4 = face;
-            v1 = _vertexPool[ face4.a ];
-            v2 = _vertexPool[ face4.b ];
-            v3 = _vertexPool[ face4.c ];
-            v4 = _vertexPool[ face4.d ];
-
-            if ( v1.visible && v2.visible && v3.visible && v4.visible ) {
-
-              visible = ( v4.positionScreen.x - v1.positionScreen.x ) * ( v2.positionScreen.y - v1.positionScreen.y ) -
-                  ( v4.positionScreen.y - v1.positionScreen.y ) * ( v2.positionScreen.x - v1.positionScreen.x ) < 0 ||
-                  ( v2.positionScreen.x - v3.positionScreen.x ) * ( v4.positionScreen.y - v3.positionScreen.y ) -
-                  ( v2.positionScreen.y - v3.positionScreen.y ) * ( v4.positionScreen.x - v3.positionScreen.x ) < 0;
-
-              if ( side == DoubleSide || visible == ( side == FrontSide ) ) {
-
-                _face = getNextFace4InPool();
-
-                _face.v1.copy( v1 );
-                _face.v2.copy( v2 );
-                _face.v3.copy( v3 );
-                (_face as IRenderableFace4).v4.copy( v4 );
-              } else {
-                continue;
-              }
-            } else {
-              continue;
-            }
+          } else {
+            continue;
           }
 
           _face.normalWorld.setFrom( face.normal );
@@ -516,7 +487,7 @@ class Projector {
     return vertex;
   }
 
-  IRenderableFace3 getNextFace3InPool() {
+  RenderableFace getNextFace3InPool() {
     //TODO: make sure I've interpreted this logic correctly
     // RenderableFace3 face = _face3Pool[ _face3Count ] = _face3Pool[ _face3Count ] || new RenderableFace3();
     RenderableFace3 face;
@@ -532,7 +503,7 @@ class Projector {
     return face;
   }
 
-  IRenderableFace4 getNextFace4InPool() {
+  RenderableFace getNextFace4InPool() {
 
     RenderableFace4 face;
     if ( _face4Count < _face4Pool.length ) {

@@ -16,4 +16,6 @@ class Face4 extends Face {
 
   get d => indices[3];
   set d(int i) { indices[3] = i; }
+
+  clone() => new Face4(a, b, c, d).setFrom(this);
 }

@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'dart:web_gl' as gl;
 import 'dart:math' as Math;
 import 'dart:json' as JSON;
-import 'dart:mirrors';
 
 import 'src/core/ThreeMath.dart' as ThreeMath;
 export 'src/core/ThreeMath.dart';
@@ -130,6 +129,7 @@ part 'src/objects/MorphAnimMesh.dart';
 
 part 'src/renderers/renderables/RenderableObject.dart';
 part 'src/renderers/renderables/RenderableVertex.dart';
+part 'src/renderers/renderables/RenderableFace.dart';
 part 'src/renderers/renderables/RenderableFace3.dart';
 part 'src/renderers/renderables/RenderableFace4.dart';
 part 'src/renderers/renderables/RenderableLine.dart';
@@ -144,8 +144,6 @@ part 'src/renderers/CanvasRenderer.dart';
 part 'src/renderers/CSS3DRenderer.dart';
 
 part 'src/renderers/renderables/IRenderableObj.dart';
-part 'src/renderers/renderables/IRenderableFace3.dart';
-part 'src/renderers/renderables/IRenderableFace4.dart';
 
 part 'src/scenes/Scene.dart';
 part 'src/scenes/Fog.dart';

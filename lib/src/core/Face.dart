@@ -24,23 +24,19 @@ abstract class Face {
 
   int get size => indices.length;
 
-  clone() {
+  Face setFrom(Face other) {
+    normal.setFrom(other.normal);
+    color.copy( other.color );
+    centroid.setFrom(other.centroid);
 
-    var cm = reflectClass(this.runtimeType);
+    materialIndex = other.materialIndex;
 
-    Face face = cm.newInstance(new Symbol(""), this.indices).reflectee;
+    vertexNormals = other.vertexNormals.map((Vector3 v) => v.clone()).toList();
+    vertexColors = other.vertexColors.map((Vector3 v) => v.clone()).toList();
+    vertexTangents = other.vertexTangents.map((Vector3 v) => v.clone()).toList();
 
-    face.normal.setFrom(this.normal);
-    face.color.copy( this.color );
-    face.centroid.setFrom(this.centroid);
-
-    face.materialIndex = this.materialIndex;
-
-    face.vertexNormals = vertexNormals.map((Vector3 v) => v.clone()).toList();
-    face.vertexColors = vertexColors.map((Vector3 v) => v.clone()).toList();
-    face.vertexTangents = vertexTangents.map((Vector3 v) => v.clone()).toList();
-
-    return face;
-
+    return this;
   }
+
+  Face clone();
 }
