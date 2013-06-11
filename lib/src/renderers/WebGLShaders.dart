@@ -1541,60 +1541,26 @@ get ShaderChunk  {
 
 class UniformsUtils {
 
-  static merge ( uniforms ) {
+  static Map<String, Uniform> merge( List<Map<String, Uniform>> uniformsLst) {
 
-    var u, p, tmp, merged = {};
+    var merged = {};
 
-    for ( u = 0; u < uniforms.length; u++ ) {
-
-      tmp = UniformsUtils.clone( uniforms[ u ] );
-
-      tmp.forEach((k, _) {
-
-        merged[ k ] = tmp[ k ];
-
+    uniformsLst.forEach((Map<String, Uniform> uniforms) {
+      uniforms.forEach((k, uniform) {
+        merged[k] = uniform.clone();
       });
-
-    }
+    });
 
     return merged;
 
   }
 
-  static clone( uniforms_src ) {
-
-    var u, p, parameter, parameter_src, uniforms_dst = {};
-
-    uniforms_src.forEach( ( k, u ) {
-
-      var parameter_src = u.value;
-      var parameter_dst;
-
-      if ( parameter_src is Color ||
-          parameter_src is Vector2 ||
-          parameter_src is Vector3 ||
-          parameter_src is Vector4 ||
-          parameter_src is Matrix4 ||
-          parameter_src is Texture ) {
-
-        parameter_dst = parameter_src.clone();
-
-      } else if ( parameter_src is List ) {
-
-        parameter_dst = new List.from(parameter_src);
-
-      } else {
-
-        parameter_dst = parameter_src;
-
-      }
-
-      uniforms_dst[ k ] = new Uniform( u.type, parameter_dst);
-
+  static clone( Map<String, Uniform> uniforms ) {
+    var result = {};
+    uniforms.forEach((k, uniform) {
+      result[k] = uniform.clone();
     });
-
-    return uniforms_dst;
-
+    return result;
   }
 
 }
@@ -1754,6 +1720,31 @@ class Uniform<T> {
     }
 
     return _array;
+  }
+
+  Uniform<T> clone() {
+    var dst;
+
+    if ( value is Color ||
+        value is Vector2 ||
+        value is Vector3 ||
+        value is Vector4 ||
+        value is Matrix4 ||
+        value is Texture ) {
+
+      dst = (value as dynamic).clone();
+
+    } else if ( value is List ) {
+
+      dst = new List.from(value);
+
+    } else {
+
+      dst = value;
+
+    }
+
+    return new Uniform( type, dst);
   }
 
   factory Uniform.color(num hex) => new Uniform<Color>("c", new Color(hex));
