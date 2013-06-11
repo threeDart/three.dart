@@ -5355,11 +5355,11 @@ class WebGLRenderer implements Renderer {
 
 			  List<Texture> textures = uniform.value;
 
-			  uniform._array = textures.map((_) => getTextureUnit()).toList();
+			  uniform._array = new Int32List.fromList(textures.map((_) => getTextureUnit()).toList());
 
-				_gl.uniform1iv( location, value );
+				_gl.uniform1iv( location, uniform._array );
 
-				il = uniform.textures.length;
+				il = textures.length;
 				for( i = 0; i < il; i ++ ) {
 
 					texture = uniform.value[ i ];

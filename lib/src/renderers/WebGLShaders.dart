@@ -1744,11 +1744,10 @@ class Uniform<T> {
 
       List<Matrix4> values = _value;
 
-      if ( _array == null ) {
-        _array = new Float32List( 16 * values.length );
-      }
+      var lst = [];
 
-      values.forEach((m) { _array.addAll(m.storage); });
+      values.forEach((m) { lst.addAll(m.storage); });
+      _array = new Float32List.fromList(lst);
 
     } else {
       return _value;
