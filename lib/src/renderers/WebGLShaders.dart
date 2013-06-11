@@ -1589,7 +1589,7 @@ class UniformsUtils {
 
       }
 
-      uniforms_dst[ k ] = new Uniform( u.type, parameter_dst, u._texture);
+      uniforms_dst[ k ] = new Uniform( u.type, parameter_dst);
 
     });
 
@@ -1599,17 +1599,57 @@ class UniformsUtils {
 
 }
 
+class Attribute<T> {
+  String type;
+  List<T> value;
+
+  Float32List array;
+  Buffer buffer;
+  int size;
+
+  String boundTo = null;
+  bool needsUpdate = false;
+  bool __webglInitialized = false;
+  bool createUniqueBuffers = false;
+
+  Attribute<T> __original;
+
+  Attribute(this.type, this.value) {
+    size = 1;
+    if( type == "v2" ) { size = 2; }
+    else if( type == "v3" ) { size = 3; }
+    else if( type == "v4" ) { size = 4; }
+    else if( type == "c"  ) { size = 3; }
+
+    if (value == null) {
+      value = [];
+    }
+  }
+
+  Attribute clone() {
+    var a = new Attribute(type, value);
+    return a;
+  }
+
+  factory Attribute.color([List<num> hex]) => new Attribute<Color>("c", (?hex) ? hex.map((h) => new Color(h)) : null);
+
+  factory Attribute.float([List<double> v]) => new Attribute<double>("f", v);
+  factory Attribute.int([List<int> v]) => new Attribute<int>("i", v);
+
+  factory Attribute.vector2([List<Vector2> v]) => new Attribute<Vector2>("v2", v);
+  factory Attribute.vector3([List<Vector3> v]) => new Uniform<Vector3>("v3", v);
+  factory Attribute.vector4([List<Vector4> v]) => new Uniform<Vector4>("v4", v);
+}
+
 class Uniform<T> {
   String type;
   T _value;
-
-  var _texture;
 
   // cache the typed value
   bool _dirty = true;
   var _array;
 
-  Uniform(this.type, value, [this._texture = null]) {
+  Uniform(this.type, value) {
     this.value = value;
   }
 
@@ -1710,19 +1750,6 @@ class Uniform<T> {
 
       values.forEach((m) { _array.addAll(m.storage); });
 
-    } else if ( type == "tv" ) { // array of THREE.Texture (2d)
-
-      if ( _array == null ) {
-
-        _array = new Int32List( _texture.length );
-
-        for( int i = 0; i < _texture.length; i ++ ) {
-
-          _array[ i ] = (value as int) + i;
-
-        }
-      }
-
     } else {
       return _value;
     }
@@ -1740,8 +1767,8 @@ class Uniform<T> {
   factory Uniform.intv(List<int> v) => new Uniform<List<int>>("iv", v);
   factory Uniform.intv1(List<int> v) => new Uniform<List<int>>("iv1", v);
 
-  factory Uniform.texture(int slot) => new Uniform<int>("t", slot, null);
-  factory Uniform.texturev(int slot) => new Uniform<int>("tv", slot, []);
+  factory Uniform.texture([Texture texture]) => new Uniform<Texture>("t", texture);
+  factory Uniform.texturev([List<Texture> textures]) => new Uniform<List<Texture>>("tv", textures);
 
   factory Uniform.vector2v(List<Vector2> vectors) => new Uniform<List<Vector2>>("v2v", vectors);
 
@@ -1761,13 +1788,13 @@ get UniformsLib {
     "diffuse" : new Uniform.color(0xeeeeee),
     "opacity" : new Uniform.float(1.0),
 
-    "map" : new Uniform.texture(0),
+    "map" : new Uniform.texture(),
     "offsetRepeat" : new Uniform.vector4(0.0, 0.0, 1.0, 1.0),
 
-    "lightMap" : new Uniform.texture(2),
-    "specularMap" : new Uniform.texture(3),
+    "lightMap" : new Uniform.texture(),
+    "specularMap" : new Uniform.texture(),
 
-    "envMap" : new Uniform.texture(1),
+    "envMap" : new Uniform.texture(),
     "flipEnvMap" : new Uniform.float(-1),
     "useRefract" : new Uniform.int(0),
     "reflectivity" : new Uniform.float(1),
@@ -1780,7 +1807,7 @@ get UniformsLib {
 
   "bump": {
 
-    "bumpMap" : new Uniform.texture(4),
+    "bumpMap" : new Uniform.texture(),
     "bumpScale" : new Uniform.float(1)
 
   },
@@ -1820,7 +1847,7 @@ get UniformsLib {
     "opacity" : new Uniform.float(1.0),
     "size" : new Uniform.float(1.0),
     "scale" : new Uniform.float(1.0),
-    "map" : new Uniform.texture(0),
+    "map" : new Uniform.texture(),
 
     "fogDensity" : new Uniform.float(0.00025),
     "fogNear" : new Uniform.float(1),
@@ -1831,7 +1858,7 @@ get UniformsLib {
 
   "shadowmap": {
 
-    "shadowMap": new Uniform.texturev(6),
+    "shadowMap": new Uniform.texturev([]),
     "shadowMapSize": new Uniform.vector2v([]),
 
     "shadowBias" : new Uniform.floatv1([]),
