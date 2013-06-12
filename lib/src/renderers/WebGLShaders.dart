@@ -1749,11 +1749,11 @@ class Uniform<T> {
 
   factory Uniform.color(num hex) => new Uniform<Color>("c", new Color(hex));
 
-  factory Uniform.float(num v) => new Uniform<double>("f", v);
-  factory Uniform.floatv(List<num> v) => new Uniform<List<double>>("fv", v);
-  factory Uniform.floatv1(List<num> v) => new Uniform<List<double>>("fv1", v);
+  factory Uniform.float([double v]) => new Uniform<double>("f", v);
+  factory Uniform.floatv(List<double> v) => new Uniform<List<double>>("fv", v);
+  factory Uniform.floatv1(List<double> v) => new Uniform<List<double>>("fv1", v);
 
-  factory Uniform.int(int v) => new Uniform<int>("i", v);
+  factory Uniform.int([int v]) => new Uniform<int>("i", v);
   factory Uniform.intv(List<int> v) => new Uniform<List<int>>("iv", v);
   factory Uniform.intv1(List<int> v) => new Uniform<List<int>>("iv1", v);
 
@@ -1785,28 +1785,28 @@ get UniformsLib {
     "specularMap" : new Uniform.texture(),
 
     "envMap" : new Uniform.texture(),
-    "flipEnvMap" : new Uniform.float(-1),
+    "flipEnvMap" : new Uniform.float(-1.0),
     "useRefract" : new Uniform.int(0),
-    "reflectivity" : new Uniform.float(1),
+    "reflectivity" : new Uniform.float(1.0),
     "refractionRatio" : new Uniform.float(0.98),
     "combine" : new Uniform.int(0),
 
-    "morphTargetInfluences" : new Uniform.float(0)
+    "morphTargetInfluences" : new Uniform.float(0.0)
 
   },
 
   "bump": {
 
     "bumpMap" : new Uniform.texture(),
-    "bumpScale" : new Uniform.float(1)
+    "bumpScale" : new Uniform.float(1.0)
 
   },
 
   "fog" : {
 
     "fogDensity" : new Uniform.float(0.00025),
-    "fogNear" : new Uniform.float(1),
-    "fogFar" : new Uniform.float(2000),
+    "fogNear" : new Uniform.float(1.0),
+    "fogFar" : new Uniform.float(2000.0),
     "fogColor" : new Uniform.color(0xffffff)
 
   },
@@ -1840,8 +1840,8 @@ get UniformsLib {
     "map" : new Uniform.texture(),
 
     "fogDensity" : new Uniform.float(0.00025),
-    "fogNear" : new Uniform.float(1),
-    "fogFar" : new Uniform.float(2000),
+    "fogNear" : new Uniform.float(1.0),
+    "fogFar" : new Uniform.float(2000.0),
     "fogColor" : new Uniform.color(0xffffff)
 
   },
@@ -2152,7 +2152,7 @@ get ShaderLib  {
         "ambient"  : new Uniform.color(0xffffff),
         "emissive" : new Uniform.color(0x000000),
         "specular" : new Uniform.color(0x111111),
-        "shininess": new Uniform.float(30),
+        "shininess": new Uniform.float(30.0),
         "wrapRGB"  : new Uniform.vector3(1.0, 1.0, 1.0)
       }
 
