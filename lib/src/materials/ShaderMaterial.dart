@@ -4,7 +4,7 @@ class ShaderMaterial extends Material {
 
   String fragmentShader;
   String vertexShader;
-  Map uniforms;
+  Map<String, Uniform> uniforms;
 
   //var attributes; - Moved to Material
 
@@ -24,7 +24,7 @@ class ShaderMaterial extends Material {
   int vertexColors;
   bool fog;
 
-  Map attributes;
+  Map<String, Attribute> attributes;
 
   ShaderMaterial( { // ShaderMaterial
                     this.attributes,
