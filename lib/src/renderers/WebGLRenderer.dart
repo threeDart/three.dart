@@ -3383,7 +3383,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderBuffer ( camera, lights, fog, material, WebGLGeometry geometryGroup, object ) {
+	renderBuffer ( camera, lights, fog, WebGLMaterial material, WebGLGeometry geometryGroup, object ) {
 
 	  // Wrap these into proper WebGL objects since this method is called from plugins
 	  WebGLObject webglobject = (object is WebGLObject) ? object : new WebGLObject(object);
@@ -5095,7 +5095,7 @@ class WebGLRenderer implements Renderer {
 		uniforms["size"].value = material.size;
 		uniforms["scale"].value = canvas.height / 2.0; // TODO: Cache
 
-		uniforms["map"]._texture = material.map;
+		uniforms["map"].value = material.map;
 
 	}
 
