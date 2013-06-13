@@ -143,7 +143,7 @@ part 'src/renderers/WebGLShaders.dart';
 part 'src/renderers/CanvasRenderer.dart';
 part 'src/renderers/CSS3DRenderer.dart';
 
-part 'src/renderers/renderables/IRenderableObj.dart';
+part 'src/renderers/renderables/IRenderable.dart';
 
 part 'src/scenes/Scene.dart';
 part 'src/scenes/Fog.dart';

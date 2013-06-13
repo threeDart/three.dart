@@ -7,7 +7,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class RenderableVertex implements IRenderableObj {
+class RenderableVertex {
   Vector3 positionWorld;
   Vector4 positionScreen;
 

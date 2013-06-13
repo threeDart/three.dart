@@ -1,6 +1,6 @@
 part of three;
 
-class RenderableFace {
+class RenderableFace implements IRenderable {
   List<RenderableVertex> vertices;
 
   Vector3 centroidWorld, centroidScreen, normalWorld;
