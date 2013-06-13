@@ -7,7 +7,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class RenderableLine implements IRenderableObj {
+class RenderableLine implements IRenderable {
   num z = null;
 
   RenderableVertex v1;

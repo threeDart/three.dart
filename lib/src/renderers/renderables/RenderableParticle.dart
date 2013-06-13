@@ -7,7 +7,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class RenderableParticle implements IRenderableObj {
+class RenderableParticle implements IRenderable {
     num x = null;
     num y = null;
     num z = null;
