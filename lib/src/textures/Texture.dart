@@ -24,7 +24,7 @@ class ImageList {
 }
 
 class Texture {
-  int _id;
+  int id;
   var image;
   var mapping; //UVMapping appears to be missing..
   int wrapS, wrapT, magFilter, minFilter, format, type, anisotropy;
@@ -48,7 +48,7 @@ class Texture {
               this.type = UnsignedByteType,
               this.anisotropy = 1] )
   {
-    _id = TextureCount ++;
+    id = TextureCount ++;
 
     this.mapping = mapping != null ? mapping : new UVMapping();
 

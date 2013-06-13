@@ -7,8 +7,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class CanvasRenderer implements Renderer
-{
+class CanvasRenderer implements Renderer {
   Element domElement;
 
   bool _autoClear, _sortObjects, _sortElements;
@@ -24,7 +23,8 @@ class CanvasRenderer implements Renderer
 
   num _contextGlobalAlpha, _contextGlobalCompositeOperation;
 
-  String _contextStrokeStyle, _contextFillStyle, _contextLineCap, _contextLineJoin;
+  var _contextStrokeStyle, _contextFillStyle;
+  String _contextLineCap, _contextLineJoin;
   num _contextLineWidth;
 
   Rectangle _clipRect, _clearRect, _bboxRect;
@@ -74,8 +74,7 @@ class CanvasRenderer implements Renderer
 
   set sortObjects( bool value ) {  _sortObjects = value;  }
 
-  CanvasRenderer( [Map parameters] )
-  {
+  CanvasRenderer( [Map parameters] ) {
     parameters = parameters != null ? parameters : {};
 
     _projector = new Projector();
@@ -159,8 +158,7 @@ class CanvasRenderer implements Renderer
     */
   }
 
-  void setSize( num width, num height )
-  {
+  void setSize( num width, num height ) {
     _canvasWidth = width;
     _canvasHeight = height;
     _canvasWidthHalf = ( _canvasWidth / 2 ).floor();
@@ -181,28 +179,24 @@ class CanvasRenderer implements Renderer
     _contextLineJoin = null;
   }
 
-  void setClearColor( Color color, num opacity )
-  {
+  void setClearColor( Color color, num opacity ) {
     _clearColor.copy( color );
     _clearOpacity = opacity;
 
     _clearRect.setValues( - _canvasWidthHalf, - _canvasHeightHalf, _canvasWidthHalf, _canvasHeightHalf );
   }
 
-  void setClearColorHex( num hex, num opacity )
-  {
+  void setClearColorHex( num hex, num opacity ) {
     _clearColor.setHex( hex );
     _clearOpacity = opacity;
 
     _clearRect.setValues( - _canvasWidthHalf, - _canvasHeightHalf, _canvasWidthHalf, _canvasHeightHalf );
   }
 
-  void clear()
-  {
+  void clear() {
     _context.setTransform( 1, 0, 0, - 1, _canvasWidthHalf, _canvasHeightHalf );
 
-    if ( !_clearRect.isEmpty )
-    {
+    if ( !_clearRect.isEmpty ) {
       _clearRect.minSelf( _clipRect );
       _clearRect.inflate( 2 );
 
@@ -223,8 +217,7 @@ class CanvasRenderer implements Renderer
     }
   }
 
-  void render( Scene scene, Camera camera )
-  {
+  void render( Scene scene, Camera camera ) {
     num e, el;
     var element;
     Material material;
@@ -245,8 +238,7 @@ class CanvasRenderer implements Renderer
     _elements = _renderData.elements;
     _lights = _renderData.lights;
 
-    if ( debug )
-    {
+    if ( debug ) {
       _context.fillStyle = 'rgba( 0, 255, 255, 0.5 )';
       _context.fillRect( _clipRect.getX(), _clipRect.getY(), _clipRect.getWidth(), _clipRect.getHeight() );
     }
@@ -258,8 +250,7 @@ class CanvasRenderer implements Renderer
     }
 
     el = _elements.length;
-    for ( e = 0; e < el; e++ )
-    {
+    for ( e = 0; e < el; e++ ) {
       element = _elements[ e ];
 
       material = element.material;
@@ -275,16 +266,14 @@ class CanvasRenderer implements Renderer
       if (debug) {
         print("$element");
       }
-      if ( element is RenderableParticle )
-      {
+      if ( element is RenderableParticle ) {
 //        _v1 = element;
         RenderableParticle rp = element;
         rp.x *= _canvasWidthHalf; rp.y *= _canvasHeightHalf;
 
         renderParticle( rp, element, material, scene );
-      }
-      else if ( element is RenderableLine )
-      {
+        
+      } else if ( element is RenderableLine ) {
         _v1 = element.v1; _v2 = element.v2;
 
         _v1.positionScreen.x *= _canvasWidthHalf; _v1.positionScreen.y *= _canvasHeightHalf;
@@ -296,10 +285,8 @@ class CanvasRenderer implements Renderer
         if ( _clipRect.intersects( _bboxRect ) ) {
           renderLine( _v1, _v2, element, material, scene );
         }
-      }
-
-      else if ( element is RenderableFace3 )
-      {
+        
+      } else if ( element is RenderableFace3 ) {
         _v1 = element.v1; _v2 = element.v2; _v3 = element.v3;
 
         _v1.positionScreen.x *= _canvasWidthHalf; _v1.positionScreen.y *= _canvasHeightHalf;
@@ -319,9 +306,8 @@ class CanvasRenderer implements Renderer
         if ( _clipRect.intersects( _bboxRect ) ) {
           renderFace3( _v1, _v2, _v3, 0, 1, 2, element, material, scene );
         }
-      }
-      else if ( element is RenderableFace4 )
-      {
+        
+      } else if ( element is RenderableFace4 ) {
         _v1 = element.v1; _v2 = element.v2; _v3 = element.v3; _v4 = element.v4;
 
         _v1.positionScreen.x *= _canvasWidthHalf; _v1.positionScreen.y *= _canvasHeightHalf;
@@ -351,8 +337,7 @@ class CanvasRenderer implements Renderer
         }
       }
 
-      if ( debug )
-      {
+      if ( debug ) {
         _context.lineWidth = 1;
         _context.strokeStyle = 'rgba( 0, 255, 0, 0.5 )';
         _context.strokeRect( _bboxRect.getX(), _bboxRect.getY(), _bboxRect.getWidth(), _bboxRect.getHeight() );
@@ -361,8 +346,7 @@ class CanvasRenderer implements Renderer
       _clearRect.addRectangle( _bboxRect );
     }
 
-    if ( debug )
-    {
+    if ( debug ) {
       _context.lineWidth = 1;
       _context.strokeStyle = 'rgba( 255, 0, 0, 0.5 )';
       _context.strokeRect( _clearRect.getX(), _clearRect.getY(), _clearRect.getWidth(), _clearRect.getHeight() );
@@ -373,8 +357,7 @@ class CanvasRenderer implements Renderer
     //
   }
 
-  void calculateLights( List lights )
-  {
+  void calculateLights( List lights ) {
     num l, ll;
     Light light;
     Color lightColor;
@@ -408,8 +391,7 @@ class CanvasRenderer implements Renderer
     }
   }
 
-  void calculateLight( List lights, Vector3 position, Vector3 normal, Color color )
-  {
+  void calculateLight( List lights, Vector3 position, Vector3 normal, Color color ) {
     int l, ll;
     Light light;
     Color lightColor;
@@ -462,19 +444,16 @@ class CanvasRenderer implements Renderer
 
   }
 
-  void renderParticle ( RenderableParticle v1, RenderableParticle element, IMaterial material, Scene scene )
-  {
+  void renderParticle ( RenderableParticle v1, RenderableParticle element, IMaterial material, Scene scene ) {
     setOpacity( material.opacity );
     setBlending( material.blending );
 
     num width, height, scaleX, scaleY, bitmapWidth, bitmapHeight;
     var bitmap;
 
-    if ( material is ParticleBasicMaterial )
-    {
+    if ( material is ParticleBasicMaterial ) {
       ParticleBasicMaterial pbMaterial = material;
-      if ( pbMaterial.map )
-      {
+      if ( pbMaterial.map ) {
         bitmap = pbMaterial.map.image;
         bitmapWidth = bitmap.width >> 1;
         bitmapHeight = bitmap.height >> 1;
@@ -503,8 +482,7 @@ class CanvasRenderer implements Renderer
         _context.restore();
       }
 
-      if ( debug )
-      {
+      if ( debug ) {
         _context.beginPath();
         _context.moveTo( v1.x - 10, v1.y );
         _context.lineTo( v1.x + 10, v1.y );
@@ -518,9 +496,7 @@ class CanvasRenderer implements Renderer
         }
       }
 
-    }
-    else if ( material is ParticleCanvasMaterial )
-    {
+    } else if ( material is ParticleCanvasMaterial ) {
       ParticleCanvasMaterial pcMaterial = material;
 
       width = element.scale.x * _canvasWidthHalf;
@@ -546,8 +522,7 @@ class CanvasRenderer implements Renderer
     }
   }
 
-  void renderLine( RenderableVertex v1, RenderableVertex v2, RenderableLine element, Material material, Scene scene )
-  {
+  void renderLine( RenderableVertex v1, RenderableVertex v2, RenderableLine element, Material material, Scene scene ) {
     setOpacity( material.opacity );
     setBlending( material.blending );
 
@@ -556,8 +531,7 @@ class CanvasRenderer implements Renderer
     _context.lineTo( v2.positionScreen.x, v2.positionScreen.y );
     _context.closePath();
 
-    if ( material is LineBasicMaterial )
-    {
+    if ( material is LineBasicMaterial ) {
       LineBasicMaterial lbMaterial = material;
 
       setLineWidth( lbMaterial.linewidth );
@@ -574,8 +548,7 @@ class CanvasRenderer implements Renderer
 
   }
 
-  void renderFace3( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, num uv1, num uv2, num uv3, element, Material material, Scene scene )
-  {
+  void renderFace3( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, num uv1, num uv2, num uv3, element, Material material, Scene scene ) {
     //_info['render']['vertices'] += 3;
     //_info['render']['faces'] ++;
     _info.render.vertices += 3;
@@ -590,22 +563,17 @@ class CanvasRenderer implements Renderer
 
     drawTriangle( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y );
 
-    if ( material is MeshBasicMaterial )
-    {
+    if ( material is MeshBasicMaterial ) {
       MeshBasicMaterial mbMaterial = material;
-      if ( mbMaterial.map != null /* && !material.wireframe*/ )
-      {
+      if ( mbMaterial.map != null /* && !material.wireframe*/ ) {
         //TODO: UVMapping is not implemented
         if ( mbMaterial.map.mapping is UVMapping ) {
           _uvs = element.uvs[ 0 ];
           patternPath( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _uvs[ uv1 ].u, _uvs[ uv1 ].v, _uvs[ uv2 ].u, _uvs[ uv2 ].v, _uvs[ uv3 ].u, _uvs[ uv3 ].v, mbMaterial.map );
 
         }
-      }
-      else if ( null != mbMaterial.envMap )
-      {
-        if ( mbMaterial.envMap.mapping is SphericalReflectionMapping )
-        {
+      } else if ( null != mbMaterial.envMap ) {
+        if ( mbMaterial.envMap.mapping is SphericalReflectionMapping ) {
           Matrix4 cameraMatrix = _camera.matrixWorldInverse;
 
           _vector3.setFrom( element.vertexNormalsWorld[ uv1 ] );
@@ -633,15 +601,11 @@ class CanvasRenderer implements Renderer
         }
       }
 
-    }
-    else if ( material is MeshLambertMaterial )
-    {
+    } else if ( material is MeshLambertMaterial ) {
       MeshLambertMaterial mlMaterial = material;
-      if ( mlMaterial.map != null && !mlMaterial.wireframe )
-      {
+      if ( mlMaterial.map != null && !mlMaterial.wireframe ) {
         //TODO: UVMapping not implemented
-        if ( mlMaterial.map.mapping is UVMapping )
-        {
+        if ( mlMaterial.map.mapping is UVMapping ) {
           _uvs = element.uvs[ 0 ];
           patternPath( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _uvs[ uv1 ].u, _uvs[ uv1 ].v, _uvs[ uv2 ].u, _uvs[ uv2 ].v, _uvs[ uv3 ].u, _uvs[ uv3 ].v, mlMaterial.map );
         }
@@ -649,10 +613,8 @@ class CanvasRenderer implements Renderer
         setBlending( SubtractiveBlending );
       }
 
-      if ( _enableLighting )
-      {
-        if ( !mlMaterial.wireframe && mlMaterial.shading == SmoothShading && element.vertexNormalsWorld.length == 3 )
-        {
+      if ( _enableLighting ) {
+        if ( !mlMaterial.wireframe && mlMaterial.shading == SmoothShading && element.vertexNormalsWorld.length == 3 ) {
           _color1.r = _color2.r = _color3.r = _ambientLight.r;
           _color1.g = _color2.g = _color3.g = _ambientLight.g;
           _color1.b = _color2.b = _color3.b = _ambientLight.b;
@@ -680,9 +642,7 @@ class CanvasRenderer implements Renderer
           _image = getGradientTexture( _color1, _color2, _color3, _color4 );
 
           clipImage( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, 0, 0, 1, 0, 0, 1, _image );
-        }
-        else
-        {
+        } else {
           _color.r = _ambientLight.r;
           _color.g = _ambientLight.g;
           _color.b = _ambientLight.b;
@@ -699,18 +659,14 @@ class CanvasRenderer implements Renderer
             fillPath( _color );
           }
         }
-      }
-      else
-      {
+      } else  {
         if (mlMaterial.wireframe) {
           strokePath( mlMaterial.color, mlMaterial.wireframeLinewidth, mlMaterial.wireframeLinecap, mlMaterial.wireframeLinejoin );
         } else {
           fillPath( mlMaterial.color );
         }
       }
-    }
-    else if ( material is MeshDepthMaterial )
-    {
+    } else if ( material is MeshDepthMaterial ) {
       _near = _camera.near;
       _far = _camera.far;
 
@@ -726,9 +682,7 @@ class CanvasRenderer implements Renderer
 
       clipImage( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, 0, 0, 1, 0, 0, 1, _image );
 
-    }
-    else if ( material is MeshNormalMaterial )
-    {
+    } else if ( material is MeshNormalMaterial ) {
       MeshNormalMaterial mnMaterial = material;
 
       _color.r = normalToComponent( element.normalWorld.x );
@@ -744,8 +698,7 @@ class CanvasRenderer implements Renderer
     }
   }
 
-  void renderFace4( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, RenderableVertex v4, RenderableVertex v5, RenderableVertex v6, element, Material material, Scene scene )
-  {
+  void renderFace4( RenderableVertex v1, RenderableVertex v2, RenderableVertex v3, RenderableVertex v4, RenderableVertex v5, RenderableVertex v6, element, Material material, Scene scene ) {
 
     //_info['render']['vertices'] += 4;
     //_info['render']['faces'] ++;
@@ -757,8 +710,7 @@ class CanvasRenderer implements Renderer
 
     //TODO: make sure all relevant materials implement ITextureMapMaterial
 //    if ( material.map != null || material.envMap != null )
-    if (material is ITextureMapMaterial)
-    {
+    if (material is ITextureMapMaterial) {
       // Let renderFace3() handle this
 
       renderFace3( v1, v2, v4, 0, 1, 3, element, material, scene );
@@ -774,8 +726,7 @@ class CanvasRenderer implements Renderer
     _v5x = v5.positionScreen.x; _v5y = v5.positionScreen.y;
     _v6x = v6.positionScreen.x; _v6y = v6.positionScreen.y;
 
-    if ( material is MeshBasicMaterial )
-    {
+    if ( material is MeshBasicMaterial ) {
       MeshBasicMaterial mbMaterial = material;
 
       drawQuad( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _v4x, _v4y );
@@ -785,15 +736,11 @@ class CanvasRenderer implements Renderer
       } else {
         fillPath( mbMaterial.color );
       }
-    }
-    else if ( material is MeshLambertMaterial )
-    {
+    } else if ( material is MeshLambertMaterial ) {
       MeshLambertMaterial mlMaterial = material;
 
-      if ( _enableLighting )
-      {
-        if ( !mlMaterial.wireframe && mlMaterial.shading == SmoothShading && element.vertexNormalsWorld.length == 4 )
-        {
+      if ( _enableLighting ) {
+        if ( !mlMaterial.wireframe && mlMaterial.shading == SmoothShading && element.vertexNormalsWorld.length == 4 ) {
           _color1.r = _color2.r = _color3.r = _color4.r = _ambientLight.r;
           _color1.g = _color2.g = _color3.g = _color4.g = _ambientLight.g;
           _color1.b = _color2.b = _color3.b = _color4.b = _ambientLight.b;
@@ -829,9 +776,7 @@ class CanvasRenderer implements Renderer
           drawTriangle( _v5x, _v5y, _v3x, _v3y, _v6x, _v6y );
           clipImage( _v5x, _v5y, _v3x, _v3y, _v6x, _v6y, 1, 0, 1, 1, 0, 1, _image );
 
-        }
-        else
-        {
+        } else {
           _color.r = _ambientLight.r;
           _color.g = _ambientLight.g;
           _color.b = _ambientLight.b;
@@ -850,9 +795,7 @@ class CanvasRenderer implements Renderer
             fillPath( _color );
           }
         }
-      }
-      else
-      {
+      } else {
         drawQuad( _v1x, _v1y, _v2x, _v2y, _v3x, _v3y, _v4x, _v4y );
 
         if (mlMaterial.wireframe) {
@@ -861,9 +804,7 @@ class CanvasRenderer implements Renderer
           fillPath( mlMaterial.color );
         }
       }
-    }
-    else if ( material is MeshNormalMaterial )
-    {
+    } else if ( material is MeshNormalMaterial ) {
       MeshNormalMaterial mnMaterial = material;
 
       _color.r = normalToComponent( element.normalWorld.x );
@@ -877,9 +818,7 @@ class CanvasRenderer implements Renderer
       } else {
         fillPath( _color );
       }
-    }
-    else if ( material is MeshDepthMaterial )
-    {
+    } else if ( material is MeshDepthMaterial ) {
       MeshDepthMaterial mdMaterial = material;
 
       _near = _camera.near;
@@ -904,8 +843,7 @@ class CanvasRenderer implements Renderer
 
   //
 
-  void drawTriangle( num x0, num y0, num x1, num y1, num x2, num y2 )
-  {
+  void drawTriangle( num x0, num y0, num x1, num y1, num x2, num y2 ) {
     _context.beginPath();
     _context.moveTo( x0, y0 );
     _context.lineTo( x1, y1 );
@@ -914,8 +852,7 @@ class CanvasRenderer implements Renderer
     _context.closePath();
   }
 
-  void drawQuad( num x0, num y0, num x1, num y1, num x2, num y2, num x3, num y3 )
-  {
+  void drawQuad( num x0, num y0, num x1, num y1, num x2, num y2, num x3, num y3 ) {
     _context.beginPath();
     _context.moveTo( x0, y0 );
     _context.lineTo( x1, y1 );
@@ -925,8 +862,7 @@ class CanvasRenderer implements Renderer
     _context.closePath();
   }
 
-  void strokePath( Color color, num linewidth, String linecap, String linejoin )
-  {
+  void strokePath( Color color, num linewidth, String linecap, String linejoin ) {
     setLineWidth( linewidth );
     setLineCap( linecap );
     setLineJoin( linejoin );
@@ -937,22 +873,25 @@ class CanvasRenderer implements Renderer
     _bboxRect.inflate( linewidth * 2 );
   }
 
-  void fillPath( Color color )
-  {
+  void fillPath( Color color ) {
     setFillStyle( color.getContextStyle() );
     _context.fill();
   }
 
   //TODO: MeshBasicMaterial/MeshLambertMaterial map/envMap WHAT IS ENV MAP?!
-  void patternPath( num x0, num y0, num x1, num y1, num x2, num y2, num u0, num v0, num u1, num v1, num u2, num v2, texture )
-  {
+  void patternPath( num x0, num y0, num x1, num y1, num x2, num y2, num u0, num v0, num u1, num v1, num u2, num v2, texture ) {
     if ( texture.image.width == 0 ) return;
 
-    if ( texture.needsUpdate == true || _patterns[ texture.id ] == null ) {
+    if ( texture.needsUpdate == true || _patterns.length <= texture.id || _patterns[ texture.id ] == null ) {
 
       var repeatX = texture.wrapS == RepeatWrapping;
       var repeatY = texture.wrapT == RepeatWrapping;
 
+      // Let's grow the array as needed
+      if (_patterns.length <= texture.id) {
+        _patterns.length = texture.id + 1;
+      }
+      
       _patterns[ texture.id ] = _context.createPattern( texture.image, repeatX && repeatY ? 'repeat' : repeatX && !repeatY ? 'repeat-x' : !repeatX && repeatY ? 'repeat-y' : 'no-repeat' );
 
       texture.needsUpdate = false;
@@ -986,10 +925,8 @@ class CanvasRenderer implements Renderer
 
     det = u1 * v2 - u2 * v1;
 
-    if ( det == 0 )
-    {
-      if ( _imagedatas[ texture.id ] == null )
-      {
+    if ( det == 0 ) {
+      if ( _imagedatas[ texture.id ] == null ) {
         CanvasElement canvas = new Element.tag('canvas');
         canvas.width = texture.image.width;
         canvas.height = texture.image.height;
@@ -1030,8 +967,7 @@ class CanvasRenderer implements Renderer
     _context.restore();
   }
 
-  void clipImage( num x0, num y0, num x1, num y1, num x2, num y2, num u0, num v0, num u1, num v1, num u2, num v2, image )
-  {
+  void clipImage( num x0, num y0, num x1, num y1, num x2, num y2, num u0, num v0, num u1, num v1, num u2, num v2, image ) {
     // http://extremelysatisfactorytotalitarianism.com/blog/?p=2120
 
     num a, b, c, d, e, f, det, idet,
@@ -1067,8 +1003,7 @@ class CanvasRenderer implements Renderer
     _context.restore();
   }
 
-  CanvasElement getGradientTexture( Color color1, Color color2, Color color3, Color color4 )
-  {
+  CanvasElement getGradientTexture( Color color1, Color color2, Color color3, Color color4 ) {
     // http://mrdoob.com/blog/post/710
 
     num c1r = color1._rr, c1g = color1._gg, c1b = color1._bb,
@@ -1098,22 +1033,19 @@ class CanvasRenderer implements Renderer
     return _gradientMap;
   }
 
-  num smoothstep( num value, num min, num max )
-  {
+  num smoothstep( num value, num min, num max ) {
     var x = ( value - min ) / ( max - min );
     return x * x * ( 3 - 2 * x );
   }
 
-  num normalToComponent( num normal )
-  {
+  num normalToComponent( num normal ) {
     num component = ( normal + 1 ) * 0.5;
     return component < 0 ? 0 : ( component > 1 ? 1 : component );
   }
 
   // Hide anti-alias gaps
 
-  void expand( Vector4 v1, Vector4 v2 )
-  {
+  void expand( Vector4 v1, Vector4 v2 ) {
     num x = v2.x - v1.x, y =  v2.y - v1.y,
     det = x * x + y * y, idet;
 
@@ -1129,19 +1061,15 @@ class CanvasRenderer implements Renderer
 
   // Context cached methods.
 
-  void setOpacity( num value )
-  {
+  void setOpacity( num value ) {
     if ( _contextGlobalAlpha != value ) {
       _context.globalAlpha = _contextGlobalAlpha = value;
     }
   }
 
-  void setBlending( int value )
-  {
-    if ( _contextGlobalCompositeOperation != value )
-    {
-      switch ( value )
-      {
+  void setBlending( int value ) {
+    if ( _contextGlobalCompositeOperation != value ) {
+      switch ( value ) {
         case NormalBlending:
 
           _context.globalCompositeOperation = 'source-over';
@@ -1165,38 +1093,33 @@ class CanvasRenderer implements Renderer
     }
   }
 
-  void setLineWidth( num value )
-  {
+  void setLineWidth( num value ) {
     if ( _contextLineWidth != value ) {
       _context.lineWidth = _contextLineWidth = value;
     }
   }
 
-  void setLineCap( String value )
-  {
+  void setLineCap( String value ) {
     // "butt", "round", "square"
     if ( _contextLineCap != value ) {
       _context.lineCap = _contextLineCap = value;
     }
   }
 
-  void setLineJoin( String value )
-  {
+  void setLineJoin( String value ) {
     // "round", "bevel", "miter"
     if ( _contextLineJoin != value ) {
       _context.lineJoin = _contextLineJoin = value;
     }
   }
 
-  void setStrokeStyle( String style )
-  {
+  void setStrokeStyle( dynamic style ) {
     if ( _contextStrokeStyle != style ) {
       _context.strokeStyle = _contextStrokeStyle = style;
     }
   }
 
-  void setFillStyle( String style )
-  {
+  void setFillStyle( dynamic style ) {
     if ( _contextFillStyle != style ) {
       _contextFillStyle = style;
       _context.fillStyle = _contextFillStyle;
@@ -1205,27 +1128,23 @@ class CanvasRenderer implements Renderer
 }
 
 // Data obj class to replace Map _info
-class CanvasRenderData
-{
+class CanvasRenderData {
   RenderInts render;
 
-  CanvasRenderData()
-  {
+  CanvasRenderData() {
     render = new RenderInts();
   }
 }
-class RenderInts
-{
+
+class RenderInts {
   int vertices;
   int faces;
 
-  RenderInts()
-  {
+  RenderInts() {
     reset();
   }
 
-  void reset()
-  {
+  void reset() {
     vertices = 0;
     faces = 0;
   }
