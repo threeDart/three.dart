@@ -7,7 +7,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class RenderableObject implements IRenderableObj {
+class RenderableObject implements IRenderable {
   Object3D object = null;
   num z = null;
 }

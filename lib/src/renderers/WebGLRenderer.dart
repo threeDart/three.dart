@@ -4205,7 +4205,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			vertices = face is Face3 ? 3 : 4;
+			vertices = face.size;
 
 			if ( geometry.geometryGroups[ groupHash ].vertices + vertices > 65535 ) {
 
@@ -4220,7 +4220,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			if ( face is Face3 ) {
+			if ( face.size == 3 ) {
 
 				geometry.geometryGroups[ groupHash ].faces3.add( f );
 

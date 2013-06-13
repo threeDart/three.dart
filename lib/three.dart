@@ -29,6 +29,7 @@ part 'src/core/vector_utils.dart';
 part 'src/core/matrix_utils.dart';
 part 'src/core/Object3D.dart';
 part 'src/core/Color.dart';
+part 'src/core/Face.dart';
 part 'src/core/Face3.dart';
 part 'src/core/Face4.dart';
 part 'src/core/Frustum.dart';
@@ -39,8 +40,6 @@ part 'src/core/Vertex.dart';
 part 'src/core/Projector.dart';
 part 'src/core/Ray.dart';
 part 'src/core/UV.dart';
-part 'src/core/IFace3.dart';
-part 'src/core/IFace4.dart';
 part 'src/core/Rectangle.dart';
 part 'src/core/BufferGeometry.dart';
 part 'src/core/EventEmitter.dart';
@@ -130,6 +129,7 @@ part 'src/objects/MorphAnimMesh.dart';
 
 part 'src/renderers/renderables/RenderableObject.dart';
 part 'src/renderers/renderables/RenderableVertex.dart';
+part 'src/renderers/renderables/RenderableFace.dart';
 part 'src/renderers/renderables/RenderableFace3.dart';
 part 'src/renderers/renderables/RenderableFace4.dart';
 part 'src/renderers/renderables/RenderableLine.dart';
@@ -143,9 +143,7 @@ part 'src/renderers/WebGLShaders.dart';
 part 'src/renderers/CanvasRenderer.dart';
 part 'src/renderers/CSS3DRenderer.dart';
 
-part 'src/renderers/renderables/IRenderableObj.dart';
-part 'src/renderers/renderables/IRenderableFace3.dart';
-part 'src/renderers/renderables/IRenderableFace4.dart';
+part 'src/renderers/renderables/IRenderable.dart';
 
 part 'src/scenes/Scene.dart';
 part 'src/scenes/Fog.dart';

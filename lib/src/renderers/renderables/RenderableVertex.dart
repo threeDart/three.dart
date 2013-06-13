@@ -7,7 +7,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class RenderableVertex implements IRenderableObj {
+class RenderableVertex {
   Vector3 positionWorld;
   Vector4 positionScreen;
 
@@ -21,4 +21,6 @@ class RenderableVertex implements IRenderableObj {
     positionWorld.setFrom( vertex.positionWorld );
     positionScreen.setFrom( vertex.positionScreen );
   }
+  
+  clone() => new RenderableVertex()..copy(this);
 }

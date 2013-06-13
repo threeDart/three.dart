@@ -7,34 +7,12 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class RenderableFace3 implements IRenderableFace3 {
-  RenderableVertex v1;
-  RenderableVertex v2;
-  RenderableVertex v3;
+class RenderableFace3 extends RenderableFace {
 
-  Vector3 centroidWorld, centroidScreen, normalWorld;
+  RenderableFace3() : super(3);
 
-  List vertexNormalsWorld, uvs;
-
-  Material material;
-  Material faceMaterial;
-
-  num z;
-
-  RenderableFace3()
-      : v1 = new RenderableVertex(),
-        v2 = new RenderableVertex(),
-        v3 = new RenderableVertex(),
-
-        centroidWorld = new Vector3.zero(),
-        centroidScreen = new Vector3.zero(),
-
-        normalWorld = new Vector3.zero(),
-        vertexNormalsWorld = [ new Vector3.zero(), new Vector3.zero(), new Vector3.zero() ],
-
-        material = null,
-        uvs = [[]],
-
-        z = null;
+  RenderableVertex get v1 => vertices[0];
+  RenderableVertex get v2 => vertices[1];
+  RenderableVertex get v3 => vertices[2];
 
 }
