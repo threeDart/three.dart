@@ -294,7 +294,7 @@ class Projector {
 
           var vtx = face.indices.map((idx) => _vertexPool[idx]).toList();
 
-          var allVtxVisible = vtx.any((v) => v.visible);
+          var allVtxVisible = vtx.every((v) => v.visible);
 
           if (allVtxVisible) {
             if (face.size == 3) {

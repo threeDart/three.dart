@@ -21,4 +21,6 @@ class RenderableVertex implements IRenderableObj {
     positionWorld.setFrom( vertex.positionWorld );
     positionScreen.setFrom( vertex.positionScreen );
   }
+  
+  clone() => new RenderableVertex()..copy(this);
 }

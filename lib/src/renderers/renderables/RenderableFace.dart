@@ -23,6 +23,6 @@ class RenderableFace {
     uvs = [[]],
 
     z = null {
-    new List.generate(size, (_) => new RenderableVertex(), growable: false);
+    vertices = new List.generate(size, (_) => new RenderableVertex(), growable: false);
   }
 }
