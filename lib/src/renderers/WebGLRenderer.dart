@@ -3093,65 +3093,66 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setDirectBuffers ( geometry, hint, dispose ) {
+	setDirectBuffers ( WebGLGeometry webglgeometry, int hint, bool dispose ) {
+
+	  BufferGeometry geometry = webglgeometry._geometry;
 
 		var attributes = geometry.attributes;
 
-		var index = attributes[ "index" ];
-		var position = attributes[ "position" ];
-		var normal = attributes[ "normal" ];
-		var uv = attributes[ "uv" ];
-		var color = attributes[ "color" ];
-		var tangent = attributes[ "tangent" ];
+		var index = geometry.aIndex;
+		var position = geometry.aPosition;
+		var normal = geometry.aNormal;
+		var uv = geometry.aUV;
+		var color = geometry.aColor;
+		var tangent = geometry.aTangent;
 
-		if ( geometry.elementsNeedUpdate && index != null ) {
+		if ( webglgeometry.elementsNeedUpdate && index != null ) {
 
-			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, index.buffer );
+		  index.buffer.bind( gl.ELEMENT_ARRAY_BUFFER );
 			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, index.array, hint );
 
 		}
 
-		if ( geometry.verticesNeedUpdate && position != null ) {
+		if ( webglgeometry.verticesNeedUpdate && position != null ) {
 
-			_gl.bindBuffer( gl.ARRAY_BUFFER, position.buffer );
+		  position.buffer.bind( gl.ARRAY_BUFFER );
 			_gl.bufferData( gl.ARRAY_BUFFER, position.array, hint );
 
 		}
 
-		if ( geometry.normalsNeedUpdate && normal != null ) {
+		if ( webglgeometry.normalsNeedUpdate && normal != null ) {
 
-			_gl.bindBuffer( gl.ARRAY_BUFFER, normal.buffer );
+		  normal.buffer.bind( gl.ARRAY_BUFFER );
 			_gl.bufferData( gl.ARRAY_BUFFER, normal.array, hint );
 
 		}
 
-		if ( geometry.uvsNeedUpdate && uv != null ) {
+		if ( webglgeometry.uvsNeedUpdate && uv != null ) {
 
-			_gl.bindBuffer( gl.ARRAY_BUFFER, uv.buffer );
+		  uv.buffer.bind( gl.ARRAY_BUFFER );
 			_gl.bufferData( gl.ARRAY_BUFFER, uv.array, hint );
 
 		}
 
-		if ( geometry.colorsNeedUpdate && color != null ) {
+		if ( webglgeometry.colorsNeedUpdate && color != null ) {
 
-			_gl.bindBuffer( gl.ARRAY_BUFFER, color.buffer );
+		  color.buffer.bind( gl.ARRAY_BUFFER );
 			_gl.bufferData( gl.ARRAY_BUFFER, color.array, hint );
 
 		}
 
-		if ( geometry.tangentsNeedUpdate && tangent != null ) {
+		if ( webglgeometry.tangentsNeedUpdate && tangent != null ) {
 
-			_gl.bindBuffer( gl.ARRAY_BUFFER, tangent.buffer );
+		  tangent.buffer.bind( gl.ARRAY_BUFFER );
 			_gl.bufferData( gl.ARRAY_BUFFER, tangent.array, hint );
 
 		}
 
 		if ( dispose ) {
 
-			for ( var i in geometry.attributes ) {
-
-				geometry.attributes[ i ].array = null; //delete geometry.attributes[ i ].array;
-			}
+		  geometry.attributes.forEach((_, attribute) {
+			 attribute.array = null; //delete geometry.attributes[ i ].array;
+			});
 
 		}
 
@@ -3252,19 +3253,19 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderBufferDirect ( camera, lights, fog, material, geometry, object ) {
+	renderBufferDirect ( WebGLCamera camera, List lights, fog, WebGLMaterial material, WebGLGeometry webglgeometry, WebGLObject webglobject ) {
 
-		if ( material.visible == false ) return;
+		if ( !material.visible ) return;
 
 		var program, attributes, linewidth, primitives, a, attribute;
 
-		program = setProgram( camera, lights, fog, material, object );
+		program = setProgram( camera, lights, fog, material, webglobject );
 
 		attributes = program.attributes;
 
 		var updateBuffers = false,
 			wireframeBit = material.wireframe ? 1 : 0,
-			geometryHash = ( geometry.id * 0xffffff ) + ( program.id * 2 ) + wireframeBit;
+			geometryHash = ( webglgeometry.id * 0xffffff ) + ( program.id * 2 ) + wireframeBit;
 
 		if ( geometryHash != _currentGeometryGroupHash ) {
 
@@ -3274,8 +3275,11 @@ class WebGLRenderer implements Renderer {
 		}
 
 		// render mesh
+    var object = webglobject.object;
 
 		if ( object is Mesh ) {
+
+		  BufferGeometry geometry = webglgeometry._geometry;
 
 			var offsets = geometry.offsets;
 
@@ -3294,36 +3298,36 @@ class WebGLRenderer implements Renderer {
 
 					// vertices
 
-					var position = geometry.attributes[ "position" ];
+					GeometryAttribute<Float32List> position = geometry.aPosition;
 					var positionSize = position.itemSize;
 
-					_gl.bindBuffer( gl.ARRAY_BUFFER, position.buffer );
+					position.buffer.bind( gl.ARRAY_BUFFER );
 					_gl.vertexAttribPointer( attributes["position"], positionSize, gl.FLOAT, false, 0, startIndex * positionSize * 4 ); // 4 bytes per Float32
 
 					// normals
 
-					var normal = geometry.attributes[ "normal" ];
+					GeometryAttribute<Float32List> normal = geometry.aNormal;
 
-					if ( attributes["normal"] >= 0 && normal ) {
+					if ( attributes["normal"] >= 0 && normal != null ) {
 
 						var normalSize = normal.itemSize;
 
-						_gl.bindBuffer( gl.ARRAY_BUFFER, normal.buffer );
+						normal.buffer.bind( gl.ARRAY_BUFFER );
 						_gl.vertexAttribPointer( attributes["normal"], normalSize, gl.FLOAT, false, 0, startIndex * normalSize * 4 );
 
 					}
 
 					// uvs
 
-					var uv = geometry.attributes[ "uv" ];
+					GeometryAttribute<Float32List> uv = geometry.aUV;
 
-					if ( attributes["uv"] >= 0 && uv ) {
+					if ( attributes["uv"] >= 0 && uv != null ) {
 
-						if ( uv.buffer ) {
+						if ( uv.buffer != null ) {
 
 							var uvSize = uv.itemSize;
 
-							_gl.bindBuffer( gl.ARRAY_BUFFER, uv.buffer );
+							uv.buffer.bind( gl.ARRAY_BUFFER );
 							_gl.vertexAttribPointer( attributes["uv"], uvSize, gl.FLOAT, false, 0, startIndex * uvSize * 4 );
 
 							_gl.enableVertexAttribArray( attributes["uv"] );
@@ -3338,26 +3342,26 @@ class WebGLRenderer implements Renderer {
 
 					// colors
 
-					var color = geometry.attributes[ "color" ];
+					GeometryAttribute<Float32List> color = geometry.aColor;
 
-					if ( attributes["color"] >= 0 && color ) {
+					if ( attributes["color"] >= 0 && color != null ) {
 
 						var colorSize = color.itemSize;
 
-						_gl.bindBuffer( gl.ARRAY_BUFFER, color.buffer );
+						color.buffer.bind( gl.ARRAY_BUFFER );
 						_gl.vertexAttribPointer( attributes["color"], colorSize, gl.FLOAT, false, 0, startIndex * colorSize * 4 );
 
 					}
 
 					// tangents
 
-					var tangent = geometry.attributes[ "tangent" ];
+					GeometryAttribute<Float32List> tangent = geometry.aTangent;
 
-					if ( attributes["tangent"] >= 0 && tangent ) {
+					if ( attributes["tangent"] >= 0 && tangent != null ) {
 
 						var tangentSize = tangent.itemSize;
 
-						_gl.bindBuffer( gl.ARRAY_BUFFER, tangent.buffer );
+						tangent.buffer.bind( gl.ARRAY_BUFFER );
 						_gl.vertexAttribPointer( attributes["tangent"], tangentSize, gl.FLOAT, false, 0, startIndex * tangentSize * 4 );
 
 					}
@@ -3366,7 +3370,7 @@ class WebGLRenderer implements Renderer {
 
 					var index = geometry.attributes[ "index" ];
 
-					_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, index.buffer );
+					index.buffer.bind( gl.ELEMENT_ARRAY_BUFFER );
 
 				}
 
@@ -3376,7 +3380,7 @@ class WebGLRenderer implements Renderer {
 
 				info.render.calls ++;
 				info.render.vertices += offsets[ i ].count; // not really true, here vertices can be shared
-				info.render.faces += offsets[ i ].count / 3;
+				info.render.faces += offsets[ i ].count ~/ 3;
 
 			}
 
@@ -4023,7 +4027,7 @@ class WebGLRenderer implements Renderer {
 
 				setMaterialFaces( material );
 
-				if ( buffer is BufferGeometry ) {
+				if ( buffer.isBufferGeometry ) {
 
 					renderBufferDirect( camera, lights, fog, material, buffer, webglObject );
 
@@ -4305,7 +4309,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( object is Mesh ) {
 
-				if ( object.geometry is Geometry ) {
+				if ( (object.geometry is Geometry)  && (object.geometry is! BufferGeometry) ) {
 
 					if ( geometry.geometryGroups == null) {
 
@@ -4462,7 +4466,7 @@ class WebGLRenderer implements Renderer {
 					 geometry.uvsNeedUpdate || geometry.normalsNeedUpdate ||
 					 geometry.colorsNeedUpdate || geometry.tangentsNeedUpdate ) {
 
-					setDirectBuffers( geometry, gl.DYNAMIC_DRAW, !(geometry as dynamic) );
+					setDirectBuffers( geometry, gl.DYNAMIC_DRAW, !geometry.isDynamic );
 
 				}
 
@@ -6969,13 +6973,6 @@ class WebGLGeometry {
   int materialIndex, numMorphTargets, numMorphNormals;
 
   var geometryGroups, geometryGroupsList;
-  var
-    morphTargetsNeedUpdate,
-    elementsNeedUpdate,
-    uvsNeedUpdate,
-    normalsNeedUpdate,
-    tangentsNeedUpdate,
-    colorsNeedUpdate;
 
   bool __inittedArrays;
   Float32List __vertexArray,
@@ -7048,8 +7045,31 @@ class WebGLGeometry {
     return _vertices;
   }
 
-  get verticesNeedUpdate => _geometry["verticesNeedUpdate"];
+  get offsets => (_geometry as BufferGeometry).offsets;
+  get attributes => (_geometry as BufferGeometry).attributes;
+
+  getBoolData(key) => _geometry.__data.containsKey(key) ? _geometry[key] : false;
+
+  get verticesNeedUpdate => getBoolData("verticesNeedUpdate");
   set verticesNeedUpdate(bool flag) { _geometry["verticesNeedUpdate"] = flag; }
+
+  get morphTargetsNeedUpdate => getBoolData("morphTargetsNeedUpdate");
+  set morphTargetsNeedUpdate(bool flag) { _geometry["morphTargetsNeedUpdate"] = flag; }
+
+  get elementsNeedUpdate => getBoolData("elementsNeedUpdate");
+  set elementsNeedUpdate(bool flag) { _geometry["elementsNeedUpdate"] = flag; }
+
+  get uvsNeedUpdate => getBoolData("uvsNeedUpdate");
+  set uvsNeedUpdate(bool flag) { _geometry["uvsNeedUpdate"] = flag; }
+
+  get normalsNeedUpdate => getBoolData("normalsNeedUpdate");
+  set normalsNeedUpdate(bool flag) { _geometry["normalsNeedUpdate"] = flag; }
+
+  get tangentsNeedUpdate => getBoolData("tangentsNeedUpdate");
+  set tangentsNeedUpdate(bool flag) { _geometry["tangentsNeedUpdate"] = flag; }
+
+  get colorsNeedUpdate => getBoolData("colorsNeedUpdate");
+  set colorsNeedUpdate(bool flag) { _geometry["colorsNeedUpdate"] = flag; }
 
   get morphTargets => _geometry.morphTargets;
   get morphNormals => _geometry.morphNormals;
@@ -7067,6 +7087,7 @@ class WebGLGeometry {
 
   get hasTangents => _geometry.hasTangents;
 
+  get isBufferGeometry => _geometry is BufferGeometry;
 }
 
 class WebGLMaterial { // implements Material {
