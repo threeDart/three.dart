@@ -920,7 +920,8 @@ class WebGLRenderer implements Renderer {
 
 	bool bufferGuessVertexColorType ( material ) {
 
-		if ( (material.vertexColors != null) &&  (material.vertexColors != NoColors) ) {
+		if ( ((material.vertexColors is bool) && material.vertexColors) ||
+		     ((material.vertexColors is int) && (material.vertexColors != NoColors))) {
 
 			return material.vertexColors;
 
@@ -4355,8 +4356,6 @@ class WebGLRenderer implements Renderer {
 
 			} else if ( object is Line ) {
 
-				geometry = new WebGLGeometry.from(object.geometry);
-
 				if( geometry.__webglVertexBuffer == null ) {
 
 					createLineBuffers( geometry );
@@ -5829,7 +5828,7 @@ class WebGLRenderer implements Renderer {
 					bool lightMap: false,
 					bool bumpMap: false,
 					bool specularMap: false,
-					int vertexColors: NoColors,
+					var vertexColors: NoColors,
 					bool skinning: false,
 					bool useVertexTexture: false,
 					num boneTextureWidth: null,
@@ -5944,7 +5943,7 @@ class WebGLRenderer implements Renderer {
 			(lightMap != null) ? "#define USE_LIGHTMAP" : "",
 			(bumpMap != null) ? "#define USE_BUMPMAP" : "",
 			(specularMap != null) ? "#define USE_SPECULARMAP" : "",
-			(vertexColors != NoColors) ? "#define USE_COLOR" : "",
+			(((vertexColors is bool) && vertexColors) || ((vertexColors is int) && (vertexColors != NoColors))) ? "#define USE_COLOR" : "",
 
 			skinning ? "#define USE_SKINNING" : "",
 			useVertexTexture ? "#define BONE_TEXTURE" : "",
@@ -6046,7 +6045,7 @@ class WebGLRenderer implements Renderer {
 			(lightMap != null) ? "#define USE_LIGHTMAP" : "",
 			(bumpMap != null) ? "#define USE_BUMPMAP" : "",
 			(specularMap != null) ? "#define USE_SPECULARMAP" : "",
-			(vertexColors != NoColors) ? "#define USE_COLOR" : "",
+			(((vertexColors is bool) && vertexColors) || ((vertexColors is int) && (vertexColors != NoColors))) ? "#define USE_COLOR" : "",
 
 			metal ? "#define METAL" : "",
 			perPixel ? "#define PHONG_PER_PIXEL" : "",
@@ -6085,8 +6084,8 @@ class WebGLRenderer implements Renderer {
 		_gl.deleteShader( glFragmentShader );
 		_gl.deleteShader( glVertexShader );
 
-		//console.log( prefix_fragment + fragmentShader );
-		//console.log( prefix_vertex + vertexShader );
+		//print( prefix_fragment + fragmentShader );
+		//print( prefix_vertex + vertexShader );
 
 		//program.uniforms = {};
 		//program.attributes = {};
@@ -7133,7 +7132,7 @@ class WebGLMaterial { // implements Material {
 
 
   // TODO - Define proper interfaces to remove use of Dynamic
-  int get vertexColors => _hasVertexColors ? (_material as dynamic).vertexColors : NoColors;
+  get vertexColors => _hasVertexColors ? (_material as dynamic).vertexColors : NoColors;
   get color => (_material as dynamic).color;
   get ambient => (_material as dynamic).ambient;
   get emissive => (_material as dynamic).emissive;
