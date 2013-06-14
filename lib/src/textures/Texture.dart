@@ -37,6 +37,10 @@ class Texture {
 
   bool flipY;
 
+  int unpackAlignment = 4; // valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
+
+  List mipmaps = [];
+
   //TODO: resolve dynamic vars, find out what UVMapping is!
   Texture( [  this.image,
               this.mapping = null,
@@ -66,6 +70,7 @@ class Texture {
   Texture clone() {
     Texture clonedTexture = new Texture( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy );
 
+    clonedTexture.mipmaps = new List.from( mipmaps );
     clonedTexture.offset.setFrom( offset );
     clonedTexture.repeat.setFrom( repeat );
 

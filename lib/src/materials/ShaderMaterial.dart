@@ -26,6 +26,8 @@ class ShaderMaterial extends Material {
 
   Map<String, Attribute> attributes;
 
+  Map defines = {};
+
   ShaderMaterial( { // ShaderMaterial
                     this.attributes,
                     this.fragmentShader: "void main() {}",
