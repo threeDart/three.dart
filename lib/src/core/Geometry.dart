@@ -20,6 +20,8 @@ class Geometry {
   List<Vector3> vertices;
 
   List colors; // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
+  List normals = []; // one-to-one vertex normals, used in Ribbon
+
   List materials;
   List<Face> faces;
 
@@ -29,6 +31,7 @@ class Geometry {
   List<MorphTarget> morphTargets;
   List morphColors, morphNormals;
   List skinWeights, skinIndices;
+  List lineDistances;
 
   List<Vector3> __tmpVertices;
 
@@ -61,6 +64,8 @@ class Geometry {
 
         skinWeights = [],
         skinIndices = [],
+
+        lineDistances = [],
 
         boundingBox = null,
         boundingSphere = null,

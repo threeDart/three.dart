@@ -98,6 +98,7 @@ part 'src/lights/AmbientLight.dart';
 part 'src/lights/DirectionalLight.dart';
 part 'src/lights/PointLight.dart';
 part 'src/lights/SpotLight.dart';
+part 'src/lights/HemisphereLight.dart';
 part 'src/lights/Light.dart';
 part 'src/lights/ShadowCaster.dart';
 
@@ -165,6 +166,23 @@ int Object3DCount = 0;
 
 // from Material
 int MaterialCount = 0;
+
+// GL STATE CONSTANTS
+
+const int CullFaceNone = 0;
+const int CullFaceBack = 1;
+const int CullFaceFront = 2;
+const int CullFaceFrontBack = 3;
+
+const int FrontFaceDirectionCW = 0;
+const int FrontFaceDirectionCCW = 1;
+
+// SHADOWING TYPES
+
+const int BasicShadowMap = 0;
+const int PCFShadowMap = 1;
+const int PCFSoftShadowMap = 2;
+
 
 // MATERIAL CONSTANTS
 

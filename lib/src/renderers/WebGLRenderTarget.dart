@@ -12,6 +12,8 @@ class WebGLRenderTarget extends Texture {
 
 	bool generateMipmaps;
 
+	var shareDepthFrom;
+
 	var __webglFramebuffer; // List<WebGLFramebuffer> or WebGLFramebuffer
 	var __webglRenderbuffer; // List<WebGLRenderbuffer> or WebGLRenderbuffer
 
@@ -27,7 +29,8 @@ class WebGLRenderTarget extends Texture {
 	  this.stencilBuffer: true,
 	  this.offset: null, //new Vector2( 0, 0 ),
 	  this.repeat: null, //new Vector2( 1, 1 ),
-	  this.generateMipmaps: true
+	  this.generateMipmaps: true,
+	  this.shareDepthFrom: null
 	} ) : super(null, null, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy){
     if (offset == null) offset = new Vector2.zero();
     if (repeat == null) repeat = new Vector2( 1.0, 1.0 );
@@ -57,6 +60,8 @@ class WebGLRenderTarget extends Texture {
 						depthBuffer: this.depthBuffer,
 						stencilBuffer: this.stencilBuffer,
 
-						generateMipmaps: this.generateMipmaps);
+						generateMipmaps: this.generateMipmaps,
+
+						shareDepthFrom: this.shareDepthFrom);
 
 }

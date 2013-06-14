@@ -1,3 +1,4 @@
+// r54
 part of three;
 
 var __ShaderChunk;
@@ -63,7 +64,7 @@ get ShaderChunk  {
       "uniform float flipEnvMap;",
       "uniform int combine;",
 
-      "#ifdef USE_BUMPMAP",
+      "#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP )",
 
         "uniform bool useRefract;",
         "uniform float refractionRatio;",
@@ -84,7 +85,7 @@ get ShaderChunk  {
 
       "vec3 reflectVec;",
 
-      "#ifdef USE_BUMPMAP",
+      "#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP )",
 
         "vec3 cameraToVertex = normalize( vWorldPosition - cameraPosition );",
 
@@ -125,6 +126,10 @@ get ShaderChunk  {
 
         "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz, specularStrength * reflectivity );",
 
+      "} else if ( combine == 2 ) {",
+
+        "gl_FragColor.xyz += cubeColor.xyz * specularStrength * reflectivity;",
+
       "} else {",
 
         "gl_FragColor.xyz = mix( gl_FragColor.xyz, gl_FragColor.xyz * cubeColor.xyz, specularStrength * reflectivity );",
@@ -137,7 +142,7 @@ get ShaderChunk  {
 
   "envmap_pars_vertex": [
 
-    "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP )",
+    "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP ) && ! defined( USE_NORMALMAP )",
 
       "varying vec3 vReflect;",
 
@@ -148,25 +153,48 @@ get ShaderChunk  {
 
   ].join("\n"),
 
+  "worldpos_vertex" : [
+
+    "#if defined( USE_ENVMAP ) || defined( PHONG ) || defined( LAMBERT ) || defined ( USE_SHADOWMAP )",
+
+      "#ifdef USE_SKINNING",
+
+        "vec4 worldPosition = modelMatrix * skinned;",
+
+      "#endif",
+
+      "#if defined( USE_MORPHTARGETS ) && ! defined( USE_SKINNING )",
+
+        "vec4 worldPosition = modelMatrix * vec4( morphed, 1.0 );",
+
+      "#endif",
+
+      "#if ! defined( USE_MORPHTARGETS ) && ! defined( USE_SKINNING )",
+
+        "vec4 worldPosition = modelMatrix * vec4( position, 1.0 );",
+
+      "#endif",
+
+    "#endif"
+
+  ].join("\n"),
+
   "envmap_vertex" : [
 
-    "#ifdef USE_ENVMAP",
+    "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP ) && ! defined( USE_NORMALMAP )",
 
-      "vec4 mPosition = modelMatrix * vec4( position, 1.0 );",
+      "vec3 worldNormal = mat3( modelMatrix[ 0 ].xyz, modelMatrix[ 1 ].xyz, modelMatrix[ 2 ].xyz ) * objectNormal;",
+      "worldNormal = normalize( worldNormal );",
 
-    "#endif",
-
-    "#if defined( USE_ENVMAP ) && ! defined( USE_BUMPMAP )",
-
-      "vec3 nWorld = mat3( modelMatrix[ 0 ].xyz, modelMatrix[ 1 ].xyz, modelMatrix[ 2 ].xyz ) * normal;",
+      "vec3 cameraToVertex = normalize( worldPosition.xyz - cameraPosition );",
 
       "if ( useRefract ) {",
 
-        "vReflect = refract( normalize( mPosition.xyz - cameraPosition ), normalize( nWorld.xyz ), refractionRatio );",
+        "vReflect = refract( cameraToVertex, worldNormal, refractionRatio );",
 
       "} else {",
 
-        "vReflect = reflect( normalize( mPosition.xyz - cameraPosition ), normalize( nWorld.xyz ) );",
+        "vReflect = reflect( cameraToVertex, worldNormal );",
 
       "}",
 
@@ -201,7 +229,7 @@ get ShaderChunk  {
 
   "map_pars_vertex": [
 
-    "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_SPECULARMAP )",
+    "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP )",
 
       "varying vec2 vUv;",
       "uniform vec4 offsetRepeat;",
@@ -212,7 +240,7 @@ get ShaderChunk  {
 
   "map_pars_fragment": [
 
-    "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_SPECULARMAP )",
+    "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP )",
 
       "varying vec2 vUv;",
 
@@ -222,13 +250,13 @@ get ShaderChunk  {
 
       "uniform sampler2D map;",
 
-    "#endif",
+    "#endif"
 
   ].join("\n"),
 
   "map_vertex": [
 
-    "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_SPECULARMAP )",
+    "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP )",
 
       "vUv = uv * offsetRepeat.zw + offsetRepeat.xy;",
 
@@ -240,18 +268,15 @@ get ShaderChunk  {
 
     "#ifdef USE_MAP",
 
+      "vec4 texelColor = texture2D( map, vUv );",
+
       "#ifdef GAMMA_INPUT",
 
-        "vec4 texelColor = texture2D( map, vUv );",
         "texelColor.xyz *= texelColor.xyz;",
 
-        "gl_FragColor = gl_FragColor * texelColor;",
-
-      "#else",
-
-        "gl_FragColor = gl_FragColor * texture2D( map, vUv );",
-
       "#endif",
+
+      "gl_FragColor = gl_FragColor * texelColor;",
 
     "#endif"
 
@@ -347,6 +372,40 @@ get ShaderChunk  {
 
   ].join("\n"),
 
+  // NORMAL MAP
+
+  "normalmap_pars_fragment": [
+
+    "#ifdef USE_NORMALMAP",
+
+      "uniform sampler2D normalMap;",
+      "uniform vec2 normalScale;",
+
+      // Per-Pixel Tangent Space Normal Mapping
+      // http://hacksoflife.blogspot.ch/2009/11/per-pixel-tangent-space-normal-mapping.html
+
+      "vec3 perturbNormal2Arb( vec3 eye_pos, vec3 surf_norm ) {",
+
+        "vec3 q0 = dFdx( eye_pos.xyz );",
+        "vec3 q1 = dFdy( eye_pos.xyz );",
+        "vec2 st0 = dFdx( vUv.st );",
+        "vec2 st1 = dFdy( vUv.st );",
+
+        "vec3 S = normalize(  q0 * st1.t - q1 * st0.t );",
+        "vec3 T = normalize( -q0 * st1.s + q1 * st0.s );",
+        "vec3 N = normalize( surf_norm );",
+
+        "vec3 mapN = texture2D( normalMap, vUv ).xyz * 2.0 - 1.0;",
+        "mapN.xy = normalScale * mapN.xy;",
+        "mat3 tsn = mat3( S, T, N );",
+        "return normalize( tsn * mapN );",
+
+      "}",
+
+    "#endif"
+
+  ].join("\n"),
+
   // SPECULAR MAP
 
   "specularmap_pars_fragment": [
@@ -393,6 +452,14 @@ get ShaderChunk  {
 
     "#endif",
 
+    "#if MAX_HEMI_LIGHTS > 0",
+
+      "uniform vec3 hemisphereLightSkyColor[ MAX_HEMI_LIGHTS ];",
+      "uniform vec3 hemisphereLightGroundColor[ MAX_HEMI_LIGHTS ];",
+      "uniform vec3 hemisphereLightDirection[ MAX_HEMI_LIGHTS ];",
+
+    "#endif",
+
     "#if MAX_POINT_LIGHTS > 0",
 
       "uniform vec3 pointLightColor[ MAX_POINT_LIGHTS ];",
@@ -407,7 +474,7 @@ get ShaderChunk  {
       "uniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];",
       "uniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];",
       "uniform float spotLightDistance[ MAX_SPOT_LIGHTS ];",
-      "uniform float spotLightAngle[ MAX_SPOT_LIGHTS ];",
+      "uniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];",
       "uniform float spotLightExponent[ MAX_SPOT_LIGHTS ];",
 
     "#endif",
@@ -534,60 +601,84 @@ get ShaderChunk  {
 
     "#if MAX_SPOT_LIGHTS > 0",
 
-      "for( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {",
+    "for( int i = 0; i < MAX_SPOT_LIGHTS; i ++ ) {",
 
-        "vec4 lPosition = viewMatrix * vec4( spotLightPosition[ i ], 1.0 );",
-        "vec3 lVector = lPosition.xyz - mvPosition.xyz;",
+    "vec4 lPosition = viewMatrix * vec4( spotLightPosition[ i ], 1.0 );",
+    "vec3 lVector = lPosition.xyz - mvPosition.xyz;",
 
-        "lVector = normalize( lVector );",
+    "float spotEffect = dot( spotLightDirection[ i ], normalize( spotLightPosition[ i ] - worldPosition.xyz ) );",
 
-        "float spotEffect = dot( spotLightDirection[ i ], normalize( spotLightPosition[ i ] - mPosition.xyz ) );",
+    "if ( spotEffect > spotLightAngleCos[ i ] ) {",
 
-        "if ( spotEffect > spotLightAngle[ i ] ) {",
+    "spotEffect = max( pow( spotEffect, spotLightExponent[ i ] ), 0.0 );",
 
-          "spotEffect = pow( spotEffect, spotLightExponent[ i ] );",
+    "float lDistance = 1.0;",
+    "if ( spotLightDistance[ i ] > 0.0 )",
+    "lDistance = 1.0 - min( ( length( lVector ) / spotLightDistance[ i ] ), 1.0 );",
 
-          "float lDistance = 1.0;",
-          "if ( spotLightDistance[ i ] > 0.0 )",
-            "lDistance = 1.0 - min( ( length( lVector ) / spotLightDistance[ i ] ), 1.0 );",
+    "lVector = normalize( lVector );",
 
-          "float dotProduct = dot( transformedNormal, lVector );",
-          "vec3 spotLightWeighting = vec3( max( dotProduct, 0.0 ) );",
+    "float dotProduct = dot( transformedNormal, lVector );",
+    "vec3 spotLightWeighting = vec3( max( dotProduct, 0.0 ) );",
 
-          "#ifdef DOUBLE_SIDED",
+    "#ifdef DOUBLE_SIDED",
 
-            "vec3 spotLightWeightingBack = vec3( max( -dotProduct, 0.0 ) );",
+    "vec3 spotLightWeightingBack = vec3( max( -dotProduct, 0.0 ) );",
 
-            "#ifdef WRAP_AROUND",
+    "#ifdef WRAP_AROUND",
 
-              "vec3 spotLightWeightingHalfBack = vec3( max( -0.5 * dotProduct + 0.5, 0.0 ) );",
+    "vec3 spotLightWeightingHalfBack = vec3( max( -0.5 * dotProduct + 0.5, 0.0 ) );",
 
-            "#endif",
+    "#endif",
 
-          "#endif",
+    "#endif",
 
-          "#ifdef WRAP_AROUND",
+    "#ifdef WRAP_AROUND",
 
-            "vec3 spotLightWeightingHalf = vec3( max( 0.5 * dotProduct + 0.5, 0.0 ) );",
-            "spotLightWeighting = mix( spotLightWeighting, spotLightWeightingHalf, wrapRGB );",
+    "vec3 spotLightWeightingHalf = vec3( max( 0.5 * dotProduct + 0.5, 0.0 ) );",
+    "spotLightWeighting = mix( spotLightWeighting, spotLightWeightingHalf, wrapRGB );",
 
-            "#ifdef DOUBLE_SIDED",
+    "#ifdef DOUBLE_SIDED",
 
-              "spotLightWeightingBack = mix( spotLightWeightingBack, spotLightWeightingHalfBack, wrapRGB );",
+    "spotLightWeightingBack = mix( spotLightWeightingBack, spotLightWeightingHalfBack, wrapRGB );",
 
-            "#endif",
+    "#endif",
 
-          "#endif",
+    "#endif",
 
-          "vLightFront += spotLightColor[ i ] * spotLightWeighting * lDistance * spotEffect;",
+    "vLightFront += spotLightColor[ i ] * spotLightWeighting * lDistance * spotEffect;",
 
-          "#ifdef DOUBLE_SIDED",
+    "#ifdef DOUBLE_SIDED",
 
-            "vLightBack += spotLightColor[ i ] * spotLightWeightingBack * lDistance * spotEffect;",
+    "vLightBack += spotLightColor[ i ] * spotLightWeightingBack * lDistance * spotEffect;",
 
-          "#endif",
+    "#endif",
 
-        "}",
+    "}",
+
+    "}",
+
+    "#endif",
+
+    "#if MAX_HEMI_LIGHTS > 0",
+
+      "for( int i = 0; i < MAX_HEMI_LIGHTS; i ++ ) {",
+
+        "vec4 lDirection = viewMatrix * vec4( hemisphereLightDirection[ i ], 0.0 );",
+        "vec3 lVector = normalize( lDirection.xyz );",
+
+        "float dotProduct = dot( transformedNormal, lVector );",
+
+        "float hemiDiffuseWeight = 0.5 * dotProduct + 0.5;",
+        "float hemiDiffuseWeightBack = -0.5 * dotProduct + 0.5;",
+
+        "vLightFront += mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeight );",
+
+        "#ifdef DOUBLE_SIDED",
+
+          "vLightBack += mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeightBack );",
+
+        "#endif",
 
       "}",
 
@@ -680,7 +771,7 @@ get ShaderChunk  {
 
     "#if MAX_SPOT_LIGHTS > 0 || defined( USE_BUMPMAP )",
 
-      "vWorldPosition = mPosition.xyz;",
+      "vWorldPosition = worldPosition.xyz;",
 
     "#endif"
 
@@ -694,6 +785,14 @@ get ShaderChunk  {
 
       "uniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];",
       "uniform vec3 directionalLightDirection[ MAX_DIR_LIGHTS ];",
+
+    "#endif",
+
+    "#if MAX_HEMI_LIGHTS > 0",
+
+      "uniform vec3 hemisphereLightSkyColor[ MAX_HEMI_LIGHTS ];",
+      "uniform vec3 hemisphereLightGroundColor[ MAX_HEMI_LIGHTS ];",
+      "uniform vec3 hemisphereLightDirection[ MAX_HEMI_LIGHTS ];",
 
     "#endif",
 
@@ -719,7 +818,7 @@ get ShaderChunk  {
       "uniform vec3 spotLightColor[ MAX_SPOT_LIGHTS ];",
       "uniform vec3 spotLightPosition[ MAX_SPOT_LIGHTS ];",
       "uniform vec3 spotLightDirection[ MAX_SPOT_LIGHTS ];",
-      "uniform float spotLightAngle[ MAX_SPOT_LIGHTS ];",
+      "uniform float spotLightAngleCos[ MAX_SPOT_LIGHTS ];",
       "uniform float spotLightExponent[ MAX_SPOT_LIGHTS ];",
 
       "#ifdef PHONG_PER_PIXEL",
@@ -762,7 +861,11 @@ get ShaderChunk  {
 
     "#endif",
 
-    "#ifdef USE_BUMPMAP",
+    "#ifdef USE_NORMALMAP",
+
+      "normal = perturbNormal2Arb( -viewPosition, normal );",
+
+    "#elif defined( USE_BUMPMAP )",
 
       "normal = perturbNormalArb( -vViewPosition, normal, dHdxy_fwd() );",
 
@@ -864,9 +967,9 @@ get ShaderChunk  {
 
         "float spotEffect = dot( spotLightDirection[ i ], normalize( spotLightPosition[ i ] - vWorldPosition ) );",
 
-        "if ( spotEffect > spotLightAngle[ i ] ) {",
+        "if ( spotEffect > spotLightAngleCos[ i ] ) {",
 
-          "spotEffect = pow( spotEffect, spotLightExponent[ i ] );",
+          "spotEffect = max( pow( spotEffect, spotLightExponent[ i ] ), 0.0 )",
 
           // diffuse
 
@@ -989,6 +1092,61 @@ get ShaderChunk  {
 
     "#endif",
 
+    "#if MAX_HEMI_LIGHTS > 0",
+
+      "vec3 hemiDiffuse  = vec3( 0.0 );",
+      "vec3 hemiSpecular = vec3( 0.0 );" ,
+
+      "for( int i = 0; i < MAX_HEMI_LIGHTS; i ++ ) {",
+
+        "vec4 lDirection = viewMatrix * vec4( hemisphereLightDirection[ i ], 0.0 );",
+        "vec3 lVector = normalize( lDirection.xyz );",
+
+        // diffuse
+
+        "float dotProduct = dot( normal, lVector );",
+        "float hemiDiffuseWeight = 0.5 * dotProduct + 0.5;",
+
+        "vec3 hemiColor = mix( hemisphereLightGroundColor[ i ], hemisphereLightSkyColor[ i ], hemiDiffuseWeight );",
+
+        "hemiDiffuse += diffuse * hemiColor;",
+
+        // specular (sky light)
+
+        "vec3 hemiHalfVectorSky = normalize( lVector + viewPosition );",
+        "float hemiDotNormalHalfSky = 0.5 * dot( normal, hemiHalfVectorSky ) + 0.5;",
+        "float hemiSpecularWeightSky = specularStrength * max( pow( hemiDotNormalHalfSky, shininess ), 0.0 );",
+
+        // specular (ground light)
+
+        "vec3 lVectorGround = -lVector;",
+
+        "vec3 hemiHalfVectorGround = normalize( lVectorGround + viewPosition );",
+        "float hemiDotNormalHalfGround = 0.5 * dot( normal, hemiHalfVectorGround ) + 0.5;",
+        "float hemiSpecularWeightGround = specularStrength * max( pow( hemiDotNormalHalfGround, shininess ), 0.0 );",
+
+        "#ifdef PHYSICALLY_BASED_SHADING",
+
+          "float dotProductGround = dot( normal, lVectorGround );",
+
+          // 2.0 => 2.0001 is hack to work around ANGLE bug
+
+          "float specularNormalization = ( shininess + 2.0001 ) / 8.0;",
+
+          "vec3 schlickSky = specular + vec3( 1.0 - specular ) * pow( 1.0 - dot( lVector, hemiHalfVectorSky ), 5.0 );",
+          "vec3 schlickGround = specular + vec3( 1.0 - specular ) * pow( 1.0 - dot( lVectorGround, hemiHalfVectorGround ), 5.0 );",
+          "hemiSpecular += hemiColor * specularNormalization * ( schlickSky * hemiSpecularWeightSky * max( dotProduct, 0.0 ) + schlickGround * hemiSpecularWeightGround * max( dotProductGround, 0.0 ) );",
+
+        "#else",
+
+          "hemiSpecular += specular * hemiColor * ( hemiSpecularWeightSky + hemiSpecularWeightGround ) * hemiDiffuseWeight;",
+
+        "#endif",
+
+      "}",
+
+    "#endif",
+
     "vec3 totalDiffuse = vec3( 0.0 );",
     "vec3 totalSpecular = vec3( 0.0 );",
 
@@ -996,6 +1154,13 @@ get ShaderChunk  {
 
       "totalDiffuse += dirDiffuse;",
       "totalSpecular += dirSpecular;",
+
+    "#endif",
+
+    "#if MAX_HEMI_LIGHTS > 0",
+
+      "totalDiffuse += hemiDiffuse;",
+      "totalSpecular += hemiSpecular;",
 
     "#endif",
 
@@ -1141,10 +1306,18 @@ get ShaderChunk  {
 
     "#ifdef USE_SKINNING",
 
-      "vec4 skinned  = boneMatX * skinVertexA * skinWeight.x;",
-      "skinned    += boneMatY * skinVertexB * skinWeight.y;",
+      "#ifdef USE_MORPHTARGETS",
 
-      "gl_Position  = projectionMatrix * modelViewMatrix * skinned;",
+        "vec4 skinVertex = vec4( morphed, 1.0 );",
+
+      "#else",
+
+        "vec4 skinVertex = vec4( position, 1.0 );",
+
+      "#endif",
+
+      "vec4 skinned  = boneMatX * skinVertex * skinWeight.x;",
+      "skinned    += boneMatY * skinVertex * skinWeight.y;",
 
     "#endif"
 
@@ -1191,21 +1364,33 @@ get ShaderChunk  {
 
       "morphed += position;",
 
-      "gl_Position = projectionMatrix * modelViewMatrix * vec4( morphed, 1.0 );",
-
     "#endif"
 
   ].join("\n"),
 
   "default_vertex" : [
 
-    "#ifndef USE_MORPHTARGETS",
-    "#ifndef USE_SKINNING",
+      "vec4 mvPosition;",
 
-      "gl_Position = projectionMatrix * mvPosition;",
+      "#ifdef USE_SKINNING",
 
-    "#endif",
-    "#endif"
+        "mvPosition = modelViewMatrix * skinned;",
+
+      "#endif",
+
+      "#if !defined( USE_SKINNING ) && defined( USE_MORPHTARGETS )",
+
+        "mvPosition = modelViewMatrix * vec4( morphed, 1.0 );",
+
+      "#endif",
+
+      "#if !defined( USE_SKINNING ) && ! defined( USE_MORPHTARGETS )",
+
+        "mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+
+      "#endif",
+
+      "gl_Position = projectionMatrix * mvPosition;"
 
   ].join("\n"),
 
@@ -1233,7 +1418,15 @@ get ShaderChunk  {
       "mat4 skinMatrix = skinWeight.x * boneMatX;",
       "skinMatrix   += skinWeight.y * boneMatY;",
 
+      "#ifdef USE_MORPHNORMALS",
+
+      "vec4 skinnedNormal = skinMatrix * vec4( morphedNormal, 0.0 );",
+
+      "#else",
+
       "vec4 skinnedNormal = skinMatrix * vec4( normal, 0.0 );",
+
+      "#endif",
 
     "#endif"
 
@@ -1241,29 +1434,33 @@ get ShaderChunk  {
 
   "defaultnormal_vertex": [
 
-    "vec3 transformedNormal;",
+     "vec3 objectNormal;",
 
-    "#ifdef USE_SKINNING",
+     "#ifdef USE_SKINNING",
 
-      "transformedNormal = skinnedNormal.xyz;",
+        "objectNormal = skinnedNormal.xyz;",
 
-    "#endif",
+     "#endif",
 
-    "#ifdef USE_MORPHNORMALS",
+     "#if !defined( USE_SKINNING ) && defined( USE_MORPHNORMALS )",
 
-      "transformedNormal = morphedNormal;",
+        "objectNormal = morphedNormal;",
 
-    "#endif",
+     "#endif",
 
-    "#ifndef USE_MORPHNORMALS",
-    "#ifndef USE_SKINNING",
+     "#if !defined( USE_SKINNING ) && ! defined( USE_MORPHNORMALS )",
 
-      "transformedNormal = normal;",
+        "objectNormal = normal;",
 
-    "#endif",
-    "#endif",
+     "#endif",
 
-    "transformedNormal = normalMatrix * transformedNormal;",
+     "#ifdef FLIP_SIDED",
+
+        "objectNormal = -objectNormal;",
+
+     "#endif",
+
+     "vec3 transformedNormal = normalMatrix * objectNormal;"
 
   ].join("\n"),
 
@@ -1350,7 +1547,7 @@ get ShaderChunk  {
 
           "shadowCoord.z += shadowBias[ i ];",
 
-          "#ifdef SHADOWMAP_SOFT",
+          "#if defined( SHADOWMAP_TYPE_PCF )",
 
             // Percentage-close filtering
             // (9 pixel kernel)
@@ -1420,6 +1617,76 @@ get ShaderChunk  {
 
             "shadowColor = shadowColor * vec3( ( 1.0 - shadowDarkness[ i ] * shadow ) );",
 
+          "#elif defined( SHADOWMAP_TYPE_PCF_SOFT )",
+
+            // Percentage-close filtering
+            // (9 pixel kernel)
+            // http://fabiensanglard.net/shadowmappingPCF/
+
+            "float shadow = 0.0;",
+
+            "float xPixelOffset = 1.0 / shadowMapSize[ i ].x;",
+            "float yPixelOffset = 1.0 / shadowMapSize[ i ].y;",
+
+            "float dx0 = -1.0 * xPixelOffset;",
+            "float dy0 = -1.0 * yPixelOffset;",
+            "float dx1 = 1.0 * xPixelOffset;",
+            "float dy1 = 1.0 * yPixelOffset;",
+
+            "mat3 shadowKernel;",
+            "mat3 depthKernel;",
+
+            "depthKernel[0][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, dy0 ) ) );",
+            "if ( depthKernel[0][0] < shadowCoord.z ) shadowKernel[0][0] = 0.25;",
+            "else shadowKernel[0][0] = 0.0;",
+
+            "depthKernel[0][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx0, 0.0 ) ) );",
+            "if ( depthKernel[0][1] < shadowCoord.z ) shadowKernel[0][1] = 0.25;",
+            "else shadowKernel[0][1] = 0.0;",
+
+            "depthKernel[0][2] = unpackDepth( texture2D( shadowMap[ i], shadowCoord.xy + vec2( dx0, dy1 ) ) );",
+            "if ( depthKernel[0][2] < shadowCoord.z ) shadowKernel[0][2] = 0.25;",
+            "else shadowKernel[0][2] = 0.0;",
+
+            "depthKernel[1][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy0 ) ) );",
+            "if ( depthKernel[1][0] < shadowCoord.z ) shadowKernel[1][0] = 0.25;",
+            "else shadowKernel[1][0] = 0.0;",
+
+            "depthKernel[1][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy ) );",
+            "if ( depthKernel[1][1] < shadowCoord.z ) shadowKernel[1][1] = 0.25;",
+            "else shadowKernel[1][1] = 0.0;",
+
+            "depthKernel[1][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( 0.0, dy1 ) ) );",
+            "if ( depthKernel[1][2] < shadowCoord.z ) shadowKernel[1][2] = 0.25;",
+            "else shadowKernel[1][2] = 0.0;",
+
+            "depthKernel[2][0] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy0 ) ) );",
+            "if ( depthKernel[2][0] < shadowCoord.z ) shadowKernel[2][0] = 0.25;",
+            "else shadowKernel[2][0] = 0.0;",
+
+            "depthKernel[2][1] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, 0.0 ) ) );",
+            "if ( depthKernel[2][1] < shadowCoord.z ) shadowKernel[2][1] = 0.25;",
+            "else shadowKernel[2][1] = 0.0;",
+
+            "depthKernel[2][2] = unpackDepth( texture2D( shadowMap[ i ], shadowCoord.xy + vec2( dx1, dy1 ) ) );",
+            "if ( depthKernel[2][2] < shadowCoord.z ) shadowKernel[2][2] = 0.25;",
+            "else shadowKernel[2][2] = 0.0;",
+
+            "vec2 fractionalCoord = 1.0 - fract( shadowCoord.xy * shadowMapSize[i].xy );",
+
+            "shadowKernel[0] = mix( shadowKernel[1], shadowKernel[0], fractionalCoord.x );",
+            "shadowKernel[1] = mix( shadowKernel[2], shadowKernel[1], fractionalCoord.x );",
+
+            "vec4 shadowValues;",
+            "shadowValues.x = mix( shadowKernel[0][1], shadowKernel[0][0], fractionalCoord.y );",
+            "shadowValues.y = mix( shadowKernel[0][2], shadowKernel[0][1], fractionalCoord.y );",
+            "shadowValues.z = mix( shadowKernel[1][1], shadowKernel[1][0], fractionalCoord.y );",
+            "shadowValues.w = mix( shadowKernel[1][2], shadowKernel[1][1], fractionalCoord.y );",
+
+            "shadow = dot( shadowValues, vec4( 1.0 ) );",
+
+            "shadowColor = shadowColor * vec3( ( 1.0 - shadowDarkness[ i ] * shadow ) );",
+
           "#else",
 
             "vec4 rgbaDepth = texture2D( shadowMap[ i ], shadowCoord.xy );",
@@ -1483,27 +1750,9 @@ get ShaderChunk  {
 
     "#ifdef USE_SHADOWMAP",
 
-      "vec4 transformedPosition;",
-
-      "#ifdef USE_MORPHTARGETS",
-
-        "transformedPosition = modelMatrix * vec4( morphed, 1.0 );",
-
-      "#else",
-      "#ifdef USE_SKINNING",
-
-        "transformedPosition = modelMatrix * skinned;",
-
-      "#else",
-
-        "transformedPosition = modelMatrix * vec4( position, 1.0 );",
-
-      "#endif",
-      "#endif",
-
       "for( int i = 0; i < MAX_SHADOWS; i ++ ) {",
 
-        "vShadowCoord[ i ] = shadowMatrix[ i ] * transformedPosition;",
+        "vShadowCoord[ i ] = shadowMatrix[ i ] * worldPosition;",
 
       "}",
 
@@ -1533,7 +1782,7 @@ get ShaderChunk  {
 
     "#endif"
 
-  ].join("\n"),
+  ].join("\n")
 };
   }
   return __ShaderChunk;
@@ -1761,7 +2010,7 @@ class Uniform<T> {
   factory Uniform.texturev([List<Texture> textures]) => new Uniform<List<Texture>>("tv", textures);
 
   factory Uniform.vector2v(List<Vector2> vectors) => new Uniform<List<Vector2>>("v2v", vectors);
-
+  factory Uniform.vector2(double x, double y) => new Uniform<Vector2>("v2", new Vector2(x, y));
   factory Uniform.vector3(double x, double y, double z) => new Uniform<Vector3>("v3", new Vector3(x, y, z));
   factory Uniform.vector4(double x, double y, num z, double w) => new Uniform<Vector4>("v4", new Vector4(x, y, z, w));
 
@@ -1802,6 +2051,13 @@ get UniformsLib {
 
   },
 
+  "normalmap": {
+
+    "normalMap" : new Uniform.texture(),
+    "normalScale" : new Uniform.vector2(1.0, 1.0)
+
+  },
+
   "fog" : {
 
     "fogDensity" : new Uniform.float(0.00025),
@@ -1818,6 +2074,10 @@ get UniformsLib {
     "directionalLightDirection" : new Uniform.floatv([]),
     "directionalLightColor" : new Uniform.floatv([]),
 
+    "hemisphereLightDirection" : new Uniform.floatv([]),
+    "hemisphereLightSkyColor" : new Uniform.floatv([]),
+    "hemisphereLightGroundColor" : new Uniform.floatv([]),
+
     "pointLightColor" : new Uniform.floatv([]),
     "pointLightPosition" : new Uniform.floatv([]),
     "pointLightDistance" : new Uniform.floatv1([]),
@@ -1826,7 +2086,7 @@ get UniformsLib {
     "spotLightPosition" : new Uniform.floatv([]),
     "spotLightDirection" : new Uniform.floatv([]),
     "spotLightDistance" : new Uniform.floatv1([]),
-    "spotLightAngle" : new Uniform.floatv1([]),
+    "spotLightAngleCos" : new Uniform.floatv1([]),
     "spotLightExponent" : new Uniform.floatv1([])
 
   },
@@ -1922,7 +2182,7 @@ get ShaderLib  {
       "void main() {",
 
         "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
-        "vNormal = normalMatrix * normal;",
+        "vNormal = normalize( normalMatrix * normal );",
 
         "gl_Position = projectionMatrix * mvPosition;",
 
@@ -1956,23 +2216,32 @@ get ShaderLib  {
                  ShaderChunk[ "lightmap_pars_vertex" ],
                  ShaderChunk[ "envmap_pars_vertex" ],
                  ShaderChunk[ "color_pars_vertex" ],
-                 ShaderChunk[ "skinning_pars_vertex" ],
                  ShaderChunk[ "morphtarget_pars_vertex" ],
+                 ShaderChunk[ "skinning_pars_vertex" ],
                  ShaderChunk[ "shadowmap_pars_vertex" ],
 
                  "void main() {",
 
-                 "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+                   ShaderChunk[ "map_vertex" ],
+                   ShaderChunk[ "lightmap_vertex" ],
+                   ShaderChunk[ "color_vertex" ],
+                   ShaderChunk[ "skinbase_vertex" ],
 
-                 ShaderChunk[ "map_vertex" ],
-                 ShaderChunk[ "lightmap_vertex" ],
-                 ShaderChunk[ "envmap_vertex" ],
-                 ShaderChunk[ "color_vertex" ],
-                 ShaderChunk[ "skinbase_vertex" ],
-                 ShaderChunk[ "skinning_vertex" ],
-                 ShaderChunk[ "morphtarget_vertex" ],
-                 ShaderChunk[ "default_vertex" ],
-                ShaderChunk[ "shadowmap_vertex" ],
+                   "#ifdef USE_ENVMAP",
+
+                    ShaderChunk[ "morphnormal_vertex" ],
+                    ShaderChunk[ "skinnormal_vertex" ],
+                    ShaderChunk[ "defaultnormal_vertex" ],
+
+                   "#endif",
+
+                   ShaderChunk[ "morphtarget_vertex" ],
+                   ShaderChunk[ "skinning_vertex" ],
+                   ShaderChunk[ "default_vertex" ],
+
+                   ShaderChunk[ "worldpos_vertex" ],
+                   ShaderChunk[ "envmap_vertex" ],
+                   ShaderChunk[ "shadowmap_vertex" ],
 
                  "}"
 
@@ -2032,6 +2301,8 @@ get ShaderLib  {
 
     'vertexShader': [
 
+      "#define LAMBERT",
+
       "varying vec3 vLightFront;",
 
       "#ifdef DOUBLE_SIDED",
@@ -2045,17 +2316,14 @@ get ShaderLib  {
       ShaderChunk[ "envmap_pars_vertex" ],
       ShaderChunk[ "lights_lambert_pars_vertex" ],
       ShaderChunk[ "color_pars_vertex" ],
-      ShaderChunk[ "skinning_pars_vertex" ],
       ShaderChunk[ "morphtarget_pars_vertex" ],
+      ShaderChunk[ "skinning_pars_vertex" ],
       ShaderChunk[ "shadowmap_pars_vertex" ],
 
       "void main() {",
 
-        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
-
         ShaderChunk[ "map_vertex" ],
         ShaderChunk[ "lightmap_vertex" ],
-        ShaderChunk[ "envmap_vertex" ],
         ShaderChunk[ "color_vertex" ],
 
         ShaderChunk[ "morphnormal_vertex" ],
@@ -2063,16 +2331,13 @@ get ShaderLib  {
         ShaderChunk[ "skinnormal_vertex" ],
         ShaderChunk[ "defaultnormal_vertex" ],
 
-        "#ifndef USE_ENVMAP",
-
-          "vec4 mPosition = modelMatrix * vec4( position, 1.0 );",
-
-        "#endif",
-
-        ShaderChunk[ "lights_lambert_vertex" ],
-        ShaderChunk[ "skinning_vertex" ],
         ShaderChunk[ "morphtarget_vertex" ],
+        ShaderChunk[ "skinning_vertex" ],
         ShaderChunk[ "default_vertex" ],
+
+        ShaderChunk[ "worldpos_vertex" ],
+        ShaderChunk[ "envmap_vertex" ],
+        ShaderChunk[ "lights_lambert_vertex" ],
         ShaderChunk[ "shadowmap_vertex" ],
 
       "}"
@@ -2144,6 +2409,7 @@ get ShaderLib  {
 
       UniformsLib[ "common" ],
       UniformsLib[ "bump" ],
+      UniformsLib[ "normalmap" ],
       UniformsLib[ "fog" ],
       UniformsLib[ "lights" ],
       UniformsLib[ "shadowmap" ],
@@ -2160,6 +2426,8 @@ get ShaderLib  {
 
     'vertexShader': [
 
+      "#define PHONG",
+
       "varying vec3 vViewPosition;",
       "varying vec3 vNormal;",
 
@@ -2168,38 +2436,32 @@ get ShaderLib  {
       ShaderChunk[ "envmap_pars_vertex" ],
       ShaderChunk[ "lights_phong_pars_vertex" ],
       ShaderChunk[ "color_pars_vertex" ],
-      ShaderChunk[ "skinning_pars_vertex" ],
       ShaderChunk[ "morphtarget_pars_vertex" ],
+      ShaderChunk[ "skinning_pars_vertex" ],
       ShaderChunk[ "shadowmap_pars_vertex" ],
 
       "void main() {",
 
-        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
-
         ShaderChunk[ "map_vertex" ],
         ShaderChunk[ "lightmap_vertex" ],
-        ShaderChunk[ "envmap_vertex" ],
         ShaderChunk[ "color_vertex" ],
-
-        "#ifndef USE_ENVMAP",
-
-          "vec4 mPosition = modelMatrix * vec4( position, 1.0 );",
-
-        "#endif",
-
-        "vViewPosition = -mvPosition.xyz;",
 
         ShaderChunk[ "morphnormal_vertex" ],
         ShaderChunk[ "skinbase_vertex" ],
         ShaderChunk[ "skinnormal_vertex" ],
         ShaderChunk[ "defaultnormal_vertex" ],
 
-        "vNormal = transformedNormal;",
+        "vNormal = normalize( transformedNormal );",
 
-        ShaderChunk[ "lights_phong_vertex" ],
-        ShaderChunk[ "skinning_vertex" ],
         ShaderChunk[ "morphtarget_vertex" ],
+        ShaderChunk[ "skinning_vertex" ],
         ShaderChunk[ "default_vertex" ],
+
+        "vViewPosition = -mvPosition.xyz;",
+
+        ShaderChunk[ "worldpos_vertex" ],
+        ShaderChunk[ "envmap_vertex" ],
+        ShaderChunk[ "lights_phong_vertex" ],
         ShaderChunk[ "shadowmap_vertex" ],
 
       "}"
@@ -2224,6 +2486,7 @@ get ShaderLib  {
       ShaderChunk[ "lights_phong_pars_fragment" ],
       ShaderChunk[ "shadowmap_pars_fragment" ],
       ShaderChunk[ "bumpmap_pars_fragment" ],
+      ShaderChunk[ "normalmap_pars_fragment" ],
       ShaderChunk[ "specularmap_pars_fragment" ],
 
       "void main() {",
@@ -2282,6 +2545,7 @@ get ShaderLib  {
 
         "gl_Position = projectionMatrix * mvPosition;",
 
+        ShaderChunk[ "worldpos_vertex" ],
         ShaderChunk[ "shadowmap_vertex" ],
 
       "}"
@@ -2313,7 +2577,74 @@ get ShaderLib  {
     ].join("\n")
 
   },
+  'dashed': {
 
+    "uniforms": UniformsUtils.merge( [
+
+      UniformsLib[ "common" ],
+      UniformsLib[ "fog" ],
+
+      {
+        "scale": new Uniform.float(1.0),
+        "dashSize": new Uniform.float(1.0),
+        "totalSize": new Uniform.float(2.0)
+      }
+
+    ] ),
+
+    "vertexShader": [
+
+      "uniform float scale;",
+      "attribute float lineDistance;",
+
+      "varying float vLineDistance;",
+
+      ShaderChunk[ "color_pars_vertex" ],
+
+      "void main() {",
+
+        ShaderChunk[ "color_vertex" ],
+
+        "vLineDistance = scale * lineDistance;",
+
+        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+        "gl_Position = projectionMatrix * mvPosition;",
+
+      "}"
+
+    ].join("\n"),
+
+    "fragmentShader": [
+
+      "uniform vec3 diffuse;",
+      "uniform float opacity;",
+
+      "uniform float dashSize;",
+      "uniform float totalSize;",
+
+      "varying float vLineDistance;",
+
+      ShaderChunk[ "color_pars_fragment" ],
+      ShaderChunk[ "fog_pars_fragment" ],
+
+      "void main() {",
+
+        "if ( mod( vLineDistance, totalSize ) > dashSize ) {",
+
+          "discard;",
+
+        "}",
+
+        "gl_FragColor = vec4( diffuse, opacity );",
+
+        ShaderChunk[ "color_fragment" ],
+        ShaderChunk[ "fog_fragment" ],
+
+      "}"
+
+    ].join("\n")
+
+  },
   // Depth encoding into RGBA texture
   //  based on SpiderGL shadow map example
   //    http://spidergl.org/example.php?id=6
@@ -2328,16 +2659,14 @@ get ShaderLib  {
 
     'vertexShader': [
 
-      ShaderChunk[ "skinning_pars_vertex" ],
       ShaderChunk[ "morphtarget_pars_vertex" ],
+      ShaderChunk[ "skinning_pars_vertex" ],
 
       "void main() {",
 
-        "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
-
         ShaderChunk[ "skinbase_vertex" ],
-        ShaderChunk[ "skinning_vertex" ],
         ShaderChunk[ "morphtarget_vertex" ],
+        ShaderChunk[ "skinning_vertex" ],
         ShaderChunk[ "default_vertex" ],
 
       "}"

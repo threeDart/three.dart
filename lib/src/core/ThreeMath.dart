@@ -26,7 +26,7 @@ num mapLinear( num x, num a1, num a2, num b1, num b2 ) => b1 + ( x - a1 ) * ( b2
 num random16() => ( 65280 * _randomDouble + 255 * _randomDouble ) / 65535;
 
 // Random integer from <low, high> interval
-int randInt( num low, num high ) => (low + ( _randomDouble * ( high - low + 1 ) ).floor()).toInt();
+num randInt( num low, num high ) => low + ( _randomDouble * ( high - low + 1 ) ).floor().toInt();
 
 // Random float from <low, high> interval
 num randFloat( num low, num high ) =>low + _randomDouble * ( high - low );
