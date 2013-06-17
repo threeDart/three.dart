@@ -9,19 +9,19 @@ class GeometryAttribute<T> {
   static final String UV = "uv";
   static final String TANGENT = "tangent";
   static final String COLOR = "color";
-  int nItems, itemSize;
+  int numItems, itemSize;
   T array;
 
   // Used in WebGL Renderer
   Buffer buffer;
 
-  GeometryAttribute._internal(this.nItems, this.itemSize, this.array);
+  GeometryAttribute._internal(this.numItems, this.itemSize, this.array);
 
-  factory GeometryAttribute.float32(int nItems, [int itemSize = 1]) =>
-    new GeometryAttribute<Float32List>._internal(nItems, itemSize, new Float32List(nItems * itemSize));
+  factory GeometryAttribute.float32(int numItems, [int itemSize = 1]) =>
+    new GeometryAttribute<Float32List>._internal(numItems, itemSize, new Float32List(numItems));
 
-  factory GeometryAttribute.int16(int nItems, [int itemSize = 1]) =>
-      new GeometryAttribute<Int16List>._internal(nItems, itemSize, new Int16List(nItems * itemSize));
+  factory GeometryAttribute.int16(int numItems, [int itemSize = 1]) =>
+      new GeometryAttribute<Int16List>._internal(numItems, itemSize, new Int16List(numItems));
 
 }
 
@@ -187,7 +187,7 @@ class BufferGeometry implements Geometry {
 
 			if ( aNormal == null ) {
 
-				attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.nItems, 3);
+				attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.numItems, 3);
 
 			} else {
 
@@ -303,7 +303,7 @@ class BufferGeometry implements Geometry {
 		var normals = aNormal.array;
 		var uvs = aUV.array;
 
-		var nVertices = aPosition.nItems;
+		var nVertices = aPosition.numItems ~/ 3;
 
 		if ( aTangent == null ) {
 

@@ -30,8 +30,8 @@ class WebGL_BufferGeometry {
     scene = new Scene();
 
     var geometry = new BufferGeometry()
-    ..aIndex = new GeometryAttribute.int16( TRIANGLES * 3 )
-    ..aPosition =  new GeometryAttribute.float32(TRIANGLES * 3, 3);
+    ..aIndex = new GeometryAttribute.int16( TRIANGLES * 3 * 3)
+    ..aPosition =  new GeometryAttribute.float32(TRIANGLES * 3 * 3, 3);
 
     var indices = geometry.aIndex.array;
     var i = 0;
