@@ -3777,7 +3777,7 @@ class WebGLRenderer implements Renderer {
 
 				_gl.bindBuffer( _gl.ARRAY_BUFFER, geometryGroup.__webglLineDistanceBuffer );
 				enableAttribute( attributes["lineDistance"] );
-				_gl.vertexAttribPointer( attributes.lineDistance, 1, _gl.FLOAT, false, 0, 0 );
+				_gl.vertexAttribPointer( attributes.lineDistance, 1, gl.FLOAT, false, 0, 0 );
 
 			}
 		}
@@ -4837,7 +4837,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( geometry.verticesNeedUpdate || geometry.colorsNeedUpdate ) {
 
-					setDirectBuffers( geometry, _gl.DYNAMIC_DRAW, !geometry.isDynamic );
+					setDirectBuffers( geometry, gl.DYNAMIC_DRAW, !geometry.isDynamic );
 
 				}
 
@@ -6006,35 +6006,35 @@ class WebGLRenderer implements Renderer {
 
 		if ( cullFace == CullFaceNone ) {
 
-			_gl.disable( _gl.CULL_FACE );
+			_gl.disable( gl.CULL_FACE );
 
 		} else {
 
 			if ( frontFaceDirection == FrontFaceDirectionCW ) {
 
-				_gl.frontFace( _gl.CW );
+				_gl.frontFace( gl.CW );
 
 			} else {
 
-				_gl.frontFace( _gl.CCW );
+				_gl.frontFace( gl.CCW );
 
 			}
 
 			if ( cullFace == CullFaceBack ) {
 
-				_gl.cullFace( _gl.BACK );
+				_gl.cullFace( gl.BACK );
 
 			} else if ( cullFace == CullFaceFront ) {
 
-				_gl.cullFace( _gl.FRONT );
+				_gl.cullFace( gl.FRONT );
 
 			} else {
 
-				_gl.cullFace( _gl.FRONT_AND_BACK );
+				_gl.cullFace( gl.FRONT_AND_BACK );
 
 			}
 
-			_gl.enable( _gl.CULL_FACE );
+			_gl.enable( gl.CULL_FACE );
 
 		}
 
@@ -7073,11 +7073,11 @@ class WebGLRenderer implements Renderer {
 
 					if ( renderTarget.depthBuffer && ! renderTarget.stencilBuffer ) {
 
-						_gl.framebufferRenderbuffer( _gl.FRAMEBUFFER, _gl.DEPTH_ATTACHMENT, _gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
+						_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
 
 					} else if ( renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
 
-						_gl.framebufferRenderbuffer( _gl.FRAMEBUFFER, _gl.DEPTH_STENCIL_ATTACHMENT, _gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
+						_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
 
 					}
 
