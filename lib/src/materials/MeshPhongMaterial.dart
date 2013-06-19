@@ -21,6 +21,9 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
   var bumpMap;
   num bumpScale;
 
+  var normalMap = null;
+  var normalScale;
+
   var specularMap;
 
   var envMap;
@@ -65,6 +68,9 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
 
                        this.bumpMap,
                        this.bumpScale: 1,
+
+                       this.normalMap: null,
+                       this.normalScale,
 
                        this.combine: MultiplyOperation,
                        this.reflectivity: 1,
@@ -132,6 +138,8 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
                                  polygonOffsetUnits: polygonOffsetUnits,
                                  alphaTest: alphaTest,
                                  overdraw: overdraw,
-                                 visible: visible );
+                                 visible: visible ) {
+                           if (normalScale == null) { normalScale = new Vector2( 1.0, 1.0 ); }
+                         }
 
 }
