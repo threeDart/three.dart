@@ -147,7 +147,7 @@ class ShadowMapPlugin {
 
         var shadowFilter = LinearFilter;
 
-        if ( _renderer.shadowMapType ==PCFSoftShadowMap ) {
+        if ( _renderer.shadowMapType == PCFSoftShadowMap ) {
 
           shadowFilter = NearestFilter;
 
