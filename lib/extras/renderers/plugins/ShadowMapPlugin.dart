@@ -1,3 +1,5 @@
+// r54
+
 part of three;
 
 /**
@@ -72,7 +74,7 @@ class ShadowMapPlugin {
     _gl.enable( gl.CULL_FACE );
     _gl.frontFace( gl.CCW );
 
-    if ( _renderer.shadowMapCullFrontFaces ) {
+    if ( _renderer.shadowMapCullFrontFaces == CullFaceFront) {
 
       _gl.cullFace( gl.FRONT );
 
@@ -143,7 +145,15 @@ class ShadowMapPlugin {
 
       if ( light.shadowMap == null ) {
 
-        light.shadowMap = new WebGLRenderTarget( light.shadowMapWidth, light.shadowMapHeight, minFilter: LinearFilter, magFilter: LinearFilter, format: RGBAFormat );
+        var shadowFilter = LinearFilter;
+
+        if ( _renderer.shadowMapType == PCFSoftShadowMap ) {
+
+          shadowFilter = NearestFilter;
+
+        }
+
+        light.shadowMap = new WebGLRenderTarget( light.shadowMapWidth, light.shadowMapHeight, minFilter: shadowFilter, magFilter: shadowFilter, format: RGBAFormat );
         light.shadowMapSize = new Vector2( light.shadowMapWidth.toDouble(), light.shadowMapHeight.toDouble() );
 
         light.shadowMatrix = new Matrix4.identity();
@@ -211,13 +221,6 @@ class ShadowMapPlugin {
 
       // update camera matrices and frustum
 
-      var webglCamera = new WebGLCamera(shadowCamera);
-      if ( webglCamera._viewMatrixArray == null) webglCamera._viewMatrixArray = new Float32List( 16 );
-      if ( webglCamera._projectionMatrixArray == null ) webglCamera._projectionMatrixArray = new Float32List( 16 );
-
-      webglCamera._viewMatrixArray = shadowCamera.matrixWorldInverse.storage;
-      webglCamera._projectionMatrixArray = shadowCamera.projectionMatrix.storage;
-
       _projScreenMatrix = shadowCamera.projectionMatrix * shadowCamera.matrixWorldInverse;
       _frustum.setFromMatrix( _projScreenMatrix );
 
@@ -240,7 +243,7 @@ class ShadowMapPlugin {
 
         if ( object.visible && object.castShadow ) {
 
-          if ( ! ( object is Mesh ) || ! ( object.frustumCulled ) || _frustum.contains( object ) ) {
+          if ( ! ( object is Mesh ) || (object is ParticleSystem ) || ! ( object.frustumCulled ) || _frustum.contains( object ) ) {
 
             webglObject._modelViewMatrix = shadowCamera.matrixWorldInverse * object.matrixWorld;
 
@@ -342,7 +345,7 @@ class ShadowMapPlugin {
     _gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
     _gl.enable( gl.BLEND );
 
-    if ( _renderer.shadowMapCullFrontFaces ) {
+    if ( _renderer.shadowMapCullFrontFaces == CullFaceFront ) {
 
       _gl.cullFace( gl.BACK );
 
