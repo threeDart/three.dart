@@ -346,6 +346,8 @@ class Projector {
 
           cl = faceVertexUvs.length;
           for ( c = 0; c < cl; c ++ ) {
+            if ( faceVertexUvs[c].length == 0 ) continue;
+
             List<UV> uvs = faceVertexUvs[ c ][ f ];
 
             if ( uvs == null ) continue;
