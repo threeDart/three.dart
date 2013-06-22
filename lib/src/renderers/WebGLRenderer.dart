@@ -5319,6 +5319,14 @@ class WebGLRenderer implements Renderer {
 
 				_gl.uniform4fv( location, value );
 
+			} else if ( type == "m2") { // single THREE.Matrix2
+
+				_gl.uniformMatrix2fv( location, false, value );
+
+			} else if ( type == "m3") { // single THREE.Matrix3
+
+				_gl.uniformMatrix3fv( location, false, value );
+
 			} else if ( type == "m4") { // single THREE.Matrix4
 
 				_gl.uniformMatrix4fv( location, false, value );
