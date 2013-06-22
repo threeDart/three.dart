@@ -9,8 +9,8 @@ class WebGLRenderer implements Renderer {
 
   String precision;
 
-  Color clearColor;
-  num clearAlpha;
+  Color _clearColor;
+  num _clearAlpha;
   int maxLights;
 
 	bool alpha,
@@ -139,11 +139,12 @@ class WebGLRenderer implements Renderer {
 	          this.stencil: true,
   					this.preserveDrawingBuffer: false,
   					num clearColorHex: 0x000000,
-  					this.clearAlpha: 0,
+  					num clearAlpha: 0,
   					this.maxLights: 4} )
   		:
 
-  		clearColor = new Color(clearColorHex),
+  		_clearColor = new Color(clearColorHex),
+  		_clearAlpha = clearAlpha,
 
 			// clearing
 			autoClear = true,
@@ -323,19 +324,19 @@ class WebGLRenderer implements Renderer {
 	// Clearing
 	setClearColorHex( hex, alpha ) {
 
-		clearColor.setHex( hex );
-		clearAlpha = alpha;
+		_clearColor.setHex( hex );
+		_clearAlpha = alpha;
 
-		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
+		_gl.clearColor( _clearColor.r, _clearColor.g, _clearColor.b, _clearAlpha );
 
 	}
 
 	setClearColor( color, alpha ) {
 
-		clearColor.copy( color );
-		clearAlpha = alpha;
+		_clearColor.copy( color );
+		_clearAlpha = alpha;
 
-		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
+		_gl.clearColor( _clearColor.r, _clearColor.g, _clearColor.b, _clearAlpha );
 
 	}
 
@@ -6846,7 +6847,7 @@ class WebGLRenderer implements Renderer {
 		_gl.blendEquation( gl.FUNC_ADD );
 		_gl.blendFunc( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA );
 
-		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
+		_gl.clearColor( _clearColor.r, _clearColor.g, _clearColor.b, _clearAlpha );
 
 	}
 

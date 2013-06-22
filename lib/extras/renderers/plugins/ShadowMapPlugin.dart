@@ -336,8 +336,8 @@ class ShadowMapPlugin {
 
     // restore GL state
 
-    var clearColor = _renderer.clearColor;
-    var clearAlpha = _renderer.clearAlpha;
+    var clearColor = _renderer._clearColor;
+    var clearAlpha = _renderer._clearAlpha;
 
     _gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
     _gl.enable( gl.BLEND );
