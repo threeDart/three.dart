@@ -466,7 +466,7 @@ class WebGLRenderer implements Renderer {
 
 			// -avoid using array.splice, this is costlier than creating new array from scratch
 
-			_programs.removeAt(_programs.indexOf(program));
+			_programs.remove(program);
 
 			_gl.deleteProgram( program.glProgram );
 
