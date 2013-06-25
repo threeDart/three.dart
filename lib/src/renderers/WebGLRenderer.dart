@@ -6969,14 +6969,7 @@ class WebGLGeometry {
   int materialIndex, numMorphTargets, numMorphNormals;
 
   var geometryGroups, geometryGroupsList;
-  var
-    morphTargetsNeedUpdate,
-    elementsNeedUpdate,
-    uvsNeedUpdate,
-    normalsNeedUpdate,
-    tangentsNeedUpdate,
-    colorsNeedUpdate;
-
+  
   bool __inittedArrays;
   Float32List __vertexArray,
                __normalArray,
@@ -7050,6 +7043,21 @@ class WebGLGeometry {
 
   get verticesNeedUpdate => _geometry["verticesNeedUpdate"];
   set verticesNeedUpdate(bool flag) { _geometry["verticesNeedUpdate"] = flag; }
+
+  get morphTargetsNeedUpdate => _geometry["morphTargetsNeedUpdate"];
+  set morphTargetsNeedUpdate(bool flag) { _geometry["morphTargetsNeedUpdate"] = flag; }
+  
+  get elementsNeedUpdate => _geometry["elementsNeedUpdate"];
+  set elementsNeedUpdate(bool flag) { _geometry["elementsNeedUpdate"] = flag; }
+  
+  get uvsNeedUpdate => _geometry["uvsNeedUpdate"];
+  set uvsNeedUpdate(bool flag) { _geometry["uvsNeedUpdate"] = flag; }
+  
+  get normalsNeedUpdate => _geometry["normalsNeedUpdate"];
+  set normalsNeedUpdate(bool flag) { _geometry["normalsNeedUpdate"] = flag; }
+  
+  get tangentsNeedUpdate => _geometry["tangentsNeedUpdate"];
+  set tangentsNeedUpdate(bool flag) { _geometry["tangentsNeedUpdate"] = flag; }
 
   get morphTargets => _geometry.morphTargets;
   get morphNormals => _geometry.morphNormals;
