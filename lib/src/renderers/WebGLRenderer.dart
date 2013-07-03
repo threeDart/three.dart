@@ -7059,6 +7059,9 @@ class WebGLGeometry {
   get tangentsNeedUpdate => _geometry["tangentsNeedUpdate"];
   set tangentsNeedUpdate(bool flag) { _geometry["tangentsNeedUpdate"] = flag; }
 
+  get colorsNeedUpdate => _geometry["colorsNeedUpdate"];
+  set colorsNeedUpdate(bool flag) { _geometry["colorsNeedUpdate"] = flag; }
+
   get morphTargets => _geometry.morphTargets;
   get morphNormals => _geometry.morphNormals;
 
