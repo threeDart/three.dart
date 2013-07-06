@@ -1603,8 +1603,8 @@ class Attribute<T> {
   factory Attribute.int([List<int> v]) => new Attribute<int>("i", v);
 
   factory Attribute.vector2([List<Vector2> v]) => new Attribute<Vector2>("v2", v);
-  factory Attribute.vector3([List<Vector3> v]) => new Uniform<Vector3>("v3", v);
-  factory Attribute.vector4([List<Vector4> v]) => new Uniform<Vector4>("v4", v);
+  factory Attribute.vector3([List<Vector3> v]) => new Attribute<Vector3>("v3", v);
+  factory Attribute.vector4([List<Vector4> v]) => new Attribute<Vector4>("v4", v);
 }
 
 class Uniform<T> {
