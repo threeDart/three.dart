@@ -21,24 +21,20 @@ class STATE {
  static const PAN = 2;
 }
 
-class Screen {
-  num width, height, offsetLeft, offsetTop;
-  Screen({this.width, this.height, this.offsetLeft, this.offsetTop});
-}
 class TrackballControls extends EventEmitter {
 
   int _state, _prevState;
   Object3D object;
   Element domElement;
   bool enabled;
-  Screen screen;
-  num radius;
+  Rect screen;
   num rotateSpeed,
       zoomSpeed,
       panSpeed;
   bool noRotate,
        noZoom,
-       noPan;
+       noPan,
+       noRoll;
   bool staticMoving;
   num dynamicDampingFactor;
   num minDistance, maxDistance;
@@ -66,9 +62,8 @@ class TrackballControls extends EventEmitter {
 
     enabled = true;
 
-    screen = new Screen( width: 0, height: 0, offsetLeft: 0, offsetTop: 0 );
-    radius = ( screen.width + screen.height ) / 4;
-
+    screen = new Rect( 0, 0, 0, 0 );
+    
     rotateSpeed = 1.0;
     zoomSpeed = 1.2;
     panSpeed = 0.3;
@@ -76,6 +71,7 @@ class TrackballControls extends EventEmitter {
     noRotate = false;
     noZoom = false;
     noPan = false;
+    noRoll = false;
 
     staticMoving = false;
     dynamicDampingFactor = 0.2;
@@ -126,15 +122,18 @@ class TrackballControls extends EventEmitter {
 
 
     // methods
-   handleResize () {
-      screen
-      ..width = window.innerWidth
-      ..height = window.innerHeight
-      ..offsetLeft = 0
-      ..offsetTop = 0;
-
-      radius = ( screen.width + screen.height ) / 4;
+    handleResize () { 
+      if ( domElement == document ) {
+        screen
+        ..left = 0  
+        ..top = 0  
+        ..width = window.innerWidth  
+        ..height = window.innerHeight;  
+      } else {  
+        screen = domElement.getBoundingClientRect();
+      }    
     }
+
 
     handleEvent( event ) {
       dispatchEvent(event);
@@ -142,21 +141,33 @@ class TrackballControls extends EventEmitter {
 
     getMouseOnScreen( clientX, clientY )
       => new Vector2(
-          ( clientX - screen.offsetLeft ) / radius * 0.5,
-          ( clientY - screen.offsetTop ) / radius * 0.5
+          ( clientX - screen.left ) / screen.width,
+          ( clientY - screen.top ) / screen.height
       );
 
     getMouseProjectionOnBall( clientX, clientY ) {
 
       var mouseOnBall = new Vector3(
-          ( clientX - screen.width * 0.5 - screen.offsetLeft ) / radius,
-          ( screen.height * 0.5 + screen.offsetTop - clientY ) / radius,
+          ( clientX - screen.width * 0.5 - screen.left ) / ( screen.width * 0.5 ),
+          ( screen.height * 0.5 + screen.top - clientY ) / ( screen.height * 0.5 ),
           0.0
       );
 
       var length = mouseOnBall.length;
 
-      if ( length > 1.0 ) {
+      if ( noRoll ) {
+
+        if ( length < Math.SQRT1_2 ) {
+
+          mouseOnBall.z = Math.sqrt( 1.0 - length * length );
+
+        } else {
+
+          mouseOnBall.z = 0.5 / length;
+          
+        }
+
+      } else if ( length > 1.0 ) {
 
         mouseOnBall.normalize();
 
