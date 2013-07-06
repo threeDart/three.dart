@@ -68,7 +68,7 @@ class Game {
 
   void animate(timestamp) {
     window.requestAnimationFrame( animate );
-    controls.update(1);
+    controls.update(1.0);
     render();
   }
 
