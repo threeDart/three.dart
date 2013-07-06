@@ -122,16 +122,12 @@ class TrackballControls extends EventEmitter {
 
 
     // methods
-    handleResize () { 
+    handleResize () {
       if ( domElement == document ) {
-        screen
-        ..left = 0  
-        ..top = 0  
-        ..width = window.innerWidth  
-        ..height = window.innerHeight;  
-      } else {  
+        screen = new Rect(0, 0, window.innerWidth, window.innerHeight);
+      } else {
         screen = domElement.getBoundingClientRect();
-      }    
+      }
     }
 
 
@@ -200,7 +196,6 @@ class TrackballControls extends EventEmitter {
 
         quaternion.setAxisAngle( axis, angle );
 
-        // TODO Check that vector_math's Quaternion.rotate is equivalent to multiplyVector3
         quaternion.rotate( _eye );
         quaternion.rotate( object.up );
 
