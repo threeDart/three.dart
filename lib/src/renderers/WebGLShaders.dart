@@ -1846,7 +1846,7 @@ class Attribute<T> {
     return a;
   }
 
-  factory Attribute.color([List<num> hex]) => new Attribute<Color>("c", (?hex) ? hex.map((h) => new Color(h)) : null);
+  factory Attribute.color([List<num> hex]) => new Attribute<Color>("c", (hex != null) ? hex.map((h) => new Color(h)) : null);
 
   factory Attribute.float([List<double> v]) => new Attribute<double>("f", v);
   factory Attribute.int([List<int> v]) => new Attribute<int>("i", v);

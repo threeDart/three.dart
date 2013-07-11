@@ -56,7 +56,7 @@ class TrackballControls extends EventEmitter {
 
   TrackballControls( this.object, [Element domElement] ) {
 
-    this.domElement = ( ?domElement ) ? domElement : document;
+    this.domElement = ( domElement != null) ? domElement : document;
 
     // API
 
