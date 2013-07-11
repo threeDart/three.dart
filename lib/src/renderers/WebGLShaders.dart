@@ -1597,7 +1597,7 @@ class Attribute<T> {
     return a;
   }
 
-  factory Attribute.color([List<num> hex]) => new Attribute<Color>("c", (?hex) ? hex.map((h) => new Color(h)) : null);
+  factory Attribute.color([List<num> hex]) => new Attribute<Color>("c", (hex != null) ? hex.map((h) => new Color(h)) : null);
 
   factory Attribute.float([List<double> v]) => new Attribute<double>("f", v);
   factory Attribute.int([List<int> v]) => new Attribute<int>("i", v);
@@ -1702,6 +1702,14 @@ class Uniform<T> {
 
       }
 
+    } else if ( type == "m2") { // single THREE.Matrix2
+
+      _array = (_value as Matrix2).storage;
+
+    } else if ( type == "m3") { // single THREE.Matrix3
+
+      _array = (_value as Matrix3).storage;
+
     } else if ( type == "m4") { // single THREE.Matrix4
 
       _array = (_value as Matrix4).storage;
@@ -1762,8 +1770,13 @@ class Uniform<T> {
 
   factory Uniform.vector2v(List<Vector2> vectors) => new Uniform<List<Vector2>>("v2v", vectors);
 
+  factory Uniform.vector2(double x, double y) => new Uniform<Vector2>("v2", new Vector2(x, y));
   factory Uniform.vector3(double x, double y, double z) => new Uniform<Vector3>("v3", new Vector3(x, y, z));
   factory Uniform.vector4(double x, double y, num z, double w) => new Uniform<Vector4>("v4", new Vector4(x, y, z, w));
+
+  factory Uniform.matrix2(Matrix2 m) => new Uniform<Matrix2>("m2", m);
+  factory Uniform.matrix3(Matrix3 m) => new Uniform<Matrix3>("m3", m);
+  factory Uniform.matrix4(Matrix4 m) => new Uniform<Matrix4>("m4", m);
 
   factory Uniform.matrix4v(List<Matrix4> m) => new Uniform<List<Matrix4>>("m4v", m);
 }

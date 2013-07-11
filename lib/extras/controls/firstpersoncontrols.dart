@@ -64,7 +64,7 @@ class FirstPersonControls {
   num viewHalfY = 0;
 
   FirstPersonControls(this.object, [Element domElement]) {
-    this.domElement = (?domElement) ? domElement : document.body;
+    this.domElement = (domElement != null) ? domElement : document.body;
 
     if ( this.domElement != document.body ) {
       this.domElement.tabIndex = -1;

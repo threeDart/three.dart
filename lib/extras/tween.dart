@@ -39,7 +39,7 @@ update( {num time} ) {
 
   var i = 0, l = _tweens.length;
 
-  if (!?time) {
+  if (time == null) {
     time = new DateTime.now().millisecondsSinceEpoch;
   }
 
@@ -72,7 +72,7 @@ class Tween {
   Tween(this.object);
 
   to( properties, [duration] ) {
-    if ( ?duration ) {
+    if ( duration != null ) {
       _duration = duration;
     }
 
@@ -107,7 +107,7 @@ class Tween {
 
     _onStartCallbackFired = false;
 
-    _startTime = (?time)? time : new DateTime.now().millisecondsSinceEpoch;
+    _startTime = (time != null) ? time : new DateTime.now().millisecondsSinceEpoch;
     _startTime += _delayTime;
 
     _valuesEnd.forEach((property, _) {

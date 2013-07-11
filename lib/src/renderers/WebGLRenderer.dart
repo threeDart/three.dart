@@ -9,8 +9,8 @@ class WebGLRenderer implements Renderer {
 
   String precision;
 
-  Color clearColor;
-  num clearAlpha;
+  Color _clearColor;
+  num _clearAlpha;
   int maxLights;
 
 	bool alpha,
@@ -139,11 +139,12 @@ class WebGLRenderer implements Renderer {
 	          this.stencil: true,
   					this.preserveDrawingBuffer: false,
   					num clearColorHex: 0x000000,
-  					this.clearAlpha: 0,
+  					num clearAlpha: 0,
   					this.maxLights: 4} )
   		:
 
-  		clearColor = new Color(clearColorHex),
+  		_clearColor = new Color(clearColorHex),
+  		_clearAlpha = clearAlpha,
 
 			// clearing
 			autoClear = true,
@@ -323,19 +324,19 @@ class WebGLRenderer implements Renderer {
 	// Clearing
 	setClearColorHex( hex, alpha ) {
 
-		clearColor.setHex( hex );
-		clearAlpha = alpha;
+		_clearColor.setHex( hex );
+		_clearAlpha = alpha;
 
-		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
+		_gl.clearColor( _clearColor.r, _clearColor.g, _clearColor.b, _clearAlpha );
 
 	}
 
 	setClearColor( color, alpha ) {
 
-		clearColor.copy( color );
-		clearAlpha = alpha;
+		_clearColor.copy( color );
+		_clearAlpha = alpha;
 
-		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
+		_gl.clearColor( _clearColor.r, _clearColor.g, _clearColor.b, _clearAlpha );
 
 	}
 
@@ -466,7 +467,7 @@ class WebGLRenderer implements Renderer {
 
 			// -avoid using array.splice, this is costlier than creating new array from scratch
 
-			_programs.removeAt(_programs.indexOf(program));
+			_programs.remove(program);
 
 			_gl.deleteProgram( program.glProgram );
 
@@ -753,8 +754,8 @@ class WebGLRenderer implements Renderer {
 		WebGLMaterial material = getBufferMaterial( object, geometryGroup );
 
 		var uvType = bufferGuessUVType( material ),
-			normalType = bufferGuessNormalType( material ),
-			vertexColorType = bufferGuessVertexColorType( material );
+			normalType = bufferGuessNormalType( material );
+		int vertexColorType = bufferGuessVertexColorType( material );
 
 		//console.log( "uvType", uvType, "normalType", normalType, "vertexColorType", vertexColorType, object, geometryGroup, material );
 
@@ -772,7 +773,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( vertexColorType ) {
+		if ( vertexColorType != NoColors ) {
 
 			geometryGroup.__colorArray = new Float32List( nvertices * 3 );
 
@@ -918,16 +919,13 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	bool bufferGuessVertexColorType ( material ) {
+	int bufferGuessVertexColorType ( material ) {
 
-		if ( ((material.vertexColors is bool) && material.vertexColors) ||
-		     ((material.vertexColors is int) && (material.vertexColors != NoColors))) {
-
+		if ( material.vertexColors != null ) {
 			return material.vertexColors;
-
 		}
 
-		return false;
+		return NoColors;
 
 	}
 
@@ -971,7 +969,7 @@ class WebGLRenderer implements Renderer {
 
 			attribute.buffer = new Buffer(_gl);
 			attribute.buffer.bind(type);
-			_gl.bufferData(type, attribute.array, gl.STATIC_DRAW);
+			_gl.bufferDataTyped(type, attribute.array, gl.STATIC_DRAW);
 
 		});
 
@@ -1272,14 +1270,14 @@ class WebGLRenderer implements Renderer {
 		if ( dirtyVertices || object.sortParticles ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglVertexBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
 		if ( dirtyColors || object.sortParticles ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
@@ -1293,7 +1291,7 @@ class WebGLRenderer implements Renderer {
 				if ( customAttribute.needsUpdate || object.sortParticles ) {
 
 					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
-					_gl.bufferData( gl.ARRAY_BUFFER, customAttribute.array, hint );
+					_gl.bufferDataTyped( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
 
@@ -1340,7 +1338,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglVertexBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
@@ -1359,7 +1357,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
@@ -1449,7 +1447,7 @@ class WebGLRenderer implements Renderer {
 					}
 
 					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
-					_gl.bufferData( gl.ARRAY_BUFFER, customAttribute.array, hint );
+					_gl.bufferDataTyped( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
 
@@ -1489,7 +1487,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglVertexBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, vertexArray, hint );
 
 		}
 
@@ -1508,7 +1506,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, colorArray, hint );
 
 		}
 
@@ -1524,10 +1522,11 @@ class WebGLRenderer implements Renderer {
 		}
 
 		var normalType = bufferGuessNormalType( material ),
-		vertexColorType = bufferGuessVertexColorType( material ),
 		uvType = bufferGuessUVType( material ),
 
 		needsSmoothNormals = ( normalType == SmoothShading );
+
+		int vertexColorType = bufferGuessVertexColorType( material );
 
 		var f, fl, fi, face,
 		vertexNormals, faceNormal, normal,
@@ -1670,7 +1669,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglVertexBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, vertexArray, hint);
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, vertexArray, hint);
 
 		}
 
@@ -1829,12 +1828,12 @@ class WebGLRenderer implements Renderer {
 				}
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphTargetsBuffers[ vk ] );
-				_gl.bufferData( gl.ARRAY_BUFFER, morphTargetsArrays[ vk ], hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, morphTargetsArrays[ vk ], hint );
 
 				if ( material.morphNormals ) {
 
 					_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglMorphNormalsBuffers[ vk ] );
-					_gl.bufferData( gl.ARRAY_BUFFER, morphNormalsArrays[ vk ], hint );
+					_gl.bufferDataTyped( gl.ARRAY_BUFFER, morphNormalsArrays[ vk ], hint );
 
 				}
 
@@ -2057,22 +2056,22 @@ class WebGLRenderer implements Renderer {
 			if ( offset_skin > 0 ) {
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinVertexABuffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, skinVertexAArray, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, skinVertexAArray, hint );
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinVertexBBuffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, skinVertexBArray, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, skinVertexBArray, hint );
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinIndicesBuffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, skinIndexArray, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, skinIndexArray, hint );
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglSkinWeightsBuffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, skinWeightArray, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, skinWeightArray, hint );
 
 			}
 
 		}
 
-		if ( dirtyColors && vertexColorType ) {
+		if ( dirtyColors && vertexColorType != NoColors) {
 
 			fl = chunk_faces3.length;
 			for ( f = 0; f < fl; f ++ ) {
@@ -2159,7 +2158,7 @@ class WebGLRenderer implements Renderer {
 			if ( offset_color > 0 ) {
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglColorBuffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, colorArray, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, colorArray, hint );
 
 			}
 
@@ -2234,7 +2233,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglTangentBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, tangentArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, tangentArray, hint );
 
 		}
 
@@ -2317,7 +2316,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglNormalBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, normalArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, normalArray, hint );
 
 		}
 
@@ -2372,7 +2371,7 @@ class WebGLRenderer implements Renderer {
 			if ( offset_uv > 0 ) {
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglUVBuffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, uvArray, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, uvArray, hint );
 
 			}
 
@@ -2429,7 +2428,7 @@ class WebGLRenderer implements Renderer {
 			if ( offset_uv2 > 0 ) {
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglUV2Buffer );
-				_gl.bufferData( gl.ARRAY_BUFFER, uv2Array, hint );
+				_gl.bufferDataTyped( gl.ARRAY_BUFFER, uv2Array, hint );
 
 			}
 
@@ -2497,10 +2496,10 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglFaceBuffer );
-			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, faceArray, hint );
+			_gl.bufferDataTyped( gl.ELEMENT_ARRAY_BUFFER, faceArray, hint );
 
 			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
-			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, lineArray, hint );
+			_gl.bufferDataTyped( gl.ELEMENT_ARRAY_BUFFER, lineArray, hint );
 
 		}
 
@@ -3068,7 +3067,7 @@ class WebGLRenderer implements Renderer {
 				}
 
 				customAttribute.buffer.bind(gl.ARRAY_BUFFER);
-        _gl.bufferData(gl.ARRAY_BUFFER, customAttribute.array, hint);
+        _gl.bufferDataTyped(gl.ARRAY_BUFFER, customAttribute.array, hint);
 			}
 
 		}
@@ -3107,42 +3106,42 @@ class WebGLRenderer implements Renderer {
 		if ( geometry.elementsNeedUpdate && index != null ) {
 
 			_gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, index.buffer );
-			_gl.bufferData( gl.ELEMENT_ARRAY_BUFFER, index.array, hint );
+			_gl.bufferDataTyped( gl.ELEMENT_ARRAY_BUFFER, index.array, hint );
 
 		}
 
 		if ( geometry.verticesNeedUpdate && position != null ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, position.buffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, position.array, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, position.array, hint );
 
 		}
 
 		if ( geometry.normalsNeedUpdate && normal != null ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, normal.buffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, normal.array, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, normal.array, hint );
 
 		}
 
 		if ( geometry.uvsNeedUpdate && uv != null ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, uv.buffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, uv.array, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, uv.array, hint );
 
 		}
 
 		if ( geometry.colorsNeedUpdate && color != null ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, color.buffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, color.array, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, color.array, hint );
 
 		}
 
 		if ( geometry.tangentsNeedUpdate && tangent != null ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, tangent.buffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, tangent.array, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, tangent.array, hint );
 
 		}
 
@@ -3169,7 +3168,7 @@ class WebGLRenderer implements Renderer {
 		if ( object.hasPositions ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglVertexBuffer"] );
-			_gl.bufferData( gl.ARRAY_BUFFER, object.positionArray, gl.DYNAMIC_DRAW );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, object.positionArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["position"] );
 			_gl.vertexAttribPointer( program.attributes["position"], 3, gl.FLOAT, false, 0, 0 );
 
@@ -3222,7 +3221,7 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bufferData( gl.ARRAY_BUFFER, object.normalArray, gl.DYNAMIC_DRAW );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, object.normalArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["normal"] );
 			_gl.vertexAttribPointer( program.attributes["normal"], 3, gl.FLOAT, false, 0, 0 );
 
@@ -3231,7 +3230,7 @@ class WebGLRenderer implements Renderer {
 		if ( object.hasUvs && material.map ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglUVBuffer"] );
-			_gl.bufferData( gl.ARRAY_BUFFER, object.uvArray, gl.DYNAMIC_DRAW );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, object.uvArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["uv"] );
 			_gl.vertexAttribPointer( program.attributes["uv"], 2, gl.FLOAT, false, 0, 0 );
 
@@ -3240,7 +3239,7 @@ class WebGLRenderer implements Renderer {
 		if ( object.hasColors && material.vertexColors != NoColors ) {
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, object["__webglColorBuffer"] );
-			_gl.bufferData( gl.ARRAY_BUFFER, object.colorArray, gl.DYNAMIC_DRAW );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, object.colorArray, gl.DYNAMIC_DRAW );
 			_gl.enableVertexAttribArray( program.attributes["color"] );
 			_gl.vertexAttribPointer( program.attributes["color"], 3, gl.FLOAT, false, 0, 0 );
 
@@ -5319,6 +5318,14 @@ class WebGLRenderer implements Renderer {
 
 				_gl.uniform4fv( location, value );
 
+			} else if ( type == "m2") { // single THREE.Matrix2
+
+				_gl.uniformMatrix2fv( location, false, value );
+
+			} else if ( type == "m3") { // single THREE.Matrix3
+
+				_gl.uniformMatrix3fv( location, false, value );
+
 			} else if ( type == "m4") { // single THREE.Matrix4
 
 				_gl.uniformMatrix4fv( location, false, value );
@@ -6302,11 +6309,15 @@ class WebGLRenderer implements Renderer {
 
 			if ( texture is DataTexture ) {
 
-				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, image.width, image.height, 0, glFormat, glType, image.data );
+				_gl.texImage2DTyped( gl.TEXTURE_2D, 0, glFormat, image.width, image.height, 0, glFormat, glType, image.data );
+
+			} else if (texture.image is CanvasElement) {
+
+				_gl.texImage2DCanvas( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
 
 			} else {
 
-				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
+				_gl.texImage2DImage( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
 
 			}
 
@@ -6395,7 +6406,7 @@ class WebGLRenderer implements Renderer {
 
 				for ( var i = 0; i < 6; i ++ ) {
 
-					_gl.texImage2D( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, glFormat, glType, cubeImage[ i ] );
+					_gl.texImage2DImage( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, glFormat, glType, cubeImage[ i ] );
 
 				}
 
@@ -6494,7 +6505,7 @@ class WebGLRenderer implements Renderer {
 					renderTarget.__webglFramebuffer[ i ] = _gl.createFramebuffer();
 					renderTarget.__webglRenderbuffer[ i ] = _gl.createRenderbuffer();
 
-					_gl.texImage2D( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
+					_gl.texImage2DTyped( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
 
 					setupFrameBuffer( renderTarget.__webglFramebuffer[ i ], renderTarget, gl.TEXTURE_CUBE_MAP_POSITIVE_X + i );
 					setupRenderBuffer( renderTarget.__webglRenderbuffer[ i ], renderTarget );
@@ -6511,7 +6522,7 @@ class WebGLRenderer implements Renderer {
 				_gl.bindTexture( gl.TEXTURE_2D, renderTarget.__webglTexture );
 				setTextureParameters( gl.TEXTURE_2D, renderTarget, isTargetPowerOfTwo );
 
-				_gl.texImage2D( gl.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null);
+				_gl.texImage2DTyped( gl.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null);
 
 				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, gl.TEXTURE_2D );
 				setupRenderBuffer( renderTarget.__webglRenderbuffer, renderTarget );
@@ -6836,7 +6847,7 @@ class WebGLRenderer implements Renderer {
 		_gl.blendEquation( gl.FUNC_ADD );
 		_gl.blendFunc( gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA );
 
-		_gl.clearColor( clearColor.r, clearColor.g, clearColor.b, clearAlpha );
+		_gl.clearColor( _clearColor.r, _clearColor.g, _clearColor.b, _clearAlpha );
 
 	}
 
