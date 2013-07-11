@@ -379,3 +379,25 @@ Matrix4 makeRotationAxis( Matrix4 m, Vector3 axis, num angle ) {
 
    return m;
 }
+
+multiplyVector3Array(Matrix4 m, List<double> a) {
+
+  var v1 = new Vector3.zero();
+  var il = a.length;
+
+  for ( var i = 0; i < il; i += 3 ) {
+
+    v1.x = a[ i ];
+    v1.y = a[ i + 1 ];
+    v1.z = a[ i + 2 ];
+
+    v1.applyProjection( m );
+
+    a[ i ]     = v1.x;
+    a[ i + 1 ] = v1.y;
+    a[ i + 2 ] = v1.z;
+
+  }
+
+  return a;
+}

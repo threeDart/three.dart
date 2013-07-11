@@ -1,50 +1,71 @@
+// r58
+// TODO - dispatch events
 part of three;
 
-class BufferGeometry {
+class GeometryAttribute<T> {
+  static final String POSITION = "position";
+  static final String NORMAL = "normal";
+  static final String INDEX = "index";
+  static final String UV = "uv";
+  static final String TANGENT = "tangent";
+  static final String COLOR = "color";
+  int numItems, itemSize;
+  T array;
 
-	int id;
+  // Used in WebGL Renderer
+  Buffer buffer;
+
+  GeometryAttribute._internal(this.numItems, this.itemSize, this.array);
+
+  factory GeometryAttribute.float32(int numItems, [int itemSize = 1]) =>
+    new GeometryAttribute<Float32List>._internal(numItems, itemSize, new Float32List(numItems));
+
+  factory GeometryAttribute.int16(int numItems, [int itemSize = 1]) =>
+      new GeometryAttribute<Int16List>._internal(numItems, itemSize, new Int16List(numItems));
+
+}
+
+class Chunk {
+  int start, count, index;
+  Chunk({this.start, this.count, this.index});
+}
+
+// TODO - Create a IGeometry with only the necessary interface methods
+class BufferGeometry implements Geometry {
+
+	int id = GeometryCount ++;
 
 	// attributes
-	Map attributes;
+	Map<String, GeometryAttribute> attributes = {};
+
+  // offsets for chunks when using indexed elements
+	List<Chunk> offsets = [];
 
 	// attributes typed arrays are kept only if dynamic flag is set
-	bool _dynamic;
+	bool _dynamic = false;
 
 	// boundings
-	var boundingBox;
-	var boundingSphere;
+	var boundingBox = null;
+	var boundingSphere = null;
 
 	bool hasTangents;
 
 	// for compatibility
-	List morphTargets;
+	List morphTargets = [];
+	List morphNormals = [];
 
-	bool verticesNeedUpdate, normalsNeedUpdate, tangentsNeedUpdate;
-	bool elementsNeedUpdate, uvsNeedUpdate,colorsNeedUpdate;
-
-	var offsets;
-
-	BufferGeometry() :
-		id = GeometryCount ++,
-		attributes = {},
-		_dynamic = false,
-		boundingBox = null,
-		boundingSphere = null,
-		hasTangents = false,
-		morphTargets = [];
-
-	applyMatrix ( matrix ) {
+	applyMatrix ( Matrix4 matrix ) {
 
 		var positionArray;
 		var normalArray;
 
-		if ( this.attributes[ "position" ] ) positionArray = this.attributes[ "position" ].array;
-		if ( this.attributes[ "normal" ] ) normalArray = this.attributes[ "normal" ].array;
+		if ( aPosition != null ) positionArray = aPosition.array;
+		if ( aNormal != null ) normalArray = aNormal.array;
 
 		if ( positionArray != null) {
 
-			matrix.multiplyVector3Array( positionArray );
-			this.verticesNeedUpdate = true;
+			multiplyVector3Array(matrix, positionArray);
+			this["verticesNeedUpdate"] = true;
 
 		}
 
@@ -53,8 +74,8 @@ class BufferGeometry {
 			var matrixRotation = new Matrix4.identity();
 			extractRotation( matrixRotation, matrix );
 
-			matrixRotation.multiplyVector3Array( normalArray );
-			this.normalsNeedUpdate = true;
+			multiplyVector3Array(matrixRotation, normalArray );
+			this["normalsNeedUpdate"] = true;
 
 		}
 
@@ -64,18 +85,18 @@ class BufferGeometry {
 
 		if ( boundingBox == null ) {
 
-			this.boundingBox = new BoundingBox(
+			boundingBox = new BoundingBox(
 				min: new Vector3( double.INFINITY, double.INFINITY, double.INFINITY ),
 				max: new Vector3( -double.INFINITY, -double.INFINITY, -double.INFINITY )
 			);
 
 		}
 
-		var positions = this.attributes[ "position" ].array;
+		var positions = aPosition.array;
 
 		if ( positions ) {
 
-			var bb = this.boundingBox;
+			var bb = boundingBox;
 			var x, y, z;
 
 			for ( var i = 0, il = positions.length; i < il; i += 3 ) {
@@ -122,8 +143,8 @@ class BufferGeometry {
 
 		if ( positions == null || positions.length == 0 ) {
 
-			this.boundingBox.min.set( 0, 0, 0 );
-			this.boundingBox.max.set( 0, 0, 0 );
+			boundingBox.min.setValues( 0, 0, 0 );
+			boundingBox.max.setValues( 0, 0, 0 );
 
 		}
 
@@ -131,11 +152,11 @@ class BufferGeometry {
 
 	computeBoundingSphere() {
 
-		if ( ! this.boundingSphere ) this.boundingSphere = new BoundingSphere( radius: 0 );
+		if ( boundingSphere == null ) boundingSphere = new BoundingSphere( radius: 0 );
 
-		var positions = this.attributes[ "position" ].array;
+		var positions = aPosition.array;
 
-		if ( positions ) {
+		if ( positions != null ) {
 
 			var radiusSq, maxRadiusSq = 0;
 			var x, y, z;
@@ -151,7 +172,7 @@ class BufferGeometry {
 
 			}
 
-			this.boundingSphere.radius = Math.sqrt( maxRadiusSq );
+			boundingSphere.radius = Math.sqrt( maxRadiusSq );
 
 		}
 
@@ -159,37 +180,31 @@ class BufferGeometry {
 
 	computeVertexNormals() {
 
-		if ( this.attributes[ "position" ] && this.attributes[ "index" ] ) {
+		if ( aPosition != null && aIndex != null ) {
 
 			var i, il;
 			var j, jl;
 
-			var nVertexElements = this.attributes[ "position" ].array.length;
+			if ( aNormal == null ) {
 
-			if ( this.attributes[ "normal" ] == null ) {
-
-			  var normal = new dynamic();
-			  normal.itemSize = 3;
-			  normal.array = new Float32List( nVertexElements );
-			  normal.numItems = nVertexElements;
-				this.attributes[ "normal" ] = normal;
+				attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.numItems, 3);
 
 			} else {
 
 				// reset existing normals to zero
-			  il = attributes[ "normal" ].array.length;
+			  il = aNormal.array.length;
 
 				for ( i = 0; i < il; i ++ ) {
 
-					attributes[ "normal" ].array[ i ] = 0;
+					attributes[ "normal" ].array[ i ] = 0.0;
 
 				}
 
 			}
 
-			var indices = this.attributes[ "index" ].array;
-			var positions = this.attributes[ "position" ].array;
-			var normals = this.attributes[ "normal" ].array;
+			var indices = aIndex.array;
+			var positions = aPosition.array;
+			var normals = aNormal.array;
 
 			var vA, vB, vC, x, y, z,
 
@@ -265,7 +280,7 @@ class BufferGeometry {
 
 			}
 
-			normalsNeedUpdate = true;
+			this["normalsNeedUpdate"] = true;
 
 		}
 
@@ -276,36 +291,27 @@ class BufferGeometry {
 		// based on http://www.terathon.com/code/tangent.html
 		// (per vertex tangents)
 
-		if ( attributes[ "index" ] == null ||
-			   attributes[ "position" ] == null ||
-			   attributes[ "normal" ] == null ||
-			   attributes[ "uv" ] == null ) {
+		if ( aIndex == null || aPosition == null || aNormal == null || aUV == null ) {
 
 			print( "Missing required attributes (index, position, normal or uv) in BufferGeometry.computeTangents()" );
 			return;
 
 		}
 
-		var indices = attributes[ "index" ].array;
-		var positions = attributes[ "position" ].array;
-		var normals = attributes[ "normal" ].array;
-		var uvs = attributes[ "uv" ].array;
+		var indices = aIndex.array;
+		var positions = aPosition.array;
+		var normals = aNormal.array;
+		var uvs = aUV.array;
 
-		var nVertices = positions.length / 3;
+		var nVertices = aPosition.numItems ~/ 3;
 
-		if ( attributes[ "tangent" ] == null ) {
+		if ( aTangent == null ) {
 
-			var nTangentElements = 4 * nVertices;
-
-			var tangent = new dynamic();
-			tangent.itemSize = 4;
-			tangent.array = new Float32List( nTangentElements );
-      tangent.numItems = nTangentElements;
-			attributes[ "tangent" ] = tangent;
+			attributes[ "tangent" ] = new GeometryAttribute.float32(nVertices, 4);
 
 		}
 
-		var tangents = attributes[ "tangent" ].array;
+		var tangents = aTangent.array;
 
 		List<Vector3> tan1 = [], tan2 = [];
 
@@ -474,8 +480,44 @@ class BufferGeometry {
 		}
 
 		hasTangents = true;
-		tangentsNeedUpdate = true;
+		this["tangentsNeedUpdate"] = true;
 
 	}
+
+  // dynamic is a reserved word in Dart
+  bool get isDynamic => _dynamic;
+  set isDynamic(bool value) => _dynamic = value;
+
+  // default attributes
+  GeometryAttribute<Float32List> get aPosition => attributes[GeometryAttribute.POSITION];
+  set aPosition(a){ attributes[GeometryAttribute.POSITION] = a; }
+
+  GeometryAttribute<Float32List> get aNormal => attributes[GeometryAttribute.NORMAL];
+  set aNormal(a){ attributes[GeometryAttribute.NORMAL] = a; }
+
+  GeometryAttribute<Int16List> get aIndex => attributes[GeometryAttribute.INDEX];
+  set aIndex(a){ attributes[GeometryAttribute.INDEX] = a; }
+
+  GeometryAttribute<Float32List> get aUV => attributes[GeometryAttribute.UV];
+  set aUV(a){ attributes[GeometryAttribute.UV] = a; }
+
+  GeometryAttribute<Float32List> get aTangent => attributes[GeometryAttribute.TANGENT];
+  set aTangent(a){ attributes[GeometryAttribute.TANGENT] = a; }
+
+  GeometryAttribute<Float32List> get aColor => attributes[GeometryAttribute.COLOR];
+  set aColor(a){ attributes[GeometryAttribute.COLOR] = a; }
+
+	 // Quick hack to allow setting new properties (used by the renderer)
+  Map __data;
+
+  get _data {
+    if (__data == null) {
+      __data = {};
+    }
+    return __data;
+  }
+
+  operator [] (String key) => _data[key];
+  operator []= (String key, value) => _data[key] = value;
 
 }
