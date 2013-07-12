@@ -13,7 +13,7 @@ init(){
 
   renderer = new WebGLRenderer(antialias: true);
   renderer.shadowMapEnabled = true;
-  renderer.shadowMapSoft    = true;
+  renderer.shadowMapType    = PCFSoftShadowMap;
   renderer.setClearColorHex( 0x000000, 1 );
 
   renderer.setSize( window.innerWidth, window.innerHeight );

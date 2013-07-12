@@ -969,7 +969,7 @@ get ShaderChunk  {
 
         "if ( spotEffect > spotLightAngleCos[ i ] ) {",
 
-          "spotEffect = max( pow( spotEffect, spotLightExponent[ i ] ), 0.0 )",
+          "spotEffect = max( pow( spotEffect, spotLightExponent[ i ] ), 0.0 );",
 
           // diffuse
 

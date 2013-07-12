@@ -246,14 +246,14 @@ class WebGLRenderer implements Renderer {
 
   {
 
-    this.devicePixelRatio = (?devicePixelRatio) ? devicePixelRatio : ( (window.devicePixelRatio != null) ? window.devicePixelRatio : 1);
+    this.devicePixelRatio = (devicePixelRatio != null) ? devicePixelRatio : ( (window.devicePixelRatio != null) ? window.devicePixelRatio : 1);
 
     _lights = {
 
 	    "ambient": [ 0, 0, 0 ],
 	    "directional": { "length": 0, "colors": [], "positions": [] },
 	    "point": { "length": 0, "colors": [], "positions": [], "distances": [] },
-	    "spot": { "length": 0, "colors": [], "positions": [], "distances": [], "directions": [], "angles": [], "exponents": [] },
+	    "spot": { "length": 0, "colors": [], "positions": [], "distances": [], "directions": [], "anglesCos": [], "exponents": [] },
 	    "hemi": { "length": 0, "skyColors": [], "groundColors": [], "positions": [] }
 	  };
 
@@ -723,7 +723,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( programInfo.program != program ) {
 
-					newPrograms.push( programInfo );
+					newPrograms.add( programInfo );
 
 				}
 
@@ -1469,7 +1469,7 @@ class WebGLRenderer implements Renderer {
 			}
 
 			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglLineDistanceBuffer );
-			_gl.bufferData( gl.ARRAY_BUFFER, lineDistanceArray, hint );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, lineDistanceArray, hint );
 
 		}
 
@@ -2196,7 +2196,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( dirtyColors && vertexColorType != NoColors) {
+		if ( dirtyColors && vertexColorType) {
 
 			fl = chunk_faces3.length;
 			for ( f = 0; f < fl; f ++ ) {
@@ -6310,8 +6310,8 @@ class WebGLRenderer implements Renderer {
 		}
 
 		defines.forEach((d, define) {
-			chunks.push( d );
-			chunks.push( define );
+			chunks.add( d );
+			chunks.add( define );
 		});
 
 		code =  "${chunks.join()}"
@@ -6836,9 +6836,17 @@ class WebGLRenderer implements Renderer {
 
 					texture.generateMipmaps = false;
 
-				} else {
+				} else if ( texture.image is ImageElement) {
 
 					_gl.texImage2DImage( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
+
+				} else if ( texture.image is CanvasElement ) {
+
+				  _gl.texImage2DCanvas( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
+
+				} else if ( texture.image is VideoElement ) {
+
+				  _gl.texImage2DVideo( gl.TEXTURE_2D, 0, glFormat, glFormat, glType, texture.image );
 
 				}
 
