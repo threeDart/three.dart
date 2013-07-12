@@ -36,7 +36,6 @@ part 'src/core/Frustum.dart';
 part 'src/core/MorphColors.dart';
 part 'src/core/MorphTarget.dart';
 part 'src/core/Geometry.dart';
-part 'src/core/Vertex.dart';
 part 'src/core/Projector.dart';
 part 'src/core/Ray.dart';
 part 'src/core/UV.dart';

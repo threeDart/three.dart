@@ -351,7 +351,7 @@ class Geometry {
 
   int mergeVertices() {
     Map verticesMap = {}; // Hashmap for looking up vertice by position coordinates (and making sure they are unique)
-    List<Vertex> unique = [];
+    List<Vector3> unique = [];
     List<int> changes = [];
 
     String key;

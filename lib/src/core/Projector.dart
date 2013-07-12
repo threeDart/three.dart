@@ -209,7 +209,7 @@ class Projector {
     Geometry geometry;
     List geometryMaterials;
     List<Vector3> vertices;
-    Vertex vertex;
+    Vector3 vertex;
     Vector3 vertexPositionScreen, normal;
     List<Face> faces;
     Face face;
