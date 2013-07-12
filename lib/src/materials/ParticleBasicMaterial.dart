@@ -17,7 +17,7 @@ part of three;
  *  blending: THREE.NormalBlending,
  *  depthTest: <bool>,
  *
- *  vertexColors: THREE.NoColors  / THREE.VertexColors / THREE.FaceColors,
+ *  vertexColors: false / THREE.NoColors  / THREE.VertexColors / THREE.FaceColors,
  *
  *  fog: <bool>
  * }

@@ -31,7 +31,9 @@ class LineBasicMaterial extends Material {
   String linejoin;
 
   bool fog;
-  int vertexColors;
+
+  // Before changing this please checkout issue #79
+  dynamic vertexColors;
 
 
   LineBasicMaterial({ // LineBasicMaterial
@@ -42,7 +44,7 @@ class LineBasicMaterial extends Material {
                       this.linecap: 'round',
                       this.linejoin: 'round',
 
-                      this.vertexColors: NoColors,
+                      this.vertexColors: false,
 
                       this.fog: true,
 

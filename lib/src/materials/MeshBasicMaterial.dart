@@ -26,7 +26,7 @@ part of three;
  *  wireframe: <boolean>,
  *  wireframeLinewidth: <float>,
  *
- *  vertexColors: THREE.NoColors / THREE.VertexColors / THREE.FaceColors,
+ *  vertexColors: false / THREE.NoColors / THREE.VertexColors / THREE.FaceColors,
  *  skinning: <bool>,
  *
  *  fog: <bool>
