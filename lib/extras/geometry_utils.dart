@@ -48,3 +48,15 @@ clone( Geometry geometry ) {
 
 }
 
+triangleArea ( vectorA, vectorB, vectorC ) {
+
+  var tmp1 = new Vector3(0.0, 0.0, 0.0),
+      tmp2 = new Vector3(0.0, 0.0, 0.0);
+
+  tmp1.subVectors( vectorB, vectorA );
+  tmp2.subVectors( vectorC, vectorA );
+  tmp1.cross( tmp2 );
+  
+  return 0.5 * tmp1.length();
+}
+
