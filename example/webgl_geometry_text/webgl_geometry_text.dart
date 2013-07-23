@@ -102,121 +102,121 @@ class WebGL_Geometry_Text  {
 
   void init() {
             
-  container = new Element.tag('div');
-
-  document.body.nodes.add( container );
+    container = new Element.tag('div');
+  
+    document.body.nodes.add( container );
+      
+    // CAMERA
+  
+    camera = new PerspectiveCamera( 30.0, window.innerWidth / window.innerHeight, 1.0, 1500.0 );
+    camera.position.setValues( 0.0, 400.0, 700.0 );
+  
+    cameraTarget = new Vector3( 0.0, 150.0, 0.0 );
+  
+    // SCENE
+  
+    scene = new Scene();
     
-  // CAMERA
-
-  camera = new PerspectiveCamera( 30.0, window.innerWidth / window.innerHeight, 1.0, 1500.0 );
-  camera.position.setValues( 0.0, 400.0, 700.0 );
-
-  cameraTarget = new Vector3( 0.0, 150.0, 0.0 );
-
-  // SCENE
-
-  scene = new Scene();
+    scene.fog = new FogLinear ( 0x000000, 250.0, 1400.0 );
   
-  scene.fog = new FogLinear ( 0x000000, 250.0, 1400.0 );
-
-  // LIGHTS
-
-  var dirLight = new DirectionalLight( 0xffffff, 0.125 );
-  dirLight.position.setValues( 0.0, 0.0, 1.0 ).normalize();
-  scene.add( dirLight );
-
-  var pointLight = new PointLight( 0xffffff, intensity: 1.5 );
-  pointLight.position.setValues( 0.0, 100.0, 90.0 );
-  scene.add( pointLight );
-
-  //text = capitalize( font ) + " " + capitalize( weight );
-  //text = "abcdefghijklmnopqrstuvwxyz0123456789";
-  //text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    // LIGHTS
   
-   pointLight.color.setHSL( new Math.Random().nextDouble(), 1, 0.5 );
-     
-   material = new MeshFaceMaterial( [ 
-     new MeshPhongMaterial( color: 0xffffff, shading: FlatShading ), // front
-     new MeshPhongMaterial( color: 0xffffff, shading: SmoothShading ) // side
-   ] );
-
-  parent = new Object3D();
-  parent.position.y = 100.0;
-
-  scene.add( parent );
-
-  createText();
-
-  var plane = new Mesh( new PlaneGeometry( 10000.0, 10000.0 ), new MeshBasicMaterial( color: 0xffffff, opacity: 0.5, transparent: true ) );
-  plane.position.y = 100.0;
-  plane.rotation.x = - Math.PI / 2.0;
-  scene.add( plane );
-
-  // RENDERER
-
-  renderer = new WebGLRenderer( antialias: true );
-  renderer.setSize( window.innerWidth, window.innerHeight );
+    var dirLight = new DirectionalLight( 0xffffff, 0.125 );
+    dirLight.position.setValues( 0.0, 0.0, 1.0 ).normalize();
+    scene.add( dirLight );
   
-  renderer.setClearColor( new Color(0x000000), 1 );
-
-  container.nodes.add( renderer.domElement );
+    var pointLight = new PointLight( 0xffffff, intensity: 1.5 );
+    pointLight.position.setValues( 0.0, 100.0, 90.0 );
+    scene.add( pointLight );
   
-  // STATS
-
-  // stats = new Stats();
-  // stats.domElement.style.position = 'absolute';
-  // stats.domElement.style.top = '0px';
-  // container.appendChild( stats.domElement );
+    //text = capitalize( font ) + " " + capitalize( weight );
+    //text = "abcdefghijklmnopqrstuvwxyz0123456789";
+    //text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+     pointLight.color.setHSL( new Math.Random().nextDouble(), 1, 0.5 );
+       
+     material = new MeshFaceMaterial( [ 
+       new MeshPhongMaterial( color: 0xffffff, shading: FlatShading ), // front
+       new MeshPhongMaterial( color: 0xffffff, shading: SmoothShading ) // side
+     ] );
   
-  // EVENTS
-
-  document.onMouseDown.listen( onDocumentMouseDown );
-  document.onTouchStart.listen( onDocumentTouchStart );
-  document.onTouchMove.listen( onDocumentTouchMove );
-  document.onKeyPress.listen( onDocumentKeyPress );
-  document.onKeyDown.listen( onDocumentKeyDown );
+    parent = new Object3D();
+    parent.position.y = 100.0;
   
-  window.onResize.listen( onWindowResize );
+    scene.add( parent );
+  
+    createText();
+  
+    var plane = new Mesh( new PlaneGeometry( 10000.0, 10000.0 ), new MeshBasicMaterial( color: 0xffffff, opacity: 0.5, transparent: true ) );
+    plane.position.y = 100.0;
+    plane.rotation.x = - Math.PI / 2.0;
+    scene.add( plane );
+  
+    // RENDERER
+  
+    renderer = new WebGLRenderer( antialias: true );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    
+    renderer.setClearColor( new Color(0x000000), 1 );
+  
+    container.nodes.add( renderer.domElement );
+    
+    // STATS
+  
+    // stats = new Stats();
+    // stats.domElement.style.position = 'absolute';
+    // stats.domElement.style.top = '0px';
+    // container.appendChild( stats.domElement );
+    
+    // EVENTS
+  
+    document.onMouseDown.listen( onDocumentMouseDown );
+    document.onTouchStart.listen( onDocumentTouchStart );
+    document.onTouchMove.listen( onDocumentTouchMove );
+    document.onKeyPress.listen( onDocumentKeyPress );
+    document.onKeyDown.listen( onDocumentKeyDown );
+    
+    window.onResize.listen( onWindowResize );
    
   }
 
   onWindowResize(e) {
 
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize( window.innerWidth, window.innerHeight );  
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+  
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  
+    renderer.setSize( window.innerWidth, window.innerHeight );  
 
   }
   
   onDocumentKeyDown( event ) {
 
-  if ( firstLetter ) {
-
-    firstLetter = false;
-    text = "";
-
+    if ( firstLetter ) {
+  
+      firstLetter = false;
+      text = "";
+  
+    }
+  
+    var keyCode = event.keyCode;
+  
+    // backspace
+  
+    if ( keyCode == 8 ) {
+  
+      event.preventDefault();
+  
+      text = text.substring( 0, text.length - 1 );
+      refreshText();
+  
+      return false;
+  
+    }
+  
   }
-
-  var keyCode = event.keyCode;
-
-  // backspace
-
-  if ( keyCode == 8 ) {
-
-    event.preventDefault();
-
-    text = text.substring( 0, text.length - 1 );
-    refreshText();
-
-    return false;
-
-  }
-
-}
 
   onDocumentKeyPress( event ) {
 
