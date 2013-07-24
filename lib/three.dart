@@ -58,6 +58,7 @@ part 'extras/geometries/OctahedronGeometry.dart';
 part 'extras/geometries/ParametricGeometry.dart';
 part 'extras/geometries/PlaneGeometry.dart';
 part 'extras/geometries/PolyhedronGeometry.dart';
+part 'extras/geometries/ShapeGeometry.dart';
 part 'extras/geometries/SphereGeometry.dart';
 part 'extras/geometries/TetrahedronGeometry.dart';
 part 'extras/geometries/TextGeometry.dart';

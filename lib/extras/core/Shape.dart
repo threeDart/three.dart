@@ -91,7 +91,7 @@ class Shape extends Path {
 
   }
 
-  extractPoints( {num divisions} ) {
+  extractPoints( [num divisions] ) {
 
   	if (useSpacedPoints) {
   		return extractAllSpacedPoints(divisions);

@@ -162,8 +162,8 @@ removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
     }
 
     tmpShape1 = shape.getRange( 0, shapeIndex );
-    tmpShape2 = shape.getRange( shapeIndex, shape.length - 1 );
-    tmpHole1 = hole.getRange( holeIndex, hole.length - 1 );
+    tmpShape2 = shape.getRange( shapeIndex, shape.length );
+    tmpHole1 = hole.getRange( holeIndex, hole.length );
     tmpHole2 = hole.getRange( 0, holeIndex );
 
     // Should check orders here again?
