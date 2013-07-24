@@ -1,15 +1,13 @@
 import 'dart:html';
 import "dart:async";
 import 'dart:math' as Math;
-import 'dart:json';
+import 'dart:json' as JSON;
 import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/image_utils.dart' as ImageUtils; // TODO - Use Re-export
 import 'package:three/extras/font_utils.dart' as FontUtils;
 import 'package:three/extras/geometry_utils.dart' as GeometryUtils;
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
-
-var helvetiker_regular = { }; 
 
 class WebGL_Geometry_Text  {
  
@@ -91,18 +89,18 @@ class WebGL_Geometry_Text  {
     windowHalfY = window.innerHeight / 2;
   }
   
+  Future loadFonts() => Future.wait(
+      ["fonts/helvetiker_regular.json"]
+      .map((path) => HttpRequest.getString(path).then((data) {
+        FontUtils.loadFace(JSON.parse(data));
+      })));
+
   void run() {
-  
-    var path = "fonts/helvetiker_regular.json";
     
-    HttpRequest.getString(path).then((String responseText) {
-      
-      helvetiker_regular = parse(responseText);
-      
+    loadFonts().then((_) {
       init();
-      animate(0);      
-    
-    });      
+      animate(0);
+    });
   }
   
   capitalize( txt ) {
@@ -251,8 +249,6 @@ class WebGL_Geometry_Text  {
 
   createText() {  
   
-    FontUtils.loadFace(helvetiker_regular);
-
     textGeo = new TextGeometry( text, 
 
       height,

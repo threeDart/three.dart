@@ -1,10 +1,9 @@
 import 'dart:html';
-import 'dart:json';
+import "dart:async";
+import 'dart:json' as JSON;
 import 'package:three/three.dart';
 import 'package:three/extras/image_utils.dart' as ImageUtils; // TODO - Use Re-export
 import 'package:three/extras/font_utils.dart' as FontUtils; 
-
-var helvetiker_regular = { }; 
 
 class WebGL_Text  {
   Element container;
@@ -15,18 +14,18 @@ class WebGL_Text  {
 
   Mesh fontmesh;
 
+  Future loadFonts() => Future.wait(
+      ["fonts/helvetiker_regular.json"]
+      .map((path) => HttpRequest.getString(path).then((data) {
+        FontUtils.loadFace(JSON.parse(data));
+      })));
+
   void run() {
-  
-    var path = "fonts/helvetiker_regular.json";
     
-    HttpRequest.getString(path).then((String responseText) {
-      
-      helvetiker_regular = parse(responseText);
-      
+    loadFonts().then((_) {
       init();
-      animate(0);      
-    
-    });      
+      animate(0);
+    });
   }
 
   void init() {
@@ -41,8 +40,6 @@ class WebGL_Text  {
     camera.position.z = 1200.0;
 
     scene.add(camera);
-
-    FontUtils.loadFace(helvetiker_regular);
     
     var fontshapes = FontUtils.generateShapes("Hello world");
     
