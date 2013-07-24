@@ -10,7 +10,7 @@ import 'package:three/extras/geometry_utils.dart' as GeometryUtils;
 import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
 class WebGL_Geometry_Text  {
- 
+
   var container, stats, permalink, hex, color;
 
   var camera, cameraTarget, scene, renderer;
@@ -39,7 +39,7 @@ class WebGL_Geometry_Text  {
   weight, // normal bold
   style; // normal italic
 
-  var mirror = true;
+  var mirror;
 
   var targetRotation;
   var targetRotationOnMouseDown;
@@ -49,16 +49,14 @@ class WebGL_Geometry_Text  {
 
   var windowHalfX;
   var windowHalfY;
- 
+
   var glow = 0.9;
-  
-  StreamSubscription<MouseEvent> mouseMoveStream;
-  StreamSubscription<MouseEvent> mouseUpStream;
-  StreamSubscription<MouseEvent> mouseOutStream;
-  
-  WebGL_Geometry_Text() : 
+
+  List<StreamSubscription> _mouseSubscriptions = [];
+
+  WebGL_Geometry_Text() :
     firstLetter = true,
-    text = "three.dart",    
+    text = "three.dart",
     height = 20.0,
     size = 70,
     hover = 30.0,
@@ -81,14 +79,14 @@ class WebGL_Geometry_Text  {
 
     mouseX = 0,
     mouseXOnMouseDown = 0,
-     
-    glow = 0.9        
-  
+
+    glow = 0.9
+
   {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
   }
-  
+
   Future loadFonts() => Future.wait(
       ["fonts/helvetiker_regular.json"]
       .map((path) => HttpRequest.getString(path).then((data) {
@@ -96,134 +94,127 @@ class WebGL_Geometry_Text  {
       })));
 
   void run() {
-    
+
     loadFonts().then((_) {
       init();
       animate(0);
     });
   }
-  
+
   capitalize( txt ) {
 
     return txt.substring( 0, 1 ).toUpperCase() + txt.substring( 1 );
   }
 
   void init() {
-            
+
     container = new Element.tag('div');
-  
+
     document.body.nodes.add( container );
-      
+
     // CAMERA
-  
-    camera = new PerspectiveCamera( 30.0, window.innerWidth / window.innerHeight, 1.0, 1500.0 );
-    camera.position.setValues( 0.0, 400.0, 700.0 );
-  
+
+    camera = new PerspectiveCamera( 30.0, window.innerWidth / window.innerHeight, 1.0, 1500.0 )
+    ..position.setValues( 0.0, 400.0, 700.0 );
+
     cameraTarget = new Vector3( 0.0, 150.0, 0.0 );
-  
+
     // SCENE
-  
-    scene = new Scene();
-    
-    scene.fog = new FogLinear ( 0x000000, 250.0, 1400.0 );
-  
+
+    scene = new Scene()
+    ..fog = new FogLinear ( 0x000000, 250.0, 1400.0 );
+
     // LIGHTS
-  
-    var dirLight = new DirectionalLight( 0xffffff, 0.125 );
-    dirLight.position.setValues( 0.0, 0.0, 1.0 ).normalize();
+
+    var dirLight = new DirectionalLight( 0xffffff, 0.125 )
+    ..position.setValues( 0.0, 0.0, 1.0 ).normalize();
     scene.add( dirLight );
-  
-    var pointLight = new PointLight( 0xffffff, intensity: 1.5 );
-    pointLight.position.setValues( 0.0, 100.0, 90.0 );
+
+    var pointLight = new PointLight( 0xffffff, intensity: 1.5 )
+    ..position.setValues( 0.0, 100.0, 90.0 );
     scene.add( pointLight );
-  
+
     //text = capitalize( font ) + " " + capitalize( weight );
     //text = "abcdefghijklmnopqrstuvwxyz0123456789";
     //text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    
+
      pointLight.color.setHSL( new Math.Random().nextDouble(), 1, 0.5 );
-       
-     material = new MeshFaceMaterial( [ 
+
+     material = new MeshFaceMaterial( [
        new MeshPhongMaterial( color: 0xffffff, shading: FlatShading ), // front
        new MeshPhongMaterial( color: 0xffffff, shading: SmoothShading ) // side
      ] );
-  
-    parent = new Object3D();
-    parent.position.y = 100.0;
-  
+
+    parent = new Object3D()..position.y = 100.0;
+
     scene.add( parent );
-  
+
     createText();
-  
-    var plane = new Mesh( new PlaneGeometry( 10000.0, 10000.0 ), new MeshBasicMaterial( color: 0xffffff, opacity: 0.5, transparent: true ) );
-    plane.position.y = 100.0;
-    plane.rotation.x = - Math.PI / 2.0;
+
+    var plane = new Mesh(
+        new PlaneGeometry( 10000.0, 10000.0 ),
+        new MeshBasicMaterial( color: 0xffffff, opacity: 0.5, transparent: true ))
+    ..position.y = 100.0
+    ..rotation.x = - Math.PI / 2.0;
     scene.add( plane );
-  
+
     // RENDERER
-  
-    renderer = new WebGLRenderer( antialias: true );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    
-    renderer.setClearColor( new Color(0x000000), 1 );
-  
+
+    renderer = new WebGLRenderer( antialias: true )
+    ..setSize( window.innerWidth, window.innerHeight )
+    ..setClearColor( new Color(0x000000), 1 );
+
     container.nodes.add( renderer.domElement );
-    
-    // STATS
-  
-    // stats = new Stats();
-    // stats.domElement.style.position = 'absolute';
-    // stats.domElement.style.top = '0px';
-    // container.appendChild( stats.domElement );
-    
+
     // EVENTS
-  
-    document.onMouseDown.listen( onDocumentMouseDown );
-    document.onTouchStart.listen( onDocumentTouchStart );
-    document.onTouchMove.listen( onDocumentTouchMove );
-    document.onKeyPress.listen( onDocumentKeyPress );
-    document.onKeyDown.listen( onDocumentKeyDown );
-    
+
+    document
+    ..onMouseDown.listen( onDocumentMouseDown )
+    ..onTouchStart.listen( onDocumentTouchStart )
+    ..onTouchMove.listen( onDocumentTouchMove )
+    ..onKeyPress.listen( onDocumentKeyPress )
+    ..onKeyDown.listen( onDocumentKeyDown );
+
     window.onResize.listen( onWindowResize );
-   
+
   }
 
   onWindowResize(e) {
 
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-  
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-  
-    renderer.setSize( window.innerWidth, window.innerHeight );  
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
 
   }
-  
+
   onDocumentKeyDown( event ) {
 
     if ( firstLetter ) {
-  
+
       firstLetter = false;
       text = "";
-  
+
     }
-  
+
     var keyCode = event.keyCode;
-  
+
     // backspace
-  
+
     if ( keyCode == 8 ) {
-  
+
       event.preventDefault();
-  
+
       text = text.substring( 0, text.length - 1 );
       refreshText();
-  
+
       return false;
-  
+
     }
-  
+
   }
 
   onDocumentKeyPress( event ) {
@@ -247,9 +238,9 @@ class WebGL_Geometry_Text  {
 
   }
 
-  createText() {  
-  
-    textGeo = new TextGeometry( text, 
+  createText() {
+
+    textGeo = new TextGeometry( text,
 
       height,
       false,
@@ -262,13 +253,13 @@ class WebGL_Geometry_Text  {
       null,
       null,
       0,
-      1, 
+      1,
       size,
       font,
       weight,
       style
     );
-    
+
     textGeo.materials = material.materials;
 
     textGeo.computeBoundingBox();
@@ -281,71 +272,70 @@ class WebGL_Geometry_Text  {
 
       var triangleAreaHeuristics = 0.1 * ( height * size );
 
-      for ( var i = 0; i < textGeo.faces.length; i ++ ) {
-
-        var face = textGeo.faces[ i ];
+      textGeo.faces.forEach((face) {
 
         if ( face.materialIndex == 1 ) {
 
-          for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
+          face.vertexNormals.forEach((normal) {
 
-            face.vertexNormals[ j ].z = 0;
-            face.vertexNormals[ j ].normalize();
+            normal
+            ..z = 0.0
+            ..normalize();
 
-          }
+          });
 
-          var va = textGeo.vertices[ face.a ];
-          var vb = textGeo.vertices[ face.b ];
-          var vc = textGeo.vertices[ face.c ];
+          var va = textGeo.vertices[ face.a ],
+              vb = textGeo.vertices[ face.b ],
+              vc = textGeo.vertices[ face.c ];
 
           var s = GeometryUtils.triangleArea( va, vb, vc );
-          
+
           if ( s > triangleAreaHeuristics ) {
 
             for ( var j = 0; j < face.vertexNormals.length; j ++ ) {
 
-              face.vertexNormals[ j ].copy( face.normal );
+              face.vertexNormals[ j ].setFrom( face.normal );
 
             }
 
           }
 
         }
-       
-      }
+
+      });
 
     }
 
     var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
 
-    textMesh1 = new Mesh( textGeo, material );
+    textMesh1 = new Mesh( textGeo, material )
 
-    textMesh1.position.x = centerOffset;
-    textMesh1.position.y = hover;
-    textMesh1.position.z = 0.0;
+    ..position.x = centerOffset
+    ..position.y = hover
+    ..position.z = 0.0
 
-    textMesh1.rotation.x = 0.0;
-    textMesh1.rotation.y = Math.PI * 2.0;
+    ..rotation.x = 0.0
+    ..rotation.y = Math.PI * 2.0;
 
     parent.add( textMesh1 );
 
     if ( mirror ) {
 
-      textMesh2 = new Mesh( textGeo, material );
-      
-      textMesh2.position.x = centerOffset;
-      textMesh2.position.y = -hover;
-      textMesh2.position.z = height;
+      textMesh2 = new Mesh( textGeo, material )
 
-      textMesh2.rotation.x = Math.PI;
-      textMesh2.rotation.y = Math.PI * 2.0;
+      ..position.x = centerOffset
+      ..position.y = -hover
+      ..position.z = height
+
+      ..rotation.x = Math.PI
+      ..rotation.y = Math.PI * 2.0;
 
       parent.add( textMesh2 );
 
     }
 
   }
-  
+
   refreshText() {
 
     // updatePermalink();
@@ -363,9 +353,10 @@ class WebGL_Geometry_Text  {
 
     event.preventDefault();
 
-    mouseMoveStream =document.onMouseMove.listen( onDocumentMouseMove );
-    mouseUpStream = document.onMouseUp.listen( onDocumentMouseUp );
-    mouseOutStream = document.onMouseOut.listen( onDocumentMouseOut );
+    _mouseSubscriptions = [
+      document.onMouseMove.listen( onDocumentMouseMove ),
+      document.onMouseUp.listen( onDocumentMouseUp ),
+      document.onMouseOut.listen( onDocumentMouseOut )];
 
     mouseXOnMouseDown = event.clientX - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
@@ -381,19 +372,12 @@ class WebGL_Geometry_Text  {
   }
 
   onDocumentMouseUp( event ) {
-
-    mouseMoveStream.cancel();
-    mouseUpStream.cancel();
-    mouseOutStream.cancel();
+    _mouseSubscriptions.forEach((s) { s.cancel(); });
 
   }
 
   onDocumentMouseOut( event ) {
-
-    mouseMoveStream.cancel();
-    mouseUpStream.cancel();
-    mouseOutStream.cancel();
-
+    _mouseSubscriptions.forEach((s) { s.cancel(); });
   }
 
   onDocumentTouchStart( event ) {
@@ -429,7 +413,6 @@ class WebGL_Geometry_Text  {
     window.requestAnimationFrame( animate );
 
     render();
-    // stats.update();
 
   }
 
@@ -443,7 +426,7 @@ class WebGL_Geometry_Text  {
 
     renderer.render( scene, camera );
 
-  } 
+  }
 
 }
 
