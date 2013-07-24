@@ -4707,19 +4707,16 @@ class WebGLRenderer implements Renderer {
 
 	addBuffer ( objlist, WebGLGeometry buffer, WebGLObject object ) {
 
-	  object.buffer = buffer;
-	  object.opaque = null;
-	  object.transparent = null;
-		objlist.add(object);
+	  var o = new WebGLObject._internal(object.object, null, null, buffer, object.render, object.z);
+		objlist.add(o);
 
 	}
 
 	addBufferImmediate ( objlist, WebGLObject object ) {
 
-	  object.opaque = null;
-    object.transparent = null;
+	  var o = new WebGLObject._internal(object.object, null, null, null, object.render, object.z);
 
-		objlist.add(object);
+		objlist.add(o);
 
 	}
 
