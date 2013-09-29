@@ -65,7 +65,7 @@ class WebGLRenderer implements Renderer {
 
 	/** Internal properties **/
 
-	List _programs;
+	List<Program> _programs;
 	int _programs_counter;
 
 	// internal state cache
@@ -688,14 +688,15 @@ class WebGLRenderer implements Renderer {
 		// assumed there is only single copy of any program in the _programs list
 		// (that's how it's constructed)
 
-		var i, il, programInfo;
+		var i, il;
+		Program programInfo;
 		var deleteProgram = false;
 
 		for ( var i = 0, il = _programs.length; i < il; i ++ ) {
 
 			programInfo = _programs[ i ];
 
-			if ( programInfo.program == program ) {
+			if ( programInfo.glProgram == program ) {
 
 				programInfo.usedTimes --;
 
@@ -721,7 +722,7 @@ class WebGLRenderer implements Renderer {
 
 				programInfo = _programs[ i ];
 
-				if ( programInfo.program != program ) {
+				if ( programInfo.glProgram != program ) {
 
 					newPrograms.add( programInfo );
 
