@@ -125,7 +125,7 @@ class WebGL_Geometry_Extrude_By_U_Shapes  {
 
       if(curve is THREE.LineCurve3){
         // Straight so we only need one step
-        initU += (curve.length / curvepathLength).toInt();
+        initU += (curve.length ~/ curvepathLength);
         extrudeUSteps.add(initU);
 
       } else {

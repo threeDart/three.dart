@@ -435,13 +435,13 @@ class BufferGeometry implements Geometry {
 			n.y = normals[ v * 3 + 1 ];
 			n.z = normals[ v * 3 + 2 ];
 
-			n2.copy( n );
+			n2.setFrom( n );
 
 			t = tan1[ v ];
 
 			// Gram-Schmidt orthogonalize
 
-			tmp.copy( t );
+			tmp.setFrom( t );
 			tmp.sub( n.scale( n.dot( t ) ) ).normalize();
 
 			// Calculate handedness

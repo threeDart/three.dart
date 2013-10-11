@@ -27,7 +27,7 @@ class ShapeGeometry extends Geometry {
                     curveSegments: 12,
                     material,
                     ExtrudeGeometryWorldUVGenerator UVGenerator } ) : super() {
-    
+
     if (shapes == null) {
       shapes = [];
       return;
@@ -58,7 +58,7 @@ class ShapeGeometry extends Geometry {
 
     // set UV generator
     var uvgen = (UVGenerator!= null) ? UVGenerator : new ExtrudeGeometryWorldUVGenerator();
-    
+
     var i, hole, s;
 
     var shapesOffset = vertices.length;
@@ -71,17 +71,17 @@ class ShapeGeometry extends Geometry {
 
     if ( reverse ) {
 
-      vertices = vertices._reverse();
+      vertices = vertices.reversed.toList();
 
       // Maybe we should also check if holes are in the opposite direction, just to be safe...
-      
+
       for ( i = 0; i < holes.length; i++ ) {
 
         hole = holes[ i ];
 
         if ( ShapeUtils.isClockWise( hole ) ) {
 
-          holes[ i ] = hole._reverse();
+          holes[ i ] = hole.reversed.toList();
 
         }
 
@@ -100,7 +100,7 @@ class ShapeGeometry extends Geometry {
     for ( i = 0; i < holes.length; i++ ) {
 
       hole = holes[ i ];
-      
+
       vertices = new List.from(vertices);
       vertices.addAll( hole );
 

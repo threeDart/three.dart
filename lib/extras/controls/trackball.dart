@@ -27,7 +27,7 @@ class TrackballControls extends EventEmitter {
   Object3D object;
   Element domElement;
   bool enabled;
-  Rect screen;
+  Math.Rectangle screen;
   num rotateSpeed,
       zoomSpeed,
       panSpeed;
@@ -62,8 +62,8 @@ class TrackballControls extends EventEmitter {
 
     enabled = true;
 
-    screen = new Rect( 0, 0, 0, 0 );
-    
+    screen = new Math.Rectangle( 0, 0, 0, 0 );
+
     rotateSpeed = 1.0;
     zoomSpeed = 1.2;
     panSpeed = 0.3;
@@ -124,7 +124,7 @@ class TrackballControls extends EventEmitter {
     // methods
     handleResize () {
       if ( domElement == document ) {
-        screen = new Rect(0, 0, window.innerWidth, window.innerHeight);
+        screen = new Math.Rectangle(0, 0, window.innerWidth, window.innerHeight);
       } else {
         screen = domElement.getBoundingClientRect();
       }
@@ -160,7 +160,7 @@ class TrackballControls extends EventEmitter {
         } else {
 
           mouseOnBall.z = 0.5 / length;
-          
+
         }
 
       } else if ( length > 1.0 ) {

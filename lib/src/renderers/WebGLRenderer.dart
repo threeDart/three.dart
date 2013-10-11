@@ -1645,8 +1645,8 @@ class WebGLRenderer implements Renderer {
 
 			}
 
-			_gl.bindBuffer( _gl.ARRAY_BUFFER, geometry.__webglNormalBuffer );
-			_gl.bufferDataTyped( _gl.ARRAY_BUFFER, normalArray, hint );
+			_gl.bindBuffer( gl.ARRAY_BUFFER, geometry.__webglNormalBuffer );
+			_gl.bufferDataTyped( gl.ARRAY_BUFFER, normalArray, hint );
 
 		}
 
@@ -1734,8 +1734,8 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					_gl.bindBuffer( _gl.ARRAY_BUFFER, customAttribute.buffer );
-					_gl.bufferDataTyped( _gl.ARRAY_BUFFER, customAttribute.array, hint );
+					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+					_gl.bufferDataTyped( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
 
@@ -3778,7 +3778,7 @@ class WebGLRenderer implements Renderer {
 
 			if ( attributes["lineDistance"] >= 0 ) {
 
-				_gl.bindBuffer( _gl.ARRAY_BUFFER, geometryGroup.__webglLineDistanceBuffer );
+				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglLineDistanceBuffer );
 				enableAttribute( attributes["lineDistance"] );
 				_gl.vertexAttribPointer( attributes.lineDistance, 1, gl.FLOAT, false, 0, 0 );
 
@@ -6944,13 +6944,13 @@ class WebGLRenderer implements Renderer {
 						for( var j = 0, jl = mipmaps.length; j < jl; j ++ ) {
 
 							mipmap = mipmaps[ j ];
-							_gl.compressedTexImage2D( _gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, j, glFormat, mipmap.width, mipmap.height, 0, mipmap.data );
+							_gl.compressedTexImage2D( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, j, glFormat, mipmap.width, mipmap.height, 0, mipmap.data );
 
 						}
 
 					} else {
 
-						_gl.texImage2DImage( _gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, glFormat, glType, cubeImage[ i ] );
+						_gl.texImage2DImage( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, glFormat, glType, cubeImage[ i ] );
 
 					}
 
@@ -7255,10 +7255,10 @@ class WebGLRenderer implements Renderer {
 
 		if ( _glExtensionCompressedTextureS3TC != null ) {
 
-			if ( p == RGB_S3TC_DXT1_Format ) return _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT;
-			if ( p == RGBA_S3TC_DXT1_Format ) return _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT;
-			if ( p == RGBA_S3TC_DXT3_Format ) return _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT;
-			if ( p == RGBA_S3TC_DXT5_Format ) return _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT;
+			if ( p == RGB_S3TC_DXT1_Format ) return gl.CompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT;
+			if ( p == RGBA_S3TC_DXT1_Format ) return gl.CompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT;
+			if ( p == RGBA_S3TC_DXT3_Format ) return gl.CompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT;
+			if ( p == RGBA_S3TC_DXT5_Format ) return gl.CompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT;
 
 		}
 		return 0;

@@ -186,8 +186,8 @@ class SkinnedMesh extends Mesh {
 
 	    bone = bones[ b ];
 
-	    var inverseMatrix = new Matrix4.identity();
-	    inverseMatrix.getInverse( bone.skinMatrix );
+	    var inverseMatrix = bone.skinMatrix.clone();
+	    inverseMatrix.invert();
 
 	    boneInverses.add( inverseMatrix );
 

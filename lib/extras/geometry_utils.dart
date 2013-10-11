@@ -1,6 +1,7 @@
 library GeometryUtils;
 
 import "package:three/three.dart";
+import 'package:vector_math/vector_math.dart';
 
 // TODO(nelsonsilva) - Add remaining functions
 clone( Geometry geometry ) {
@@ -48,15 +49,10 @@ clone( Geometry geometry ) {
 
 }
 
-triangleArea ( vectorA, vectorB, vectorC ) {
+triangleArea ( Vector3 vectorA, Vector3 vectorB, Vector3 vectorC ) {
 
-  var tmp1 = new Vector3(0.0, 0.0, 0.0),
-      tmp2 = new Vector3(0.0, 0.0, 0.0);
+  var tmp = (vectorB - vectorA).cross( vectorC - vectorA );
 
-  tmp1.subVectors( vectorB, vectorA );
-  tmp2.subVectors( vectorC, vectorA );
-  tmp1.cross( tmp2 );
-  
-  return 0.5 * tmp1.length();
+  return 0.5 * tmp.length;
 }
 
