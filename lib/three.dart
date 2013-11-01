@@ -4,7 +4,7 @@ import 'dart:html' hide Path;
 import 'dart:typed_data';
 import 'dart:web_gl' as gl;
 import 'dart:math' as Math;
-import 'package:json/json.dart' as JSON;
+import 'dart:json' as JSON;
 
 import 'src/core/ThreeMath.dart' as ThreeMath;
 export 'src/core/ThreeMath.dart';

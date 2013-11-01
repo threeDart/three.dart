@@ -12,7 +12,6 @@ environment:
   sdk: '>=0.6.15'
 dependencies:
   browser: '>=0.6.15'
-  json: any
   vector_math:
     git: https://github.com/johnmccutchan/vector_math.git
 dev_dependencies:
