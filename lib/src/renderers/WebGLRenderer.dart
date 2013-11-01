@@ -3600,20 +3600,20 @@ class WebGLRenderer implements Renderer {
 				var positionSize = position.itemSize;
 
 				position.buffer.bind( gl.ARRAY_BUFFER );
-				enableAttribute( attributes.position );
-				_gl.vertexAttribPointer( attributes.position, positionSize, gl.FLOAT, false, 0, 0 );
+				enableAttribute( attributes["position"] );
+				_gl.vertexAttribPointer( attributes["position"], positionSize, gl.FLOAT, false, 0, 0 );
 
 				// colors
 
 				var color = geometry.attributes[ "color" ];
 
-				if ( attributes.color >= 0 && color ) {
+				if ( attributes["color"] >= 0 && color != null ) {
 
 					var colorSize = color.itemSize;
 
 					color.buffer.bind( gl.ARRAY_BUFFER );
-					enableAttribute( attributes.color );
-					_gl.vertexAttribPointer( attributes.color, colorSize, gl.FLOAT, false, 0, 0 );
+					enableAttribute( attributes["color"] );
+					_gl.vertexAttribPointer( attributes["color"], colorSize, gl.FLOAT, false, 0, 0 );
 
 				}
 
