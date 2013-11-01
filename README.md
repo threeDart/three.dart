@@ -1,7 +1,7 @@
 three.dart
 ========
 
-[![Build Status](https://drone.io/github.com/threeDart/three.dart/status.png)](https://drone.io/github.com/threeDart/three.dart/)
+[![Build Status](https://drone.io/github.com/threeDart/three.dart/status.png)](https://drone.io/github.com/threeDart/three.dart)
 
 #### Dart 3D Engine ####
 
@@ -44,11 +44,11 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
   * Updated Streams for events
 * WebGL added MorphTargets ([nelsonsilva](https://github.com/nelsonsilva))
   * Including examples
-  
-2012 10 01 - **v 0.2.3** 
+
+2012 10 01 - **v 0.2.3**
 * Nyan Cat example added ([adam](https://github.com/financeCoding))
 
-2012 09 23 - **v 0.2.2** 
+2012 09 23 - **v 0.2.2**
 * Major refactor to pub ([adam](https://github.com/financeCoding))
   * Minor refactors of getters and exceptions
   * Regenerating javascript examples
@@ -71,7 +71,7 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 2012 03 05 - **v 0.1.1** ([robsilv](https://github.com/robsilv))
 
-* README.md 
+* README.md
 	* Contributors link added
 	* Canvas Lines example added
 * Canvas_Lines.dart
