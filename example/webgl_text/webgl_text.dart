@@ -1,6 +1,6 @@
 import 'dart:html';
 import "dart:async";
-import 'dart:json' as JSON;
+import 'dart:convert' show JSON;
 import 'package:three/three.dart';
 import 'package:three/extras/image_utils.dart' as ImageUtils; // TODO - Use Re-export
 import 'package:three/extras/font_utils.dart' as FontUtils; 
