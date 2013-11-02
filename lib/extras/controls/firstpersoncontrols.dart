@@ -125,11 +125,11 @@ class FirstPersonControls {
 
   void onMouseMove(event) {
     if ( this.domElement == document.body ) {
-      this.mouseX = event.pageX - this.viewHalfX;
-      this.mouseY = event.pageY - this.viewHalfY;
+      this.mouseX = event.page.x - this.viewHalfX;
+      this.mouseY = event.page.y - this.viewHalfY;
     } else {
-      this.mouseX = event.pageX - this.domElement.offsetLeft - this.viewHalfX;
-      this.mouseY = event.pageY - this.domElement.offsetTop - this.viewHalfY;
+      this.mouseX = event.page.x - this.domElement.offsetLeft - this.viewHalfX;
+      this.mouseY = event.page.y - this.domElement.offsetTop - this.viewHalfY;
     }
   }
 
