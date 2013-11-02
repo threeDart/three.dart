@@ -1,7 +1,7 @@
 import 'dart:html';
 import "dart:async";
 import 'dart:math' as Math;
-import 'dart:json' as JSON;
+import 'dart:convert' show JSON;
 import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/image_utils.dart' as ImageUtils; // TODO - Use Re-export
