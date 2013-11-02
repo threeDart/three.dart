@@ -103,14 +103,14 @@ class Canvas_Geometry_Cube {
       document.onMouseOut.listen(onDocumentMouseOut)
       ];
 
-    mouseXOnMouseDown = event.clientX - windowHalfX;
+    mouseXOnMouseDown = event.client.x - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
 
     print('onMouseDown mouseX = $mouseXOnMouseDown targRot = $targetRotationOnMouseDown');
   }
 
   void onDocumentMouseMove( event ) {
-    mouseX = event.clientX - windowHalfX;
+    mouseX = event.client.x - windowHalfX;
 
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 
@@ -134,7 +134,7 @@ class Canvas_Geometry_Cube {
     if ( event.touches.length == 1 ) {
       event.preventDefault();
 
-      mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+      mouseXOnMouseDown = event.touches[ 0 ].page.x - windowHalfX;
       targetRotationOnMouseDown = targetRotation;
     }
   }
@@ -143,7 +143,7 @@ class Canvas_Geometry_Cube {
     if ( event.touches.length == 1 ) {
       event.preventDefault();
 
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
+      mouseX = event.touches[ 0 ].page.x - windowHalfX;
       targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
     }
   }
