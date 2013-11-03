@@ -3437,7 +3437,7 @@ class WebGLRenderer implements Renderer {
 
 						var normal = geometry.attributes[ "normal" ];
 
-						if ( attributes["normal"] >= 0 && normal ) {
+						if ( attributes["normal"] >= 0 && normal != null) {
 
 							var normalSize = normal.itemSize;
 
@@ -3451,7 +3451,7 @@ class WebGLRenderer implements Renderer {
 
 						var uv = geometry.attributes[ "uv" ];
 
-						if ( attributes["uv"] >= 0 && uv ) {
+						if ( attributes["uv"] >= 0 && uv != null ) {
 
 							var uvSize = uv.itemSize;
 
@@ -3465,7 +3465,7 @@ class WebGLRenderer implements Renderer {
 
 						var color = geometry.attributes[ "color" ];
 
-						if ( attributes["color"] >= 0 && color ) {
+						if ( attributes["color"] >= 0 && color != null ) {
 
 							var colorSize = color.itemSize;
 
@@ -3479,7 +3479,7 @@ class WebGLRenderer implements Renderer {
 
 						var tangent = geometry.attributes[ "tangent" ];
 
-						if ( attributes["tangent"] >= 0 && tangent ) {
+						if ( attributes["tangent"] >= 0 && tangent != null ) {
 
 							var tangentSize = tangent.itemSize;
 
@@ -7069,7 +7069,7 @@ class WebGLRenderer implements Renderer {
 
 				renderTarget.__webglFramebuffer = _gl.createFramebuffer();
 
-				if ( renderTarget.shareDepthFrom ) {
+				if ( renderTarget.shareDepthFrom != null ) {
 
 					renderTarget.__webglRenderbuffer = renderTarget.shareDepthFrom.__webglRenderbuffer;
 
@@ -7086,7 +7086,7 @@ class WebGLRenderer implements Renderer {
 
 				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, gl.TEXTURE_2D );
 
-				if ( renderTarget.shareDepthFrom ) {
+				if ( renderTarget.shareDepthFrom != null) {
 
 					if ( renderTarget.depthBuffer && ! renderTarget.stencilBuffer ) {
 
