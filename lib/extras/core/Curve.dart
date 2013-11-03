@@ -210,10 +210,10 @@ abstract class Curve<V> {
 		if ( t1 < 0 ) t1 = 0;
 		if ( t2 > 1 ) t2 = 1;
 
-		var pt1 = getPoint( t1 );
-		var pt2 = getPoint( t2 );
+		V pt1 = getPoint( t1 );
+		V pt2 = getPoint( t2 );
 
-		var vec = pt2.clone().sub(pt1);
+		var vec = pt2 - pt1;
 		return vec.normalize();
 	}
 
