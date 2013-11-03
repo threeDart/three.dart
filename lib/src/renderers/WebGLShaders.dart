@@ -1965,11 +1965,9 @@ class Uniform<T> {
 
     } else if ( type == "m4v" ) { // array of THREE.Matrix4
 
-      List<Matrix4> values = _value;
-
       var lst = [];
 
-      values.forEach((m) { lst.addAll(m.storage); });
+      (_value as List<Matrix4>).forEach((m) { lst.addAll(m.storage); });
       _array = new Float32List.fromList(lst);
 
     } else {
@@ -1993,7 +1991,7 @@ class Uniform<T> {
 
     } else if ( value is List ) {
 
-      dst = new List.from(value);
+      dst = new List.from(value as List);
 
     } else {
 
