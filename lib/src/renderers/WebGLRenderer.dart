@@ -5016,9 +5016,9 @@ class WebGLRenderer implements Renderer {
 
 			skinning: material.skinning,
 			maxBones: maxBones,
-			useVertexTexture: supportsBoneTextures && (object != null) && (object is SkinnedMesh) && (object as SkinnedMesh).useVertexTexture,
-			boneTextureWidth: ((object != null) && (object is SkinnedMesh)) ? (object as SkinnedMesh).boneTextureWidth : null,
-			boneTextureHeight: ((object != null) && (object is SkinnedMesh)) ? (object as SkinnedMesh).boneTextureHeight : null,
+			useVertexTexture: supportsBoneTextures && object != null && object is SkinnedMesh && object.useVertexTexture,
+			boneTextureWidth: (object != null && object is SkinnedMesh) ? object.boneTextureWidth : null,
+			boneTextureHeight: (object != null && object is SkinnedMesh) ? object.boneTextureHeight : null,
 
 			morphTargets: material.morphTargets,
 			morphNormals: material.morphNormals,
@@ -7270,7 +7270,7 @@ class WebGLRenderer implements Renderer {
 
 	int allocateBones ( Object3D object ) {
 
-		if ( supportsBoneTextures && (object != null) && (object is SkinnedMesh) && (object as SkinnedMesh).useVertexTexture ) {
+		if ( supportsBoneTextures && (object != null) && object is SkinnedMesh && object.useVertexTexture ) {
 
 			return 1024;
 
