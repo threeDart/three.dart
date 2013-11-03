@@ -131,7 +131,7 @@ class WebGL_Cubes  {
 
     // Set up custom shader material
 
-    uniforms = { "amplitude": new Uniform.float(0.0) };
+    uniforms = { "amplitude": Uniform.float(0.0) };
 
     var material = new ShaderMaterial(
       uniforms: uniforms,
