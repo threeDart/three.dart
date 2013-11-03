@@ -7479,14 +7479,14 @@ class Program {
 }
 
 class Buffer {
-  gl.RenderingContext gl;
+  gl.RenderingContext context;
   gl.Buffer _glbuffer;
   String belongsToAttribute;
-  Buffer(this.gl) {
-    _glbuffer = gl.createBuffer();
+  Buffer(this.context) {
+    _glbuffer = context.createBuffer();
   }
   bind(target) {
-    gl.bindBuffer( target, _glbuffer );
+    context.bindBuffer( target, _glbuffer );
   }
 }
 
