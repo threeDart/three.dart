@@ -1870,7 +1870,7 @@ class Uniform<T> {
 
   T get value => _value;
   set value(v) {
-     if (type == "f" && !(v is double)) {
+     if (type == "f") {
        v = v.toDouble();
      }
     _dirty = true;
