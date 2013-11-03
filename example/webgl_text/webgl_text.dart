@@ -16,7 +16,7 @@ class WebGL_Text  {
   Future loadFonts() => Future.wait(
       ["fonts/helvetiker_regular.json"]
       .map((path) => HttpRequest.getString(path).then((data) {
-        FontUtils.loadFace(JSON.parse(data));
+        FontUtils.loadFace(JSON.decode(data));
       })));
 
   void run() {
