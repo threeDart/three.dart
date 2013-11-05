@@ -67,7 +67,7 @@ class Canvas_Geometry_Cube {
       materials.add( new MeshBasicMaterial( color: rnd.nextDouble() * 0xffffff ) );
     }
 
-    cube = new Mesh( new CubeGeometry( 200.0, 200.0, 200.0, 1, 1, 1, materials ), new MeshFaceMaterial());// { 'overdraw' : true }) );
+    cube = new Mesh( new CubeGeometry( 200.0, 200.0, 200.0, 1, 1, 1, materials ), new MeshFaceMaterial(materials));// { 'overdraw' : true }) );
     cube.position.y = 150.0;
     //cube.overdraw = true; //TODO where is this prop?
     scene.add( cube );
