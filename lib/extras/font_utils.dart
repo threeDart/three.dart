@@ -111,7 +111,7 @@ extractGlyphPoints ( String c, face, scale, offset, path ) {
   var glyph = face["glyphs"][ c ];
   if (glyph == null) glyph = face["glyphs"][ '?' ];
 
-  if ( glyph == null ) return;
+  if ( glyph == null ) return null;
 
   if ( glyph["o"] != null) {
 

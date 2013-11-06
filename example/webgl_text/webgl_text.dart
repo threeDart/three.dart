@@ -1,8 +1,7 @@
 import 'dart:html';
 import "dart:async";
-import 'dart:json' as JSON;
+import 'dart:convert' show JSON;
 import 'package:three/three.dart';
-import 'package:three/extras/image_utils.dart' as ImageUtils; // TODO - Use Re-export
 import 'package:three/extras/font_utils.dart' as FontUtils; 
 
 class WebGL_Text  {
@@ -17,11 +16,11 @@ class WebGL_Text  {
   Future loadFonts() => Future.wait(
       ["fonts/helvetiker_regular.json"]
       .map((path) => HttpRequest.getString(path).then((data) {
-        FontUtils.loadFace(JSON.parse(data));
+        FontUtils.loadFace(JSON.decode(data));
       })));
 
   void run() {
-    
+
     loadFonts().then((_) {
       init();
       animate(0);

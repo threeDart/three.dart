@@ -399,15 +399,15 @@ class TrackballControls extends EventEmitter {
 
       if ( _state == STATE.ROTATE && !noRotate ) {
 
-        _rotateEnd = getMouseProjectionOnBall( event.clientX, event.clientY );
+        _rotateEnd = getMouseProjectionOnBall( event.client.x, event.client.y );
 
       } else if ( _state == STATE.ZOOM && !noZoom ) {
 
-        _zoomEnd = getMouseOnScreen( event.clientX, event.clientY );
+        _zoomEnd = getMouseOnScreen( event.client.x, event.client.y );
 
       } else if ( _state == STATE.PAN && !noPan ) {
 
-        _panEnd = getMouseOnScreen( event.clientX, event.clientY );
+        _panEnd = getMouseOnScreen( event.client.x, event.client.y );
 
       }
 

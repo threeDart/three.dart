@@ -1870,7 +1870,7 @@ class Uniform<T> {
 
   T get value => _value;
   set value(v) {
-     if (type == "f" && !(v is double)) {
+     if (type == "f") {
        v = v.toDouble();
      }
     _dirty = true;
@@ -1965,11 +1965,9 @@ class Uniform<T> {
 
     } else if ( type == "m4v" ) { // array of THREE.Matrix4
 
-      List<Matrix4> values = _value;
-
       var lst = [];
 
-      values.forEach((m) { lst.addAll(m.storage); });
+      (_value as List<Matrix4>).forEach((m) { lst.addAll(m.storage); });
       _array = new Float32List.fromList(lst);
 
     } else {
@@ -1993,7 +1991,7 @@ class Uniform<T> {
 
     } else if ( value is List ) {
 
-      dst = new List.from(value);
+      dst = new List.from(value as List);
 
     } else {
 
@@ -2004,30 +2002,30 @@ class Uniform<T> {
     return new Uniform( type, dst);
   }
 
-  factory Uniform.color(num hex) => new Uniform<Color>("c", new Color(hex));
+  static color(num hex) => new Uniform<Color>("c", new Color(hex));
 
-  factory Uniform.float([double v]) => new Uniform<double>("f", v);
-  factory Uniform.floatv(List<double> v) => new Uniform<List<double>>("fv", v);
-  factory Uniform.floatv1(List<double> v) => new Uniform<List<double>>("fv1", v);
+  static float([double v]) => new Uniform<double>("f", v);
+  static floatv(List<double> v) => new Uniform<List<double>>("fv", v);
+  static floatv1(List<double> v) => new Uniform<List<double>>("fv1", v);
 
-  factory Uniform.int([int v]) => new Uniform<int>("i", v);
-  factory Uniform.intv(List<int> v) => new Uniform<List<int>>("iv", v);
-  factory Uniform.intv1(List<int> v) => new Uniform<List<int>>("iv1", v);
+  static fromInt([int v]) => new Uniform<int>("i", v);
+  static fromIntv(List<int> v) => new Uniform<List<int>>("iv", v);
+  static fromIntv1(List<int> v) => new Uniform<List<int>>("iv1", v);
 
-  factory Uniform.texture([Texture texture]) => new Uniform<Texture>("t", texture);
-  factory Uniform.texturev([List<Texture> textures]) => new Uniform<List<Texture>>("tv", textures);
+  static texture([Texture texture]) => new Uniform<Texture>("t", texture);
+  static texturev([List<Texture> textures]) => new Uniform<List<Texture>>("tv", textures);
 
-  factory Uniform.vector2v(List<Vector2> vectors) => new Uniform<List<Vector2>>("v2v", vectors);
+  static vector2v(List<Vector2> vectors) => new Uniform<List<Vector2>>("v2v", vectors);
 
-  factory Uniform.vector2(double x, double y) => new Uniform<Vector2>("v2", new Vector2(x, y));
-  factory Uniform.vector3(double x, double y, double z) => new Uniform<Vector3>("v3", new Vector3(x, y, z));
-  factory Uniform.vector4(double x, double y, num z, double w) => new Uniform<Vector4>("v4", new Vector4(x, y, z, w));
+  static vector2(double x, double y) => new Uniform<Vector2>("v2", new Vector2(x, y));
+  static vector3(double x, double y, double z) => new Uniform<Vector3>("v3", new Vector3(x, y, z));
+  static vector4(double x, double y, num z, double w) => new Uniform<Vector4>("v4", new Vector4(x, y, z, w));
 
-  factory Uniform.matrix2(Matrix2 m) => new Uniform<Matrix2>("m2", m);
-  factory Uniform.matrix3(Matrix3 m) => new Uniform<Matrix3>("m3", m);
-  factory Uniform.matrix4(Matrix4 m) => new Uniform<Matrix4>("m4", m);
+  static matrix2(Matrix2 m) => new Uniform<Matrix2>("m2", m);
+  static matrix3(Matrix3 m) => new Uniform<Matrix3>("m3", m);
+  static matrix4(Matrix4 m) => new Uniform<Matrix4>("m4", m);
 
-  factory Uniform.matrix4v(List<Matrix4> m) => new Uniform<List<Matrix4>>("m4v", m);
+  static matrix4v(List<Matrix4> m) => new Uniform<List<Matrix4>>("m4v", m);
 }
 
 var __UniformsLib;
@@ -2037,97 +2035,97 @@ get UniformsLib {
     __UniformsLib = {
   "common": {
 
-    "diffuse" : new Uniform.color(0xeeeeee),
-    "opacity" : new Uniform.float(1.0),
+    "diffuse" : Uniform.color(0xeeeeee),
+    "opacity" : Uniform.float(1.0),
 
-    "map" : new Uniform.texture(),
-    "offsetRepeat" : new Uniform.vector4(0.0, 0.0, 1.0, 1.0),
+    "map" : Uniform.texture(),
+    "offsetRepeat" : Uniform.vector4(0.0, 0.0, 1.0, 1.0),
 
-    "lightMap" : new Uniform.texture(),
-    "specularMap" : new Uniform.texture(),
+    "lightMap" : Uniform.texture(),
+    "specularMap" : Uniform.texture(),
 
-    "envMap" : new Uniform.texture(),
-    "flipEnvMap" : new Uniform.float(-1.0),
-    "useRefract" : new Uniform.int(0),
-    "reflectivity" : new Uniform.float(1.0),
-    "refractionRatio" : new Uniform.float(0.98),
-    "combine" : new Uniform.int(0),
+    "envMap" : Uniform.texture(),
+    "flipEnvMap" : Uniform.float(-1.0),
+    "useRefract" : Uniform.fromInt(0),
+    "reflectivity" : Uniform.float(1.0),
+    "refractionRatio" : Uniform.float(0.98),
+    "combine" : Uniform.fromInt(0),
 
-    "morphTargetInfluences" : new Uniform.float(0.0)
+    "morphTargetInfluences" : Uniform.float(0.0)
 
   },
 
   "bump": {
 
-    "bumpMap" : new Uniform.texture(),
-    "bumpScale" : new Uniform.float(1.0)
+    "bumpMap" : Uniform.texture(),
+    "bumpScale" : Uniform.float(1.0)
 
   },
 
   "normalmap": {
 
-    "normalMap" : new Uniform.texture(),
-    "normalScale" : new Uniform.vector2(1.0, 1.0)
+    "normalMap" : Uniform.texture(),
+    "normalScale" : Uniform.vector2(1.0, 1.0)
 
   },
 
   "fog" : {
 
-    "fogDensity" : new Uniform.float(0.00025),
-    "fogNear" : new Uniform.float(1.0),
-    "fogFar" : new Uniform.float(2000.0),
-    "fogColor" : new Uniform.color(0xffffff)
+    "fogDensity" : Uniform.float(0.00025),
+    "fogNear" : Uniform.float(1.0),
+    "fogFar" : Uniform.float(2000.0),
+    "fogColor" : Uniform.color(0xffffff)
 
   },
 
   "lights": {
 
-    "ambientLightColor" : new Uniform.floatv([]),
+    "ambientLightColor" : Uniform.floatv([]),
 
-    "directionalLightDirection" : new Uniform.floatv([]),
-    "directionalLightColor" : new Uniform.floatv([]),
+    "directionalLightDirection" : Uniform.floatv([]),
+    "directionalLightColor" : Uniform.floatv([]),
 
-    "hemisphereLightDirection" : new Uniform.floatv([]),
-    "hemisphereLightSkyColor" : new Uniform.floatv([]),
-    "hemisphereLightGroundColor" : new Uniform.floatv([]),
+    "hemisphereLightDirection" : Uniform.floatv([]),
+    "hemisphereLightSkyColor" : Uniform.floatv([]),
+    "hemisphereLightGroundColor" : Uniform.floatv([]),
 
-    "pointLightColor" : new Uniform.floatv([]),
-    "pointLightPosition" : new Uniform.floatv([]),
-    "pointLightDistance" : new Uniform.floatv1([]),
+    "pointLightColor" : Uniform.floatv([]),
+    "pointLightPosition" : Uniform.floatv([]),
+    "pointLightDistance" : Uniform.floatv1([]),
 
-    "spotLightColor" : new Uniform.floatv([]),
-    "spotLightPosition" : new Uniform.floatv([]),
-    "spotLightDirection" : new Uniform.floatv([]),
-    "spotLightDistance" : new Uniform.floatv1([]),
-    "spotLightAngleCos" : new Uniform.floatv1([]),
-    "spotLightExponent" : new Uniform.floatv1([])
+    "spotLightColor" : Uniform.floatv([]),
+    "spotLightPosition" : Uniform.floatv([]),
+    "spotLightDirection" : Uniform.floatv([]),
+    "spotLightDistance" : Uniform.floatv1([]),
+    "spotLightAngleCos" : Uniform.floatv1([]),
+    "spotLightExponent" : Uniform.floatv1([])
 
   },
 
   "particle": {
 
-    "psColor" : new Uniform.color(0xeeeeee),
-    "opacity" : new Uniform.float(1.0),
-    "size" : new Uniform.float(1.0),
-    "scale" : new Uniform.float(1.0),
-    "map" : new Uniform.texture(),
+    "psColor" : Uniform.color(0xeeeeee),
+    "opacity" : Uniform.float(1.0),
+    "size" : Uniform.float(1.0),
+    "scale" : Uniform.float(1.0),
+    "map" : Uniform.texture(),
 
-    "fogDensity" : new Uniform.float(0.00025),
-    "fogNear" : new Uniform.float(1.0),
-    "fogFar" : new Uniform.float(2000.0),
-    "fogColor" : new Uniform.color(0xffffff)
+    "fogDensity" : Uniform.float(0.00025),
+    "fogNear" : Uniform.float(1.0),
+    "fogFar" : Uniform.float(2000.0),
+    "fogColor" : Uniform.color(0xffffff)
 
   },
 
   "shadowmap": {
 
-    "shadowMap": new Uniform.texturev([]),
-    "shadowMapSize": new Uniform.vector2v([]),
+    "shadowMap": Uniform.texturev([]),
+    "shadowMapSize": Uniform.vector2v([]),
 
-    "shadowBias" : new Uniform.floatv1([]),
-    "shadowDarkness": new Uniform.floatv1([]),
+    "shadowBias" : Uniform.floatv1([]),
+    "shadowDarkness": Uniform.floatv1([]),
 
-    "shadowMatrix" : new Uniform.matrix4v([]),
+    "shadowMatrix" : Uniform.matrix4v([]),
 
   }
 };
@@ -2146,9 +2144,9 @@ get ShaderLib  {
 
     'uniforms': {
 
-      "mNear": new Uniform.float(1.0),
-      "mFar" :  new Uniform.float(2000.0),
-      "opacity" :  new Uniform.float(1.0)
+      "mNear": Uniform.float(1.0),
+      "mFar" :  Uniform.float(2000.0),
+      "opacity" :  Uniform.float(1.0)
 
     },
 
@@ -2184,7 +2182,7 @@ get ShaderLib  {
 
     'uniforms': {
 
-      "opacity" : new Uniform.float(1.0)
+      "opacity" : Uniform.float(1.0)
 
     },
 
@@ -2305,9 +2303,9 @@ get ShaderLib  {
       UniformsLib[ "shadowmap" ],
 
       {
-        "ambient"  : new Uniform.color(0xffffff),
-        "emissive" : new Uniform.color(0x000000),
-        "wrapRGB"  : new Uniform.vector3(1.0, 1.0, 1.0)
+        "ambient"  : Uniform.color(0xffffff),
+        "emissive" : Uniform.color(0x000000),
+        "wrapRGB"  : Uniform.vector3(1.0, 1.0, 1.0)
       }
 
     ] ),
@@ -2428,11 +2426,11 @@ get ShaderLib  {
       UniformsLib[ "shadowmap" ],
 
       {
-        "ambient"  : new Uniform.color(0xffffff),
-        "emissive" : new Uniform.color(0x000000),
-        "specular" : new Uniform.color(0x111111),
-        "shininess": new Uniform.float(30.0),
-        "wrapRGB"  : new Uniform.vector3(1.0, 1.0, 1.0)
+        "ambient"  : Uniform.color(0xffffff),
+        "emissive" : Uniform.color(0x000000),
+        "specular" : Uniform.color(0x111111),
+        "shininess": Uniform.float(30.0),
+        "wrapRGB"  : Uniform.vector3(1.0, 1.0, 1.0)
       }
 
     ] ),
@@ -2598,9 +2596,9 @@ get ShaderLib  {
       UniformsLib[ "fog" ],
 
       {
-        "scale": new Uniform.float(1.0),
-        "dashSize": new Uniform.float(1.0),
-        "totalSize": new Uniform.float(2.0)
+        "scale": Uniform.float(1.0),
+        "dashSize": Uniform.float(1.0),
+        "totalSize": Uniform.float(2.0)
       }
 
     ] ),

@@ -67,7 +67,7 @@ class Canvas_Geometry_Cube {
       materials.add( new MeshBasicMaterial( color: rnd.nextDouble() * 0xffffff ) );
     }
 
-    cube = new Mesh( new CubeGeometry( 200.0, 200.0, 200.0, 1, 1, 1, materials ), new MeshFaceMaterial());// { 'overdraw' : true }) );
+    cube = new Mesh( new CubeGeometry( 200.0, 200.0, 200.0, 1, 1, 1, materials ), new MeshFaceMaterial(materials));// { 'overdraw' : true }) );
     cube.position.y = 150.0;
     //cube.overdraw = true; //TODO where is this prop?
     scene.add( cube );
@@ -103,14 +103,14 @@ class Canvas_Geometry_Cube {
       document.onMouseOut.listen(onDocumentMouseOut)
       ];
 
-    mouseXOnMouseDown = event.clientX - windowHalfX;
+    mouseXOnMouseDown = event.client.x - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
 
     print('onMouseDown mouseX = $mouseXOnMouseDown targRot = $targetRotationOnMouseDown');
   }
 
   void onDocumentMouseMove( event ) {
-    mouseX = event.clientX - windowHalfX;
+    mouseX = event.client.x - windowHalfX;
 
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 
@@ -134,7 +134,7 @@ class Canvas_Geometry_Cube {
     if ( event.touches.length == 1 ) {
       event.preventDefault();
 
-      mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+      mouseXOnMouseDown = event.touches[ 0 ].page.x - windowHalfX;
       targetRotationOnMouseDown = targetRotation;
     }
   }
@@ -143,7 +143,7 @@ class Canvas_Geometry_Cube {
     if ( event.touches.length == 1 ) {
       event.preventDefault();
 
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
+      mouseX = event.touches[ 0 ].page.x - windowHalfX;
       targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
     }
   }

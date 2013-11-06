@@ -1,13 +1,11 @@
 import 'dart:html';
 import "dart:async";
 import 'dart:math' as Math;
-import 'dart:json' as JSON;
+import 'dart:convert' show JSON;
 import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
-import 'package:three/extras/image_utils.dart' as ImageUtils; // TODO - Use Re-export
 import 'package:three/extras/font_utils.dart' as FontUtils;
 import 'package:three/extras/geometry_utils.dart' as GeometryUtils;
-import 'package:three/extras/scene_utils.dart' as SceneUtils;
 
 class WebGL_Geometry_Text  {
 
@@ -90,7 +88,7 @@ class WebGL_Geometry_Text  {
   Future loadFonts() => Future.wait(
       ["fonts/helvetiker_regular.json"]
       .map((path) => HttpRequest.getString(path).then((data) {
-        FontUtils.loadFace(JSON.parse(data));
+        FontUtils.loadFace(JSON.decode(data));
       })));
 
   void run() {

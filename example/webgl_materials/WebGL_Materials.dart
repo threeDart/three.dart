@@ -157,11 +157,11 @@ class WebGL_Material {
 
   generateTexture() {
 
-    var canvas = new CanvasElement();
+    CanvasElement canvas = new CanvasElement();
     canvas.width = 256;
     canvas.height = 256;
 
-    var context = canvas.context2d;
+    CanvasRenderingContext2D context = canvas.getContext("2d");
     var image = context.getImageData( 0, 0, 256, 256 );
 
     var x = 0, y = 0;

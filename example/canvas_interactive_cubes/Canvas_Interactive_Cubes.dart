@@ -106,7 +106,7 @@ class Canvas_Interactive_Cubes {
   void onDocumentMouseDown( event ) {
     event.preventDefault();
 
-    Vector3 vector = new Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+    Vector3 vector = new Vector3( ( event.client.x / window.innerWidth ) * 2 - 1, - ( event.client.y / window.innerHeight ) * 2 + 1, 0.5 );
     projector.unprojectVector( vector, camera );
 
     Ray ray = new Ray( camera.position, vector.sub( camera.position ).normalize() );

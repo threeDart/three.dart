@@ -65,7 +65,7 @@ class WebGLRenderer implements Renderer {
 
 	/** Internal properties **/
 
-	List _programs;
+	List<Program> _programs;
 	int _programs_counter;
 
 	// internal state cache
@@ -688,14 +688,15 @@ class WebGLRenderer implements Renderer {
 		// assumed there is only single copy of any program in the _programs list
 		// (that's how it's constructed)
 
-		var i, il, programInfo;
+		var i, il;
+		Program programInfo;
 		var deleteProgram = false;
 
 		for ( var i = 0, il = _programs.length; i < il; i ++ ) {
 
 			programInfo = _programs[ i ];
 
-			if ( programInfo.program == program ) {
+			if ( programInfo.glProgram == program ) {
 
 				programInfo.usedTimes --;
 
@@ -721,7 +722,7 @@ class WebGLRenderer implements Renderer {
 
 				programInfo = _programs[ i ];
 
-				if ( programInfo.program != program ) {
+				if ( programInfo.glProgram != program ) {
 
 					newPrograms.add( programInfo );
 
@@ -3436,7 +3437,7 @@ class WebGLRenderer implements Renderer {
 
 						var normal = geometry.attributes[ "normal" ];
 
-						if ( attributes["normal"] >= 0 && normal ) {
+						if ( attributes["normal"] >= 0 && normal != null) {
 
 							var normalSize = normal.itemSize;
 
@@ -3450,7 +3451,7 @@ class WebGLRenderer implements Renderer {
 
 						var uv = geometry.attributes[ "uv" ];
 
-						if ( attributes["uv"] >= 0 && uv ) {
+						if ( attributes["uv"] >= 0 && uv != null ) {
 
 							var uvSize = uv.itemSize;
 
@@ -3464,7 +3465,7 @@ class WebGLRenderer implements Renderer {
 
 						var color = geometry.attributes[ "color" ];
 
-						if ( attributes["color"] >= 0 && color ) {
+						if ( attributes["color"] >= 0 && color != null ) {
 
 							var colorSize = color.itemSize;
 
@@ -3478,7 +3479,7 @@ class WebGLRenderer implements Renderer {
 
 						var tangent = geometry.attributes[ "tangent" ];
 
-						if ( attributes["tangent"] >= 0 && tangent ) {
+						if ( attributes["tangent"] >= 0 && tangent != null ) {
 
 							var tangentSize = tangent.itemSize;
 
@@ -5015,9 +5016,9 @@ class WebGLRenderer implements Renderer {
 
 			skinning: material.skinning,
 			maxBones: maxBones,
-			useVertexTexture: supportsBoneTextures && (object != null) && (object is SkinnedMesh) && (object as SkinnedMesh).useVertexTexture,
-			boneTextureWidth: ((object != null) && (object is SkinnedMesh)) ? (object as SkinnedMesh).boneTextureWidth : null,
-			boneTextureHeight: ((object != null) && (object is SkinnedMesh)) ? (object as SkinnedMesh).boneTextureHeight : null,
+			useVertexTexture: supportsBoneTextures && object != null && object is SkinnedMesh && object.useVertexTexture,
+			boneTextureWidth: (object != null && object is SkinnedMesh) ? object.boneTextureWidth : null,
+			boneTextureHeight: (object != null && object is SkinnedMesh) ? object.boneTextureHeight : null,
 
 			morphTargets: material.morphTargets,
 			morphNormals: material.morphNormals,
@@ -7068,7 +7069,7 @@ class WebGLRenderer implements Renderer {
 
 				renderTarget.__webglFramebuffer = _gl.createFramebuffer();
 
-				if ( renderTarget.shareDepthFrom ) {
+				if ( renderTarget.shareDepthFrom != null ) {
 
 					renderTarget.__webglRenderbuffer = renderTarget.shareDepthFrom.__webglRenderbuffer;
 
@@ -7085,7 +7086,7 @@ class WebGLRenderer implements Renderer {
 
 				setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, gl.TEXTURE_2D );
 
-				if ( renderTarget.shareDepthFrom ) {
+				if ( renderTarget.shareDepthFrom != null) {
 
 					if ( renderTarget.depthBuffer && ! renderTarget.stencilBuffer ) {
 
@@ -7269,7 +7270,7 @@ class WebGLRenderer implements Renderer {
 
 	int allocateBones ( Object3D object ) {
 
-		if ( supportsBoneTextures && (object != null) && (object is SkinnedMesh) && (object as SkinnedMesh).useVertexTexture ) {
+		if ( supportsBoneTextures && (object != null) && object is SkinnedMesh && object.useVertexTexture ) {
 
 			return 1024;
 
@@ -7478,14 +7479,14 @@ class Program {
 }
 
 class Buffer {
-  gl.RenderingContext gl;
+  gl.RenderingContext context;
   gl.Buffer _glbuffer;
   String belongsToAttribute;
-  Buffer(this.gl) {
-    _glbuffer = gl.createBuffer();
+  Buffer(this.context) {
+    _glbuffer = context.createBuffer();
   }
   bind(target) {
-    gl.bindBuffer( target, _glbuffer );
+    context.bindBuffer( target, _glbuffer );
   }
 }
 

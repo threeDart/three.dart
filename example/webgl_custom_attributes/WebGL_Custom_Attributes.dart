@@ -40,9 +40,9 @@ class WebGL_Custom_Attributes  {
     displacement = new Attribute.float();
     attributes = {"displacement": displacement};
 
-    amplitude = new Uniform.float(1.0);
-    color = new Uniform.color( 0xff2200 );
-    texture = new Uniform.texture(ImageUtils.loadTexture("textures/water.jpg"));
+    amplitude = Uniform.float(1.0);
+    color = Uniform.color( 0xff2200 );
+    texture = Uniform.texture(ImageUtils.loadTexture("textures/water.jpg"));
 
     uniforms = {"amplitude": amplitude,
                 "color": color,

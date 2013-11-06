@@ -13,9 +13,7 @@ import 'package:vector_math/vector_math.dart';
 
 // TODO - Use M1 Re-export ( see: http://code.google.com/p/dart/issues/detail?id=760)
 import 'extras/image_utils.dart' as ImageUtils;
-import 'extras/scene_utils.dart' as SceneUtils;
 import 'extras/font_utils.dart' as FontUtils;
-import 'extras/geometry_utils.dart' as GeometryUtils;
 import 'extras/shader_utils.dart' as ShaderUtils;
 
 import 'extras/core/curve_utils.dart' as CurveUtils;

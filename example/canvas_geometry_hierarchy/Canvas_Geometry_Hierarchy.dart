@@ -77,8 +77,8 @@ class Canvas_Geometry_Hierarchy {
   }
 
   void onDocumentMouseMove(event) {
-    mouseX = ( event.clientX - windowHalfX ) * 10;
-    mouseY = ( event.clientY - windowHalfY ) * 10;
+    mouseX = ( event.client.x - windowHalfX ) * 10;
+    mouseY = ( event.client.y - windowHalfY ) * 10;
   }
 
   void animate(num time) {
