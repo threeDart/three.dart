@@ -21,7 +21,7 @@ class WebGL_BufferGeometry {
 
   void init() {
 
-    container = document.query( '#container' );
+    container = document.querySelector( '#container' );
 
     camera = new PerspectiveCamera( 20.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 )
     ..position.z = 1800.0;

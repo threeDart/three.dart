@@ -20,7 +20,7 @@ class WebGL_MorphTargets  {
   void init() {
 
     var idx = 0;
-    queryAll("input[type='range']").forEach((InputElement input) {
+    querySelectorAll("input[type='range']").forEach((InputElement input) {
       var n = idx++;
       input.onChange.listen((_) => mesh.morphTargetInfluences[ n ] = input.valueAsNumber / 100 );
     });

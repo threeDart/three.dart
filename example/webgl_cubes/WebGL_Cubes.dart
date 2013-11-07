@@ -57,7 +57,7 @@ class WebGL_Cubes  {
 
   void init() {
 
-    container = document.query( '#container' );
+    container = document.querySelector( '#container' );
 
     camera = new PerspectiveCamera( 37.0, window.innerWidth / window.innerHeight, 1.0, 8000.0 )
     ..position.z = 2750.0
@@ -135,8 +135,8 @@ class WebGL_Cubes  {
 
     var material = new ShaderMaterial(
       uniforms: uniforms,
-      vertexShader: document.query( '#vertexShader' ).text,
-      fragmentShader: document.query( '#fragmentShader' ).text,
+      vertexShader: document.querySelector( '#vertexShader' ).text,
+      fragmentShader: document.querySelector( '#fragmentShader' ).text,
       vertexColors: VertexColors
     );
 

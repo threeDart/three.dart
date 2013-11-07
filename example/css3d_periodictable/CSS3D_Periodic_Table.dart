@@ -143,7 +143,7 @@ init() {
   ..setSize( window.innerWidth, window.innerHeight )
   ..domElement.style.position = 'absolute'
   ..domElement.style.top = "0";
-  document.query( '#container' ).children.add( renderer.domElement );
+  document.querySelector( '#container' ).children.add( renderer.domElement );
 
   //
 
@@ -151,13 +151,13 @@ init() {
   ..rotateSpeed = 0.5
   ..addEventListener( 'change', (_) => render() );
 
-  document.query( '#table' ).onClick.listen((e) => transform( e.target, targets["table"], 2000 ));
+  document.querySelector( '#table' ).onClick.listen((e) => transform( e.target, targets["table"], 2000 ));
 
-  document.query( '#sphere' ).onClick.listen((e) => transform( e.target, targets["sphere"], 2000 ));
+  document.querySelector( '#sphere' ).onClick.listen((e) => transform( e.target, targets["sphere"], 2000 ));
 
-  document.query( '#helix' ).onClick.listen((e) => transform( e.target, targets["helix"], 2000 ));
+  document.querySelector( '#helix' ).onClick.listen((e) => transform( e.target, targets["helix"], 2000 ));
 
-  document.query( '#grid' ).onClick.listen((e) => transform( e.target, targets["grid"], 2000 ));
+  document.querySelector( '#grid' ).onClick.listen((e) => transform( e.target, targets["grid"], 2000 ));
 
   transform( window, targets["table"], 5000 );
 

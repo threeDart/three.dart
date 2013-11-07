@@ -53,8 +53,8 @@ class WebGL_Custom_Attributes  {
     var shaderMaterial = new ShaderMaterial(
       uniforms: uniforms,
       attributes: attributes,
-      vertexShader: document.query( '#vertexshader' ).text,
-      fragmentShader: document.query( '#fragmentshader' ).text);
+      vertexShader: document.querySelector( '#vertexshader' ).text,
+      fragmentShader: document.querySelector( '#fragmentshader' ).text);
 
     var radius = 50.0,
         segments = 128,
@@ -74,7 +74,7 @@ class WebGL_Custom_Attributes  {
     renderer = new WebGLRenderer( clearColorHex: 0x050505, clearAlpha: 1 )
     ..setSize( WIDTH, HEIGHT );
 
-    Element container = document.query( '#container' )
+    Element container = document.querySelector( '#container' )
     ..children.add( renderer.domElement );
 
     window.onResize.listen( onWindowResize );
