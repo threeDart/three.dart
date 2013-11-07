@@ -161,7 +161,7 @@ class WebGL_Material {
     canvas.width = 256;
     canvas.height = 256;
 
-    var context = canvas.context2d;
+    var context = canvas.context2D;
     var image = context.getImageData( 0, 0, 256, 256 );
 
     var x = 0, y = 0;
