@@ -3,7 +3,7 @@ library hop_runner;
 import 'package:hop/hop.dart';
 import 'package:hop/hop_tasks.dart';
 
-void main() {
+void main(List<String> args) {
   //
   // Analyzer
   //
@@ -29,5 +29,5 @@ void main() {
   //
   // Hop away!
   //
-  runHop();
+  runHop(args);
 }
