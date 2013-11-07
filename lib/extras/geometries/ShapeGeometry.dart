@@ -61,7 +61,7 @@ class ShapeGeometry extends Geometry {
 
     var i, hole, s;
 
-    var shapesOffset = vertices.length;
+    var shapesOffset = this.vertices.length;
     var shapePoints = shape.extractPoints( curveSegments );
 
     List vertices = shapePoints["shape"];
