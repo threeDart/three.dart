@@ -507,6 +507,10 @@ class BufferGeometry implements Geometry {
   GeometryAttribute<Float32List> get aColor => attributes[GeometryAttribute.COLOR];
   set aColor(a){ attributes[GeometryAttribute.COLOR] = a; }
 
+  noSuchMethod(Invocation invocation) {
+    throw new Exception('Unimplemented ${invocation.memberName}');
+  }
+
 	 // Quick hack to allow setting new properties (used by the renderer)
   Map __data;
 
