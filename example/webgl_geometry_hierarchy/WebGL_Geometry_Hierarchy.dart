@@ -82,8 +82,8 @@ class WebGL_Geometry_Hierarchy  {
   }
 
   onDocumentMouseMove(MouseEvent event) {
-    mouseX = ( event.clientX - windowHalfX ) * 10;
-    mouseY = ( event.clientY - windowHalfY ) * 10;
+    mouseX = ( event.client.x - windowHalfX ) * 10;
+    mouseY = ( event.client.y - windowHalfY ) * 10;
   }
 
   animate(num time) {
