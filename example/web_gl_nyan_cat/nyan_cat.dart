@@ -356,8 +356,8 @@ buildStar(star, state) {
   }
 }
 onDocumentMouseMove(event){
-  mouseX = ( event.clientX - windowHalfX );
-  mouseY = ( event.clientY - windowHalfY );
+  mouseX = ( event.client.x - windowHalfX );
+  mouseY = ( event.client.y - windowHalfY );
 }
 
 onDocumentMouseDown(event){

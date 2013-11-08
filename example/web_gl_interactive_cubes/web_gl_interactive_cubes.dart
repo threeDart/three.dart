@@ -91,8 +91,8 @@ onDocumentMouseMove( event ) {
 
   event.preventDefault();
 
-  mouseX = ( event.clientX / window.innerWidth ) * 2 - 1;
-  mouseY = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  mouseX = ( event.client.x / window.innerWidth ) * 2 - 1;
+  mouseY = - ( event.client.y / window.innerHeight ) * 2 + 1;
 
 }
 

@@ -321,14 +321,14 @@ onDocumentMouseDown( event ) {
     document.onMouseUp.listen( onDocumentMouseUp ),
     document.onMouseOut.listen( onDocumentMouseOut )];
 
-  mouseXOnMouseDown = event.clientX - windowHalfX;
+  mouseXOnMouseDown = event.client.x - windowHalfX;
   targetRotationOnMouseDown = targetRotation;
 
 }
 
 onDocumentMouseMove( event ) {
 
-  mouseX = event.clientX - windowHalfX;
+  mouseX = event.client.x - windowHalfX;
 
   targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 
