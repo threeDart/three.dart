@@ -3,7 +3,7 @@
  **************************************************************/
 library ShapeUtils;
 
-import "package:three/three.dart";
+import "package:vector_math/vector_math.dart";
 import 'package:three/extras/font_utils.dart' as FontUtils;
 
 /*
@@ -59,7 +59,8 @@ removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
       for ( p = 0; p < shape.length; p++ ) {
 
         pts2 = shape[ p ];
-        d = pts1.distanceToSquared( pts2 );
+        d = (pts1 - pts2).length2;
+
         dist.add( d );
 
         if ( d < shortest ) {
@@ -160,8 +161,8 @@ removeHoles( List<Vector2> contour, List<List<Vector2>>holes ) {
     }
 
     tmpShape1 = shape.getRange( 0, shapeIndex );
-    tmpShape2 = shape.getRange( shapeIndex, shape.length - shapeIndex );
-    tmpHole1 = hole.getRange( holeIndex, hole.length - holeIndex );
+    tmpShape2 = shape.getRange( shapeIndex, shape.length );
+    tmpHole1 = hole.getRange( holeIndex, hole.length );
     tmpHole2 = hole.getRange( 0, holeIndex );
 
     // Should check orders here again?

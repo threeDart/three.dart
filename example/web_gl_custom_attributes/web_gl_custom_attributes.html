@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>WebGL - Performance</title>
+  <style>
+    body {
+        color: #ffffff;
+        font-family:Monospace;
+        font-size:13px;
+        text-align:center;
+        font-weight: bold;
+
+        background-color: #000000;
+        margin: 0px;
+        overflow: hidden;
+    }
+    #info {
+      color: #fff;
+      position: absolute;
+      top: 0px; width: 100%;
+      padding: 5px;
+      z-index:100;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="info"><a href="http://threedart.github.io/three.dart/" target="_blank">three.dart</a> - custom attributes example</div>
+    <div id="container"></div>
+    <script type="x-shader/x-vertex" id="vertexshader">
+
+      uniform float amplitude;
+
+      attribute float displacement;
+
+      varying vec3 vNormal;
+      varying vec2 vUv;
+
+      void main() {
+
+        vNormal = normal;
+        vUv = ( 0.5 + amplitude ) * uv + vec2( amplitude );
+
+        vec3 newPosition = position + amplitude * normal * vec3( displacement );
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+
+      }
+
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentshader">
+
+      varying vec3 vNormal;
+      varying vec2 vUv;
+
+      uniform vec3 color;
+      uniform sampler2D texture;
+
+      void main() {
+
+        vec3 light = vec3( 0.5, 0.2, 1.0 );
+        light = normalize( light );
+
+        float dProd = dot( vNormal, light ) * 0.5 + 0.5;
+
+        vec4 tcolor = texture2D( texture, vUv );
+        vec4 gray = vec4( vec3( tcolor.r * 0.3 + tcolor.g * 0.59 + tcolor.b * 0.11 ), 1.0 );
+
+        gl_FragColor = gray * vec4( vec3( dProd ) * vec3( color ), 1.0 );
+
+      }
+
+    </script>
+    <script type="application/dart" src="web_gl_custom_attributes.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>

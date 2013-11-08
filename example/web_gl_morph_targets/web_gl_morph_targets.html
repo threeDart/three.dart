@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>WebGL_MorphTargets</title>
+    <style>
+      body {
+        background:#000;
+        color:#fff;
+        padding:0;
+        margin:0;
+        font-weight: bold;
+        overflow:hidden;
+      }
+
+      #info {
+        position: absolute;
+        top: 0px; width: 100%;
+        color: #ffffff;
+        padding: 5px;
+        font-family: Monospace;
+        font-size: 13px;
+        text-align: center;
+        z-index:100;
+      }
+
+      #ctrl {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 200px;
+        color: #ffffff;
+        padding: 5px;
+        font-family: Monospace;
+        font-size: 13px;
+        z-index:100;
+      }
+
+
+      a { color:red }
+
+    </style>
+  </head>
+ 
+  <body>   
+    <div id="ctrl">
+      Use controls to change morph target influences:<br/>
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+      <input type="range" value="0" min="0" max="100" />
+    </div>
+    <script type="application/dart" src="web_gl_morph_targets.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>

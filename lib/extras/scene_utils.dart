@@ -1,5 +1,6 @@
 library SceneUtils;
 
+import 'package:vector_math/vector_math.dart';
 import "package:three/three.dart";
 
 showHierarchy( root, visible ) => traverseHierarchy( root, (node) => node.visible = visible);
@@ -11,7 +12,7 @@ void traverseHierarchy( root, callback(node) ) {
   });
 }
 
-Object3D createMultiMaterialObject( geometry, materials ) {
+Object3D createMultiMaterialObject( Geometry geometry, materials ) {
   var group = new Object3D();
 
   materials.forEach((material) {
@@ -82,12 +83,12 @@ cloneObject(Object3D source) {
     (object as Sprite).scaleByViewport = source.scaleByViewport;
     (object as Sprite).alignment = source.alignment;
 
-    (object as Sprite).rotation3d.copy( source.rotation3d );
+    (object as Sprite).rotation3d.setFrom(source.rotation3d);
     object.rotation = source.rotation;
     (object as Sprite).opacity = source.opacity;
 
-    (object as Sprite).uvOffset.copy( source.uvOffset );
-    (object as Sprite).uvScale.copy( source.uvScale);
+    (object as Sprite).uvOffset.setFrom(source.uvOffset);
+    (object as Sprite).uvScale.setFrom(source.uvScale);
 
   } else if ( source is LOD ) {
 
@@ -113,19 +114,19 @@ cloneObject(Object3D source) {
 
   object.parent = source.parent;
 
-  object.up.copy( source.up );
+  object.up.setFrom(source.up);
 
-  object.position.copy( source.position );
+  object.position.setFrom(source.position);
 
   // because of Sprite madness
 
   if ( object.rotation is Vector3 ) {
-    object.rotation.copy( source.rotation );
+    object.rotation.setFrom(source.rotation);
   }
 
   object.eulerOrder = source.eulerOrder;
 
-  object.scale.copy( source.scale );
+  object.scale.setFrom(source.scale);
 
   object.isDynamic = source.isDynamic;
 
@@ -133,9 +134,9 @@ cloneObject(Object3D source) {
 
   object.rotationAutoUpdate = source.rotationAutoUpdate;
 
-  object.matrix.copy( source.matrix );
-  object.matrixWorld.copy( source.matrixWorld );
-  object.matrixRotationWorld.copy( source.matrixRotationWorld );
+  object.matrix = source.matrix.clone();
+  object.matrixWorld = source.matrixWorld.clone();
+  object.matrixRotationWorld = source.matrixRotationWorld.clone();
 
   object.matrixAutoUpdate = source.matrixAutoUpdate;
   object.matrixWorldNeedsUpdate = source.matrixWorldNeedsUpdate;
@@ -190,8 +191,8 @@ detach( child, parent, scene ) {
 
 attach( child, scene, parent ) {
 
-  var matrixWorldInverse = new Matrix4();
-  matrixWorldInverse.getInverse( parent.matrixWorld );
+  Matrix4 matrixWorldInverse = parent.matrixWorld.clone();
+  matrixWorldInverse.invert();
   child.applyMatrix( matrixWorldInverse );
 
   scene.remove( child );
