@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>WebGL_Cubes</title>
+    <style>
+      body {
+        color: #fff;
+        font-family:Monospace;
+        font-size:13px;
+        text-align:center;
+
+        background-color: #050505;
+        margin: 0px;
+        overflow: hidden;
+      }
+
+      #info {
+        position: absolute;
+        top: 0px; width: 100%;
+        padding: 5px;
+      }
+
+      a {
+
+        color: #ff0000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p id="text"></p>
+    <div id="container"></div>
+    <div id="info"><a href="http://threedart.github.com/three.dart/" target="_blank">three.dart</a> webgl - 150,000 cubes animated on GPU (1.8M triangles)</div>
+    <script type="application/dart" src="web_gl_cubes.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+    <script type="x-shader/x-vertex" id="vertexShader">
+
+      uniform float amplitude;
+
+      varying vec3 vViewPosition;
+      varying vec3 vNormal;
+
+      vec3 rotateVectorByQuaternion( vec3 v, vec4 q ) {
+
+        vec3 dest = vec3( 0.0 );
+
+        float x = v.x, y  = v.y, z  = v.z;
+        float qx = q.x, qy = q.y, qz = q.z, qw = q.w;
+
+        // calculate quaternion * vector
+
+        float ix =  qw * x + qy * z - qz * y,
+            iy =  qw * y + qz * x - qx * z,
+            iz =  qw * z + qx * y - qy * x,
+            iw = -qx * x - qy * y - qz * z;
+
+        // calculate result * inverse quaternion
+
+        dest.x = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+        dest.y = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+        dest.z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+
+        return dest;
+
+      }
+
+      vec4 axisAngleToQuaternion( vec3 axis, float angle ) {
+
+        vec4 dest = vec4( 0.0 );
+
+        float halfAngle = angle / 2.0,
+            s = sin( halfAngle );
+
+        dest.x = axis.x * s;
+        dest.y = axis.y * s;
+        dest.z = axis.z * s;
+        dest.w = cos( halfAngle );
+
+        return dest;
+
+      }
+
+      void main() {
+
+        vec4 rotation = vec4( 0.0, 1.0, 0.0, amplitude * length( color ) * 0.001 );
+        vec4 qRotation = axisAngleToQuaternion( rotation.xyz, rotation.w );
+
+        vec3 newPosition = rotateVectorByQuaternion( position - color, qRotation ) + color;
+        vNormal = normalMatrix * rotateVectorByQuaternion( normal, qRotation );
+
+        vec4 mvPosition = modelViewMatrix * vec4( newPosition, 1.0 );
+        vViewPosition = -mvPosition.xyz;
+
+        gl_Position = projectionMatrix * mvPosition;
+
+      }
+
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+
+      varying vec3 vViewPosition;
+      varying vec3 vNormal;
+
+      void main() {
+
+        vec3 normal = normalize( vNormal );
+
+        // directional light
+
+        const vec3 lightCol1 = vec3( 0.5, 0.8, 1.0 );
+        const vec3 lightDir1 = vec3( 0.0, -1.0, 0.0 );
+        const float intensity1 = 0.5;
+
+        vec4 lDirection1 = viewMatrix * vec4( lightDir1, 0.0 );
+        vec3 lightVec1 = normalize( lDirection1.xyz );
+
+        // point light
+
+        const vec3 lightPos2 = vec3( 0.0, 0.0, 0.0 );
+        const vec3 lightCol2 = vec3( 1.0, 0.5, 0.0 );
+        const float maxDistance2 = 2000.0;
+        const float intensity2 = 1.5;
+
+        vec4 lPosition = viewMatrix * vec4( lightPos2, 1.0 );
+        vec3 lVector = lPosition.xyz + vViewPosition.xyz;
+
+        vec3 lightVec2 = normalize( lVector );
+        float lDistance2 = 1.0 - min( ( length( lVector ) / maxDistance2 ), 1.0 );
+
+        // point light
+
+        const vec3 lightPos3 = vec3( 0.0, -1000.0, 1000.0 );
+        const vec3 lightCol3 = vec3( 1.0, 0.1, 0.0 );
+        const float maxDistance3 = 3000.0;
+        const float intensity3 = 1.0;
+
+        vec4 lPosition3 = viewMatrix * vec4( lightPos3, 1.0 );
+        vec3 lVector3 = lPosition3.xyz + vViewPosition.xyz;
+
+        vec3 lightVec3 = normalize( lVector3 );
+        float lDistance3 = 1.0 - min( ( length( lVector3 ) / maxDistance3 ), 1.0 );
+
+        //
+
+        float diffuse1 = intensity1 * max( dot( normal, lightVec1 ), 0.0 );
+        float diffuse2 = intensity2 * max( dot( normal, lightVec2 ), 0.0 ) * lDistance2;
+        float diffuse3 = intensity2 * max( dot( normal, lightVec3 ), 0.0 ) * lDistance3;
+
+        gl_FragColor = vec4( diffuse1 * lightCol1 + diffuse2 * lightCol2 + diffuse3 * lightCol3, 1.0 );
+
+      }
+
+    </script>
+  </body>
+</html>
