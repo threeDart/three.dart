@@ -1,0 +1,285 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>SceneUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="SceneUtils">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="SceneUtils.html">SceneUtils</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><strong>SceneUtils</strong></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>SceneUtils</strong> library</h2>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="attach">
+<button class="show-code">Code</button>
+dynamic <strong>attach</strong>(child, scene, parent) <a class="anchor-link" href="#attach"
+              title="Permalink to attach">#</a></h4>
+<div class="doc">
+<pre class="source">
+attach( child, scene, parent ) {
+
+ Matrix4 matrixWorldInverse = parent.matrixWorld.clone();
+ matrixWorldInverse.invert();
+ child.applyMatrix( matrixWorldInverse );
+
+ scene.remove( child );
+ parent.add( child );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="detach">
+<button class="show-code">Code</button>
+dynamic <strong>detach</strong>(child, parent, scene) <a class="anchor-link" href="#detach"
+              title="Permalink to detach">#</a></h4>
+<div class="doc">
+<pre class="source">
+detach( child, parent, scene ) {
+ child.applyMatrix( parent.matrixWorld );
+ parent.remove( child );
+ scene.add( child );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="cloneObject">
+<button class="show-code">Code</button>
+dynamic <strong>cloneObject</strong>(<a href="three/Object3D.html">Object3D</a> source) <a class="anchor-link" href="#cloneObject"
+              title="Permalink to cloneObject">#</a></h4>
+<div class="doc">
+<pre class="source">
+cloneObject(Object3D source) {
+
+ Object3D object;
+
+ // subclass specific properties
+ // (must process in order from more specific subclasses to more abstract classes)
+
+ if ( source is MorphAnimMesh ) {
+
+   object = new MorphAnimMesh( source.geometry, source.material );
+
+   (object as MorphAnimMesh).duration = source.duration;
+   (object as MorphAnimMesh).mirroredLoop = source.mirroredLoop;
+   (object as MorphAnimMesh).time = source.time;
+
+   (object as MorphAnimMesh).lastKeyframe = source.lastKeyframe;
+   (object as MorphAnimMesh).currentKeyframe = source.currentKeyframe;
+
+   (object as MorphAnimMesh).direction = source.direction;
+   (object as MorphAnimMesh).directionBackwards = source.directionBackwards;
+
+ } else if ( source is SkinnedMesh ) {
+
+   object = new SkinnedMesh( source.geometry, source.material );
+
+ } else if ( source is Mesh ) {
+
+   object = new Mesh( source.geometry, source.material );
+
+ } else if ( source is Line ) {
+
+   object = new Line( source.geometry, source.material, source.type );
+
+ } else if ( source is Ribbon ) {
+
+   object = new Ribbon( source.geometry, source.material );
+
+ } else if ( source is ParticleSystem ) {
+
+   object = new ParticleSystem( source.geometry, source.material );
+   (object as ParticleSystem).sortParticles = source.sortParticles;
+
+ } else if ( source is Particle ) {
+
+   object = new Particle( source.material );
+
+ } else if ( source is Sprite ) {
+
+   object = new Sprite();
+
+   (object as Sprite).color.copy( source.color );
+   (object as Sprite).map = source.map;
+   (object as Sprite).blending = source.blending;
+
+   (object as Sprite).useScreenCoordinates = source.useScreenCoordinates;
+   (object as Sprite).mergeWith3D = source.mergeWith3D;
+   (object as Sprite).affectedByDistance = source.affectedByDistance;
+   (object as Sprite).scaleByViewport = source.scaleByViewport;
+   (object as Sprite).alignment = source.alignment;
+
+   (object as Sprite).rotation3d.setFrom(source.rotation3d);
+   object.rotation = source.rotation;
+   (object as Sprite).opacity = source.opacity;
+
+   (object as Sprite).uvOffset.setFrom(source.uvOffset);
+   (object as Sprite).uvScale.setFrom(source.uvScale);
+
+ } else if ( source is LOD ) {
+
+   object = new LOD();
+
+ /*
+ } else if ( source instanceof THREE.MarchingCubes ) {
+
+   object = new THREE.MarchingCubes( source.resolution, source.material );
+   object.field.set( source.field );
+   object.isolation = source.isolation;
+ */
+
+ } else if ( source is Object3D ) {
+
+   object = new Object3D();
+
+ }
+
+ // base class properties
+
+ object.name = source.name;
+
+ object.parent = source.parent;
+
+ object.up.setFrom(source.up);
+
+ object.position.setFrom(source.position);
+
+ // because of Sprite madness
+
+ if ( object.rotation is Vector3 ) {
+   object.rotation.setFrom(source.rotation);
+ }
+
+ object.eulerOrder = source.eulerOrder;
+
+ object.scale.setFrom(source.scale);
+
+ object.isDynamic = source.isDynamic;
+
+ object.renderDepth = source.renderDepth;
+
+ object.rotationAutoUpdate = source.rotationAutoUpdate;
+
+ object.matrix = source.matrix.clone();
+ object.matrixWorld = source.matrixWorld.clone();
+ object.matrixRotationWorld = source.matrixRotationWorld.clone();
+
+ object.matrixAutoUpdate = source.matrixAutoUpdate;
+ object.matrixWorldNeedsUpdate = source.matrixWorldNeedsUpdate;
+
+ object.quaternion.copy( source.quaternion );
+ object.useQuaternion = source.useQuaternion;
+
+ object.boundRadius = source.boundRadius;
+ object.boundRadiusScale = source.boundRadiusScale;
+
+ object.visible = source.visible;
+
+ object.castShadow = source.castShadow;
+ object.receiveShadow = source.receiveShadow;
+
+ object.frustumCulled = source.frustumCulled;
+
+ // children
+
+ for ( var i = 0; i &lt; source.children.length; i ++ ) {
+
+   var child = cloneObject( source.children[ i ] );
+   object.children[ i ] = child;
+
+   child.parent = object;
+
+ }
+
+ // LODs need to be patched separately to use cloned children
+
+ if ( source is LOD ) {
+
+   for ( var i = 0; i &lt; source.LODs.length; i ++ ) {
+
+     var slod = source.LODs[ i ];
+     var tlod = object as LOD;
+     tlod.LODs[ i ] = { "visibleAtDistance": slod.visibleAtDistance, "object3D": tlod.children[ i ] };
+
+   }
+
+ }
+
+ return object;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="createMultiMaterialObject">
+<button class="show-code">Code</button>
+<a href="three/Object3D.html">Object3D</a> <strong>createMultiMaterialObject</strong>(<a href="three/Geometry.html">Geometry</a> geometry, materials) <a class="anchor-link" href="#createMultiMaterialObject"
+              title="Permalink to createMultiMaterialObject">#</a></h4>
+<div class="doc">
+<pre class="source">
+Object3D createMultiMaterialObject( Geometry geometry, materials ) {
+ var group = new Object3D();
+
+ materials.forEach((material) {
+   group.add(new Mesh(geometry, material));
+ });
+
+ return group;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="traverseHierarchy">
+<button class="show-code">Code</button>
+void <strong>traverseHierarchy</strong>(root, callback(node)) <a class="anchor-link" href="#traverseHierarchy"
+              title="Permalink to traverseHierarchy">#</a></h4>
+<div class="doc">
+<pre class="source">
+void traverseHierarchy( root, callback(node) ) {
+ root.children.forEach((n) {
+   callback(n);
+   traverseHierarchy( n, callback );
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="showHierarchy">
+<button class="show-code">Code</button>
+dynamic <strong>showHierarchy</strong>(root, visible) <a class="anchor-link" href="#showHierarchy"
+              title="Permalink to showHierarchy">#</a></h4>
+<div class="doc">
+<pre class="source">
+showHierarchy( root, visible ) =&gt; traverseHierarchy( root, (node) =&gt; node.visible = visible);
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.778</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

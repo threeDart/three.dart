@@ -1,0 +1,1214 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Quaternion class / vector_math Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vector_math" data-type="Quaternion">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vector_math.html">vector_math</a> &rsaquo; <a href="../vector_math/Quaternion.html">Quaternion</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2><ul class="icon">
+<li><a href="../vector_math/Aabb2.html"><div class="icon-class"></div>Aabb2</a></li>
+<li><a href="../vector_math/Aabb3.html"><div class="icon-class"></div>Aabb3</a></li>
+<li><a href="../vector_math/Matrix2.html"><div class="icon-class"></div>Matrix2</a></li>
+<li><a href="../vector_math/Matrix3.html"><div class="icon-class"></div>Matrix3</a></li>
+<li><a href="../vector_math/Matrix4.html"><div class="icon-class"></div>Matrix4</a></li>
+<li><div class="icon-class"></div><strong>Quaternion</strong></li>
+<li><a href="../vector_math/Vector2.html"><div class="icon-class"></div>Vector2</a></li>
+<li><a href="../vector_math/Vector3.html"><div class="icon-class"></div>Vector3</a></li>
+<li><a href="../vector_math/Vector4.html"><div class="icon-class"></div>Vector4</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Quaternion</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class Quaternion
+{
+ final Float32List storage;
+
+ double get x =&gt; storage[0];
+ double get y =&gt; storage[1];
+ double get z =&gt; storage[2];
+ double get w =&gt; storage[3];
+ set x(double x) { storage[0] = x; }
+ set y(double y) { storage[1] = y; }
+ set z(double z) { storage[2] = z; }
+ set w(double w) { storage[3] = w; }
+
+ /// Constructs a quaternion using the raw values [x], [y], [z], and [w]
+ Quaternion(double x, double y, double z, double w) :
+     storage = new Float32List(4) {
+   storage[0] = x;
+   storage[1] = y;
+   storage[2] = z;
+   storage[3] = w;
+ }
+
+ /// From a rotation matrix [rotationMatrix].
+ Quaternion.fromRotation(Matrix3 rotationMatrix) : 
+     storage = new Float32List(4) {
+   double trace = rotationMatrix.trace();
+   if (trace &gt; 0.0) {
+     double s = Math.sqrt(trace + 1.0);
+     storage[3] = s * 0.5;
+     s = 0.5 / s;
+     storage[0] = (rotationMatrix.storage[5] -
+                    rotationMatrix.storage[7]) * s;
+     storage[1] = (rotationMatrix.storage[6] -
+                    rotationMatrix.storage[2]) * s;
+     storage[2] = (rotationMatrix.storage[1] -
+                    rotationMatrix.storage[3]) * s;
+   } else {
+     int i = rotationMatrix.storage[0] &lt; rotationMatrix.storage[4] ?
+             (rotationMatrix.storage[4] &lt; rotationMatrix.storage[8] ? 2 : 1)
+             :
+             (rotationMatrix.storage[0] &lt; rotationMatrix.storage[8] ? 2 : 0);
+     int j = (i + 1) % 3;
+     int k = (i + 2) % 3;
+     double s = Math.sqrt(rotationMatrix.entry(i,i) -
+                          rotationMatrix.entry(j,j) -
+                          rotationMatrix.entry(k,k) + 1.0);
+     storage[i] = s * 0.5;
+     s = 0.5 / s;
+     storage[3] = (rotationMatrix.entry(k,j) - rotationMatrix.entry(j,k)) * s;
+     storage[j] = (rotationMatrix.entry(j,i) + rotationMatrix.entry(i,j)) * s;
+     storage[k] = (rotationMatrix.entry(k,i) + rotationMatrix.entry(i,k)) * s;
+   }
+ }
+
+ /// Rotation of [angle] around [axis].
+ Quaternion.axisAngle(Vector3 axis, double angle) :
+     storage = new Float32List(4) {
+   setAxisAngle(axis, angle);
+ }
+
+ /// Copies [original].
+ Quaternion.copy(Quaternion original) : storage = new Float32List(4) {
+   storage[0] = original.storage[0];
+   storage[1] = original.storage[1];
+   storage[2] = original.storage[2];
+   storage[3] = original.storage[3];
+ }
+
+ /// Random rotation.
+ Quaternion.random(Math.Random rn)  : storage = new Float32List(4) {
+   // From: "Uniform Random Rotations", Ken Shoemake, Graphics Gems III,
+   // pg. 124-132.
+   double x0 = rn.nextDouble();
+   double r1 = Math.sqrt(1.0 - x0);
+   double r2 = Math.sqrt(x0);
+   double t1 = Math.PI*2.0 * rn.nextDouble();
+   double t2 = Math.PI*2.0 * rn.nextDouble();
+   double c1 = Math.cos(t1);
+   double s1 = Math.sin(t1);
+   double c2 = Math.cos(t2);
+   double s2 = Math.sin(t2);
+   storage[0] = s1 * r1;
+   storage[1] = c1 * r1;
+   storage[2] = s2 * r2;
+   storage[3] = c2 * r2;
+ }
+
+ /// Constructs the identity quaternion
+ Quaternion.identity() : storage = new Float32List(4) {
+   storage[3] = 1.0;
+ }
+
+ /// Time derivative of [q] with angular velocity [omega].
+ Quaternion.dq(Quaternion q, Vector3 omega) : storage = new Float32List(4) {
+   double qx = q.storage[0];
+   double qy = q.storage[1];
+   double qz = q.storage[2];
+   double qw = q.storage[3];
+   double ox = omega.storage[0];
+   double oy = omega.storage[1];
+   double oz = omega.storage[2];
+   double _x = ox * qw + oy * qz - oz * qy;
+   double _y = oy * qw + oz * qx - ox * qz;
+   double _z = oz * qw + ox * qy - oy * qx;
+   double _w = -ox * qx - oy * qy - oz * qz;
+   storage[0] = _x * 0.5;
+   storage[1] = _y * 0.5;
+   storage[2] = _z * 0.5;
+   storage[3] = _w * 0.5;
+ }
+
+ /// Quaternion view of [storage].
+ Quaternion.view(this.storage);
+ 
+ /// Returns a new copy of this
+ Quaternion clone() {
+   return new Quaternion.copy(this);
+ }
+
+ /// Copy [source] into [this]
+ void copyFrom(Quaternion source) {
+   storage[0] = source.storage[0];
+   storage[1] = source.storage[1];
+   storage[2] = source.storage[2];
+   storage[3] = source.storage[3];
+ }
+
+ /// Copy [this] into [target].
+ void copyTo(Quaternion target) {
+   target.storage[0] = storage[0];
+   target.storage[1] = storage[1];
+   target.storage[2] = storage[2];
+   target.storage[3] = storage[3];
+ }
+
+ /// Set quaternion with rotation of [radians] around [axis].
+ void setAxisAngle(Vector3 axis, double radians) {
+   double len = axis.length;
+   if (len == 0.0) {
+     return;
+   }
+   double halfSin = Math.sin(radians * 0.5) / len;
+   storage[0] = axis.storage[0] * halfSin;
+   storage[1] = axis.storage[1] * halfSin;
+   storage[2] = axis.storage[2] * halfSin;
+   storage[3] = Math.cos(radians * 0.5);
+ }
+
+ /// Set quaternion with rotation of [yaw], [pitch] and [roll].
+ void setEuler(double yaw, double pitch, double roll) {
+   double halfYaw = yaw * 0.5;
+   double halfPitch = pitch * 0.5;
+   double halfRoll = roll * 0.5;
+   double cosYaw = Math.cos(halfYaw);
+   double sinYaw = Math.sin(halfYaw);
+   double cosPitch = Math.cos(halfPitch);
+   double sinPitch = Math.sin(halfPitch);
+   double cosRoll = Math.cos(halfRoll);
+   double sinRoll = Math.sin(halfRoll);
+   storage[0] = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
+   storage[1] = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
+   storage[2] = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
+   storage[3] = cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
+ }
+
+ /// Normalize [this].
+ Quaternion normalize() {
+   double l = length;
+   if (l == 0.0) {
+     return this;
+   }
+   l = 1.0 / l;
+   storage[3] = storage[3] * l;
+   storage[2] = storage[2] * l;
+   storage[1] = storage[1] * l;
+   storage[0] = storage[0] * l;
+   return this;
+ }
+
+ /// Conjugate [this].
+ Quaternion conjugate() {
+   storage[2] = -storage[2];
+   storage[1] = -storage[1];
+   storage[0] = -storage[0];
+   return this;
+ }
+
+ /// Invert [this].
+ Quaternion inverse() {
+   double l = 1.0 / length2;
+   storage[3] = storage[3] * l;
+   storage[2] = -storage[2] * l;
+   storage[1] = -storage[1] * l;
+   storage[0] = -storage[0] * l;
+   return this;
+ }
+
+ /// Normalized copy of [this].
+ Quaternion normalized() {
+   return new Quaternion.copy(this).normalize();
+ }
+
+ /// Conjugated copy of [this].
+ Quaternion conjugated() {
+   return new Quaternion.copy(this).conjugate();
+ }
+
+ /// Inverted copy of [this].
+ Quaternion inverted() {
+   return new Quaternion.copy(this).inverse();
+ }
+
+ /// Radians of rotation.
+ double get radians =&gt; 2.0 * Math.acos(storage[3]);
+
+ /// Axis of rotation.
+ Vector3 get axis {
+     double scale = 1.0 / (1.0 - (storage[3] * storage[3]));
+     return new Vector3(storage[0] * scale,
+                     storage[1] * scale,
+                     storage[2] * scale);
+ }
+
+ /// Length squared.
+ double get length2 {
+   double _x = storage[0];
+   double _y = storage[1];
+   double _z = storage[2];
+   double _w = storage[3];
+   return (_x * _x) + (_y * _y) + (_z * _z) + (_w * _w);
+ }
+
+ /// Length.
+ double get length {
+   return Math.sqrt(length2);
+ }
+
+ /// Returns a copy of [v] rotated by quaternion.
+ Vector3 rotated(Vector3 v) {
+   Vector3 out = new Vector3.copy(v);
+   return rotate(out);
+ }
+
+ /// Rotates [v] by [this].
+ Vector3 rotate(Vector3 v) {
+   // conjugate(this) * [v,0] * this
+   double _w = storage[3];
+   double _z = storage[2];
+   double _y = storage[1];
+   double _x = storage[0];
+   double tiw = _w;
+   double tiz = -_z;
+   double tiy = -_y;
+   double tix = -_x;
+   double tx = tiw * v.x + tix * 0.0 + tiy * v.z - tiz * v.y;
+   double ty = tiw * v.y + tiy * 0.0 + tiz * v.x - tix * v.z;
+   double tz = tiw * v.z + tiz * 0.0 + tix * v.y - tiy * v.x;
+   double tw = tiw * 0.0 - tix * v.x - tiy * v.y - tiz * v.z;
+   double result_x = tw * _x + tx * _w + ty * _z - tz * _y;
+   double result_y = tw * _y + ty * _w + tz * _x - tx * _z;
+   double result_z = tw * _z + tz * _w + tx * _y - ty * _x;
+   v.storage[2] = result_z;
+   v.storage[1] = result_y;
+   v.storage[0] = result_x;
+   return v;
+ }
+
+ /// Scales [this] by [scale].
+ Quaternion scale(double scale) {
+   storage[3] = storage[3] * scale;
+   storage[2] = storage[2] * scale;
+   storage[1] = storage[1] * scale;
+   storage[0] = storage[0] * scale;
+   return this;
+ }
+
+ /// Scaled copy of [this].
+ Quaternion scaled(double scale) {
+   Quaternion q = new Quaternion.copy(this);
+   return q.scale(scale);
+ }
+
+ /// [this] rotated by [other].
+ Quaternion operator*(Quaternion other) {
+   double _w = storage[3];
+   double _z = storage[2];
+   double _y = storage[1];
+   double _x = storage[0];
+   double ow = other.storage[3];
+   double oz = other.storage[2];
+   double oy = other.storage[1];
+   double ox = other.storage[0];
+   return new Quaternion(_w * ox + _x * ow + _y * oz - _z * oy,
+                   _w * oy + _y * ow + _z * ox - _x * oz,
+                   _w * oz + _z * ow + _x * oy - _y * ox,
+                   _w * ow - _x * ox - _y * oy - _z * oz);
+ }
+
+ /// Returns copy of [this] + [other].
+ Quaternion operator+(Quaternion other) {
+   return new Quaternion(storage[0] + other.storage[0],
+                   storage[1] + other.storage[1],
+                   storage[2] + other.storage[2],
+                   storage[3] + other.storage[3]);
+ }
+
+ /// Returns copy of [this] - [other].
+ Quaternion operator-(Quaternion other) {
+   return new Quaternion(storage[0] - other.storage[0],
+                   storage[1] - other.storage[1],
+                   storage[2] - other.storage[2],
+                   storage[3] - other.storage[3]);
+ }
+
+ /// Returns negated copy of [this].
+ Quaternion operator-() {
+   return new Quaternion(-storage[0], -storage[1], -storage[2], -storage[3]);
+ }
+
+ double operator[](int i) =&gt; storage[i];
+
+ void operator[]=(int i, double arg) {
+   storage[i] = arg;
+ }
+
+ /// Returns a rotation matrix containing the same rotation as [this].
+ Matrix3 asRotationMatrix() {
+   double d = length2;
+   assert(d != 0.0);
+   double s = 2.0 / d;
+
+   double _x = storage[0];
+   double _y = storage[1];
+   double _z = storage[2];
+   double _w = storage[3];
+
+   double xs = _x * s;
+   double ys = _y * s;
+   double zs = _z * s;
+
+   double wx = _w * xs;
+   double wy = _w * ys;
+   double wz = _w * zs;
+
+   double xx = _x * xs;
+   double xy = _x * ys;
+   double xz = _x * zs;
+
+   double yy = _y * ys;
+   double yz = _y * zs;
+   double zz = _z * zs;
+
+   return new Matrix3(1.0 - (yy + zz), xy + wz, xz - wy, // column 0
+                   xy - wz, 1.0 - (xx + zz), yz + wx, // column 1
+                   xz + wy, yz - wx, 1.0 - (xx + yy)); // column 2
+ }
+
+ /// Printable string.
+ String toString() {
+   return '${storage[0]}, ${storage[1]}, ${storage[2]} @ ${storage[3]}';
+ }
+
+ /// Relative error between [this] and [correct].
+ double relativeError(Quaternion correct) {
+   Quaternion diff = correct - this;
+   double norm_diff = diff.length;
+   double correct_norm = correct.length;
+   return norm_diff/correct_norm;
+ }
+
+ /// Absolute error between [this] and [correct].
+ double absoluteError(Quaternion correct) {
+   double this_norm = length;
+   double correct_norm = correct.length;
+   double norm_diff = (this_norm - correct_norm).abs();
+   return norm_diff;
+ }
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>Quaternion</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> x, <a href="http://api.dartlang.org/dart_core/double.html">double</a> y, <a href="http://api.dartlang.org/dart_core/double.html">double</a> z, <a href="http://api.dartlang.org/dart_core/double.html">double</a> w) <a class="anchor-link" href="#"
+              title="Permalink to Quaternion.Quaternion">#</a></h4>
+<div class="doc">
+<p>Constructs a quaternion using the raw values 
+<span class="param">x</span>, 
+<span class="param">y</span>, 
+<span class="param">z</span>, and 
+<span class="param">w</span></p>
+<pre class="source">
+Quaternion(double x, double y, double z, double w) :
+   storage = new Float32List(4) {
+ storage[0] = x;
+ storage[1] = y;
+ storage[2] = z;
+ storage[3] = w;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="axisAngle">
+<button class="show-code">Code</button>
+new <strong>Quaternion.axisAngle</strong>(<a href="../vector_math/Vector3.html">Vector3</a> axis, <a href="http://api.dartlang.org/dart_core/double.html">double</a> angle) <a class="anchor-link" href="#axisAngle"
+              title="Permalink to Quaternion.Quaternion.axisAngle">#</a></h4>
+<div class="doc">
+<p>Rotation of 
+<span class="param">angle</span> around 
+<span class="param">axis</span>.</p>
+<pre class="source">
+Quaternion.axisAngle(Vector3 axis, double angle) :
+   storage = new Float32List(4) {
+ setAxisAngle(axis, angle);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copy">
+<button class="show-code">Code</button>
+new <strong>Quaternion.copy</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> original) <a class="anchor-link" href="#copy"
+              title="Permalink to Quaternion.Quaternion.copy">#</a></h4>
+<div class="doc">
+<p>Copies 
+<span class="param">original</span>.</p>
+<pre class="source">
+Quaternion.copy(Quaternion original) : storage = new Float32List(4) {
+ storage[0] = original.storage[0];
+ storage[1] = original.storage[1];
+ storage[2] = original.storage[2];
+ storage[3] = original.storage[3];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dq">
+<button class="show-code">Code</button>
+new <strong>Quaternion.dq</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> q, <a href="../vector_math/Vector3.html">Vector3</a> omega) <a class="anchor-link" href="#dq"
+              title="Permalink to Quaternion.Quaternion.dq">#</a></h4>
+<div class="doc">
+<p>Time derivative of 
+<span class="param">q</span> with angular velocity 
+<span class="param">omega</span>.</p>
+<pre class="source">
+Quaternion.dq(Quaternion q, Vector3 omega) : storage = new Float32List(4) {
+ double qx = q.storage[0];
+ double qy = q.storage[1];
+ double qz = q.storage[2];
+ double qw = q.storage[3];
+ double ox = omega.storage[0];
+ double oy = omega.storage[1];
+ double oz = omega.storage[2];
+ double _x = ox * qw + oy * qz - oz * qy;
+ double _y = oy * qw + oz * qx - ox * qz;
+ double _z = oz * qw + ox * qy - oy * qx;
+ double _w = -ox * qx - oy * qy - oz * qz;
+ storage[0] = _x * 0.5;
+ storage[1] = _y * 0.5;
+ storage[2] = _z * 0.5;
+ storage[3] = _w * 0.5;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="fromRotation">
+<button class="show-code">Code</button>
+new <strong>Quaternion.fromRotation</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> rotationMatrix) <a class="anchor-link" href="#fromRotation"
+              title="Permalink to Quaternion.Quaternion.fromRotation">#</a></h4>
+<div class="doc">
+<p>From a rotation matrix 
+<span class="param">rotationMatrix</span>.</p>
+<pre class="source">
+Quaternion.fromRotation(Matrix3 rotationMatrix) : 
+   storage = new Float32List(4) {
+ double trace = rotationMatrix.trace();
+ if (trace &gt; 0.0) {
+   double s = Math.sqrt(trace + 1.0);
+   storage[3] = s * 0.5;
+   s = 0.5 / s;
+   storage[0] = (rotationMatrix.storage[5] -
+                  rotationMatrix.storage[7]) * s;
+   storage[1] = (rotationMatrix.storage[6] -
+                  rotationMatrix.storage[2]) * s;
+   storage[2] = (rotationMatrix.storage[1] -
+                  rotationMatrix.storage[3]) * s;
+ } else {
+   int i = rotationMatrix.storage[0] &lt; rotationMatrix.storage[4] ?
+           (rotationMatrix.storage[4] &lt; rotationMatrix.storage[8] ? 2 : 1)
+           :
+           (rotationMatrix.storage[0] &lt; rotationMatrix.storage[8] ? 2 : 0);
+   int j = (i + 1) % 3;
+   int k = (i + 2) % 3;
+   double s = Math.sqrt(rotationMatrix.entry(i,i) -
+                        rotationMatrix.entry(j,j) -
+                        rotationMatrix.entry(k,k) + 1.0);
+   storage[i] = s * 0.5;
+   s = 0.5 / s;
+   storage[3] = (rotationMatrix.entry(k,j) - rotationMatrix.entry(j,k)) * s;
+   storage[j] = (rotationMatrix.entry(j,i) + rotationMatrix.entry(i,j)) * s;
+   storage[k] = (rotationMatrix.entry(k,i) + rotationMatrix.entry(i,k)) * s;
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="identity">
+<button class="show-code">Code</button>
+new <strong>Quaternion.identity</strong>() <a class="anchor-link" href="#identity"
+              title="Permalink to Quaternion.Quaternion.identity">#</a></h4>
+<div class="doc">
+<p>Constructs the identity quaternion</p>
+<pre class="source">
+Quaternion.identity() : storage = new Float32List(4) {
+ storage[3] = 1.0;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="random">
+<button class="show-code">Code</button>
+new <strong>Quaternion.random</strong>(<a href="http://api.dartlang.org/dart_math/Random.html">Random</a> rn) <a class="anchor-link" href="#random"
+              title="Permalink to Quaternion.Quaternion.random">#</a></h4>
+<div class="doc">
+<p>Random rotation.</p>
+<pre class="source">
+Quaternion.random(Math.Random rn)  : storage = new Float32List(4) {
+ // From: "Uniform Random Rotations", Ken Shoemake, Graphics Gems III,
+ // pg. 124-132.
+ double x0 = rn.nextDouble();
+ double r1 = Math.sqrt(1.0 - x0);
+ double r2 = Math.sqrt(x0);
+ double t1 = Math.PI*2.0 * rn.nextDouble();
+ double t2 = Math.PI*2.0 * rn.nextDouble();
+ double c1 = Math.cos(t1);
+ double s1 = Math.sin(t1);
+ double c2 = Math.cos(t2);
+ double s2 = Math.sin(t2);
+ storage[0] = s1 * r1;
+ storage[1] = c1 * r1;
+ storage[2] = s2 * r2;
+ storage[3] = c2 * r2;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="view">
+<button class="show-code">Code</button>
+new <strong>Quaternion.view</strong>(<a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a> storage) <a class="anchor-link" href="#view"
+              title="Permalink to Quaternion.Quaternion.view">#</a></h4>
+<div class="doc">
+<p>Quaternion view of 
+<span class="param">storage</span>.</p>
+<pre class="source">
+Quaternion.view(this.storage);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="axis">
+<button class="show-code">Code</button>
+final <a href="../vector_math/Vector3.html">Vector3</a>         <strong>axis</strong> <a class="anchor-link"
+            href="#axis"
+            title="Permalink to Quaternion.axis">#</a>
+        </h4>
+        <div class="doc">
+<p>Axis of rotation.</p>
+<pre class="source">
+Vector3 get axis {
+   double scale = 1.0 / (1.0 - (storage[3] * storage[3]));
+   return new Vector3(storage[0] * scale,
+                   storage[1] * scale,
+                   storage[2] * scale);
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="length">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to Quaternion.length">#</a>
+        </h4>
+        <div class="doc">
+<p>Length.</p>
+<pre class="source">
+double get length {
+ return Math.sqrt(length2);
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="length2">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>length2</strong> <a class="anchor-link"
+            href="#length2"
+            title="Permalink to Quaternion.length2">#</a>
+        </h4>
+        <div class="doc">
+<p>Length squared.</p>
+<pre class="source">
+double get length2 {
+ double _x = storage[0];
+ double _y = storage[1];
+ double _z = storage[2];
+ double _w = storage[3];
+ return (_x * _x) + (_y * _y) + (_z * _z) + (_w * _w);
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="radians">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>radians</strong> <a class="anchor-link"
+            href="#radians"
+            title="Permalink to Quaternion.radians">#</a>
+        </h4>
+        <div class="doc">
+<p>Radians of rotation.</p>
+<pre class="source">
+double get radians =&gt; 2.0 * Math.acos(storage[3]);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="storage">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>         <strong>storage</strong> <a class="anchor-link"
+            href="#storage"
+            title="Permalink to Quaternion.storage">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Float32List storage
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="w">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>w</strong> <a class="anchor-link"
+            href="#w"
+            title="Permalink to Quaternion.w">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+double get w =&gt; storage[3];
+</pre>
+<pre class="source">
+set w(double w) { storage[3] = w; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="x">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>x</strong> <a class="anchor-link"
+            href="#x"
+            title="Permalink to Quaternion.x">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+double get x =&gt; storage[0];
+</pre>
+<pre class="source">
+set x(double x) { storage[0] = x; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="y">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>y</strong> <a class="anchor-link"
+            href="#y"
+            title="Permalink to Quaternion.y">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+double get y =&gt; storage[1];
+</pre>
+<pre class="source">
+set y(double y) { storage[1] = y; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="z">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>z</strong> <a class="anchor-link"
+            href="#z"
+            title="Permalink to Quaternion.z">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+double get z =&gt; storage[2];
+</pre>
+<pre class="source">
+set z(double z) { storage[2] = z; }
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> i) <a class="anchor-link" href="#[]"
+              title="Permalink to Quaternion.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+double operator[](int i) =&gt; storage[i];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="[]=">
+<button class="show-code">Code</button>
+void <strong>operator []=</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> i, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg) <a class="anchor-link" href="#[]="
+              title="Permalink to Quaternion.operator []=">#</a></h4>
+<div class="doc">
+<pre class="source">
+void operator[]=(int i, double arg) {
+ storage[i] = arg;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="+">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>operator +</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> other) <a class="anchor-link" href="#+"
+              title="Permalink to Quaternion.operator +">#</a></h4>
+<div class="doc">
+<p>Returns copy of <code>this</code> + 
+<span class="param">other</span>.</p>
+<pre class="source">
+Quaternion operator+(Quaternion other) {
+ return new Quaternion(storage[0] + other.storage[0],
+                 storage[1] + other.storage[1],
+                 storage[2] + other.storage[2],
+                 storage[3] + other.storage[3]);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="unary-">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>operator -</strong>() <a class="anchor-link" href="#unary-"
+              title="Permalink to Quaternion.operator -">#</a></h4>
+<div class="doc">
+<p>Returns negated copy of <code>this</code>.</p>
+<pre class="source">
+Quaternion operator-() {
+ return new Quaternion(-storage[0], -storage[1], -storage[2], -storage[3]);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="-">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>operator -</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> other) <a class="anchor-link" href="#-"
+              title="Permalink to Quaternion.operator -">#</a></h4>
+<div class="doc">
+<p>Returns copy of <code>this</code> - 
+<span class="param">other</span>.</p>
+<pre class="source">
+Quaternion operator-(Quaternion other) {
+ return new Quaternion(storage[0] - other.storage[0],
+                 storage[1] - other.storage[1],
+                 storage[2] - other.storage[2],
+                 storage[3] - other.storage[3]);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="*">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>operator *</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> other) <a class="anchor-link" href="#*"
+              title="Permalink to Quaternion.operator *">#</a></h4>
+<div class="doc">
+<p><code>this</code> rotated by 
+<span class="param">other</span>.</p>
+<pre class="source">
+Quaternion operator*(Quaternion other) {
+ double _w = storage[3];
+ double _z = storage[2];
+ double _y = storage[1];
+ double _x = storage[0];
+ double ow = other.storage[3];
+ double oz = other.storage[2];
+ double oy = other.storage[1];
+ double ox = other.storage[0];
+ return new Quaternion(_w * ox + _x * ow + _y * oz - _z * oy,
+                 _w * oy + _y * ow + _z * ox - _x * oz,
+                 _w * oz + _z * ow + _x * oy - _y * ox,
+                 _w * ow - _x * ox - _y * oy - _z * oz);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="absoluteError">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>absoluteError</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> correct) <a class="anchor-link" href="#absoluteError"
+              title="Permalink to Quaternion.absoluteError">#</a></h4>
+<div class="doc">
+<p>Absolute error between <code>this</code> and 
+<span class="param">correct</span>.</p>
+<pre class="source">
+double absoluteError(Quaternion correct) {
+ double this_norm = length;
+ double correct_norm = correct.length;
+ double norm_diff = (this_norm - correct_norm).abs();
+ return norm_diff;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="asRotationMatrix">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>asRotationMatrix</strong>() <a class="anchor-link" href="#asRotationMatrix"
+              title="Permalink to Quaternion.asRotationMatrix">#</a></h4>
+<div class="doc">
+<p>Returns a rotation matrix containing the same rotation as <code>this</code>.</p>
+<pre class="source">
+Matrix3 asRotationMatrix() {
+ double d = length2;
+ assert(d != 0.0);
+ double s = 2.0 / d;
+
+ double _x = storage[0];
+ double _y = storage[1];
+ double _z = storage[2];
+ double _w = storage[3];
+
+ double xs = _x * s;
+ double ys = _y * s;
+ double zs = _z * s;
+
+ double wx = _w * xs;
+ double wy = _w * ys;
+ double wz = _w * zs;
+
+ double xx = _x * xs;
+ double xy = _x * ys;
+ double xz = _x * zs;
+
+ double yy = _y * ys;
+ double yz = _y * zs;
+ double zz = _z * zs;
+
+ return new Matrix3(1.0 - (yy + zz), xy + wz, xz - wy, // column 0
+                 xy - wz, 1.0 - (xx + zz), yz + wx, // column 1
+                 xz + wy, yz - wx, 1.0 - (xx + yy)); // column 2
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clone">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to Quaternion.clone">#</a></h4>
+<div class="doc">
+<p>Returns a new copy of this</p>
+<pre class="source">
+Quaternion clone() {
+ return new Quaternion.copy(this);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="conjugate">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>conjugate</strong>() <a class="anchor-link" href="#conjugate"
+              title="Permalink to Quaternion.conjugate">#</a></h4>
+<div class="doc">
+<p>Conjugate <code>this</code>.</p>
+<pre class="source">
+Quaternion conjugate() {
+ storage[2] = -storage[2];
+ storage[1] = -storage[1];
+ storage[0] = -storage[0];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="conjugated">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>conjugated</strong>() <a class="anchor-link" href="#conjugated"
+              title="Permalink to Quaternion.conjugated">#</a></h4>
+<div class="doc">
+<p>Conjugated copy of <code>this</code>.</p>
+<pre class="source">
+Quaternion conjugated() {
+ return new Quaternion.copy(this).conjugate();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyFrom">
+<button class="show-code">Code</button>
+void <strong>copyFrom</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> source) <a class="anchor-link" href="#copyFrom"
+              title="Permalink to Quaternion.copyFrom">#</a></h4>
+<div class="doc">
+<p>Copy 
+<span class="param">source</span> into <code>this</code></p>
+<pre class="source">
+void copyFrom(Quaternion source) {
+ storage[0] = source.storage[0];
+ storage[1] = source.storage[1];
+ storage[2] = source.storage[2];
+ storage[3] = source.storage[3];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyTo">
+<button class="show-code">Code</button>
+void <strong>copyTo</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> target) <a class="anchor-link" href="#copyTo"
+              title="Permalink to Quaternion.copyTo">#</a></h4>
+<div class="doc">
+<p>Copy <code>this</code> into 
+<span class="param">target</span>.</p>
+<pre class="source">
+void copyTo(Quaternion target) {
+ target.storage[0] = storage[0];
+ target.storage[1] = storage[1];
+ target.storage[2] = storage[2];
+ target.storage[3] = storage[3];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inverse">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>inverse</strong>() <a class="anchor-link" href="#inverse"
+              title="Permalink to Quaternion.inverse">#</a></h4>
+<div class="doc">
+<p>Invert <code>this</code>.</p>
+<pre class="source">
+Quaternion inverse() {
+ double l = 1.0 / length2;
+ storage[3] = storage[3] * l;
+ storage[2] = -storage[2] * l;
+ storage[1] = -storage[1] * l;
+ storage[0] = -storage[0] * l;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="inverted">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>inverted</strong>() <a class="anchor-link" href="#inverted"
+              title="Permalink to Quaternion.inverted">#</a></h4>
+<div class="doc">
+<p>Inverted copy of <code>this</code>.</p>
+<pre class="source">
+Quaternion inverted() {
+ return new Quaternion.copy(this).inverse();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="normalize">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>normalize</strong>() <a class="anchor-link" href="#normalize"
+              title="Permalink to Quaternion.normalize">#</a></h4>
+<div class="doc">
+<p>Normalize <code>this</code>.</p>
+<pre class="source">
+Quaternion normalize() {
+ double l = length;
+ if (l == 0.0) {
+   return this;
+ }
+ l = 1.0 / l;
+ storage[3] = storage[3] * l;
+ storage[2] = storage[2] * l;
+ storage[1] = storage[1] * l;
+ storage[0] = storage[0] * l;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="normalized">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>normalized</strong>() <a class="anchor-link" href="#normalized"
+              title="Permalink to Quaternion.normalized">#</a></h4>
+<div class="doc">
+<p>Normalized copy of <code>this</code>.</p>
+<pre class="source">
+Quaternion normalized() {
+ return new Quaternion.copy(this).normalize();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="relativeError">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>relativeError</strong>(<a href="../vector_math/Quaternion.html">Quaternion</a> correct) <a class="anchor-link" href="#relativeError"
+              title="Permalink to Quaternion.relativeError">#</a></h4>
+<div class="doc">
+<p>Relative error between <code>this</code> and 
+<span class="param">correct</span>.</p>
+<pre class="source">
+double relativeError(Quaternion correct) {
+ Quaternion diff = correct - this;
+ double norm_diff = diff.length;
+ double correct_norm = correct.length;
+ return norm_diff/correct_norm;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotate">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>rotate</strong>(<a href="../vector_math/Vector3.html">Vector3</a> v) <a class="anchor-link" href="#rotate"
+              title="Permalink to Quaternion.rotate">#</a></h4>
+<div class="doc">
+<p>Rotates 
+<span class="param">v</span> by <code>this</code>.</p>
+<pre class="source">
+Vector3 rotate(Vector3 v) {
+ // conjugate(this) * [v,0] * this
+ double _w = storage[3];
+ double _z = storage[2];
+ double _y = storage[1];
+ double _x = storage[0];
+ double tiw = _w;
+ double tiz = -_z;
+ double tiy = -_y;
+ double tix = -_x;
+ double tx = tiw * v.x + tix * 0.0 + tiy * v.z - tiz * v.y;
+ double ty = tiw * v.y + tiy * 0.0 + tiz * v.x - tix * v.z;
+ double tz = tiw * v.z + tiz * 0.0 + tix * v.y - tiy * v.x;
+ double tw = tiw * 0.0 - tix * v.x - tiy * v.y - tiz * v.z;
+ double result_x = tw * _x + tx * _w + ty * _z - tz * _y;
+ double result_y = tw * _y + ty * _w + tz * _x - tx * _z;
+ double result_z = tw * _z + tz * _w + tx * _y - ty * _x;
+ v.storage[2] = result_z;
+ v.storage[1] = result_y;
+ v.storage[0] = result_x;
+ return v;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotated">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>rotated</strong>(<a href="../vector_math/Vector3.html">Vector3</a> v) <a class="anchor-link" href="#rotated"
+              title="Permalink to Quaternion.rotated">#</a></h4>
+<div class="doc">
+<p>Returns a copy of 
+<span class="param">v</span> rotated by quaternion.</p>
+<pre class="source">
+Vector3 rotated(Vector3 v) {
+ Vector3 out = new Vector3.copy(v);
+ return rotate(out);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scale">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>scale</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> scale) <a class="anchor-link" href="#scale"
+              title="Permalink to Quaternion.scale">#</a></h4>
+<div class="doc">
+<p>Scales <code>this</code> by 
+<span class="param">scale</span>.</p>
+<pre class="source">
+Quaternion scale(double scale) {
+ storage[3] = storage[3] * scale;
+ storage[2] = storage[2] * scale;
+ storage[1] = storage[1] * scale;
+ storage[0] = storage[0] * scale;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scaled">
+<button class="show-code">Code</button>
+<a href="../vector_math/Quaternion.html">Quaternion</a> <strong>scaled</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> scale) <a class="anchor-link" href="#scaled"
+              title="Permalink to Quaternion.scaled">#</a></h4>
+<div class="doc">
+<p>Scaled copy of <code>this</code>.</p>
+<pre class="source">
+Quaternion scaled(double scale) {
+ Quaternion q = new Quaternion.copy(this);
+ return q.scale(scale);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setAxisAngle">
+<button class="show-code">Code</button>
+void <strong>setAxisAngle</strong>(<a href="../vector_math/Vector3.html">Vector3</a> axis, <a href="http://api.dartlang.org/dart_core/double.html">double</a> radians) <a class="anchor-link" href="#setAxisAngle"
+              title="Permalink to Quaternion.setAxisAngle">#</a></h4>
+<div class="doc">
+<p>Set quaternion with rotation of 
+<span class="param">radians</span> around 
+<span class="param">axis</span>.</p>
+<pre class="source">
+void setAxisAngle(Vector3 axis, double radians) {
+ double len = axis.length;
+ if (len == 0.0) {
+   return;
+ }
+ double halfSin = Math.sin(radians * 0.5) / len;
+ storage[0] = axis.storage[0] * halfSin;
+ storage[1] = axis.storage[1] * halfSin;
+ storage[2] = axis.storage[2] * halfSin;
+ storage[3] = Math.cos(radians * 0.5);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setEuler">
+<button class="show-code">Code</button>
+void <strong>setEuler</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> yaw, <a href="http://api.dartlang.org/dart_core/double.html">double</a> pitch, <a href="http://api.dartlang.org/dart_core/double.html">double</a> roll) <a class="anchor-link" href="#setEuler"
+              title="Permalink to Quaternion.setEuler">#</a></h4>
+<div class="doc">
+<p>Set quaternion with rotation of 
+<span class="param">yaw</span>, 
+<span class="param">pitch</span> and 
+<span class="param">roll</span>.</p>
+<pre class="source">
+void setEuler(double yaw, double pitch, double roll) {
+ double halfYaw = yaw * 0.5;
+ double halfPitch = pitch * 0.5;
+ double halfRoll = roll * 0.5;
+ double cosYaw = Math.cos(halfYaw);
+ double sinYaw = Math.sin(halfYaw);
+ double cosPitch = Math.cos(halfPitch);
+ double sinPitch = Math.sin(halfPitch);
+ double cosRoll = Math.cos(halfRoll);
+ double sinRoll = Math.sin(halfRoll);
+ storage[0] = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
+ storage[1] = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
+ storage[2] = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
+ storage[3] = cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Quaternion.toString">#</a></h4>
+<div class="doc">
+<p>Printable string.</p>
+<pre class="source">
+String toString() {
+ return '${storage[0]}, ${storage[1]}, ${storage[2]} @ ${storage[3]}';
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.892</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

@@ -1,0 +1,520 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Curve3D abstract class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="Curve3D">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/Curve3D.html">Curve3D</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><a href="../three/BufferGeometry.html"><div class="icon-class"></div>BufferGeometry</a></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><div class="icon-class"></div><strong>Curve3D</strong></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><a href="../three/JSONLoader.html"><div class="icon-class"></div>JSONLoader</a></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><a href="../three/SkinnedMesh.html"><div class="icon-class"></div>SkinnedMesh</a></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><a href="../three/TubeGeometry.html"><div class="icon-class"></div>TubeGeometry</a></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><a href="../three/VirtualLight.html"><div class="icon-class"></div>VirtualLight</a></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><a href="../three/WebGLGeometry.html"><div class="icon-class"></div>WebGLGeometry</a></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>Curve3D</strong>
+          abstract class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+abstract class Curve3D extends Curve&lt;Vector3&gt; {
+}
+</pre>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/Curve.html">Curve&lt;Vector3&gt;</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Curve3D</strong></span></p>
+<h3>Subclasses</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/ClosedSplineCurve3.html">ClosedSplineCurve3</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../three/CubicBezierCurve3.html">CubicBezierCurve3</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../three/LineCurve3.html">LineCurve3</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../three/QuadraticBezierCurve3.html">QuadraticBezierCurve3</a></span>, <span class="type-box"><span class="icon-class"></span><a href="../three/SplineCurve3.html">SplineCurve3</a></span></p>
+<div class="inherited">
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="cacheArcLengths">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>cacheArcLengths</strong> <a class="anchor-link"
+            href="#cacheArcLengths"
+            title="Permalink to Curve3D.cacheArcLengths">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+List cacheArcLengths = null
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="length">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>length</strong> <a class="anchor-link"
+            href="#length"
+            title="Permalink to Curve3D.length">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+num get length =&gt; getLengths().last;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="needsUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>needsUpdate</strong> <a class="anchor-link"
+            href="#needsUpdate"
+            title="Permalink to Curve3D.needsUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+bool needsUpdate = false
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="getLengths">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a> <strong>getLengths</strong>({<a href="http://api.dartlang.org/dart_core/num.html">num</a> divisions: null}) <a class="anchor-link" href="#getLengths"
+              title="Permalink to Curve3D.getLengths">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+List getLengths( {num divisions: null} ) {
+
+		if (divisions == null) divisions = (_arcLengthDivisions != null) ? (_arcLengthDivisions): 200;
+
+		if ( cacheArcLengths != null
+			&amp;&amp; ( cacheArcLengths.length == divisions + 1 )
+			&amp;&amp; !needsUpdate) {
+
+			//console.log( "cached", this.cacheArcLengths );
+			return cacheArcLengths;
+		}
+
+		needsUpdate = false;
+
+		var cache = [];
+		var current;
+		var last = getPoint( 0.0 );
+		var sum = 0;
+
+		cache.add( 0 );
+
+		for ( var p = 1; p &lt;= divisions; p ++ ) {
+
+			current = getPoint ( p / divisions );
+
+			var distance;
+
+			// TODO(nelsonsilva) - Must move distanceTo to IVector interface os create a new IHasDistance
+			if (current is Vector3) {
+			  distance = (current as Vector3).absoluteError( last as Vector3 );
+			} else {
+      distance = (current as Vector2).absoluteError( last as Vector2);
+    }
+
+			sum += distance;
+			cache.add( sum );
+			last = current;
+
+		}
+
+		cacheArcLengths = cache;
+
+		return cache; // { sums: cache, sum:sum }; Sum is in the last element.
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getPoint">
+abstract <a href="../three/Curve3D.html">V</a> <strong>getPoint</strong>(t) <a class="anchor-link" href="#getPoint"
+              title="Permalink to Curve3D.getPoint">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+</div>
+</div>
+<div class="method inherited"><h4 id="getPointAt">
+<button class="show-code">Code</button>
+<a href="../three/Curve3D.html">V</a> <strong>getPointAt</strong>(u) <a class="anchor-link" href="#getPointAt"
+              title="Permalink to Curve3D.getPointAt">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+V getPointAt( u ) {
+		var t = getUtoTmapping( u );
+		return getPoint( t );
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getPoints">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/Curve3D.html">V</a>&gt; <strong>getPoints</strong>([<a href="http://api.dartlang.org/dart_core/num.html">num</a> divisions = null, closedPath = false]) <a class="anchor-link" href="#getPoints"
+              title="Permalink to Curve3D.getPoints">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+List&lt;V&gt; getPoints( [num divisions = null, closedPath = false] ) {
+
+	  if (divisions == null) divisions = 5;
+
+		var d, pts = [];
+
+		for ( d = 0; d &lt;= divisions; d ++ ) {
+			pts.add( this.getPoint( d / divisions ) );
+		}
+
+		return pts;
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getSpacedPoints">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/Curve3D.html">V</a>&gt; <strong>getSpacedPoints</strong>([<a href="http://api.dartlang.org/dart_core/num.html">num</a> divisions = 5, closedPath = false]) <a class="anchor-link" href="#getSpacedPoints"
+              title="Permalink to Curve3D.getSpacedPoints">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+List&lt;V&gt; getSpacedPoints( [num divisions = 5, closedPath = false] ) {
+
+
+		var d, pts = [];
+
+		for ( d = 0; d &lt;= divisions; d ++ ) {
+			pts.add( this.getPointAt( d / divisions ) );
+		}
+
+		return pts;
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getTangent">
+<button class="show-code">Code</button>
+<a href="../three/Curve3D.html">V</a> <strong>getTangent</strong>(t) <a class="anchor-link" href="#getTangent"
+              title="Permalink to Curve3D.getTangent">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+V getTangent( t ) {
+
+		var delta = 0.0001;
+		var t1 = t - delta;
+		var t2 = t + delta;
+
+		// Capping in case of danger
+
+		if ( t1 &lt; 0 ) t1 = 0;
+		if ( t2 &gt; 1 ) t2 = 1;
+
+		var pt1 = getPoint( t1 );
+		var pt2 = getPoint( t2 );
+
+		var vec = pt2 - pt1;
+		return vec.normalize();
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getTangentAt">
+<button class="show-code">Code</button>
+<a href="../three/Curve3D.html">V</a> <strong>getTangentAt</strong>(u) <a class="anchor-link" href="#getTangentAt"
+              title="Permalink to Curve3D.getTangentAt">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+V getTangentAt( u ) {
+		var t = getUtoTmapping( u );
+		return getTangent( t );
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getUPoints">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/Curve3D.html">V</a>&gt; <strong>getUPoints</strong>([<a href="http://api.dartlang.org/dart_core/List.html">List</a> uList, closedPath = false]) <a class="anchor-link" href="#getUPoints"
+              title="Permalink to Curve3D.getUPoints">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+List&lt;V&gt; getUPoints( [List uList , closedPath = false] ) {
+ var pts = [];
+
+ for ( var u in uList ) {
+   pts.add( this.getPointAt( u ) );
+ }
+
+ return pts;
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getUtoTmapping">
+<button class="show-code">Code</button>
+dynamic <strong>getUtoTmapping</strong>(u, {distance: null}) <a class="anchor-link" href="#getUtoTmapping"
+              title="Permalink to Curve3D.getUtoTmapping">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+getUtoTmapping( u, {distance: null} ) {
+
+		var arcLengths = getLengths();
+
+		int i = 0, il = arcLengths.length;
+
+		var targetArcLength; // The targeted u distance value to get
+
+		if (distance != null) {
+			targetArcLength = distance;
+		} else {
+			targetArcLength = u * arcLengths[ il - 1 ];
+		}
+
+		//var time = Date.now();
+
+		// binary search for the index with largest value smaller than target u distance
+
+		var low = 0, high = il - 1, comparison;
+
+		while ( low &lt;= high ) {
+
+			i = ( low + ( high - low ) / 2 ).floor().toInt(); // less likely to overflow, though probably not issue here, JS doesn't really have integers, all numbers are floats
+
+			comparison = arcLengths[ i ] - targetArcLength;
+
+			if ( comparison &lt; 0 ) {
+
+				low = i + 1;
+				continue;
+
+			} else if ( comparison &gt; 0 ) {
+
+				high = i - 1;
+				continue;
+
+			} else {
+
+				high = i;
+				break;
+
+				// DONE
+
+			}
+
+		}
+
+		i = high;
+
+		//console.log('b' , i, low, high, Date.now()- time);
+
+		if ( arcLengths[ i ] == targetArcLength ) {
+
+			var t = i / ( il - 1 );
+			return t;
+
+		}
+
+		// we could get finer grain at lengths, or use simple interpolatation between two points
+
+		var lengthBefore = arcLengths[ i ];
+	    var lengthAfter = arcLengths[ i + 1 ];
+
+	    var segmentLength = lengthAfter - lengthBefore;
+
+	    // determine where we are between the 'before' and 'after' points
+
+	    var segmentFraction = ( targetArcLength - lengthBefore ) / segmentLength;
+
+	    // add that fractional amount to t
+
+	    var t = ( i + segmentFraction ) / ( il -1 );
+
+		return t;
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="updateArcLengths">
+<button class="show-code">Code</button>
+dynamic <strong>updateArcLengths</strong>() <a class="anchor-link" href="#updateArcLengths"
+              title="Permalink to Curve3D.updateArcLengths">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Curve.html">Curve</a> </div><div class="doc">
+<pre class="source">
+updateArcLengths() {
+		needsUpdate = true;
+		getLengths();
+	}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:33.225</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

@@ -1,0 +1,949 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>FirstPersonControls class / FirstPersonControls Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="FirstPersonControls" data-type="FirstPersonControls">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../FirstPersonControls.html">FirstPersonControls</a> &rsaquo; <a href="../FirstPersonControls/FirstPersonControls.html">FirstPersonControls</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><ul class="icon">
+<li><div class="icon-class"></div><strong>FirstPersonControls</strong></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>FirstPersonControls</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class FirstPersonControls {
+ THREE.Object3D object;
+ Vector3 target = new Vector3.zero();
+
+ Element domElement;
+
+ num movementSpeed = 1.0;
+ num lookSpeed = 0.005;
+
+ bool lookVertical = true;
+ bool autoForward = false;
+ // bool invertVertical = false;
+
+ bool activeLook = true;
+
+ bool heightSpeed = false;
+ num heightCoef = 1.0;
+ num heightMin = 0.0;
+ num heightMax = 1.0;
+
+ bool constrainVertical = false;
+ num verticalMin = 0;
+ num verticalMax = Math.PI;
+
+ num autoSpeedFactor = 0.0;
+
+ num mouseX = 0;
+ num mouseY = 0;
+
+ num lat = 0;
+ num lon = 0;
+ num phi = 0;
+ num theta = 0;
+
+ bool moveForward = false;
+ bool moveBackward = false;
+ bool moveLeft = false;
+ bool moveRight = false;
+ bool moveUp = false;
+ bool moveDown = false;
+ bool freeze = false;
+
+ bool mouseDragOn = false;
+
+ num viewHalfX = 0;
+ num viewHalfY = 0;
+
+ FirstPersonControls(this.object, [Element domElement]) {
+   this.domElement = (domElement != null) ? domElement : document.body;
+
+   if ( this.domElement != document.body ) {
+     this.domElement.tabIndex = -1;
+   }
+
+   this.domElement.onContextMenu.listen((event) =&gt; event.preventDefault());
+
+   this.domElement.onMouseMove.listen(this.onMouseMove);
+   this.domElement.onMouseDown.listen(this.onMouseDown);
+   this.domElement.onMouseUp.listen(this.onMouseUp);
+   this.domElement.onKeyDown.listen(this.onKeyDown);
+   this.domElement.onKeyUp.listen(this.onKeyUp);
+
+   this.handleResize();
+ }
+
+  void handleResize() {
+   if ( this.domElement == document.body ) {
+     this.viewHalfX = window.innerWidth / 2;
+     this.viewHalfY = window.innerHeight / 2;
+   } else {
+     this.viewHalfX = this.domElement.offsetWidth / 2;
+     this.viewHalfY = this.domElement.offsetHeight / 2;
+   }
+ }
+
+ void onMouseDown(event) {
+
+   if ( this.domElement != document.body ) {
+     this.domElement.focus();
+   }
+
+   event.preventDefault();
+   event.stopPropagation();
+
+   if ( this.activeLook ) {
+     switch ( event.button ) {
+       case 0: this.moveForward = true; break;
+       case 2: this.moveBackward = true; break;
+     }
+   }
+
+   this.mouseDragOn = true;
+ }
+
+ void onMouseUp(event) {
+   event.preventDefault();
+   event.stopPropagation();
+
+   if ( this.activeLook ) {
+     switch ( event.button ) {
+       case 0: this.moveForward = false; break;
+       case 2: this.moveBackward = false; break;
+     }
+   }
+   this.mouseDragOn = false;
+ }
+
+ void onMouseMove(event) {
+   if ( this.domElement == document.body ) {
+     this.mouseX = event.page.x - this.viewHalfX;
+     this.mouseY = event.page.y - this.viewHalfY;
+   } else {
+     this.mouseX = event.page.x - this.domElement.offsetLeft - this.viewHalfX;
+     this.mouseY = event.page.y - this.domElement.offsetTop - this.viewHalfY;
+   }
+ }
+
+ void onKeyDown(event) {
+
+   //event.preventDefault();
+
+   switch ( event.keyCode ) {
+     case 38: /*up*/
+     case 87: /*W*/ this.moveForward = true; break;
+
+     case 37: /*left*/
+     case 65: /*A*/ this.moveLeft = true; break;
+
+     case 40: /*down*/
+     case 83: /*S*/ this.moveBackward = true; break;
+
+     case 39: /*right*/
+     case 68: /*D*/ this.moveRight = true; break;
+
+     case 82: /*R*/ this.moveUp = true; break;
+     case 70: /*F*/ this.moveDown = true; break;
+
+     case 81: /*Q*/ this.freeze = !this.freeze; break;
+   }
+ }
+
+ void onKeyUp(event) {
+
+   switch( event.keyCode ) {
+
+     case 38: /*up*/
+     case 87: /*W*/ this.moveForward = false; break;
+
+     case 37: /*left*/
+     case 65: /*A*/ this.moveLeft = false; break;
+
+     case 40: /*down*/
+     case 83: /*S*/ this.moveBackward = false; break;
+
+     case 39: /*right*/
+     case 68: /*D*/ this.moveRight = false; break;
+
+     case 82: /*R*/ this.moveUp = false; break;
+     case 70: /*F*/ this.moveDown = false; break;
+   }
+ }
+
+ void update(delta) {
+   var actualMoveSpeed = 0;
+   var actualLookSpeed = 0;
+   if ( this.freeze ) {
+
+     return;
+
+   } else {
+
+     if ( this.heightSpeed ) {
+       var y = THREEMath.clamp( this.object.position.y, this.heightMin, this.heightMax );
+       var heightDelta = y - this.heightMin;
+
+       this.autoSpeedFactor = delta * ( heightDelta * this.heightCoef );
+     } else {
+       this.autoSpeedFactor = 0.0;
+     }
+
+     actualMoveSpeed = delta * this.movementSpeed;
+
+     if ( this.moveForward || ( this.autoForward &amp;&amp; !this.moveBackward ) ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) );
+     if ( this.moveBackward ) this.object.translateZ( actualMoveSpeed );
+
+     if ( this.moveLeft ) this.object.translateX( - actualMoveSpeed );
+     if ( this.moveRight ) this.object.translateX( actualMoveSpeed );
+
+     if ( this.moveUp ) this.object.translateY( actualMoveSpeed );
+     if ( this.moveDown ) this.object.translateY( - actualMoveSpeed );
+
+     var actualLookSpeed = delta * this.lookSpeed;
+
+     if ( !this.activeLook ) {
+
+       actualLookSpeed = 0;
+
+     }
+
+     this.lon += this.mouseX * actualLookSpeed;
+     if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed; // * this.invertVertical?-1:1;
+
+     this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+     this.phi = ( 90 - this.lat ) * Math.PI / 180;
+     this.theta = this.lon * Math.PI / 180;
+
+     var targetPosition = this.target,
+         position = this.object.position;
+
+     targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
+     targetPosition.y = position.y + 100 * Math.cos( this.phi );
+     targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
+   }
+
+   var verticalLookRatio = 1;
+
+   if ( this.constrainVertical ) {
+     verticalLookRatio = Math.PI / ( this.verticalMax - this.verticalMin );
+   }
+
+   this.lon += this.mouseX * actualLookSpeed;
+   if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
+
+   this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+   this.phi = ( 90 - this.lat ) * Math.PI / 180;
+
+   this.theta = this.lon * Math.PI / 180;
+
+   if ( this.constrainVertical ) {
+     this.phi = THREEMath.mapLinear( this.phi, 0, Math.PI, this.verticalMin, this.verticalMax );
+   }
+
+   var targetPosition = this.target,
+       position = this.object.position;
+
+   targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
+   targetPosition.y = position.y + 100 * Math.cos( this.phi );
+   targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
+
+   this.object.lookAt( targetPosition );
+ }
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>FirstPersonControls</strong>(<a href="../three/Object3D.html">Object3D</a> object, [<a href="http://api.dartlang.org/dart_html/Element.html">Element</a> domElement]) <a class="anchor-link" href="#"
+              title="Permalink to FirstPersonControls.FirstPersonControls">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+FirstPersonControls(this.object, [Element domElement]) {
+ this.domElement = (domElement != null) ? domElement : document.body;
+
+ if ( this.domElement != document.body ) {
+   this.domElement.tabIndex = -1;
+ }
+
+ this.domElement.onContextMenu.listen((event) =&gt; event.preventDefault());
+
+ this.domElement.onMouseMove.listen(this.onMouseMove);
+ this.domElement.onMouseDown.listen(this.onMouseDown);
+ this.domElement.onMouseUp.listen(this.onMouseUp);
+ this.domElement.onKeyDown.listen(this.onKeyDown);
+ this.domElement.onKeyUp.listen(this.onKeyUp);
+
+ this.handleResize();
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="activeLook">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>activeLook</strong> <a class="anchor-link"
+            href="#activeLook"
+            title="Permalink to FirstPersonControls.activeLook">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool activeLook = true
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="autoForward">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>autoForward</strong> <a class="anchor-link"
+            href="#autoForward"
+            title="Permalink to FirstPersonControls.autoForward">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool autoForward = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="autoSpeedFactor">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>autoSpeedFactor</strong> <a class="anchor-link"
+            href="#autoSpeedFactor"
+            title="Permalink to FirstPersonControls.autoSpeedFactor">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num autoSpeedFactor = 0.0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="constrainVertical">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>constrainVertical</strong> <a class="anchor-link"
+            href="#constrainVertical"
+            title="Permalink to FirstPersonControls.constrainVertical">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool constrainVertical = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="domElement">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_html/Element.html">Element</a>         <strong>domElement</strong> <a class="anchor-link"
+            href="#domElement"
+            title="Permalink to FirstPersonControls.domElement">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Element domElement
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="freeze">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>freeze</strong> <a class="anchor-link"
+            href="#freeze"
+            title="Permalink to FirstPersonControls.freeze">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool freeze = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="heightCoef">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>heightCoef</strong> <a class="anchor-link"
+            href="#heightCoef"
+            title="Permalink to FirstPersonControls.heightCoef">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num heightCoef = 1.0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="heightMax">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>heightMax</strong> <a class="anchor-link"
+            href="#heightMax"
+            title="Permalink to FirstPersonControls.heightMax">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num heightMax = 1.0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="heightMin">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>heightMin</strong> <a class="anchor-link"
+            href="#heightMin"
+            title="Permalink to FirstPersonControls.heightMin">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num heightMin = 0.0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="heightSpeed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>heightSpeed</strong> <a class="anchor-link"
+            href="#heightSpeed"
+            title="Permalink to FirstPersonControls.heightSpeed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool heightSpeed = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lat">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>lat</strong> <a class="anchor-link"
+            href="#lat"
+            title="Permalink to FirstPersonControls.lat">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num lat = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lon">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>lon</strong> <a class="anchor-link"
+            href="#lon"
+            title="Permalink to FirstPersonControls.lon">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num lon = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lookSpeed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>lookSpeed</strong> <a class="anchor-link"
+            href="#lookSpeed"
+            title="Permalink to FirstPersonControls.lookSpeed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num lookSpeed = 0.005
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lookVertical">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>lookVertical</strong> <a class="anchor-link"
+            href="#lookVertical"
+            title="Permalink to FirstPersonControls.lookVertical">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool lookVertical = true
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="mouseDragOn">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>mouseDragOn</strong> <a class="anchor-link"
+            href="#mouseDragOn"
+            title="Permalink to FirstPersonControls.mouseDragOn">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool mouseDragOn = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="mouseX">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>mouseX</strong> <a class="anchor-link"
+            href="#mouseX"
+            title="Permalink to FirstPersonControls.mouseX">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num mouseX = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="mouseY">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>mouseY</strong> <a class="anchor-link"
+            href="#mouseY"
+            title="Permalink to FirstPersonControls.mouseY">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num mouseY = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="moveBackward">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>moveBackward</strong> <a class="anchor-link"
+            href="#moveBackward"
+            title="Permalink to FirstPersonControls.moveBackward">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool moveBackward = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="moveDown">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>moveDown</strong> <a class="anchor-link"
+            href="#moveDown"
+            title="Permalink to FirstPersonControls.moveDown">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool moveDown = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="moveForward">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>moveForward</strong> <a class="anchor-link"
+            href="#moveForward"
+            title="Permalink to FirstPersonControls.moveForward">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool moveForward = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="moveLeft">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>moveLeft</strong> <a class="anchor-link"
+            href="#moveLeft"
+            title="Permalink to FirstPersonControls.moveLeft">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool moveLeft = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="movementSpeed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>movementSpeed</strong> <a class="anchor-link"
+            href="#movementSpeed"
+            title="Permalink to FirstPersonControls.movementSpeed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num movementSpeed = 1.0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="moveRight">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>moveRight</strong> <a class="anchor-link"
+            href="#moveRight"
+            title="Permalink to FirstPersonControls.moveRight">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool moveRight = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="moveUp">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>moveUp</strong> <a class="anchor-link"
+            href="#moveUp"
+            title="Permalink to FirstPersonControls.moveUp">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool moveUp = false
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="object">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a>         <strong>object</strong> <a class="anchor-link"
+            href="#object"
+            title="Permalink to FirstPersonControls.object">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+THREE.Object3D object
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="phi">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>phi</strong> <a class="anchor-link"
+            href="#phi"
+            title="Permalink to FirstPersonControls.phi">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num phi = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="target">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>target</strong> <a class="anchor-link"
+            href="#target"
+            title="Permalink to FirstPersonControls.target">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Vector3 target = new Vector3.zero()
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="theta">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>theta</strong> <a class="anchor-link"
+            href="#theta"
+            title="Permalink to FirstPersonControls.theta">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num theta = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="verticalMax">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>verticalMax</strong> <a class="anchor-link"
+            href="#verticalMax"
+            title="Permalink to FirstPersonControls.verticalMax">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num verticalMax = Math.PI
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="verticalMin">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>verticalMin</strong> <a class="anchor-link"
+            href="#verticalMin"
+            title="Permalink to FirstPersonControls.verticalMin">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num verticalMin = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="viewHalfX">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>viewHalfX</strong> <a class="anchor-link"
+            href="#viewHalfX"
+            title="Permalink to FirstPersonControls.viewHalfX">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num viewHalfX = 0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="viewHalfY">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>viewHalfY</strong> <a class="anchor-link"
+            href="#viewHalfY"
+            title="Permalink to FirstPersonControls.viewHalfY">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num viewHalfY = 0
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="handleResize">
+<button class="show-code">Code</button>
+void <strong>handleResize</strong>() <a class="anchor-link" href="#handleResize"
+              title="Permalink to FirstPersonControls.handleResize">#</a></h4>
+<div class="doc">
+<pre class="source">
+void handleResize() {
+if ( this.domElement == document.body ) {
+  this.viewHalfX = window.innerWidth / 2;
+  this.viewHalfY = window.innerHeight / 2;
+} else {
+  this.viewHalfX = this.domElement.offsetWidth / 2;
+  this.viewHalfY = this.domElement.offsetHeight / 2;
+}
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onKeyDown">
+<button class="show-code">Code</button>
+void <strong>onKeyDown</strong>(event) <a class="anchor-link" href="#onKeyDown"
+              title="Permalink to FirstPersonControls.onKeyDown">#</a></h4>
+<div class="doc">
+<pre class="source">
+void onKeyDown(event) {
+
+ //event.preventDefault();
+
+ switch ( event.keyCode ) {
+   case 38: /*up*/
+   case 87: /*W*/ this.moveForward = true; break;
+
+   case 37: /*left*/
+   case 65: /*A*/ this.moveLeft = true; break;
+
+   case 40: /*down*/
+   case 83: /*S*/ this.moveBackward = true; break;
+
+   case 39: /*right*/
+   case 68: /*D*/ this.moveRight = true; break;
+
+   case 82: /*R*/ this.moveUp = true; break;
+   case 70: /*F*/ this.moveDown = true; break;
+
+   case 81: /*Q*/ this.freeze = !this.freeze; break;
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onKeyUp">
+<button class="show-code">Code</button>
+void <strong>onKeyUp</strong>(event) <a class="anchor-link" href="#onKeyUp"
+              title="Permalink to FirstPersonControls.onKeyUp">#</a></h4>
+<div class="doc">
+<pre class="source">
+void onKeyUp(event) {
+
+ switch( event.keyCode ) {
+
+   case 38: /*up*/
+   case 87: /*W*/ this.moveForward = false; break;
+
+   case 37: /*left*/
+   case 65: /*A*/ this.moveLeft = false; break;
+
+   case 40: /*down*/
+   case 83: /*S*/ this.moveBackward = false; break;
+
+   case 39: /*right*/
+   case 68: /*D*/ this.moveRight = false; break;
+
+   case 82: /*R*/ this.moveUp = false; break;
+   case 70: /*F*/ this.moveDown = false; break;
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onMouseDown">
+<button class="show-code">Code</button>
+void <strong>onMouseDown</strong>(event) <a class="anchor-link" href="#onMouseDown"
+              title="Permalink to FirstPersonControls.onMouseDown">#</a></h4>
+<div class="doc">
+<pre class="source">
+void onMouseDown(event) {
+
+ if ( this.domElement != document.body ) {
+   this.domElement.focus();
+ }
+
+ event.preventDefault();
+ event.stopPropagation();
+
+ if ( this.activeLook ) {
+   switch ( event.button ) {
+     case 0: this.moveForward = true; break;
+     case 2: this.moveBackward = true; break;
+   }
+ }
+
+ this.mouseDragOn = true;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onMouseMove">
+<button class="show-code">Code</button>
+void <strong>onMouseMove</strong>(event) <a class="anchor-link" href="#onMouseMove"
+              title="Permalink to FirstPersonControls.onMouseMove">#</a></h4>
+<div class="doc">
+<pre class="source">
+void onMouseMove(event) {
+ if ( this.domElement == document.body ) {
+   this.mouseX = event.page.x - this.viewHalfX;
+   this.mouseY = event.page.y - this.viewHalfY;
+ } else {
+   this.mouseX = event.page.x - this.domElement.offsetLeft - this.viewHalfX;
+   this.mouseY = event.page.y - this.domElement.offsetTop - this.viewHalfY;
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onMouseUp">
+<button class="show-code">Code</button>
+void <strong>onMouseUp</strong>(event) <a class="anchor-link" href="#onMouseUp"
+              title="Permalink to FirstPersonControls.onMouseUp">#</a></h4>
+<div class="doc">
+<pre class="source">
+void onMouseUp(event) {
+ event.preventDefault();
+ event.stopPropagation();
+
+ if ( this.activeLook ) {
+   switch ( event.button ) {
+     case 0: this.moveForward = false; break;
+     case 2: this.moveBackward = false; break;
+   }
+ }
+ this.mouseDragOn = false;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="update">
+<button class="show-code">Code</button>
+void <strong>update</strong>(delta) <a class="anchor-link" href="#update"
+              title="Permalink to FirstPersonControls.update">#</a></h4>
+<div class="doc">
+<pre class="source">
+void update(delta) {
+ var actualMoveSpeed = 0;
+ var actualLookSpeed = 0;
+ if ( this.freeze ) {
+
+   return;
+
+ } else {
+
+   if ( this.heightSpeed ) {
+     var y = THREEMath.clamp( this.object.position.y, this.heightMin, this.heightMax );
+     var heightDelta = y - this.heightMin;
+
+     this.autoSpeedFactor = delta * ( heightDelta * this.heightCoef );
+   } else {
+     this.autoSpeedFactor = 0.0;
+   }
+
+   actualMoveSpeed = delta * this.movementSpeed;
+
+   if ( this.moveForward || ( this.autoForward &amp;&amp; !this.moveBackward ) ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) );
+   if ( this.moveBackward ) this.object.translateZ( actualMoveSpeed );
+
+   if ( this.moveLeft ) this.object.translateX( - actualMoveSpeed );
+   if ( this.moveRight ) this.object.translateX( actualMoveSpeed );
+
+   if ( this.moveUp ) this.object.translateY( actualMoveSpeed );
+   if ( this.moveDown ) this.object.translateY( - actualMoveSpeed );
+
+   var actualLookSpeed = delta * this.lookSpeed;
+
+   if ( !this.activeLook ) {
+
+     actualLookSpeed = 0;
+
+   }
+
+   this.lon += this.mouseX * actualLookSpeed;
+   if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed; // * this.invertVertical?-1:1;
+
+   this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+   this.phi = ( 90 - this.lat ) * Math.PI / 180;
+   this.theta = this.lon * Math.PI / 180;
+
+   var targetPosition = this.target,
+       position = this.object.position;
+
+   targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
+   targetPosition.y = position.y + 100 * Math.cos( this.phi );
+   targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
+ }
+
+ var verticalLookRatio = 1;
+
+ if ( this.constrainVertical ) {
+   verticalLookRatio = Math.PI / ( this.verticalMax - this.verticalMin );
+ }
+
+ this.lon += this.mouseX * actualLookSpeed;
+ if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
+
+ this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+ this.phi = ( 90 - this.lat ) * Math.PI / 180;
+
+ this.theta = this.lon * Math.PI / 180;
+
+ if ( this.constrainVertical ) {
+   this.phi = THREEMath.mapLinear( this.phi, 0, Math.PI, this.verticalMin, this.verticalMax );
+ }
+
+ var targetPosition = this.target,
+     position = this.object.position;
+
+ targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
+ targetPosition.y = position.y + 100 * Math.cos( this.phi );
+ targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
+
+ this.object.lookAt( targetPosition );
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.742</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

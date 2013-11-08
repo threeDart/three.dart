@@ -1,0 +1,109 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>GeometryUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="GeometryUtils">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="GeometryUtils.html">GeometryUtils</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><strong>GeometryUtils</strong></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>GeometryUtils</strong> library</h2>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="triangleArea">
+<button class="show-code">Code</button>
+dynamic <strong>triangleArea</strong>(<a href="vector_math/Vector3.html">Vector3</a> vectorA, <a href="vector_math/Vector3.html">Vector3</a> vectorB, <a href="vector_math/Vector3.html">Vector3</a> vectorC) <a class="anchor-link" href="#triangleArea"
+              title="Permalink to triangleArea">#</a></h4>
+<div class="doc">
+<pre class="source">
+triangleArea ( Vector3 vectorA, Vector3 vectorB, Vector3 vectorC ) {
+
+ var tmp = (vectorB - vectorA).cross( vectorC - vectorA );
+
+ return 0.5 * tmp.length;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clone">
+<button class="show-code">Code</button>
+dynamic <strong>clone</strong>(<a href="three/Geometry.html">Geometry</a> geometry) <a class="anchor-link" href="#clone"
+              title="Permalink to clone">#</a></h4>
+<div class="doc">
+<pre class="source">
+clone( Geometry geometry ) {
+
+   var cloneGeo = new Geometry();
+
+   var i, il;
+
+   var vertices = geometry.vertices,
+     faces = geometry.faces,
+     uvs = geometry.faceVertexUvs[ 0 ];
+
+   // materials
+
+   if ( geometry.materials != null) {
+
+     cloneGeo.materials = new List.from(geometry.materials);
+
+   }
+
+   // vertices
+   cloneGeo.vertices = vertices.map((vertex) =&gt; vertex.clone()).toList();
+
+   // faces
+   cloneGeo.faces = faces.map((face) =&gt; face.clone()).toList();
+
+   // uvs
+   il = uvs.length;
+   for ( i = 0; i &lt; il; i ++ ) {
+
+     var uv = uvs[ i ], uvCopy = [];
+
+     var jl = uv.length;
+     for ( var j = 0; j &lt; jl; j ++ ) {
+
+       uvCopy.add( new UV( uv[ j ].u, uv[ j ].v ) );
+
+     }
+
+     cloneGeo.faceVertexUvs[ 0 ].add( uvCopy );
+
+   }
+
+   return cloneGeo;
+
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.771</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

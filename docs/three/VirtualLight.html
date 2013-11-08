@@ -1,0 +1,1305 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>VirtualLight class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="VirtualLight">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/VirtualLight.html">VirtualLight</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><a href="../three/BufferGeometry.html"><div class="icon-class"></div>BufferGeometry</a></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><a href="../three/Curve3D.html"><div class="icon-class"></div>Curve3D</a></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><a href="../three/JSONLoader.html"><div class="icon-class"></div>JSONLoader</a></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><a href="../three/SkinnedMesh.html"><div class="icon-class"></div>SkinnedMesh</a></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><a href="../three/TubeGeometry.html"><div class="icon-class"></div>TubeGeometry</a></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><div class="icon-class"></div><strong>VirtualLight</strong></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><a href="../three/WebGLGeometry.html"><div class="icon-class"></div>WebGLGeometry</a></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>VirtualLight</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class VirtualLight extends DirectionalLight {
+ List pointsWorld, pointsFrustum;
+
+ VirtualLight() :
+   pointsWorld = [],
+   pointsFrustum = [],
+   super(0);
+}
+</pre>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/Object3D.html">Object3D</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../three/Light.html">Light</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../three/ShadowCaster.html">ShadowCaster</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../three/DirectionalLight.html">DirectionalLight</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>VirtualLight</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>VirtualLight</strong>() <a class="anchor-link" href="#"
+              title="Permalink to VirtualLight.VirtualLight">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+VirtualLight() :
+ pointsWorld = [],
+ pointsFrustum = [],
+ super(0);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="boundRadius">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>boundRadius</strong> <a class="anchor-link"
+            href="#boundRadius"
+            title="Permalink to VirtualLight.boundRadius">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+num boundRadius
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="boundRadiusScale">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>boundRadiusScale</strong> <a class="anchor-link"
+            href="#boundRadiusScale"
+            title="Permalink to VirtualLight.boundRadiusScale">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+num boundRadius, boundRadiusScale
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="cameraHelper">
+<button class="show-code">Code</button>
+var         <strong>cameraHelper</strong> <a class="anchor-link"
+            href="#cameraHelper"
+            title="Permalink to VirtualLight.cameraHelper">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+var cameraHelper
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="castShadow">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>castShadow</strong> <a class="anchor-link"
+            href="#castShadow"
+            title="Permalink to VirtualLight.castShadow">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+bool castShadow
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="children">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>children</strong> <a class="anchor-link"
+            href="#children"
+            title="Permalink to VirtualLight.children">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+List children
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="color">
+<button class="show-code">Code</button>
+<a href="../three/Color.html">Color</a>         <strong>color</strong> <a class="anchor-link"
+            href="#color"
+            title="Permalink to VirtualLight.color">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Light.html">Light</a> </div><div class="doc">
+<pre class="source">
+Color color
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="customDepthMaterial">
+<button class="show-code">Code</button>
+var         <strong>customDepthMaterial</strong> <a class="anchor-link"
+            href="#customDepthMaterial"
+            title="Permalink to VirtualLight.customDepthMaterial">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+var customDepthMaterial
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="distance">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>distance</strong> <a class="anchor-link"
+            href="#distance"
+            title="Permalink to VirtualLight.distance">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num intensity, distance
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="doubleSided">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>doubleSided</strong> <a class="anchor-link"
+            href="#doubleSided"
+            title="Permalink to VirtualLight.doubleSided">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool _dynamic, doubleSided
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="eulerOrder">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>eulerOrder</strong> <a class="anchor-link"
+            href="#eulerOrder"
+            title="Permalink to VirtualLight.eulerOrder">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+String eulerOrder
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="flipSided">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>flipSided</strong> <a class="anchor-link"
+            href="#flipSided"
+            title="Permalink to VirtualLight.flipSided">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool _dynamic, doubleSided, flipSided
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="frustumCulled">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>frustumCulled</strong> <a class="anchor-link"
+            href="#frustumCulled"
+            title="Permalink to VirtualLight.frustumCulled">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false, castShadow = false, receiveShadow = false, frustumCulled = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="id">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>id</strong> <a class="anchor-link"
+            href="#id"
+            title="Permalink to VirtualLight.id">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+int id
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="intensity">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>intensity</strong> <a class="anchor-link"
+            href="#intensity"
+            title="Permalink to VirtualLight.intensity">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num intensity
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDynamic">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>isDynamic</strong> <a class="anchor-link"
+            href="#isDynamic"
+            title="Permalink to VirtualLight.isDynamic">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool get isDynamic =&gt; _dynamic;
+</pre>
+<pre class="source">
+set isDynamic(bool flag) =&gt; _dynamic = flag;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrix">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>matrix</strong> <a class="anchor-link"
+            href="#matrix"
+            title="Permalink to VirtualLight.matrix">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Matrix4 matrix
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixAutoUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>matrixAutoUpdate</strong> <a class="anchor-link"
+            href="#matrixAutoUpdate"
+            title="Permalink to VirtualLight.matrixAutoUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool matrixAutoUpdate = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixRotationWorld">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>matrixRotationWorld</strong> <a class="anchor-link"
+            href="#matrixRotationWorld"
+            title="Permalink to VirtualLight.matrixRotationWorld">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Matrix4 matrix, matrixWorld, matrixRotationWorld
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixWorld">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>matrixWorld</strong> <a class="anchor-link"
+            href="#matrixWorld"
+            title="Permalink to VirtualLight.matrixWorld">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Matrix4 matrix, matrixWorld
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixWorldNeedsUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>matrixWorldNeedsUpdate</strong> <a class="anchor-link"
+            href="#matrixWorldNeedsUpdate"
+            title="Permalink to VirtualLight.matrixWorldNeedsUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool matrixAutoUpdate = false, matrixWorldNeedsUpdate = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="name">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to VirtualLight.name">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+String name
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="onlyShadow">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>onlyShadow</strong> <a class="anchor-link"
+            href="#onlyShadow"
+            title="Permalink to VirtualLight.onlyShadow">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+bool onlyShadow
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="parent">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to VirtualLight.parent">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Object3D parent
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="pointsFrustum">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>pointsFrustum</strong> <a class="anchor-link"
+            href="#pointsFrustum"
+            title="Permalink to VirtualLight.pointsFrustum">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List pointsWorld, pointsFrustum
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="pointsWorld">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>pointsWorld</strong> <a class="anchor-link"
+            href="#pointsWorld"
+            title="Permalink to VirtualLight.pointsWorld">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List pointsWorld
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="position">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>position</strong> <a class="anchor-link"
+            href="#position"
+            title="Permalink to VirtualLight.position">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+Vector3 position
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="properties">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>         <strong>properties</strong> <a class="anchor-link"
+            href="#properties"
+            title="Permalink to VirtualLight.properties">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Map properties
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="quaternion">
+<button class="show-code">Code</button>
+var         <strong>quaternion</strong> <a class="anchor-link"
+            href="#quaternion"
+            title="Permalink to VirtualLight.quaternion">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+var quaternion
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="receiveShadow">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>receiveShadow</strong> <a class="anchor-link"
+            href="#receiveShadow"
+            title="Permalink to VirtualLight.receiveShadow">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false, castShadow = false, receiveShadow = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="renderDepth">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>renderDepth</strong> <a class="anchor-link"
+            href="#renderDepth"
+            title="Permalink to VirtualLight.renderDepth">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+int renderDepth
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="rotation">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>rotation</strong> <a class="anchor-link"
+            href="#rotation"
+            title="Permalink to VirtualLight.rotation">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up, position, rotation
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="rotationAutoUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>rotationAutoUpdate</strong> <a class="anchor-link"
+            href="#rotationAutoUpdate"
+            title="Permalink to VirtualLight.rotationAutoUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool _dynamic, doubleSided, flipSided, rotationAutoUpdate
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="scale">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>scale</strong> <a class="anchor-link"
+            href="#scale"
+            title="Permalink to VirtualLight.scale">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up, position, rotation, scale
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowBias">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowBias</strong> <a class="anchor-link"
+            href="#shadowBias"
+            title="Permalink to VirtualLight.shadowBias">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowBias
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCamera">
+<button class="show-code">Code</button>
+var         <strong>shadowCamera</strong> <a class="anchor-link"
+            href="#shadowCamera"
+            title="Permalink to VirtualLight.shadowCamera">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+var shadowCamera
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraBottom">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraBottom</strong> <a class="anchor-link"
+            href="#shadowCameraBottom"
+            title="Permalink to VirtualLight.shadowCameraBottom">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraLeft, shadowCameraRight, shadowCameraTop, shadowCameraBottom
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraFar">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraFar</strong> <a class="anchor-link"
+            href="#shadowCameraFar"
+            title="Permalink to VirtualLight.shadowCameraFar">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraNear,
+   shadowCameraFar
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraFov">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraFov</strong> <a class="anchor-link"
+            href="#shadowCameraFov"
+            title="Permalink to VirtualLight.shadowCameraFov">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraNear,
+   shadowCameraFar,
+   shadowCameraFov
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraLeft">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraLeft</strong> <a class="anchor-link"
+            href="#shadowCameraLeft"
+            title="Permalink to VirtualLight.shadowCameraLeft">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraLeft
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraNear">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraNear</strong> <a class="anchor-link"
+            href="#shadowCameraNear"
+            title="Permalink to VirtualLight.shadowCameraNear">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraNear
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraRight">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraRight</strong> <a class="anchor-link"
+            href="#shadowCameraRight"
+            title="Permalink to VirtualLight.shadowCameraRight">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraLeft, shadowCameraRight
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraTop">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCameraTop</strong> <a class="anchor-link"
+            href="#shadowCameraTop"
+            title="Permalink to VirtualLight.shadowCameraTop">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num shadowCameraLeft, shadowCameraRight, shadowCameraTop
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCameraVisible">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>shadowCameraVisible</strong> <a class="anchor-link"
+            href="#shadowCameraVisible"
+            title="Permalink to VirtualLight.shadowCameraVisible">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+bool shadowCameraVisible
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascade">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>shadowCascade</strong> <a class="anchor-link"
+            href="#shadowCascade"
+            title="Permalink to VirtualLight.shadowCascade">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+bool shadowCascade
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeArray">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>shadowCascadeArray</strong> <a class="anchor-link"
+            href="#shadowCascadeArray"
+            title="Permalink to VirtualLight.shadowCascadeArray">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+List shadowCascadeBias,
+   shadowCascadeWidth,
+   shadowCascadeHeight,
+   shadowCascadeNearZ,
+   shadowCascadeFarZ,
+   shadowCascadeArray
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeBias">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>shadowCascadeBias</strong> <a class="anchor-link"
+            href="#shadowCascadeBias"
+            title="Permalink to VirtualLight.shadowCascadeBias">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+List shadowCascadeBias
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeCount">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowCascadeCount</strong> <a class="anchor-link"
+            href="#shadowCascadeCount"
+            title="Permalink to VirtualLight.shadowCascadeCount">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+num shadowCascadeCount
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeFarZ">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>shadowCascadeFarZ</strong> <a class="anchor-link"
+            href="#shadowCascadeFarZ"
+            title="Permalink to VirtualLight.shadowCascadeFarZ">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+List shadowCascadeBias,
+   shadowCascadeWidth,
+   shadowCascadeHeight,
+   shadowCascadeNearZ,
+   shadowCascadeFarZ
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeHeight">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>shadowCascadeHeight</strong> <a class="anchor-link"
+            href="#shadowCascadeHeight"
+            title="Permalink to VirtualLight.shadowCascadeHeight">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+List shadowCascadeBias,
+   shadowCascadeWidth,
+   shadowCascadeHeight
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeNearZ">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>shadowCascadeNearZ</strong> <a class="anchor-link"
+            href="#shadowCascadeNearZ"
+            title="Permalink to VirtualLight.shadowCascadeNearZ">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+List shadowCascadeBias,
+   shadowCascadeWidth,
+   shadowCascadeHeight,
+   shadowCascadeNearZ
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeOffset">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>shadowCascadeOffset</strong> <a class="anchor-link"
+            href="#shadowCascadeOffset"
+            title="Permalink to VirtualLight.shadowCascadeOffset">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+Vector3 shadowCascadeOffset
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowCascadeWidth">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>shadowCascadeWidth</strong> <a class="anchor-link"
+            href="#shadowCascadeWidth"
+            title="Permalink to VirtualLight.shadowCascadeWidth">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+List shadowCascadeBias,
+   shadowCascadeWidth
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowDarkness">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowDarkness</strong> <a class="anchor-link"
+            href="#shadowDarkness"
+            title="Permalink to VirtualLight.shadowDarkness">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowDarkness
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowMap">
+<button class="show-code">Code</button>
+var         <strong>shadowMap</strong> <a class="anchor-link"
+            href="#shadowMap"
+            title="Permalink to VirtualLight.shadowMap">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+var shadowMap
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowMapHeight">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowMapHeight</strong> <a class="anchor-link"
+            href="#shadowMapHeight"
+            title="Permalink to VirtualLight.shadowMapHeight">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowMapWidth,
+   shadowMapHeight
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowMapSize">
+<button class="show-code">Code</button>
+var         <strong>shadowMapSize</strong> <a class="anchor-link"
+            href="#shadowMapSize"
+            title="Permalink to VirtualLight.shadowMapSize">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+var shadowMapSize
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowMapWidth">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>shadowMapWidth</strong> <a class="anchor-link"
+            href="#shadowMapWidth"
+            title="Permalink to VirtualLight.shadowMapWidth">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+num shadowMapWidth
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="shadowMatrix">
+<button class="show-code">Code</button>
+var         <strong>shadowMatrix</strong> <a class="anchor-link"
+            href="#shadowMatrix"
+            title="Permalink to VirtualLight.shadowMatrix">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/ShadowCaster.html">ShadowCaster</a> </div><div class="doc">
+<pre class="source">
+var shadowMatrix
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="target">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a>         <strong>target</strong> <a class="anchor-link"
+            href="#target"
+            title="Permalink to VirtualLight.target">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/DirectionalLight.html">DirectionalLight</a> </div><div class="doc">
+<pre class="source">
+Object3D target
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="up">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>up</strong> <a class="anchor-link"
+            href="#up"
+            title="Permalink to VirtualLight.up">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="useQuaternion">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>useQuaternion</strong> <a class="anchor-link"
+            href="#useQuaternion"
+            title="Permalink to VirtualLight.useQuaternion">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool useQuaternion
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="visible">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>visible</strong> <a class="anchor-link"
+            href="#visible"
+            title="Permalink to VirtualLight.visible">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Operators</h3>
+<div class="method inherited"><h4 id="[]">
+<button class="show-code">Code</button>
+dynamic <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#[]"
+              title="Permalink to VirtualLight.operator []">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+operator [] (String key) =&gt; _data[key];
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="[]=">
+<button class="show-code">Code</button>
+dynamic <strong>operator []=</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key, value) <a class="anchor-link" href="#[]="
+              title="Permalink to VirtualLight.operator []=">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+operator []= (String key, value) =&gt; _data[key] = value;
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="add">
+<button class="show-code">Code</button>
+void <strong>add</strong>(<a href="../three/Object3D.html">Object3D</a> object) <a class="anchor-link" href="#add"
+              title="Permalink to VirtualLight.add">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void add( Object3D object ) {
+ if ( object == this ) {
+   print( 'THREE.Object3D.add: An object can\'t be added as a child of itself.' );
+   return;
+ }
+
+
+ if ( object.parent != null ) {
+   object.parent.remove( object );
+ }
+
+ object.parent = this;
+ children.add( object );
+
+ // add to scene
+ Object3D scene = this;
+
+ while ( scene.parent != null ) {
+   scene = scene.parent;
+ }
+
+ if ( scene is Scene ) {
+   scene.addObject( object );
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="applyMatrix">
+<button class="show-code">Code</button>
+void <strong>applyMatrix</strong>(<a href="../vector_math/Matrix4.html">Matrix4</a> matrix) <a class="anchor-link" href="#applyMatrix"
+              title="Permalink to VirtualLight.applyMatrix">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void applyMatrix ( Matrix4 matrix ) {
+ this.matrix = matrix * this.matrix;
+
+ this.scale = getScaleFromMatrix( this.matrix );
+
+ Matrix4 mat = extractRotation(new Matrix4.identity(), this.matrix );
+ this.rotation = calcEulerFromRotationMatrix( mat, this.eulerOrder );
+
+ this.position = this.matrix.getTranslation();
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="clone">
+<button class="show-code">Code</button>
+dynamic <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to VirtualLight.clone">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+clone() {
+
+ // TODO
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getChildByName">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a> <strong>getChildByName</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> doRecurse) <a class="anchor-link" href="#getChildByName"
+              title="Permalink to VirtualLight.getChildByName">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Object3D getChildByName( String name, bool doRecurse ) {
+ int c;
+ int cl = children.length;
+ Object3D child, recurseResult;
+
+ children.forEach((child){
+
+   if ( child.name == name ) {
+     return child;
+   }
+
+   if ( doRecurse ) {
+     recurseResult = child.getChildByName( name, doRecurse );
+
+     if ( recurseResult != null ) {
+       return recurseResult;
+     }
+   }
+ });
+
+ return null;
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="localToWorld">
+<button class="show-code">Code</button>
+dynamic <strong>localToWorld</strong>(<a href="../vector_math/Vector3.html">Vector3</a> vector) <a class="anchor-link" href="#localToWorld"
+              title="Permalink to VirtualLight.localToWorld">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+localToWorld(Vector3 vector) =&gt; vector.applyProjection(matrixWorld);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="lookAt">
+<button class="show-code">Code</button>
+void <strong>lookAt</strong>(<a href="../vector_math/Vector3.html">Vector3</a> vector) <a class="anchor-link" href="#lookAt"
+              title="Permalink to VirtualLight.lookAt">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void lookAt( Vector3 vector ) {
+ // TODO: Add hierarchy support.
+
+ makeLookAt( matrix, vector, position, up );
+
+ if ( rotationAutoUpdate ) {
+   if(useQuaternion)
+     quaternion.setFromRotationMatrix(matrix);
+   else
+     rotation = calcEulerFromRotationMatrix( matrix, eulerOrder );
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="remove">
+<button class="show-code">Code</button>
+void <strong>remove</strong>(<a href="../three/Object3D.html">Object3D</a> object) <a class="anchor-link" href="#remove"
+              title="Permalink to VirtualLight.remove">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void remove( Object3D object ) {
+
+ int index = children.indexOf( object );
+
+ if ( index != - 1 ){
+
+   object.parent = null;
+   children.removeAt(index);
+
+   // remove from scene
+   Object3D scene = this;
+
+   while ( scene.parent != null ) {
+     scene = scene.parent;
+   }
+
+   if (scene is Scene ) {
+     scene.removeObject( object );
+   }
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translate">
+<button class="show-code">Code</button>
+void <strong>translate</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance, <a href="../vector_math/Vector3.html">Vector3</a> axis) <a class="anchor-link" href="#translate"
+              title="Permalink to VirtualLight.translate">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translate( num distance, Vector3 axis ) {
+ matrix.rotate3( axis );
+ axis.normalize();
+ position.add( axis.scale( distance ) );
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translateX">
+<button class="show-code">Code</button>
+void <strong>translateX</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance) <a class="anchor-link" href="#translateX"
+              title="Permalink to VirtualLight.translateX">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translateX( num distance ) =&gt; translate( distance, _vector.setValues( 1.0, 0.0, 0.0 ) );
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translateY">
+<button class="show-code">Code</button>
+void <strong>translateY</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance) <a class="anchor-link" href="#translateY"
+              title="Permalink to VirtualLight.translateY">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translateY( num distance ) =&gt; translate( distance, _vector.setValues( 0.0, 1.0, 0.0 ) );
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translateZ">
+<button class="show-code">Code</button>
+void <strong>translateZ</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance) <a class="anchor-link" href="#translateZ"
+              title="Permalink to VirtualLight.translateZ">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translateZ( num distance ) =&gt; translate( distance, _vector.setValues( 0.0, 0.0, 1.0 ) );
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="updateMatrix">
+<button class="show-code">Code</button>
+void <strong>updateMatrix</strong>() <a class="anchor-link" href="#updateMatrix"
+              title="Permalink to VirtualLight.updateMatrix">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void updateMatrix() {
+
+ if ( useQuaternion ) {
+   setRotationFromQuaternion( matrix, quaternion );
+ } else {
+   setRotationFromEuler( matrix, rotation, eulerOrder );
+ }
+
+ matrix.setTranslation( position );
+
+ if ( scale.x != 1.0 || scale.y != 1.0 || scale.z != 1.0 ) {
+   matrix.scale( scale );
+   boundRadiusScale = Math.max( scale.x, Math.max( scale.y, scale.z ) );
+ }
+
+ matrixWorldNeedsUpdate = true;
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="updateMatrixWorld">
+<button class="show-code">Code</button>
+void <strong>updateMatrixWorld</strong>({<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> force: false}) <a class="anchor-link" href="#updateMatrixWorld"
+              title="Permalink to VirtualLight.updateMatrixWorld">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void updateMatrixWorld( {bool force: false} ) {
+
+if (matrixAutoUpdate) updateMatrix();
+
+ // update matrixWorld
+ if ( matrixWorldNeedsUpdate || force ) {
+   if ( parent != null ) {
+     matrixWorld = parent.matrixWorld * matrix;
+   } else {
+     matrixWorld = matrix.clone();
+   }
+
+   matrixWorldNeedsUpdate = false;
+
+   force = true;
+ }
+
+ // update children
+ children.forEach((c) =&gt; c.updateMatrixWorld( force: force ) );
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="worldToLocal">
+<button class="show-code">Code</button>
+dynamic <strong>worldToLocal</strong>(<a href="../vector_math/Vector3.html">Vector3</a> vector) <a class="anchor-link" href="#worldToLocal"
+              title="Permalink to VirtualLight.worldToLocal">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+worldToLocal(Vector3 vector) {
+ Matrix4 m = this.matrixWorld.clone();
+ m.invert();
+ m.transform3( vector );
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:32.586</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

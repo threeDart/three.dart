@@ -1,0 +1,730 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>JSONLoader class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="JSONLoader">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/JSONLoader.html">JSONLoader</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><a href="../three/BufferGeometry.html"><div class="icon-class"></div>BufferGeometry</a></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><a href="../three/Curve3D.html"><div class="icon-class"></div>Curve3D</a></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><div class="icon-class"></div><strong>JSONLoader</strong></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><a href="../three/SkinnedMesh.html"><div class="icon-class"></div>SkinnedMesh</a></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><a href="../three/TubeGeometry.html"><div class="icon-class"></div>TubeGeometry</a></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><a href="../three/VirtualLight.html"><div class="icon-class"></div>VirtualLight</a></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><a href="../three/WebGLGeometry.html"><div class="icon-class"></div>WebGLGeometry</a></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>JSONLoader</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>@author mrdoob / http://mrdoob.com/
+@author alteredq / http://alteredqualia.com/</p>
+<p>Ported to Dart from JS by:
+@author nelson silva / http://www.inevo.pt/</p>
+<p>based on r51</p>
+<pre class="source">
+class JSONLoader extends Loader {
+
+ JSONLoader( {bool showStatus: false} ) : super(showStatus );
+
+ load( url, LoadedCallback callback, {texturePath: null} ) {
+
+   if (texturePath == null) {
+     texturePath = Loader._extractUrlBase( url );
+   }
+
+   onLoadStart();
+
+   _loadAjaxJSON(url, callback, texturePath );
+ }
+
+ _loadAjaxJSON(String url, LoadedCallback callback, String texturePath, {LoadProgressCallback callbackProgress: null} ) {
+
+   HttpRequest xhr = new HttpRequest();
+
+   var length = 0;
+
+   xhr.onReadyStateChange.listen((Event e) {
+
+     if ( xhr.readyState == HttpRequest.DONE ) {
+
+       if ( xhr.status == 200 || xhr.status == 0 ) {
+
+         if ( !xhr.responseText.isEmpty ) {
+
+           var json = JSON.decode( xhr.responseText );
+           _createModel( json, callback, texturePath );
+
+         } else {
+
+           print( "THREE.JSONLoader: [$url] seems to be unreachable or file there is empty" );
+
+         }
+
+         // in context of more complex asset initialization
+         // do not block on single failed file
+         // maybe should go even one more level up
+
+         onLoadComplete();
+
+       } else {
+
+         print( "THREE.JSONLoader: Couldn't load [$url] [${xhr.status}]" );
+
+       }
+
+     } else if ( xhr.readyState == HttpRequest.LOADING ) {
+
+       if ( callbackProgress != null) {
+
+         if ( length == 0 ) {
+
+           length = xhr.getResponseHeader( "Content-Length" );
+
+         }
+
+         callbackProgress( { "total": length, "loaded": xhr.responseText.length } );
+
+       }
+
+     } else if ( xhr.readyState == HttpRequest.HEADERS_RECEIVED ) {
+
+       length = xhr.getResponseHeader( "Content-Length" );
+
+     }
+
+   });
+
+   xhr.open( "GET", url);
+   xhr.send( null );
+
+ }
+
+ bool _isBitSet( value, position ) =&gt; (value &amp; ( 1 &lt;&lt; position )) &gt; 0;
+
+ _createModel( Map json, LoadedCallback callback, String texturePath ) {
+
+   var geometry = new Geometry(),
+       scale = ( json.containsKey("scale")) ? 1.0 / json["scale"] : 1.0;
+
+   _initMaterials( geometry, json["materials"], texturePath );
+
+   _parseModel( json, geometry, scale );
+
+   _parseSkin( json, geometry);
+   _parseMorphing( json, geometry, scale );
+
+   geometry.computeCentroids();
+   geometry.computeFaceNormals();
+
+   if ( _hasNormals( geometry ) ) geometry.computeTangents();
+
+   callback( geometry );
+ }
+
+ _parseModel( Map json, Geometry geometry, num scale ) {
+
+   var i, j, fi,
+
+   offset, zLength, nVertices,
+
+   colorIndex, normalIndex, uvIndex, materialIndex,
+
+   type,
+   isQuad,
+   hasMaterial,
+   hasFaceUv, hasFaceVertexUv,
+   hasFaceNormal, hasFaceVertexNormal,
+   hasFaceColor, hasFaceVertexColor,
+
+   vertex, face, color, normal,
+
+   uvLayer, uvs, u, v,
+
+   faces = json["faces"],
+   vertices = json["vertices"],
+   normals = json["normals"],
+   colors = json["colors"],
+
+   nUvLayers = 0;
+
+   // disregard empty arrays
+
+   for ( i = 0; i &lt; json["uvs"].length; i++ ) {
+
+     if ( !json["uvs"][ i ].isEmpty ) nUvLayers ++;
+
+   }
+
+   geometry.faceUvs = new List(nUvLayers);
+   geometry.faceVertexUvs = new List(nUvLayers);
+
+   for ( i = 0; i &lt; nUvLayers; i++ ) {
+
+     geometry.faceUvs[ i ] = new List(faces.length);
+     geometry.faceVertexUvs[ i ] = new List(faces.length);
+
+   }
+
+   offset = 0;
+   zLength = vertices.length;
+
+   while ( offset &lt; zLength ) {
+
+     vertex = new Vector3.zero();
+
+     vertex.x = vertices[ offset ++ ] * scale;
+     vertex.y = vertices[ offset ++ ] * scale;
+     vertex.z = vertices[ offset ++ ] * scale;
+
+     geometry.vertices.add( vertex );
+
+   }
+
+   offset = 0;
+   zLength = faces.length;
+
+   while ( offset &lt; zLength ) {
+
+     type = faces[ offset ++ ];
+
+
+     isQuad            = _isBitSet( type, 0 );
+     hasMaterial         = _isBitSet( type, 1 );
+     hasFaceUv           = _isBitSet( type, 2 );
+     hasFaceVertexUv     = _isBitSet( type, 3 );
+     hasFaceNormal       = _isBitSet( type, 4 );
+     hasFaceVertexNormal = _isBitSet( type, 5 );
+     hasFaceColor      = _isBitSet( type, 6 );
+     hasFaceVertexColor  = _isBitSet( type, 7 );
+
+     //console.log("type", type, "bits", isQuad, hasMaterial, hasFaceUv, hasFaceVertexUv, hasFaceNormal, hasFaceVertexNormal, hasFaceColor, hasFaceVertexColor);
+
+     if ( isQuad ) {
+
+       face = new Face4();
+
+       face.a = faces[ offset ++ ];
+       face.b = faces[ offset ++ ];
+       face.c = faces[ offset ++ ];
+       face.d = faces[ offset ++ ];
+
+       nVertices = 4;
+
+     } else {
+
+       face = new Face3();
+
+       face.a = faces[ offset ++ ];
+       face.b = faces[ offset ++ ];
+       face.c = faces[ offset ++ ];
+
+       nVertices = 3;
+
+     }
+
+     if ( hasMaterial ) {
+
+       materialIndex = faces[ offset ++ ];
+       face.materialIndex = materialIndex;
+
+     }
+
+     // to get face &lt;=&gt; uv index correspondence
+
+     fi = geometry.faces.length;
+
+     if ( hasFaceUv ) {
+
+       for ( i = 0; i &lt; nUvLayers; i++ ) {
+
+         uvLayer = json["uvs"][ i ];
+
+         uvIndex = faces[ offset ++ ];
+
+         u = uvLayer[ uvIndex * 2 ];
+         v = uvLayer[ uvIndex * 2 + 1 ];
+
+         geometry.faceUvs[ i ][ fi ] = new UV( u, v );
+
+       }
+
+     }
+
+     if ( hasFaceVertexUv ) {
+
+       for ( i = 0; i &lt; nUvLayers; i++ ) {
+
+         uvLayer = json["uvs"][ i ];
+
+         uvs = new List(nVertices);
+
+         for ( j = 0; j &lt; nVertices; j ++ ) {
+
+           uvIndex = faces[ offset ++ ];
+
+           u = uvLayer[ uvIndex * 2 ];
+           v = uvLayer[ uvIndex * 2 + 1 ];
+
+           uvs[ j ] = new UV( u, v );
+
+         }
+
+         geometry.faceVertexUvs[ i ][ fi ] = uvs;
+
+       }
+
+     }
+
+     if ( hasFaceNormal ) {
+
+       normalIndex = faces[ offset ++ ] * 3;
+
+       normal = new Vector3.zero();
+
+       normal.x = normals[ normalIndex ++ ];
+       normal.y = normals[ normalIndex ++ ];
+       normal.z = normals[ normalIndex ];
+
+       face.normal = normal;
+
+     }
+
+     if ( hasFaceVertexNormal ) {
+
+       for ( i = 0; i &lt; nVertices; i++ ) {
+
+         normalIndex = faces[ offset ++ ] * 3;
+
+         normal = new Vector3.zero();
+
+         normal.x = normals[ normalIndex ++ ];
+         normal.y = normals[ normalIndex ++ ];
+         normal.z = normals[ normalIndex ];
+
+         face.vertexNormals.add( normal );
+
+       }
+
+     }
+
+
+     if ( hasFaceColor ) {
+
+       colorIndex = faces[ offset ++ ];
+
+       color = new Color( colors[ colorIndex ] );
+       face.color = color;
+
+     }
+
+
+     if ( hasFaceVertexColor ) {
+
+       for ( i = 0; i &lt; nVertices; i++ ) {
+
+         colorIndex = faces[ offset ++ ];
+
+         color = new Color( colors[ colorIndex ] );
+         face.vertexColors.add( color );
+
+       }
+
+     }
+
+     geometry.faces.add( face );
+
+   }
+
+ }
+
+ _parseSkin(Map json, Geometry geometry) {
+
+   var i, l, x, y, z, w, a, b, c, d;
+
+   if ( json.containsKey("skinWeights") ) {
+
+     l = json["skinWeights"].length;
+     for ( i = 0; i &lt; l; i += 2 ) {
+
+       x = json["skinWeights"][ i     ];
+       y = json["skinWeights"][ i + 1 ];
+       z = 0.0;
+       w = 0.0;
+
+       geometry.skinWeights.add( new Vector4( x, y, z, w ) );
+
+     }
+
+   }
+
+   if ( json.containsKey("skinIndices") ) {
+
+     l = json["skinIndices"].length;
+     for ( i = 0; i &lt; l; i += 2 ) {
+
+       a = json["skinIndices"][ i     ];
+       b = json["skinIndices"][ i + 1 ];
+       c = 0.0;
+       d = 0.0;
+
+       geometry.skinIndices.add( new Vector4( a, b, c, d ) );
+
+     }
+
+   }
+
+   geometry.bones = json["bones"];
+   geometry.animation = json["animation"];
+
+ }
+
+ _parseMorphing( Map json, Geometry geometry, num scale ) {
+
+   if ( json.containsKey("morphTargets") ) {
+
+     var i, l, v, vl, dstVertices, srcVertices;
+
+     geometry.morphTargets = new List(json["morphTargets"].length);
+
+     for ( i = 0; i &lt; geometry.morphTargets.length; i ++ ) {
+
+       geometry.morphTargets[ i ] = new MorphTarget(name: json["morphTargets"][ i ]["name"], vertices: []);
+
+       dstVertices = geometry.morphTargets[ i ].vertices;
+       srcVertices = json["morphTargets"][ i ]["vertices"];
+
+       vl = srcVertices.length;
+       for( v = 0; v &lt; vl; v += 3 ) {
+
+         var vertex = new Vector3.zero();
+         vertex.x = srcVertices[ v ] * scale;
+         vertex.y = srcVertices[ v + 1 ] * scale;
+         vertex.z = srcVertices[ v + 2 ] * scale;
+
+         dstVertices.add( vertex );
+
+       }
+
+     }
+
+   }
+
+   if ( json.containsKey("morphColors") ) {
+
+     var i, l, c, cl, dstColors, srcColors, color;
+
+     geometry.morphColors = new List(json["morphColors"].length);
+
+     for ( i = 0; i &lt; geometry.morphColors.length; i++ ) {
+
+       dstColors = [];
+       srcColors = json["morphColors"][ i ]["colors"];
+
+       cl = srcColors.length;
+       for ( c = 0; c &lt; cl; c += 3 ) {
+
+         color = new Color( 0xffaa00 );
+         color.setRGB( srcColors[ c ], srcColors[ c + 1 ], srcColors[ c + 2 ] );
+         dstColors.add( color );
+
+       }
+
+       geometry.morphColors[ i ] = new MorphColors(
+           name: json["morphColors"][ i ]["name"],
+           colors: dstColors);
+     }
+   }
+ }
+
+}
+</pre>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/Loader.html">Loader</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>JSONLoader</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>JSONLoader</strong>({<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> showStatus: false}) <a class="anchor-link" href="#"
+              title="Permalink to JSONLoader.JSONLoader">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+JSONLoader( {bool showStatus: false} ) : super(showStatus );
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="crossOrigin">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>crossOrigin</strong> <a class="anchor-link"
+            href="#crossOrigin"
+            title="Permalink to JSONLoader.crossOrigin">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Loader.html">Loader</a> </div><div class="doc">
+<pre class="source">
+String crossOrigin = 'anonymous'
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="onLoadComplete">
+<button class="show-code">Code</button>
+<a href="../three/LoadCompleteCallback.html">LoadCompleteCallback</a>         <strong>onLoadComplete</strong> <a class="anchor-link"
+            href="#onLoadComplete"
+            title="Permalink to JSONLoader.onLoadComplete">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Loader.html">Loader</a> </div><div class="doc">
+<pre class="source">
+LoadCompleteCallback onLoadComplete
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="onLoadProgress">
+<button class="show-code">Code</button>
+<a href="../three/LoadProgressCallback.html">LoadProgressCallback</a>         <strong>onLoadProgress</strong> <a class="anchor-link"
+            href="#onLoadProgress"
+            title="Permalink to JSONLoader.onLoadProgress">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Loader.html">Loader</a> </div><div class="doc">
+<pre class="source">
+LoadProgressCallback onLoadProgress
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="onLoadStart">
+<button class="show-code">Code</button>
+<a href="../three/LoadStartCallback.html">LoadStartCallback</a>         <strong>onLoadStart</strong> <a class="anchor-link"
+            href="#onLoadStart"
+            title="Permalink to JSONLoader.onLoadStart">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Loader.html">Loader</a> </div><div class="doc">
+<pre class="source">
+LoadStartCallback onLoadStart
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="statusDomElement">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_html/Element.html">Element</a>         <strong>statusDomElement</strong> <a class="anchor-link"
+            href="#statusDomElement"
+            title="Permalink to JSONLoader.statusDomElement">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Loader.html">Loader</a> </div><div class="doc">
+<pre class="source">
+Element statusDomElement
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="load">
+<button class="show-code">Code</button>
+dynamic <strong>load</strong>(url, <a href="../three/LoadedCallback.html">LoadedCallback</a> callback, {texturePath: null}) <a class="anchor-link" href="#load"
+              title="Permalink to JSONLoader.load">#</a></h4>
+<div class="doc">
+<pre class="source">
+load( url, LoadedCallback callback, {texturePath: null} ) {
+
+ if (texturePath == null) {
+   texturePath = Loader._extractUrlBase( url );
+ }
+
+ onLoadStart();
+
+ _loadAjaxJSON(url, callback, texturePath );
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:33.873</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

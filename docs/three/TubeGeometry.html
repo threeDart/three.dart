@@ -1,0 +1,1429 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>TubeGeometry class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="TubeGeometry">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/TubeGeometry.html">TubeGeometry</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><a href="../three/BufferGeometry.html"><div class="icon-class"></div>BufferGeometry</a></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><a href="../three/Curve3D.html"><div class="icon-class"></div>Curve3D</a></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><a href="../three/JSONLoader.html"><div class="icon-class"></div>JSONLoader</a></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><a href="../three/SkinnedMesh.html"><div class="icon-class"></div>SkinnedMesh</a></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><div class="icon-class"></div><strong>TubeGeometry</strong></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><a href="../three/VirtualLight.html"><div class="icon-class"></div>VirtualLight</a></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><a href="../three/WebGLGeometry.html"><div class="icon-class"></div>WebGLGeometry</a></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>TubeGeometry</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>@author WestLangley / https://github.com/WestLangley
+@author zz85 / https://github.com/zz85
+@author miningold / https://github.com/miningold</p>
+<p>Modified from the TorusKnotGeometry by @oosmoxiecode</p>
+<p>Creates a tube which extrudes along a 3d spline</p>
+<p>Uses parallel transport frames as described in
+http://www.cs.indiana.edu/pub/techreports/TR425.pdf</p>
+<pre class="source">
+class TubeGeometry extends Geometry {
+
+ var path, segments;
+ num nSegments, radius, segmentsRadius;
+ bool closed;
+
+ var grid;
+ List&lt;Vector3&gt; tangents, normals, binormals;
+
+ Object3D debug;
+
+ TubeGeometry ( path, [segments = 64, this.radius = 1.0, this.segmentsRadius = 8, closed = false, bool debug])
+   : grid = [], super() {
+
+   if ( debug ) this.debug = new Object3D();
+
+   var tangent,
+       normal,
+       binormal,
+
+       numpoints = segments + 1,
+
+       x, y, z,
+       tx, ty, tz,
+       u, v,
+
+       cx, cy,
+       pos, pos2 = new Vector3.zero(),
+       i, j,
+       ip, jp,
+       a, b, c, d,
+       uva, uvb, uvc, uvd;
+
+   var frames = _frenetFrames(path, segments, closed);
+
+   // consruct the grid
+   grid.length = numpoints;
+
+   for ( i = 0; i &lt; numpoints; i++ ) {
+
+     grid[ i ] = new List(this.segmentsRadius);
+
+     u = i / ( numpoints - 1 );
+
+     pos = path.getPointAt( u );
+
+     tangent = tangents[ i ];
+     normal = normals[ i ];
+     binormal = binormals[ i ];
+
+     if ( debug ) {
+
+       this.debug.add(new ArrowHelper(tangent, pos, radius, 0x0000ff));
+       this.debug.add(new ArrowHelper(normal, pos, radius, 0xff0000));
+       this.debug.add(new ArrowHelper(binormal, pos, radius, 0x00ff00));
+
+     }
+
+     for ( j = 0; j &lt; this.segmentsRadius; j++ ) {
+
+       v = j / this.segmentsRadius * 2 * Math.PI;
+
+       cx = -this.radius * Math.cos( v ); // TODO: Hack: Negating it so it faces outside.
+       cy = this.radius * Math.sin( v );
+
+       pos2.setFrom( pos );
+       pos2.x += cx * normal.x + cy * binormal.x;
+       pos2.y += cx * normal.y + cy * binormal.y;
+       pos2.z += cx * normal.z + cy * binormal.z;
+
+       this.grid[ i ][ j ] = _vert( pos2.x, pos2.y, pos2.z );
+
+     }
+   }
+
+
+   // construct the mesh
+
+   for ( i = 0; i &lt; this.nSegments; i++ ) {
+
+     for ( j = 0; j &lt; this.segmentsRadius; j++ ) {
+
+       ip = ( closed ) ? (i + 1) % this.nSegments : i + 1;
+       jp = (j + 1) % this.segmentsRadius;
+
+       a = this.grid[ i ][ j ];    // *** NOT NECESSARILY PLANAR ! ***
+       b = this.grid[ ip ][ j ];
+       c = this.grid[ ip ][ jp ];
+       d = this.grid[ i ][ jp ];
+
+       uva = new UV( i / this.nSegments, j / this.segmentsRadius );
+       uvb = new UV( ( i + 1 ) / this.nSegments, j / this.segmentsRadius );
+       uvc = new UV( ( i + 1 ) / this.nSegments, ( j + 1 ) / this.segmentsRadius );
+       uvd = new UV( i / this.nSegments, ( j + 1 ) / this.segmentsRadius );
+
+       this.faces.add( new Face4( a, b, c, d ) );
+       this.faceVertexUvs[ 0 ].add( [ uva, uvb, uvc, uvd ] );
+
+     }
+   }
+
+   computeCentroids();
+   computeFaceNormals();
+   computeVertexNormals();
+
+ }
+
+
+ _vert( x, y, z ) {
+   vertices.add( new Vector3(x, y, z) );
+   return vertices.length - 1;
+ }
+
+
+ // FrenetFrames
+
+
+ TubeGeometry.FrenetFrames(path, segments, closed) {
+   _frenetFrames(path, segments, closed);
+ }
+
+// For computing of Frenet frames, exposing the tangents, normals and binormals the spline
+ _frenetFrames(ppath, psegments, pclosed) {
+
+   this.path = ppath;
+   this.segments = psegments;
+
+   this.closed = pclosed;
+
+   var
+     tangent = new Vector3.zero(),
+     normal = new Vector3.zero(),
+     binormal = new Vector3.zero(),
+
+     mat = new Matrix4.identity(),
+     theta,
+     epsilon = 0.0001,
+     smallest,
+
+     tx, ty, tz,
+     i, u, v;
+
+   if(segments is num){
+     var length = segments;
+     segments = [];
+       for ( i = 1; i &lt;= length; i++ ) {
+         segments.add( i / ( length ));
+       }
+   }
+   this.nSegments = segments.length;
+   var numpoints = this.nSegments + 1;
+
+   // expose internals
+   tangents = new List&lt;Vector3&gt;(numpoints);
+   normals = new List&lt;Vector3&gt;(numpoints);
+   binormals = new List&lt;Vector3&gt;(numpoints);
+
+   // compute the tangent vectors for each segment on the path
+
+   for ( i = 0; i &lt; numpoints; i++ ) {
+     tangents[ i ] = (i == 0)? path.getTangentAt( 0 ): path.getTangentAt( segments[i - 1] );
+     tangents[ i ].normalize();
+   }
+
+   _initialNormal1([lastBinormal = null]) {
+     // fixed start binormal. Has dangers of 0 vectors
+     if (lastBinormal==null)
+       lastBinormal = new Vector3( 0.0, 0.0, 1.0 );
+     normals[0] = lastBinormal.cross(tangents[0]).normalize();
+     binormals[0] = tangents[0].cross(normals[0]).normalize();
+   }
+
+   _initialNormal2() {
+     // This uses the Frenet-Serret formula for deriving binormal
+     var t2 = path.getTangentAt( epsilon );
+
+     normals[0] = (t2 - tangents[0]).normalize();
+     binormals[0] = tangents[0].cross(normals[0]);
+
+     normals[0] = binormals[0].cross(tangents[0]).normalize(); // last binormal x tangent
+     binormals[0] = tangents[0].cross(normals[0]).normalize();
+
+   }
+
+   _initialNormal3() {
+     // select an initial normal vector perpenicular to the first tangent vector,
+     // and in the direction of the smallest tangent xyz component
+
+     smallest = double.INFINITY;
+     tx = ( tangents[ 0 ].x ).abs();
+     ty = ( tangents[ 0 ].y ).abs();
+     tz = ( tangents[ 0 ].z ).abs();
+
+     if ( tx &lt;= smallest ) {
+       smallest = tx;
+       normal.setValues( 1.0, 0.0, 0.0 );
+     }
+
+     if ( ty &lt;= smallest ) {
+       smallest = ty;
+       normal.setValues( 0.0, 1.0, 0.0 );
+     }
+
+     if ( tz &lt;= smallest ) {
+       normal.setValues( 0.0, 0.0, 1.0 );
+     }
+
+     Vector3 vec = tangents[0].cross(normal).normalize();
+
+     normals[0] = tangents[0].cross(vec);
+     binormals[0] = tangents[0].cross(normals[0]);
+   }
+
+   _initialNormal3();
+
+
+   // compute the slowly-varying normal and binormal vectors for each segment on the path
+
+   for ( i = 1; i &lt; numpoints; i++ ) {
+
+     normals[ i ] = normals[ i-1 ].clone();
+
+     binormals[ i ] = binormals[ i-1 ].clone();
+
+     Vector3 vec = tangents[i-1].cross(tangents[i]);
+
+     if ( vec.length &gt; epsilon ) {
+
+       vec.normalize();
+
+       theta = Math.acos( tangents[ i-1 ].dot( tangents[ i ] ) );
+
+       normals[ i ].applyProjection(makeRotationAxis ( mat, vec, theta ));
+     }
+
+     binormals[i] = tangents[i].cross(normals[i]);
+
+   }
+
+
+   // if the curve is closed, postprocess the vectors so the first and last normal vectors are the same
+
+   if ( closed ) {
+
+     theta = Math.acos( normals[ 0 ].dot( normals[ numpoints-1 ] ) );
+     theta /= ( numpoints - 1 );
+
+     if ( tangents[ 0 ].dot( normals[0].cross(normals[numpoints-1]) )  &gt; 0 ) {
+
+       theta = -theta;
+
+     }
+
+     for ( i = 1; i &lt; numpoints; i++ ) {
+
+       // twist a little...
+       normals[ i ].applyProjection( makeRotationAxis( mat, tangents[ i ], theta * i ) );
+       binormals[ i ] = tangents[i].cross(normals[i]);
+
+     }
+
+   }
+ }
+}
+</pre>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/Geometry.html">Geometry</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>TubeGeometry</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>TubeGeometry</strong>(path, [segments = 64, <a href="http://api.dartlang.org/dart_core/num.html">num</a> radius = 1.0, <a href="http://api.dartlang.org/dart_core/num.html">num</a> segmentsRadius = 8, closed = false, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> debug]) <a class="anchor-link" href="#"
+              title="Permalink to TubeGeometry.TubeGeometry">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+TubeGeometry ( path, [segments = 64, this.radius = 1.0, this.segmentsRadius = 8, closed = false, bool debug])
+ : grid = [], super() {
+
+ if ( debug ) this.debug = new Object3D();
+
+ var tangent,
+     normal,
+     binormal,
+
+     numpoints = segments + 1,
+
+     x, y, z,
+     tx, ty, tz,
+     u, v,
+
+     cx, cy,
+     pos, pos2 = new Vector3.zero(),
+     i, j,
+     ip, jp,
+     a, b, c, d,
+     uva, uvb, uvc, uvd;
+
+ var frames = _frenetFrames(path, segments, closed);
+
+ // consruct the grid
+ grid.length = numpoints;
+
+ for ( i = 0; i &lt; numpoints; i++ ) {
+
+   grid[ i ] = new List(this.segmentsRadius);
+
+   u = i / ( numpoints - 1 );
+
+   pos = path.getPointAt( u );
+
+   tangent = tangents[ i ];
+   normal = normals[ i ];
+   binormal = binormals[ i ];
+
+   if ( debug ) {
+
+     this.debug.add(new ArrowHelper(tangent, pos, radius, 0x0000ff));
+     this.debug.add(new ArrowHelper(normal, pos, radius, 0xff0000));
+     this.debug.add(new ArrowHelper(binormal, pos, radius, 0x00ff00));
+
+   }
+
+   for ( j = 0; j &lt; this.segmentsRadius; j++ ) {
+
+     v = j / this.segmentsRadius * 2 * Math.PI;
+
+     cx = -this.radius * Math.cos( v ); // TODO: Hack: Negating it so it faces outside.
+     cy = this.radius * Math.sin( v );
+
+     pos2.setFrom( pos );
+     pos2.x += cx * normal.x + cy * binormal.x;
+     pos2.y += cx * normal.y + cy * binormal.y;
+     pos2.z += cx * normal.z + cy * binormal.z;
+
+     this.grid[ i ][ j ] = _vert( pos2.x, pos2.y, pos2.z );
+
+   }
+ }
+
+
+ // construct the mesh
+
+ for ( i = 0; i &lt; this.nSegments; i++ ) {
+
+   for ( j = 0; j &lt; this.segmentsRadius; j++ ) {
+
+     ip = ( closed ) ? (i + 1) % this.nSegments : i + 1;
+     jp = (j + 1) % this.segmentsRadius;
+
+     a = this.grid[ i ][ j ];    // *** NOT NECESSARILY PLANAR ! ***
+     b = this.grid[ ip ][ j ];
+     c = this.grid[ ip ][ jp ];
+     d = this.grid[ i ][ jp ];
+
+     uva = new UV( i / this.nSegments, j / this.segmentsRadius );
+     uvb = new UV( ( i + 1 ) / this.nSegments, j / this.segmentsRadius );
+     uvc = new UV( ( i + 1 ) / this.nSegments, ( j + 1 ) / this.segmentsRadius );
+     uvd = new UV( i / this.nSegments, ( j + 1 ) / this.segmentsRadius );
+
+     this.faces.add( new Face4( a, b, c, d ) );
+     this.faceVertexUvs[ 0 ].add( [ uva, uvb, uvc, uvd ] );
+
+   }
+ }
+
+ computeCentroids();
+ computeFaceNormals();
+ computeVertexNormals();
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="FrenetFrames">
+<button class="show-code">Code</button>
+new <strong>TubeGeometry.FrenetFrames</strong>(path, segments, closed) <a class="anchor-link" href="#FrenetFrames"
+              title="Permalink to TubeGeometry.TubeGeometry.FrenetFrames">#</a></h4>
+<div class="doc">
+<pre class="source">
+TubeGeometry.FrenetFrames(path, segments, closed) {
+ _frenetFrames(path, segments, closed);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field inherited"><h4 id="animation">
+<button class="show-code">Code</button>
+var         <strong>animation</strong> <a class="anchor-link"
+            href="#animation"
+            title="Permalink to TubeGeometry.animation">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+var bones, animation
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="binormals">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../vector_math/Vector3.html">Vector3</a>&gt;         <strong>binormals</strong> <a class="anchor-link"
+            href="#binormals"
+            title="Permalink to TubeGeometry.binormals">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List&lt;Vector3&gt; tangents, normals, binormals
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="bones">
+<button class="show-code">Code</button>
+var         <strong>bones</strong> <a class="anchor-link"
+            href="#bones"
+            title="Permalink to TubeGeometry.bones">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+var bones
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="boundingBox">
+<button class="show-code">Code</button>
+<a href="../three/BoundingBox.html">BoundingBox</a>         <strong>boundingBox</strong> <a class="anchor-link"
+            href="#boundingBox"
+            title="Permalink to TubeGeometry.boundingBox">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+BoundingBox boundingBox
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="boundingSphere">
+<button class="show-code">Code</button>
+<a href="../three/BoundingSphere.html">BoundingSphere</a>         <strong>boundingSphere</strong> <a class="anchor-link"
+            href="#boundingSphere"
+            title="Permalink to TubeGeometry.boundingSphere">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+BoundingSphere boundingSphere
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="closed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>closed</strong> <a class="anchor-link"
+            href="#closed"
+            title="Permalink to TubeGeometry.closed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool closed
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="colors">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>colors</strong> <a class="anchor-link"
+            href="#colors"
+            title="Permalink to TubeGeometry.colors">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List colors
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="debug">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a>         <strong>debug</strong> <a class="anchor-link"
+            href="#debug"
+            title="Permalink to TubeGeometry.debug">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Object3D debug
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="faces">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/Face.html">Face</a>&gt;         <strong>faces</strong> <a class="anchor-link"
+            href="#faces"
+            title="Permalink to TubeGeometry.faces">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;Face&gt; faces
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="faceUvs">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>faceUvs</strong> <a class="anchor-link"
+            href="#faceUvs"
+            title="Permalink to TubeGeometry.faceUvs">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List faceUvs
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="faceVertexUvs">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="http://api.dartlang.org/dart_core/List.html">List</a>&gt;         <strong>faceVertexUvs</strong> <a class="anchor-link"
+            href="#faceVertexUvs"
+            title="Permalink to TubeGeometry.faceVertexUvs">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;List&gt; faceVertexUvs
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="grid">
+<button class="show-code">Code</button>
+var         <strong>grid</strong> <a class="anchor-link"
+            href="#grid"
+            title="Permalink to TubeGeometry.grid">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var grid
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="hasTangents">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>hasTangents</strong> <a class="anchor-link"
+            href="#hasTangents"
+            title="Permalink to TubeGeometry.hasTangents">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+bool hasTangents
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="id">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>id</strong> <a class="anchor-link"
+            href="#id"
+            title="Permalink to TubeGeometry.id">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+int id
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDynamic">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>isDynamic</strong> <a class="anchor-link"
+            href="#isDynamic"
+            title="Permalink to TubeGeometry.isDynamic">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+bool get isDynamic =&gt; _dynamic;
+</pre>
+<pre class="source">
+set isDynamic(bool value) =&gt; _dynamic = value;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="lineDistances">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>lineDistances</strong> <a class="anchor-link"
+            href="#lineDistances"
+            title="Permalink to TubeGeometry.lineDistances">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List lineDistances
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="materials">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>materials</strong> <a class="anchor-link"
+            href="#materials"
+            title="Permalink to TubeGeometry.materials">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List materials
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphColors">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphColors</strong> <a class="anchor-link"
+            href="#morphColors"
+            title="Permalink to TubeGeometry.morphColors">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List morphColors
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphNormals">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphNormals</strong> <a class="anchor-link"
+            href="#morphNormals"
+            title="Permalink to TubeGeometry.morphNormals">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List morphColors, morphNormals
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphTargets">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/MorphTarget.html">MorphTarget</a>&gt;         <strong>morphTargets</strong> <a class="anchor-link"
+            href="#morphTargets"
+            title="Permalink to TubeGeometry.morphTargets">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;MorphTarget&gt; morphTargets
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="name">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to TubeGeometry.name">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+String name
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="normals">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../vector_math/Vector3.html">Vector3</a>&gt;         <strong>normals</strong> <a class="anchor-link"
+            href="#normals"
+            title="Permalink to TubeGeometry.normals">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List&lt;Vector3&gt; tangents, normals
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="nSegments">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>nSegments</strong> <a class="anchor-link"
+            href="#nSegments"
+            title="Permalink to TubeGeometry.nSegments">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num nSegments
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="path">
+<button class="show-code">Code</button>
+var         <strong>path</strong> <a class="anchor-link"
+            href="#path"
+            title="Permalink to TubeGeometry.path">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var path
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="radius">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>radius</strong> <a class="anchor-link"
+            href="#radius"
+            title="Permalink to TubeGeometry.radius">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num nSegments, radius
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="segments">
+<button class="show-code">Code</button>
+var         <strong>segments</strong> <a class="anchor-link"
+            href="#segments"
+            title="Permalink to TubeGeometry.segments">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var path, segments
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="segmentsRadius">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>segmentsRadius</strong> <a class="anchor-link"
+            href="#segmentsRadius"
+            title="Permalink to TubeGeometry.segmentsRadius">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num nSegments, radius, segmentsRadius
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="skinIndices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>skinIndices</strong> <a class="anchor-link"
+            href="#skinIndices"
+            title="Permalink to TubeGeometry.skinIndices">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List skinWeights, skinIndices
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="skinWeights">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>skinWeights</strong> <a class="anchor-link"
+            href="#skinWeights"
+            title="Permalink to TubeGeometry.skinWeights">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List skinWeights
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="tangents">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../vector_math/Vector3.html">Vector3</a>&gt;         <strong>tangents</strong> <a class="anchor-link"
+            href="#tangents"
+            title="Permalink to TubeGeometry.tangents">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List&lt;Vector3&gt; tangents
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="vertices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../vector_math/Vector3.html">Vector3</a>&gt;         <strong>vertices</strong> <a class="anchor-link"
+            href="#vertices"
+            title="Permalink to TubeGeometry.vertices">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;Vector3&gt; vertices
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Operators</h3>
+<div class="method inherited"><h4 id="[]">
+<button class="show-code">Code</button>
+dynamic <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#[]"
+              title="Permalink to TubeGeometry.operator []">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+operator [] (String key) =&gt; _data[key];
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="[]=">
+<button class="show-code">Code</button>
+dynamic <strong>operator []=</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key, value) <a class="anchor-link" href="#[]="
+              title="Permalink to TubeGeometry.operator []=">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+operator []= (String key, value) =&gt; _data[key] = value;
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="applyMatrix">
+<button class="show-code">Code</button>
+void <strong>applyMatrix</strong>(<a href="../vector_math/Matrix4.html">Matrix4</a> matrix) <a class="anchor-link" href="#applyMatrix"
+              title="Permalink to TubeGeometry.applyMatrix">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void applyMatrix( Matrix4 matrix ) {
+ Matrix4 matrixRotation = new Matrix4.identity();
+ extractRotation( matrixRotation, matrix);
+
+ vertices.forEach((vertex) =&gt;  vertex.applyProjection(matrix));
+
+ faces.forEach((face) {
+
+   face.normal.applyProjection(matrixRotation);
+
+   face.vertexNormals.forEach((normal) =&gt; normal.applyProjection(matrixRotation));
+
+   face.centroid.applyProjection(matrix);
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="clone">
+<button class="show-code">Code</button>
+dynamic <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to TubeGeometry.clone">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+clone() {
+
+ // TODO
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeBoundingBox">
+<button class="show-code">Code</button>
+void <strong>computeBoundingBox</strong>() <a class="anchor-link" href="#computeBoundingBox"
+              title="Permalink to TubeGeometry.computeBoundingBox">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeBoundingBox() {
+ if ( boundingBox == null ) {
+   boundingBox = new BoundingBox( min: new Vector3.zero(), max: new Vector3.zero() );
+ }
+
+ if ( vertices.length &gt; 0 ) {
+   Vector3 position, firstPosition = vertices[ 0 ];
+
+   boundingBox.min.setFrom( firstPosition );
+   boundingBox.max.setFrom( firstPosition );
+
+   Vector3 min = boundingBox.min,
+           max = boundingBox.max;
+
+   num vl = vertices.length;
+   for ( int v = 1; v &lt; vl; v ++ ) {
+     position = vertices[ v ];
+
+     if ( position.x &lt; min.x ) {
+       min.x = position.x;
+     } else if ( position.x &gt; max.x ) {
+       max.x = position.x;
+     }
+
+     if ( position.y &lt; min.y ) {
+       min.y = position.y;
+     } else if ( position.y &gt; max.y ) {
+       max.y = position.y;
+     }
+
+     if ( position.z &lt; min.z ) {
+       min.z = position.z;
+     } else if ( position.z &gt; max.z ) {
+       max.z = position.z;
+     }
+   }
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeBoundingSphere">
+<button class="show-code">Code</button>
+void <strong>computeBoundingSphere</strong>() <a class="anchor-link" href="#computeBoundingSphere"
+              title="Permalink to TubeGeometry.computeBoundingSphere">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeBoundingSphere() {
+ num radiusSq;
+
+ var maxRadiusSq = vertices.fold(0, (num curMaxRadiusSq, Vector3 vertex) {
+   radiusSq = vertex.length2;
+   return ( radiusSq &gt; curMaxRadiusSq ) ?  radiusSq : curMaxRadiusSq;
+ });
+
+ boundingSphere = new BoundingSphere(radius: Math.sqrt(maxRadiusSq) );
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeCentroids">
+<button class="show-code">Code</button>
+void <strong>computeCentroids</strong>() <a class="anchor-link" href="#computeCentroids"
+              title="Permalink to TubeGeometry.computeCentroids">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeCentroids() {
+
+ faces.forEach((Face face) {
+
+   face.centroid.setValues( 0.0, 0.0, 0.0 );
+
+   face.indices.forEach((idx) {
+     face.centroid.add( vertices[ idx ] );
+   });
+
+   face.centroid /= face.size.toDouble();
+
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeFaceNormals">
+<button class="show-code">Code</button>
+void <strong>computeFaceNormals</strong>() <a class="anchor-link" href="#computeFaceNormals"
+              title="Permalink to TubeGeometry.computeFaceNormals">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeFaceNormals() {
+ faces.forEach((face) {
+
+   var vA = vertices[ face.a ],
+       vB = vertices[ face.b ],
+       vC = vertices[ face.c ];
+
+   Vector3 cb = vC - vB;
+   Vector3 ab = vA - vB;
+   cb = cb.cross( ab );
+
+   cb.normalize();
+
+   face.normal = cb;
+
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeTangents">
+<button class="show-code">Code</button>
+void <strong>computeTangents</strong>() <a class="anchor-link" href="#computeTangents"
+              title="Permalink to TubeGeometry.computeTangents">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeTangents() {
+ // based on http://www.terathon.com/code/tangent.html
+ // tangents go to vertices
+
+ var f, fl, face;
+ num i, il, vertexIndex, test, w;
+ Vector3 vA, vB, vC;
+ UV uvA, uvB, uvC;
+
+ List uv;
+
+ num x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
+
+ Vector3 sdir = new Vector3.zero(),
+         tdir = new Vector3.zero(),
+         tmp = new Vector3.zero(),
+         tmp2 = new Vector3.zero(),
+         n = new Vector3.zero(),
+         t;
+
+ List&lt;Vector3&gt; tan1 = vertices.map((_) =&gt; new Vector3.zero()).toList(),
+               tan2 = vertices.map((_) =&gt; new Vector3.zero()).toList();
+
+ var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
+
+   vA = context.vertices[ a ];
+   vB = context.vertices[ b ];
+   vC = context.vertices[ c ];
+
+   uvA = uv[ ua ];
+   uvB = uv[ ub ];
+   uvC = uv[ uc ];
+
+   x1 = vB.x - vA.x;
+   x2 = vC.x - vA.x;
+   y1 = vB.y - vA.y;
+   y2 = vC.y - vA.y;
+   z1 = vB.z - vA.z;
+   z2 = vC.z - vA.z;
+
+   s1 = uvB.u - uvA.u;
+   s2 = uvC.u - uvA.u;
+   t1 = uvB.v - uvA.v;
+   t2 = uvC.v - uvA.v;
+
+   r = 1.0 / ( s1 * t2 - s2 * t1 );
+   sdir.setValues( ( t2 * x1 - t1 * x2 ) * r,
+       ( t2 * y1 - t1 * y2 ) * r,
+       ( t2 * z1 - t1 * z2 ) * r );
+   tdir.setValues( ( s1 * x2 - s2 * x1 ) * r,
+         ( s1 * y2 - s2 * y1 ) * r,
+         ( s1 * z2 - s2 * z1 ) * r );
+
+   tan1[ a ].add( sdir );
+   tan1[ b ].add( sdir );
+   tan1[ c ].add( sdir );
+
+   tan2[ a ].add( tdir );
+   tan2[ b ].add( tdir );
+   tan2[ c ].add( tdir );
+
+ };
+
+ fl = this.faces.length;
+
+ for ( f = 0; f &lt; fl; f ++ ) {
+
+   face = this.faces[ f ];
+   UV uv = faceVertexUvs[ 0 ][ f ]; // use UV layer 0 for tangents
+
+   // TODO - Come up with a way to handle an arbitrary number of vertexes
+   var triangles = [];
+   if ( face.size == 3 ) {
+     triangles.add([0, 1, 2]);
+   } else if ( face.size == 4 ) {
+     triangles.add([0, 1, 3]);
+     triangles.add([1, 2, 3]);
+   }
+
+   triangles.forEach((t) {
+     handleTriangle( this, face.indices[t[0]], face.indices[t[1]], face.indices[t[2]], t[0], t[1], t[2] );
+   });
+ }
+
+ faces.forEach((face) {
+
+   il = face.vertexNormals.length;
+
+   for ( i = 0; i &lt; il; i++ ) {
+
+     n.setFrom( face.vertexNormals[ i ] );
+
+     vertexIndex = face.indices[i];
+
+     t = tan1[ vertexIndex ];
+
+     // Gram-Schmidt orthogonalize
+
+     tmp.setFrom( t );
+     tmp.sub( n.scale( n.dot( t ) ) ).normalize();
+
+     // Calculate handedness
+
+     tmp2 = face.vertexNormals[i].cross(t);
+     test = tmp2.dot( tan2[ vertexIndex ] );
+     w = (test &lt; 0.0) ? -1.0 : 1.0;
+
+     face.vertexTangents[ i ] = new Vector4( tmp.x, tmp.y, tmp.z, w );
+
+   }
+
+ });
+
+ hasTangents = true;
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeVertexNormals">
+<button class="show-code">Code</button>
+void <strong>computeVertexNormals</strong>() <a class="anchor-link" href="#computeVertexNormals"
+              title="Permalink to TubeGeometry.computeVertexNormals">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeVertexNormals() {
+
+ List&lt;Vector3&gt; vertices;
+
+
+ // create internal buffers for reuse when calling this method repeatedly
+ // (otherwise memory allocation / deallocation every frame is big resource hog)
+ if ( __tmpVertices == null ) {
+
+   __tmpVertices = [];
+   this.vertices.forEach((_) =&gt; __tmpVertices.add(new Vector3.zero()));
+   vertices = __tmpVertices;
+
+   faces.forEach((face) {
+     face.vertexNormals = new List.generate(face.size, (_) =&gt; new Vector3.zero(), growable: false);
+   });
+
+ } else {
+   vertices = __tmpVertices;
+
+   var vl = this.vertices.length;
+   for ( var v = 0; v &lt; vl; v ++ ) {
+     vertices[ v ].setValues( 0.0, 0.0, 0.0 );
+   }
+
+ }
+
+ faces.forEach((Face face) {
+
+   face.indices.forEach((idx) {
+     vertices[ idx ].add( face.normal );
+   });
+
+ });
+
+ vertices.forEach((v) =&gt; v.normalize());
+
+ faces.forEach((Face face) {
+
+   var i = 0;
+   face.indices.forEach((idx) {
+     face.vertexNormals[ i++ ].setFrom( vertices[ idx ] );
+   });
+
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="mergeVertices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>mergeVertices</strong>() <a class="anchor-link" href="#mergeVertices"
+              title="Permalink to TubeGeometry.mergeVertices">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+int mergeVertices() {
+ Map verticesMap = {}; // Hashmap for looking up vertice by position coordinates (and making sure they are unique)
+ List&lt;Vector3&gt; unique = [];
+ List&lt;int&gt; changes = [];
+
+ String key;
+ int precisionPoints = 4; // number of decimal points, eg. 4 for epsilon of 0.0001
+ num precision = Math.pow( 10, precisionPoints );
+ int i, il;
+ var abcd = 'abcd', o, k, j, jl, u;
+
+ Vector3 v;
+ il = this.vertices.length;
+
+ for( i = 0; i &lt; il; i++) {
+   v = this.vertices[i];
+
+   key = [ ( v.x * precision ).round().toStringAsFixed(0),
+                         ( v.y * precision ).round().toStringAsFixed(0),
+                         ( v.z * precision ).round().toStringAsFixed(0) ].join('_' );
+
+   if ( verticesMap[ key ] == null ) {
+     verticesMap[ key ] = i;
+     unique.add( v );
+     //TODO: pretty sure this is an acceptable change in syntax here:
+     //changes[ i ] = unique.length - 1;
+     changes.add( unique.length - 1);
+   } else {
+     //print('Duplicate vertex found. $i could be using  ${verticesMap[key]}');
+     //print('changes len ${changes.length} add at i = $i');
+     //changes[ i ] = changes[ verticesMap[ key ] ];
+     changes.add( changes[ verticesMap[ key ] ] );
+   }
+
+ }
+
+
+ // Start to patch face indices
+
+ faces.forEach((Face face) {
+   for (var i = 0; i &lt; face.size; i++) {
+     face.indices[i] = changes[ face.indices[i] ];
+
+     /* TODO
+
+     // check dups in (a, b, c, d) and convert to -&gt; face3
+
+     var o = [ face.a, face.b, face.c, face.d ];
+
+     for ( var k = 3; k &gt; 0; k -- ) {
+
+       if ( o.indexOf( face[ abcd[ k ] ] ) != k ) {
+
+         // console.log('faces', face.a, face.b, face.c, face.d, 'dup at', k);
+
+         o.removeAt( k );
+
+         this.faces[ i ] = new THREE.Face3( o[0], o[1], o[2], face.normal, face.color, face.materialIndex );
+
+         for ( j = 0, jl = this.faceVertexUvs.length; j &lt; jl; j ++ ) {
+
+           u = this.faceVertexUvs[ j ][ i ];
+           if ( u ) u.removeAt( k );
+
+         }
+
+         this.faces[ i ].vertexColors = face.vertexColors;
+
+         break;
+       }
+
+     }*/
+
+   }
+ });
+
+ // Use unique set of vertices
+ var diff = vertices.length - unique.length;
+ vertices = unique;
+ return diff;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:33.279</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

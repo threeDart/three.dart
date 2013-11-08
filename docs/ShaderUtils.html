@@ -1,0 +1,81 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ShaderUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="ShaderUtils">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="ShaderUtils.html">ShaderUtils</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><strong>ShaderUtils</strong></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>ShaderUtils</strong> library</h2>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="lib">
+<button class="show-code">Code</button>
+var         <strong>lib</strong> <a class="anchor-link"
+            href="#lib"
+            title="Permalink to lib">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var lib = {
+   "normal": "",
+   'cube': new THREE.ShaderMaterial(
+
+     uniforms: {
+       "tCube": new THREE.Uniform.float(),
+       "tFlip": new THREE.Uniform.float(-1.0)
+       },
+
+     vertexShader:
+        '''varying vec3 vViewPosition;
+           void main() {
+             vec4 mPosition = modelMatrix * vec4( position, 1.0 );
+             vViewPosition = cameraPosition - mPosition.xyz;
+             gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+           }''',
+
+
+     fragmentShader:
+        '''uniform samplerCube tCube;
+           uniform float tFlip;
+           varying vec3 vViewPosition;
+           void main() {
+             vec3 wPos = cameraPosition - vViewPosition;
+             gl_FragColor = textureCube( tCube, vec3( tFlip * wPos.x, wPos.yz ) );
+           }'''
+         )
+
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.780</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

@@ -1,0 +1,148 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>FontFace class / FontUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="FontUtils" data-type="FontFace">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../FontUtils.html">FontUtils</a> &rsaquo; <a href="../FontUtils/FontFace.html">FontFace</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><ul class="icon">
+<li><div class="icon-class"></div><strong>FontFace</strong></li>
+<li><a href="../FontUtils/Glyph.html"><div class="icon-class"></div>Glyph</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>FontFace</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class FontFace {
+ Map&lt;String, Map&gt; _data;
+
+ Map&lt;String, Glyph&gt; glyphs;
+
+ num size, divisions;
+
+ num resolution;
+
+ FontFace( { this.size: 150,
+             this.divisions: 10} ) : glyphs = {};
+
+ Map operator [](String weight) =&gt; _data[weight];
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>FontFace</strong>({<a href="http://api.dartlang.org/dart_core/num.html">num</a> size: 150, <a href="http://api.dartlang.org/dart_core/num.html">num</a> divisions: 10}) <a class="anchor-link" href="#"
+              title="Permalink to FontFace.FontFace">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+FontFace( { this.size: 150,
+           this.divisions: 10} ) : glyphs = {};
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="divisions">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>divisions</strong> <a class="anchor-link"
+            href="#divisions"
+            title="Permalink to FontFace.divisions">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num size, divisions
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="glyphs">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../FontUtils/Glyph.html">Glyph</a>&gt;         <strong>glyphs</strong> <a class="anchor-link"
+            href="#glyphs"
+            title="Permalink to FontFace.glyphs">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Map&lt;String, Glyph&gt; glyphs
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="resolution">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>resolution</strong> <a class="anchor-link"
+            href="#resolution"
+            title="Permalink to FontFace.resolution">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num resolution
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="size">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>size</strong> <a class="anchor-link"
+            href="#size"
+            title="Permalink to FontFace.size">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num size
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> weight) <a class="anchor-link" href="#[]"
+              title="Permalink to FontFace.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+Map operator [](String weight) =&gt; _data[weight];
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.762</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

@@ -1,0 +1,841 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>WebGLGeometry class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="WebGLGeometry">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/WebGLGeometry.html">WebGLGeometry</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><a href="../three/BufferGeometry.html"><div class="icon-class"></div>BufferGeometry</a></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><a href="../three/Curve3D.html"><div class="icon-class"></div>Curve3D</a></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><a href="../three/JSONLoader.html"><div class="icon-class"></div>JSONLoader</a></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><a href="../three/SkinnedMesh.html"><div class="icon-class"></div>SkinnedMesh</a></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><a href="../three/TubeGeometry.html"><div class="icon-class"></div>TubeGeometry</a></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><a href="../three/VirtualLight.html"><div class="icon-class"></div>VirtualLight</a></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><div class="icon-class"></div><strong>WebGLGeometry</strong></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>WebGLGeometry</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class WebGLGeometry {
+
+ int id;
+
+ int _vertices;
+
+ List faces3, faces4;
+ int materialIndex, numMorphTargets, numMorphNormals;
+
+ var geometryGroups, geometryGroupsList;
+
+ bool __webglInit;
+
+ bool __inittedArrays;
+ Float32List __vertexArray,
+              __normalArray,
+              __tangentArray,
+              __colorArray,
+              __lineDistanceArray,
+              __uvArray,
+              __uv2Array,
+              __skinVertexAArray,
+              __skinVertexBArray,
+              __skinIndexArray,
+              __skinWeightArray;
+ Uint16List __faceArray, __lineArray;
+ List&lt;Float32List&gt; __morphTargetsArrays, __morphNormalsArrays;
+ int __webglFaceCount, __webglLineCount, __webglParticleCount, __webglVertexCount;
+
+ List __sortArray;
+
+ var __webglCustomAttributesList;
+
+ gl.Buffer __webglVertexBuffer,
+             __webglNormalBuffer,
+             __webglTangentBuffer,
+             __webglColorBuffer,
+             __webglLineDistanceBuffer,
+             __webglUVBuffer,
+             __webglUV2Buffer,
+
+             __webglSkinVertexABuffer,
+             __webglSkinVertexBBuffer,
+             __webglSkinIndicesBuffer,
+             __webglSkinWeightsBuffer,
+
+             __webglFaceBuffer,
+             __webglLineBuffer;
+
+ List &lt;gl.Buffer&gt; __webglMorphTargetsBuffers, __webglMorphNormalsBuffers;
+
+ Geometry _geometry;
+
+ WebGLGeometry({ this.faces3,
+                 this.faces4,
+                 this.materialIndex: 0,
+                 int vertices: null,
+                 this.numMorphTargets: 0,
+                 this.numMorphNormals: 0}) : _vertices = vertices;
+
+ WebGLGeometry._internal(Geometry geometry)
+ :   _geometry = geometry,
+     _vertices = null, // Delegate vertices to geometry
+     id = geometry.id,
+     materialIndex = 0,
+     numMorphTargets = 0,
+     numMorphNormals = 0;
+
+ factory WebGLGeometry.from(Geometry geometry) {
+   if (geometry["__webglBuffer"] == null) {
+     var __webglBuffer = new WebGLGeometry._internal(geometry);
+     geometry["__webglBuffer"] = __webglBuffer;
+   }
+
+   return geometry["__webglBuffer"];
+ }
+
+ // This is weird since vertices can be a List from geometry or a number
+ set vertices(int n) =&gt; _vertices = n;
+ get vertices {
+   if (_vertices == null &amp;&amp; _geometry != null) {
+     return _geometry.vertices;
+   }
+   return _vertices;
+ }
+
+ get offsets =&gt; (_geometry as BufferGeometry).offsets;
+ get attributes =&gt; (_geometry as BufferGeometry).attributes;
+
+ get lineDistances =&gt; _geometry.lineDistances;
+ getBoolData(key) =&gt; _geometry.__data.containsKey(key) ? _geometry[key] : false;
+
+ get verticesNeedUpdate =&gt; getBoolData("verticesNeedUpdate");
+ set verticesNeedUpdate(bool flag) { _geometry["verticesNeedUpdate"] = flag; }
+
+ get morphTargetsNeedUpdate =&gt; getBoolData("morphTargetsNeedUpdate");
+ set morphTargetsNeedUpdate(bool flag) { _geometry["morphTargetsNeedUpdate"] = flag; }
+
+ get elementsNeedUpdate =&gt; getBoolData("elementsNeedUpdate");
+ set elementsNeedUpdate(bool flag) { _geometry["elementsNeedUpdate"] = flag; }
+
+ get uvsNeedUpdate =&gt; getBoolData("uvsNeedUpdate");
+ set uvsNeedUpdate(bool flag) { _geometry["uvsNeedUpdate"] = flag; }
+
+ get normalsNeedUpdate =&gt; getBoolData("normalsNeedUpdate");
+ set normalsNeedUpdate(bool flag) { _geometry["normalsNeedUpdate"] = flag; }
+
+ get tangentsNeedUpdate =&gt; getBoolData("tangentsNeedUpdate");
+ set tangentsNeedUpdate(bool flag) { _geometry["tangentsNeedUpdate"] = flag; }
+
+ get colorsNeedUpdate =&gt; getBoolData("colorsNeedUpdate");
+ set colorsNeedUpdate(bool flag) { _geometry["colorsNeedUpdate"] = flag; }
+
+ get lineDistancesNeedUpdate =&gt; getBoolData("lineDistancesNeedUpdate");
+ set lineDistancesNeedUpdate(bool flag) { _geometry["lineDistancesNeedUpdate"] = flag; }
+
+ get buffersNeedUpdate =&gt; getBoolData("buffersNeedUpdate");
+ set buffersNeedUpdate(bool flag) { _geometry["buffersNeedUpdate"] = flag; }
+
+ get morphTargets =&gt; _geometry.morphTargets;
+ get morphNormals =&gt; _geometry.morphNormals;
+
+ get faces =&gt; _geometry.faces;
+
+ get isDynamic =&gt; _geometry.isDynamic;
+
+ get faceVertexUvs =&gt; _geometry.faceVertexUvs;
+ get colors =&gt; _geometry.colors;
+ get normals =&gt; _geometry.normals;
+ get skinIndices =&gt; _geometry.skinIndices;
+ get skinWeights =&gt; _geometry.skinWeights;
+ get skinVerticesA =&gt; _geometry["skinVerticesA"];
+ get skinVerticesB =&gt; _geometry["skinVerticesB"];
+
+ get hasTangents =&gt; _geometry.hasTangents;
+
+ get isBufferGeometry =&gt; _geometry is BufferGeometry;
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>WebGLGeometry</strong>({<a href="http://api.dartlang.org/dart_core/List.html">List</a> faces3, <a href="http://api.dartlang.org/dart_core/List.html">List</a> faces4, <a href="http://api.dartlang.org/dart_core/int.html">int</a> materialIndex: 0, <a href="http://api.dartlang.org/dart_core/int.html">int</a> vertices: null, <a href="http://api.dartlang.org/dart_core/int.html">int</a> numMorphTargets: 0, <a href="http://api.dartlang.org/dart_core/int.html">int</a> numMorphNormals: 0}) <a class="anchor-link" href="#"
+              title="Permalink to WebGLGeometry.WebGLGeometry">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+WebGLGeometry({ this.faces3,
+               this.faces4,
+               this.materialIndex: 0,
+               int vertices: null,
+               this.numMorphTargets: 0,
+               this.numMorphNormals: 0}) : _vertices = vertices;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="from">
+<button class="show-code">Code</button>
+factory <strong>WebGLGeometry.from</strong>(<a href="../three/Geometry.html">Geometry</a> geometry) <a class="anchor-link" href="#from"
+              title="Permalink to WebGLGeometry.WebGLGeometry.from">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory WebGLGeometry.from(Geometry geometry) {
+ if (geometry["__webglBuffer"] == null) {
+   var __webglBuffer = new WebGLGeometry._internal(geometry);
+   geometry["__webglBuffer"] = __webglBuffer;
+ }
+
+ return geometry["__webglBuffer"];
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="attributes">
+<button class="show-code">Code</button>
+final         <strong>attributes</strong> <a class="anchor-link"
+            href="#attributes"
+            title="Permalink to WebGLGeometry.attributes">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get attributes =&gt; (_geometry as BufferGeometry).attributes;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="buffersNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>buffersNeedUpdate</strong> <a class="anchor-link"
+            href="#buffersNeedUpdate"
+            title="Permalink to WebGLGeometry.buffersNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get buffersNeedUpdate =&gt; getBoolData("buffersNeedUpdate");
+</pre>
+<pre class="source">
+set buffersNeedUpdate(bool flag) { _geometry["buffersNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="colors">
+<button class="show-code">Code</button>
+final         <strong>colors</strong> <a class="anchor-link"
+            href="#colors"
+            title="Permalink to WebGLGeometry.colors">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get colors =&gt; _geometry.colors;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="colorsNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>colorsNeedUpdate</strong> <a class="anchor-link"
+            href="#colorsNeedUpdate"
+            title="Permalink to WebGLGeometry.colorsNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get colorsNeedUpdate =&gt; getBoolData("colorsNeedUpdate");
+</pre>
+<pre class="source">
+set colorsNeedUpdate(bool flag) { _geometry["colorsNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="elementsNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>elementsNeedUpdate</strong> <a class="anchor-link"
+            href="#elementsNeedUpdate"
+            title="Permalink to WebGLGeometry.elementsNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get elementsNeedUpdate =&gt; getBoolData("elementsNeedUpdate");
+</pre>
+<pre class="source">
+set elementsNeedUpdate(bool flag) { _geometry["elementsNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="faces">
+<button class="show-code">Code</button>
+final         <strong>faces</strong> <a class="anchor-link"
+            href="#faces"
+            title="Permalink to WebGLGeometry.faces">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get faces =&gt; _geometry.faces;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="faces3">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>faces3</strong> <a class="anchor-link"
+            href="#faces3"
+            title="Permalink to WebGLGeometry.faces3">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List faces3
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="faces4">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>faces4</strong> <a class="anchor-link"
+            href="#faces4"
+            title="Permalink to WebGLGeometry.faces4">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List faces3, faces4
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="faceVertexUvs">
+<button class="show-code">Code</button>
+final         <strong>faceVertexUvs</strong> <a class="anchor-link"
+            href="#faceVertexUvs"
+            title="Permalink to WebGLGeometry.faceVertexUvs">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get faceVertexUvs =&gt; _geometry.faceVertexUvs;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="geometryGroups">
+<button class="show-code">Code</button>
+var         <strong>geometryGroups</strong> <a class="anchor-link"
+            href="#geometryGroups"
+            title="Permalink to WebGLGeometry.geometryGroups">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var geometryGroups
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="geometryGroupsList">
+<button class="show-code">Code</button>
+var         <strong>geometryGroupsList</strong> <a class="anchor-link"
+            href="#geometryGroupsList"
+            title="Permalink to WebGLGeometry.geometryGroupsList">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var geometryGroups, geometryGroupsList
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="hasTangents">
+<button class="show-code">Code</button>
+final         <strong>hasTangents</strong> <a class="anchor-link"
+            href="#hasTangents"
+            title="Permalink to WebGLGeometry.hasTangents">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get hasTangents =&gt; _geometry.hasTangents;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="id">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>id</strong> <a class="anchor-link"
+            href="#id"
+            title="Permalink to WebGLGeometry.id">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int id
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isBufferGeometry">
+<button class="show-code">Code</button>
+final         <strong>isBufferGeometry</strong> <a class="anchor-link"
+            href="#isBufferGeometry"
+            title="Permalink to WebGLGeometry.isBufferGeometry">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get isBufferGeometry =&gt; _geometry is BufferGeometry;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isDynamic">
+<button class="show-code">Code</button>
+final         <strong>isDynamic</strong> <a class="anchor-link"
+            href="#isDynamic"
+            title="Permalink to WebGLGeometry.isDynamic">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get isDynamic =&gt; _geometry.isDynamic;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lineDistances">
+<button class="show-code">Code</button>
+final         <strong>lineDistances</strong> <a class="anchor-link"
+            href="#lineDistances"
+            title="Permalink to WebGLGeometry.lineDistances">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get lineDistances =&gt; _geometry.lineDistances;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lineDistancesNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>lineDistancesNeedUpdate</strong> <a class="anchor-link"
+            href="#lineDistancesNeedUpdate"
+            title="Permalink to WebGLGeometry.lineDistancesNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get lineDistancesNeedUpdate =&gt; getBoolData("lineDistancesNeedUpdate");
+</pre>
+<pre class="source">
+set lineDistancesNeedUpdate(bool flag) { _geometry["lineDistancesNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="materialIndex">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>materialIndex</strong> <a class="anchor-link"
+            href="#materialIndex"
+            title="Permalink to WebGLGeometry.materialIndex">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int materialIndex
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="morphNormals">
+<button class="show-code">Code</button>
+final         <strong>morphNormals</strong> <a class="anchor-link"
+            href="#morphNormals"
+            title="Permalink to WebGLGeometry.morphNormals">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get morphNormals =&gt; _geometry.morphNormals;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="morphTargets">
+<button class="show-code">Code</button>
+final         <strong>morphTargets</strong> <a class="anchor-link"
+            href="#morphTargets"
+            title="Permalink to WebGLGeometry.morphTargets">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get morphTargets =&gt; _geometry.morphTargets;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="morphTargetsNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>morphTargetsNeedUpdate</strong> <a class="anchor-link"
+            href="#morphTargetsNeedUpdate"
+            title="Permalink to WebGLGeometry.morphTargetsNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get morphTargetsNeedUpdate =&gt; getBoolData("morphTargetsNeedUpdate");
+</pre>
+<pre class="source">
+set morphTargetsNeedUpdate(bool flag) { _geometry["morphTargetsNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="normals">
+<button class="show-code">Code</button>
+final         <strong>normals</strong> <a class="anchor-link"
+            href="#normals"
+            title="Permalink to WebGLGeometry.normals">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get normals =&gt; _geometry.normals;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="normalsNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>normalsNeedUpdate</strong> <a class="anchor-link"
+            href="#normalsNeedUpdate"
+            title="Permalink to WebGLGeometry.normalsNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get normalsNeedUpdate =&gt; getBoolData("normalsNeedUpdate");
+</pre>
+<pre class="source">
+set normalsNeedUpdate(bool flag) { _geometry["normalsNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="numMorphNormals">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>numMorphNormals</strong> <a class="anchor-link"
+            href="#numMorphNormals"
+            title="Permalink to WebGLGeometry.numMorphNormals">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int materialIndex, numMorphTargets, numMorphNormals
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="numMorphTargets">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>numMorphTargets</strong> <a class="anchor-link"
+            href="#numMorphTargets"
+            title="Permalink to WebGLGeometry.numMorphTargets">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int materialIndex, numMorphTargets
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="offsets">
+<button class="show-code">Code</button>
+final         <strong>offsets</strong> <a class="anchor-link"
+            href="#offsets"
+            title="Permalink to WebGLGeometry.offsets">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get offsets =&gt; (_geometry as BufferGeometry).offsets;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="skinIndices">
+<button class="show-code">Code</button>
+final         <strong>skinIndices</strong> <a class="anchor-link"
+            href="#skinIndices"
+            title="Permalink to WebGLGeometry.skinIndices">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get skinIndices =&gt; _geometry.skinIndices;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="skinVerticesA">
+<button class="show-code">Code</button>
+final         <strong>skinVerticesA</strong> <a class="anchor-link"
+            href="#skinVerticesA"
+            title="Permalink to WebGLGeometry.skinVerticesA">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get skinVerticesA =&gt; _geometry["skinVerticesA"];
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="skinVerticesB">
+<button class="show-code">Code</button>
+final         <strong>skinVerticesB</strong> <a class="anchor-link"
+            href="#skinVerticesB"
+            title="Permalink to WebGLGeometry.skinVerticesB">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get skinVerticesB =&gt; _geometry["skinVerticesB"];
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="skinWeights">
+<button class="show-code">Code</button>
+final         <strong>skinWeights</strong> <a class="anchor-link"
+            href="#skinWeights"
+            title="Permalink to WebGLGeometry.skinWeights">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get skinWeights =&gt; _geometry.skinWeights;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="tangentsNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>tangentsNeedUpdate</strong> <a class="anchor-link"
+            href="#tangentsNeedUpdate"
+            title="Permalink to WebGLGeometry.tangentsNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get tangentsNeedUpdate =&gt; getBoolData("tangentsNeedUpdate");
+</pre>
+<pre class="source">
+set tangentsNeedUpdate(bool flag) { _geometry["tangentsNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="uvsNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>uvsNeedUpdate</strong> <a class="anchor-link"
+            href="#uvsNeedUpdate"
+            title="Permalink to WebGLGeometry.uvsNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get uvsNeedUpdate =&gt; getBoolData("uvsNeedUpdate");
+</pre>
+<pre class="source">
+set uvsNeedUpdate(bool flag) { _geometry["uvsNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="vertices">
+<button class="show-code">Code</button>
+var         <strong>vertices</strong> <a class="anchor-link"
+            href="#vertices"
+            title="Permalink to WebGLGeometry.vertices">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get vertices {
+ if (_vertices == null &amp;&amp; _geometry != null) {
+   return _geometry.vertices;
+ }
+ return _vertices;
+}
+</pre>
+<pre class="source">
+set vertices(int n) =&gt; _vertices = n;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="verticesNeedUpdate">
+<button class="show-code">Code</button>
+var         <strong>verticesNeedUpdate</strong> <a class="anchor-link"
+            href="#verticesNeedUpdate"
+            title="Permalink to WebGLGeometry.verticesNeedUpdate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get verticesNeedUpdate =&gt; getBoolData("verticesNeedUpdate");
+</pre>
+<pre class="source">
+set verticesNeedUpdate(bool flag) { _geometry["verticesNeedUpdate"] = flag; }
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="getBoolData">
+<button class="show-code">Code</button>
+dynamic <strong>getBoolData</strong>(key) <a class="anchor-link" href="#getBoolData"
+              title="Permalink to WebGLGeometry.getBoolData">#</a></h4>
+<div class="doc">
+<pre class="source">
+getBoolData(key) =&gt; _geometry.__data.containsKey(key) ? _geometry[key] : false;
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:31.469</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

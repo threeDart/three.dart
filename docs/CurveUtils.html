@@ -1,0 +1,104 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>CurveUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="CurveUtils">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="CurveUtils.html">CurveUtils</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><strong>CurveUtils</strong></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>CurveUtils</strong> library</h2>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="interpolate">
+<button class="show-code">Code</button>
+dynamic <strong>interpolate</strong>(p0, p1, p2, p3, t) <a class="anchor-link" href="#interpolate"
+              title="Permalink to interpolate">#</a></h4>
+<div class="doc">
+<p>Catmull-Rom</p>
+<pre class="source">
+interpolate( p0, p1, p2, p3, t ) {
+ var v0 = ( p2 - p0 ) * 0.5;
+ var v1 = ( p3 - p1 ) * 0.5;
+ var t2 = t * t;
+ var t3 = t * t2;
+ return ( 2 * p1 - 2 * p2 + v0 + v1 ) * t3 + ( - 3 * p1 + 3 * p2 - 2 * v0 - v1 ) * t2 + v0 * t + p1;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tangentSpline">
+<button class="show-code">Code</button>
+dynamic <strong>tangentSpline</strong>(t, p0, p1, p2, p3) <a class="anchor-link" href="#tangentSpline"
+              title="Permalink to tangentSpline">#</a></h4>
+<div class="doc">
+<pre class="source">
+tangentSpline( t, p0, p1, p2, p3 ) {
+
+ // To check if my formulas are correct
+
+ var h00 = 6 * t * t - 6 * t;  // derived from 2t^3 − 3t^2 + 1
+ var h10 = 3 * t * t - 4 * t + 1; // t^3 − 2t^2 + t
+ var h01 = -6 * t * t + 6 * t;   // − 2t3 + 3t2
+ var h11 = 3 * t * t - 2 * t;  // t3 − t2
+
+ return h00 + h10 + h01 + h11;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tangentCubicBezier">
+<button class="show-code">Code</button>
+dynamic <strong>tangentCubicBezier</strong>(t, p0, p1, p2, p3) <a class="anchor-link" href="#tangentCubicBezier"
+              title="Permalink to tangentCubicBezier">#</a></h4>
+<div class="doc">
+<pre class="source">
+tangentCubicBezier(t, p0, p1, p2, p3 ) {
+ return -3 * p0 * (1 - t) * (1 - t)  +
+   3 * p1 * (1 - t) * (1-t) - 6 *t *p1 * (1-t) +
+   6 * t *  p2 * (1-t) - 3 * t * t * p2 +
+   3 * t * t * p3;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tangentQuadraticBezier">
+<button class="show-code">Code</button>
+dynamic <strong>tangentQuadraticBezier</strong>(t, p0, p1, p2) <a class="anchor-link" href="#tangentQuadraticBezier"
+              title="Permalink to tangentQuadraticBezier">#</a></h4>
+<div class="doc">
+<pre class="source">
+tangentQuadraticBezier( t, p0, p1, p2 ) =&gt; 2 * ( 1 - t ) * ( p1 - p0 ) + 2 * t * ( p2 - p1 );
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.709</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

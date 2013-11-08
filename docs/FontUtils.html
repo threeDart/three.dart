@@ -1,0 +1,562 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>FontUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="FontUtils">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="FontUtils.html">FontUtils</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><strong>FontUtils</strong></h2><ul class="icon">
+<li><a href="FontUtils/FontFace.html"><div class="icon-class"></div>FontFace</a></li>
+<li><a href="FontUtils/Glyph.html"><div class="icon-class"></div>Glyph</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>FontUtils</strong> library</h2>
+<div class="doc"><p>@author zz85 / http://www.lab4games.net/zz85/blog
+@author alteredq / http://alteredqualia.com/</p>
+<p>For Text operations in three.js (See TextGeometry)</p>
+<p>It uses techniques used in:</p>
+<p> typeface.js and canvastext
+   For converting fonts and rendering with javascript
+   http://typeface.neocracy.org</p>
+<p> Triangulation ported from AS3
+   Simple Polygon Triangulation
+   http://actionsnippet.com/?p=1462</p>
+<p> A Method to triangulate shapes with holes
+   http://www.sakri.net/blog/2009/06/12/an-approach-to-triangulating-polygons-with-holes/</p></div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="EPSILON">
+<button class="show-code">Code</button>
+var         <strong>EPSILON</strong> <a class="anchor-link"
+            href="#EPSILON"
+            title="Permalink to EPSILON">#</a>
+        </h4>
+        <div class="doc">
+<p>This code is a quick port of code written in C++ which was submitted to
+flipcode.com by John W. Ratcliff  // July 22, 2000
+See original code and more information here:
+http://www.flipcode.com/archives/Efficient<em>Polygon</em>Triangulation.shtml</p>
+<p>ported to actionscript by Zevan Rosser
+www.actionsnippet.com</p>
+<p>ported to javascript by Joshua Koo
+http://www.lab4games.net/zz85/blog</p>
+<pre class="source">
+var EPSILON = 0.0000000001
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="snip">
+<button class="show-code">Code</button>
+dynamic <strong>snip</strong>(contour, u, v, w, n, verts) <a class="anchor-link" href="#snip"
+              title="Permalink to snip">#</a></h4>
+<div class="doc">
+<pre class="source">
+snip( contour, u, v, w, n, verts ) {
+
+ var p;
+ var ax, ay, bx, by;
+ var cx, cy, px, py;
+
+ ax = contour[ verts[ u ] ].x;
+ ay = contour[ verts[ u ] ].y;
+
+ bx = contour[ verts[ v ] ].x;
+ by = contour[ verts[ v ] ].y;
+
+ cx = contour[ verts[ w ] ].x;
+ cy = contour[ verts[ w ] ].y;
+
+ if ( EPSILON &gt; (((bx-ax)*(cy-ay)) - ((by-ay)*(cx-ax))) ) return false;
+
+   for ( p = 0; p &lt; n; p++ ) {
+
+     if( (p == u) || (p == v) || (p == w) ) continue;
+
+     px = contour[ verts[ p ] ].x;
+     py = contour[ verts[ p ] ].y;
+
+     if ( insideTriangle( ax, ay, bx, by, cx, cy, px, py ) ) return false;
+
+   }
+
+   return true;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="insideTriangle">
+<button class="show-code">Code</button>
+dynamic <strong>insideTriangle</strong>(ax, ay, bx, by, cx, cy, px, py) <a class="anchor-link" href="#insideTriangle"
+              title="Permalink to insideTriangle">#</a></h4>
+<div class="doc">
+<pre class="source">
+insideTriangle( ax, ay,
+                bx, by,
+                cx, cy,
+                px, py ) {
+
+   var aX, aY, bX, bY;
+   var cX, cY, apx, apy;
+   var bpx, bpy, cpx, cpy;
+   var cCROSSap, bCROSScp, aCROSSbp;
+
+   aX = cx - bx;  aY = cy - by;
+   bX = ax - cx;  bY = ay - cy;
+   cX = bx - ax;  cY = by - ay;
+   apx= px  -ax;  apy= py - ay;
+   bpx= px - bx;  bpy= py - by;
+   cpx= px - cx;  cpy= py - cy;
+
+   aCROSSbp = aX*bpy - aY*bpx;
+   cCROSSap = cX*apy - cY*apx;
+   bCROSScp = bX*cpy - bY*cpx;
+
+   return ( (aCROSSbp &gt;= 0.0) &amp;&amp; (bCROSScp &gt;= 0.0) &amp;&amp; (cCROSSap &gt;= 0.0) );
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="area">
+<button class="show-code">Code</button>
+dynamic <strong>area</strong>(contour) <a class="anchor-link" href="#area"
+              title="Permalink to area">#</a></h4>
+<div class="doc">
+<pre class="source">
+area( contour ) {
+
+ var n = contour.length;
+ var a = 0.0;
+
+ for( var p = n - 1, q = 0; q &lt; n; p = q++ ) {
+
+   a += contour[ p ].x * contour[ q ].y - contour[ q ].x * contour[ p ].y;
+
+ }
+
+ return a * 0.5;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="process">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="vector_math/Vector2.html">Vector2</a>&gt;&gt; <strong>process</strong>(<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="vector_math/Vector2.html">Vector2</a>&gt; contour, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> indices) <a class="anchor-link" href="#process"
+              title="Permalink to process">#</a></h4>
+<div class="doc">
+<pre class="source">
+List&lt;List&lt;Vector2&gt;&gt; process( List&lt;Vector2&gt; contour, bool indices ) {
+
+ var n = contour.length;
+
+ if ( n &lt; 3 ) return null;
+
+ var result = [],
+   verts = new List(n),
+   vertIndices = [];
+
+ /* we want a counter-clockwise polygon in verts */
+
+ num u, v, w;
+
+ if ( area( contour ) &gt; 0.0 ) {
+
+   for ( v = 0; v &lt; n; v++ ) verts[ v ] = v;
+
+ } else {
+
+   for ( v = 0; v &lt; n; v++ ) verts[ v ] = ( n - 1 ) - v;
+
+ }
+
+ num nv = n;
+
+ /*  remove nv - 2 vertices, creating 1 triangle every time */
+
+ var count = 2 * nv;   /* error detection */
+
+ for( v = nv - 1; nv &gt; 2; ) {
+
+   /* if we loop, it is probably a non-simple polygon */
+
+   if ( ( count-- ) &lt;= 0 ) {
+
+     //** Triangulate: ERROR - probable bad polygon!
+
+     //throw ( "Warning, unable to triangulate polygon!" );
+     //return null;
+     // Sometimes warning is fine, especially polygons are triangulated in reverse.
+     print( "Warning, unable to triangulate polygon!" );
+
+     if ( indices ) return vertIndices;
+     return result;
+
+   }
+
+   /* three consecutive vertices in current polygon, &lt;u,v,w&gt; */
+
+   u = v;    if ( nv &lt;= u ) u = 0;     /* previous */
+   v = u + 1;  if ( nv &lt;= v ) v = 0;     /* new v    */
+   w = v + 1;  if ( nv &lt;= w ) w = 0;     /* next     */
+
+   if ( snip( contour, u, v, w, nv, verts ) ) {
+
+     var a, b, c, s, t;
+
+     /* true names of the vertices */
+
+     a = verts[ u ];
+     b = verts[ v ];
+     c = verts[ w ];
+
+     /* output Triangle */
+
+     result.add( [ contour[ a ],
+                   contour[ b ],
+                   contour[ c ] ] );
+
+
+     vertIndices.addAll( [ verts[ u ], verts[ v ], verts[ w ] ] );
+
+     /* remove v from the remaining polygon */
+     s = v;
+     for( t = v + 1; t &lt; nv; t++ ) {
+
+       verts[ s ] = verts[ t ];
+       s++;
+     }
+
+     nv--;
+
+     /* reset error detection counter */
+
+     count = 2 * nv;
+
+   }
+
+ }
+
+ if ( indices ) return vertIndices;
+ return result;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="generateShapes">
+<button class="show-code">Code</button>
+dynamic <strong>generateShapes</strong>(text, [<a href="http://api.dartlang.org/dart_core/int.html">int</a> size = 100, <a href="http://api.dartlang.org/dart_core/int.html">int</a> curveSegments = 4, <a href="http://api.dartlang.org/dart_core/String.html">String</a> font = "helvetiker", <a href="http://api.dartlang.org/dart_core/String.html">String</a> weight = "normal", <a href="http://api.dartlang.org/dart_core/String.html">String</a> style = "normal"]) <a class="anchor-link" href="#generateShapes"
+              title="Permalink to generateShapes">#</a></h4>
+<div class="doc">
+<pre class="source">
+generateShapes( text, [ int size = 100,
+                       int curveSegments = 4,
+                       String font = "helvetiker",
+                       String weight = "normal",
+                       String style = "normal"] ) {
+
+ var face = _faces[font][weight][style];
+
+ if (_faces == null) {
+   face = new FontFace(size: size, divisions: curveSegments);
+   _faces[font][weight][style] = face;
+ }
+ 
+ _size = size;
+ _divisions = curveSegments;
+
+ _face = font;
+ _weight = weight;
+ _style = style;
+
+ // Get a Font data json object
+
+ var data = drawText( text );
+
+ var paths = data["paths"];
+ var shapes = [];
+ var pl = paths.length;
+
+ for ( var p = 0; p &lt; pl; p ++ ) {
+
+   shapes.addAll(paths[ p ].toShapes() );
+
+ }
+
+ return shapes;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="extractGlyphPoints">
+<button class="show-code">Code</button>
+dynamic <strong>extractGlyphPoints</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> c, face, scale, offset, path) <a class="anchor-link" href="#extractGlyphPoints"
+              title="Permalink to extractGlyphPoints">#</a></h4>
+<div class="doc">
+<pre class="source">
+extractGlyphPoints ( String c, face, scale, offset, path ) {
+
+ List&lt;Vector2&gt; pts = [];
+
+ var i, i2, divisions,
+   outline, action, length,
+   scaleX, scaleY,
+   x, y, cpx, cpy, cpx0, cpy0, cpx1, cpy1, cpx2, cpy2,
+   laste;
+
+ var glyph = face["glyphs"][ c ];
+ if (glyph == null) glyph = face["glyphs"][ '?' ];
+
+ if ( glyph == null ) return null;
+
+ if ( glyph["o"] != null) {
+
+   outline = glyph["_cachedOutline"];
+   if (outline == null) {
+     glyph["_cachedOutline"] = glyph["o"].split( ' ' );
+     outline = glyph["_cachedOutline"];
+   }
+   length = outline.length;
+
+   scaleX = scale;
+   scaleY = scale;
+
+   for ( i = 0; i &lt; length; ) {
+
+     action = outline[ i ++ ];
+
+     //console.log( action );
+
+     switch( action ) {
+
+     case 'm':
+
+       // Move To
+
+       x = int.parse(outline[ i++ ]) * scaleX + offset;
+       y = int.parse(outline[ i++ ]) * scaleY;
+
+       path.moveTo( x, y );
+       break;
+
+     case 'l':
+
+       // Line To
+
+       x = int.parse(outline[ i++ ]) * scaleX + offset;
+       y = int.parse(outline[ i++ ]) * scaleY;
+       path.lineTo(x,y);
+       break;
+
+     case 'q':
+
+       // QuadraticCurveTo
+
+       cpx  = int.parse(outline[ i++ ]) * scaleX + offset;
+       cpy  = int.parse(outline[ i++ ]) * scaleY;
+       cpx1 = int.parse(outline[ i++ ]) * scaleX + offset;
+       cpy1 = int.parse(outline[ i++ ]) * scaleY;
+
+       path.quadraticCurveTo(cpx1, cpy1, cpx, cpy);
+
+       if (pts.length &gt; 0) laste = pts[ pts.length - 1 ];
+
+       if ( laste != null ) {
+
+         cpx0 = laste.x;
+         cpy0 = laste.y;
+
+         for ( i2 = 1; i2 &lt;= divisions; i2 ++ ) {
+
+           var t = i2 / divisions;
+           var tx = ShapeUtils.b2( t, cpx0, cpx1, cpx );
+           var ty = ShapeUtils.b2( t, cpy0, cpy1, cpy );
+         }
+
+       }
+
+       break;
+
+     case 'b':
+
+       // Cubic Bezier Curve
+
+       cpx  = int.parse(outline[ i++ ]) *  scaleX + offset;
+       cpy  = int.parse(outline[ i++ ]) *  scaleY;
+       cpx1 = int.parse(outline[ i++ ]) *  scaleX + offset;
+       cpy1 = int.parse(outline[ i++ ]) * -scaleY;
+       cpx2 = int.parse(outline[ i++ ]) *  scaleX + offset;
+       cpy2 = int.parse(outline[ i++ ]) * -scaleY;
+
+       path.bezierCurveTo( cpx, cpy, cpx1, cpy1, cpx2, cpy2 );
+
+       if (pts.length &gt; 0) laste = pts[ pts.length - 1 ];
+
+       if ( laste != null ) {
+
+         cpx0 = laste.x;
+         cpy0 = laste.y;
+
+         for ( i2 = 1; i2 &lt;= divisions; i2 ++ ) {
+
+           var t = i2 / divisions;
+           var tx = ShapeUtils.b3( t, cpx0, cpx1, cpx2, cpx );
+           var ty = ShapeUtils.b3( t, cpy0, cpy1, cpy2, cpy );
+
+         }
+
+       }
+
+       break;
+
+     }
+
+   }
+ }
+
+
+
+ return { "offset": glyph["ha"]*scale, "path":path};
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="drawText">
+<button class="show-code">Code</button>
+dynamic <strong>drawText</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> text) <a class="anchor-link" href="#drawText"
+              title="Permalink to drawText">#</a></h4>
+<div class="doc">
+<pre class="source">
+drawText( String text ) {
+
+ var characterPts = [], allPts = [];
+
+ // RenderText
+
+ var i, p,
+   face = getFace(),
+   scale = _size / face["resolution"],
+   offset = 0,
+   chars = text.split( '' ),
+   length = chars.length;
+
+ var fontPaths = [];
+
+ for ( i = 0; i &lt; length; i ++ ) {
+
+   var path = new Path();
+
+   var ret = extractGlyphPoints( chars[ i ], face, scale, offset, path );
+   offset += ret["offset"];
+
+   fontPaths.add( ret["path"] );
+
+ }
+
+ // get the width
+
+ var width = offset / 2;
+ //
+ // for ( p = 0; p &lt; allPts.length; p++ ) {
+ //
+ //  allPts[ p ].x -= width;
+ //
+ // }
+
+ //var extract = this.extractPoints( allPts, characterPts );
+ //extract.contour = allPts;
+
+ //extract.paths = fontPaths;
+ //extract.offset = width;
+
+ return { "paths" : fontPaths, "offset" : width };
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="loadFace">
+<button class="show-code">Code</button>
+dynamic <strong>loadFace</strong>(data) <a class="anchor-link" href="#loadFace"
+              title="Permalink to loadFace">#</a></h4>
+<div class="doc">
+<pre class="source">
+loadFace( data ) {
+
+ var family = data["familyName"].toLowerCase();
+
+ if (_faces[ family ] == null) _faces[ family ] = {};
+
+ if (_faces[ family ][ data["cssFontWeight"] ] == null) _faces[ family ][ data["cssFontWeight"] ] = {};
+ _faces[ family ][ data["cssFontWeight"] ][ data["cssFontStyle"] ] = data;
+
+ // TODO - Parse data
+ var face = _faces[ family ][ data["cssFontWeight"] ][ data["cssFontStyle"] ] = data;
+
+ return data;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getFace">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&gt; <strong>getFace</strong>() <a class="anchor-link" href="#getFace"
+              title="Permalink to getFace">#</a></h4>
+<div class="doc">
+<pre class="source">
+Map&lt;String, Map&gt; getFace() =&gt; _faces[ _face ][ _weight ][ _style ];
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="FontUtils/FontFace.html"><strong>FontFace</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="FontUtils/Glyph.html"><strong>Glyph</strong></a>
+          </h4>
+          </div>
+          
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.751</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

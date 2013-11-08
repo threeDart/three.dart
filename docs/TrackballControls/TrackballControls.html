@@ -1,0 +1,1459 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>TrackballControls class / TrackballControls Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="TrackballControls" data-type="TrackballControls">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../TrackballControls.html">TrackballControls</a> &rsaquo; <a href="../TrackballControls/TrackballControls.html">TrackballControls</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><ul class="icon">
+<li><a href="../TrackballControls/STATE.html"><div class="icon-class"></div>STATE</a></li>
+<li><div class="icon-class"></div><strong>TrackballControls</strong></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>TrackballControls</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class TrackballControls extends EventEmitter {
+
+ int _state, _prevState;
+ Object3D object;
+ Element domElement;
+ bool enabled;
+ Math.Rectangle screen;
+ num rotateSpeed,
+     zoomSpeed,
+     panSpeed;
+ bool noRotate,
+      noZoom,
+      noPan,
+      noRoll;
+ bool staticMoving;
+ num dynamicDampingFactor;
+ num minDistance, maxDistance;
+ List keys;
+ Vector3 target;
+
+ Vector3 _eye;
+
+ Vector3 _rotateStart, _rotateEnd;
+ Vector2 _zoomStart, _zoomEnd;
+ Vector2 _panStart, _panEnd;
+ Vector3 lastPosition;
+
+ StreamSubscription&lt;MouseEvent&gt; mouseMoveStream;
+ StreamSubscription&lt;MouseEvent&gt; mouseUpStream;
+ StreamSubscription&lt;KeyboardEvent&gt; keydownStream;
+
+ EventEmitterEvent changeEvent;
+
+ TrackballControls( this.object, [Element domElement] ) {
+
+   this.domElement = ( domElement != null) ? domElement : document;
+
+   // API
+
+   enabled = true;
+
+   screen = new Math.Rectangle( 0, 0, 0, 0 );
+
+   rotateSpeed = 1.0;
+   zoomSpeed = 1.2;
+   panSpeed = 0.3;
+
+   noRotate = false;
+   noZoom = false;
+   noPan = false;
+   noRoll = false;
+
+   staticMoving = false;
+   dynamicDampingFactor = 0.2;
+
+   minDistance = 0;
+   maxDistance = double.INFINITY;
+
+   keys = [ 65 /*A*/, 83 /*S*/, 68 /*D*/ ];
+
+   // internals
+
+   target = new Vector3.zero();
+
+   lastPosition = new Vector3.zero();
+
+   _state = STATE.NONE;
+   _prevState = STATE.NONE;
+
+   _eye = new Vector3.zero();
+
+   _rotateStart = new Vector3.zero();
+   _rotateEnd = new Vector3.zero();
+
+   _zoomStart = new Vector2.zero();
+   _zoomEnd = new Vector2.zero();
+
+   _panStart = new Vector2.zero();
+   _panEnd = new Vector2.zero();
+
+   changeEvent = new EventEmitterEvent(type: 'change');
+
+   domElement
+   ..onContextMenu.listen(( event ) =&gt; event.preventDefault())
+   ..onMouseDown.listen(mousedown)
+   ..onMouseWheel.listen(mousewheel)
+   ..onTouchStart.listen(touchstart)
+   ..onTouchEnd.listen(touchstart)
+   ..onTouchMove.listen(touchmove);
+
+   //this.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
+
+   keydownStream = window.onKeyDown.listen(keydown);
+   window.onKeyUp.listen(keyup);
+
+
+   handleResize();
+ }
+
+
+   // methods
+   handleResize () {
+     if ( domElement == document ) {
+       screen = new Math.Rectangle(0, 0, window.innerWidth, window.innerHeight);
+     } else {
+       screen = domElement.getBoundingClientRect();
+     }
+   }
+
+
+   handleEvent( event ) {
+     dispatchEvent(event);
+   }
+
+   getMouseOnScreen( clientX, clientY )
+     =&gt; new Vector2(
+         ( clientX - screen.left ) / screen.width,
+         ( clientY - screen.top ) / screen.height
+     );
+
+   getMouseProjectionOnBall( clientX, clientY ) {
+
+     var mouseOnBall = new Vector3(
+         ( clientX - screen.width * 0.5 - screen.left ) / ( screen.width * 0.5 ),
+         ( screen.height * 0.5 + screen.top - clientY ) / ( screen.height * 0.5 ),
+         0.0
+     );
+
+     var length = mouseOnBall.length;
+
+     if ( noRoll ) {
+
+       if ( length &lt; Math.SQRT1_2 ) {
+
+         mouseOnBall.z = Math.sqrt( 1.0 - length * length );
+
+       } else {
+
+         mouseOnBall.z = 0.5 / length;
+
+       }
+
+     } else if ( length &gt; 1.0 ) {
+
+       mouseOnBall.normalize();
+
+     } else {
+
+       mouseOnBall.z = Math.sqrt( 1.0 - length * length );
+
+     }
+
+     _eye.setFrom(object.position ).sub( target );
+
+     Vector3 projection = object.up.clone().normalize().scale( mouseOnBall.y );
+     projection.add( object.up.cross( _eye ).normalize().scale( mouseOnBall.x ) );
+     projection.add( _eye.normalize().scale( mouseOnBall.z ) );
+
+     return projection;
+
+   }
+
+   rotateCamera() {
+
+     var angle = Math.acos( _rotateStart.dot( _rotateEnd ) / _rotateStart.length / _rotateEnd.length );
+
+     if ( !angle.isNaN &amp;&amp; angle != 0) {
+
+       Vector3 axis = _rotateStart.cross(_rotateEnd ).normalize();
+       Quaternion quaternion = new Quaternion.identity();
+
+       angle *= rotateSpeed;
+
+       quaternion.setAxisAngle( axis, angle );
+
+       quaternion.rotate( _eye );
+       quaternion.rotate( object.up );
+
+       quaternion.rotate( _rotateEnd );
+
+       if ( staticMoving ) {
+
+         _rotateStart.setFrom( _rotateEnd );
+
+       } else {
+
+         quaternion.setAxisAngle( axis, -angle * ( dynamicDampingFactor - 1.0 ) );
+         quaternion.rotate( _rotateStart );
+
+       }
+
+     }
+
+   }
+
+   zoomCamera() {
+
+     var factor = 1.0 + ( _zoomEnd.y - _zoomStart.y ) * zoomSpeed;
+
+     if ( factor != 1.0 &amp;&amp; factor &gt; 0.0 ) {
+
+       _eye.scale( factor );
+
+       if ( staticMoving ) {
+
+         _zoomStart.setFrom(_zoomEnd);
+
+       } else {
+
+         _zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
+
+       }
+
+     }
+
+   }
+
+   panCamera() {
+
+     Vector2 mouseChange = _panEnd - _panStart;
+
+     if ( mouseChange.length != 0.0) {
+
+       mouseChange.scale( _eye.length * panSpeed );
+
+       Vector3 pan = _eye.cross( object.up ).normalize().scale( mouseChange.x );
+       pan += object.up.clone().normalize().scale( mouseChange.y );
+
+       object.position.add( pan );
+       target.add( pan );
+
+       if ( staticMoving ) {
+
+         _panStart = _panEnd;
+
+       } else {
+
+         _panStart += (_panEnd - _panStart).scale(dynamicDampingFactor);
+
+       }
+
+     }
+
+   }
+
+   checkDistances() {
+
+     if ( !noZoom || !noPan ) {
+
+       if ( object.position.length2 &gt; maxDistance * maxDistance ) {
+
+         object.position.normalize().scale( maxDistance );
+
+       }
+
+       if ( _eye.length2 &lt; minDistance * minDistance ) {
+
+         object.position = target + _eye.normalize().scale(minDistance);
+
+       }
+
+     }
+
+   }
+
+   update() {
+
+     _eye.setFrom( object.position ).sub( target );
+
+     if ( !noRotate ) {
+       rotateCamera();
+     }
+
+     if ( !noZoom ) {
+       zoomCamera();
+     }
+
+     if ( !noPan ) {
+       panCamera();
+     }
+
+     object.position =  target + _eye;
+
+     checkDistances();
+
+     object.lookAt( target );
+
+     // distanceToSquared
+     if ( (lastPosition - object.position).length2 &gt; 0.0 ) {
+       //
+       dispatchEvent( changeEvent );
+
+       lastPosition.setFrom( object.position );
+
+     }
+
+   }
+
+   // listeners
+
+   keydown( KeyboardEvent event ) {
+
+     if ( !enabled ) return;
+
+     keydownStream.cancel();
+
+     _prevState = _state;
+
+     if ( _state != STATE.NONE ) {
+
+       return;
+
+     } else if ( event.keyCode == keys[ STATE.ROTATE ] &amp;&amp; !noRotate ) {
+
+       _state = STATE.ROTATE;
+
+     } else if ( event.keyCode == keys[ STATE.ZOOM ] &amp;&amp; !noZoom ) {
+
+       _state = STATE.ZOOM;
+
+     } else if ( event.keyCode == keys[ STATE.PAN ] &amp;&amp; !noPan ) {
+
+       _state = STATE.PAN;
+
+     }
+
+   }
+
+   keyup( KeyboardEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     _state = _prevState;
+
+     keydownStream = window.onKeyDown.listen( keydown );
+
+   }
+
+   mousedown( MouseEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     event.preventDefault();
+     event.stopPropagation();
+
+     if ( _state == STATE.NONE ) {
+
+       _state = event.button;
+     }
+
+     if ( _state == STATE.ROTATE &amp;&amp; !noRotate ) {
+
+       _rotateStart = getMouseProjectionOnBall( event.client.x, event.client.y );
+       _rotateEnd = _rotateStart;
+
+     } else if ( _state == STATE.ZOOM &amp;&amp; !noZoom ) {
+
+       _zoomStart = getMouseOnScreen( event.client.x, event.client.y );
+       _zoomEnd = _zoomStart;
+
+     } else if ( _state == STATE.PAN &amp;&amp; !noPan ) {
+
+       _panStart = getMouseOnScreen( event.client.x, event.client.y );
+       _panEnd = _panStart;
+
+     }
+
+     mouseMoveStream = document.onMouseMove.listen( mousemove );
+     mouseUpStream = document.onMouseUp.listen( mouseup );
+
+   }
+
+   mousemove( MouseEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     if ( _state == STATE.ROTATE &amp;&amp; !noRotate ) {
+
+       _rotateEnd = getMouseProjectionOnBall( event.client.x, event.client.y );
+
+     } else if ( _state == STATE.ZOOM &amp;&amp; !noZoom ) {
+
+       _zoomEnd = getMouseOnScreen( event.client.x, event.client.y );
+
+     } else if ( _state == STATE.PAN &amp;&amp; !noPan ) {
+
+       _panEnd = getMouseOnScreen( event.client.x, event.client.y );
+
+     }
+
+   }
+
+   mouseup( MouseEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     event.preventDefault();
+     event.stopPropagation();
+
+     _state = STATE.NONE;
+
+     mouseMoveStream.cancel();
+     mouseUpStream.cancel();
+
+   }
+
+   mousewheel( WheelEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     event.preventDefault();
+     event.stopPropagation();
+
+     var delta = 0;
+
+     // TODO(nelsonsilva) - check this!
+     if ( event.deltaY != 0 ) { // WebKit / Opera / Explorer 9
+
+       delta = event.deltaY / 40;
+
+     } else if ( event.detail != 0 ) { // Firefox
+
+       delta = - event.detail / 3;
+
+     }
+
+     _zoomStart.y += ( 1 / delta ) * 0.05;
+
+   }
+
+   touchstart( TouchEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     event.preventDefault();
+
+     switch ( event.touches.length ) {
+
+       case 1:
+         _rotateStart = _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+         break;
+       case 2:
+         _zoomStart = _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+         break;
+       case 3:
+         _panStart = _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+         break;
+
+     }
+
+   }
+
+   touchmove( TouchEvent event ) {
+
+     if ( !enabled ) { return; }
+
+     event.preventDefault();
+
+     switch ( event.touches.length ) {
+
+       case 1:
+         _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+         break;
+       case 2:
+         _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+         break;
+       case 3:
+         _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+         break;
+
+     }
+
+   }
+}
+</pre>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/EventEmitter.html">EventEmitter</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>TrackballControls</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>TrackballControls</strong>(<a href="../three/Object3D.html">Object3D</a> object, [<a href="http://api.dartlang.org/dart_html/Element.html">Element</a> domElement]) <a class="anchor-link" href="#"
+              title="Permalink to TrackballControls.TrackballControls">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+TrackballControls( this.object, [Element domElement] ) {
+
+ this.domElement = ( domElement != null) ? domElement : document;
+
+ // API
+
+ enabled = true;
+
+ screen = new Math.Rectangle( 0, 0, 0, 0 );
+
+ rotateSpeed = 1.0;
+ zoomSpeed = 1.2;
+ panSpeed = 0.3;
+
+ noRotate = false;
+ noZoom = false;
+ noPan = false;
+ noRoll = false;
+
+ staticMoving = false;
+ dynamicDampingFactor = 0.2;
+
+ minDistance = 0;
+ maxDistance = double.INFINITY;
+
+ keys = [ 65 /*A*/, 83 /*S*/, 68 /*D*/ ];
+
+ // internals
+
+ target = new Vector3.zero();
+
+ lastPosition = new Vector3.zero();
+
+ _state = STATE.NONE;
+ _prevState = STATE.NONE;
+
+ _eye = new Vector3.zero();
+
+ _rotateStart = new Vector3.zero();
+ _rotateEnd = new Vector3.zero();
+
+ _zoomStart = new Vector2.zero();
+ _zoomEnd = new Vector2.zero();
+
+ _panStart = new Vector2.zero();
+ _panEnd = new Vector2.zero();
+
+ changeEvent = new EventEmitterEvent(type: 'change');
+
+ domElement
+ ..onContextMenu.listen(( event ) =&gt; event.preventDefault())
+ ..onMouseDown.listen(mousedown)
+ ..onMouseWheel.listen(mousewheel)
+ ..onTouchStart.listen(touchstart)
+ ..onTouchEnd.listen(touchstart)
+ ..onTouchMove.listen(touchmove);
+
+ //this.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
+
+ keydownStream = window.onKeyDown.listen(keydown);
+ window.onKeyUp.listen(keyup);
+
+
+ handleResize();
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="changeEvent">
+<button class="show-code">Code</button>
+<a href="../three/EventEmitterEvent.html">EventEmitterEvent</a>         <strong>changeEvent</strong> <a class="anchor-link"
+            href="#changeEvent"
+            title="Permalink to TrackballControls.changeEvent">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+EventEmitterEvent changeEvent
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="domElement">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_html/Element.html">Element</a>         <strong>domElement</strong> <a class="anchor-link"
+            href="#domElement"
+            title="Permalink to TrackballControls.domElement">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Element domElement
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="dynamicDampingFactor">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>dynamicDampingFactor</strong> <a class="anchor-link"
+            href="#dynamicDampingFactor"
+            title="Permalink to TrackballControls.dynamicDampingFactor">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num dynamicDampingFactor
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="enabled">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>enabled</strong> <a class="anchor-link"
+            href="#enabled"
+            title="Permalink to TrackballControls.enabled">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool enabled
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="keydownStream">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_async/StreamSubscription.html">StreamSubscription</a>&lt;<a href="http://api.dartlang.org/dart_html/KeyboardEvent.html">KeyboardEvent</a>&gt;         <strong>keydownStream</strong> <a class="anchor-link"
+            href="#keydownStream"
+            title="Permalink to TrackballControls.keydownStream">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+StreamSubscription&lt;KeyboardEvent&gt; keydownStream
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="keys">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>keys</strong> <a class="anchor-link"
+            href="#keys"
+            title="Permalink to TrackballControls.keys">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List keys
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="lastPosition">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>lastPosition</strong> <a class="anchor-link"
+            href="#lastPosition"
+            title="Permalink to TrackballControls.lastPosition">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Vector3 lastPosition
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="listeners">
+<button class="show-code">Code</button>
+var         <strong>listeners</strong> <a class="anchor-link"
+            href="#listeners"
+            title="Permalink to TrackballControls.listeners">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/EventEmitter.html">EventEmitter</a> </div><div class="doc">
+<pre class="source">
+var listeners
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="maxDistance">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>maxDistance</strong> <a class="anchor-link"
+            href="#maxDistance"
+            title="Permalink to TrackballControls.maxDistance">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num minDistance, maxDistance
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="minDistance">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>minDistance</strong> <a class="anchor-link"
+            href="#minDistance"
+            title="Permalink to TrackballControls.minDistance">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num minDistance
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="mouseMoveStream">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_async/StreamSubscription.html">StreamSubscription</a>&lt;<a href="http://api.dartlang.org/dart_html/MouseEvent.html">MouseEvent</a>&gt;         <strong>mouseMoveStream</strong> <a class="anchor-link"
+            href="#mouseMoveStream"
+            title="Permalink to TrackballControls.mouseMoveStream">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+StreamSubscription&lt;MouseEvent&gt; mouseMoveStream
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="mouseUpStream">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_async/StreamSubscription.html">StreamSubscription</a>&lt;<a href="http://api.dartlang.org/dart_html/MouseEvent.html">MouseEvent</a>&gt;         <strong>mouseUpStream</strong> <a class="anchor-link"
+            href="#mouseUpStream"
+            title="Permalink to TrackballControls.mouseUpStream">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+StreamSubscription&lt;MouseEvent&gt; mouseUpStream
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="noPan">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>noPan</strong> <a class="anchor-link"
+            href="#noPan"
+            title="Permalink to TrackballControls.noPan">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool noRotate,
+    noZoom,
+    noPan
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="noRoll">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>noRoll</strong> <a class="anchor-link"
+            href="#noRoll"
+            title="Permalink to TrackballControls.noRoll">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool noRotate,
+    noZoom,
+    noPan,
+    noRoll
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="noRotate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>noRotate</strong> <a class="anchor-link"
+            href="#noRotate"
+            title="Permalink to TrackballControls.noRotate">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool noRotate
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="noZoom">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>noZoom</strong> <a class="anchor-link"
+            href="#noZoom"
+            title="Permalink to TrackballControls.noZoom">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool noRotate,
+    noZoom
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="object">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a>         <strong>object</strong> <a class="anchor-link"
+            href="#object"
+            title="Permalink to TrackballControls.object">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Object3D object
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="panSpeed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>panSpeed</strong> <a class="anchor-link"
+            href="#panSpeed"
+            title="Permalink to TrackballControls.panSpeed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num rotateSpeed,
+   zoomSpeed,
+   panSpeed
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="rotateSpeed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>rotateSpeed</strong> <a class="anchor-link"
+            href="#rotateSpeed"
+            title="Permalink to TrackballControls.rotateSpeed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num rotateSpeed
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="screen">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_math/Rectangle.html">Rectangle</a>         <strong>screen</strong> <a class="anchor-link"
+            href="#screen"
+            title="Permalink to TrackballControls.screen">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Math.Rectangle screen
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="staticMoving">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>staticMoving</strong> <a class="anchor-link"
+            href="#staticMoving"
+            title="Permalink to TrackballControls.staticMoving">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool staticMoving
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="target">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>target</strong> <a class="anchor-link"
+            href="#target"
+            title="Permalink to TrackballControls.target">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Vector3 target
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="zoomSpeed">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>zoomSpeed</strong> <a class="anchor-link"
+            href="#zoomSpeed"
+            title="Permalink to TrackballControls.zoomSpeed">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num rotateSpeed,
+   zoomSpeed
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="addEventListener">
+<button class="show-code">Code</button>
+dynamic <strong>addEventListener</strong>(type, listener) <a class="anchor-link" href="#addEventListener"
+              title="Permalink to TrackballControls.addEventListener">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/EventEmitter.html">EventEmitter</a> </div><div class="doc">
+<pre class="source">
+addEventListener( type, listener ) {
+
+		if ( listeners[ type ] == null ) {
+			listeners[ type ] = [];
+		}
+
+		if ( listeners[ type ].indexOf( listener ) == - 1 ) {
+			listeners[ type ].add( listener );
+		}
+
+	}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="checkDistances">
+<button class="show-code">Code</button>
+dynamic <strong>checkDistances</strong>() <a class="anchor-link" href="#checkDistances"
+              title="Permalink to TrackballControls.checkDistances">#</a></h4>
+<div class="doc">
+<pre class="source">
+checkDistances() {
+
+ if ( !noZoom || !noPan ) {
+
+   if ( object.position.length2 &gt; maxDistance * maxDistance ) {
+
+     object.position.normalize().scale( maxDistance );
+
+   }
+
+   if ( _eye.length2 &lt; minDistance * minDistance ) {
+
+     object.position = target + _eye.normalize().scale(minDistance);
+
+   }
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="dispatchEvent">
+<button class="show-code">Code</button>
+dynamic <strong>dispatchEvent</strong>(event) <a class="anchor-link" href="#dispatchEvent"
+              title="Permalink to TrackballControls.dispatchEvent">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/EventEmitter.html">EventEmitter</a> </div><div class="doc">
+<pre class="source">
+dispatchEvent( event ) {
+		if ( listeners[ event.type ] != null ) {
+			listeners[ event.type ].forEach((listener) =&gt; listener( event ));
+		}
+	}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getMouseOnScreen">
+<button class="show-code">Code</button>
+dynamic <strong>getMouseOnScreen</strong>(clientX, clientY) <a class="anchor-link" href="#getMouseOnScreen"
+              title="Permalink to TrackballControls.getMouseOnScreen">#</a></h4>
+<div class="doc">
+<pre class="source">
+getMouseOnScreen( clientX, clientY )
+ =&gt; new Vector2(
+     ( clientX - screen.left ) / screen.width,
+     ( clientY - screen.top ) / screen.height
+ );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getMouseProjectionOnBall">
+<button class="show-code">Code</button>
+dynamic <strong>getMouseProjectionOnBall</strong>(clientX, clientY) <a class="anchor-link" href="#getMouseProjectionOnBall"
+              title="Permalink to TrackballControls.getMouseProjectionOnBall">#</a></h4>
+<div class="doc">
+<pre class="source">
+getMouseProjectionOnBall( clientX, clientY ) {
+
+ var mouseOnBall = new Vector3(
+     ( clientX - screen.width * 0.5 - screen.left ) / ( screen.width * 0.5 ),
+     ( screen.height * 0.5 + screen.top - clientY ) / ( screen.height * 0.5 ),
+     0.0
+ );
+
+ var length = mouseOnBall.length;
+
+ if ( noRoll ) {
+
+   if ( length &lt; Math.SQRT1_2 ) {
+
+     mouseOnBall.z = Math.sqrt( 1.0 - length * length );
+
+   } else {
+
+     mouseOnBall.z = 0.5 / length;
+
+   }
+
+ } else if ( length &gt; 1.0 ) {
+
+   mouseOnBall.normalize();
+
+ } else {
+
+   mouseOnBall.z = Math.sqrt( 1.0 - length * length );
+
+ }
+
+ _eye.setFrom(object.position ).sub( target );
+
+ Vector3 projection = object.up.clone().normalize().scale( mouseOnBall.y );
+ projection.add( object.up.cross( _eye ).normalize().scale( mouseOnBall.x ) );
+ projection.add( _eye.normalize().scale( mouseOnBall.z ) );
+
+ return projection;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="handleEvent">
+<button class="show-code">Code</button>
+dynamic <strong>handleEvent</strong>(event) <a class="anchor-link" href="#handleEvent"
+              title="Permalink to TrackballControls.handleEvent">#</a></h4>
+<div class="doc">
+<pre class="source">
+handleEvent( event ) {
+ dispatchEvent(event);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="handleResize">
+<button class="show-code">Code</button>
+dynamic <strong>handleResize</strong>() <a class="anchor-link" href="#handleResize"
+              title="Permalink to TrackballControls.handleResize">#</a></h4>
+<div class="doc">
+<pre class="source">
+handleResize () {
+ if ( domElement == document ) {
+   screen = new Math.Rectangle(0, 0, window.innerWidth, window.innerHeight);
+ } else {
+   screen = domElement.getBoundingClientRect();
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="keydown">
+<button class="show-code">Code</button>
+dynamic <strong>keydown</strong>(<a href="http://api.dartlang.org/dart_html/KeyboardEvent.html">KeyboardEvent</a> event) <a class="anchor-link" href="#keydown"
+              title="Permalink to TrackballControls.keydown">#</a></h4>
+<div class="doc">
+<pre class="source">
+keydown( KeyboardEvent event ) {
+
+ if ( !enabled ) return;
+
+ keydownStream.cancel();
+
+ _prevState = _state;
+
+ if ( _state != STATE.NONE ) {
+
+   return;
+
+ } else if ( event.keyCode == keys[ STATE.ROTATE ] &amp;&amp; !noRotate ) {
+
+   _state = STATE.ROTATE;
+
+ } else if ( event.keyCode == keys[ STATE.ZOOM ] &amp;&amp; !noZoom ) {
+
+   _state = STATE.ZOOM;
+
+ } else if ( event.keyCode == keys[ STATE.PAN ] &amp;&amp; !noPan ) {
+
+   _state = STATE.PAN;
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="keyup">
+<button class="show-code">Code</button>
+dynamic <strong>keyup</strong>(<a href="http://api.dartlang.org/dart_html/KeyboardEvent.html">KeyboardEvent</a> event) <a class="anchor-link" href="#keyup"
+              title="Permalink to TrackballControls.keyup">#</a></h4>
+<div class="doc">
+<pre class="source">
+keyup( KeyboardEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ _state = _prevState;
+
+ keydownStream = window.onKeyDown.listen( keydown );
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mousedown">
+<button class="show-code">Code</button>
+dynamic <strong>mousedown</strong>(<a href="http://api.dartlang.org/dart_html/MouseEvent.html">MouseEvent</a> event) <a class="anchor-link" href="#mousedown"
+              title="Permalink to TrackballControls.mousedown">#</a></h4>
+<div class="doc">
+<pre class="source">
+mousedown( MouseEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ event.preventDefault();
+ event.stopPropagation();
+
+ if ( _state == STATE.NONE ) {
+
+   _state = event.button;
+ }
+
+ if ( _state == STATE.ROTATE &amp;&amp; !noRotate ) {
+
+   _rotateStart = getMouseProjectionOnBall( event.client.x, event.client.y );
+   _rotateEnd = _rotateStart;
+
+ } else if ( _state == STATE.ZOOM &amp;&amp; !noZoom ) {
+
+   _zoomStart = getMouseOnScreen( event.client.x, event.client.y );
+   _zoomEnd = _zoomStart;
+
+ } else if ( _state == STATE.PAN &amp;&amp; !noPan ) {
+
+   _panStart = getMouseOnScreen( event.client.x, event.client.y );
+   _panEnd = _panStart;
+
+ }
+
+ mouseMoveStream = document.onMouseMove.listen( mousemove );
+ mouseUpStream = document.onMouseUp.listen( mouseup );
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mousemove">
+<button class="show-code">Code</button>
+dynamic <strong>mousemove</strong>(<a href="http://api.dartlang.org/dart_html/MouseEvent.html">MouseEvent</a> event) <a class="anchor-link" href="#mousemove"
+              title="Permalink to TrackballControls.mousemove">#</a></h4>
+<div class="doc">
+<pre class="source">
+mousemove( MouseEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ if ( _state == STATE.ROTATE &amp;&amp; !noRotate ) {
+
+   _rotateEnd = getMouseProjectionOnBall( event.client.x, event.client.y );
+
+ } else if ( _state == STATE.ZOOM &amp;&amp; !noZoom ) {
+
+   _zoomEnd = getMouseOnScreen( event.client.x, event.client.y );
+
+ } else if ( _state == STATE.PAN &amp;&amp; !noPan ) {
+
+   _panEnd = getMouseOnScreen( event.client.x, event.client.y );
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mouseup">
+<button class="show-code">Code</button>
+dynamic <strong>mouseup</strong>(<a href="http://api.dartlang.org/dart_html/MouseEvent.html">MouseEvent</a> event) <a class="anchor-link" href="#mouseup"
+              title="Permalink to TrackballControls.mouseup">#</a></h4>
+<div class="doc">
+<pre class="source">
+mouseup( MouseEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ event.preventDefault();
+ event.stopPropagation();
+
+ _state = STATE.NONE;
+
+ mouseMoveStream.cancel();
+ mouseUpStream.cancel();
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mousewheel">
+<button class="show-code">Code</button>
+dynamic <strong>mousewheel</strong>(<a href="http://api.dartlang.org/dart_html/WheelEvent.html">WheelEvent</a> event) <a class="anchor-link" href="#mousewheel"
+              title="Permalink to TrackballControls.mousewheel">#</a></h4>
+<div class="doc">
+<pre class="source">
+mousewheel( WheelEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ event.preventDefault();
+ event.stopPropagation();
+
+ var delta = 0;
+
+ // TODO(nelsonsilva) - check this!
+ if ( event.deltaY != 0 ) { // WebKit / Opera / Explorer 9
+
+   delta = event.deltaY / 40;
+
+ } else if ( event.detail != 0 ) { // Firefox
+
+   delta = - event.detail / 3;
+
+ }
+
+ _zoomStart.y += ( 1 / delta ) * 0.05;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="panCamera">
+<button class="show-code">Code</button>
+dynamic <strong>panCamera</strong>() <a class="anchor-link" href="#panCamera"
+              title="Permalink to TrackballControls.panCamera">#</a></h4>
+<div class="doc">
+<pre class="source">
+panCamera() {
+
+ Vector2 mouseChange = _panEnd - _panStart;
+
+ if ( mouseChange.length != 0.0) {
+
+   mouseChange.scale( _eye.length * panSpeed );
+
+   Vector3 pan = _eye.cross( object.up ).normalize().scale( mouseChange.x );
+   pan += object.up.clone().normalize().scale( mouseChange.y );
+
+   object.position.add( pan );
+   target.add( pan );
+
+   if ( staticMoving ) {
+
+     _panStart = _panEnd;
+
+   } else {
+
+     _panStart += (_panEnd - _panStart).scale(dynamicDampingFactor);
+
+   }
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="removeEventListener">
+<button class="show-code">Code</button>
+dynamic <strong>removeEventListener</strong>(type, listener) <a class="anchor-link" href="#removeEventListener"
+              title="Permalink to TrackballControls.removeEventListener">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/EventEmitter.html">EventEmitter</a> </div><div class="doc">
+<pre class="source">
+removeEventListener ( type, listener ) {
+
+		var index = listeners[ type ].indexOf( listener );
+
+		if ( index != - 1 ) {
+			listeners[ type ].removeAt( index );
+		}
+
+	}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotateCamera">
+<button class="show-code">Code</button>
+dynamic <strong>rotateCamera</strong>() <a class="anchor-link" href="#rotateCamera"
+              title="Permalink to TrackballControls.rotateCamera">#</a></h4>
+<div class="doc">
+<pre class="source">
+rotateCamera() {
+
+ var angle = Math.acos( _rotateStart.dot( _rotateEnd ) / _rotateStart.length / _rotateEnd.length );
+
+ if ( !angle.isNaN &amp;&amp; angle != 0) {
+
+   Vector3 axis = _rotateStart.cross(_rotateEnd ).normalize();
+   Quaternion quaternion = new Quaternion.identity();
+
+   angle *= rotateSpeed;
+
+   quaternion.setAxisAngle( axis, angle );
+
+   quaternion.rotate( _eye );
+   quaternion.rotate( object.up );
+
+   quaternion.rotate( _rotateEnd );
+
+   if ( staticMoving ) {
+
+     _rotateStart.setFrom( _rotateEnd );
+
+   } else {
+
+     quaternion.setAxisAngle( axis, -angle * ( dynamicDampingFactor - 1.0 ) );
+     quaternion.rotate( _rotateStart );
+
+   }
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="touchmove">
+<button class="show-code">Code</button>
+dynamic <strong>touchmove</strong>(<a href="http://api.dartlang.org/dart_html/TouchEvent.html">TouchEvent</a> event) <a class="anchor-link" href="#touchmove"
+              title="Permalink to TrackballControls.touchmove">#</a></h4>
+<div class="doc">
+<pre class="source">
+touchmove( TouchEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ event.preventDefault();
+
+ switch ( event.touches.length ) {
+
+   case 1:
+     _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+     break;
+   case 2:
+     _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+     break;
+   case 3:
+     _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+     break;
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="touchstart">
+<button class="show-code">Code</button>
+dynamic <strong>touchstart</strong>(<a href="http://api.dartlang.org/dart_html/TouchEvent.html">TouchEvent</a> event) <a class="anchor-link" href="#touchstart"
+              title="Permalink to TrackballControls.touchstart">#</a></h4>
+<div class="doc">
+<pre class="source">
+touchstart( TouchEvent event ) {
+
+ if ( !enabled ) { return; }
+
+ event.preventDefault();
+
+ switch ( event.touches.length ) {
+
+   case 1:
+     _rotateStart = _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+     break;
+   case 2:
+     _zoomStart = _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+     break;
+   case 3:
+     _panStart = _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+     break;
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="update">
+<button class="show-code">Code</button>
+dynamic <strong>update</strong>() <a class="anchor-link" href="#update"
+              title="Permalink to TrackballControls.update">#</a></h4>
+<div class="doc">
+<pre class="source">
+update() {
+
+ _eye.setFrom( object.position ).sub( target );
+
+ if ( !noRotate ) {
+   rotateCamera();
+ }
+
+ if ( !noZoom ) {
+   zoomCamera();
+ }
+
+ if ( !noPan ) {
+   panCamera();
+ }
+
+ object.position =  target + _eye;
+
+ checkDistances();
+
+ object.lookAt( target );
+
+ // distanceToSquared
+ if ( (lastPosition - object.position).length2 &gt; 0.0 ) {
+   //
+   dispatchEvent( changeEvent );
+
+   lastPosition.setFrom( object.position );
+
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="zoomCamera">
+<button class="show-code">Code</button>
+dynamic <strong>zoomCamera</strong>() <a class="anchor-link" href="#zoomCamera"
+              title="Permalink to TrackballControls.zoomCamera">#</a></h4>
+<div class="doc">
+<pre class="source">
+zoomCamera() {
+
+ var factor = 1.0 + ( _zoomEnd.y - _zoomStart.y ) * zoomSpeed;
+
+ if ( factor != 1.0 &amp;&amp; factor &gt; 0.0 ) {
+
+   _eye.scale( factor );
+
+   if ( staticMoving ) {
+
+     _zoomStart.setFrom(_zoomEnd);
+
+   } else {
+
+     _zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
+
+   }
+
+ }
+
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.382</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

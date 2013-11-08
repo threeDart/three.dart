@@ -1,0 +1,424 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Tween class / tween Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="tween" data-type="Tween">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../tween.html">tween</a> &rsaquo; <a href="../tween/Tween.html">Tween</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><ul class="icon">
+<li><a href="../tween/Easing.html"><div class="icon-class"></div>Easing</a></li>
+<li><a href="../tween/Interpolation.html"><div class="icon-class"></div>Interpolation</a></li>
+<li><div class="icon-class"></div><strong>Tween</strong></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>Tween</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class Tween {
+ var object;
+ Map _valuesStart = {};
+ Map _valuesEnd = {};
+ num _duration = 1000;
+ num _delayTime = 0;
+ num _startTime = null;
+ var _easingFunction = Easing.Linear.None;
+ var _interpolationFunction = Interpolation.Linear;
+ List _chainedTweens = [];
+ var _onStartCallback = null;
+ bool _onStartCallbackFired = false;
+ var _onUpdateCallback = null;
+ var _onCompleteCallback = null;
+
+ Tween(this.object);
+
+ to( properties, [duration] ) {
+   if ( duration != null ) {
+     _duration = duration;
+   }
+
+   _valuesEnd = properties;
+ }
+
+ // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet :(
+ _setPropertyValue(String name, Object value) {
+   switch(name) {
+     case "x": object.x = value; break;
+     case "y": object.y = value; break;
+     case "z": object.z = value; break;
+     default:
+       throw new Exception("The supplied property name ('$name') is not supported at this time.");
+   }
+ }
+
+ // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet :(
+ Object _getPropertyValue(String name) {
+   switch(name) {
+     case "x": return object.x;
+     case "y": return object.y;
+     case "z": return object.z;
+     default:
+       throw new Exception("The supplied property name ('$name') is not supported at this time.");
+   }
+ }
+
+ start( {num time} ) {
+
+   add( this );
+
+   _onStartCallbackFired = false;
+
+   _startTime = (time != null) ? time : new DateTime.now().millisecondsSinceEpoch;
+   _startTime += _delayTime;
+
+   _valuesEnd.forEach((property, _) {
+
+     var value = _getPropertyValue(property);
+
+     // This prevents the engine from interpolating null values
+     if ( value != null ) {
+
+       // check if an Array was provided as property value
+       if ( _valuesEnd[ property ] is List &amp;&amp; ! _valuesEnd[ property ].isEmpty) {
+
+         // create a local copy of the Array with the start value at the front
+         _valuesEnd[ property ] = [ value ]..add( _valuesEnd[ property ] );
+
+       }
+
+       _valuesStart[ property ] = value;
+     }
+
+   });
+
+ }
+
+ stop() =&gt; remove( this );
+
+
+ set delay( amount ) { _delayTime = amount; }
+
+ set easing( easing ) { _easingFunction = easing; }
+
+ set interpolation( interpolation ) { _interpolationFunction = interpolation; }
+
+ chain( List tweens) {  _chainedTweens = tweens; }
+
+ set onStart( callback ) { _onStartCallback = callback; }
+
+ set onUpdate( callback ) { _onUpdateCallback = callback; }
+
+ set onComplete( callback ) { _onCompleteCallback = callback; }
+
+ update( num time ) {
+
+   if ( time &lt; _startTime ) {
+     return true;
+   }
+
+   if ( !_onStartCallbackFired ) {
+     if ( _onStartCallback != null ) {
+       _onStartCallback(object );
+     }
+     _onStartCallbackFired = true;
+   }
+
+   var elapsed = ( time - _startTime ) / _duration;
+   elapsed = elapsed &gt; 1 ? 1 : elapsed;
+
+   var value = _easingFunction( elapsed );
+
+   _valuesStart.forEach((property, start) {
+
+     var end = _valuesEnd[ property ];
+
+     if ( end is List ) {
+       _setPropertyValue( property, _interpolationFunction( end, value ));
+     } else {
+       _setPropertyValue( property, start + ( end - start ) * value);
+     }
+   });
+
+   if ( _onUpdateCallback != null ) {
+     _onUpdateCallback( object, value );
+   }
+
+   if ( elapsed == 1 ) {
+
+     if ( _onCompleteCallback != null ) {
+       _onCompleteCallback( object );
+     }
+
+     _chainedTweens.forEach((t) =&gt; t.start(time));
+
+     return false;
+
+   }
+
+   return true;
+
+ }
+}
+</pre>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>Tween</strong>(object) <a class="anchor-link" href="#"
+              title="Permalink to Tween.Tween">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+Tween(this.object);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="method"><h4 id="delay=">
+<button class="show-code">Code</button>
+dynamic <strong>set delay</strong>(amount) <a class="anchor-link" href="#delay="
+              title="Permalink to Tween.set delay">#</a></h4>
+<div class="doc">
+<pre class="source">
+set delay( amount ) { _delayTime = amount; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="easing=">
+<button class="show-code">Code</button>
+dynamic <strong>set easing</strong>(easing) <a class="anchor-link" href="#easing="
+              title="Permalink to Tween.set easing">#</a></h4>
+<div class="doc">
+<pre class="source">
+set easing( easing ) { _easingFunction = easing; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="interpolation=">
+<button class="show-code">Code</button>
+dynamic <strong>set interpolation</strong>(interpolation) <a class="anchor-link" href="#interpolation="
+              title="Permalink to Tween.set interpolation">#</a></h4>
+<div class="doc">
+<pre class="source">
+set interpolation( interpolation ) { _interpolationFunction = interpolation; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="object">
+<button class="show-code">Code</button>
+var         <strong>object</strong> <a class="anchor-link"
+            href="#object"
+            title="Permalink to Tween.object">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var object
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onComplete=">
+<button class="show-code">Code</button>
+dynamic <strong>set onComplete</strong>(callback) <a class="anchor-link" href="#onComplete="
+              title="Permalink to Tween.set onComplete">#</a></h4>
+<div class="doc">
+<pre class="source">
+set onComplete( callback ) { _onCompleteCallback = callback; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onStart=">
+<button class="show-code">Code</button>
+dynamic <strong>set onStart</strong>(callback) <a class="anchor-link" href="#onStart="
+              title="Permalink to Tween.set onStart">#</a></h4>
+<div class="doc">
+<pre class="source">
+set onStart( callback ) { _onStartCallback = callback; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onUpdate=">
+<button class="show-code">Code</button>
+dynamic <strong>set onUpdate</strong>(callback) <a class="anchor-link" href="#onUpdate="
+              title="Permalink to Tween.set onUpdate">#</a></h4>
+<div class="doc">
+<pre class="source">
+set onUpdate( callback ) { _onUpdateCallback = callback; }
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="chain">
+<button class="show-code">Code</button>
+dynamic <strong>chain</strong>(<a href="http://api.dartlang.org/dart_core/List.html">List</a> tweens) <a class="anchor-link" href="#chain"
+              title="Permalink to Tween.chain">#</a></h4>
+<div class="doc">
+<pre class="source">
+chain( List tweens) {  _chainedTweens = tweens; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="start">
+<button class="show-code">Code</button>
+dynamic <strong>start</strong>({<a href="http://api.dartlang.org/dart_core/num.html">num</a> time}) <a class="anchor-link" href="#start"
+              title="Permalink to Tween.start">#</a></h4>
+<div class="doc">
+<pre class="source">
+start( {num time} ) {
+
+ add( this );
+
+ _onStartCallbackFired = false;
+
+ _startTime = (time != null) ? time : new DateTime.now().millisecondsSinceEpoch;
+ _startTime += _delayTime;
+
+ _valuesEnd.forEach((property, _) {
+
+   var value = _getPropertyValue(property);
+
+   // This prevents the engine from interpolating null values
+   if ( value != null ) {
+
+     // check if an Array was provided as property value
+     if ( _valuesEnd[ property ] is List &amp;&amp; ! _valuesEnd[ property ].isEmpty) {
+
+       // create a local copy of the Array with the start value at the front
+       _valuesEnd[ property ] = [ value ]..add( _valuesEnd[ property ] );
+
+     }
+
+     _valuesStart[ property ] = value;
+   }
+
+ });
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="stop">
+<button class="show-code">Code</button>
+dynamic <strong>stop</strong>() <a class="anchor-link" href="#stop"
+              title="Permalink to Tween.stop">#</a></h4>
+<div class="doc">
+<pre class="source">
+stop() =&gt; remove( this );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="to">
+<button class="show-code">Code</button>
+dynamic <strong>to</strong>(properties, [duration]) <a class="anchor-link" href="#to"
+              title="Permalink to Tween.to">#</a></h4>
+<div class="doc">
+<pre class="source">
+to( properties, [duration] ) {
+ if ( duration != null ) {
+   _duration = duration;
+ }
+
+ _valuesEnd = properties;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="update">
+<button class="show-code">Code</button>
+dynamic <strong>update</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> time) <a class="anchor-link" href="#update"
+              title="Permalink to Tween.update">#</a></h4>
+<div class="doc">
+<pre class="source">
+update( num time ) {
+
+ if ( time &lt; _startTime ) {
+   return true;
+ }
+
+ if ( !_onStartCallbackFired ) {
+   if ( _onStartCallback != null ) {
+     _onStartCallback(object );
+   }
+   _onStartCallbackFired = true;
+ }
+
+ var elapsed = ( time - _startTime ) / _duration;
+ elapsed = elapsed &gt; 1 ? 1 : elapsed;
+
+ var value = _easingFunction( elapsed );
+
+ _valuesStart.forEach((property, start) {
+
+   var end = _valuesEnd[ property ];
+
+   if ( end is List ) {
+     _setPropertyValue( property, _interpolationFunction( end, value ));
+   } else {
+     _setPropertyValue( property, start + ( end - start ) * value);
+   }
+ });
+
+ if ( _onUpdateCallback != null ) {
+   _onUpdateCallback( object, value );
+ }
+
+ if ( elapsed == 1 ) {
+
+   if ( _onCompleteCallback != null ) {
+     _onCompleteCallback( object );
+   }
+
+   _chainedTweens.forEach((t) =&gt; t.start(time));
+
+   return false;
+
+ }
+
+ return true;
+
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.394</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

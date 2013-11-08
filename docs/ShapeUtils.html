@@ -1,0 +1,454 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ShapeUtils Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="ShapeUtils">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="ShapeUtils.html">ShapeUtils</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><strong>ShapeUtils</strong></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>ShapeUtils</strong> library</h2>
+<div class="doc"><hr />
+<p> Utils</p>
+<hr /></div>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="b3">
+<button class="show-code">Code</button>
+dynamic <strong>b3</strong>(t, p0, p1, p2, p3) <a class="anchor-link" href="#b3"
+              title="Permalink to b3">#</a></h4>
+<div class="doc">
+<pre class="source">
+b3( t, p0, p1, p2, p3 ) =&gt; b3p0( t, p0 ) + b3p1( t, p1 ) + b3p2( t, p2 ) + b3p3( t, p3 );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b3p3">
+<button class="show-code">Code</button>
+dynamic <strong>b3p3</strong>(t, p) <a class="anchor-link" href="#b3p3"
+              title="Permalink to b3p3">#</a></h4>
+<div class="doc">
+<pre class="source">
+b3p3 ( t, p ) =&gt; t * t * t * p;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b3p2">
+<button class="show-code">Code</button>
+dynamic <strong>b3p2</strong>(t, p) <a class="anchor-link" href="#b3p2"
+              title="Permalink to b3p2">#</a></h4>
+<div class="doc">
+<pre class="source">
+b3p2( t, p ) {
+
+ var k = 1 - t;
+ return 3 * k * t * t * p;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b3p1">
+<button class="show-code">Code</button>
+dynamic <strong>b3p1</strong>(t, p) <a class="anchor-link" href="#b3p1"
+              title="Permalink to b3p1">#</a></h4>
+<div class="doc">
+<pre class="source">
+b3p1( t, p ) {
+
+ var k = 1 - t;
+ return 3 * k * k * t * p;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b3p0">
+<button class="show-code">Code</button>
+dynamic <strong>b3p0</strong>(t, p) <a class="anchor-link" href="#b3p0"
+              title="Permalink to b3p0">#</a></h4>
+<div class="doc">
+<pre class="source">
+b3p0( t, p ) {
+ var k = 1 - t;
+ return k * k * k * p;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b2">
+<button class="show-code">Code</button>
+dynamic <strong>b2</strong>(t, p0, p1, p2) <a class="anchor-link" href="#b2"
+              title="Permalink to b2">#</a></h4>
+<div class="doc">
+<pre class="source">
+b2( t, p0, p1, p2 ) =&gt; b2p0( t, p0 ) + b2p1( t, p1 ) + b2p2( t, p2 );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b2p2">
+<button class="show-code">Code</button>
+dynamic <strong>b2p2</strong>(t, p) <a class="anchor-link" href="#b2p2"
+              title="Permalink to b2p2">#</a></h4>
+<div class="doc">
+<pre class="source">
+b2p2( t, p ) =&gt; t * t * p;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b2p1">
+<button class="show-code">Code</button>
+dynamic <strong>b2p1</strong>(t, p) <a class="anchor-link" href="#b2p1"
+              title="Permalink to b2p1">#</a></h4>
+<div class="doc">
+<pre class="source">
+b2p1( t, p ) =&gt;  2 * ( 1 - t ) * t * p;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="b2p0">
+<button class="show-code">Code</button>
+dynamic <strong>b2p0</strong>(t, p) <a class="anchor-link" href="#b2p0"
+              title="Permalink to b2p0">#</a></h4>
+<div class="doc">
+<pre class="source">
+b2p0( t, p ) {
+
+ var k = 1 - t;
+ return k * k * p;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isClockWise">
+<button class="show-code">Code</button>
+dynamic <strong>isClockWise</strong>(pts) <a class="anchor-link" href="#isClockWise"
+              title="Permalink to isClockWise">#</a></h4>
+<div class="doc">
+<pre class="source">
+isClockWise( pts ) =&gt; FontUtils.area( pts ) &lt; 0;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="triangulateShape">
+<button class="show-code">Code</button>
+dynamic <strong>triangulateShape</strong>(contour, holes) <a class="anchor-link" href="#triangulateShape"
+              title="Permalink to triangulateShape">#</a></h4>
+<div class="doc">
+<pre class="source">
+triangulateShape( contour, holes ) {
+
+ var shapeWithoutHoles = removeHoles( contour, holes );
+
+ var shape = shapeWithoutHoles["shape"],
+   allpoints = shapeWithoutHoles["allpoints"],
+   isolatedPts = shapeWithoutHoles["isolatedPts"];
+
+ var triangles = FontUtils.process( shape, false ); // True returns indices for points of spooled shape
+
+ // To maintain reference to old shape, one must match coordinates, or offset the indices from original arrays. It's probably easier to do the first.
+
+ //console.log( "triangles",triangles, triangles.length );
+ //console.log( "allpoints",allpoints, allpoints.length );
+
+ var i, il, f, face,
+   key, index,
+   allPointsMap = {},
+   isolatedPointsMap = {};
+
+ // prepare all points map
+
+ for ( i = 0; i &lt; allpoints.length; i ++ ) {
+
+   key = "${allpoints[ i ].x}:${allpoints[ i ].y}";
+
+   if ( allPointsMap.containsKey(key)) {
+
+     print( "Duplicate point $key" );
+
+   }
+
+   allPointsMap[ key ] = i;
+
+ }
+
+ // check all face vertices against all points map
+
+ for ( i = 0; i &lt; triangles.length; i ++ ) {
+
+   face = triangles[ i ];
+
+   for ( f = 0; f &lt; 3; f ++ ) {
+
+     key = "${face[ f ].x}:${face[ f ].y}";
+
+     if ( allPointsMap.containsKey(key) ) {
+
+       face[ f ] = allPointsMap[key];
+
+     }
+
+   }
+
+ }
+
+ // check isolated points vertices against all points map
+
+ for ( i = 0; i &lt; isolatedPts.length; i ++ ) {
+
+   face = isolatedPts[ i ];
+
+   for ( f = 0; f &lt; 3; f ++ ) {
+
+     key = "${face[ f ].x}:${face[ f ].y}";
+
+     if ( allPointsMap.containsKey(key)) {
+
+       face[ f ] = allPointsMap[key];
+
+     }
+
+   }
+
+ }
+
+ triangles.addAll( isolatedPts );
+ return triangles;
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeHoles">
+<button class="show-code">Code</button>
+dynamic <strong>removeHoles</strong>(<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="vector_math/Vector2.html">Vector2</a>&gt; contour, <a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="vector_math/Vector2.html">Vector2</a>&gt;&gt; holes) <a class="anchor-link" href="#removeHoles"
+              title="Permalink to removeHoles">#</a></h4>
+<div class="doc">
+<pre class="source">
+removeHoles( List&lt;Vector2&gt; contour, List&lt;List&lt;Vector2&gt;&gt;holes ) {
+
+ var shape = new List.from(contour); // work on this shape
+ var allpoints = new List.from(shape);
+
+ /* For each isolated shape, find the closest points and break to the hole to allow triangulation */
+
+
+ var prevShapeVert, nextShapeVert,
+   prevHoleVert, nextHoleVert;
+
+ int holeIndex, shapeIndex;
+
+ var shapeId, shapeGroup,
+   h, h2,
+   hole, shortest, d,
+   p, pts1, pts2,
+   tmpShape1, tmpShape2,
+   tmpHole1, tmpHole2,
+   verts = [];
+
+ for ( h = 0; h &lt; holes.length; h ++ ) {
+
+   hole = holes[ h ];
+
+   /*
+   shapeholes[ h ].concat(); // preserves original
+   holes.push( hole );
+   */
+
+   allpoints.addAll(hole); //Array.prototype.push.apply( allpoints, hole );
+
+   shortest = double.INFINITY;
+
+
+   // Find the shortest pair of pts between shape and hole
+
+   // Note: Actually, I'm not sure now if we could optimize this to be faster than O(m*n)
+   // Using distanceToSquared() intead of distanceTo() should speed a little
+   // since running square roots operations are reduced.
+
+   for ( h2 = 0; h2 &lt; hole.length; h2 ++ ) {
+
+     pts1 = hole[ h2 ];
+     var dist = [];
+
+     for ( p = 0; p &lt; shape.length; p++ ) {
+
+       pts2 = shape[ p ];
+       d = (pts1 - pts2).length2;
+
+       dist.add( d );
+
+       if ( d &lt; shortest ) {
+
+         shortest = d;
+         holeIndex = h2;
+         shapeIndex = p;
+
+       }
+
+     }
+
+   }
+
+   //console.log("shortest", shortest, dist);
+
+   prevShapeVert = ( shapeIndex - 1 ) &gt;= 0 ? shapeIndex - 1 : shape.length - 1;
+   prevHoleVert = ( holeIndex - 1 ) &gt;= 0 ? holeIndex - 1 : hole.length - 1;
+
+   var areaapts = [
+
+     hole[ holeIndex ],
+     shape[ shapeIndex ],
+     shape[ prevShapeVert ]
+
+   ];
+
+   var areaa = FontUtils.area( areaapts );
+
+   var areabpts = [
+
+     hole[ holeIndex ],
+     hole[ prevHoleVert ],
+     shape[ shapeIndex ]
+
+   ];
+
+   var areab = FontUtils.area( areabpts );
+
+   var shapeOffset = 1;
+   var holeOffset = -1;
+
+   var oldShapeIndex = shapeIndex, oldHoleIndex = holeIndex;
+   shapeIndex += shapeOffset;
+   holeIndex += holeOffset;
+
+   if ( shapeIndex &lt; 0 ) { shapeIndex += shape.length;  }
+   shapeIndex %= shape.length;
+
+   if ( holeIndex &lt; 0 ) { holeIndex += hole.length;  }
+   holeIndex %= hole.length;
+
+   prevShapeVert = ( shapeIndex - 1 ) &gt;= 0 ? shapeIndex - 1 : shape.length - 1;
+   prevHoleVert = ( holeIndex - 1 ) &gt;= 0 ? holeIndex - 1 : hole.length - 1;
+
+   areaapts = [
+
+     hole[ holeIndex ],
+     shape[ shapeIndex ],
+     shape[ prevShapeVert ]
+
+   ];
+
+   var areaa2 = FontUtils.area( areaapts );
+
+   areabpts = [
+
+     hole[ holeIndex ],
+     hole[ prevHoleVert ],
+     shape[ shapeIndex ]
+
+   ];
+
+   var areab2 = FontUtils.area( areabpts );
+   //console.log(areaa,areab ,areaa2,areab2, ( areaa + areab ),  ( areaa2 + areab2 ));
+
+   if ( ( areaa + areab ) &gt; ( areaa2 + areab2 ) ) {
+
+     // In case areas are not correct.
+     //console.log("USE THIS");
+
+     shapeIndex = oldShapeIndex;
+     holeIndex = oldHoleIndex ;
+
+     if ( shapeIndex &lt; 0 ) { shapeIndex += shape.length;  }
+     shapeIndex %= shape.length;
+
+     if ( holeIndex &lt; 0 ) { holeIndex += hole.length;  }
+     holeIndex %= hole.length;
+
+     prevShapeVert = ( shapeIndex - 1 ) &gt;= 0 ? shapeIndex - 1 : shape.length - 1;
+     prevHoleVert = ( holeIndex - 1 ) &gt;= 0 ? holeIndex - 1 : hole.length - 1;
+
+   } else {
+
+     //console.log("USE THAT ")
+
+   }
+
+   tmpShape1 = shape.getRange( 0, shapeIndex );
+   tmpShape2 = shape.getRange( shapeIndex, shape.length );
+   tmpHole1 = hole.getRange( holeIndex, hole.length );
+   tmpHole2 = hole.getRange( 0, holeIndex );
+
+   // Should check orders here again?
+
+   var trianglea = [
+
+     hole[ holeIndex ],
+     shape[ shapeIndex ],
+     shape[ prevShapeVert ]
+
+   ];
+
+   var triangleb = [
+
+     hole[ holeIndex ] ,
+     hole[ prevHoleVert ],
+     shape[ shapeIndex ]
+
+   ];
+
+   verts.add( trianglea );
+   verts.add( triangleb );
+
+   shape = [];
+   shape.addAll(tmpShape1);
+   shape.addAll(tmpHole1 );
+   shape.addAll( tmpHole2 );
+   shape.addAll( tmpShape2 );
+
+ }
+
+ return {
+
+   "shape":shape,    /* shape with no holes */
+   "isolatedPts": verts, /* isolated faces */
+   "allpoints": allpoints
+
+ };
+
+
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:30.784</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

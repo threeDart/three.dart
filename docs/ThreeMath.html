@@ -1,0 +1,134 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>ThreeMath Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="ThreeMath">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="ThreeMath.html">ThreeMath</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><strong>ThreeMath</strong></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>ThreeMath</strong> library</h2>
+<div class="doc"><p>@author alteredq / http://alteredqualia.com/</p>
+<p>Ported to Dart from JS by:
+@author rob silverton / http://www.unwrong.com/</p></div>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="radToDeg">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>radToDeg</strong>(radians) <a class="anchor-link" href="#radToDeg"
+              title="Permalink to radToDeg">#</a></h4>
+<div class="doc">
+<pre class="source">
+num radToDeg( radians ) =&gt; radians * __r2d;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="degToRad">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>degToRad</strong>(degrees) <a class="anchor-link" href="#degToRad"
+              title="Permalink to degToRad">#</a></h4>
+<div class="doc">
+<pre class="source">
+num degToRad( degrees ) =&gt; degrees * __d2r;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="randFloatSpread">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>randFloatSpread</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> range) <a class="anchor-link" href="#randFloatSpread"
+              title="Permalink to randFloatSpread">#</a></h4>
+<div class="doc">
+<pre class="source">
+num randFloatSpread( num range ) =&gt; range * ( 0.5 - _randomDouble );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="randFloat">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>randFloat</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> low, <a href="http://api.dartlang.org/dart_core/num.html">num</a> high) <a class="anchor-link" href="#randFloat"
+              title="Permalink to randFloat">#</a></h4>
+<div class="doc">
+<pre class="source">
+num randFloat( num low, num high ) =&gt;low + _randomDouble * ( high - low );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="randInt">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>randInt</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> low, <a href="http://api.dartlang.org/dart_core/num.html">num</a> high) <a class="anchor-link" href="#randInt"
+              title="Permalink to randInt">#</a></h4>
+<div class="doc">
+<pre class="source">
+num randInt( num low, num high ) =&gt; low + ( _randomDouble * ( high - low + 1 ) ).floor().toInt();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="random16">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>random16</strong>() <a class="anchor-link" href="#random16"
+              title="Permalink to random16">#</a></h4>
+<div class="doc">
+<pre class="source">
+num random16() =&gt; ( 65280 * _randomDouble + 255 * _randomDouble ) / 65535;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="mapLinear">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>mapLinear</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> x, <a href="http://api.dartlang.org/dart_core/num.html">num</a> a1, <a href="http://api.dartlang.org/dart_core/num.html">num</a> a2, <a href="http://api.dartlang.org/dart_core/num.html">num</a> b1, <a href="http://api.dartlang.org/dart_core/num.html">num</a> b2) <a class="anchor-link" href="#mapLinear"
+              title="Permalink to mapLinear">#</a></h4>
+<div class="doc">
+<pre class="source">
+num mapLinear( num x, num a1, num a2, num b1, num b2 ) =&gt; b1 + ( x - a1 ) * ( b2 - b1 ) / ( a2 - a1 );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clampBottom">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>clampBottom</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> x, <a href="http://api.dartlang.org/dart_core/num.html">num</a> a) <a class="anchor-link" href="#clampBottom"
+              title="Permalink to clampBottom">#</a></h4>
+<div class="doc">
+<pre class="source">
+num clampBottom( num x, num a ) =&gt; x &lt; a ? a : x;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clamp">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>clamp</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> x, <a href="http://api.dartlang.org/dart_core/num.html">num</a> a, <a href="http://api.dartlang.org/dart_core/num.html">num</a> b) <a class="anchor-link" href="#clamp"
+              title="Permalink to clamp">#</a></h4>
+<div class="doc">
+<pre class="source">
+num clamp( num x, num a, num b ) =&gt; ( x &lt; a ) ? a : ( ( x &gt; b ) ? b : x );
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.375</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

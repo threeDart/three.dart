@@ -1,0 +1,165 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>tween Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="tween">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="tween.html">tween</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><strong>tween</strong></h2><ul class="icon">
+<li><a href="tween/Easing.html"><div class="icon-class"></div>Easing</a></li>
+<li><a href="tween/Interpolation.html"><div class="icon-class"></div>Interpolation</a></li>
+<li><a href="tween/Tween.html"><div class="icon-class"></div>Tween</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="vector_math.html">vector_math</a></h2></div>
+<div class="content">
+<h2><strong>tween</strong> library</h2>
+<div class="doc"><p>Based on Tween.js</p>
+<p>@author sole / http://soledadpenades.com
+@author mrdoob / http://mrdoob.com
+@author Robert Eisele / http://www.xarg.org
+@author Philippe / http://philippe.elsass.me
+@author Robert Penner / http://www.robertpenner.com/easing<em>terms</em>of_use.html
+@author Paul Lewis / http://www.aerotwist.com/
+@author lechecacharro
+@author Josh Faul / http://jocafa.com/
+@author egraether / http://egraether.com/</p>
+<p>Ported to Dart by</p>
+<p>@author nelson silva / http://www.inevo.pt</p></div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="all">
+<button class="show-code">Code</button>
+final         <strong>all</strong> <a class="anchor-link"
+            href="#all"
+            title="Permalink to all">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+get all =&gt; _tweens;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="REVISION">
+<button class="show-code">Code</button>
+const         <strong>REVISION</strong> <a class="anchor-link"
+            href="#REVISION"
+            title="Permalink to REVISION">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+const REVISION = '7'
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="update">
+<button class="show-code">Code</button>
+dynamic <strong>update</strong>({<a href="http://api.dartlang.org/dart_core/num.html">num</a> time}) <a class="anchor-link" href="#update"
+              title="Permalink to update">#</a></h4>
+<div class="doc">
+<pre class="source">
+update( {num time} ) {
+
+ if ( _tweens.isEmpty ) { return false; }
+
+ var i = 0, l = _tweens.length;
+
+ if (time == null) {
+   time = new DateTime.now().millisecondsSinceEpoch;
+ }
+
+ while ( i &lt; l ) {
+   if ( _tweens[ i ].update( time ) ) {
+     i ++;
+   } else {
+     _tweens.removeAt( i );
+     l--;
+   }
+ }
+ return true;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="remove">
+<button class="show-code">Code</button>
+dynamic <strong>remove</strong>(tween) <a class="anchor-link" href="#remove"
+              title="Permalink to remove">#</a></h4>
+<div class="doc">
+<pre class="source">
+remove( tween ) =&gt; _tweens.removeAt(_tweens.indexOf(tween));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="add">
+<button class="show-code">Code</button>
+dynamic <strong>add</strong>(tween) <a class="anchor-link" href="#add"
+              title="Permalink to add">#</a></h4>
+<div class="doc">
+<pre class="source">
+add( tween ) =&gt; _tweens.add( tween );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeAll">
+<button class="show-code">Code</button>
+dynamic <strong>removeAll</strong>() <a class="anchor-link" href="#removeAll"
+              title="Permalink to removeAll">#</a></h4>
+<div class="doc">
+<pre class="source">
+removeAll() =&gt; _tweens = [];
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="tween/Easing.html"><strong>Easing</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="tween/Interpolation.html"><strong>Interpolation</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="tween/Tween.html"><strong>Tween</strong></a>
+          </h4>
+          </div>
+          
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.388</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

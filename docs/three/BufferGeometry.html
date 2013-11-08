@@ -1,0 +1,1742 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>BufferGeometry class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="BufferGeometry">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/BufferGeometry.html">BufferGeometry</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><div class="icon-class"></div><strong>BufferGeometry</strong></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><a href="../three/Curve3D.html"><div class="icon-class"></div>Curve3D</a></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><a href="../three/JSONLoader.html"><div class="icon-class"></div>JSONLoader</a></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><a href="../three/SkinnedMesh.html"><div class="icon-class"></div>SkinnedMesh</a></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><a href="../three/TubeGeometry.html"><div class="icon-class"></div>TubeGeometry</a></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><a href="../three/VirtualLight.html"><div class="icon-class"></div>VirtualLight</a></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><a href="../three/WebGLGeometry.html"><div class="icon-class"></div>WebGLGeometry</a></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>BufferGeometry</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class BufferGeometry implements Geometry {
+
+	int id = GeometryCount ++;
+
+	// attributes
+	Map&lt;String, GeometryAttribute&gt; attributes = {};
+
+ // offsets for chunks when using indexed elements
+	List&lt;Chunk&gt; offsets = [];
+
+	// attributes typed arrays are kept only if dynamic flag is set
+	bool _dynamic = false;
+
+	// boundings
+	var boundingBox = null;
+	var boundingSphere = null;
+
+	bool hasTangents;
+
+	// for compatibility
+	List morphTargets = [];
+	List morphNormals = [];
+
+	applyMatrix ( Matrix4 matrix ) {
+
+		var positionArray;
+		var normalArray;
+
+		if ( aPosition != null ) positionArray = aPosition.array;
+		if ( aNormal != null ) normalArray = aNormal.array;
+
+		if ( positionArray != null) {
+
+			multiplyVector3Array(matrix, positionArray);
+			this["verticesNeedUpdate"] = true;
+
+		}
+
+		if ( normalArray != null ) {
+
+			var matrixRotation = new Matrix4.identity();
+			extractRotation( matrixRotation, matrix );
+
+			multiplyVector3Array(matrixRotation, normalArray );
+			this["normalsNeedUpdate"] = true;
+
+		}
+
+	}
+
+	computeBoundingBox () {
+
+		if ( boundingBox == null ) {
+
+			boundingBox = new BoundingBox(
+				min: new Vector3( double.INFINITY, double.INFINITY, double.INFINITY ),
+				max: new Vector3( -double.INFINITY, -double.INFINITY, -double.INFINITY )
+			);
+
+		}
+
+		var positions = aPosition.array;
+
+		if ( positions ) {
+
+			var bb = boundingBox;
+			var x, y, z;
+
+			for ( var i = 0, il = positions.length; i &lt; il; i += 3 ) {
+
+				x = positions[ i ];
+				y = positions[ i + 1 ];
+				z = positions[ i + 2 ];
+
+				// bounding box
+
+				if ( x &lt; bb.min.x ) {
+
+					bb.min.x = x;
+
+				} else if ( x &gt; bb.max.x ) {
+
+					bb.max.x = x;
+
+				}
+
+				if ( y &lt; bb.min.y ) {
+
+					bb.min.y = y;
+
+				} else if ( y &gt; bb.max.y ) {
+
+					bb.max.y = y;
+
+				}
+
+				if ( z &lt; bb.min.z ) {
+
+					bb.min.z = z;
+
+				} else if ( z &gt; bb.max.z ) {
+
+					bb.max.z = z;
+
+				}
+
+			}
+
+		}
+
+		if ( positions == null || positions.length == 0 ) {
+
+			boundingBox.min.setValues( 0, 0, 0 );
+			boundingBox.max.setValues( 0, 0, 0 );
+
+		}
+
+	}
+
+	computeBoundingSphere() {
+
+		if ( boundingSphere == null ) boundingSphere = new BoundingSphere( radius: 0 );
+
+		var positions = aPosition.array;
+
+		if ( positions != null ) {
+
+			var radiusSq, maxRadiusSq = 0;
+			var x, y, z;
+
+			for ( var i = 0, il = positions.length; i &lt; il; i += 3 ) {
+
+				x = positions[ i ];
+				y = positions[ i + 1 ];
+				z = positions[ i + 2 ];
+
+				radiusSq =  x * x + y * y + z * z;
+				if ( radiusSq &gt; maxRadiusSq ) maxRadiusSq = radiusSq;
+
+			}
+
+			boundingSphere.radius = Math.sqrt( maxRadiusSq );
+
+		}
+
+	}
+
+	computeVertexNormals() {
+
+		if ( aPosition != null &amp;&amp; aIndex != null ) {
+
+			var i, il;
+			var j, jl;
+
+			if ( aNormal == null ) {
+
+				attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.numItems, 3);
+
+			} else {
+
+				// reset existing normals to zero
+			  il = aNormal.array.length;
+
+				for ( i = 0; i &lt; il; i ++ ) {
+
+					attributes[ "normal" ].array[ i ] = 0.0;
+
+				}
+
+			}
+
+			var indices = aIndex.array;
+			var positions = aPosition.array;
+			var normals = aNormal.array;
+
+			var vA, vB, vC, x, y, z,
+
+			pA = new Vector3.zero(),
+			pB = new Vector3.zero(),
+			pC = new Vector3.zero(),
+
+			cb = new Vector3.zero(),
+			ab = new Vector3.zero();
+
+			jl = offsets.length;
+			for ( j = 0; j &lt; jl; ++ j ) {
+
+				var start = offsets[ j ].start;
+				var count = offsets[ j ].count;
+				var index = offsets[ j ].index;
+
+				il = start + count;
+				for ( i = start; i &lt; il; i += 3 ) {
+
+					vA = index + indices[ i ];
+					vB = index + indices[ i + 1 ];
+					vC = index + indices[ i + 2 ];
+
+					x = positions[ vA * 3 ];
+					y = positions[ vA * 3 + 1 ];
+					z = positions[ vA * 3 + 2 ];
+					pA.setValues( x, y, z );
+
+					x = positions[ vB * 3 ];
+					y = positions[ vB * 3 + 1 ];
+					z = positions[ vB * 3 + 2 ];
+					pB.setValues( x, y, z );
+
+					x = positions[ vC * 3 ];
+					y = positions[ vC * 3 + 1 ];
+					z = positions[ vC * 3 + 2 ];
+					pC.setValues( x, y, z );
+
+					cb = pC - pB;
+					ab = pA - pB;
+					cb = cb.cross( ab );
+
+					normals[ vA * 3 ] += cb.x;
+					normals[ vA * 3 + 1 ] += cb.y;
+					normals[ vA * 3 + 2 ] += cb.z;
+
+					normals[ vB * 3 ] += cb.x;
+					normals[ vB * 3 + 1 ] += cb.y;
+					normals[ vB * 3 + 2 ] += cb.z;
+
+					normals[ vC * 3 ] += cb.x;
+					normals[ vC * 3 + 1 ] += cb.y;
+					normals[ vC * 3 + 2 ] += cb.z;
+
+				}
+
+			}
+
+			// normalize normals
+			il = normals.length;
+			for ( i = 0; i &lt; il; i += 3 ) {
+
+				x = normals[ i ];
+				y = normals[ i + 1 ];
+				z = normals[ i + 2 ];
+
+				var n = 1.0 / Math.sqrt( x * x + y * y + z * z );
+
+				normals[ i ] *= n;
+				normals[ i + 1 ] *= n;
+				normals[ i + 2 ] *= n;
+
+			}
+
+			this["normalsNeedUpdate"] = true;
+
+		}
+
+	}
+
+	computeTangents() {
+
+		// based on http://www.terathon.com/code/tangent.html
+		// (per vertex tangents)
+
+		if ( aIndex == null || aPosition == null || aNormal == null || aUV == null ) {
+
+			print( "Missing required attributes (index, position, normal or uv) in BufferGeometry.computeTangents()" );
+			return;
+
+		}
+
+		var indices = aIndex.array;
+		var positions = aPosition.array;
+		var normals = aNormal.array;
+		var uvs = aUV.array;
+
+		var nVertices = aPosition.numItems ~/ 3;
+
+		if ( aTangent == null ) {
+
+			attributes[ "tangent" ] = new GeometryAttribute.float32(nVertices, 4);
+
+		}
+
+		var tangents = aTangent.array;
+
+		List&lt;Vector3&gt; tan1 = [], tan2 = [];
+
+		for ( var k = 0; k &lt; nVertices; k ++ ) {
+
+			tan1[ k ] = new Vector3.zero();
+			tan2[ k ] = new Vector3.zero();
+
+		}
+
+		var xA, yA, zA,
+			xB, yB, zB,
+			xC, yC, zC,
+
+			uA, vA,
+			uB, vB,
+			uC, vC,
+
+			x1, x2, y1, y2, z1, z2,
+			s1, s2, t1, t2, r;
+
+		var sdir = new Vector3.zero(),
+		    tdir = new Vector3.zero();
+
+		var handleTriangle = ( a, b, c ) {
+
+			xA = positions[ a * 3 ];
+			yA = positions[ a * 3 + 1 ];
+			zA = positions[ a * 3 + 2 ];
+
+			xB = positions[ b * 3 ];
+			yB = positions[ b * 3 + 1 ];
+			zB = positions[ b * 3 + 2 ];
+
+			xC = positions[ c * 3 ];
+			yC = positions[ c * 3 + 1 ];
+			zC = positions[ c * 3 + 2 ];
+
+			uA = uvs[ a * 2 ];
+			vA = uvs[ a * 2 + 1 ];
+
+			uB = uvs[ b * 2 ];
+			vB = uvs[ b * 2 + 1 ];
+
+			uC = uvs[ c * 2 ];
+			vC = uvs[ c * 2 + 1 ];
+
+			x1 = xB - xA;
+			x2 = xC - xA;
+
+			y1 = yB - yA;
+			y2 = yC - yA;
+
+			z1 = zB - zA;
+			z2 = zC - zA;
+
+			s1 = uB - uA;
+			s2 = uC - uA;
+
+			t1 = vB - vA;
+			t2 = vC - vA;
+
+			r = 1.0 / ( s1 * t2 - s2 * t1 );
+
+			sdir.setValues(
+				( t2 * x1 - t1 * x2 ) * r,
+				( t2 * y1 - t1 * y2 ) * r,
+				( t2 * z1 - t1 * z2 ) * r
+			);
+
+			tdir.setValues(
+				( s1 * x2 - s2 * x1 ) * r,
+				( s1 * y2 - s2 * y1 ) * r,
+				( s1 * z2 - s2 * z1 ) * r
+			);
+
+			tan1[ a ].add( sdir );
+			tan1[ b ].add( sdir );
+			tan1[ c ].add( sdir );
+
+			tan2[ a ].add( tdir );
+			tan2[ b ].add( tdir );
+			tan2[ c ].add( tdir );
+
+		};
+
+		var i, il;
+		var j, jl;
+		var iA, iB, iC;
+
+		jl = offsets.length;
+		for ( j = 0; j &lt; jl; ++ j ) {
+
+			var start = offsets[ j ].start;
+			var count = offsets[ j ].count;
+			var index = offsets[ j ].index;
+
+			il = start + count;
+			for ( i = start; i &lt; il; i += 3 ) {
+
+				iA = index + indices[ i ];
+				iB = index + indices[ i + 1 ];
+				iC = index + indices[ i + 2 ];
+
+				handleTriangle( iA, iB, iC );
+
+			}
+
+		}
+
+		var tmp = new Vector3.zero(),
+		    tmp2 = new Vector3.zero();
+		var n = new Vector3.zero(),
+		    n2 = new Vector3.zero();
+		var w, t, test;
+		var nx, ny, nz;
+
+		var handleVertex = ( v ) {
+
+			n.x = normals[ v * 3 ];
+			n.y = normals[ v * 3 + 1 ];
+			n.z = normals[ v * 3 + 2 ];
+
+			n2.setFrom( n );
+
+			t = tan1[ v ];
+
+			// Gram-Schmidt orthogonalize
+
+			tmp.setFrom( t );
+			tmp.sub( n.scale( n.dot( t ) ) ).normalize();
+
+			// Calculate handedness
+
+			tmp2 = n2.cross( t );
+			test = tmp2.dot( tan2[ v ] );
+			w = ( test &lt; 0.0 ) ? -1.0 : 1.0;
+
+			tangents[ v * 4 ] 	  = tmp.x;
+			tangents[ v * 4 + 1 ] = tmp.y;
+			tangents[ v * 4 + 2 ] = tmp.z;
+			tangents[ v * 4 + 3 ] = w;
+
+		};
+
+		jl = offsets.length;
+		for ( j = 0; j &lt; jl; ++ j ) {
+
+			var start = offsets[ j ].start;
+			var count = offsets[ j ].count;
+			var index = offsets[ j ].index;
+
+			il = start + count;
+			for ( i = start; i &lt; il; i += 3 ) {
+
+				iA = index + indices[ i ];
+				iB = index + indices[ i + 1 ];
+				iC = index + indices[ i + 2 ];
+
+				handleVertex( iA );
+				handleVertex( iB );
+				handleVertex( iC );
+
+			}
+
+		}
+
+		hasTangents = true;
+		this["tangentsNeedUpdate"] = true;
+
+	}
+
+ // dynamic is a reserved word in Dart
+ bool get isDynamic =&gt; _dynamic;
+ set isDynamic(bool value) =&gt; _dynamic = value;
+
+ // default attributes
+ GeometryAttribute&lt;Float32List&gt; get aPosition =&gt; attributes[GeometryAttribute.POSITION];
+ set aPosition(a){ attributes[GeometryAttribute.POSITION] = a; }
+
+ GeometryAttribute&lt;Float32List&gt; get aNormal =&gt; attributes[GeometryAttribute.NORMAL];
+ set aNormal(a){ attributes[GeometryAttribute.NORMAL] = a; }
+
+ GeometryAttribute&lt;Int16List&gt; get aIndex =&gt; attributes[GeometryAttribute.INDEX];
+ set aIndex(a){ attributes[GeometryAttribute.INDEX] = a; }
+
+ GeometryAttribute&lt;Float32List&gt; get aUV =&gt; attributes[GeometryAttribute.UV];
+ set aUV(a){ attributes[GeometryAttribute.UV] = a; }
+
+ GeometryAttribute&lt;Float32List&gt; get aTangent =&gt; attributes[GeometryAttribute.TANGENT];
+ set aTangent(a){ attributes[GeometryAttribute.TANGENT] = a; }
+
+ GeometryAttribute&lt;Float32List&gt; get aColor =&gt; attributes[GeometryAttribute.COLOR];
+ set aColor(a){ attributes[GeometryAttribute.COLOR] = a; }
+
+ noSuchMethod(Invocation invocation) {
+   throw new Exception('Unimplemented ${invocation.memberName}');
+ }
+
+	 // Quick hack to allow setting new properties (used by the renderer)
+ Map __data;
+
+ get _data {
+   if (__data == null) {
+     __data = {};
+   }
+   return __data;
+ }
+
+ operator [] (String key) =&gt; _data[key];
+ operator []= (String key, value) =&gt; _data[key] = value;
+
+}
+</pre>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/Geometry.html">Geometry</a></span></p>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="aColor">
+<button class="show-code">Code</button>
+<a href="../three/GeometryAttribute.html">GeometryAttribute</a>&lt;<a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>&gt;         <strong>aColor</strong> <a class="anchor-link"
+            href="#aColor"
+            title="Permalink to BufferGeometry.aColor">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+GeometryAttribute&lt;Float32List&gt; get aColor =&gt; attributes[GeometryAttribute.COLOR];
+</pre>
+<pre class="source">
+set aColor(a){ attributes[GeometryAttribute.COLOR] = a; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="aIndex">
+<button class="show-code">Code</button>
+<a href="../three/GeometryAttribute.html">GeometryAttribute</a>&lt;<a href="http://api.dartlang.org/dart_typed_data/Int16List.html">Int16List</a>&gt;         <strong>aIndex</strong> <a class="anchor-link"
+            href="#aIndex"
+            title="Permalink to BufferGeometry.aIndex">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+GeometryAttribute&lt;Int16List&gt; get aIndex =&gt; attributes[GeometryAttribute.INDEX];
+</pre>
+<pre class="source">
+set aIndex(a){ attributes[GeometryAttribute.INDEX] = a; }
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="animation">
+<button class="show-code">Code</button>
+var         <strong>animation</strong> <a class="anchor-link"
+            href="#animation"
+            title="Permalink to BufferGeometry.animation">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+var bones, animation
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="aNormal">
+<button class="show-code">Code</button>
+<a href="../three/GeometryAttribute.html">GeometryAttribute</a>&lt;<a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>&gt;         <strong>aNormal</strong> <a class="anchor-link"
+            href="#aNormal"
+            title="Permalink to BufferGeometry.aNormal">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+GeometryAttribute&lt;Float32List&gt; get aNormal =&gt; attributes[GeometryAttribute.NORMAL];
+</pre>
+<pre class="source">
+set aNormal(a){ attributes[GeometryAttribute.NORMAL] = a; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="aPosition">
+<button class="show-code">Code</button>
+<a href="../three/GeometryAttribute.html">GeometryAttribute</a>&lt;<a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>&gt;         <strong>aPosition</strong> <a class="anchor-link"
+            href="#aPosition"
+            title="Permalink to BufferGeometry.aPosition">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+GeometryAttribute&lt;Float32List&gt; get aPosition =&gt; attributes[GeometryAttribute.POSITION];
+</pre>
+<pre class="source">
+set aPosition(a){ attributes[GeometryAttribute.POSITION] = a; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="aTangent">
+<button class="show-code">Code</button>
+<a href="../three/GeometryAttribute.html">GeometryAttribute</a>&lt;<a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>&gt;         <strong>aTangent</strong> <a class="anchor-link"
+            href="#aTangent"
+            title="Permalink to BufferGeometry.aTangent">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+GeometryAttribute&lt;Float32List&gt; get aTangent =&gt; attributes[GeometryAttribute.TANGENT];
+</pre>
+<pre class="source">
+set aTangent(a){ attributes[GeometryAttribute.TANGENT] = a; }
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="attributes">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../three/GeometryAttribute.html">GeometryAttribute</a>&gt;         <strong>attributes</strong> <a class="anchor-link"
+            href="#attributes"
+            title="Permalink to BufferGeometry.attributes">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Map&lt;String, GeometryAttribute&gt; attributes = {}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="aUV">
+<button class="show-code">Code</button>
+<a href="../three/GeometryAttribute.html">GeometryAttribute</a>&lt;<a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>&gt;         <strong>aUV</strong> <a class="anchor-link"
+            href="#aUV"
+            title="Permalink to BufferGeometry.aUV">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+GeometryAttribute&lt;Float32List&gt; get aUV =&gt; attributes[GeometryAttribute.UV];
+</pre>
+<pre class="source">
+set aUV(a){ attributes[GeometryAttribute.UV] = a; }
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="bones">
+<button class="show-code">Code</button>
+var         <strong>bones</strong> <a class="anchor-link"
+            href="#bones"
+            title="Permalink to BufferGeometry.bones">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+var bones
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="boundingBox">
+<button class="show-code">Code</button>
+var         <strong>boundingBox</strong> <a class="anchor-link"
+            href="#boundingBox"
+            title="Permalink to BufferGeometry.boundingBox">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var boundingBox = null
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="boundingSphere">
+<button class="show-code">Code</button>
+var         <strong>boundingSphere</strong> <a class="anchor-link"
+            href="#boundingSphere"
+            title="Permalink to BufferGeometry.boundingSphere">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+var boundingSphere = null
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="colors">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>colors</strong> <a class="anchor-link"
+            href="#colors"
+            title="Permalink to BufferGeometry.colors">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List colors
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="faces">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/Face.html">Face</a>&gt;         <strong>faces</strong> <a class="anchor-link"
+            href="#faces"
+            title="Permalink to BufferGeometry.faces">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;Face&gt; faces
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="faceUvs">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>faceUvs</strong> <a class="anchor-link"
+            href="#faceUvs"
+            title="Permalink to BufferGeometry.faceUvs">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List faceUvs
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="faceVertexUvs">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="http://api.dartlang.org/dart_core/List.html">List</a>&gt;         <strong>faceVertexUvs</strong> <a class="anchor-link"
+            href="#faceVertexUvs"
+            title="Permalink to BufferGeometry.faceVertexUvs">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;List&gt; faceVertexUvs
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="hasTangents">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>hasTangents</strong> <a class="anchor-link"
+            href="#hasTangents"
+            title="Permalink to BufferGeometry.hasTangents">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool hasTangents
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="id">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>id</strong> <a class="anchor-link"
+            href="#id"
+            title="Permalink to BufferGeometry.id">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+int id = GeometryCount ++
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="isDynamic">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>isDynamic</strong> <a class="anchor-link"
+            href="#isDynamic"
+            title="Permalink to BufferGeometry.isDynamic">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool get isDynamic =&gt; _dynamic;
+</pre>
+<pre class="source">
+set isDynamic(bool value) =&gt; _dynamic = value;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="lineDistances">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>lineDistances</strong> <a class="anchor-link"
+            href="#lineDistances"
+            title="Permalink to BufferGeometry.lineDistances">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List lineDistances
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="materials">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>materials</strong> <a class="anchor-link"
+            href="#materials"
+            title="Permalink to BufferGeometry.materials">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List materials
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphColors">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphColors</strong> <a class="anchor-link"
+            href="#morphColors"
+            title="Permalink to BufferGeometry.morphColors">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List morphColors
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="morphNormals">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphNormals</strong> <a class="anchor-link"
+            href="#morphNormals"
+            title="Permalink to BufferGeometry.morphNormals">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List morphNormals = []
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="morphTargets">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphTargets</strong> <a class="anchor-link"
+            href="#morphTargets"
+            title="Permalink to BufferGeometry.morphTargets">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List morphTargets = []
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="name">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to BufferGeometry.name">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+String name
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="normals">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>normals</strong> <a class="anchor-link"
+            href="#normals"
+            title="Permalink to BufferGeometry.normals">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List normals = []
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="offsets">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../three/Chunk.html">Chunk</a>&gt;         <strong>offsets</strong> <a class="anchor-link"
+            href="#offsets"
+            title="Permalink to BufferGeometry.offsets">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List&lt;Chunk&gt; offsets = []
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="skinIndices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>skinIndices</strong> <a class="anchor-link"
+            href="#skinIndices"
+            title="Permalink to BufferGeometry.skinIndices">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List skinWeights, skinIndices
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="skinWeights">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>skinWeights</strong> <a class="anchor-link"
+            href="#skinWeights"
+            title="Permalink to BufferGeometry.skinWeights">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List skinWeights
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="vertices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../vector_math/Vector3.html">Vector3</a>&gt;         <strong>vertices</strong> <a class="anchor-link"
+            href="#vertices"
+            title="Permalink to BufferGeometry.vertices">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+List&lt;Vector3&gt; vertices
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+dynamic <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#[]"
+              title="Permalink to BufferGeometry.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+operator [] (String key) =&gt; _data[key];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="[]=">
+<button class="show-code">Code</button>
+dynamic <strong>operator []=</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key, value) <a class="anchor-link" href="#[]="
+              title="Permalink to BufferGeometry.operator []=">#</a></h4>
+<div class="doc">
+<pre class="source">
+operator []= (String key, value) =&gt; _data[key] = value;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="applyMatrix">
+<button class="show-code">Code</button>
+dynamic <strong>applyMatrix</strong>(<a href="../vector_math/Matrix4.html">Matrix4</a> matrix) <a class="anchor-link" href="#applyMatrix"
+              title="Permalink to BufferGeometry.applyMatrix">#</a></h4>
+<div class="doc">
+<pre class="source">
+applyMatrix ( Matrix4 matrix ) {
+
+		var positionArray;
+		var normalArray;
+
+		if ( aPosition != null ) positionArray = aPosition.array;
+		if ( aNormal != null ) normalArray = aNormal.array;
+
+		if ( positionArray != null) {
+
+			multiplyVector3Array(matrix, positionArray);
+			this["verticesNeedUpdate"] = true;
+
+		}
+
+		if ( normalArray != null ) {
+
+			var matrixRotation = new Matrix4.identity();
+			extractRotation( matrixRotation, matrix );
+
+			multiplyVector3Array(matrixRotation, normalArray );
+			this["normalsNeedUpdate"] = true;
+
+		}
+
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="clone">
+<button class="show-code">Code</button>
+dynamic <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to BufferGeometry.clone">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+clone() {
+
+ // TODO
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="computeBoundingBox">
+<button class="show-code">Code</button>
+dynamic <strong>computeBoundingBox</strong>() <a class="anchor-link" href="#computeBoundingBox"
+              title="Permalink to BufferGeometry.computeBoundingBox">#</a></h4>
+<div class="doc">
+<pre class="source">
+computeBoundingBox () {
+
+		if ( boundingBox == null ) {
+
+			boundingBox = new BoundingBox(
+				min: new Vector3( double.INFINITY, double.INFINITY, double.INFINITY ),
+				max: new Vector3( -double.INFINITY, -double.INFINITY, -double.INFINITY )
+			);
+
+		}
+
+		var positions = aPosition.array;
+
+		if ( positions ) {
+
+			var bb = boundingBox;
+			var x, y, z;
+
+			for ( var i = 0, il = positions.length; i &lt; il; i += 3 ) {
+
+				x = positions[ i ];
+				y = positions[ i + 1 ];
+				z = positions[ i + 2 ];
+
+				// bounding box
+
+				if ( x &lt; bb.min.x ) {
+
+					bb.min.x = x;
+
+				} else if ( x &gt; bb.max.x ) {
+
+					bb.max.x = x;
+
+				}
+
+				if ( y &lt; bb.min.y ) {
+
+					bb.min.y = y;
+
+				} else if ( y &gt; bb.max.y ) {
+
+					bb.max.y = y;
+
+				}
+
+				if ( z &lt; bb.min.z ) {
+
+					bb.min.z = z;
+
+				} else if ( z &gt; bb.max.z ) {
+
+					bb.max.z = z;
+
+				}
+
+			}
+
+		}
+
+		if ( positions == null || positions.length == 0 ) {
+
+			boundingBox.min.setValues( 0, 0, 0 );
+			boundingBox.max.setValues( 0, 0, 0 );
+
+		}
+
+	}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="computeBoundingSphere">
+<button class="show-code">Code</button>
+dynamic <strong>computeBoundingSphere</strong>() <a class="anchor-link" href="#computeBoundingSphere"
+              title="Permalink to BufferGeometry.computeBoundingSphere">#</a></h4>
+<div class="doc">
+<pre class="source">
+computeBoundingSphere() {
+
+		if ( boundingSphere == null ) boundingSphere = new BoundingSphere( radius: 0 );
+
+		var positions = aPosition.array;
+
+		if ( positions != null ) {
+
+			var radiusSq, maxRadiusSq = 0;
+			var x, y, z;
+
+			for ( var i = 0, il = positions.length; i &lt; il; i += 3 ) {
+
+				x = positions[ i ];
+				y = positions[ i + 1 ];
+				z = positions[ i + 2 ];
+
+				radiusSq =  x * x + y * y + z * z;
+				if ( radiusSq &gt; maxRadiusSq ) maxRadiusSq = radiusSq;
+
+			}
+
+			boundingSphere.radius = Math.sqrt( maxRadiusSq );
+
+		}
+
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeCentroids">
+<button class="show-code">Code</button>
+void <strong>computeCentroids</strong>() <a class="anchor-link" href="#computeCentroids"
+              title="Permalink to BufferGeometry.computeCentroids">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeCentroids() {
+
+ faces.forEach((Face face) {
+
+   face.centroid.setValues( 0.0, 0.0, 0.0 );
+
+   face.indices.forEach((idx) {
+     face.centroid.add( vertices[ idx ] );
+   });
+
+   face.centroid /= face.size.toDouble();
+
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="computeFaceNormals">
+<button class="show-code">Code</button>
+void <strong>computeFaceNormals</strong>() <a class="anchor-link" href="#computeFaceNormals"
+              title="Permalink to BufferGeometry.computeFaceNormals">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+void computeFaceNormals() {
+ faces.forEach((face) {
+
+   var vA = vertices[ face.a ],
+       vB = vertices[ face.b ],
+       vC = vertices[ face.c ];
+
+   Vector3 cb = vC - vB;
+   Vector3 ab = vA - vB;
+   cb = cb.cross( ab );
+
+   cb.normalize();
+
+   face.normal = cb;
+
+ });
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="computeTangents">
+<button class="show-code">Code</button>
+dynamic <strong>computeTangents</strong>() <a class="anchor-link" href="#computeTangents"
+              title="Permalink to BufferGeometry.computeTangents">#</a></h4>
+<div class="doc">
+<pre class="source">
+computeTangents() {
+
+		// based on http://www.terathon.com/code/tangent.html
+		// (per vertex tangents)
+
+		if ( aIndex == null || aPosition == null || aNormal == null || aUV == null ) {
+
+			print( "Missing required attributes (index, position, normal or uv) in BufferGeometry.computeTangents()" );
+			return;
+
+		}
+
+		var indices = aIndex.array;
+		var positions = aPosition.array;
+		var normals = aNormal.array;
+		var uvs = aUV.array;
+
+		var nVertices = aPosition.numItems ~/ 3;
+
+		if ( aTangent == null ) {
+
+			attributes[ "tangent" ] = new GeometryAttribute.float32(nVertices, 4);
+
+		}
+
+		var tangents = aTangent.array;
+
+		List&lt;Vector3&gt; tan1 = [], tan2 = [];
+
+		for ( var k = 0; k &lt; nVertices; k ++ ) {
+
+			tan1[ k ] = new Vector3.zero();
+			tan2[ k ] = new Vector3.zero();
+
+		}
+
+		var xA, yA, zA,
+			xB, yB, zB,
+			xC, yC, zC,
+
+			uA, vA,
+			uB, vB,
+			uC, vC,
+
+			x1, x2, y1, y2, z1, z2,
+			s1, s2, t1, t2, r;
+
+		var sdir = new Vector3.zero(),
+		    tdir = new Vector3.zero();
+
+		var handleTriangle = ( a, b, c ) {
+
+			xA = positions[ a * 3 ];
+			yA = positions[ a * 3 + 1 ];
+			zA = positions[ a * 3 + 2 ];
+
+			xB = positions[ b * 3 ];
+			yB = positions[ b * 3 + 1 ];
+			zB = positions[ b * 3 + 2 ];
+
+			xC = positions[ c * 3 ];
+			yC = positions[ c * 3 + 1 ];
+			zC = positions[ c * 3 + 2 ];
+
+			uA = uvs[ a * 2 ];
+			vA = uvs[ a * 2 + 1 ];
+
+			uB = uvs[ b * 2 ];
+			vB = uvs[ b * 2 + 1 ];
+
+			uC = uvs[ c * 2 ];
+			vC = uvs[ c * 2 + 1 ];
+
+			x1 = xB - xA;
+			x2 = xC - xA;
+
+			y1 = yB - yA;
+			y2 = yC - yA;
+
+			z1 = zB - zA;
+			z2 = zC - zA;
+
+			s1 = uB - uA;
+			s2 = uC - uA;
+
+			t1 = vB - vA;
+			t2 = vC - vA;
+
+			r = 1.0 / ( s1 * t2 - s2 * t1 );
+
+			sdir.setValues(
+				( t2 * x1 - t1 * x2 ) * r,
+				( t2 * y1 - t1 * y2 ) * r,
+				( t2 * z1 - t1 * z2 ) * r
+			);
+
+			tdir.setValues(
+				( s1 * x2 - s2 * x1 ) * r,
+				( s1 * y2 - s2 * y1 ) * r,
+				( s1 * z2 - s2 * z1 ) * r
+			);
+
+			tan1[ a ].add( sdir );
+			tan1[ b ].add( sdir );
+			tan1[ c ].add( sdir );
+
+			tan2[ a ].add( tdir );
+			tan2[ b ].add( tdir );
+			tan2[ c ].add( tdir );
+
+		};
+
+		var i, il;
+		var j, jl;
+		var iA, iB, iC;
+
+		jl = offsets.length;
+		for ( j = 0; j &lt; jl; ++ j ) {
+
+			var start = offsets[ j ].start;
+			var count = offsets[ j ].count;
+			var index = offsets[ j ].index;
+
+			il = start + count;
+			for ( i = start; i &lt; il; i += 3 ) {
+
+				iA = index + indices[ i ];
+				iB = index + indices[ i + 1 ];
+				iC = index + indices[ i + 2 ];
+
+				handleTriangle( iA, iB, iC );
+
+			}
+
+		}
+
+		var tmp = new Vector3.zero(),
+		    tmp2 = new Vector3.zero();
+		var n = new Vector3.zero(),
+		    n2 = new Vector3.zero();
+		var w, t, test;
+		var nx, ny, nz;
+
+		var handleVertex = ( v ) {
+
+			n.x = normals[ v * 3 ];
+			n.y = normals[ v * 3 + 1 ];
+			n.z = normals[ v * 3 + 2 ];
+
+			n2.setFrom( n );
+
+			t = tan1[ v ];
+
+			// Gram-Schmidt orthogonalize
+
+			tmp.setFrom( t );
+			tmp.sub( n.scale( n.dot( t ) ) ).normalize();
+
+			// Calculate handedness
+
+			tmp2 = n2.cross( t );
+			test = tmp2.dot( tan2[ v ] );
+			w = ( test &lt; 0.0 ) ? -1.0 : 1.0;
+
+			tangents[ v * 4 ] 	  = tmp.x;
+			tangents[ v * 4 + 1 ] = tmp.y;
+			tangents[ v * 4 + 2 ] = tmp.z;
+			tangents[ v * 4 + 3 ] = w;
+
+		};
+
+		jl = offsets.length;
+		for ( j = 0; j &lt; jl; ++ j ) {
+
+			var start = offsets[ j ].start;
+			var count = offsets[ j ].count;
+			var index = offsets[ j ].index;
+
+			il = start + count;
+			for ( i = start; i &lt; il; i += 3 ) {
+
+				iA = index + indices[ i ];
+				iB = index + indices[ i + 1 ];
+				iC = index + indices[ i + 2 ];
+
+				handleVertex( iA );
+				handleVertex( iB );
+				handleVertex( iC );
+
+			}
+
+		}
+
+		hasTangents = true;
+		this["tangentsNeedUpdate"] = true;
+
+	}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="computeVertexNormals">
+<button class="show-code">Code</button>
+dynamic <strong>computeVertexNormals</strong>() <a class="anchor-link" href="#computeVertexNormals"
+              title="Permalink to BufferGeometry.computeVertexNormals">#</a></h4>
+<div class="doc">
+<pre class="source">
+computeVertexNormals() {
+
+		if ( aPosition != null &amp;&amp; aIndex != null ) {
+
+			var i, il;
+			var j, jl;
+
+			if ( aNormal == null ) {
+
+				attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.numItems, 3);
+
+			} else {
+
+				// reset existing normals to zero
+			  il = aNormal.array.length;
+
+				for ( i = 0; i &lt; il; i ++ ) {
+
+					attributes[ "normal" ].array[ i ] = 0.0;
+
+				}
+
+			}
+
+			var indices = aIndex.array;
+			var positions = aPosition.array;
+			var normals = aNormal.array;
+
+			var vA, vB, vC, x, y, z,
+
+			pA = new Vector3.zero(),
+			pB = new Vector3.zero(),
+			pC = new Vector3.zero(),
+
+			cb = new Vector3.zero(),
+			ab = new Vector3.zero();
+
+			jl = offsets.length;
+			for ( j = 0; j &lt; jl; ++ j ) {
+
+				var start = offsets[ j ].start;
+				var count = offsets[ j ].count;
+				var index = offsets[ j ].index;
+
+				il = start + count;
+				for ( i = start; i &lt; il; i += 3 ) {
+
+					vA = index + indices[ i ];
+					vB = index + indices[ i + 1 ];
+					vC = index + indices[ i + 2 ];
+
+					x = positions[ vA * 3 ];
+					y = positions[ vA * 3 + 1 ];
+					z = positions[ vA * 3 + 2 ];
+					pA.setValues( x, y, z );
+
+					x = positions[ vB * 3 ];
+					y = positions[ vB * 3 + 1 ];
+					z = positions[ vB * 3 + 2 ];
+					pB.setValues( x, y, z );
+
+					x = positions[ vC * 3 ];
+					y = positions[ vC * 3 + 1 ];
+					z = positions[ vC * 3 + 2 ];
+					pC.setValues( x, y, z );
+
+					cb = pC - pB;
+					ab = pA - pB;
+					cb = cb.cross( ab );
+
+					normals[ vA * 3 ] += cb.x;
+					normals[ vA * 3 + 1 ] += cb.y;
+					normals[ vA * 3 + 2 ] += cb.z;
+
+					normals[ vB * 3 ] += cb.x;
+					normals[ vB * 3 + 1 ] += cb.y;
+					normals[ vB * 3 + 2 ] += cb.z;
+
+					normals[ vC * 3 ] += cb.x;
+					normals[ vC * 3 + 1 ] += cb.y;
+					normals[ vC * 3 + 2 ] += cb.z;
+
+				}
+
+			}
+
+			// normalize normals
+			il = normals.length;
+			for ( i = 0; i &lt; il; i += 3 ) {
+
+				x = normals[ i ];
+				y = normals[ i + 1 ];
+				z = normals[ i + 2 ];
+
+				var n = 1.0 / Math.sqrt( x * x + y * y + z * z );
+
+				normals[ i ] *= n;
+				normals[ i + 1 ] *= n;
+				normals[ i + 2 ] *= n;
+
+			}
+
+			this["normalsNeedUpdate"] = true;
+
+		}
+
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="mergeVertices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>mergeVertices</strong>() <a class="anchor-link" href="#mergeVertices"
+              title="Permalink to BufferGeometry.mergeVertices">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Geometry.html">Geometry</a> </div><div class="doc">
+<pre class="source">
+int mergeVertices() {
+ Map verticesMap = {}; // Hashmap for looking up vertice by position coordinates (and making sure they are unique)
+ List&lt;Vector3&gt; unique = [];
+ List&lt;int&gt; changes = [];
+
+ String key;
+ int precisionPoints = 4; // number of decimal points, eg. 4 for epsilon of 0.0001
+ num precision = Math.pow( 10, precisionPoints );
+ int i, il;
+ var abcd = 'abcd', o, k, j, jl, u;
+
+ Vector3 v;
+ il = this.vertices.length;
+
+ for( i = 0; i &lt; il; i++) {
+   v = this.vertices[i];
+
+   key = [ ( v.x * precision ).round().toStringAsFixed(0),
+                         ( v.y * precision ).round().toStringAsFixed(0),
+                         ( v.z * precision ).round().toStringAsFixed(0) ].join('_' );
+
+   if ( verticesMap[ key ] == null ) {
+     verticesMap[ key ] = i;
+     unique.add( v );
+     //TODO: pretty sure this is an acceptable change in syntax here:
+     //changes[ i ] = unique.length - 1;
+     changes.add( unique.length - 1);
+   } else {
+     //print('Duplicate vertex found. $i could be using  ${verticesMap[key]}');
+     //print('changes len ${changes.length} add at i = $i');
+     //changes[ i ] = changes[ verticesMap[ key ] ];
+     changes.add( changes[ verticesMap[ key ] ] );
+   }
+
+ }
+
+
+ // Start to patch face indices
+
+ faces.forEach((Face face) {
+   for (var i = 0; i &lt; face.size; i++) {
+     face.indices[i] = changes[ face.indices[i] ];
+
+     /* TODO
+
+     // check dups in (a, b, c, d) and convert to -&gt; face3
+
+     var o = [ face.a, face.b, face.c, face.d ];
+
+     for ( var k = 3; k &gt; 0; k -- ) {
+
+       if ( o.indexOf( face[ abcd[ k ] ] ) != k ) {
+
+         // console.log('faces', face.a, face.b, face.c, face.d, 'dup at', k);
+
+         o.removeAt( k );
+
+         this.faces[ i ] = new THREE.Face3( o[0], o[1], o[2], face.normal, face.color, face.materialIndex );
+
+         for ( j = 0, jl = this.faceVertexUvs.length; j &lt; jl; j ++ ) {
+
+           u = this.faceVertexUvs[ j ][ i ];
+           if ( u ) u.removeAt( k );
+
+         }
+
+         this.faces[ i ].vertexColors = face.vertexColors;
+
+         break;
+       }
+
+     }*/
+
+   }
+ });
+
+ // Use unique set of vertices
+ var diff = vertices.length - unique.length;
+ vertices = unique;
+ return diff;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+dynamic <strong>noSuchMethod</strong>(<a href="http://api.dartlang.org/dart_core/Invocation.html">Invocation</a> invocation) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to BufferGeometry.noSuchMethod">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p><a class="crossref" href="../three/BufferGeometry.html#noSuchMethod">noSuchMethod</a> is invoked when users invoke a non-existent method
+on an object. The name of the method and the arguments of the
+invocation are passed to <a class="crossref" href="../three/BufferGeometry.html#noSuchMethod">noSuchMethod</a> in an <a class="crossref" href="../dart_core/Invocation.html">Invocation</a>.
+If <a class="crossref" href="../three/BufferGeometry.html#noSuchMethod">noSuchMethod</a> returns a value, that value becomes the result of
+the original invocation.</p>
+<p>The default behavior of <a class="crossref" href="../three/BufferGeometry.html#noSuchMethod">noSuchMethod</a> is to throw a
+<a class="crossref" href="../dart_core/NoSuchMethodError.html">NoSuchMethodError</a>.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+noSuchMethod(Invocation invocation) {
+ throw new Exception('Unimplemented ${invocation.memberName}');
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:33.989</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

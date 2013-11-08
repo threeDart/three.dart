@@ -1,0 +1,773 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>vector_math Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="favicon.ico">
+        
+        </head>
+        <body data-library="vector_math">
+        <div class="page">
+        <div class="header">
+          <a href="index.html"><div class="logo"></div></a>
+          <a href="index.html">Dart Documentation</a>
+         &rsaquo; <a href="vector_math.html">vector_math</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="three.html">three</a></h2><h2><div class="icon-library"></div><a href="ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="tween.html">tween</a></h2><h2><div class="icon-library"></div><strong>vector_math</strong></h2><ul class="icon">
+<li><a href="vector_math/Aabb2.html"><div class="icon-class"></div>Aabb2</a></li>
+<li><a href="vector_math/Aabb3.html"><div class="icon-class"></div>Aabb3</a></li>
+<li><a href="vector_math/Matrix2.html"><div class="icon-class"></div>Matrix2</a></li>
+<li><a href="vector_math/Matrix3.html"><div class="icon-class"></div>Matrix3</a></li>
+<li><a href="vector_math/Matrix4.html"><div class="icon-class"></div>Matrix4</a></li>
+<li><a href="vector_math/Quaternion.html"><div class="icon-class"></div>Quaternion</a></li>
+<li><a href="vector_math/Vector2.html"><div class="icon-class"></div>Vector2</a></li>
+<li><a href="vector_math/Vector3.html"><div class="icon-class"></div>Vector3</a></li>
+<li><a href="vector_math/Vector4.html"><div class="icon-class"></div>Vector4</a></li>
+</ul>
+</div>
+<div class="content">
+<h2><strong>vector_math</strong> library</h2>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="degrees2radians">
+<button class="show-code">Code</button>
+const <a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>degrees2radians</strong> <a class="anchor-link"
+            href="#degrees2radians"
+            title="Permalink to degrees2radians">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+const double degrees2radians = Math.PI/180.0
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="radians2degrees">
+<button class="show-code">Code</button>
+const <a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>radians2degrees</strong> <a class="anchor-link"
+            href="#radians2degrees"
+            title="Permalink to radians2degrees">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+const double radians2degrees = 180.0/Math.PI
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="sqrtOneHalf">
+<button class="show-code">Code</button>
+const <a href="http://api.dartlang.org/dart_core/double.html">double</a>         <strong>sqrtOneHalf</strong> <a class="anchor-link"
+            href="#sqrtOneHalf"
+            title="Permalink to sqrtOneHalf">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+const double sqrtOneHalf = 0.70710678118
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Functions</h3>
+<div class="method"><h4 id="buildPlaneVectors">
+<button class="show-code">Code</button>
+void <strong>buildPlaneVectors</strong>(<a href="vector_math/Vector3.html">Vector3</a> planeNormal, <a href="vector_math/Vector3.html">Vector3</a> u, <a href="vector_math/Vector3.html">Vector3</a> v) <a class="anchor-link" href="#buildPlaneVectors"
+              title="Permalink to buildPlaneVectors">#</a></h4>
+<div class="doc">
+<p>Sets 
+<span class="param">u</span> and 
+<span class="param">v</span> to be two vectors orthogonal to each other and
+
+<span class="param">planeNormal</span>.</p>
+<pre class="source">
+void buildPlaneVectors(final Vector3 planeNormal, Vector3 u, Vector3 v) {
+ if (planeNormal.z.abs() &gt; sqrtOneHalf) {
+   // choose u in y-z plane
+   double a = planeNormal.y*planeNormal.y + planeNormal.z*planeNormal.z;
+   double k = 1.0/Math.sqrt(a);
+   u.x = 0.0;
+   u.y = -planeNormal.z*k;
+   u.z = planeNormal.y*k;
+   v.x = a*k;
+   v.y = -planeNormal[0]*(planeNormal[1]*k);
+   v.z = planeNormal[0]*(-planeNormal[2]*k);
+ } else {
+   // choose u in x-y plane
+   double a = planeNormal.x*planeNormal.x + planeNormal.y*planeNormal.y;
+   double k = 1.0/Math.sqrt(a);
+   u.x = -planeNormal[1]*k;
+   u.y = planeNormal[0]*k;
+   u.z = 0.0;
+   v.x = -planeNormal[2]*(planeNormal[0]*k);
+   v.y = planeNormal[2]*(-planeNormal[1]*k);
+   v.z = a*k;
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="cross2B">
+<button class="show-code">Code</button>
+void <strong>cross2B</strong>(<a href="vector_math/Vector2.html">Vector2</a> x, <a href="http://api.dartlang.org/dart_core/double.html">double</a> y, <a href="vector_math/Vector2.html">Vector2</a> out) <a class="anchor-link" href="#cross2B"
+              title="Permalink to cross2B">#</a></h4>
+<div class="doc">
+<p>2D cross product. vec2 x double.</p>
+<pre class="source">
+void cross2B(Vector2 x, double y, Vector2 out) {
+ var tempy = -y * x.x;
+ out.x = y * x.y;
+ out.y = tempy;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="cross2A">
+<button class="show-code">Code</button>
+void <strong>cross2A</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> x, <a href="vector_math/Vector2.html">Vector2</a> y, <a href="vector_math/Vector2.html">Vector2</a> out) <a class="anchor-link" href="#cross2A"
+              title="Permalink to cross2A">#</a></h4>
+<div class="doc">
+<p>2D cross product. double x vec2.</p>
+<pre class="source">
+void cross2A(double x, Vector2 y, Vector2 out) {
+ var tempy = x * y.x;
+ out.x = -x * y.y;
+ out.y = tempy;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="cross2">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>cross2</strong>(<a href="vector_math/Vector2.html">Vector2</a> x, <a href="vector_math/Vector2.html">Vector2</a> y) <a class="anchor-link" href="#cross2"
+              title="Permalink to cross2">#</a></h4>
+<div class="doc">
+<p>2D cross product. vec2 x vec2.</p>
+<pre class="source">
+double cross2(Vector2 x, Vector2 y) {
+ return x.cross(y);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="cross3">
+<button class="show-code">Code</button>
+void <strong>cross3</strong>(<a href="vector_math/Vector3.html">Vector3</a> x, <a href="vector_math/Vector3.html">Vector3</a> y, <a href="vector_math/Vector3.html">Vector3</a> out) <a class="anchor-link" href="#cross3"
+              title="Permalink to cross3">#</a></h4>
+<div class="doc">
+<p>3D Cross product.</p>
+<pre class="source">
+void cross3(Vector3 x, Vector3 y, Vector3 out) {
+ x.crossInto(y, out);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dot3">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>dot3</strong>(<a href="vector_math/Vector3.html">Vector3</a> x, <a href="vector_math/Vector3.html">Vector3</a> y) <a class="anchor-link" href="#dot3"
+              title="Permalink to dot3">#</a></h4>
+<div class="doc">
+<p>3D dot product.</p>
+<pre class="source">
+double dot3(Vector3 x, Vector3 y) =&gt; x.dot(y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dot2">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>dot2</strong>(<a href="vector_math/Vector2.html">Vector2</a> x, <a href="vector_math/Vector2.html">Vector2</a> y) <a class="anchor-link" href="#dot2"
+              title="Permalink to dot2">#</a></h4>
+<div class="doc">
+<p>2D dot product.</p>
+<pre class="source">
+double dot2(Vector2 x, Vector2 y) =&gt; x.dot(y);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="pickRay">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>pickRay</strong>(<a href="vector_math/Matrix4.html">Matrix4</a> cameraMatrix, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportX, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportWidth, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportY, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportHeight, <a href="http://api.dartlang.org/dart_core/num.html">num</a> pickX, <a href="http://api.dartlang.org/dart_core/num.html">num</a> pickY, <a href="vector_math/Vector3.html">Vector3</a> rayNear, <a href="vector_math/Vector3.html">Vector3</a> rayFar) <a class="anchor-link" href="#pickRay"
+              title="Permalink to pickRay">#</a></h4>
+<div class="doc">
+<p>On success, 
+<span class="param">rayNear</span> and 
+<span class="param">rayFar</span> are the points where
+the screen space 
+<span class="param">pickX</span>, 
+<span class="param">pickY</span> intersect with the near and far
+planes respectively.</p>
+<p>The viewport is specified by (
+<span class="param">viewportX</span>, 
+<span class="param">viewportWidth</span>) and
+(
+<span class="param">viewportY</span>, 
+<span class="param">viewportHeight</span>).</p>
+<p>
+<span class="param">cameraMatrix</span> includes both the projection and view transforms.</p>
+<p>Returns false on error, for example, the mouse is not in the viewport</p>
+<pre class="source">
+bool pickRay(Matrix4 cameraMatrix, num viewportX, num viewportWidth,
+              num viewportY, num viewportHeight,
+              num pickX, num pickY,
+              Vector3 rayNear, Vector3 rayFar) {
+
+ bool r;
+
+ r = unproject(cameraMatrix, viewportX, viewportWidth, viewportY,
+               viewportHeight, pickX, viewportHeight-pickY, 0.0, rayNear);
+ if (!r) {
+   return false;
+ }
+
+ r = unproject(cameraMatrix, viewportX, viewportWidth, viewportY,
+               viewportHeight, pickX, viewportHeight-pickY, 1.0, rayFar);
+
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="unproject">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>unproject</strong>(<a href="vector_math/Matrix4.html">Matrix4</a> cameraMatrix, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportX, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportWidth, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportY, <a href="http://api.dartlang.org/dart_core/num.html">num</a> viewportHeight, <a href="http://api.dartlang.org/dart_core/num.html">num</a> pickX, <a href="http://api.dartlang.org/dart_core/num.html">num</a> pickY, <a href="http://api.dartlang.org/dart_core/num.html">num</a> pickZ, <a href="vector_math/Vector3.html">Vector3</a> pickWorld) <a class="anchor-link" href="#unproject"
+              title="Permalink to unproject">#</a></h4>
+<div class="doc">
+<p>On success, Sets 
+<span class="param">pickWorld</span> to be the world space position of
+the screen space 
+<span class="param">pickX</span>, 
+<span class="param">pickY</span>, and 
+<span class="param">pickZ</span>.</p>
+<p>The viewport is specified by (
+<span class="param">viewportX</span>, 
+<span class="param">viewportWidth</span>) and
+(
+<span class="param">viewportY</span>, 
+<span class="param">viewportHeight</span>).</p>
+<p>
+<span class="param">cameraMatrix</span> includes both the projection and view transforms.</p>
+<p>
+<span class="param">pickZ</span> is typically either 0.0 (near plane) or 1.0 (far plane).</p>
+<p>Returns false on error, for example, the mouse is not in the viewport</p>
+<pre class="source">
+bool unproject(Matrix4 cameraMatrix, num viewportX, num viewportWidth,
+              num viewportY, num viewportHeight,
+              num pickX, num pickY, num pickZ,
+              Vector3 pickWorld) {
+ viewportX = viewportX.toDouble();
+ viewportWidth = viewportWidth.toDouble();
+ viewportY = viewportY.toDouble();
+ viewportHeight = viewportHeight.toDouble();
+ pickX = pickX.toDouble();
+ pickY = pickY.toDouble();
+ pickX = (pickX - viewportX);
+ pickY = (pickY - viewportY);
+ pickX = (2.0 * pickX / viewportWidth) - 1.0;
+ pickY = (2.0 * pickY / viewportHeight) - 1.0;
+ pickZ = (2.0 * pickZ) - 1.0;
+
+ // Check if pick point is inside unit cube
+ if (pickX &lt; -1.0 || pickY &lt; -1.0 || pickX &gt; 1.0 || pickY &gt; 1.0 ||
+     pickZ &lt; -1.0 || pickZ &gt; 1.0) {
+   return false;
+ }
+
+ // Copy camera matrix.
+ Matrix4 invertedCameraMatrix = new Matrix4.copy(cameraMatrix);
+ // Invert the camera matrix.
+ invertedCameraMatrix.invert();
+ // Determine intersection point.
+ Vector4 v = new Vector4(pickX, pickY, pickZ, 1.0);
+ invertedCameraMatrix.transform(v);
+ if (v.w == 0.0) {
+   return false;
+ }
+ double invW = 1.0 / v.w;
+ pickWorld.x = v.x * invW;
+ pickWorld.y = v.y * invW;
+ pickWorld.z = v.z * invW;
+
+ return true;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makePlaneReflection">
+<button class="show-code">Code</button>
+<a href="vector_math/Matrix4.html">Matrix4</a> <strong>makePlaneReflection</strong>(<a href="vector_math/Vector3.html">Vector3</a> planeNormal, <a href="vector_math/Vector3.html">Vector3</a> planePoint) <a class="anchor-link" href="#makePlaneReflection"
+              title="Permalink to makePlaneReflection">#</a></h4>
+<div class="doc">
+<p>Returns a transformation matrix that transforms points by reflecting
+them through the plane specified with 
+<span class="param">planeNormal</span> and 
+<span class="param">planePoint</span></p>
+<pre class="source">
+Matrix4 makePlaneReflection(Vector3 planeNormal, Vector3 planePoint) {
+ Vector4 v = new Vector4(planeNormal.storage[0],
+                   planeNormal.storage[1],
+                   planeNormal.storage[2],
+                   0.0);
+ Matrix4 outer = new Matrix4.outer(v,v);
+ outer.scale(2.0);
+ Matrix4 r = new Matrix4.zero();
+ r = r - outer;
+ double scale = 2.0 * dot3(planePoint, planeNormal);
+ Vector3 scaledNormal = (planeNormal.scaled(scale));
+ Vector4 T = new Vector4(scaledNormal.storage[0],
+                   scaledNormal.storage[1],
+                   scaledNormal.storage[2],
+                   1.0);
+ r.setColumn(3, T);
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makePlaneProjection">
+<button class="show-code">Code</button>
+<a href="vector_math/Matrix4.html">Matrix4</a> <strong>makePlaneProjection</strong>(<a href="vector_math/Vector3.html">Vector3</a> planeNormal, <a href="vector_math/Vector3.html">Vector3</a> planePoint) <a class="anchor-link" href="#makePlaneProjection"
+              title="Permalink to makePlaneProjection">#</a></h4>
+<div class="doc">
+<p>Returns a transformation matrix that transforms points onto
+the plane specified with 
+<span class="param">planeNormal</span> and 
+<span class="param">planePoint</span></p>
+<pre class="source">
+Matrix4 makePlaneProjection(Vector3 planeNormal, Vector3 planePoint) {
+ Vector4 v = new Vector4(planeNormal.storage[0],
+                   planeNormal.storage[1],
+                   planeNormal.storage[2],
+                   0.0);
+ Matrix4 outer = new Matrix4.outer(v, v);
+ Matrix4 r = new Matrix4.zero();
+ r = r - outer;
+ Vector3 scaledNormal = (planeNormal.scaled(dot3(planePoint, planeNormal)));
+ Vector4 T = new Vector4(scaledNormal.storage[0],
+                   scaledNormal.storage[1],
+                   scaledNormal.storage[2],
+                   1.0);
+ r.setColumn(3, T);
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makeOrthographicMatrix">
+<button class="show-code">Code</button>
+<a href="vector_math/Matrix4.html">Matrix4</a> <strong>makeOrthographicMatrix</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> left, <a href="http://api.dartlang.org/dart_core/num.html">num</a> right, <a href="http://api.dartlang.org/dart_core/num.html">num</a> bottom, <a href="http://api.dartlang.org/dart_core/num.html">num</a> top, <a href="http://api.dartlang.org/dart_core/num.html">num</a> near, <a href="http://api.dartlang.org/dart_core/num.html">num</a> far) <a class="anchor-link" href="#makeOrthographicMatrix"
+              title="Permalink to makeOrthographicMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs a new OpenGL orthographic projection matrix.</p>
+<p>
+<span class="param">left</span>, 
+<span class="param">right</span> specify the coordinates for the left and right vertical
+clipping planes.
+
+<span class="param">bottom</span>, 
+<span class="param">top</span> specify the coordinates for the bottom and top horizontal
+clipping planes.
+
+<span class="param">near</span>, 
+<span class="param">far</span> specify the coordinates to the near and far depth clipping
+planes.</p>
+<pre class="source">
+Matrix4 makeOrthographicMatrix(num left, num right, num bottom, num top, num near,
+                     num far) {
+ Matrix4 r = new Matrix4.zero();
+ setOrthographicMatrix(r, left, right, bottom, top, near, far);
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setOrthographicMatrix">
+<button class="show-code">Code</button>
+void <strong>setOrthographicMatrix</strong>(<a href="vector_math/Matrix4.html">Matrix4</a> orthographicMatrix, <a href="http://api.dartlang.org/dart_core/num.html">num</a> left, <a href="http://api.dartlang.org/dart_core/num.html">num</a> right, <a href="http://api.dartlang.org/dart_core/num.html">num</a> bottom, <a href="http://api.dartlang.org/dart_core/num.html">num</a> top, <a href="http://api.dartlang.org/dart_core/num.html">num</a> near, <a href="http://api.dartlang.org/dart_core/num.html">num</a> far) <a class="anchor-link" href="#setOrthographicMatrix"
+              title="Permalink to setOrthographicMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs an OpenGL orthographic projection matrix in 
+<span class="param">orthographicMatrix</span>.</p>
+<p>
+<span class="param">left</span>, 
+<span class="param">right</span> specify the coordinates for the left and right vertical
+clipping planes.
+
+<span class="param">bottom</span>, 
+<span class="param">top</span> specify the coordinates for the bottom and top horizontal
+clipping planes.
+
+<span class="param">near</span>, 
+<span class="param">far</span> specify the coordinates to the near and far depth clipping
+planes.</p>
+<pre class="source">
+void setOrthographicMatrix(Matrix4 orthographicMatrix, num left, num right,
+                          num bottom, num top, num near, num far) {
+ left = left.toDouble();
+ right = right.toDouble();
+ bottom = bottom.toDouble();
+ top = top.toDouble();
+ near = near.toDouble();
+ far = far.toDouble();
+ double rml = right - left;
+ double rpl = right + left;
+ double tmb = top - bottom;
+ double tpb = top + bottom;
+ double fmn = far - near;
+ double fpn = far + near;
+ Matrix4 r = orthographicMatrix.setZero();
+ r.setEntry(0, 0, 2.0/rml);
+ r.setEntry(1, 1, 2.0/tmb);
+ r.setEntry(2, 2, -2.0/fmn);
+ r.setEntry(0, 3, -rpl/rml);
+ r.setEntry(1, 3, -tpb/tmb);
+ r.setEntry(2, 3, -fpn/fmn);
+ r.setEntry(3, 3, 1.0);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makeFrustumMatrix">
+<button class="show-code">Code</button>
+<a href="vector_math/Matrix4.html">Matrix4</a> <strong>makeFrustumMatrix</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> left, <a href="http://api.dartlang.org/dart_core/num.html">num</a> right, <a href="http://api.dartlang.org/dart_core/num.html">num</a> bottom, <a href="http://api.dartlang.org/dart_core/num.html">num</a> top, <a href="http://api.dartlang.org/dart_core/num.html">num</a> near, <a href="http://api.dartlang.org/dart_core/num.html">num</a> far) <a class="anchor-link" href="#makeFrustumMatrix"
+              title="Permalink to makeFrustumMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs a new OpenGL perspective projection matrix.</p>
+<p>
+<span class="param">left</span>, 
+<span class="param">right</span> specify the coordinates for the left and right vertical
+clipping planes.
+
+<span class="param">bottom</span>, 
+<span class="param">top</span> specify the coordinates for the bottom and top horizontal
+clipping planes.
+
+<span class="param">near</span>, 
+<span class="param">far</span> specify the coordinates to the near and far depth clipping
+planes.</p>
+<pre class="source">
+Matrix4 makeFrustumMatrix(num left, num right, num bottom, num top, num near,
+                      num far) {
+ Matrix4 view = new Matrix4.zero();
+ setFrustumMatrix(view, left, right, bottom, top, near, far);
+ return view;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setFrustumMatrix">
+<button class="show-code">Code</button>
+void <strong>setFrustumMatrix</strong>(<a href="vector_math/Matrix4.html">Matrix4</a> perspectiveMatrix, <a href="http://api.dartlang.org/dart_core/num.html">num</a> left, <a href="http://api.dartlang.org/dart_core/num.html">num</a> right, <a href="http://api.dartlang.org/dart_core/num.html">num</a> bottom, <a href="http://api.dartlang.org/dart_core/num.html">num</a> top, <a href="http://api.dartlang.org/dart_core/num.html">num</a> near, <a href="http://api.dartlang.org/dart_core/num.html">num</a> far) <a class="anchor-link" href="#setFrustumMatrix"
+              title="Permalink to setFrustumMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs an OpenGL perspective projection matrix in 
+<span class="param">perspectiveMatrix</span>.</p>
+<p>
+<span class="param">left</span>, 
+<span class="param">right</span> specify the coordinates for the left and right vertical
+clipping planes.
+
+<span class="param">bottom</span>, 
+<span class="param">top</span> specify the coordinates for the bottom and top horizontal
+clipping planes.
+
+<span class="param">near</span>, 
+<span class="param">far</span> specify the coordinates to the near and far depth clipping
+planes.</p>
+<pre class="source">
+void setFrustumMatrix(Matrix4 perspectiveMatrix, num left, num right, num bottom,
+                     num top, num near, num far) {
+ left = left.toDouble();
+ right = right.toDouble();
+ bottom = bottom.toDouble();
+ top = top.toDouble();
+ near = near.toDouble();
+ far = far.toDouble();
+ double two_near = 2.0 * near;
+ double right_minus_left = right - left;
+ double top_minus_bottom = top - bottom;
+ double far_minus_near = far - near;
+ Matrix4 view = perspectiveMatrix.setZero();
+ view.setEntry(0, 0, two_near / right_minus_left);
+ view.setEntry(1, 1, two_near / top_minus_bottom);
+ view.setEntry(0, 2, (right + left) / right_minus_left);
+ view.setEntry(1, 2, (top + bottom) / top_minus_bottom);
+ view.setEntry(2, 2, -(far + near) / far_minus_near);
+ view.setEntry(3, 2, -1.0);
+ view.setEntry(2, 3, -(two_near * far) / far_minus_near);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makePerspectiveMatrix">
+<button class="show-code">Code</button>
+<a href="vector_math/Matrix4.html">Matrix4</a> <strong>makePerspectiveMatrix</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> fovYRadians, <a href="http://api.dartlang.org/dart_core/num.html">num</a> aspectRatio, <a href="http://api.dartlang.org/dart_core/num.html">num</a> zNear, <a href="http://api.dartlang.org/dart_core/num.html">num</a> zFar) <a class="anchor-link" href="#makePerspectiveMatrix"
+              title="Permalink to makePerspectiveMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs a new OpenGL perspective projection matrix.</p>
+<p>
+<span class="param">fovYRadians</span> specifies the field of view angle, in radians, in the y
+direction.
+
+<span class="param">aspectRatio</span> specifies the aspect ratio that determines the field of view
+in the x direction. The aspect ratio of x (width) to y (height).
+
+<span class="param">zNear</span> specifies the distance from the viewer to the near plane
+(always positive).
+
+<span class="param">zFar</span> specifies the distance from the viewer to the far plane
+(always positive).</p>
+<pre class="source">
+Matrix4 makePerspectiveMatrix(num fovYRadians, num aspectRatio, num zNear,
+                          num zFar) {
+ double height = Math.tan(fovYRadians.toDouble() * 0.5) * zNear.toDouble();
+ double width = height * aspectRatio.toDouble();
+ return makeFrustumMatrix(-width, width, -height, height, zNear, zFar);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setPerspectiveMatrix">
+<button class="show-code">Code</button>
+void <strong>setPerspectiveMatrix</strong>(<a href="vector_math/Matrix4.html">Matrix4</a> perspectiveMatrix, <a href="http://api.dartlang.org/dart_core/num.html">num</a> fovYRadians, <a href="http://api.dartlang.org/dart_core/num.html">num</a> aspectRatio, <a href="http://api.dartlang.org/dart_core/num.html">num</a> zNear, <a href="http://api.dartlang.org/dart_core/num.html">num</a> zFar) <a class="anchor-link" href="#setPerspectiveMatrix"
+              title="Permalink to setPerspectiveMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs an OpenGL perspective projection matrix in 
+<span class="param">perspectiveMatrix</span>.</p>
+<p>
+<span class="param">fovYRadians</span> specifies the field of view angle, in radians, in the y
+direction.
+
+<span class="param">aspectRatio</span> specifies the aspect ratio that determines the field of view
+in the x direction. The aspect ratio of x (width) to y (height).
+
+<span class="param">zNear</span> specifies the distance from the viewer to the near plane
+(always positive).
+
+<span class="param">zFar</span> specifies the distance from the viewer to the far plane
+(always positive).</p>
+<pre class="source">
+void setPerspectiveMatrix(Matrix4 perspectiveMatrix, num fovYRadians,
+                         num aspectRatio, num zNear, num zFar) {
+ double height = Math.tan(fovYRadians.toDouble() * 0.5) * zNear.toDouble();
+ double width = height * aspectRatio.toDouble();
+ setFrustumMatrix(perspectiveMatrix, -width, width, -height, height, zNear,
+                  zFar);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="makeViewMatrix">
+<button class="show-code">Code</button>
+<a href="vector_math/Matrix4.html">Matrix4</a> <strong>makeViewMatrix</strong>(<a href="vector_math/Vector3.html">Vector3</a> cameraPosition, <a href="vector_math/Vector3.html">Vector3</a> cameraFocusPosition, <a href="vector_math/Vector3.html">Vector3</a> upDirection) <a class="anchor-link" href="#makeViewMatrix"
+              title="Permalink to makeViewMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs a new OpenGL view matrix.</p>
+<p>
+<span class="param">cameraPosition</span> specifies the position of the camera.
+
+<span class="param">cameraFocusPosition</span> specifies the position the camera is focused on.
+
+<span class="param">upDirection</span> specifies the direction of the up vector (usually, +Y).</p>
+<pre class="source">
+Matrix4 makeViewMatrix(Vector3 cameraPosition, Vector3 cameraFocusPosition,
+                   Vector3 upDirection) {
+ Matrix4 r = new Matrix4.zero();
+ setViewMatrix(r, cameraPosition, cameraFocusPosition, upDirection);
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setViewMatrix">
+<button class="show-code">Code</button>
+void <strong>setViewMatrix</strong>(<a href="vector_math/Matrix4.html">Matrix4</a> viewMatrix, <a href="vector_math/Vector3.html">Vector3</a> cameraPosition, <a href="vector_math/Vector3.html">Vector3</a> cameraFocusPosition, <a href="vector_math/Vector3.html">Vector3</a> upDirection) <a class="anchor-link" href="#setViewMatrix"
+              title="Permalink to setViewMatrix">#</a></h4>
+<div class="doc">
+<p>Constructs an OpenGL view matrix in 
+<span class="param">viewMatrix</span>.</p>
+<p>
+<span class="param">cameraPosition</span> specifies the position of the camera.
+
+<span class="param">cameraFocusPosition</span> specifies the position the camera is focused on.
+
+<span class="param">upDirection</span> specifies the direction of the up vector (usually, +Y).</p>
+<pre class="source">
+void setViewMatrix(Matrix4 viewMatrix, Vector3 cameraPosition,
+                  Vector3 cameraFocusPosition, Vector3 upDirection) {
+ Vector3 z = cameraPosition - cameraFocusPosition;
+ z.normalize();
+ Vector3 x = upDirection.cross(z);
+ x.normalize();
+ Vector3 y = z.cross(x);
+ y.normalize();
+ viewMatrix.setZero();
+ viewMatrix.setEntry(3, 3, 1.0);
+ viewMatrix.setEntry(0, 0, x.x);
+ viewMatrix.setEntry(1, 0, x.y);
+ viewMatrix.setEntry(2, 0, x.z);
+ viewMatrix.setEntry(0, 1, y.x);
+ viewMatrix.setEntry(1, 1, y.y);
+ viewMatrix.setEntry(2, 1, y.z);
+ viewMatrix.setEntry(0, 2, z.x);
+ viewMatrix.setEntry(1, 2, z.y);
+ viewMatrix.setEntry(2, 2, z.z);
+ viewMatrix.transpose();
+ Vector3 rotatedEye = viewMatrix * -cameraPosition;
+ viewMatrix.setEntry(0, 3, rotatedEye.x);
+ viewMatrix.setEntry(1, 3, rotatedEye.y);
+ viewMatrix.setEntry(2, 3, rotatedEye.z);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="absoluteError">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>absoluteError</strong>(calculated, correct) <a class="anchor-link" href="#absoluteError"
+              title="Permalink to absoluteError">#</a></h4>
+<div class="doc">
+<p>Returns absolute error between 
+<span class="param">calculated</span> and 
+<span class="param">correct</span>. 
+The type of 
+<span class="param">calculated</span> and 
+<span class="param">correct</span> must match and can
+be any vector, matrix, or quaternion.</p>
+<pre class="source">
+double absoluteError(dynamic calculated, dynamic correct) {
+ if (calculated is double &amp;&amp; correct is double) {
+   double diff = (calculated - correct).abs();
+   return diff;
+ }
+ return calculated.absoluteError(correct);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="relativeError">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>relativeError</strong>(calculated, correct) <a class="anchor-link" href="#relativeError"
+              title="Permalink to relativeError">#</a></h4>
+<div class="doc">
+<p>Returns relative error between 
+<span class="param">calculated</span> and 
+<span class="param">correct</span>.
+The type of 
+<span class="param">calculated</span> and 
+<span class="param">correct</span> must match and can
+be any vector, matrix, or quaternion.</p>
+<pre class="source">
+double relativeError(dynamic calculated, dynamic correct) {
+ if (calculated is double &amp;&amp; correct is double) {
+   double diff = (calculated - correct).abs();
+   return diff/correct;
+ }
+ return calculated.relativeError(correct);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="radians">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>radians</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> degrees) <a class="anchor-link" href="#radians"
+              title="Permalink to radians">#</a></h4>
+<div class="doc">
+<p>Convert 
+<span class="param">degrees</span> to radians.</p>
+<pre class="source">
+double radians(double degrees) {
+ return degrees * degrees2radians;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="degrees">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>degrees</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians) <a class="anchor-link" href="#degrees"
+              title="Permalink to degrees">#</a></h4>
+<div class="doc">
+<p>Convert 
+<span class="param">radians</span> to degrees.</p>
+<pre class="source">
+double degrees(double radians) {
+ return radians * radians2degrees;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Classes</h3>
+          <div class="type">
+          <h4>
+            <a href="vector_math/Aabb2.html"><strong>Aabb2</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Aabb3.html"><strong>Aabb3</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Matrix2.html"><strong>Matrix2</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Matrix3.html"><strong>Matrix3</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Matrix4.html"><strong>Matrix4</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Quaternion.html"><strong>Quaternion</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Vector2.html"><strong>Vector2</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Vector3.html"><strong>Vector3</strong></a>
+          </h4>
+          </div>
+          
+          <div class="type">
+          <h4>
+            <a href="vector_math/Vector4.html"><strong>Vector4</strong></a>
+          </h4>
+          </div>
+          
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.413</div>
+        </div>
+        <script async src="client-static.js"></script>
+        </body></html>
+        

@@ -1,0 +1,1491 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>SkinnedMesh class / three Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="three" data-type="SkinnedMesh">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../three.html">three</a> &rsaquo; <a href="../three/SkinnedMesh.html">SkinnedMesh</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><ul class="icon">
+<li><a href="../three/AmbientLight.html"><div class="icon-class"></div>AmbientLight</a></li>
+<li><a href="../three/ArcCurve.html"><div class="icon-class"></div>ArcCurve</a></li>
+<li><a href="../three/ArrowHelper.html"><div class="icon-class"></div>ArrowHelper</a></li>
+<li><a href="../three/Attribute.html"><div class="icon-class"></div>Attribute&lt;T&gt;</a></li>
+<li><a href="../three/AxisHelper.html"><div class="icon-class"></div>AxisHelper</a></li>
+<li><a href="../three/Bone.html"><div class="icon-class"></div>Bone</a></li>
+<li><a href="../three/BoundingBox.html"><div class="icon-class"></div>BoundingBox</a></li>
+<li><a href="../three/BoundingSphere.html"><div class="icon-class"></div>BoundingSphere</a></li>
+<li><a href="../three/Buffer.html"><div class="icon-class"></div>Buffer</a></li>
+<li><a href="../three/BufferGeometry.html"><div class="icon-class"></div>BufferGeometry</a></li>
+<li><a href="../three/Camera.html"><div class="icon-class"></div>Camera</a></li>
+<li><a href="../three/CameraHelper.html"><div class="icon-class"></div>CameraHelper</a></li>
+<li><a href="../three/CanvasRenderData.html"><div class="icon-class"></div>CanvasRenderData</a></li>
+<li><a href="../three/CanvasRenderer.html"><div class="icon-class"></div>CanvasRenderer</a></li>
+<li><a href="../three/Chunk.html"><div class="icon-class"></div>Chunk</a></li>
+<li><a href="../three/CircleGeometry.html"><div class="icon-class"></div>CircleGeometry</a></li>
+<li><a href="../three/ClosedSplineCurve3.html"><div class="icon-class"></div>ClosedSplineCurve3</a></li>
+<li><a href="../three/Color.html"><div class="icon-class"></div>Color</a></li>
+<li><a href="../three/CompressedTexture.html"><div class="icon-class"></div>CompressedTexture</a></li>
+<li><a href="../three/ConvexGeometry.html"><div class="icon-class"></div>ConvexGeometry</a></li>
+<li><a href="../three/CSS3DObject.html"><div class="icon-class"></div>CSS3DObject</a></li>
+<li><a href="../three/CSS3DRenderer.html"><div class="icon-class"></div>CSS3DRenderer</a></li>
+<li><a href="../three/CubeGeometry.html"><div class="icon-class"></div>CubeGeometry</a></li>
+<li><a href="../three/CubeGeomSides.html"><div class="icon-class"></div>CubeGeomSides</a></li>
+<li><a href="../three/CubeReflectionMapping.html"><div class="icon-class"></div>CubeReflectionMapping</a></li>
+<li><a href="../three/CubeRefractionMapping.html"><div class="icon-class"></div>CubeRefractionMapping</a></li>
+<li><a href="../three/CubicBezierCurve.html"><div class="icon-class"></div>CubicBezierCurve</a></li>
+<li><a href="../three/CubicBezierCurve3.html"><div class="icon-class"></div>CubicBezierCurve3</a></li>
+<li><a href="../three/Curve.html"><div class="icon-class"></div>Curve&lt;V&gt;</a></li>
+<li><a href="../three/Curve2D.html"><div class="icon-class"></div>Curve2D</a></li>
+<li><a href="../three/Curve3D.html"><div class="icon-class"></div>Curve3D</a></li>
+<li><a href="../three/CurvePath.html"><div class="icon-class"></div>CurvePath</a></li>
+<li><a href="../three/CylinderGeometry.html"><div class="icon-class"></div>CylinderGeometry</a></li>
+<li><a href="../three/DataTexture.html"><div class="icon-class"></div>DataTexture</a></li>
+<li><a href="../three/DirectionalLight.html"><div class="icon-class"></div>DirectionalLight</a></li>
+<li><a href="../three/EllipseCurve.html"><div class="icon-class"></div>EllipseCurve</a></li>
+<li><a href="../three/EventEmitter.html"><div class="icon-class"></div>EventEmitter</a></li>
+<li><a href="../three/EventEmitterEvent.html"><div class="icon-class"></div>EventEmitterEvent</a></li>
+<li><a href="../three/ExtrudeGeometry.html"><div class="icon-class"></div>ExtrudeGeometry</a></li>
+<li><a href="../three/ExtrudeGeometryWorldUVGenerator.html"><div class="icon-class"></div>ExtrudeGeometryWorldUVGenerator</a></li>
+<li><a href="../three/Face.html"><div class="icon-class"></div>Face</a></li>
+<li><a href="../three/Face3.html"><div class="icon-class"></div>Face3</a></li>
+<li><a href="../three/Face4.html"><div class="icon-class"></div>Face4</a></li>
+<li><a href="../three/Fog.html"><div class="icon-class"></div>Fog</a></li>
+<li><a href="../three/FogExp2.html"><div class="icon-class"></div>FogExp2</a></li>
+<li><a href="../three/FogLinear.html"><div class="icon-class"></div>FogLinear</a></li>
+<li><a href="../three/Frustum.html"><div class="icon-class"></div>Frustum</a></li>
+<li><a href="../three/Geometry.html"><div class="icon-class"></div>Geometry</a></li>
+<li><a href="../three/GeometryAttribute.html"><div class="icon-class"></div>GeometryAttribute&lt;T&gt;</a></li>
+<li><a href="../three/Gyroscope.html"><div class="icon-class"></div>Gyroscope</a></li>
+<li><a href="../three/HemisphereLight.html"><div class="icon-class"></div>HemisphereLight</a></li>
+<li><a href="../three/IcosahedronGeometry.html"><div class="icon-class"></div>IcosahedronGeometry</a></li>
+<li><a href="../three/ImageList.html"><div class="icon-class"></div>ImageList</a></li>
+<li><a href="../three/ImageLoader.html"><div class="icon-class"></div>ImageLoader</a></li>
+<li><a href="../three/IMaterial.html"><div class="icon-class"></div>IMaterial</a></li>
+<li><a href="../three/ImmediateRenderObject.html"><div class="icon-class"></div>ImmediateRenderObject</a></li>
+<li><a href="../three/Intersect.html"><div class="icon-class"></div>Intersect</a></li>
+<li><a href="../three/IParticleMaterial.html"><div class="icon-class"></div>IParticleMaterial</a></li>
+<li><a href="../three/IRenderable.html"><div class="icon-class"></div>IRenderable</a></li>
+<li><a href="../three/ITextureMapMaterial.html"><div class="icon-class"></div>ITextureMapMaterial</a></li>
+<li><a href="../three/JSONLoader.html"><div class="icon-class"></div>JSONLoader</a></li>
+<li><a href="../three/LatheGeometry.html"><div class="icon-class"></div>LatheGeometry</a></li>
+<li><a href="../three/LensFlare.html"><div class="icon-class"></div>LensFlare</a></li>
+<li><a href="../three/Light.html"><div class="icon-class"></div>Light</a></li>
+<li><a href="../three/Line.html"><div class="icon-class"></div>Line</a></li>
+<li><a href="../three/LineBasicMaterial.html"><div class="icon-class"></div>LineBasicMaterial</a></li>
+<li><a href="../three/LineCurve.html"><div class="icon-class"></div>LineCurve</a></li>
+<li><a href="../three/LineCurve3.html"><div class="icon-class"></div>LineCurve3</a></li>
+<li><a href="../three/LoadCompleteCallback.html"><div class="icon-interface"></div>LoadCompleteCallback</a></li>
+<li><a href="../three/LoadedCallback.html"><div class="icon-interface"></div>LoadedCallback</a></li>
+<li><a href="../three/Loader.html"><div class="icon-class"></div>Loader</a></li>
+<li><a href="../three/LoadProgressCallback.html"><div class="icon-interface"></div>LoadProgressCallback</a></li>
+<li><a href="../three/LoadStartCallback.html"><div class="icon-interface"></div>LoadStartCallback</a></li>
+<li><a href="../three/LOD.html"><div class="icon-class"></div>LOD</a></li>
+<li><a href="../three/Material.html"><div class="icon-class"></div>Material</a></li>
+<li><a href="../three/Mesh.html"><div class="icon-class"></div>Mesh</a></li>
+<li><a href="../three/MeshBasicMaterial.html"><div class="icon-class"></div>MeshBasicMaterial</a></li>
+<li><a href="../three/MeshDepthMaterial.html"><div class="icon-class"></div>MeshDepthMaterial</a></li>
+<li><a href="../three/MeshFaceMaterial.html"><div class="icon-class"></div>MeshFaceMaterial</a></li>
+<li><a href="../three/MeshLambertMaterial.html"><div class="icon-class"></div>MeshLambertMaterial</a></li>
+<li><a href="../three/MeshNormalMaterial.html"><div class="icon-class"></div>MeshNormalMaterial</a></li>
+<li><a href="../three/MeshPhongMaterial.html"><div class="icon-class"></div>MeshPhongMaterial</a></li>
+<li><a href="../three/MorphAnimMesh.html"><div class="icon-class"></div>MorphAnimMesh</a></li>
+<li><a href="../three/MorphColors.html"><div class="icon-class"></div>MorphColors</a></li>
+<li><a href="../three/MorphTarget.html"><div class="icon-class"></div>MorphTarget</a></li>
+<li><a href="../three/Object3D.html"><div class="icon-class"></div>Object3D</a></li>
+<li><a href="../three/OctahedronGeometry.html"><div class="icon-class"></div>OctahedronGeometry</a></li>
+<li><a href="../three/OrthographicCamera.html"><div class="icon-class"></div>OrthographicCamera</a></li>
+<li><a href="../three/ParametricGeometry.html"><div class="icon-class"></div>ParametricGeometry</a></li>
+<li><a href="../three/Particle.html"><div class="icon-class"></div>Particle</a></li>
+<li><a href="../three/ParticleBasicMaterial.html"><div class="icon-class"></div>ParticleBasicMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterial.html"><div class="icon-class"></div>ParticleCanvasMaterial</a></li>
+<li><a href="../three/ParticleCanvasMaterialProgram.html"><div class="icon-interface"></div>ParticleCanvasMaterialProgram</a></li>
+<li><a href="../three/ParticleSystem.html"><div class="icon-class"></div>ParticleSystem</a></li>
+<li><a href="../three/Path.html"><div class="icon-class"></div>Path</a></li>
+<li><a href="../three/PathAction.html"><div class="icon-class"></div>PathAction</a></li>
+<li><a href="../three/PerspectiveCamera.html"><div class="icon-class"></div>PerspectiveCamera</a></li>
+<li><a href="../three/PlaneGeometry.html"><div class="icon-class"></div>PlaneGeometry</a></li>
+<li><a href="../three/PointLight.html"><div class="icon-class"></div>PointLight</a></li>
+<li><a href="../three/PolyhedronGeometry.html"><div class="icon-class"></div>PolyhedronGeometry</a></li>
+<li><a href="../three/PolyhedronGeometryVertex.html"><div class="icon-class"></div>PolyhedronGeometryVertex</a></li>
+<li><a href="../three/Program.html"><div class="icon-class"></div>Program</a></li>
+<li><a href="../three/Projector.html"><div class="icon-class"></div>Projector</a></li>
+<li><a href="../three/ProjectorRenderData.html"><div class="icon-class"></div>ProjectorRenderData</a></li>
+<li><a href="../three/QuadraticBezierCurve.html"><div class="icon-class"></div>QuadraticBezierCurve</a></li>
+<li><a href="../three/QuadraticBezierCurve3.html"><div class="icon-class"></div>QuadraticBezierCurve3</a></li>
+<li><a href="../three/Ray.html"><div class="icon-class"></div>Ray</a></li>
+<li><a href="../three/Rectangle.html"><div class="icon-class"></div>Rectangle</a></li>
+<li><a href="../three/RenderableFace.html"><div class="icon-class"></div>RenderableFace</a></li>
+<li><a href="../three/RenderableFace3.html"><div class="icon-class"></div>RenderableFace3</a></li>
+<li><a href="../three/RenderableFace4.html"><div class="icon-class"></div>RenderableFace4</a></li>
+<li><a href="../three/RenderableLine.html"><div class="icon-class"></div>RenderableLine</a></li>
+<li><a href="../three/RenderableObject.html"><div class="icon-class"></div>RenderableObject</a></li>
+<li><a href="../three/RenderableParticle.html"><div class="icon-class"></div>RenderableParticle</a></li>
+<li><a href="../three/RenderableVertex.html"><div class="icon-class"></div>RenderableVertex</a></li>
+<li><a href="../three/Renderer.html"><div class="icon-class"></div>Renderer</a></li>
+<li><a href="../three/RenderInts.html"><div class="icon-class"></div>RenderInts</a></li>
+<li><a href="../three/Ribbon.html"><div class="icon-class"></div>Ribbon</a></li>
+<li><a href="../three/Scene.html"><div class="icon-class"></div>Scene</a></li>
+<li><a href="../three/ShaderMaterial.html"><div class="icon-class"></div>ShaderMaterial</a></li>
+<li><a href="../three/ShadowCaster.html"><div class="icon-class"></div>ShadowCaster</a></li>
+<li><a href="../three/ShadowMapPlugin.html"><div class="icon-class"></div>ShadowMapPlugin</a></li>
+<li><a href="../three/Shape.html"><div class="icon-class"></div>Shape</a></li>
+<li><a href="../three/ShapeGeometry.html"><div class="icon-class"></div>ShapeGeometry</a></li>
+<li><div class="icon-class"></div><strong>SkinnedMesh</strong></li>
+<li><a href="../three/SphereGeometry.html"><div class="icon-class"></div>SphereGeometry</a></li>
+<li><a href="../three/SphericalReflectionMapping.html"><div class="icon-class"></div>SphericalReflectionMapping</a></li>
+<li><a href="../three/SphericalRefractionMapping.html"><div class="icon-class"></div>SphericalRefractionMapping</a></li>
+<li><a href="../three/SplineCurve.html"><div class="icon-class"></div>SplineCurve</a></li>
+<li><a href="../three/SplineCurve3.html"><div class="icon-class"></div>SplineCurve3</a></li>
+<li><a href="../three/SpotLight.html"><div class="icon-class"></div>SpotLight</a></li>
+<li><a href="../three/Sprite.html"><div class="icon-class"></div>Sprite</a></li>
+<li><a href="../three/SpriteAlignment.html"><div class="icon-class"></div>SpriteAlignment</a></li>
+<li><a href="../three/TetrahedronGeometry.html"><div class="icon-class"></div>TetrahedronGeometry</a></li>
+<li><a href="../three/TextGeometry.html"><div class="icon-class"></div>TextGeometry</a></li>
+<li><a href="../three/Texture.html"><div class="icon-class"></div>Texture</a></li>
+<li><a href="../three/TorusGeometry.html"><div class="icon-class"></div>TorusGeometry</a></li>
+<li><a href="../three/TorusKnotGeometry.html"><div class="icon-class"></div>TorusKnotGeometry</a></li>
+<li><a href="../three/TubeGeometry.html"><div class="icon-class"></div>TubeGeometry</a></li>
+<li><a href="../three/Uniform.html"><div class="icon-class"></div>Uniform&lt;T&gt;</a></li>
+<li><a href="../three/UniformsUtils.html"><div class="icon-class"></div>UniformsUtils</a></li>
+<li><a href="../three/UV.html"><div class="icon-class"></div>UV</a></li>
+<li><a href="../three/UVMapping.html"><div class="icon-class"></div>UVMapping</a></li>
+<li><a href="../three/VirtualLight.html"><div class="icon-class"></div>VirtualLight</a></li>
+<li><a href="../three/WebGLCamera.html"><div class="icon-class"></div>WebGLCamera</a></li>
+<li><a href="../three/WebGLGeometry.html"><div class="icon-class"></div>WebGLGeometry</a></li>
+<li><a href="../three/WebGLImageList.html"><div class="icon-class"></div>WebGLImageList</a></li>
+<li><a href="../three/WebGLMaterial.html"><div class="icon-class"></div>WebGLMaterial</a></li>
+<li><a href="../three/WebGLObject.html"><div class="icon-class"></div>WebGLObject</a></li>
+<li><a href="../three/WebGLRenderer.html"><div class="icon-class"></div>WebGLRenderer</a></li>
+<li><a href="../three/WebGLRendererInfo.html"><div class="icon-class"></div>WebGLRendererInfo</a></li>
+<li><a href="../three/WebGLRendererMemoryInfo.html"><div class="icon-class"></div>WebGLRendererMemoryInfo</a></li>
+<li><a href="../three/WebGLRendererRenderInfo.html"><div class="icon-class"></div>WebGLRendererRenderInfo</a></li>
+<li><a href="../three/WebGLRenderTarget.html"><div class="icon-class"></div>WebGLRenderTarget</a></li>
+<li><a href="../three/WebGLRenderTargetCube.html"><div class="icon-class"></div>WebGLRenderTargetCube</a></li>
+</ul>
+<h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2></div>
+<div class="content">
+        <h2><strong>SkinnedMesh</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<pre class="source">
+class SkinnedMesh extends Mesh {
+	bool useVertexTexture;
+	num boneTextureWidth, boneTextureHeight;
+	List bones;
+	List boneMatrices;
+	Matrix4 identityMatrix;
+	DataTexture boneTexture;
+
+	SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
+     : identityMatrix = new Matrix4.identity(),
+       bones = [],
+       boneMatrices = [],
+       super(geometry, material) {
+
+   var gbone, bone;
+   var p, q, s;
+
+   if ( geometry["bones"] != null ) {
+
+     for( gbone in geometry["bones"]) {
+
+       p = gbone.pos;
+       q = gbone.rotq;
+       s = gbone.scl;
+
+       bone = addBone();
+
+       bone.name = gbone.name;
+       bone.position.set( p[0], p[1], p[2] );
+       bone.quaternion.set( q[0], q[1], q[2], q[3] );
+       bone.useQuaternion = true;
+
+       if ( s != null ) {
+
+         bone.scale.set( s[0], s[1], s[2] );
+
+       } else {
+
+         bone.scale.set( 1, 1, 1 );
+
+       }
+
+     }
+
+     for ( var b = 0; b &lt; this.bones.length; b ++ ) {
+
+       gbone = geometry["bones"][ b ];
+       bone = bones[ b ];
+
+       if ( gbone.parent == -1 ) {
+
+         this.add( bone );
+
+       } else {
+
+         bones[ gbone.parent ].add( bone );
+
+       }
+
+     }
+
+     //
+
+     var nBones = bones.length;
+
+     if ( useVertexTexture ) {
+
+       // layout (1 matrix = 4 pixels)
+       //  RGBA RGBA RGBA RGBA (=&gt; column1, column2, column3, column4)
+       //  with  8x8  pixel texture max   16 bones  (8 * 8  / 4)
+       //     16x16 pixel texture max   64 bones (16 * 16 / 4)
+       //     32x32 pixel texture max  256 bones (32 * 32 / 4)
+       //     64x64 pixel texture max 1024 bones (64 * 64 / 4)
+
+       var size;
+
+       if ( nBones &gt; 256 ) {
+         size = 64;
+       } else if ( nBones &gt; 64 ) {
+         size = 32;
+       } else if ( nBones &gt; 16 ) {
+         size = 16;
+       } else {
+         size = 8;
+       }
+
+       boneTextureWidth = size;
+       boneTextureHeight = size;
+       boneMatrices = new Float32List( boneTextureWidth * boneTextureHeight * 4 ); // 4 floats per RGBA pixel
+       boneTexture = new DataTexture( boneMatrices, boneTextureWidth, boneTextureHeight, RGBAFormat, type: FloatType );
+       boneTexture.minFilter = NearestFilter;
+       boneTexture.magFilter = NearestFilter;
+       boneTexture.generateMipmaps = false;
+       boneTexture.flipY = false;
+
+     } else {
+
+       boneMatrices = new Float32List( 16 * nBones );
+
+     }
+
+     pose();
+
+   }
+	}
+
+	addBone( {Bone bone} ) {
+
+	  if ( bone == null ) {
+	    bone = new Bone( this );
+	  }
+
+	  bones.add( bone );
+
+	  return bone;
+
+	}
+
+	updateMatrixWorld({force: false}) {
+
+	  if(matrixAutoUpdate) updateMatrix();
+
+	  // update matrixWorld
+
+	  if ( matrixWorldNeedsUpdate || force ) {
+
+	    if ( parent != null) {
+
+	      matrixWorld = parent.matrixWorld * matrix;
+
+	    } else {
+
+	      matrixWorld.setFrom( matrix );
+
+	    }
+
+	    matrixWorldNeedsUpdate = false;
+
+	    force = true;
+
+	  }
+
+	  // update children
+	  children.forEach((child) {
+
+	    if ( child is Bone ) {
+	      child.update( identityMatrix, false );
+	    } else {
+	      child.updateMatrixWorld( true );
+	    }
+
+	  });
+
+	  // flatten bone matrices to array
+
+	  var b, bl = this.bones.length,
+	      ba = this.bones,
+	      bm = this.boneMatrices;
+
+	  for ( b = 0; b &lt; bl; b ++ ) {
+	    ba[ b ].skinMatrix.flattenToArrayOffset( bm, b * 16 );
+
+	  }
+
+	  if ( useVertexTexture ) {
+	    boneTexture.needsUpdate = true;
+	  }
+
+	}
+
+	/*
+	 * Pose
+	 */
+
+	pose() {
+
+	  updateMatrixWorld( force: true );
+
+	  var bim, bone;
+
+	  List&lt;Matrix4&gt; boneInverses = [];
+
+	  for ( var b = 0; b &lt; bones.length; b ++ ) {
+
+	    bone = bones[ b ];
+
+	    var inverseMatrix = bone.skinMatrix.clone();
+	    inverseMatrix.invert();
+
+	    boneInverses.add( inverseMatrix );
+
+	    bone.skinMatrix.flattenToArrayOffset( boneMatrices, b * 16 );
+
+	  }
+
+	  // project vertices to local
+
+	  if ( geometry["skinVerticesA"] == null ) {
+
+	    geometry["skinVerticesA"] = [];
+	    geometry["skinVerticesA"] = [];
+
+	    var orgVertex, vertex;
+
+	    for ( var i = 0; i &lt; geometry.skinIndices.length; i ++ ) {
+
+	      orgVertex = geometry.vertices[ i ];
+
+	      var indexA = geometry.skinIndices[ i ].x;
+	      var indexB = geometry.skinIndices[ i ].y;
+
+	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
+	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexA]));
+
+	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
+	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexB]));
+
+	      // todo: add more influences
+
+	      // normalize weights
+
+	      if ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y != 1 ) {
+
+	        var len = ( 1.0 - ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y ) ) * 0.5;
+	        geometry.skinWeights[ i ].x += len;
+	        geometry.skinWeights[ i ].y += len;
+
+	      }
+
+	    }
+
+	  }
+
+	}
+
+}
+</pre>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../three/Object3D.html">Object3D</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><a href="../three/Mesh.html">Mesh</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>SkinnedMesh</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>SkinnedMesh</strong>(geometry, material, {<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> useVertexTexture: true}) <a class="anchor-link" href="#"
+              title="Permalink to SkinnedMesh.SkinnedMesh">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
+    : identityMatrix = new Matrix4.identity(),
+      bones = [],
+      boneMatrices = [],
+      super(geometry, material) {
+
+  var gbone, bone;
+  var p, q, s;
+
+  if ( geometry["bones"] != null ) {
+
+    for( gbone in geometry["bones"]) {
+
+      p = gbone.pos;
+      q = gbone.rotq;
+      s = gbone.scl;
+
+      bone = addBone();
+
+      bone.name = gbone.name;
+      bone.position.set( p[0], p[1], p[2] );
+      bone.quaternion.set( q[0], q[1], q[2], q[3] );
+      bone.useQuaternion = true;
+
+      if ( s != null ) {
+
+        bone.scale.set( s[0], s[1], s[2] );
+
+      } else {
+
+        bone.scale.set( 1, 1, 1 );
+
+      }
+
+    }
+
+    for ( var b = 0; b &lt; this.bones.length; b ++ ) {
+
+      gbone = geometry["bones"][ b ];
+      bone = bones[ b ];
+
+      if ( gbone.parent == -1 ) {
+
+        this.add( bone );
+
+      } else {
+
+        bones[ gbone.parent ].add( bone );
+
+      }
+
+    }
+
+    //
+
+    var nBones = bones.length;
+
+    if ( useVertexTexture ) {
+
+      // layout (1 matrix = 4 pixels)
+      //  RGBA RGBA RGBA RGBA (=&gt; column1, column2, column3, column4)
+      //  with  8x8  pixel texture max   16 bones  (8 * 8  / 4)
+      //     16x16 pixel texture max   64 bones (16 * 16 / 4)
+      //     32x32 pixel texture max  256 bones (32 * 32 / 4)
+      //     64x64 pixel texture max 1024 bones (64 * 64 / 4)
+
+      var size;
+
+      if ( nBones &gt; 256 ) {
+        size = 64;
+      } else if ( nBones &gt; 64 ) {
+        size = 32;
+      } else if ( nBones &gt; 16 ) {
+        size = 16;
+      } else {
+        size = 8;
+      }
+
+      boneTextureWidth = size;
+      boneTextureHeight = size;
+      boneMatrices = new Float32List( boneTextureWidth * boneTextureHeight * 4 ); // 4 floats per RGBA pixel
+      boneTexture = new DataTexture( boneMatrices, boneTextureWidth, boneTextureHeight, RGBAFormat, type: FloatType );
+      boneTexture.minFilter = NearestFilter;
+      boneTexture.magFilter = NearestFilter;
+      boneTexture.generateMipmaps = false;
+      boneTexture.flipY = false;
+
+    } else {
+
+      boneMatrices = new Float32List( 16 * nBones );
+
+    }
+
+    pose();
+
+  }
+	}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="boneMatrices">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>boneMatrices</strong> <a class="anchor-link"
+            href="#boneMatrices"
+            title="Permalink to SkinnedMesh.boneMatrices">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List boneMatrices
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="bones">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>bones</strong> <a class="anchor-link"
+            href="#bones"
+            title="Permalink to SkinnedMesh.bones">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+List bones
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="boneTexture">
+<button class="show-code">Code</button>
+<a href="../three/DataTexture.html">DataTexture</a>         <strong>boneTexture</strong> <a class="anchor-link"
+            href="#boneTexture"
+            title="Permalink to SkinnedMesh.boneTexture">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+DataTexture boneTexture
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="boneTextureHeight">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>boneTextureHeight</strong> <a class="anchor-link"
+            href="#boneTextureHeight"
+            title="Permalink to SkinnedMesh.boneTextureHeight">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num boneTextureWidth, boneTextureHeight
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="boneTextureWidth">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>boneTextureWidth</strong> <a class="anchor-link"
+            href="#boneTextureWidth"
+            title="Permalink to SkinnedMesh.boneTextureWidth">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+num boneTextureWidth
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="boundRadius">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>boundRadius</strong> <a class="anchor-link"
+            href="#boundRadius"
+            title="Permalink to SkinnedMesh.boundRadius">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+num boundRadius
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="boundRadiusScale">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>boundRadiusScale</strong> <a class="anchor-link"
+            href="#boundRadiusScale"
+            title="Permalink to SkinnedMesh.boundRadiusScale">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+num boundRadius, boundRadiusScale
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="castShadow">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>castShadow</strong> <a class="anchor-link"
+            href="#castShadow"
+            title="Permalink to SkinnedMesh.castShadow">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false, castShadow = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="children">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>children</strong> <a class="anchor-link"
+            href="#children"
+            title="Permalink to SkinnedMesh.children">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+List children
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="customDepthMaterial">
+<button class="show-code">Code</button>
+var         <strong>customDepthMaterial</strong> <a class="anchor-link"
+            href="#customDepthMaterial"
+            title="Permalink to SkinnedMesh.customDepthMaterial">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+var customDepthMaterial
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="doubleSided">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>doubleSided</strong> <a class="anchor-link"
+            href="#doubleSided"
+            title="Permalink to SkinnedMesh.doubleSided">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool _dynamic, doubleSided
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="eulerOrder">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>eulerOrder</strong> <a class="anchor-link"
+            href="#eulerOrder"
+            title="Permalink to SkinnedMesh.eulerOrder">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+String eulerOrder
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="flipSided">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>flipSided</strong> <a class="anchor-link"
+            href="#flipSided"
+            title="Permalink to SkinnedMesh.flipSided">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool _dynamic, doubleSided, flipSided
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="frustumCulled">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>frustumCulled</strong> <a class="anchor-link"
+            href="#frustumCulled"
+            title="Permalink to SkinnedMesh.frustumCulled">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false, castShadow = false, receiveShadow = false, frustumCulled = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="geometry">
+<button class="show-code">Code</button>
+<a href="../three/Geometry.html">Geometry</a>         <strong>geometry</strong> <a class="anchor-link"
+            href="#geometry"
+            title="Permalink to SkinnedMesh.geometry">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Mesh.html">Mesh</a> </div><div class="doc">
+<pre class="source">
+Geometry geometry
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="id">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>id</strong> <a class="anchor-link"
+            href="#id"
+            title="Permalink to SkinnedMesh.id">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+int id
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="identityMatrix">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>identityMatrix</strong> <a class="anchor-link"
+            href="#identityMatrix"
+            title="Permalink to SkinnedMesh.identityMatrix">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Matrix4 identityMatrix
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="isDynamic">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>isDynamic</strong> <a class="anchor-link"
+            href="#isDynamic"
+            title="Permalink to SkinnedMesh.isDynamic">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool get isDynamic =&gt; _dynamic;
+</pre>
+<pre class="source">
+set isDynamic(bool flag) =&gt; _dynamic = flag;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="material">
+<button class="show-code">Code</button>
+<a href="../three/Material.html">Material</a>         <strong>material</strong> <a class="anchor-link"
+            href="#material"
+            title="Permalink to SkinnedMesh.material">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Mesh.html">Mesh</a> </div><div class="doc">
+<pre class="source">
+Material material
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrix">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>matrix</strong> <a class="anchor-link"
+            href="#matrix"
+            title="Permalink to SkinnedMesh.matrix">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Matrix4 matrix
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixAutoUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>matrixAutoUpdate</strong> <a class="anchor-link"
+            href="#matrixAutoUpdate"
+            title="Permalink to SkinnedMesh.matrixAutoUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool matrixAutoUpdate = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixRotationWorld">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>matrixRotationWorld</strong> <a class="anchor-link"
+            href="#matrixRotationWorld"
+            title="Permalink to SkinnedMesh.matrixRotationWorld">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Matrix4 matrix, matrixWorld, matrixRotationWorld
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixWorld">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix4.html">Matrix4</a>         <strong>matrixWorld</strong> <a class="anchor-link"
+            href="#matrixWorld"
+            title="Permalink to SkinnedMesh.matrixWorld">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Matrix4 matrix, matrixWorld
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="matrixWorldNeedsUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>matrixWorldNeedsUpdate</strong> <a class="anchor-link"
+            href="#matrixWorldNeedsUpdate"
+            title="Permalink to SkinnedMesh.matrixWorldNeedsUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool matrixAutoUpdate = false, matrixWorldNeedsUpdate = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphTargetBase">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a>         <strong>morphTargetBase</strong> <a class="anchor-link"
+            href="#morphTargetBase"
+            title="Permalink to SkinnedMesh.morphTargetBase">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Mesh.html">Mesh</a> </div><div class="doc">
+<pre class="source">
+num morphTargetBase = 0
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphTargetForcedOrder">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphTargetForcedOrder</strong> <a class="anchor-link"
+            href="#morphTargetForcedOrder"
+            title="Permalink to SkinnedMesh.morphTargetForcedOrder">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Mesh.html">Mesh</a> </div><div class="doc">
+<pre class="source">
+List morphTargetForcedOrder
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="morphTargetInfluences">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>         <strong>morphTargetInfluences</strong> <a class="anchor-link"
+            href="#morphTargetInfluences"
+            title="Permalink to SkinnedMesh.morphTargetInfluences">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Mesh.html">Mesh</a> </div><div class="doc">
+<pre class="source">
+List morphTargetInfluences
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="name">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to SkinnedMesh.name">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+String name
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="parent">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a>         <strong>parent</strong> <a class="anchor-link"
+            href="#parent"
+            title="Permalink to SkinnedMesh.parent">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Object3D parent
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="position">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>position</strong> <a class="anchor-link"
+            href="#position"
+            title="Permalink to SkinnedMesh.position">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up, position
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="properties">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>         <strong>properties</strong> <a class="anchor-link"
+            href="#properties"
+            title="Permalink to SkinnedMesh.properties">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Map properties
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="quaternion">
+<button class="show-code">Code</button>
+var         <strong>quaternion</strong> <a class="anchor-link"
+            href="#quaternion"
+            title="Permalink to SkinnedMesh.quaternion">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+var quaternion
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="receiveShadow">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>receiveShadow</strong> <a class="anchor-link"
+            href="#receiveShadow"
+            title="Permalink to SkinnedMesh.receiveShadow">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false, castShadow = false, receiveShadow = false
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="renderDepth">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>renderDepth</strong> <a class="anchor-link"
+            href="#renderDepth"
+            title="Permalink to SkinnedMesh.renderDepth">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+int renderDepth
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="rotation">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>rotation</strong> <a class="anchor-link"
+            href="#rotation"
+            title="Permalink to SkinnedMesh.rotation">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up, position, rotation
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="rotationAutoUpdate">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>rotationAutoUpdate</strong> <a class="anchor-link"
+            href="#rotationAutoUpdate"
+            title="Permalink to SkinnedMesh.rotationAutoUpdate">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool _dynamic, doubleSided, flipSided, rotationAutoUpdate
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="scale">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>scale</strong> <a class="anchor-link"
+            href="#scale"
+            title="Permalink to SkinnedMesh.scale">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up, position, rotation, scale
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="up">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a>         <strong>up</strong> <a class="anchor-link"
+            href="#up"
+            title="Permalink to SkinnedMesh.up">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Vector3 up
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="useQuaternion">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>useQuaternion</strong> <a class="anchor-link"
+            href="#useQuaternion"
+            title="Permalink to SkinnedMesh.useQuaternion">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool useQuaternion
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="useVertexTexture">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>useVertexTexture</strong> <a class="anchor-link"
+            href="#useVertexTexture"
+            title="Permalink to SkinnedMesh.useVertexTexture">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+bool useVertexTexture
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="visible">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>visible</strong> <a class="anchor-link"
+            href="#visible"
+            title="Permalink to SkinnedMesh.visible">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+bool visible = false
+</pre>
+</div>
+</div>
+</div>
+<div class="inherited">
+<h3>Operators</h3>
+<div class="method inherited"><h4 id="[]">
+<button class="show-code">Code</button>
+dynamic <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#[]"
+              title="Permalink to SkinnedMesh.operator []">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+operator [] (String key) =&gt; _data[key];
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="[]=">
+<button class="show-code">Code</button>
+dynamic <strong>operator []=</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key, value) <a class="anchor-link" href="#[]="
+              title="Permalink to SkinnedMesh.operator []=">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+operator []= (String key, value) =&gt; _data[key] = value;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="add">
+<button class="show-code">Code</button>
+void <strong>add</strong>(<a href="../three/Object3D.html">Object3D</a> object) <a class="anchor-link" href="#add"
+              title="Permalink to SkinnedMesh.add">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void add( Object3D object ) {
+ if ( object == this ) {
+   print( 'THREE.Object3D.add: An object can\'t be added as a child of itself.' );
+   return;
+ }
+
+
+ if ( object.parent != null ) {
+   object.parent.remove( object );
+ }
+
+ object.parent = this;
+ children.add( object );
+
+ // add to scene
+ Object3D scene = this;
+
+ while ( scene.parent != null ) {
+   scene = scene.parent;
+ }
+
+ if ( scene is Scene ) {
+   scene.addObject( object );
+ }
+
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="addBone">
+<button class="show-code">Code</button>
+dynamic <strong>addBone</strong>({<a href="../three/Bone.html">Bone</a> bone}) <a class="anchor-link" href="#addBone"
+              title="Permalink to SkinnedMesh.addBone">#</a></h4>
+<div class="doc">
+<pre class="source">
+addBone( {Bone bone} ) {
+
+	  if ( bone == null ) {
+	    bone = new Bone( this );
+	  }
+
+	  bones.add( bone );
+
+	  return bone;
+
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="applyMatrix">
+<button class="show-code">Code</button>
+void <strong>applyMatrix</strong>(<a href="../vector_math/Matrix4.html">Matrix4</a> matrix) <a class="anchor-link" href="#applyMatrix"
+              title="Permalink to SkinnedMesh.applyMatrix">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void applyMatrix ( Matrix4 matrix ) {
+ this.matrix = matrix * this.matrix;
+
+ this.scale = getScaleFromMatrix( this.matrix );
+
+ Matrix4 mat = extractRotation(new Matrix4.identity(), this.matrix );
+ this.rotation = calcEulerFromRotationMatrix( mat, this.eulerOrder );
+
+ this.position = this.matrix.getTranslation();
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="clone">
+<button class="show-code">Code</button>
+dynamic <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to SkinnedMesh.clone">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+clone() {
+
+ // TODO
+
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getChildByName">
+<button class="show-code">Code</button>
+<a href="../three/Object3D.html">Object3D</a> <strong>getChildByName</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> doRecurse) <a class="anchor-link" href="#getChildByName"
+              title="Permalink to SkinnedMesh.getChildByName">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+Object3D getChildByName( String name, bool doRecurse ) {
+ int c;
+ int cl = children.length;
+ Object3D child, recurseResult;
+
+ children.forEach((child){
+
+   if ( child.name == name ) {
+     return child;
+   }
+
+   if ( doRecurse ) {
+     recurseResult = child.getChildByName( name, doRecurse );
+
+     if ( recurseResult != null ) {
+       return recurseResult;
+     }
+   }
+ });
+
+ return null;
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="getMorphTargetIndexByName">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/num.html">num</a> <strong>getMorphTargetIndexByName</strong>(name) <a class="anchor-link" href="#getMorphTargetIndexByName"
+              title="Permalink to SkinnedMesh.getMorphTargetIndexByName">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Mesh.html">Mesh</a> </div><div class="doc">
+<pre class="source">
+num getMorphTargetIndexByName( name ) {
+ if ( _morphTargetDictionary[ name ] != null ) {
+   return _morphTargetDictionary[ name ];
+ }
+
+ print( "THREE.Mesh.getMorphTargetIndexByName: morph target $name does not exist. Returning 0." );
+ return 0;
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="localToWorld">
+<button class="show-code">Code</button>
+dynamic <strong>localToWorld</strong>(<a href="../vector_math/Vector3.html">Vector3</a> vector) <a class="anchor-link" href="#localToWorld"
+              title="Permalink to SkinnedMesh.localToWorld">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+localToWorld(Vector3 vector) =&gt; vector.applyProjection(matrixWorld);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="lookAt">
+<button class="show-code">Code</button>
+void <strong>lookAt</strong>(<a href="../vector_math/Vector3.html">Vector3</a> vector) <a class="anchor-link" href="#lookAt"
+              title="Permalink to SkinnedMesh.lookAt">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void lookAt( Vector3 vector ) {
+ // TODO: Add hierarchy support.
+
+ makeLookAt( matrix, vector, position, up );
+
+ if ( rotationAutoUpdate ) {
+   if(useQuaternion)
+     quaternion.setFromRotationMatrix(matrix);
+   else
+     rotation = calcEulerFromRotationMatrix( matrix, eulerOrder );
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="pose">
+<button class="show-code">Code</button>
+dynamic <strong>pose</strong>() <a class="anchor-link" href="#pose"
+              title="Permalink to SkinnedMesh.pose">#</a></h4>
+<div class="doc">
+<pre class="source">
+pose() {
+
+	  updateMatrixWorld( force: true );
+
+	  var bim, bone;
+
+	  List&lt;Matrix4&gt; boneInverses = [];
+
+	  for ( var b = 0; b &lt; bones.length; b ++ ) {
+
+	    bone = bones[ b ];
+
+	    var inverseMatrix = bone.skinMatrix.clone();
+	    inverseMatrix.invert();
+
+	    boneInverses.add( inverseMatrix );
+
+	    bone.skinMatrix.flattenToArrayOffset( boneMatrices, b * 16 );
+
+	  }
+
+	  // project vertices to local
+
+	  if ( geometry["skinVerticesA"] == null ) {
+
+	    geometry["skinVerticesA"] = [];
+	    geometry["skinVerticesA"] = [];
+
+	    var orgVertex, vertex;
+
+	    for ( var i = 0; i &lt; geometry.skinIndices.length; i ++ ) {
+
+	      orgVertex = geometry.vertices[ i ];
+
+	      var indexA = geometry.skinIndices[ i ].x;
+	      var indexB = geometry.skinIndices[ i ].y;
+
+	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
+	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexA]));
+
+	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
+	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexB]));
+
+	      // todo: add more influences
+
+	      // normalize weights
+
+	      if ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y != 1 ) {
+
+	        var len = ( 1.0 - ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y ) ) * 0.5;
+	        geometry.skinWeights[ i ].x += len;
+	        geometry.skinWeights[ i ].y += len;
+
+	      }
+
+	    }
+
+	  }
+
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="remove">
+<button class="show-code">Code</button>
+void <strong>remove</strong>(<a href="../three/Object3D.html">Object3D</a> object) <a class="anchor-link" href="#remove"
+              title="Permalink to SkinnedMesh.remove">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void remove( Object3D object ) {
+
+ int index = children.indexOf( object );
+
+ if ( index != - 1 ){
+
+   object.parent = null;
+   children.removeAt(index);
+
+   // remove from scene
+   Object3D scene = this;
+
+   while ( scene.parent != null ) {
+     scene = scene.parent;
+   }
+
+   if (scene is Scene ) {
+     scene.removeObject( object );
+   }
+ }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translate">
+<button class="show-code">Code</button>
+void <strong>translate</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance, <a href="../vector_math/Vector3.html">Vector3</a> axis) <a class="anchor-link" href="#translate"
+              title="Permalink to SkinnedMesh.translate">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translate( num distance, Vector3 axis ) {
+ matrix.rotate3( axis );
+ axis.normalize();
+ position.add( axis.scale( distance ) );
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translateX">
+<button class="show-code">Code</button>
+void <strong>translateX</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance) <a class="anchor-link" href="#translateX"
+              title="Permalink to SkinnedMesh.translateX">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translateX( num distance ) =&gt; translate( distance, _vector.setValues( 1.0, 0.0, 0.0 ) );
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translateY">
+<button class="show-code">Code</button>
+void <strong>translateY</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance) <a class="anchor-link" href="#translateY"
+              title="Permalink to SkinnedMesh.translateY">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translateY( num distance ) =&gt; translate( distance, _vector.setValues( 0.0, 1.0, 0.0 ) );
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="translateZ">
+<button class="show-code">Code</button>
+void <strong>translateZ</strong>(<a href="http://api.dartlang.org/dart_core/num.html">num</a> distance) <a class="anchor-link" href="#translateZ"
+              title="Permalink to SkinnedMesh.translateZ">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void translateZ( num distance ) =&gt; translate( distance, _vector.setValues( 0.0, 0.0, 1.0 ) );
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="updateMatrix">
+<button class="show-code">Code</button>
+void <strong>updateMatrix</strong>() <a class="anchor-link" href="#updateMatrix"
+              title="Permalink to SkinnedMesh.updateMatrix">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+void updateMatrix() {
+
+ if ( useQuaternion ) {
+   setRotationFromQuaternion( matrix, quaternion );
+ } else {
+   setRotationFromEuler( matrix, rotation, eulerOrder );
+ }
+
+ matrix.setTranslation( position );
+
+ if ( scale.x != 1.0 || scale.y != 1.0 || scale.z != 1.0 ) {
+   matrix.scale( scale );
+   boundRadiusScale = Math.max( scale.x, Math.max( scale.y, scale.z ) );
+ }
+
+ matrixWorldNeedsUpdate = true;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="updateMatrixWorld">
+<button class="show-code">Code</button>
+dynamic <strong>updateMatrixWorld</strong>({force: false}) <a class="anchor-link" href="#updateMatrixWorld"
+              title="Permalink to SkinnedMesh.updateMatrixWorld">#</a></h4>
+<div class="doc">
+<pre class="source">
+updateMatrixWorld({force: false}) {
+
+	  if(matrixAutoUpdate) updateMatrix();
+
+	  // update matrixWorld
+
+	  if ( matrixWorldNeedsUpdate || force ) {
+
+	    if ( parent != null) {
+
+	      matrixWorld = parent.matrixWorld * matrix;
+
+	    } else {
+
+	      matrixWorld.setFrom( matrix );
+
+	    }
+
+	    matrixWorldNeedsUpdate = false;
+
+	    force = true;
+
+	  }
+
+	  // update children
+	  children.forEach((child) {
+
+	    if ( child is Bone ) {
+	      child.update( identityMatrix, false );
+	    } else {
+	      child.updateMatrixWorld( true );
+	    }
+
+	  });
+
+	  // flatten bone matrices to array
+
+	  var b, bl = this.bones.length,
+	      ba = this.bones,
+	      bm = this.boneMatrices;
+
+	  for ( b = 0; b &lt; bl; b ++ ) {
+	    ba[ b ].skinMatrix.flattenToArrayOffset( bm, b * 16 );
+
+	  }
+
+	  if ( useVertexTexture ) {
+	    boneTexture.needsUpdate = true;
+	  }
+
+	}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="worldToLocal">
+<button class="show-code">Code</button>
+dynamic <strong>worldToLocal</strong>(<a href="../vector_math/Vector3.html">Vector3</a> vector) <a class="anchor-link" href="#worldToLocal"
+              title="Permalink to SkinnedMesh.worldToLocal">#</a></h4>
+<div class="inherited-from">inherited from <a href="../three/Object3D.html">Object3D</a> </div><div class="doc">
+<pre class="source">
+worldToLocal(Vector3 vector) {
+ Matrix4 m = this.matrixWorld.clone();
+ m.invert();
+ m.transform3( vector );
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:31.840</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

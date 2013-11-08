@@ -1,0 +1,2546 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Matrix3 class / vector_math Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="vector_math" data-type="Matrix3">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../vector_math.html">vector_math</a> &rsaquo; <a href="../vector_math/Matrix3.html">Matrix3</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../CurveUtils.html">CurveUtils</a></h2><h2><div class="icon-library"></div><a href="../FirstPersonControls.html">FirstPersonControls</a></h2><h2><div class="icon-library"></div><a href="../FontUtils.html">FontUtils</a></h2><h2><div class="icon-library"></div><a href="../GeometryUtils.html">GeometryUtils</a></h2><h2><div class="icon-library"></div><a href="../ImageUtils.html">ImageUtils</a></h2><h2><div class="icon-library"></div><a href="../SceneUtils.html">SceneUtils</a></h2><h2><div class="icon-library"></div><a href="../ShaderUtils.html">ShaderUtils</a></h2><h2><div class="icon-library"></div><a href="../ShapeUtils.html">ShapeUtils</a></h2><h2><div class="icon-library"></div><a href="../three.html">three</a></h2><h2><div class="icon-library"></div><a href="../ThreeMath.html">ThreeMath</a></h2><h2><div class="icon-library"></div><a href="../TrackballControls.html">TrackballControls</a></h2><h2><div class="icon-library"></div><a href="../tween.html">tween</a></h2><h2><div class="icon-library"></div><a href="../vector_math.html">vector_math</a></h2><ul class="icon">
+<li><a href="../vector_math/Aabb2.html"><div class="icon-class"></div>Aabb2</a></li>
+<li><a href="../vector_math/Aabb3.html"><div class="icon-class"></div>Aabb3</a></li>
+<li><a href="../vector_math/Matrix2.html"><div class="icon-class"></div>Matrix2</a></li>
+<li><div class="icon-class"></div><strong>Matrix3</strong></li>
+<li><a href="../vector_math/Matrix4.html"><div class="icon-class"></div>Matrix4</a></li>
+<li><a href="../vector_math/Quaternion.html"><div class="icon-class"></div>Quaternion</a></li>
+<li><a href="../vector_math/Vector2.html"><div class="icon-class"></div>Vector2</a></li>
+<li><a href="../vector_math/Vector3.html"><div class="icon-class"></div>Vector3</a></li>
+<li><a href="../vector_math/Vector4.html"><div class="icon-class"></div>Vector4</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Matrix3</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>3D Matrix.
+Values are stored in column major order.</p>
+<pre class="source">
+class Matrix3 {
+ final Float32List storage = new Float32List(9);
+
+ /// Solve [A] * [x] = [b].
+ static void solve2(Matrix3 A, Vector2 x, Vector2 b) {
+   final double a11 = A.entry(0,0);
+   final double a12 = A.entry(0,1);
+   final double a21 = A.entry(1,0);
+   final double a22 = A.entry(1,1);
+   final double bx = b.x - A.storage[6];
+   final double by = b.y - A.storage[7];
+   double det = a11 * a22 - a12 * a21;
+
+   if (det != 0.0){
+     det = 1.0 / det;
+   }
+
+   x.x = det * (a22 * bx - a12 * by);
+   x.y = det * (a11 * by - a21 * bx);
+ }
+
+ /// Solve [A] * [x] = [b].
+ static void solve(Matrix3 A, Vector3 x, Vector3 b) {
+   final double A0x = A.entry(0, 0);
+   final double A0y = A.entry(1, 0);
+   final double A0z = A.entry(2, 0);
+   final double A1x = A.entry(0, 1);
+   final double A1y = A.entry(1, 1);
+   final double A1z = A.entry(2, 1);
+   final double A2x = A.entry(0, 2);
+   final double A2y = A.entry(1, 2);
+   final double A2z = A.entry(2, 2);
+   double rx, ry, rz;
+   double det;
+
+   // Column1 cross Column 2
+   rx = A1y * A2z - A1z * A2y;
+   ry = A1z * A2x - A1x * A2z;
+   rz = A1x * A2y - A1y * A2x;
+
+   // A.getColumn(0).dot(x)
+   det = A0x * rx + A0y * ry + A0z * rz;
+   if (det != 0.0){
+     det = 1.0 / det;
+   }
+
+   // b dot [Column1 cross Column 2]
+   final double x_ = det * (b.x * rx + b.y * ry + b.z * rz);
+
+   // Column2 cross b
+   rx = -(A2y * b.z - A2z * b.y);
+   ry = -(A2z * b.x - A2x * b.z);
+   rz = -(A2x * b.y - A2y * b.x);
+   // Column0 dot -[Column2 cross b (Column3)]
+   final double y_ = det * (A0x * rx + A0y * ry + A0z * rz);
+
+   // b cross Column 1
+   rx = -(b.y * A1z - b.z * A1y);
+   ry = -(b.z * A1x - b.x * A1z);
+   rz = -(b.x * A1y - b.y * A1x);
+   // Column0 dot -[b cross Column 1]
+   final double z_ = det * (A0x * rx + A0y * ry + A0z * rz);
+
+   x.x = x_;
+   x.y = y_;
+   x.z = z_;
+ }
+
+ /// Return index in storage for [row], [col] value.
+ int index(int row, int col) =&gt; (col * 3) + row;
+
+ /// Value at [row], [col].
+ double entry(int row, int col) =&gt; storage[index(row, col)];
+
+ /// Set value at [row], [col] to be [v].
+ setEntry(int row, int col, double v) { storage[index(row, col)] = v; }
+
+ /// New matrix with specified values.
+ Matrix3(double arg0, double arg1, double arg2,
+         double arg3, double arg4, double arg5,
+         double arg6, double arg7, double arg8) {
+   setValues(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+ }
+
+ /// Constructs a new [Matrix3] filled with zeros.
+ Matrix3.zero();
+
+ /// Identity matrix.
+ Matrix3.identity() {
+   setIdentity();
+ }
+
+ /// Copes values from [other].
+ Matrix3.copy(Matrix3 other) {
+   setFrom(other);
+ }
+
+ /// Constructs a new mat3 from columns.
+ Matrix3.columns(Vector3 arg0, Vector3 arg1, Vector3 arg2) {
+   setColumns(arg0, arg1, arg2);
+ }
+
+ /// Outer product of [u] and [v].
+ Matrix3.outer(Vector3 u, Vector3 v) {
+   storage[0] = u.storage[0] * v.storage[0];
+   storage[1] = u.storage[0] * v.storage[1];
+   storage[2] = u.storage[0] * v.storage[2];
+   storage[3] = u.storage[1] * v.storage[0];
+   storage[4] = u.storage[1] * v.storage[1];
+   storage[5] = u.storage[1] * v.storage[2];
+   storage[6] = u.storage[2] * v.storage[0];
+   storage[7] = u.storage[2] * v.storage[1];
+   storage[8] = u.storage[2] * v.storage[2];
+ }
+
+ //// Rotation of [radians_] around X axis.
+ Matrix3.rotationX(double radians_) {
+   setRotationX(radians_);
+ }
+
+ //// Rotation of [radians_] around Y axis.
+ Matrix3.rotationY(double radians_) {
+   setRotationY(radians_);
+ }
+
+ //// Rotation of [radians_] around Z axis.
+ Matrix3.rotationZ(double radians_) {
+   setRotationZ(radians_);
+ }
+
+ /// Sets the matrix with specified values.
+ Matrix3 setValues(double arg0, double arg1, double arg2,
+                   double arg3, double arg4, double arg5,
+                   double arg6, double arg7, double arg8) {
+   storage[8] = arg8;
+   storage[7] = arg7;
+   storage[6] = arg6;
+   storage[5] = arg5;
+   storage[4] = arg4;
+   storage[3] = arg3;
+   storage[2] = arg2;
+   storage[1] = arg1;
+   storage[0] = arg0;
+   return this;
+ }
+
+ /// Sets the entire matrix to the column values.
+ Matrix3 setColumns(Vector3 arg0, Vector3 arg1, Vector3 arg2) {
+   storage[0] = arg0.storage[0];
+   storage[1] = arg0.storage[1];
+   storage[2] = arg0.storage[2];
+   storage[3] = arg1.storage[0];
+   storage[4] = arg1.storage[1];
+   storage[5] = arg1.storage[2];
+   storage[6] = arg2.storage[0];
+   storage[7] = arg2.storage[1];
+   storage[8] = arg2.storage[2];
+   return this;
+ }
+
+ /// Sets the entire matrix to the matrix in [arg].
+ Matrix3 setFrom(Matrix3 arg) {
+   storage[8] = arg.storage[8];
+   storage[7] = arg.storage[7];
+   storage[6] = arg.storage[6];
+   storage[5] = arg.storage[5];
+   storage[4] = arg.storage[4];
+   storage[3] = arg.storage[3];
+   storage[2] = arg.storage[2];
+   storage[1] = arg.storage[1];
+   storage[0] = arg.storage[0];
+   return this;
+ }
+
+ /// Set the diagonal of the matrix.
+ Matrix3 splatDiagonal(double arg) {
+   storage[0] = arg;
+   storage[4] = arg;
+   storage[8] = arg;
+   return this;
+ }
+
+ /// Set the diagonal of the matrix.
+ Matrix3 setDiagonal(Vector3 arg) {
+   storage[0] = arg.storage[0];
+   storage[4] = arg.storage[1];
+   storage[8] = arg.storage[2];
+   return this;
+ }
+
+ /// Sets the upper 2x2 of the matrix to be [arg].
+ Matrix3 setUpper2x2(Matrix2 arg) {
+   storage[0] = storage[0];
+   storage[1] = storage[1];
+   storage[3] = storage[2];
+   storage[4] = storage[3];
+   return this;
+ }
+
+ /// Returns a printable string
+ String toString() {
+   String s = '';
+   s = '$s[0] ${getRow(0)}\n';
+   s = '$s[1] ${getRow(1)}\n';
+   s = '$s[2] ${getRow(2)}\n';
+   return s;
+ }
+ /// Dimension of the matrix.
+ int get dimension =&gt; 3;
+
+ double operator[](int i) =&gt; storage[i];
+
+ void operator[]=(int i, double v) { storage[i] = v; }
+
+ /// Returns row 0
+ Vector3 get row0 =&gt; getRow(0);
+
+ /// Returns row 1
+ Vector3 get row1 =&gt; getRow(1);
+
+ /// Returns row 2
+ Vector3 get row2 =&gt; getRow(2);
+
+ /// Sets row 0 to [arg]
+ set row0(Vector3 arg) =&gt; setRow(0, arg);
+
+ /// Sets row 1 to [arg]
+ set row1(Vector3 arg) =&gt; setRow(1, arg);
+
+ /// Sets row 2 to [arg]
+ set row2(Vector3 arg) =&gt; setRow(2, arg);
+
+ /// Assigns the [row] of to [arg].
+ void setRow(int row, Vector3 arg) {
+   storage[index(row, 0)] = arg.storage[0];
+   storage[index(row, 1)] = arg.storage[1];
+   storage[index(row, 2)] = arg.storage[2];
+ }
+
+ /// Gets the [row] of the matrix
+ Vector3 getRow(int row) {
+   Vector3 r = new Vector3.zero();
+   r.storage[0] = storage[index(row, 0)];
+   r.storage[1] = storage[index(row, 1)];
+   r.storage[2] = storage[index(row, 2)];
+   return r;
+ }
+
+ /// Assigns the [column] of the matrix [arg]
+ void setColumn(int column, Vector3 arg) {
+   int entry = column * 3;
+   storage[entry+2] = arg.storage[2];
+   storage[entry+1] = arg.storage[1];
+   storage[entry+0] = arg.storage[0];
+ }
+
+ /// Gets the [column] of the matrix
+ Vector3 getColumn(int column) {
+   Vector3 r = new Vector3.zero();
+   int entry = column * 3;
+   r.storage[2] = storage[entry+2];
+   r.storage[1] = storage[entry+1];
+   r.storage[0] = storage[entry+0];
+   return r;
+ }
+
+ /// Clone of [this].
+ Matrix3 clone() {
+   return new Matrix3.copy(this);
+ }
+
+ /// Copy [this] into [arg].
+ Matrix3 copyInto(Matrix3 arg) {
+   arg.storage[0] = storage[0];
+   arg.storage[1] = storage[1];
+   arg.storage[2] = storage[2];
+   arg.storage[3] = storage[3];
+   arg.storage[4] = storage[4];
+   arg.storage[5] = storage[5];
+   arg.storage[6] = storage[6];
+   arg.storage[7] = storage[7];
+   arg.storage[8] = storage[8];
+   return arg;
+ }
+
+ // TODO: Clean up functions below here.
+
+ Matrix3 _mul_scale(double arg) {
+   Matrix3 r = new Matrix3.zero();
+   r.storage[8] = storage[8] * arg;
+   r.storage[7] = storage[7] * arg;
+   r.storage[6] = storage[6] * arg;
+   r.storage[5] = storage[5] * arg;
+   r.storage[4] = storage[4] * arg;
+   r.storage[3] = storage[3] * arg;
+   r.storage[2] = storage[2] * arg;
+   r.storage[1] = storage[1] * arg;
+   r.storage[0] = storage[0] * arg;
+   return r;
+ }
+
+ Matrix3 _mul_matrix(Matrix3 arg) {
+   var r = new Matrix3.zero();
+   r.storage[0] = (storage[0] * arg.storage[0]) +
+                  (storage[3] * arg.storage[1]) +
+                  (storage[6] * arg.storage[2]);
+   r.storage[3] = (storage[0] * arg.storage[3]) +
+                  (storage[3] * arg.storage[4]) +
+                  (storage[6] * arg.storage[5]);
+   r.storage[6] = (storage[0] * arg.storage[6]) +
+                  (storage[3] * arg.storage[7]) +
+                  (storage[6] * arg.storage[8]);
+   r.storage[1] = (storage[1] * arg.storage[0]) +
+                  (storage[4] * arg.storage[1]) +
+                  (storage[7] * arg.storage[2]);
+   r.storage[4] = (storage[1] * arg.storage[3]) +
+                  (storage[4] * arg.storage[4]) +
+                  (storage[7] * arg.storage[5]);
+   r.storage[7] = (storage[1] * arg.storage[6]) +
+                  (storage[4] * arg.storage[7]) +
+                  (storage[7] * arg.storage[8]);
+   r.storage[2] = (storage[2] * arg.storage[0]) +
+                  (storage[5] * arg.storage[1]) +
+                  (storage[8] * arg.storage[2]);
+   r.storage[5] = (storage[2] * arg.storage[3]) +
+                  (storage[5] * arg.storage[4]) +
+                  (storage[8] * arg.storage[5]);
+   r.storage[8] = (storage[2] * arg.storage[6]) +
+                  (storage[5] * arg.storage[7]) +
+                  (storage[8] * arg.storage[8]);
+   return r;
+ }
+
+ Vector3 _mul_vector(Vector3 arg) {
+   Vector3 r = new Vector3.zero();
+   r.storage[2] = (storage[2] * arg.storage[0]) +
+                  (storage[5] * arg.storage[1]) +
+                  (storage[8] * arg.storage[2]);
+   r.storage[1] = (storage[1] * arg.storage[0]) +
+                  (storage[4] * arg.storage[1]) +
+                  (storage[7] * arg.storage[2]);
+   r.storage[0] = (storage[0] * arg.storage[0]) +
+                  (storage[3] * arg.storage[1]) +
+                  (storage[6] * arg.storage[2]);
+   return r;
+ }
+ /// Returns a new vector or matrix by multiplying [this] with [arg].
+ dynamic operator*(dynamic arg) {
+   if (arg is double) {
+     return _mul_scale(arg);
+   }
+   if (arg is Vector3) {
+     return _mul_vector(arg);
+   }
+   if (3 == arg.dimension) {
+     return _mul_matrix(arg);
+   }
+   throw new ArgumentError(arg);
+ }
+
+ /// Returns new matrix after component wise [this] + [arg]
+ Matrix3 operator+(Matrix3 arg) {
+   Matrix3 r = new Matrix3.zero();
+   r.storage[0] = storage[0] + arg.storage[0];
+   r.storage[1] = storage[1] + arg.storage[1];
+   r.storage[2] = storage[2] + arg.storage[2];
+   r.storage[3] = storage[3] + arg.storage[3];
+   r.storage[4] = storage[4] + arg.storage[4];
+   r.storage[5] = storage[5] + arg.storage[5];
+   r.storage[6] = storage[6] + arg.storage[6];
+   r.storage[7] = storage[7] + arg.storage[7];
+   r.storage[8] = storage[8] + arg.storage[8];
+   return r;
+ }
+
+ /// Returns new matrix after component wise [this] - [arg]
+ Matrix3 operator-(Matrix3 arg) {
+   Matrix3 r = new Matrix3.zero();
+   r.storage[0] = storage[0] - arg.storage[0];
+   r.storage[1] = storage[1] - arg.storage[1];
+   r.storage[2] = storage[2] - arg.storage[2];
+   r.storage[3] = storage[3] - arg.storage[3];
+   r.storage[4] = storage[4] - arg.storage[4];
+   r.storage[5] = storage[5] - arg.storage[5];
+   r.storage[6] = storage[6] - arg.storage[6];
+   r.storage[7] = storage[7] - arg.storage[7];
+   r.storage[8] = storage[8] - arg.storage[8];
+   return r;
+ }
+
+ /// Returns new matrix -this
+ Matrix3 operator-() {
+   Matrix3 r = new Matrix3.zero();
+   r[0] = -storage[0];
+   r[1] = -storage[1];
+   r[2] = -storage[2];
+   return r;
+ }
+
+ /// Zeros [this].
+ Matrix3 setZero() {
+   storage[0] = 0.0;
+   storage[1] = 0.0;
+   storage[2] = 0.0;
+   storage[3] = 0.0;
+   storage[4] = 0.0;
+   storage[5] = 0.0;
+   storage[6] = 0.0;
+   storage[7] = 0.0;
+   storage[8] = 0.0;
+   return this;
+ }
+
+ /// Makes [this] into the identity matrix.
+ Matrix3 setIdentity() {
+   storage[0] = 1.0;
+   storage[1] = 0.0;
+   storage[2] = 0.0;
+   storage[3] = 0.0;
+   storage[4] = 1.0;
+   storage[5] = 0.0;
+   storage[6] = 0.0;
+   storage[7] = 0.0;
+   storage[8] = 1.0;
+   return this;
+ }
+
+ /// Returns the tranpose of this.
+ Matrix3 transposed() {
+   Matrix3 r = new Matrix3.zero();
+   r.storage[0] = storage[0];
+   r.storage[1] = storage[3];
+   r.storage[2] = storage[6];
+   r.storage[3] = storage[1];
+   r.storage[4] = storage[4];
+   r.storage[5] = storage[7];
+   r.storage[6] = storage[2];
+   r.storage[7] = storage[5];
+   r.storage[8] = storage[8];
+   return r;
+ }
+
+ Matrix3 transpose() {
+   double temp;
+   temp = storage[3];
+   storage[3] = storage[1];
+   storage[1] = temp;
+   temp = storage[6];
+   storage[6] = storage[2];
+   storage[2] = temp;
+   temp = storage[7];
+   storage[7] = storage[5];
+   storage[5] = temp;
+   return this;
+ }
+
+ /// Returns the component wise absolute value of this.
+ Matrix3 absolute() {
+   Matrix3 r = new Matrix3.zero();
+   r.storage[0] = storage[0].abs();
+   r.storage[1] = storage[1].abs();
+   r.storage[2] = storage[2].abs();
+   r.storage[3] = storage[3].abs();
+   r.storage[4] = storage[4].abs();
+   r.storage[5] = storage[5].abs();
+   r.storage[6] = storage[6].abs();
+   r.storage[7] = storage[7].abs();
+   r.storage[8] = storage[8].abs();
+   return r;
+ }
+
+ /// Returns the determinant of this matrix.
+ double determinant() {
+   double x = storage[0] *
+              ((storage[4] * storage[8]) - (storage[5] * storage[7]));
+   double y = storage[1] *
+              ((storage[3] * storage[8]) - (storage[5] * storage[6]));
+   double z = storage[2] *
+              ((storage[3] * storage[7]) - (storage[4] * storage[6]));
+   return x - y + z;
+ }
+
+ /// Returns the dot product of row [i] and [v].
+ double dotRow(int i, Vector3 v) {
+   return storage[i] * v.storage[0]
+        + storage[3+i] * v.storage[1]
+        + storage[6+i] * v.storage[2];
+ }
+
+ /// Returns the dot product of column [j] and [v].
+ double dotColumn(int j, Vector3 v) {
+   return storage[j*3] * v.storage[0]
+        + storage[j*3+1] * v.storage[1]
+        + storage[j*3+2] * v.storage[2];
+ }
+
+ /// Returns the trace of the matrix. The trace of a matrix is the sum of
+ /// the diagonal entries.
+ double trace() {
+   double t = 0.0;
+   t += storage[0];
+   t += storage[4];
+   t += storage[8];
+   return t;
+ }
+
+ /// Returns infinity norm of the matrix. Used for numerical analysis.
+ double infinityNorm() {
+   double norm = 0.0;
+   {
+     double row_norm = 0.0;
+     row_norm += storage[0].abs();
+     row_norm += storage[1].abs();
+     row_norm += storage[2].abs();
+     norm = row_norm &gt; norm ? row_norm : norm;
+   }
+   {
+     double row_norm = 0.0;
+     row_norm += storage[3].abs();
+     row_norm += storage[4].abs();
+     row_norm += storage[5].abs();
+     norm = row_norm &gt; norm ? row_norm : norm;
+   }
+   {
+     double row_norm = 0.0;
+     row_norm += storage[6].abs();
+     row_norm += storage[7].abs();
+     row_norm += storage[8].abs();
+     norm = row_norm &gt; norm ? row_norm : norm;
+   }
+   return norm;
+ }
+
+ /// Returns relative error between [this] and [correct]
+ double relativeError(Matrix3 correct) {
+   Matrix3 diff = correct - this;
+   double correct_norm = correct.infinityNorm();
+   double diff_norm = diff.infinityNorm();
+   return diff_norm/correct_norm;
+ }
+
+ /// Returns absolute error between [this] and [correct]
+ double absoluteError(Matrix3 correct) {
+   double this_norm = infinityNorm();
+   double correct_norm = correct.infinityNorm();
+   double diff_norm = (this_norm - correct_norm).abs();
+   return diff_norm;
+ }
+
+ /// Invert the matrix. Returns the determinant.
+ double invert() {
+   double det = determinant();
+   if (det == 0.0) {
+     return 0.0;
+   }
+   double invDet = 1.0 / det;
+   double ix = invDet * (storage[4] * storage[8] - storage[5] * storage[7]);
+   double iy = invDet * (storage[2] * storage[7] - storage[1] * storage[8]);
+   double iz = invDet * (storage[1] * storage[5] - storage[2] * storage[4]);
+   double jx = invDet * (storage[5] * storage[6] - storage[3] * storage[8]);
+   double jy = invDet * (storage[0] * storage[8] - storage[2] * storage[6]);
+   double jz = invDet * (storage[2] * storage[3] - storage[0] * storage[5]);
+   double kx = invDet * (storage[3] * storage[7] - storage[4] * storage[6]);
+   double ky = invDet * (storage[1] * storage[6] - storage[0] * storage[7]);
+   double kz = invDet * (storage[0] * storage[4] - storage[1] * storage[3]);
+   storage[0] = ix;
+   storage[1] = iy;
+   storage[2] = iz;
+   storage[3] = jx;
+   storage[4] = jy;
+   storage[5] = jz;
+   storage[6] = kx;
+   storage[7] = ky;
+   storage[8] = kz;
+   return det;
+ }
+
+ /// Set this matrix to be the inverse of [arg]
+ double copyInverse(Matrix3 arg) {
+   double det = arg.determinant();
+   if (det == 0.0) {
+     setFrom(arg);
+     return 0.0;
+   }
+   double invDet = 1.0 / det;
+   double ix = invDet * (arg.storage[4] * arg.storage[8]
+                       - arg.storage[5] * arg.storage[7]);
+   double iy = invDet * (arg.storage[2] * arg.storage[7]
+                       - arg.storage[1] * arg.storage[8]);
+   double iz = invDet * (arg.storage[1] * arg.storage[5]
+                       - arg.storage[2] * arg.storage[4]);
+   double jx = invDet * (arg.storage[5] * arg.storage[6]
+                       - arg.storage[3] * arg.storage[8]);
+   double jy = invDet * (arg.storage[0] * arg.storage[8]
+                       - arg.storage[2] * arg.storage[6]);
+   double jz = invDet * (arg.storage[2] * arg.storage[3]
+                       - arg.storage[0] * arg.storage[5]);
+   double kx = invDet * (arg.storage[3] * arg.storage[7]
+                       - arg.storage[4] * arg.storage[6]);
+   double ky = invDet * (arg.storage[1] * arg.storage[6]
+                       - arg.storage[0] * arg.storage[7]);
+   double kz = invDet * (arg.storage[0] * arg.storage[4]
+                       - arg.storage[1] * arg.storage[3]);
+   storage[0] = ix;
+   storage[1] = iy;
+   storage[2] = iz;
+   storage[3] = jx;
+   storage[4] = jy;
+   storage[5] = jz;
+   storage[6] = kx;
+   storage[7] = ky;
+   storage[8] = kz;
+   return det;
+ }
+
+ /// Turns the matrix into a rotation of [radians] around X
+ void setRotationX(double radians) {
+   double c = Math.cos(radians);
+   double s = Math.sin(radians);
+   storage[0] = 1.0;
+   storage[1] = 0.0;
+   storage[2] = 0.0;
+   storage[3] = 0.0;
+   storage[4] = c;
+   storage[5] = s;
+   storage[6] = 0.0;
+   storage[7] = -s;
+   storage[8] = c;
+ }
+
+ /// Turns the matrix into a rotation of [radians] around Y
+ void setRotationY(double radians) {
+   double c = Math.cos(radians);
+   double s = Math.sin(radians);
+   storage[0] = c;
+   storage[1] = 0.0;
+   storage[2] = s;
+   storage[3] = 0.0;
+   storage[4] = 1.0;
+   storage[5] = 0.0;
+   storage[6] = -s;
+   storage[7] = 0.0;
+   storage[8] = c;
+ }
+
+ /// Turns the matrix into a rotation of [radians] around Z
+ void setRotationZ(double radians) {
+   double c = Math.cos(radians);
+   double s = Math.sin(radians);
+   storage[0] = c;
+   storage[1] = s;
+   storage[2] = 0.0;
+   storage[3] = -s;
+   storage[4] = c;
+   storage[5] = 0.0;
+   storage[6] = 0.0;
+   storage[7] = 0.0;
+   storage[8] = 1.0;
+ }
+
+ /// Converts into Adjugate matrix and scales by [scale]
+ Matrix3 scaleAdjoint(double scale) {
+   double m00 = storage[0];
+   double m01 = storage[3];
+   double m02 = storage[6];
+   double m10 = storage[1];
+   double m11 = storage[4];
+   double m12 = storage[7];
+   double m20 = storage[2];
+   double m21 = storage[5];
+   double m22 = storage[8];
+   storage[0] = (m11 * m22 - m12 * m21) * scale;
+   storage[1] = (m12 * m20 - m10 * m22) * scale;
+   storage[2] = (m10 * m21 - m11 * m20) * scale;
+   storage[3] = (m02 * m21 - m01 * m22) * scale;
+   storage[4] = (m00 * m22 - m02 * m20) * scale;
+   storage[5] = (m01 * m20 - m00 * m21) * scale;
+   storage[6] = (m01 * m12 - m02 * m11) * scale;
+   storage[7] = (m02 * m10 - m00 * m12) * scale;
+   storage[8] = (m00 * m11 - m01 * m10) * scale;
+   return this;
+ }
+
+ /// Rotates [arg] by the absolute rotation of [this]
+ /// Returns [arg].
+ /// Primarily used by AABB transformation code.
+ Vector3 absoluteRotate(Vector3 arg) {
+   double m00 = storage[0].abs();
+   double m01 = storage[3].abs();
+   double m02 = storage[6].abs();
+   double m10 = storage[1].abs();
+   double m11 = storage[4].abs();
+   double m12 = storage[7].abs();
+   double m20 = storage[2].abs();
+   double m21 = storage[5].abs();
+   double m22 = storage[8].abs();
+   double x = arg.x;
+   double y = arg.y;
+   double z = arg.z;
+   arg.x = x * m00 + y * m01 + z * m02;
+   arg.y = x * m10 + y * m11 + z * m12;
+   arg.z = x * m20 + y * m21 + z * m22;
+   return arg;
+ }
+
+ /// Rotates [arg] by the absolute rotation of [this]
+ /// Returns [arg].
+ /// Primarily used by AABB transformation code.
+ Vector2 absoluteRotate2(Vector2 arg) {
+   double m00 = storage[0].abs();
+   double m01 = storage[3].abs();
+   double m10 = storage[1].abs();
+   double m11 = storage[4].abs();
+   double x = arg.x;
+   double y = arg.y;
+   arg.x = x * m00 + y * m01;
+   arg.y = x * m10 + y * m11;
+   return arg;
+ }
+
+ /// Transforms [arg] with [this].
+ Vector2 transform2(Vector2 arg) {
+   double x_ =  (storage[0] * arg.storage[0]) + (storage[3] * arg.storage[1]) + storage[6];
+   double y_ =  (storage[1] * arg.storage[0]) + (storage[4] * arg.storage[1]) + storage[7];
+   arg.x = x_;
+   arg.y = y_;
+   return arg;
+ }
+
+ Matrix3 add(Matrix3 o) {
+   storage[0] = storage[0] + o.storage[0];
+   storage[1] = storage[1] + o.storage[1];
+   storage[2] = storage[2] + o.storage[2];
+   storage[3] = storage[3] + o.storage[3];
+   storage[4] = storage[4] + o.storage[4];
+   storage[5] = storage[5] + o.storage[5];
+   storage[6] = storage[6] + o.storage[6];
+   storage[7] = storage[7] + o.storage[7];
+   storage[8] = storage[8] + o.storage[8];
+   return this;
+ }
+
+ Matrix3 sub(Matrix3 o) {
+   storage[0] = storage[0] - o.storage[0];
+   storage[1] = storage[1] - o.storage[1];
+   storage[2] = storage[2] - o.storage[2];
+   storage[3] = storage[3] - o.storage[3];
+   storage[4] = storage[4] - o.storage[4];
+   storage[5] = storage[5] - o.storage[5];
+   storage[6] = storage[6] - o.storage[6];
+   storage[7] = storage[7] - o.storage[7];
+   storage[8] = storage[8] - o.storage[8];
+   return this;
+ }
+
+ Matrix3 negate() {
+   storage[0] = -storage[0];
+   storage[1] = -storage[1];
+   storage[2] = -storage[2];
+   storage[3] = -storage[3];
+   storage[4] = -storage[4];
+   storage[5] = -storage[5];
+   storage[6] = -storage[6];
+   storage[7] = -storage[7];
+   storage[8] = -storage[8];
+   return this;
+ }
+
+ Matrix3 multiply(Matrix3 arg) {
+   final double m00 = storage[0];
+   final double m01 = storage[3];
+   final double m02 = storage[6];
+   final double m10 = storage[1];
+   final double m11 = storage[4];
+   final double m12 = storage[7];
+   final double m20 = storage[2];
+   final double m21 = storage[5];
+   final double m22 = storage[8];
+   final double n00 = arg.storage[0];
+   final double n01 = arg.storage[3];
+   final double n02 = arg.storage[6];
+   final double n10 = arg.storage[1];
+   final double n11 = arg.storage[4];
+   final double n12 = arg.storage[7];
+   final double n20 = arg.storage[2];
+   final double n21 = arg.storage[5];
+   final double n22 = arg.storage[8];
+   storage[0] =  (m00 * n00) + (m01 * n10) + (m02 * n20);
+   storage[3] =  (m00 * n01) + (m01 * n11) + (m02 * n21);
+   storage[6] =  (m00 * n02) + (m01 * n12) + (m02 * n22);
+   storage[1] =  (m10 * n00) + (m11 * n10) + (m12 * n20);
+   storage[4] =  (m10 * n01) + (m11 * n11) + (m12 * n21);
+   storage[7] =  (m10 * n02) + (m11 * n12) + (m12 * n22);
+   storage[2] =  (m20 * n00) + (m21 * n10) + (m22 * n20);
+   storage[5] =  (m20 * n01) + (m21 * n11) + (m22 * n21);
+   storage[8] =  (m20 * n02) + (m21 * n12) + (m22 * n22);
+   return this;
+ }
+
+ Matrix3 transposeMultiply(Matrix3 arg) {
+   double m00 = storage[0];
+   double m01 = storage[1];
+   double m02 = storage[2];
+   double m10 = storage[3];
+   double m11 = storage[4];
+   double m12 = storage[5];
+   double m20 = storage[6];
+   double m21 = storage[7];
+   double m22 = storage[8];
+   storage[0] = (m00 * arg.storage[0]) + (m01 * arg.storage[1]) +
+                (m02 * arg.storage[2]);
+   storage[3] = (m00 * arg.storage[3]) + (m01 * arg.storage[4]) +
+                (m02 * arg.storage[5]);
+   storage[6] = (m00 * arg.storage[6]) + (m01 * arg.storage[7]) +
+                (m02 * arg.storage[8]);
+   storage[1] = (m10 * arg.storage[0]) + (m11 * arg.storage[1]) +
+                (m12 * arg.storage[2]);
+   storage[4] = (m10 * arg.storage[3]) + (m11 * arg.storage[4]) +
+                (m12 * arg.storage[5]);
+   storage[7] = (m10 * arg.storage[6]) + (m11 * arg.storage[7]) +
+                (m12 * arg.storage[8]);
+   storage[2] = (m20 * arg.storage[0]) + (m21 * arg.storage[1]) +
+                (m22 * arg.storage[2]);
+   storage[5] = (m20 * arg.storage[3]) + (m21 * arg.storage[4]) +
+                (m22 * arg.storage[5]);
+   storage[8] = (m20 * arg.storage[6]) + (m21 * arg.storage[7]) +
+                (m22 * arg.storage[8]);
+   return this;
+ }
+
+ Matrix3 multiplyTranspose(Matrix3 arg) {
+   double m00 = storage[0];
+   double m01 = storage[3];
+   double m02 = storage[6];
+   double m10 = storage[1];
+   double m11 = storage[4];
+   double m12 = storage[7];
+   double m20 = storage[2];
+   double m21 = storage[5];
+   double m22 = storage[8];
+   storage[0] = (m00 * arg.storage[0]) + (m01 * arg.storage[3]) +
+                (m02 * arg.storage[6]);
+   storage[3] = (m00 * arg.storage[1]) + (m01 * arg.storage[4]) +
+                (m02 * arg.storage[7]);
+   storage[6] = (m00 * arg.storage[2]) + (m01 * arg.storage[5]) +
+                (m02 * arg.storage[8]);
+   storage[1] = (m10 * arg.storage[0]) + (m11 * arg.storage[3]) +
+                (m12 * arg.storage[6]);
+   storage[4] = (m10 * arg.storage[1]) + (m11 * arg.storage[4]) +
+                (m12 * arg.storage[7]);
+   storage[7] = (m10 * arg.storage[2]) + (m11 * arg.storage[5]) +
+                (m12 * arg.storage[8]);
+   storage[2] = (m20 * arg.storage[0]) + (m21 * arg.storage[3]) +
+                (m22 * arg.storage[6]);
+   storage[5] = (m20 * arg.storage[1]) + (m21 * arg.storage[4]) +
+                (m22 * arg.storage[7]);
+   storage[8] = (m20 * arg.storage[2]) + (m21 * arg.storage[5]) +
+                (m22 * arg.storage[8]);
+   return this;
+ }
+
+ Vector3 transform(Vector3 arg) {
+   double x_ = (storage[0] * arg.storage[0]) +
+               (storage[3] * arg.storage[1]) +
+               (storage[6] * arg.storage[2]);
+   double y_ = (storage[1] * arg.storage[0]) +
+               (storage[4] * arg.storage[1]) +
+               (storage[7] * arg.storage[2]);
+   double z_ = (storage[2] * arg.storage[0]) +
+               (storage[5] * arg.storage[1]) +
+               (storage[8] * arg.storage[2]);
+   arg.x = x_;
+   arg.y = y_;
+   arg.z = z_;
+   return arg;
+ }
+ Vector3 transformed(Vector3 arg, [Vector3 out=null]) {
+   if (out == null) {
+     out = new Vector3.copy(arg);
+   } else {
+     out.setFrom(arg);
+   }
+   return transform(out);
+ }
+
+ /// Copies [this] into [array] starting at [offset].
+ void copyIntoArray(List&lt;num&gt; array, [int offset=0]) {
+   int i = offset;
+   array[i+8] = storage[8];
+   array[i+7] = storage[7];
+   array[i+6] = storage[6];
+   array[i+5] = storage[5];
+   array[i+4] = storage[4];
+   array[i+3] = storage[3];
+   array[i+2] = storage[2];
+   array[i+1] = storage[1];
+   array[i+0] = storage[0];
+ }
+
+ /// Copies elements from [array] into [this] starting at [offset].
+ void copyFromArray(List&lt;double&gt; array, [int offset=0]) {
+   int i = offset;
+   storage[8] = array[i+8];
+   storage[7] = array[i+7];
+   storage[6] = array[i+6];
+   storage[5] = array[i+5];
+   storage[4] = array[i+4];
+   storage[3] = array[i+3];
+   storage[2] = array[i+2];
+   storage[1] = array[i+1];
+   storage[0] = array[i+0];
+ }
+
+ Vector3 get right {
+   double x = storage[0];
+   double y = storage[1];
+   double z = storage[2];
+   return new Vector3(x, y, z);
+ }
+
+ Vector3 get up {
+   double x = storage[3];
+   double y = storage[4];
+   double z = storage[5];
+   return new Vector3(x, y, z);
+ }
+
+ Vector3 get forward {
+   double x = storage[6];
+   double y = storage[7];
+   double z = storage[8];
+   return new Vector3(x, y, z);
+ }
+}
+</pre>
+</div>
+<div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="solve2">
+<button class="show-code">Code</button>
+void <strong>solve2</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> A, <a href="../vector_math/Vector2.html">Vector2</a> x, <a href="../vector_math/Vector2.html">Vector2</a> b) <a class="anchor-link" href="#solve2"
+              title="Permalink to Matrix3.solve2">#</a></h4>
+<div class="doc">
+<p>Solve 
+<span class="param">A</span> * 
+<span class="param">x</span> = 
+<span class="param">b</span>.</p>
+<pre class="source">
+static void solve2(Matrix3 A, Vector2 x, Vector2 b) {
+ final double a11 = A.entry(0,0);
+ final double a12 = A.entry(0,1);
+ final double a21 = A.entry(1,0);
+ final double a22 = A.entry(1,1);
+ final double bx = b.x - A.storage[6];
+ final double by = b.y - A.storage[7];
+ double det = a11 * a22 - a12 * a21;
+
+ if (det != 0.0){
+   det = 1.0 / det;
+ }
+
+ x.x = det * (a22 * bx - a12 * by);
+ x.y = det * (a11 * by - a21 * bx);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="solve">
+<button class="show-code">Code</button>
+void <strong>solve</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> A, <a href="../vector_math/Vector3.html">Vector3</a> x, <a href="../vector_math/Vector3.html">Vector3</a> b) <a class="anchor-link" href="#solve"
+              title="Permalink to Matrix3.solve">#</a></h4>
+<div class="doc">
+<p>Solve 
+<span class="param">A</span> * 
+<span class="param">x</span> = 
+<span class="param">b</span>.</p>
+<pre class="source">
+static void solve(Matrix3 A, Vector3 x, Vector3 b) {
+ final double A0x = A.entry(0, 0);
+ final double A0y = A.entry(1, 0);
+ final double A0z = A.entry(2, 0);
+ final double A1x = A.entry(0, 1);
+ final double A1y = A.entry(1, 1);
+ final double A1z = A.entry(2, 1);
+ final double A2x = A.entry(0, 2);
+ final double A2y = A.entry(1, 2);
+ final double A2z = A.entry(2, 2);
+ double rx, ry, rz;
+ double det;
+
+ // Column1 cross Column 2
+ rx = A1y * A2z - A1z * A2y;
+ ry = A1z * A2x - A1x * A2z;
+ rz = A1x * A2y - A1y * A2x;
+
+ // A.getColumn(0).dot(x)
+ det = A0x * rx + A0y * ry + A0z * rz;
+ if (det != 0.0){
+   det = 1.0 / det;
+ }
+
+ // b dot [Column1 cross Column 2]
+ final double x_ = det * (b.x * rx + b.y * ry + b.z * rz);
+
+ // Column2 cross b
+ rx = -(A2y * b.z - A2z * b.y);
+ ry = -(A2z * b.x - A2x * b.z);
+ rz = -(A2x * b.y - A2y * b.x);
+ // Column0 dot -[Column2 cross b (Column3)]
+ final double y_ = det * (A0x * rx + A0y * ry + A0z * rz);
+
+ // b cross Column 1
+ rx = -(b.y * A1z - b.z * A1y);
+ ry = -(b.z * A1x - b.x * A1z);
+ rz = -(b.x * A1y - b.y * A1x);
+ // Column0 dot -[b cross Column 1]
+ final double z_ = det * (A0x * rx + A0y * ry + A0z * rz);
+
+ x.x = x_;
+ x.y = y_;
+ x.z = z_;
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="">
+<button class="show-code">Code</button>
+new <strong>Matrix3</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> arg0, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg1, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg2, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg3, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg4, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg5, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg6, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg7, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg8) <a class="anchor-link" href="#"
+              title="Permalink to Matrix3.Matrix3">#</a></h4>
+<div class="doc">
+<p>New matrix with specified values.</p>
+<pre class="source">
+Matrix3(double arg0, double arg1, double arg2,
+       double arg3, double arg4, double arg5,
+       double arg6, double arg7, double arg8) {
+ setValues(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="columns">
+<button class="show-code">Code</button>
+new <strong>Matrix3.columns</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg0, <a href="../vector_math/Vector3.html">Vector3</a> arg1, <a href="../vector_math/Vector3.html">Vector3</a> arg2) <a class="anchor-link" href="#columns"
+              title="Permalink to Matrix3.Matrix3.columns">#</a></h4>
+<div class="doc">
+<p>Constructs a new mat3 from columns.</p>
+<pre class="source">
+Matrix3.columns(Vector3 arg0, Vector3 arg1, Vector3 arg2) {
+ setColumns(arg0, arg1, arg2);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copy">
+<button class="show-code">Code</button>
+new <strong>Matrix3.copy</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> other) <a class="anchor-link" href="#copy"
+              title="Permalink to Matrix3.Matrix3.copy">#</a></h4>
+<div class="doc">
+<p>Copes values from 
+<span class="param">other</span>.</p>
+<pre class="source">
+Matrix3.copy(Matrix3 other) {
+ setFrom(other);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="identity">
+<button class="show-code">Code</button>
+new <strong>Matrix3.identity</strong>() <a class="anchor-link" href="#identity"
+              title="Permalink to Matrix3.Matrix3.identity">#</a></h4>
+<div class="doc">
+<p>Identity matrix.</p>
+<pre class="source">
+Matrix3.identity() {
+ setIdentity();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="outer">
+<button class="show-code">Code</button>
+new <strong>Matrix3.outer</strong>(<a href="../vector_math/Vector3.html">Vector3</a> u, <a href="../vector_math/Vector3.html">Vector3</a> v) <a class="anchor-link" href="#outer"
+              title="Permalink to Matrix3.Matrix3.outer">#</a></h4>
+<div class="doc">
+<p>Outer product of 
+<span class="param">u</span> and 
+<span class="param">v</span>.</p>
+<pre class="source">
+Matrix3.outer(Vector3 u, Vector3 v) {
+ storage[0] = u.storage[0] * v.storage[0];
+ storage[1] = u.storage[0] * v.storage[1];
+ storage[2] = u.storage[0] * v.storage[2];
+ storage[3] = u.storage[1] * v.storage[0];
+ storage[4] = u.storage[1] * v.storage[1];
+ storage[5] = u.storage[1] * v.storage[2];
+ storage[6] = u.storage[2] * v.storage[0];
+ storage[7] = u.storage[2] * v.storage[1];
+ storage[8] = u.storage[2] * v.storage[2];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotationX">
+<button class="show-code">Code</button>
+new <strong>Matrix3.rotationX</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians_) <a class="anchor-link" href="#rotationX"
+              title="Permalink to Matrix3.Matrix3.rotationX">#</a></h4>
+<div class="doc">
+<p>/ Rotation of 
+<span class="param">radians_</span> around X axis.</p>
+<pre class="source">
+Matrix3.rotationX(double radians_) {
+ setRotationX(radians_);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotationY">
+<button class="show-code">Code</button>
+new <strong>Matrix3.rotationY</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians_) <a class="anchor-link" href="#rotationY"
+              title="Permalink to Matrix3.Matrix3.rotationY">#</a></h4>
+<div class="doc">
+<p>/ Rotation of 
+<span class="param">radians_</span> around Y axis.</p>
+<pre class="source">
+Matrix3.rotationY(double radians_) {
+ setRotationY(radians_);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="rotationZ">
+<button class="show-code">Code</button>
+new <strong>Matrix3.rotationZ</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians_) <a class="anchor-link" href="#rotationZ"
+              title="Permalink to Matrix3.Matrix3.rotationZ">#</a></h4>
+<div class="doc">
+<p>/ Rotation of 
+<span class="param">radians_</span> around Z axis.</p>
+<pre class="source">
+Matrix3.rotationZ(double radians_) {
+ setRotationZ(radians_);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="zero">
+<button class="show-code">Code</button>
+new <strong>Matrix3.zero</strong>() <a class="anchor-link" href="#zero"
+              title="Permalink to Matrix3.Matrix3.zero">#</a></h4>
+<div class="doc">
+<p>Constructs a new <a class="crossref" href="../vector_math/Matrix3.html">Matrix3</a> filled with zeros.</p>
+<pre class="source">
+Matrix3.zero();
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Properties</h3>
+<div class="field"><h4 id="dimension">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>dimension</strong> <a class="anchor-link"
+            href="#dimension"
+            title="Permalink to Matrix3.dimension">#</a>
+        </h4>
+        <div class="doc">
+<p>Dimension of the matrix.</p>
+<pre class="source">
+int get dimension =&gt; 3;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="forward">
+<button class="show-code">Code</button>
+final <a href="../vector_math/Vector3.html">Vector3</a>         <strong>forward</strong> <a class="anchor-link"
+            href="#forward"
+            title="Permalink to Matrix3.forward">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Vector3 get forward {
+ double x = storage[6];
+ double y = storage[7];
+ double z = storage[8];
+ return new Vector3(x, y, z);
+}
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="right">
+<button class="show-code">Code</button>
+final <a href="../vector_math/Vector3.html">Vector3</a>         <strong>right</strong> <a class="anchor-link"
+            href="#right"
+            title="Permalink to Matrix3.right">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Vector3 get right {
+ double x = storage[0];
+ double y = storage[1];
+ double z = storage[2];
+ return new Vector3(x, y, z);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="row0">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>get row0</strong> <a class="anchor-link" href="#row0"
+              title="Permalink to Matrix3.get row0">#</a></h4>
+<div class="doc">
+<p>Returns row 0</p>
+<pre class="source">
+Vector3 get row0 =&gt; getRow(0);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="row0=">
+<button class="show-code">Code</button>
+dynamic <strong>set row0</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#row0="
+              title="Permalink to Matrix3.set row0">#</a></h4>
+<div class="doc">
+<p>Sets row 0 to 
+<span class="param">arg</span></p>
+<pre class="source">
+set row0(Vector3 arg) =&gt; setRow(0, arg);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="row1">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>get row1</strong> <a class="anchor-link" href="#row1"
+              title="Permalink to Matrix3.get row1">#</a></h4>
+<div class="doc">
+<p>Returns row 1</p>
+<pre class="source">
+Vector3 get row1 =&gt; getRow(1);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="row1=">
+<button class="show-code">Code</button>
+dynamic <strong>set row1</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#row1="
+              title="Permalink to Matrix3.set row1">#</a></h4>
+<div class="doc">
+<p>Sets row 1 to 
+<span class="param">arg</span></p>
+<pre class="source">
+set row1(Vector3 arg) =&gt; setRow(1, arg);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="row2">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>get row2</strong> <a class="anchor-link" href="#row2"
+              title="Permalink to Matrix3.get row2">#</a></h4>
+<div class="doc">
+<p>Returns row 2</p>
+<pre class="source">
+Vector3 get row2 =&gt; getRow(2);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="row2=">
+<button class="show-code">Code</button>
+dynamic <strong>set row2</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#row2="
+              title="Permalink to Matrix3.set row2">#</a></h4>
+<div class="doc">
+<p>Sets row 2 to 
+<span class="param">arg</span></p>
+<pre class="source">
+set row2(Vector3 arg) =&gt; setRow(2, arg);
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="storage">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_typed_data/Float32List.html">Float32List</a>         <strong>storage</strong> <a class="anchor-link"
+            href="#storage"
+            title="Permalink to Matrix3.storage">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Float32List storage = new Float32List(9)
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="up">
+<button class="show-code">Code</button>
+final <a href="../vector_math/Vector3.html">Vector3</a>         <strong>up</strong> <a class="anchor-link"
+            href="#up"
+            title="Permalink to Matrix3.up">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+Vector3 get up {
+ double x = storage[3];
+ double y = storage[4];
+ double z = storage[5];
+ return new Vector3(x, y, z);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> i) <a class="anchor-link" href="#[]"
+              title="Permalink to Matrix3.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+double operator[](int i) =&gt; storage[i];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="[]=">
+<button class="show-code">Code</button>
+void <strong>operator []=</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> i, <a href="http://api.dartlang.org/dart_core/double.html">double</a> v) <a class="anchor-link" href="#[]="
+              title="Permalink to Matrix3.operator []=">#</a></h4>
+<div class="doc">
+<pre class="source">
+void operator[]=(int i, double v) { storage[i] = v; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="+">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>operator +</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#+"
+              title="Permalink to Matrix3.operator +">#</a></h4>
+<div class="doc">
+<p>Returns new matrix after component wise <code>this</code> + 
+<span class="param">arg</span></p>
+<pre class="source">
+Matrix3 operator+(Matrix3 arg) {
+ Matrix3 r = new Matrix3.zero();
+ r.storage[0] = storage[0] + arg.storage[0];
+ r.storage[1] = storage[1] + arg.storage[1];
+ r.storage[2] = storage[2] + arg.storage[2];
+ r.storage[3] = storage[3] + arg.storage[3];
+ r.storage[4] = storage[4] + arg.storage[4];
+ r.storage[5] = storage[5] + arg.storage[5];
+ r.storage[6] = storage[6] + arg.storage[6];
+ r.storage[7] = storage[7] + arg.storage[7];
+ r.storage[8] = storage[8] + arg.storage[8];
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="unary-">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>operator -</strong>() <a class="anchor-link" href="#unary-"
+              title="Permalink to Matrix3.operator -">#</a></h4>
+<div class="doc">
+<p>Returns new matrix -this</p>
+<pre class="source">
+Matrix3 operator-() {
+ Matrix3 r = new Matrix3.zero();
+ r[0] = -storage[0];
+ r[1] = -storage[1];
+ r[2] = -storage[2];
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="-">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>operator -</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#-"
+              title="Permalink to Matrix3.operator -">#</a></h4>
+<div class="doc">
+<p>Returns new matrix after component wise <code>this</code> - 
+<span class="param">arg</span></p>
+<pre class="source">
+Matrix3 operator-(Matrix3 arg) {
+ Matrix3 r = new Matrix3.zero();
+ r.storage[0] = storage[0] - arg.storage[0];
+ r.storage[1] = storage[1] - arg.storage[1];
+ r.storage[2] = storage[2] - arg.storage[2];
+ r.storage[3] = storage[3] - arg.storage[3];
+ r.storage[4] = storage[4] - arg.storage[4];
+ r.storage[5] = storage[5] - arg.storage[5];
+ r.storage[6] = storage[6] - arg.storage[6];
+ r.storage[7] = storage[7] - arg.storage[7];
+ r.storage[8] = storage[8] - arg.storage[8];
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="*">
+<button class="show-code">Code</button>
+dynamic <strong>operator *</strong>(arg) <a class="anchor-link" href="#*"
+              title="Permalink to Matrix3.operator *">#</a></h4>
+<div class="doc">
+<p>Returns a new vector or matrix by multiplying <code>this</code> with 
+<span class="param">arg</span>.</p>
+<pre class="source">
+dynamic operator*(dynamic arg) {
+ if (arg is double) {
+   return _mul_scale(arg);
+ }
+ if (arg is Vector3) {
+   return _mul_vector(arg);
+ }
+ if (3 == arg.dimension) {
+   return _mul_matrix(arg);
+ }
+ throw new ArgumentError(arg);
+}
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="absolute">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>absolute</strong>() <a class="anchor-link" href="#absolute"
+              title="Permalink to Matrix3.absolute">#</a></h4>
+<div class="doc">
+<p>Returns the component wise absolute value of this.</p>
+<pre class="source">
+Matrix3 absolute() {
+ Matrix3 r = new Matrix3.zero();
+ r.storage[0] = storage[0].abs();
+ r.storage[1] = storage[1].abs();
+ r.storage[2] = storage[2].abs();
+ r.storage[3] = storage[3].abs();
+ r.storage[4] = storage[4].abs();
+ r.storage[5] = storage[5].abs();
+ r.storage[6] = storage[6].abs();
+ r.storage[7] = storage[7].abs();
+ r.storage[8] = storage[8].abs();
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="absoluteError">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>absoluteError</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> correct) <a class="anchor-link" href="#absoluteError"
+              title="Permalink to Matrix3.absoluteError">#</a></h4>
+<div class="doc">
+<p>Returns absolute error between <code>this</code> and 
+<span class="param">correct</span></p>
+<pre class="source">
+double absoluteError(Matrix3 correct) {
+ double this_norm = infinityNorm();
+ double correct_norm = correct.infinityNorm();
+ double diff_norm = (this_norm - correct_norm).abs();
+ return diff_norm;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="absoluteRotate">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>absoluteRotate</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#absoluteRotate"
+              title="Permalink to Matrix3.absoluteRotate">#</a></h4>
+<div class="doc">
+<p>Rotates 
+<span class="param">arg</span> by the absolute rotation of <code>this</code>
+Returns 
+<span class="param">arg</span>.
+Primarily used by AABB transformation code.</p>
+<pre class="source">
+Vector3 absoluteRotate(Vector3 arg) {
+ double m00 = storage[0].abs();
+ double m01 = storage[3].abs();
+ double m02 = storage[6].abs();
+ double m10 = storage[1].abs();
+ double m11 = storage[4].abs();
+ double m12 = storage[7].abs();
+ double m20 = storage[2].abs();
+ double m21 = storage[5].abs();
+ double m22 = storage[8].abs();
+ double x = arg.x;
+ double y = arg.y;
+ double z = arg.z;
+ arg.x = x * m00 + y * m01 + z * m02;
+ arg.y = x * m10 + y * m11 + z * m12;
+ arg.z = x * m20 + y * m21 + z * m22;
+ return arg;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="absoluteRotate2">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector2.html">Vector2</a> <strong>absoluteRotate2</strong>(<a href="../vector_math/Vector2.html">Vector2</a> arg) <a class="anchor-link" href="#absoluteRotate2"
+              title="Permalink to Matrix3.absoluteRotate2">#</a></h4>
+<div class="doc">
+<p>Rotates 
+<span class="param">arg</span> by the absolute rotation of <code>this</code>
+Returns 
+<span class="param">arg</span>.
+Primarily used by AABB transformation code.</p>
+<pre class="source">
+Vector2 absoluteRotate2(Vector2 arg) {
+ double m00 = storage[0].abs();
+ double m01 = storage[3].abs();
+ double m10 = storage[1].abs();
+ double m11 = storage[4].abs();
+ double x = arg.x;
+ double y = arg.y;
+ arg.x = x * m00 + y * m01;
+ arg.y = x * m10 + y * m11;
+ return arg;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="add">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>add</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> o) <a class="anchor-link" href="#add"
+              title="Permalink to Matrix3.add">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 add(Matrix3 o) {
+ storage[0] = storage[0] + o.storage[0];
+ storage[1] = storage[1] + o.storage[1];
+ storage[2] = storage[2] + o.storage[2];
+ storage[3] = storage[3] + o.storage[3];
+ storage[4] = storage[4] + o.storage[4];
+ storage[5] = storage[5] + o.storage[5];
+ storage[6] = storage[6] + o.storage[6];
+ storage[7] = storage[7] + o.storage[7];
+ storage[8] = storage[8] + o.storage[8];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="clone">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>clone</strong>() <a class="anchor-link" href="#clone"
+              title="Permalink to Matrix3.clone">#</a></h4>
+<div class="doc">
+<p>Clone of <code>this</code>.</p>
+<pre class="source">
+Matrix3 clone() {
+ return new Matrix3.copy(this);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyFromArray">
+<button class="show-code">Code</button>
+void <strong>copyFromArray</strong>(<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="http://api.dartlang.org/dart_core/double.html">double</a>&gt; array, [<a href="http://api.dartlang.org/dart_core/int.html">int</a> offset = 0]) <a class="anchor-link" href="#copyFromArray"
+              title="Permalink to Matrix3.copyFromArray">#</a></h4>
+<div class="doc">
+<p>Copies elements from 
+<span class="param">array</span> into <code>this</code> starting at 
+<span class="param">offset</span>.</p>
+<pre class="source">
+void copyFromArray(List&lt;double&gt; array, [int offset=0]) {
+ int i = offset;
+ storage[8] = array[i+8];
+ storage[7] = array[i+7];
+ storage[6] = array[i+6];
+ storage[5] = array[i+5];
+ storage[4] = array[i+4];
+ storage[3] = array[i+3];
+ storage[2] = array[i+2];
+ storage[1] = array[i+1];
+ storage[0] = array[i+0];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyInto">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>copyInto</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#copyInto"
+              title="Permalink to Matrix3.copyInto">#</a></h4>
+<div class="doc">
+<p>Copy <code>this</code> into 
+<span class="param">arg</span>.</p>
+<pre class="source">
+Matrix3 copyInto(Matrix3 arg) {
+ arg.storage[0] = storage[0];
+ arg.storage[1] = storage[1];
+ arg.storage[2] = storage[2];
+ arg.storage[3] = storage[3];
+ arg.storage[4] = storage[4];
+ arg.storage[5] = storage[5];
+ arg.storage[6] = storage[6];
+ arg.storage[7] = storage[7];
+ arg.storage[8] = storage[8];
+ return arg;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyIntoArray">
+<button class="show-code">Code</button>
+void <strong>copyIntoArray</strong>(<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="http://api.dartlang.org/dart_core/num.html">num</a>&gt; array, [<a href="http://api.dartlang.org/dart_core/int.html">int</a> offset = 0]) <a class="anchor-link" href="#copyIntoArray"
+              title="Permalink to Matrix3.copyIntoArray">#</a></h4>
+<div class="doc">
+<p>Copies <code>this</code> into 
+<span class="param">array</span> starting at 
+<span class="param">offset</span>.</p>
+<pre class="source">
+void copyIntoArray(List&lt;num&gt; array, [int offset=0]) {
+ int i = offset;
+ array[i+8] = storage[8];
+ array[i+7] = storage[7];
+ array[i+6] = storage[6];
+ array[i+5] = storage[5];
+ array[i+4] = storage[4];
+ array[i+3] = storage[3];
+ array[i+2] = storage[2];
+ array[i+1] = storage[1];
+ array[i+0] = storage[0];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="copyInverse">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>copyInverse</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#copyInverse"
+              title="Permalink to Matrix3.copyInverse">#</a></h4>
+<div class="doc">
+<p>Set this matrix to be the inverse of 
+<span class="param">arg</span></p>
+<pre class="source">
+double copyInverse(Matrix3 arg) {
+ double det = arg.determinant();
+ if (det == 0.0) {
+   setFrom(arg);
+   return 0.0;
+ }
+ double invDet = 1.0 / det;
+ double ix = invDet * (arg.storage[4] * arg.storage[8]
+                     - arg.storage[5] * arg.storage[7]);
+ double iy = invDet * (arg.storage[2] * arg.storage[7]
+                     - arg.storage[1] * arg.storage[8]);
+ double iz = invDet * (arg.storage[1] * arg.storage[5]
+                     - arg.storage[2] * arg.storage[4]);
+ double jx = invDet * (arg.storage[5] * arg.storage[6]
+                     - arg.storage[3] * arg.storage[8]);
+ double jy = invDet * (arg.storage[0] * arg.storage[8]
+                     - arg.storage[2] * arg.storage[6]);
+ double jz = invDet * (arg.storage[2] * arg.storage[3]
+                     - arg.storage[0] * arg.storage[5]);
+ double kx = invDet * (arg.storage[3] * arg.storage[7]
+                     - arg.storage[4] * arg.storage[6]);
+ double ky = invDet * (arg.storage[1] * arg.storage[6]
+                     - arg.storage[0] * arg.storage[7]);
+ double kz = invDet * (arg.storage[0] * arg.storage[4]
+                     - arg.storage[1] * arg.storage[3]);
+ storage[0] = ix;
+ storage[1] = iy;
+ storage[2] = iz;
+ storage[3] = jx;
+ storage[4] = jy;
+ storage[5] = jz;
+ storage[6] = kx;
+ storage[7] = ky;
+ storage[8] = kz;
+ return det;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="determinant">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>determinant</strong>() <a class="anchor-link" href="#determinant"
+              title="Permalink to Matrix3.determinant">#</a></h4>
+<div class="doc">
+<p>Returns the determinant of this matrix.</p>
+<pre class="source">
+double determinant() {
+ double x = storage[0] *
+            ((storage[4] * storage[8]) - (storage[5] * storage[7]));
+ double y = storage[1] *
+            ((storage[3] * storage[8]) - (storage[5] * storage[6]));
+ double z = storage[2] *
+            ((storage[3] * storage[7]) - (storage[4] * storage[6]));
+ return x - y + z;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dotColumn">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>dotColumn</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> j, <a href="../vector_math/Vector3.html">Vector3</a> v) <a class="anchor-link" href="#dotColumn"
+              title="Permalink to Matrix3.dotColumn">#</a></h4>
+<div class="doc">
+<p>Returns the dot product of column 
+<span class="param">j</span> and 
+<span class="param">v</span>.</p>
+<pre class="source">
+double dotColumn(int j, Vector3 v) {
+ return storage[j*3] * v.storage[0]
+      + storage[j*3+1] * v.storage[1]
+      + storage[j*3+2] * v.storage[2];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="dotRow">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>dotRow</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> i, <a href="../vector_math/Vector3.html">Vector3</a> v) <a class="anchor-link" href="#dotRow"
+              title="Permalink to Matrix3.dotRow">#</a></h4>
+<div class="doc">
+<p>Returns the dot product of row 
+<span class="param">i</span> and 
+<span class="param">v</span>.</p>
+<pre class="source">
+double dotRow(int i, Vector3 v) {
+ return storage[i] * v.storage[0]
+      + storage[3+i] * v.storage[1]
+      + storage[6+i] * v.storage[2];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="entry">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>entry</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> row, <a href="http://api.dartlang.org/dart_core/int.html">int</a> col) <a class="anchor-link" href="#entry"
+              title="Permalink to Matrix3.entry">#</a></h4>
+<div class="doc">
+<p>Value at 
+<span class="param">row</span>, 
+<span class="param">col</span>.</p>
+<pre class="source">
+double entry(int row, int col) =&gt; storage[index(row, col)];
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getColumn">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>getColumn</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> column) <a class="anchor-link" href="#getColumn"
+              title="Permalink to Matrix3.getColumn">#</a></h4>
+<div class="doc">
+<p>Gets the 
+<span class="param">column</span> of the matrix</p>
+<pre class="source">
+Vector3 getColumn(int column) {
+ Vector3 r = new Vector3.zero();
+ int entry = column * 3;
+ r.storage[2] = storage[entry+2];
+ r.storage[1] = storage[entry+1];
+ r.storage[0] = storage[entry+0];
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getRow">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>getRow</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> row) <a class="anchor-link" href="#getRow"
+              title="Permalink to Matrix3.getRow">#</a></h4>
+<div class="doc">
+<p>Gets the 
+<span class="param">row</span> of the matrix</p>
+<pre class="source">
+Vector3 getRow(int row) {
+ Vector3 r = new Vector3.zero();
+ r.storage[0] = storage[index(row, 0)];
+ r.storage[1] = storage[index(row, 1)];
+ r.storage[2] = storage[index(row, 2)];
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="index">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>index</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> row, <a href="http://api.dartlang.org/dart_core/int.html">int</a> col) <a class="anchor-link" href="#index"
+              title="Permalink to Matrix3.index">#</a></h4>
+<div class="doc">
+<p>Return index in storage for 
+<span class="param">row</span>, 
+<span class="param">col</span> value.</p>
+<pre class="source">
+int index(int row, int col) =&gt; (col * 3) + row;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="infinityNorm">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>infinityNorm</strong>() <a class="anchor-link" href="#infinityNorm"
+              title="Permalink to Matrix3.infinityNorm">#</a></h4>
+<div class="doc">
+<p>Returns infinity norm of the matrix. Used for numerical analysis.</p>
+<pre class="source">
+double infinityNorm() {
+ double norm = 0.0;
+ {
+   double row_norm = 0.0;
+   row_norm += storage[0].abs();
+   row_norm += storage[1].abs();
+   row_norm += storage[2].abs();
+   norm = row_norm &gt; norm ? row_norm : norm;
+ }
+ {
+   double row_norm = 0.0;
+   row_norm += storage[3].abs();
+   row_norm += storage[4].abs();
+   row_norm += storage[5].abs();
+   norm = row_norm &gt; norm ? row_norm : norm;
+ }
+ {
+   double row_norm = 0.0;
+   row_norm += storage[6].abs();
+   row_norm += storage[7].abs();
+   row_norm += storage[8].abs();
+   norm = row_norm &gt; norm ? row_norm : norm;
+ }
+ return norm;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="invert">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>invert</strong>() <a class="anchor-link" href="#invert"
+              title="Permalink to Matrix3.invert">#</a></h4>
+<div class="doc">
+<p>Invert the matrix. Returns the determinant.</p>
+<pre class="source">
+double invert() {
+ double det = determinant();
+ if (det == 0.0) {
+   return 0.0;
+ }
+ double invDet = 1.0 / det;
+ double ix = invDet * (storage[4] * storage[8] - storage[5] * storage[7]);
+ double iy = invDet * (storage[2] * storage[7] - storage[1] * storage[8]);
+ double iz = invDet * (storage[1] * storage[5] - storage[2] * storage[4]);
+ double jx = invDet * (storage[5] * storage[6] - storage[3] * storage[8]);
+ double jy = invDet * (storage[0] * storage[8] - storage[2] * storage[6]);
+ double jz = invDet * (storage[2] * storage[3] - storage[0] * storage[5]);
+ double kx = invDet * (storage[3] * storage[7] - storage[4] * storage[6]);
+ double ky = invDet * (storage[1] * storage[6] - storage[0] * storage[7]);
+ double kz = invDet * (storage[0] * storage[4] - storage[1] * storage[3]);
+ storage[0] = ix;
+ storage[1] = iy;
+ storage[2] = iz;
+ storage[3] = jx;
+ storage[4] = jy;
+ storage[5] = jz;
+ storage[6] = kx;
+ storage[7] = ky;
+ storage[8] = kz;
+ return det;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="multiply">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>multiply</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#multiply"
+              title="Permalink to Matrix3.multiply">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 multiply(Matrix3 arg) {
+ final double m00 = storage[0];
+ final double m01 = storage[3];
+ final double m02 = storage[6];
+ final double m10 = storage[1];
+ final double m11 = storage[4];
+ final double m12 = storage[7];
+ final double m20 = storage[2];
+ final double m21 = storage[5];
+ final double m22 = storage[8];
+ final double n00 = arg.storage[0];
+ final double n01 = arg.storage[3];
+ final double n02 = arg.storage[6];
+ final double n10 = arg.storage[1];
+ final double n11 = arg.storage[4];
+ final double n12 = arg.storage[7];
+ final double n20 = arg.storage[2];
+ final double n21 = arg.storage[5];
+ final double n22 = arg.storage[8];
+ storage[0] =  (m00 * n00) + (m01 * n10) + (m02 * n20);
+ storage[3] =  (m00 * n01) + (m01 * n11) + (m02 * n21);
+ storage[6] =  (m00 * n02) + (m01 * n12) + (m02 * n22);
+ storage[1] =  (m10 * n00) + (m11 * n10) + (m12 * n20);
+ storage[4] =  (m10 * n01) + (m11 * n11) + (m12 * n21);
+ storage[7] =  (m10 * n02) + (m11 * n12) + (m12 * n22);
+ storage[2] =  (m20 * n00) + (m21 * n10) + (m22 * n20);
+ storage[5] =  (m20 * n01) + (m21 * n11) + (m22 * n21);
+ storage[8] =  (m20 * n02) + (m21 * n12) + (m22 * n22);
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="multiplyTranspose">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>multiplyTranspose</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#multiplyTranspose"
+              title="Permalink to Matrix3.multiplyTranspose">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 multiplyTranspose(Matrix3 arg) {
+ double m00 = storage[0];
+ double m01 = storage[3];
+ double m02 = storage[6];
+ double m10 = storage[1];
+ double m11 = storage[4];
+ double m12 = storage[7];
+ double m20 = storage[2];
+ double m21 = storage[5];
+ double m22 = storage[8];
+ storage[0] = (m00 * arg.storage[0]) + (m01 * arg.storage[3]) +
+              (m02 * arg.storage[6]);
+ storage[3] = (m00 * arg.storage[1]) + (m01 * arg.storage[4]) +
+              (m02 * arg.storage[7]);
+ storage[6] = (m00 * arg.storage[2]) + (m01 * arg.storage[5]) +
+              (m02 * arg.storage[8]);
+ storage[1] = (m10 * arg.storage[0]) + (m11 * arg.storage[3]) +
+              (m12 * arg.storage[6]);
+ storage[4] = (m10 * arg.storage[1]) + (m11 * arg.storage[4]) +
+              (m12 * arg.storage[7]);
+ storage[7] = (m10 * arg.storage[2]) + (m11 * arg.storage[5]) +
+              (m12 * arg.storage[8]);
+ storage[2] = (m20 * arg.storage[0]) + (m21 * arg.storage[3]) +
+              (m22 * arg.storage[6]);
+ storage[5] = (m20 * arg.storage[1]) + (m21 * arg.storage[4]) +
+              (m22 * arg.storage[7]);
+ storage[8] = (m20 * arg.storage[2]) + (m21 * arg.storage[5]) +
+              (m22 * arg.storage[8]);
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="negate">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>negate</strong>() <a class="anchor-link" href="#negate"
+              title="Permalink to Matrix3.negate">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 negate() {
+ storage[0] = -storage[0];
+ storage[1] = -storage[1];
+ storage[2] = -storage[2];
+ storage[3] = -storage[3];
+ storage[4] = -storage[4];
+ storage[5] = -storage[5];
+ storage[6] = -storage[6];
+ storage[7] = -storage[7];
+ storage[8] = -storage[8];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="relativeError">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>relativeError</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> correct) <a class="anchor-link" href="#relativeError"
+              title="Permalink to Matrix3.relativeError">#</a></h4>
+<div class="doc">
+<p>Returns relative error between <code>this</code> and 
+<span class="param">correct</span></p>
+<pre class="source">
+double relativeError(Matrix3 correct) {
+ Matrix3 diff = correct - this;
+ double correct_norm = correct.infinityNorm();
+ double diff_norm = diff.infinityNorm();
+ return diff_norm/correct_norm;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="scaleAdjoint">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>scaleAdjoint</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> scale) <a class="anchor-link" href="#scaleAdjoint"
+              title="Permalink to Matrix3.scaleAdjoint">#</a></h4>
+<div class="doc">
+<p>Converts into Adjugate matrix and scales by 
+<span class="param">scale</span></p>
+<pre class="source">
+Matrix3 scaleAdjoint(double scale) {
+ double m00 = storage[0];
+ double m01 = storage[3];
+ double m02 = storage[6];
+ double m10 = storage[1];
+ double m11 = storage[4];
+ double m12 = storage[7];
+ double m20 = storage[2];
+ double m21 = storage[5];
+ double m22 = storage[8];
+ storage[0] = (m11 * m22 - m12 * m21) * scale;
+ storage[1] = (m12 * m20 - m10 * m22) * scale;
+ storage[2] = (m10 * m21 - m11 * m20) * scale;
+ storage[3] = (m02 * m21 - m01 * m22) * scale;
+ storage[4] = (m00 * m22 - m02 * m20) * scale;
+ storage[5] = (m01 * m20 - m00 * m21) * scale;
+ storage[6] = (m01 * m12 - m02 * m11) * scale;
+ storage[7] = (m02 * m10 - m00 * m12) * scale;
+ storage[8] = (m00 * m11 - m01 * m10) * scale;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setColumn">
+<button class="show-code">Code</button>
+void <strong>setColumn</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> column, <a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#setColumn"
+              title="Permalink to Matrix3.setColumn">#</a></h4>
+<div class="doc">
+<p>Assigns the 
+<span class="param">column</span> of the matrix 
+<span class="param">arg</span></p>
+<pre class="source">
+void setColumn(int column, Vector3 arg) {
+ int entry = column * 3;
+ storage[entry+2] = arg.storage[2];
+ storage[entry+1] = arg.storage[1];
+ storage[entry+0] = arg.storage[0];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setColumns">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setColumns</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg0, <a href="../vector_math/Vector3.html">Vector3</a> arg1, <a href="../vector_math/Vector3.html">Vector3</a> arg2) <a class="anchor-link" href="#setColumns"
+              title="Permalink to Matrix3.setColumns">#</a></h4>
+<div class="doc">
+<p>Sets the entire matrix to the column values.</p>
+<pre class="source">
+Matrix3 setColumns(Vector3 arg0, Vector3 arg1, Vector3 arg2) {
+ storage[0] = arg0.storage[0];
+ storage[1] = arg0.storage[1];
+ storage[2] = arg0.storage[2];
+ storage[3] = arg1.storage[0];
+ storage[4] = arg1.storage[1];
+ storage[5] = arg1.storage[2];
+ storage[6] = arg2.storage[0];
+ storage[7] = arg2.storage[1];
+ storage[8] = arg2.storage[2];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setDiagonal">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setDiagonal</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#setDiagonal"
+              title="Permalink to Matrix3.setDiagonal">#</a></h4>
+<div class="doc">
+<p>Set the diagonal of the matrix.</p>
+<pre class="source">
+Matrix3 setDiagonal(Vector3 arg) {
+ storage[0] = arg.storage[0];
+ storage[4] = arg.storage[1];
+ storage[8] = arg.storage[2];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setEntry">
+<button class="show-code">Code</button>
+dynamic <strong>setEntry</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> row, <a href="http://api.dartlang.org/dart_core/int.html">int</a> col, <a href="http://api.dartlang.org/dart_core/double.html">double</a> v) <a class="anchor-link" href="#setEntry"
+              title="Permalink to Matrix3.setEntry">#</a></h4>
+<div class="doc">
+<p>Set value at 
+<span class="param">row</span>, 
+<span class="param">col</span> to be 
+<span class="param">v</span>.</p>
+<pre class="source">
+setEntry(int row, int col, double v) { storage[index(row, col)] = v; }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setFrom">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setFrom</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#setFrom"
+              title="Permalink to Matrix3.setFrom">#</a></h4>
+<div class="doc">
+<p>Sets the entire matrix to the matrix in 
+<span class="param">arg</span>.</p>
+<pre class="source">
+Matrix3 setFrom(Matrix3 arg) {
+ storage[8] = arg.storage[8];
+ storage[7] = arg.storage[7];
+ storage[6] = arg.storage[6];
+ storage[5] = arg.storage[5];
+ storage[4] = arg.storage[4];
+ storage[3] = arg.storage[3];
+ storage[2] = arg.storage[2];
+ storage[1] = arg.storage[1];
+ storage[0] = arg.storage[0];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setIdentity">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setIdentity</strong>() <a class="anchor-link" href="#setIdentity"
+              title="Permalink to Matrix3.setIdentity">#</a></h4>
+<div class="doc">
+<p>Makes <code>this</code> into the identity matrix.</p>
+<pre class="source">
+Matrix3 setIdentity() {
+ storage[0] = 1.0;
+ storage[1] = 0.0;
+ storage[2] = 0.0;
+ storage[3] = 0.0;
+ storage[4] = 1.0;
+ storage[5] = 0.0;
+ storage[6] = 0.0;
+ storage[7] = 0.0;
+ storage[8] = 1.0;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRotationX">
+<button class="show-code">Code</button>
+void <strong>setRotationX</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians) <a class="anchor-link" href="#setRotationX"
+              title="Permalink to Matrix3.setRotationX">#</a></h4>
+<div class="doc">
+<p>Turns the matrix into a rotation of 
+<span class="param">radians</span> around X</p>
+<pre class="source">
+void setRotationX(double radians) {
+ double c = Math.cos(radians);
+ double s = Math.sin(radians);
+ storage[0] = 1.0;
+ storage[1] = 0.0;
+ storage[2] = 0.0;
+ storage[3] = 0.0;
+ storage[4] = c;
+ storage[5] = s;
+ storage[6] = 0.0;
+ storage[7] = -s;
+ storage[8] = c;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRotationY">
+<button class="show-code">Code</button>
+void <strong>setRotationY</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians) <a class="anchor-link" href="#setRotationY"
+              title="Permalink to Matrix3.setRotationY">#</a></h4>
+<div class="doc">
+<p>Turns the matrix into a rotation of 
+<span class="param">radians</span> around Y</p>
+<pre class="source">
+void setRotationY(double radians) {
+ double c = Math.cos(radians);
+ double s = Math.sin(radians);
+ storage[0] = c;
+ storage[1] = 0.0;
+ storage[2] = s;
+ storage[3] = 0.0;
+ storage[4] = 1.0;
+ storage[5] = 0.0;
+ storage[6] = -s;
+ storage[7] = 0.0;
+ storage[8] = c;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRotationZ">
+<button class="show-code">Code</button>
+void <strong>setRotationZ</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> radians) <a class="anchor-link" href="#setRotationZ"
+              title="Permalink to Matrix3.setRotationZ">#</a></h4>
+<div class="doc">
+<p>Turns the matrix into a rotation of 
+<span class="param">radians</span> around Z</p>
+<pre class="source">
+void setRotationZ(double radians) {
+ double c = Math.cos(radians);
+ double s = Math.sin(radians);
+ storage[0] = c;
+ storage[1] = s;
+ storage[2] = 0.0;
+ storage[3] = -s;
+ storage[4] = c;
+ storage[5] = 0.0;
+ storage[6] = 0.0;
+ storage[7] = 0.0;
+ storage[8] = 1.0;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setRow">
+<button class="show-code">Code</button>
+void <strong>setRow</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> row, <a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#setRow"
+              title="Permalink to Matrix3.setRow">#</a></h4>
+<div class="doc">
+<p>Assigns the 
+<span class="param">row</span> of to 
+<span class="param">arg</span>.</p>
+<pre class="source">
+void setRow(int row, Vector3 arg) {
+ storage[index(row, 0)] = arg.storage[0];
+ storage[index(row, 1)] = arg.storage[1];
+ storage[index(row, 2)] = arg.storage[2];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setUpper2x2">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setUpper2x2</strong>(<a href="../vector_math/Matrix2.html">Matrix2</a> arg) <a class="anchor-link" href="#setUpper2x2"
+              title="Permalink to Matrix3.setUpper2x2">#</a></h4>
+<div class="doc">
+<p>Sets the upper 2x2 of the matrix to be 
+<span class="param">arg</span>.</p>
+<pre class="source">
+Matrix3 setUpper2x2(Matrix2 arg) {
+ storage[0] = storage[0];
+ storage[1] = storage[1];
+ storage[3] = storage[2];
+ storage[4] = storage[3];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setValues">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setValues</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> arg0, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg1, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg2, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg3, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg4, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg5, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg6, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg7, <a href="http://api.dartlang.org/dart_core/double.html">double</a> arg8) <a class="anchor-link" href="#setValues"
+              title="Permalink to Matrix3.setValues">#</a></h4>
+<div class="doc">
+<p>Sets the matrix with specified values.</p>
+<pre class="source">
+Matrix3 setValues(double arg0, double arg1, double arg2,
+                 double arg3, double arg4, double arg5,
+                 double arg6, double arg7, double arg8) {
+ storage[8] = arg8;
+ storage[7] = arg7;
+ storage[6] = arg6;
+ storage[5] = arg5;
+ storage[4] = arg4;
+ storage[3] = arg3;
+ storage[2] = arg2;
+ storage[1] = arg1;
+ storage[0] = arg0;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setZero">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>setZero</strong>() <a class="anchor-link" href="#setZero"
+              title="Permalink to Matrix3.setZero">#</a></h4>
+<div class="doc">
+<p>Zeros <code>this</code>.</p>
+<pre class="source">
+Matrix3 setZero() {
+ storage[0] = 0.0;
+ storage[1] = 0.0;
+ storage[2] = 0.0;
+ storage[3] = 0.0;
+ storage[4] = 0.0;
+ storage[5] = 0.0;
+ storage[6] = 0.0;
+ storage[7] = 0.0;
+ storage[8] = 0.0;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="splatDiagonal">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>splatDiagonal</strong>(<a href="http://api.dartlang.org/dart_core/double.html">double</a> arg) <a class="anchor-link" href="#splatDiagonal"
+              title="Permalink to Matrix3.splatDiagonal">#</a></h4>
+<div class="doc">
+<p>Set the diagonal of the matrix.</p>
+<pre class="source">
+Matrix3 splatDiagonal(double arg) {
+ storage[0] = arg;
+ storage[4] = arg;
+ storage[8] = arg;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sub">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>sub</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> o) <a class="anchor-link" href="#sub"
+              title="Permalink to Matrix3.sub">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 sub(Matrix3 o) {
+ storage[0] = storage[0] - o.storage[0];
+ storage[1] = storage[1] - o.storage[1];
+ storage[2] = storage[2] - o.storage[2];
+ storage[3] = storage[3] - o.storage[3];
+ storage[4] = storage[4] - o.storage[4];
+ storage[5] = storage[5] - o.storage[5];
+ storage[6] = storage[6] - o.storage[6];
+ storage[7] = storage[7] - o.storage[7];
+ storage[8] = storage[8] - o.storage[8];
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Matrix3.toString">#</a></h4>
+<div class="doc">
+<p>Returns a printable string</p>
+<pre class="source">
+String toString() {
+ String s = '';
+ s = '$s[0] ${getRow(0)}\n';
+ s = '$s[1] ${getRow(1)}\n';
+ s = '$s[2] ${getRow(2)}\n';
+ return s;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="trace">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/double.html">double</a> <strong>trace</strong>() <a class="anchor-link" href="#trace"
+              title="Permalink to Matrix3.trace">#</a></h4>
+<div class="doc">
+<p>Returns the trace of the matrix. The trace of a matrix is the sum of
+the diagonal entries.</p>
+<pre class="source">
+double trace() {
+ double t = 0.0;
+ t += storage[0];
+ t += storage[4];
+ t += storage[8];
+ return t;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transform">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>transform</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg) <a class="anchor-link" href="#transform"
+              title="Permalink to Matrix3.transform">#</a></h4>
+<div class="doc">
+<pre class="source">
+Vector3 transform(Vector3 arg) {
+ double x_ = (storage[0] * arg.storage[0]) +
+             (storage[3] * arg.storage[1]) +
+             (storage[6] * arg.storage[2]);
+ double y_ = (storage[1] * arg.storage[0]) +
+             (storage[4] * arg.storage[1]) +
+             (storage[7] * arg.storage[2]);
+ double z_ = (storage[2] * arg.storage[0]) +
+             (storage[5] * arg.storage[1]) +
+             (storage[8] * arg.storage[2]);
+ arg.x = x_;
+ arg.y = y_;
+ arg.z = z_;
+ return arg;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transform2">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector2.html">Vector2</a> <strong>transform2</strong>(<a href="../vector_math/Vector2.html">Vector2</a> arg) <a class="anchor-link" href="#transform2"
+              title="Permalink to Matrix3.transform2">#</a></h4>
+<div class="doc">
+<p>Transforms 
+<span class="param">arg</span> with <code>this</code>.</p>
+<pre class="source">
+Vector2 transform2(Vector2 arg) {
+ double x_ =  (storage[0] * arg.storage[0]) + (storage[3] * arg.storage[1]) + storage[6];
+ double y_ =  (storage[1] * arg.storage[0]) + (storage[4] * arg.storage[1]) + storage[7];
+ arg.x = x_;
+ arg.y = y_;
+ return arg;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transformed">
+<button class="show-code">Code</button>
+<a href="../vector_math/Vector3.html">Vector3</a> <strong>transformed</strong>(<a href="../vector_math/Vector3.html">Vector3</a> arg, [<a href="../vector_math/Vector3.html">Vector3</a> out = null]) <a class="anchor-link" href="#transformed"
+              title="Permalink to Matrix3.transformed">#</a></h4>
+<div class="doc">
+<pre class="source">
+Vector3 transformed(Vector3 arg, [Vector3 out=null]) {
+ if (out == null) {
+   out = new Vector3.copy(arg);
+ } else {
+   out.setFrom(arg);
+ }
+ return transform(out);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transpose">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>transpose</strong>() <a class="anchor-link" href="#transpose"
+              title="Permalink to Matrix3.transpose">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 transpose() {
+ double temp;
+ temp = storage[3];
+ storage[3] = storage[1];
+ storage[1] = temp;
+ temp = storage[6];
+ storage[6] = storage[2];
+ storage[2] = temp;
+ temp = storage[7];
+ storage[7] = storage[5];
+ storage[5] = temp;
+ return this;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transposed">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>transposed</strong>() <a class="anchor-link" href="#transposed"
+              title="Permalink to Matrix3.transposed">#</a></h4>
+<div class="doc">
+<p>Returns the tranpose of this.</p>
+<pre class="source">
+Matrix3 transposed() {
+ Matrix3 r = new Matrix3.zero();
+ r.storage[0] = storage[0];
+ r.storage[1] = storage[3];
+ r.storage[2] = storage[6];
+ r.storage[3] = storage[1];
+ r.storage[4] = storage[4];
+ r.storage[5] = storage[7];
+ r.storage[6] = storage[2];
+ r.storage[7] = storage[5];
+ r.storage[8] = storage[8];
+ return r;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="transposeMultiply">
+<button class="show-code">Code</button>
+<a href="../vector_math/Matrix3.html">Matrix3</a> <strong>transposeMultiply</strong>(<a href="../vector_math/Matrix3.html">Matrix3</a> arg) <a class="anchor-link" href="#transposeMultiply"
+              title="Permalink to Matrix3.transposeMultiply">#</a></h4>
+<div class="doc">
+<pre class="source">
+Matrix3 transposeMultiply(Matrix3 arg) {
+ double m00 = storage[0];
+ double m01 = storage[1];
+ double m02 = storage[2];
+ double m10 = storage[3];
+ double m11 = storage[4];
+ double m12 = storage[5];
+ double m20 = storage[6];
+ double m21 = storage[7];
+ double m22 = storage[8];
+ storage[0] = (m00 * arg.storage[0]) + (m01 * arg.storage[1]) +
+              (m02 * arg.storage[2]);
+ storage[3] = (m00 * arg.storage[3]) + (m01 * arg.storage[4]) +
+              (m02 * arg.storage[5]);
+ storage[6] = (m00 * arg.storage[6]) + (m01 * arg.storage[7]) +
+              (m02 * arg.storage[8]);
+ storage[1] = (m10 * arg.storage[0]) + (m11 * arg.storage[1]) +
+              (m12 * arg.storage[2]);
+ storage[4] = (m10 * arg.storage[3]) + (m11 * arg.storage[4]) +
+              (m12 * arg.storage[5]);
+ storage[7] = (m10 * arg.storage[6]) + (m11 * arg.storage[7]) +
+              (m12 * arg.storage[8]);
+ storage[2] = (m20 * arg.storage[0]) + (m21 * arg.storage[1]) +
+              (m22 * arg.storage[2]);
+ storage[5] = (m20 * arg.storage[3]) + (m21 * arg.storage[4]) +
+              (m22 * arg.storage[5]);
+ storage[8] = (m20 * arg.storage[6]) + (m21 * arg.storage[7]) +
+              (m22 * arg.storage[8]);
+ return this;
+}
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <div class="footer">
+          <div>This page was generated at 2013-11-08 17:35:34.949</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        
