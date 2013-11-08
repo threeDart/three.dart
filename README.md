@@ -13,29 +13,36 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 
 #### WebGL examples ####
 
-[![nyan_cat](http://threedart.github.com/three.dart/example/webgl_nyan_cat/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_nyan_cat/nyan_cat.html)
-[![webgl_geometries](http://threedart.github.com/three.dart/example/webgl_geometries/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometries/WebGL_Geometries.html)
-[![webgl_geometry_cube](http://threedart.github.com/three.dart/example/webgl_geometry_cube/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometry_cube/WebGL_Geometry_Cube.html)
-[![webgl_geometry_extrude_shapes](http://threedart.github.com/three.dart/example/webgl_geometry_extrude_shapes/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometry_extrude_shapes/WebGL_Geometry_Extrude_Shapes.html)
-[![webgl_geometry_hierarchy](http://threedart.github.com/three.dart/example/webgl_geometry_hierarchy/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometry_hierarchy/WebGL_Geometry_Hierarchy.html)
-[![webgl_geometry_shapes](http://threedart.github.com/three.dart/example/webgl_geometry_shapes/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_geometry_shapes/WebGL_Geometry_Shapes.html)
-[![webgl_interactive_cubes](http://threedart.github.com/three.dart/example/webgl_interactive_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_interactive_cubes/WebGL_Interactive_Cubes.html)
-[![webgl_performance](http://threedart.github.com/three.dart/example/webgl_performance/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_performance/WebGL_Performance.html)
-[![webgl_morphtargets](http://threedart.github.com/three.dart/example/webgl_morphtargets/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_morphtargets/WebGL_MorphTargets.html)
-[![webgl_morphtargets_horse](http://threedart.github.com/three.dart/example/webgl_morphtargets_horse/thumb_small.png)](http://threedart.github.com/three.dart/example/webgl_morphtargets_horse/WebGL_MorphTargets_Horse.html)
+[![nyan_cat](http://threedart.github.com/three.dart/example/web_gl_nyan_cat/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_nyan_cat/nyan_cat.html)
+[![web_gl_geometries](http://threedart.github.com/three.dart/example/web_gl_geometries/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_geometries/web_gl_geometries.html)
+[![web_gl_geometry_cube](http://threedart.github.com/three.dart/example/web_gl_geometry_cube/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_geometry_cube/web_gl_geometry_cube.html)
+[![web_gl_geometry_extrude_shapes](http://threedart.github.com/three.dart/example/web_gl_geometry_extrude_shapes/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_geometry_extrude_shapes/web_gl_geometry_extrude_shapes.html)
+[![web_gl_geometry_hierarchy](http://threedart.github.com/three.dart/example/web_gl_geometry_hierarchy/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_geometry_hierarchy/web_gl_geometry_hierarchy.html)
+[![web_gl_geometry_shapes](http://threedart.github.com/three.dart/example/web_gl_geometry_shapes/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_geometry_shapes/web_gl_geometry_shapes.html)
+[![web_gl_interactive_cubes](http://threedart.github.com/three.dart/example/web_gl_interactive_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_interactive_cubes/web_gl_interactive_cubes.html)
+[![web_gl_performance](http://threedart.github.com/three.dart/example/web_gl_performance/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_performance/web_gl_performance.html)
+[![web_gl_morph_targets](http://threedart.github.com/three.dart/example/web_gl_morph_targets/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_morphtargets/web_gl_morph_targets.html)
+[![web_gl_morph_targets_horse](http://threedart.github.com/three.dart/example/web_gl_morph_targets_horse/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_morphtargets_horse/web_gl_morph_targets_horse.html)
+[![web_gl_buffer_geometry](http://threedart.github.com/three.dart/example/web_gl_buffer_geometry/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_buffer_geometry/web_gl_buffer_geometry.html)
+[![web_gl_buffer_geometry_particles](http://threedart.github.com/three.dart/example/web_gl_buffer_geometry_particles/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_buffer_geometry_particles/web_gl_buffer_geometry_particles.html)
+[![web_gl_cubes](http://threedart.github.com/three.dart/example/web_gl_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_cubes/web_gl_cubes.html)
+[![web_gl_custom_attributes](http://threedart.github.com/three.dart/example/web_gl_custom_attributes/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_custom_attributes/web_gl_custom_attributes.html)
+[![web_gl_materials](http://threedart.github.com/three.dart/example/web_gl_materials/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_materials/web_gl_materials.html)
+[![web_gl_geometry_text](http://threedart.github.com/three.dart/example/web_gl_geometry_text/thumb_small.png)](http://threedart.github.com/three.dart/example/web_gl_geometry_text/web_gl_geometry_text.html)
+[![shadows](http://threedart.github.com/three.dart/example/shadows/thumb_small.png)](http://threedart.github.com/three.dart/example/shadows/shadows.html)
 
 #### CSS3D examples ####
 
-[![css3d_periodictable](http://threedart.github.com/three.dart/example/css3d_periodictable/thumb_small.png)](http://threedart.github.com/three.dart/example/css3d_periodictable/CSS3D_Periodic_Table.html)
+[![css3d_periodictable](http://threedart.github.com/three.dart/example/css3d_periodic_table/thumb_small.png)](http://threedart.github.com/three.dart/example/css3d_periodic_table/css3d_periodic_table.html)
 
 #### Canvas examples ####
 
-[![canvas_geometry_cube](http://threedart.github.com/three.dart/example/canvas_geometry_cube/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_geometry_cube/Canvas_Geometry_Cube.html)
-[![canvas_geometry_hierarchy](http://threedart.github.com/three.dart/example/canvas_geometry_hierarchy/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_geometry_hierarchy/Canvas_Geometry_Hierarchy.html)
-[![canvas_interactive_cubes](http://threedart.github.com/three.dart/example/canvas_interactive_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_interactive_cubes/Canvas_Interactive_Cubes.html)
-[![canvas_lines](http://threedart.github.com/three.dart/example/canvas_lines/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_lines/Canvas_Lines.html)
-[![canvas_camera_orthographic](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/Canvas_Camera_Orthographic.html)
-[![controls_firstperson](http://threedart.github.com/three.dart/example/controls_firstperson/thumb_small.png)](http://threedart.github.com/three.dart/example/controls_firstperson/Controls_FirstPerson.html)
+[![canvas_geometry_cube](http://threedart.github.com/three.dart/example/canvas_geometry_cube/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_geometry_cube/canvas_geometry_cube.html)
+[![canvas_geometry_hierarchy](http://threedart.github.com/three.dart/example/canvas_geometry_hierarchy/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_geometry_hierarchy/canvas_geometry_hierarchy.html)
+[![canvas_interactive_cubes](http://threedart.github.com/three.dart/example/canvas_interactive_cubes/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_interactive_cubes/canvas_interactive_cubes.html)
+[![canvas_lines](http://threedart.github.com/three.dart/example/canvas_lines/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_lines/canvas_lines.html)
+[![canvas_camera_orthographic](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/thumb_small.png)](http://threedart.github.com/three.dart/example/canvas_camera_orthographic/canvas_camera_orthographic.html)
+[![controls_first_person](http://threedart.github.com/three.dart/example/controls_first_person/thumb_small.png)](http://threedart.github.com/three.dart/example/controls_first_person/controls_first_person.html)
 
 ### Change Log ###
 2013 01 30 - **v 0.2.4**
