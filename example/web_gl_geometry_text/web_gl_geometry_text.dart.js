@@ -7758,6 +7758,11 @@ Element: {"": "Node;id%",
   get$attributes: function(receiver) {
     return new W._ElementAttributeMap(receiver);
   },
+  get$client: function(receiver) {
+    var t1 = new P.Rectangle(receiver.clientLeft, receiver.clientTop, receiver.clientWidth, receiver.clientHeight);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
   toString$0: function(receiver) {
     return receiver.localName;
   },
@@ -7976,7 +7981,14 @@ MimeTypeArray: {"": "Interceptor_ListMixin_ImmutableListMixin2;",
   "%": "MimeTypeArray"
 },
 
-MouseEvent: {"": "UIEvent;", "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"},
+MouseEvent: {"": "UIEvent;",
+  get$client: function(receiver) {
+    var t1 = new P.Point(receiver.clientX, receiver.clientY);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
+  "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"
+},
 
 MutationRecord: {"": "Interceptor;type=", "%": "MutationRecord"},
 
@@ -8304,7 +8316,14 @@ TextTrackList: {"": "EventTarget_ListMixin_ImmutableListMixin0;",
 
 TimeRanges: {"": "Interceptor;length=", "%": "TimeRanges"},
 
-Touch: {"": "Interceptor;", "%": "Touch"},
+Touch: {"": "Interceptor;",
+  get$client: function(receiver) {
+    var t1 = new P.Point(receiver.clientX, receiver.clientY);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
+  "%": "Touch"
+},
 
 TouchEvent: {"": "UIEvent;touches=", "%": "TouchEvent"},
 
@@ -9333,7 +9352,7 @@ PathSegMovetoRel: {"": "PathSeg;x%,y%", "%": "SVGPathSegMovetoRel"},
 
 PatternElement: {"": "SvgElement;height=,width=,x=,y=", "%": "SVGPatternElement"},
 
-Point: {"": "Interceptor;x%,y%", "%": "SVGPoint"},
+Point0: {"": "Interceptor;x%,y%", "%": "SVGPoint"},
 
 RadialGradientElement: {"": "_GradientElement;r=", "%": "SVGRadialGradientElement"},
 
@@ -9836,6 +9855,89 @@ _Random: {"": "Object;",
       max = 4294967295;
     return Math.random() * max >>> 0;
   }
+},
+
+Point: {"": "Object;x>,y>",
+  toString$0: function(_) {
+    return "Point(" + H.S(this.x) + ", " + H.S(this.y) + ")";
+  },
+  $eq: function(_, other) {
+    var t1, t2;
+    if (other == null)
+      return false;
+    t1 = J.getInterceptor(other);
+    if (typeof other !== "object" || other === null || !t1.$isPoint)
+      return false;
+    t1 = this.x;
+    t2 = other.x;
+    if (t1 == null ? t2 == null : t1 === t2) {
+      t1 = this.y;
+      t2 = other.y;
+      t2 = t1 == null ? t2 == null : t1 === t2;
+      t1 = t2;
+    } else
+      t1 = false;
+    return t1;
+  },
+  get$hashCode: function(_) {
+    var t1, t2;
+    t1 = J.get$hashCode$(this.x);
+    t2 = J.get$hashCode$(this.y);
+    return P._JenkinsSmiHash_finish0(P._JenkinsSmiHash_combine0(P._JenkinsSmiHash_combine0(0, t1), t2));
+  },
+  $add: function(_, other) {
+    var t1, t2, t3, t4;
+    t1 = this.x;
+    t2 = J.getInterceptor$x(other);
+    t3 = t2.get$x(other);
+    if (typeof t1 !== "number")
+      throw t1.$add();
+    if (typeof t3 !== "number")
+      throw H.iae(t3);
+    t4 = this.y;
+    t2 = t2.get$y(other);
+    if (typeof t4 !== "number")
+      throw t4.$add();
+    if (typeof t2 !== "number")
+      throw H.iae(t2);
+    t2 = new P.Point(t1 + t3, t4 + t2);
+    H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t2;
+  },
+  $sub: function(_, other) {
+    var t1, t2, t3, t4;
+    t1 = this.x;
+    t2 = J.getInterceptor$x(other);
+    t3 = t2.get$x(other);
+    if (typeof t1 !== "number")
+      throw t1.$sub();
+    if (typeof t3 !== "number")
+      throw H.iae(t3);
+    t4 = this.y;
+    t2 = t2.get$y(other);
+    if (typeof t4 !== "number")
+      throw t4.$sub();
+    if (typeof t2 !== "number")
+      throw H.iae(t2);
+    t2 = new P.Point(t1 - t3, t4 - t2);
+    H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t2;
+  },
+  $mul: function(_, factor) {
+    var t1, t2;
+    t1 = this.x;
+    if (typeof t1 !== "number")
+      throw t1.$mul();
+    if (typeof factor !== "number")
+      throw H.iae(factor);
+    t2 = this.y;
+    if (typeof t2 !== "number")
+      throw t2.$mul();
+    t2 = new P.Point(t1 * factor, t2 * factor);
+    H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t2;
+  },
+  $isPoint: true
 },
 
 _RectangleBase: {"": "Object;",
@@ -22951,32 +23053,45 @@ refreshText: function() {
 },
 
 onDocumentMouseDown: function($event) {
-  var t1, t2, t3, t4;
-  J.preventDefault$0$x($event);
-  t1 = new W._EventStream(document, C.EventStreamProvider_mousemove._eventType, false);
-  H.setRuntimeTypeInfo(t1, [null]);
-  t2 = new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(S.onDocumentMouseMove$closure), t1._useCapture);
-  H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(t1, "_EventStream", 0)]);
-  t2._tryResume$0();
-  t1 = new W._EventStream(document, C.EventStreamProvider_mouseup._eventType, false);
-  H.setRuntimeTypeInfo(t1, [null]);
-  t3 = new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(S.onDocumentMouseUp$closure), t1._useCapture);
-  H.setRuntimeTypeInfo(t3, [H.getRuntimeTypeArgument(t1, "_EventStream", 0)]);
+  var t1, t2, t3, t4, t5;
+  t1 = J.getInterceptor$x($event);
+  t1.preventDefault$0($event);
+  t2 = new W._EventStream(document, C.EventStreamProvider_mousemove._eventType, false);
+  H.setRuntimeTypeInfo(t2, [null]);
+  t3 = new W._EventStreamSubscription(0, t2._target, t2._eventType, W._wrapZone(S.onDocumentMouseMove$closure), t2._useCapture);
+  H.setRuntimeTypeInfo(t3, [H.getRuntimeTypeArgument(t2, "_EventStream", 0)]);
   t3._tryResume$0();
-  t1 = new W._EventStream(document, C.EventStreamProvider_mouseout._eventType, false);
-  H.setRuntimeTypeInfo(t1, [null]);
-  t4 = new W._EventStreamSubscription(0, t1._target, t1._eventType, W._wrapZone(S.onDocumentMouseOut$closure), t1._useCapture);
-  H.setRuntimeTypeInfo(t4, [H.getRuntimeTypeArgument(t1, "_EventStream", 0)]);
+  t2 = new W._EventStream(document, C.EventStreamProvider_mouseup._eventType, false);
+  H.setRuntimeTypeInfo(t2, [null]);
+  t4 = new W._EventStreamSubscription(0, t2._target, t2._eventType, W._wrapZone(S.onDocumentMouseUp$closure), t2._useCapture);
+  H.setRuntimeTypeInfo(t4, [H.getRuntimeTypeArgument(t2, "_EventStream", 0)]);
   t4._tryResume$0();
-  $._mouseSubscriptions = [t2, t3, t4];
-  t4 = $event.get$clientX();
-  $.mouseXOnMouseDown = t4.$sub(t4, $.windowHalfX);
+  t2 = new W._EventStream(document, C.EventStreamProvider_mouseout._eventType, false);
+  H.setRuntimeTypeInfo(t2, [null]);
+  t5 = new W._EventStreamSubscription(0, t2._target, t2._eventType, W._wrapZone(S.onDocumentMouseOut$closure), t2._useCapture);
+  H.setRuntimeTypeInfo(t5, [H.getRuntimeTypeArgument(t2, "_EventStream", 0)]);
+  t5._tryResume$0();
+  $._mouseSubscriptions = [t3, t4, t5];
+  t1 = t1.get$client($event).x;
+  t5 = $.windowHalfX;
+  if (typeof t1 !== "number")
+    throw t1.$sub();
+  if (typeof t5 !== "number")
+    throw H.iae(t5);
+  $.mouseXOnMouseDown = t1 - t5;
   $.targetRotationOnMouseDown = $.targetRotation;
 },
 
 onDocumentMouseMove: function($event) {
-  var t1 = $event.get$clientX();
-  $.mouseX = t1.$sub(t1, $.windowHalfX);
+  var t1, t2;
+  t1 = J.get$client$x($event);
+  t1 = t1.get$x(t1);
+  t2 = $.windowHalfX;
+  if (typeof t1 !== "number")
+    throw t1.$sub();
+  if (typeof t2 !== "number")
+    throw H.iae(t2);
+  $.mouseX = t1 - t2;
   $.targetRotation = $.targetRotationOnMouseDown + ($.mouseX - $.mouseXOnMouseDown) * 0.02;
 },
 
@@ -23745,6 +23860,9 @@ J.get$_key$x = function(receiver) {
 J.get$attributes$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$attributes(receiver);
 };
+J.get$client$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$client(receiver);
+};
 J.get$color$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$color(receiver);
 };
@@ -23879,9 +23997,6 @@ J.pixelStorei$2$x = function(receiver, a0, a1) {
 };
 J.polygonOffset$2$x = function(receiver, a0, a1) {
   return J.getInterceptor$x(receiver).polygonOffset$2(receiver, a0, a1);
-};
-J.preventDefault$0$x = function(receiver) {
-  return J.getInterceptor$x(receiver).preventDefault$0(receiver);
 };
 J.remove$1$ax = function(receiver, a0) {
   return J.getInterceptor$ax(receiver).remove$1(receiver, a0);

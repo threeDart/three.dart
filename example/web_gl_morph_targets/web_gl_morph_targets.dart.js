@@ -7073,6 +7073,11 @@ Element: {"": "Node;id%",
   get$attributes: function(receiver) {
     return new W._ElementAttributeMap(receiver);
   },
+  get$client: function(receiver) {
+    var t1 = new P.Rectangle(receiver.clientLeft, receiver.clientTop, receiver.clientWidth, receiver.clientHeight);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
   toString$0: function(receiver) {
     return receiver.localName;
   },
@@ -7279,7 +7284,14 @@ MimeTypeArray: {"": "Interceptor_ListMixin_ImmutableListMixin2;",
   "%": "MimeTypeArray"
 },
 
-MouseEvent: {"": "UIEvent;", "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"},
+MouseEvent: {"": "UIEvent;",
+  get$client: function(receiver) {
+    var t1 = new P.Point(receiver.clientX, receiver.clientY);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
+  "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"
+},
 
 MutationRecord: {"": "Interceptor;type=", "%": "MutationRecord"},
 
@@ -7599,7 +7611,14 @@ TextTrackList: {"": "EventTarget_ListMixin_ImmutableListMixin0;",
 
 TimeRanges: {"": "Interceptor;length=", "%": "TimeRanges"},
 
-Touch: {"": "Interceptor;", "%": "Touch"},
+Touch: {"": "Interceptor;",
+  get$client: function(receiver) {
+    var t1 = new P.Point(receiver.clientX, receiver.clientY);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
+  "%": "Touch"
+},
 
 TouchList: {"": "Interceptor_ListMixin_ImmutableListMixin7;",
   get$length: function(receiver) {
@@ -8700,7 +8719,7 @@ PathSegMovetoRel: {"": "PathSeg;x%,y%", "%": "SVGPathSegMovetoRel"},
 
 PatternElement: {"": "SvgElement;height=,width=,x=,y=", "%": "SVGPatternElement"},
 
-Point: {"": "Interceptor;x%,y%", "%": "SVGPoint"},
+Point0: {"": "Interceptor;x%,y%", "%": "SVGPoint"},
 
 RadialGradientElement: {"": "_GradientElement;r=", "%": "SVGRadialGradientElement"},
 
@@ -9184,6 +9203,72 @@ max: function(a, b) {
   if (b === 0 && C.JSNumber_methods.get$isNegative(a))
     return b;
   return a;
+},
+
+Point: {"": "Object;x>,y>",
+  toString$0: function(_) {
+    return "Point(" + H.S(this.x) + ", " + H.S(this.y) + ")";
+  },
+  $eq: function(_, other) {
+    var t1, t2;
+    if (other == null)
+      return false;
+    t1 = J.getInterceptor(other);
+    if (typeof other !== "object" || other === null || !t1.$isPoint)
+      return false;
+    t1 = this.x;
+    t2 = other.x;
+    if (t1 == null ? t2 == null : t1 === t2) {
+      t1 = this.y;
+      t2 = other.y;
+      t2 = t1 == null ? t2 == null : t1 === t2;
+      t1 = t2;
+    } else
+      t1 = false;
+    return t1;
+  },
+  get$hashCode: function(_) {
+    var t1, t2;
+    t1 = J.get$hashCode$(this.x);
+    t2 = J.get$hashCode$(this.y);
+    return P._JenkinsSmiHash_finish0(P._JenkinsSmiHash_combine0(P._JenkinsSmiHash_combine0(0, t1), t2));
+  },
+  $add: function(_, other) {
+    var t1, t2, t3;
+    t1 = this.x;
+    t2 = C.JSInt_methods.get$x(other);
+    if (typeof t1 !== "number")
+      throw t1.$add();
+    t2 = C.JSNumber_methods.$add(t1, t2);
+    t1 = this.y;
+    t3 = C.JSInt_methods.get$y(other);
+    if (typeof t1 !== "number")
+      throw t1.$add();
+    t3 = C.JSNumber_methods.$add(t1, t3);
+    t3 = new P.Point(t2, t3);
+    H.setRuntimeTypeInfo(t3, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t3;
+  },
+  $sub: function(_, other) {
+    var t1, t2, t3, t4;
+    t1 = this.x;
+    t2 = J.getInterceptor$x(other);
+    t3 = t2.get$x(other);
+    if (typeof t1 !== "number")
+      throw t1.$sub();
+    if (typeof t3 !== "number")
+      throw H.iae(t3);
+    t4 = this.y;
+    t2 = t2.get$y(other);
+    if (typeof t4 !== "number")
+      throw t4.$sub();
+    if (typeof t2 !== "number")
+      throw H.iae(t2);
+    t2 = new P.Point(t1 - t3, t4 - t2);
+    H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t2;
+  },
+  $isPoint: true
 },
 
 _RectangleBase: {"": "Object;",
@@ -19472,11 +19557,24 @@ onWindowResize: function($event) {
 },
 
 onDocumentMouseMove: function($event) {
-  var t1 = $event.get$clientX();
-  $.mouseX = t1.$sub(t1, $.get$windowHalfX());
-  t1 = $event.get$clientY();
-  t1 = t1.$sub(t1, $.get$windowHalfY());
-  $.mouseY = t1.$mul(t1, 2);
+  var t1, t2, t3;
+  t1 = J.getInterceptor$x($event);
+  t2 = t1.get$client($event);
+  t2 = t2.get$x(t2);
+  t3 = $.get$windowHalfX();
+  if (typeof t2 !== "number")
+    throw t2.$sub();
+  if (typeof t3 !== "number")
+    throw H.iae(t3);
+  $.mouseX = t2 - t3;
+  t1 = t1.get$client($event);
+  t1 = t1.get$y(t1);
+  t3 = $.get$windowHalfY();
+  if (typeof t1 !== "number")
+    throw t1.$sub();
+  if (typeof t3 !== "number")
+    throw H.iae(t3);
+  $.mouseY = (t1 - t3) * 2;
 },
 
 animate: function(time) {

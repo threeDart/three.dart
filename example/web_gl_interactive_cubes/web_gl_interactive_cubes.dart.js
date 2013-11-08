@@ -7025,7 +7025,14 @@ MimeTypeArray: {"": "Interceptor_ListMixin_ImmutableListMixin2;",
   "%": "MimeTypeArray"
 },
 
-MouseEvent: {"": "UIEvent;", "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"},
+MouseEvent: {"": "UIEvent;",
+  get$client: function(receiver) {
+    var t1 = new P.Point(receiver.clientX, receiver.clientY);
+    H.setRuntimeTypeInfo(t1, [null]);
+    return t1;
+  },
+  "%": "DragEvent|MSPointerEvent|MouseEvent|MouseScrollEvent|MouseWheelEvent|PointerEvent|WheelEvent"
+},
 
 MutationRecord: {"": "Interceptor;type=", "%": "MutationRecord"},
 
@@ -8376,7 +8383,7 @@ PathSegMovetoRel: {"": "PathSeg;x=,y=", "%": "SVGPathSegMovetoRel"},
 
 PatternElement: {"": "SvgElement;height=,width=,x=,y=", "%": "SVGPatternElement"},
 
-Point: {"": "Interceptor;x=,y=", "%": "SVGPoint"},
+Point0: {"": "Interceptor;x=,y=", "%": "SVGPoint"},
 
 RadialGradientElement: {"": "_GradientElement;r=", "%": "SVGRadialGradientElement"},
 
@@ -8867,6 +8874,72 @@ max: function(a, b) {
   if (b === 0 && C.JSNumber_methods.get$isNegative(a))
     return b;
   return a;
+},
+
+Point: {"": "Object;x>,y>",
+  toString$0: function(_) {
+    return "Point(" + H.S(this.x) + ", " + H.S(this.y) + ")";
+  },
+  $eq: function(_, other) {
+    var t1, t2;
+    if (other == null)
+      return false;
+    t1 = J.getInterceptor(other);
+    if (typeof other !== "object" || other === null || !t1.$isPoint)
+      return false;
+    t1 = this.x;
+    t2 = other.x;
+    if (t1 == null ? t2 == null : t1 === t2) {
+      t1 = this.y;
+      t2 = other.y;
+      t2 = t1 == null ? t2 == null : t1 === t2;
+      t1 = t2;
+    } else
+      t1 = false;
+    return t1;
+  },
+  get$hashCode: function(_) {
+    var t1, t2;
+    t1 = J.get$hashCode$(this.x);
+    t2 = J.get$hashCode$(this.y);
+    return P._JenkinsSmiHash_finish0(P._JenkinsSmiHash_combine0(P._JenkinsSmiHash_combine0(0, t1), t2));
+  },
+  $add: function(_, other) {
+    var t1, t2, t3;
+    t1 = this.x;
+    t2 = C.JSInt_methods.get$x(other);
+    if (typeof t1 !== "number")
+      throw t1.$add();
+    t2 = C.JSNumber_methods.$add(t1, t2);
+    t1 = this.y;
+    t3 = C.JSInt_methods.get$y(other);
+    if (typeof t1 !== "number")
+      throw t1.$add();
+    t3 = C.JSNumber_methods.$add(t1, t3);
+    t3 = new P.Point(t2, t3);
+    H.setRuntimeTypeInfo(t3, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t3;
+  },
+  $sub: function(_, other) {
+    var t1, t2, t3, t4;
+    t1 = this.x;
+    t2 = J.getInterceptor$x(other);
+    t3 = t2.get$x(other);
+    if (typeof t1 !== "number")
+      throw t1.$sub();
+    if (typeof t3 !== "number")
+      throw H.iae(t3);
+    t4 = this.y;
+    t2 = t2.get$y(other);
+    if (typeof t4 !== "number")
+      throw t4.$sub();
+    if (typeof t2 !== "number")
+      throw H.iae(t2);
+    t2 = new P.Point(t1 - t3, t4 - t2);
+    H.setRuntimeTypeInfo(t2, [H.getRuntimeTypeArgument(this, "Point", 0)]);
+    return t2;
+  },
+  $isPoint: true
 },
 
 _RectangleBase: {"": "Object;",
@@ -19334,17 +19407,25 @@ onWindowResize: function(_) {
 },
 
 onDocumentMouseMove: function($event) {
-  var t1;
-  J.preventDefault$0$x($event);
-  t1 = $event.get$clientX();
-  t1 = t1.$div(t1, window.innerWidth);
-  t1 = t1.$mul(t1, 2);
-  $.mouseX = t1.$sub(t1, 1);
-  t1 = $event.get$clientY();
-  t1 = t1.$div(t1, window.innerHeight);
-  t1 = t1.$negate(t1);
-  t1 = t1.$mul(t1, 2);
-  $.mouseY = t1.$add(t1, 1);
+  var t1, t2;
+  t1 = J.getInterceptor$x($event);
+  t1.preventDefault$0($event);
+  t1 = t1.get$client($event).x;
+  t2 = window.innerWidth;
+  if (typeof t1 !== "number")
+    throw t1.$div();
+  if (typeof t2 !== "number")
+    throw H.iae(t2);
+  $.mouseX = t1 / t2 * 2 - 1;
+  t2 = new P.Point($event.clientX, $event.clientY);
+  H.setRuntimeTypeInfo(t2, [null]);
+  t2 = t2.y;
+  t1 = window.innerHeight;
+  if (typeof t2 !== "number")
+    throw t2.$div();
+  if (typeof t1 !== "number")
+    throw H.iae(t1);
+  $.mouseY = -(t2 / t1) * 2 + 1;
 },
 
 animate: function(time) {
@@ -20115,9 +20196,6 @@ J.pixelStorei$2$x = function(receiver, a0, a1) {
 };
 J.polygonOffset$2$x = function(receiver, a0, a1) {
   return J.getInterceptor$x(receiver).polygonOffset$2(receiver, a0, a1);
-};
-J.preventDefault$0$x = function(receiver) {
-  return J.getInterceptor$x(receiver).preventDefault$0(receiver);
 };
 J.remove$0$ax = function(receiver) {
   return J.getInterceptor$ax(receiver).remove$0(receiver);
