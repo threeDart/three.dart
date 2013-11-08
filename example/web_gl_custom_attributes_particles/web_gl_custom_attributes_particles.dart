@@ -21,7 +21,7 @@ void init() {
   document.body.nodes.add( container );
 
   camera = new PerspectiveCamera( 40.0, window.innerWidth / window.innerHeight, 1.0, 10000.00 )
-  ..position.y = 300.0;
+  ..position.z = 300.0;
 
   scene = new Scene();
 
