@@ -2,84 +2,77 @@ import 'dart:html';
 import "dart:async";
 import 'dart:convert' show JSON;
 import 'package:three/three.dart';
-import 'package:three/extras/font_utils.dart' as FontUtils; 
+import 'package:three/extras/font_utils.dart' as FontUtils;
 
-class WebGL_Text  {
-  Element container;
+Element container;
 
-  PerspectiveCamera camera;
-  Scene scene;
-  WebGLRenderer renderer;
+PerspectiveCamera camera;
+Scene scene;
+WebGLRenderer renderer;
 
-  Mesh fontmesh;
+Mesh fontmesh;
 
-  Future loadFonts() => Future.wait(
-      ["fonts/helvetiker_regular.json"]
-      .map((path) => HttpRequest.getString(path).then((data) {
-        FontUtils.loadFace(JSON.decode(data));
-      })));
+Future loadFonts() => Future.wait(
+    ["fonts/helvetiker_regular.json"]
+    .map((path) => HttpRequest.getString(path).then((data) {
+      FontUtils.loadFace(JSON.decode(data));
+    })));
 
-  void run() {
+void main() {
 
-    loadFonts().then((_) {
-      init();
-      animate(0);
-    });
-  }
+  loadFonts().then((_) {
+    init();
+    animate(0);
+  });
+}
 
-  void init() {
+void init() {
 
-    container = new Element.tag('div');
+  container = new Element.tag('div');
 
-    document.body.nodes.add( container );
+  document.body.nodes.add( container );
 
-    scene = new Scene();
+  scene = new Scene();
 
-    camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
-    camera.position.z = 1200.0;
+  camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 );
+  camera.position.z = 1200.0;
 
-    scene.add(camera);
-    
-    var fontshapes = FontUtils.generateShapes("Hello world");
-    
-    MeshBasicMaterial fontmaterial = new MeshBasicMaterial(color: 0xff0000, side: DoubleSide);
-    
-    ShapeGeometry fontgeometry = new ShapeGeometry(fontshapes, curveSegments: 20);          
-    
-    fontmesh = new Mesh(fontgeometry, fontmaterial);
-    
-    scene.add(fontmesh);
+  scene.add(camera);
 
-    renderer = new WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+  var fontshapes = FontUtils.generateShapes("Hello world");
 
-    container.nodes.add( renderer.domElement );
+  MeshBasicMaterial fontmaterial = new MeshBasicMaterial(color: 0xff0000, side: DoubleSide);
 
-    window.onResize.listen(onWindowResize);
-  }
+  ShapeGeometry fontgeometry = new ShapeGeometry(fontshapes, curveSegments: 20);
 
-  onWindowResize(e) {
+  fontmesh = new Mesh(fontgeometry, fontmaterial);
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+  scene.add(fontmesh);
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer = new WebGLRenderer();
+  renderer.setSize( window.innerWidth, window.innerHeight );
 
-  }
+  container.nodes.add( renderer.domElement );
 
-  animate(num time) {
+  window.onResize.listen(onWindowResize);
+}
 
-    window.requestAnimationFrame( animate );
+onWindowResize(e) {
 
-    fontmesh.rotation.x += 0.005;
-    fontmesh.rotation.y += 0.01;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 
-    renderer.render( scene, camera );
-
-  }
+  renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
 
-void main() {
-  new WebGL_Text().run();
+animate(num time) {
+
+  window.requestAnimationFrame( animate );
+
+  fontmesh.rotation.x += 0.005;
+  fontmesh.rotation.y += 0.01;
+
+  renderer.render( scene, camera );
+
 }
