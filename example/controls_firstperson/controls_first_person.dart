@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart' as THREE;
-import 'package:three/extras/controls/firstpersoncontrols.dart';
+import 'package:three/extras/controls/first_person_controls.dart';
 
 /**
  * Default First Person Control Scheme:

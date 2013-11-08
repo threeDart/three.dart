@@ -14,7 +14,7 @@ import "dart:html";
 import "dart:math" as Math;
 import 'package:vector_math/vector_math.dart';
 import "package:three/three.dart" as THREE;
-import 'package:three/src/core/ThreeMath.dart' as THREEMath;
+import 'package:three/src/core/three_math.dart' as THREEMath;
 
 class FirstPersonControls {
   THREE.Object3D object;

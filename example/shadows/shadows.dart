@@ -2,7 +2,7 @@ import 'dart:html';
 import 'dart:math' as Math;
 import 'package:three/three.dart';
 import 'package:vector_math/vector_math.dart';
-import 'package:three/extras/controls/trackball.dart';
+import 'package:three/extras/controls/trackball_controls.dart';
 import 'package:three/extras/image_utils.dart';
 
 var stats, scene, renderer;

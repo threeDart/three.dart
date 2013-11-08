@@ -6,8 +6,8 @@ import 'dart:web_gl' as gl;
 import 'dart:math' as Math;
 import 'dart:convert' show JSON;
 
-import 'src/core/ThreeMath.dart' as ThreeMath;
-export 'src/core/ThreeMath.dart';
+import 'src/core/three_math.dart' as ThreeMath;
+export 'src/core/three_math.dart';
 
 import 'package:vector_math/vector_math.dart';
 
@@ -19,150 +19,150 @@ import 'extras/shader_utils.dart' as ShaderUtils;
 import 'extras/core/curve_utils.dart' as CurveUtils;
 import 'extras/core/shape_utils.dart' as ShapeUtils;
 
-part 'src/cameras/Camera.dart';
-part 'src/cameras/PerspectiveCamera.dart';
-part 'src/cameras/OrthographicCamera.dart';
+part 'src/cameras/camera.dart';
+part 'src/cameras/perspective_camera.dart';
+part 'src/cameras/orthographic_camera.dart';
 
 part 'src/core/vector_utils.dart';
 part 'src/core/matrix_utils.dart';
-part 'src/core/Object3D.dart';
-part 'src/core/Color.dart';
-part 'src/core/Face.dart';
-part 'src/core/Face3.dart';
-part 'src/core/Face4.dart';
-part 'src/core/Frustum.dart';
-part 'src/core/MorphColors.dart';
-part 'src/core/MorphTarget.dart';
-part 'src/core/Geometry.dart';
-part 'src/core/Projector.dart';
-part 'src/core/Ray.dart';
-part 'src/core/UV.dart';
-part 'src/core/Rectangle.dart';
-part 'src/core/BufferGeometry.dart';
-part 'src/core/EventEmitter.dart';
+part 'src/core/object3d.dart';
+part 'src/core/color.dart';
+part 'src/core/face.dart';
+part 'src/core/face3.dart';
+part 'src/core/face4.dart';
+part 'src/core/frustum.dart';
+part 'src/core/morph_colors.dart';
+part 'src/core/morph_target.dart';
+part 'src/core/geometry.dart';
+part 'src/core/projector.dart';
+part 'src/core/ray.dart';
+part 'src/core/uv.dart';
+part 'src/core/rectangle.dart';
+part 'src/core/buffer_geometry.dart';
+part 'src/core/event_emitter.dart';
 
-part 'src/loaders/Loader.dart';
-part 'src/loaders/JSONLoader.dart';
-part 'src/loaders/ImageLoader.dart';
+part 'src/loaders/loader.dart';
+part 'src/loaders/json_loader.dart';
+part 'src/loaders/image_loader.dart';
 
-part 'extras/geometries/CircleGeometry.dart';
-part 'extras/geometries/ConvexGeometry.dart';
-part 'extras/geometries/CubeGeometry.dart';
-part 'extras/geometries/CylinderGeometry.dart';
-part 'extras/geometries/ExtrudeGeometry.dart';
-part 'extras/geometries/IcosahedronGeometry.dart';
-part 'extras/geometries/LatheGeometry.dart';
-part 'extras/geometries/OctahedronGeometry.dart';
-part 'extras/geometries/ParametricGeometry.dart';
-part 'extras/geometries/PlaneGeometry.dart';
-part 'extras/geometries/PolyhedronGeometry.dart';
-part 'extras/geometries/ShapeGeometry.dart';
-part 'extras/geometries/SphereGeometry.dart';
-part 'extras/geometries/TetrahedronGeometry.dart';
-part 'extras/geometries/TextGeometry.dart';
-part 'extras/geometries/TorusGeometry.dart';
-part 'extras/geometries/TorusKnotGeometry.dart';
-part 'extras/geometries/TubeGeometry.dart';
+part 'extras/geometries/circle_geometry.dart';
+part 'extras/geometries/convex_geometry.dart';
+part 'extras/geometries/cube_geometry.dart';
+part 'extras/geometries/cylinder_geometry.dart';
+part 'extras/geometries/extrude_geometry.dart';
+part 'extras/geometries/icosahedron_geometry.dart';
+part 'extras/geometries/lathe_geometry.dart';
+part 'extras/geometries/octahedron_geometry.dart';
+part 'extras/geometries/parametric_geometry.dart';
+part 'extras/geometries/plane_geometry.dart';
+part 'extras/geometries/polyhedron_geometry.dart';
+part 'extras/geometries/shape_geometry.dart';
+part 'extras/geometries/sphere_geometry.dart';
+part 'extras/geometries/tetrahedron_geometry.dart';
+part 'extras/geometries/text_geometry.dart';
+part 'extras/geometries/torus_geometry.dart';
+part 'extras/geometries/torus_knot_geometry.dart';
+part 'extras/geometries/tube_geometry.dart';
 
-part 'extras/core/Curve.dart';
-part 'extras/core/CurvePath.dart';
-part 'extras/core/Path.dart';
-part 'extras/core/Shape.dart';
-part 'extras/core/LineCurve.dart';
-part 'extras/core/QuadraticBezierCurve.dart';
-part 'extras/core/CubicBezierCurve.dart';
-part 'extras/core/SplineCurve.dart';
-part 'extras/core/ArcCurve.dart';
-part 'extras/core/EllipseCurve.dart';
+part 'extras/core/curve.dart';
+part 'extras/core/curve_path.dart';
+part 'extras/core/path.dart';
+part 'extras/core/shape.dart';
+part 'extras/core/line_curve.dart';
+part 'extras/core/quadratic_bezier_curve.dart';
+part 'extras/core/cubic_bezier_curve.dart';
+part 'extras/core/spline_curve.dart';
+part 'extras/core/arc_curve.dart';
+part 'extras/core/ellipse_curve.dart';
 
-part 'extras/core/LineCurve3.dart';
-part 'extras/core/QuadraticBezierCurve3.dart';
-part 'extras/core/CubicBezierCurve3.dart';
-part 'extras/core/SplineCurve3.dart';
-part 'extras/core/ClosedSplineCurve3.dart';
+part 'extras/core/line_curve3.dart';
+part 'extras/core/quadratic_bezier_curve3.dart';
+part 'extras/core/cubic_bezier_curve3.dart';
+part 'extras/core/spline_curve3.dart';
+part 'extras/core/closed_spline_curve3.dart';
 
-part 'extras/core/Gyroscope.dart';
+part 'extras/core/gyroscope.dart';
 
-part 'extras/objects/LensFlare.dart';
-part 'extras/objects/ImmediateRenderObject.dart';
+part 'extras/objects/lens_flare.dart';
+part 'extras/objects/immediate_render_object.dart';
 
-part 'extras/helpers/ArrowHelper.dart';
-part 'extras/helpers/AxisHelper.dart';
-part 'extras/helpers/CameraHelper.dart';
+part 'extras/helpers/arrow_helper.dart';
+part 'extras/helpers/axis_helper.dart';
+part 'extras/helpers/camera_helper.dart';
 
-part 'extras/renderers/plugins/ShadowMapPlugin.dart';
+part 'extras/renderers/plugins/shadow_map_plugin.dart';
 
-part 'src/lights/AmbientLight.dart';
-part 'src/lights/DirectionalLight.dart';
-part 'src/lights/PointLight.dart';
-part 'src/lights/SpotLight.dart';
-part 'src/lights/HemisphereLight.dart';
-part 'src/lights/Light.dart';
-part 'src/lights/ShadowCaster.dart';
+part 'src/lights/ambient_light.dart';
+part 'src/lights/directional_light.dart';
+part 'src/lights/point_light.dart';
+part 'src/lights/spot_light.dart';
+part 'src/lights/hemisphere_light.dart';
+part 'src/lights/light.dart';
+part 'src/lights/shadow_caster.dart';
 
-part 'src/materials/Material.dart';
-part 'src/materials/MeshBasicMaterial.dart';
-part 'src/materials/MeshFaceMaterial.dart';
-part 'src/materials/ParticleBasicMaterial.dart';
-part 'src/materials/ParticleCanvasMaterial.dart';
-part 'src/materials/LineBasicMaterial.dart';
-part 'src/materials/MeshLambertMaterial.dart';
-part 'src/materials/MeshDepthMaterial.dart';
-part 'src/materials/MeshNormalMaterial.dart';
-part 'src/materials/ITextureMapMaterial.dart';
-part 'src/materials/IParticleMaterial.dart';
-part 'src/materials/IMaterial.dart';
-part 'src/materials/MeshPhongMaterial.dart';
-part 'src/materials/ShaderMaterial.dart';
+part 'src/materials/material.dart';
+part 'src/materials/mesh_basic_material.dart';
+part 'src/materials/mesh_face_material.dart';
+part 'src/materials/particle_basic_material.dart';
+part 'src/materials/particle_canvas_material.dart';
+part 'src/materials/line_basic_material.dart';
+part 'src/materials/mesh_lambert_material.dart';
+part 'src/materials/mesh_depth_material.dart';
+part 'src/materials/mesh_normal_material.dart';
+part 'src/materials/itexture_map_material.dart';
+part 'src/materials/iparticle_material.dart';
+part 'src/materials/imaterial.dart';
+part 'src/materials/mesh_phong_material.dart';
+part 'src/materials/shader_material.dart';
 
-part 'src/objects/Bone.dart';
-part 'src/objects/Mesh.dart';
-part 'src/objects/Line.dart';
-part 'src/objects/Particle.dart';
-part 'src/objects/ParticleSystem.dart';
-part 'src/objects/Sprite.dart';
-part 'src/objects/Ribbon.dart';
-part 'src/objects/SkinnedMesh.dart';
-part 'src/objects/LOD.dart';
-part 'src/objects/MorphAnimMesh.dart';
+part 'src/objects/bone.dart';
+part 'src/objects/mesh.dart';
+part 'src/objects/line.dart';
+part 'src/objects/particle.dart';
+part 'src/objects/particle_system.dart';
+part 'src/objects/sprite.dart';
+part 'src/objects/ribbon.dart';
+part 'src/objects/skinned_mesh.dart';
+part 'src/objects/lod.dart';
+part 'src/objects/morph_anim_mesh.dart';
 
-part 'src/renderers/renderables/RenderableObject.dart';
-part 'src/renderers/renderables/RenderableVertex.dart';
-part 'src/renderers/renderables/RenderableFace.dart';
-part 'src/renderers/renderables/RenderableFace3.dart';
-part 'src/renderers/renderables/RenderableFace4.dart';
-part 'src/renderers/renderables/RenderableLine.dart';
-part 'src/renderers/renderables/RenderableParticle.dart';
+part 'src/renderers/renderables/renderable_object.dart';
+part 'src/renderers/renderables/renderable_vertex.dart';
+part 'src/renderers/renderables/renderable_face.dart';
+part 'src/renderers/renderables/renderable_face3.dart';
+part 'src/renderers/renderables/renderable_face4.dart';
+part 'src/renderers/renderables/renderable_line.dart';
+part 'src/renderers/renderables/renderable_particle.dart';
 
-part 'src/renderers/Renderer.dart';
-part 'src/renderers/WebGLRenderer.dart';
-part 'src/renderers/WebGLRenderTarget.dart';
-part 'src/renderers/WebGLRenderTargetCube.dart';
-part 'src/renderers/WebGLShaders.dart';
-part 'src/renderers/CanvasRenderer.dart';
-part 'src/renderers/CSS3DRenderer.dart';
+part 'src/renderers/renderer.dart';
+part 'src/renderers/web_gl_renderer.dart';
+part 'src/renderers/web_gl_render_target.dart';
+part 'src/renderers/web_gl_render_target_cube.dart';
+part 'src/renderers/web_gl_shaders.dart';
+part 'src/renderers/canvas_renderer.dart';
+part 'src/renderers/css3d_renderer.dart';
 
-part 'src/renderers/renderables/IRenderable.dart';
+part 'src/renderers/renderables/irenderable.dart';
 
-part 'src/scenes/Scene.dart';
-part 'src/scenes/Fog.dart';
-part 'src/scenes/FogLinear.dart';
-part 'src/scenes/FogExp2.dart';
+part 'src/scenes/scene.dart';
+part 'src/scenes/fog.dart';
+part 'src/scenes/fog_linear.dart';
+part 'src/scenes/fog_exp2.dart';
 
-part 'src/textures/Texture.dart';
-part 'src/textures/DataTexture.dart';
-part 'src/textures/CompressedTexture.dart';
+part 'src/textures/texture.dart';
+part 'src/textures/data_texture.dart';
+part 'src/textures/compressed_texture.dart';
 
-part 'src/UVMapping.dart';
-part 'src/materials/Mappings.dart';
+part 'src/uv_mapping.dart';
+part 'src/materials/mappings.dart';
 
-// from Geometry
+// from _geometry
 int GeometryCount = 0;
 
 // from Object3D
 int Object3DCount = 0;
 
-// from Material
+// from _material
 int MaterialCount = 0;
 
 // GL STATE CONSTANTS
@@ -231,7 +231,7 @@ const int DstColorFactor = 208;
 const int OneMinusDstColorFactor = 209;
 const int SrcAlphaSaturateFactor = 210;
 
-// from MeshBasicMaterial
+// from MeshBasic_material
 
 // from Texture
 int TextureCount = 0;
