@@ -3,26 +3,11 @@ import 'dart:math' as Math;
 import 'package:three/three.dart';
 import 'package:three/extras/image_utils.dart' as ImageUtils;
 
-PerspectiveCamera camera;
-Scene scene;
-Renderer renderer;
-
-Map<String, Uniform> uniforms;
-Uniform<double> amplitude;
-Uniform<Color> color;
-Uniform<Texture> texture;
-
-Map<String, Attribute> attributes;
-Attribute<double> displacement;
-
-Mesh sphere;
-
-List<double> noise;
+var container, camera, scene, renderer, sphere, noise;
+var uniforms, amplitude, color, texture;
+var attributes, displacement;
 
 var rnd = new Math.Random();
-
-var WIDTH = window.innerWidth,
-    HEIGHT = window.innerHeight;
 
 void main() {
   init();
@@ -30,8 +15,11 @@ void main() {
 }
 
 void init() {
+  
+  container = new Element.tag('div');
+  document.body.nodes.add( container );
 
-  camera = new PerspectiveCamera( 30.0, WIDTH / HEIGHT, 1.0, 10000.0 )
+  camera = new PerspectiveCamera( 30.0, window.innerWidth / window.innerHeight, 1.0, 10000.0 )
   ..position.z = 300.0;
 
   scene = new Scene();
@@ -50,9 +38,9 @@ void init() {
   texture.value.wrapS = texture.value.wrapT = RepeatWrapping;
 
   var shaderMaterial = new ShaderMaterial(
-    uniforms: uniforms,
-    attributes: attributes,
-    vertexShader: document.querySelector( '#vertexshader' ).text,
+    uniforms:       uniforms,
+    attributes:     attributes,
+    vertexShader:   document.querySelector( '#vertexshader' ).text,
     fragmentShader: document.querySelector( '#fragmentshader' ).text);
 
   var radius = 50.0,
@@ -71,10 +59,9 @@ void init() {
   displacement.value.addAll(new List.filled(vertices.length, 0));
 
   renderer = new WebGLRenderer( clearColorHex: 0x050505, clearAlpha: 1 )
-  ..setSize( WIDTH, HEIGHT );
+  ..setSize( window.innerWidth, window.innerHeight);
 
-  Element container = document.querySelector( '#container' )
-  ..children.add( renderer.domElement );
+  container.nodes.add( renderer.domElement );
 
   window.onResize.listen( onWindowResize );
 }

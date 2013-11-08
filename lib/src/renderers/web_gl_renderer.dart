@@ -850,7 +850,7 @@ class WebGLRenderer implements Renderer {
 
 		var uvType = bufferGuessUVType( material ),
 			normalType = bufferGuessNormalType( material ),
-			vertexColorType = bufferGuessVertexColorType( material );
+			vertexColorType = material.vertexColors;
 
 		//console.log( "uvType", uvType, "normalType", normalType, "vertexColorType", vertexColorType, object, geometryGroup, material );
 
@@ -868,7 +868,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( vertexColorType ) {
+		if ( vertexColorType != NoColors) {
 
 			geometryGroup.__colorArray = new Float32List( nvertices * 3 );
 
@@ -1007,19 +1007,6 @@ class WebGLRenderer implements Renderer {
 			return FlatShading;
 
 		}
-
-	}
-
-	bufferGuessVertexColorType ( material ) {
-
-		if ( ((material.vertexColors is bool) && material.vertexColors) ||
-		     ((material.vertexColors is int) && (material.vertexColors != NoColors))) {
-
-			return material.vertexColors;
-
-		}
-
-		return false;
 
 	}
 
@@ -1755,7 +1742,7 @@ class WebGLRenderer implements Renderer {
 		}
 
 		var normalType = bufferGuessNormalType( material ),
-		vertexColorType = bufferGuessVertexColorType( material ),
+		vertexColorType = material.vertexColors,
 		uvType = bufferGuessUVType( material ),
 
 		needsSmoothNormals = ( normalType == SmoothShading );
@@ -2197,7 +2184,7 @@ class WebGLRenderer implements Renderer {
 
 		}
 
-		if ( dirtyColors && vertexColorType) {
+		if ( dirtyColors && vertexColorType != NoColors) {
 
 			fl = chunk_faces3.length;
 			for ( f = 0; f < fl; f ++ ) {
