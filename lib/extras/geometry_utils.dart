@@ -56,3 +56,18 @@ triangleArea ( Vector3 vectorA, Vector3 vectorB, Vector3 vectorC ) {
   return 0.5 * tmp.length;
 }
 
+// Center geometry so that 0,0,0 is in center of bounding box
+
+center ( Geometry geometry ) {
+  geometry.computeBoundingBox();
+  
+  var bb = geometry.boundingBox;
+  
+  var offset = (bb.min + bb.max) * -0.5;
+  
+  geometry.applyMatrix( new Matrix4.translation(offset) );
+  geometry.computeBoundingBox();
+  
+  return offset;
+}
+
