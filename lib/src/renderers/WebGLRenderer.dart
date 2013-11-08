@@ -1385,7 +1385,7 @@ class WebGLRenderer implements Renderer {
 
 				if ( customAttribute.needsUpdate || object.sortParticles ) {
 
-					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+					customAttribute.buffer.bind( gl.ARRAY_BUFFER );
 					_gl.bufferDataTyped( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
@@ -1559,7 +1559,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+					customAttribute.buffer.bind( gl.ARRAY_BUFFER );
 					_gl.bufferDataTyped( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
@@ -1735,7 +1735,7 @@ class WebGLRenderer implements Renderer {
 
 					}
 
-					_gl.bindBuffer( gl.ARRAY_BUFFER, customAttribute.buffer );
+					customAttribute.buffer.bind( gl.ARRAY_BUFFER );
 					_gl.bufferDataTyped( gl.ARRAY_BUFFER, customAttribute.array, hint );
 
 				}
