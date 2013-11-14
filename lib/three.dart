@@ -1,5 +1,6 @@
 library three;
 
+import 'dart:async';
 import 'dart:html' hide Path;
 import 'dart:typed_data';
 import 'dart:web_gl' as gl;
@@ -44,6 +45,7 @@ part 'src/core/event_emitter.dart';
 part 'src/loaders/loader.dart';
 part 'src/loaders/json_loader.dart';
 part 'src/loaders/image_loader.dart';
+part 'src/loaders/stl_loader.dart';
 
 part 'extras/geometries/circle_geometry.dart';
 part 'extras/geometries/convex_geometry.dart';
