@@ -61,7 +61,7 @@ class Texture {
 
     generateMipmaps = true;
     premultiplyAlpha = false;
-    flipY = false;
+    flipY = true;
 
     needsUpdate = false;
     onUpdate = null;
