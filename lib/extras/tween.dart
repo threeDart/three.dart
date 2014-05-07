@@ -188,7 +188,7 @@ class Tween {
         _onCompleteCallback( object );
       }
 
-      _chainedTweens.forEach((t) => t.start(time));
+      _chainedTweens.forEach((t) => t.start(time: time));
 
       return false;
 
