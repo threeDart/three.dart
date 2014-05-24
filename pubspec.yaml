@@ -14,5 +14,5 @@ dependencies:
   browser: '>=0.9.0 <0.11.0'
   vector_math: '>=1.3.5 <1.5.0'
 dev_dependencies:
-  hop: '>=0.27.0 <0.28.0'
+  hop: '>=0.30.0 <0.31.0'
   unittest: any
