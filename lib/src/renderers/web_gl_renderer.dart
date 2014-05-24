@@ -3781,7 +3781,7 @@ class WebGLRenderer implements Renderer {
 
 				_gl.bindBuffer( gl.ARRAY_BUFFER, geometryGroup.__webglLineDistanceBuffer );
 				enableAttribute( attributes["lineDistance"] );
-				_gl.vertexAttribPointer( attributes.lineDistance, 1, gl.FLOAT, false, 0, 0 );
+				_gl.vertexAttribPointer( attributes["lineDistance"], 1, gl.FLOAT, false, 0, 0 );
 
 			}
 		}
