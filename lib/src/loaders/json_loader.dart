@@ -268,9 +268,9 @@ class JSONLoader extends Loader {
 
         normal = new Vector3.zero();
 
-        normal.x = normals[ normalIndex ++ ];
-        normal.y = normals[ normalIndex ++ ];
-        normal.z = normals[ normalIndex ];
+        normal.x = normals[ normalIndex ++ ].toDouble();
+        normal.y = normals[ normalIndex ++ ].toDouble();
+        normal.z = normals[ normalIndex ].toDouble();
 
         face.normal = normal;
 
@@ -284,9 +284,9 @@ class JSONLoader extends Loader {
 
           normal = new Vector3.zero();
 
-          normal.x = normals[ normalIndex ++ ];
-          normal.y = normals[ normalIndex ++ ];
-          normal.z = normals[ normalIndex ];
+          normal.x = normals[ normalIndex ++ ].toDouble();
+          normal.y = normals[ normalIndex ++ ].toDouble();
+          normal.z = normals[ normalIndex ].toDouble();
 
           face.vertexNormals.add( normal );
 
@@ -338,7 +338,7 @@ class JSONLoader extends Loader {
         z = 0.0;
         w = 0.0;
 
-        geometry.skinWeights.add( new Vector4( x, y, z, w ) );
+        geometry.skinWeights.add( new Vector4( x.toDouble(), y.toDouble(), z.toDouble(), w.toDouble() ) );
 
       }
 
@@ -354,7 +354,7 @@ class JSONLoader extends Loader {
         c = 0.0;
         d = 0.0;
 
-        geometry.skinIndices.add( new Vector4( a, b, c, d ) );
+        geometry.skinIndices.add( new Vector4( a.toDouble(), b.toDouble(), c.toDouble(), d.toDouble() ) );
 
       }
 
