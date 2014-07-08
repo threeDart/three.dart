@@ -104,17 +104,17 @@ class Object3D {
     this.position = this.matrix.getTranslation();
   }
 
-  void translate( num distance, Vector3 axis ) {
+  void translate( double distance, Vector3 axis ) {
     matrix.rotate3( axis );
     axis.normalize();
     position.add( axis.scale( distance ) );
   }
 
-  void translateX( num distance ) => translate( distance, _vector.setValues( 1.0, 0.0, 0.0 ) );
+  void translateX( double distance ) => translate( distance, _vector.setValues( 1.0, 0.0, 0.0 ) );
 
-  void translateY( num distance ) => translate( distance, _vector.setValues( 0.0, 1.0, 0.0 ) );
+  void translateY( double distance ) => translate( distance, _vector.setValues( 0.0, 1.0, 0.0 ) );
 
-  void translateZ( num distance ) => translate( distance, _vector.setValues( 0.0, 0.0, 1.0 ) );
+  void translateZ( double distance ) => translate( distance, _vector.setValues( 0.0, 0.0, 1.0 ) );
 
   void lookAt( Vector3 vector ) {
     // TODO: Add hierarchy support.
