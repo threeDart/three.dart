@@ -11,7 +11,7 @@ class ClosedSplineCurve3 extends Curve3D {
   Vector3 getPoint( t ) {
 
     var v = new Vector3.zero();
-    var c = [];
+    var c = new List<int>(4);
     var point,
         intPoint,
         weight;
