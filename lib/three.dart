@@ -142,8 +142,6 @@ part 'src/renderers/web_gl_renderer.dart';
 part 'src/renderers/web_gl_render_target.dart';
 part 'src/renderers/web_gl_render_target_cube.dart';
 part 'src/renderers/web_gl_shaders.dart';
-part 'src/renderers/canvas_renderer.dart';
-part 'src/renderers/css3d_renderer.dart';
 
 part 'src/renderers/renderables/irenderable.dart';
 

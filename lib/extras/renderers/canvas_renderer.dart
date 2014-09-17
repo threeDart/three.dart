@@ -1,4 +1,10 @@
-part of three;
+library canvas_renderer;
+
+import 'dart:html';
+import 'dart:math' as Math;
+
+import 'package:three/three.dart';
+import 'package:vector_math/vector_math.dart';
 
 /**
  * @author mr.doob / http://mrdoob.com/
@@ -272,7 +278,7 @@ class CanvasRenderer implements Renderer {
         rp.x *= _canvasWidthHalf; rp.y *= _canvasHeightHalf;
 
         renderParticle( rp, element, material, scene );
-        
+
       } else if ( element is RenderableLine ) {
         _v1 = element.v1; _v2 = element.v2;
 
@@ -285,7 +291,7 @@ class CanvasRenderer implements Renderer {
         if ( _clipRect.intersects( _bboxRect ) ) {
           renderLine( _v1, _v2, element, material, scene );
         }
-        
+
       } else if ( element is RenderableFace3 ) {
         _v1 = element.v1; _v2 = element.v2; _v3 = element.v3;
 
@@ -306,7 +312,7 @@ class CanvasRenderer implements Renderer {
         if ( _clipRect.intersects( _bboxRect ) ) {
           renderFace3( _v1, _v2, _v3, 0, 1, 2, element, material, scene );
         }
-        
+
       } else if ( element is RenderableFace4 ) {
         _v1 = element.v1; _v2 = element.v2; _v3 = element.v3; _v4 = element.v4;
 
@@ -891,7 +897,7 @@ class CanvasRenderer implements Renderer {
       if (_patterns.length <= texture.id) {
         _patterns.length = texture.id + 1;
       }
-      
+
       _patterns[ texture.id ] = _context.createPattern( texture.image, repeatX && repeatY ? 'repeat' : repeatX && !repeatY ? 'repeat-x' : !repeatX && repeatY ? 'repeat-y' : 'no-repeat' );
 
       texture.needsUpdate = false;

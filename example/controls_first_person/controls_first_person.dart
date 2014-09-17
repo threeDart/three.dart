@@ -1,6 +1,8 @@
 import 'dart:html';
 import 'dart:math' as Math;
+
 import 'package:three/three.dart' as THREE;
+import 'package:three/extras/renderers/canvas_renderer.dart' as THREE;
 import 'package:three/extras/controls/first_person_controls.dart';
 
 /**
