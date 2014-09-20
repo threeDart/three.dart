@@ -103,7 +103,7 @@ class TrackballControls extends EventEmitter {
 
     changeEvent = new EventEmitterEvent(type: 'change');
 
-    domElement
+    this.domElement
     ..onContextMenu.listen(( event ) => event.preventDefault())
     ..onMouseDown.listen(mousedown)
     ..onMouseWheel.listen(mousewheel)
