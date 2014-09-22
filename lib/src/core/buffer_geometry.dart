@@ -18,10 +18,10 @@ class GeometryAttribute<T> {
   GeometryAttribute._internal(this.numItems, this.itemSize, this.array);
 
   factory GeometryAttribute.float32(int numItems, [int itemSize = 1]) =>
-    new GeometryAttribute<Float32List>._internal(numItems, itemSize, new Float32List(numItems));
+    new GeometryAttribute._internal(numItems, itemSize, new Float32List(numItems));
 
   factory GeometryAttribute.int16(int numItems, [int itemSize = 1]) =>
-      new GeometryAttribute<Int16List>._internal(numItems, itemSize, new Int16List(numItems));
+      new GeometryAttribute._internal(numItems, itemSize, new Int16List(numItems));
 
 }
 
@@ -53,6 +53,19 @@ class BufferGeometry implements Geometry {
 	// for compatibility
 	List morphTargets = [];
 	List morphNormals = [];
+
+  // WebGL
+  bool  verticesNeedUpdate = true,
+       colorsNeedUpdate = true,
+       elementsNeedUpdate = true,
+       uvsNeedUpdate = true,
+       normalsNeedUpdate = true,
+       tangentsNeedUpdate = true,
+       buffersNeedUpdate = true,
+       morphTargetsNeedUpdate = true,
+       lineDistancesNeedUpdate = true;
+	bool __webglInit = false;
+  var __webglVertexBuffer;
 
 	applyMatrix ( Matrix4 matrix ) {
 
@@ -510,18 +523,5 @@ class BufferGeometry implements Geometry {
   noSuchMethod(Invocation invocation) {
     throw new Exception('Unimplemented ${invocation.memberName}');
   }
-
-	 // Quick hack to allow setting new properties (used by the renderer)
-  Map __data;
-
-  get _data {
-    if (__data == null) {
-      __data = {};
-    }
-    return __data;
-  }
-
-  operator [] (String key) => _data[key];
-  operator []= (String key, value) => _data[key] = value;
 
 }

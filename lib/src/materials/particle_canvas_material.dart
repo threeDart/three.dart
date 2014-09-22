@@ -16,8 +16,8 @@ part of three;
 
 typedef ParticleCanvasMaterialProgram(context);
 
-class ParticleCanvasMaterial extends Material implements IParticleMaterial {
-  Color color;
+class ParticleCanvasMaterial extends Material {
+
   ParticleCanvasMaterialProgram program;
 
   ParticleCanvasMaterial( { // ParticleCanvasMaterial
@@ -49,7 +49,6 @@ class ParticleCanvasMaterial extends Material implements IParticleMaterial {
 
                              visible: true })
                              :
-                               this.color = new Color(color),
 
                                super(  name: name,
                                    side: side,
@@ -66,7 +65,8 @@ class ParticleCanvasMaterial extends Material implements IParticleMaterial {
                                    polygonOffsetUnits: polygonOffsetUnits,
                                    alphaTest: alphaTest,
                                    overdraw: overdraw,
-                                   visible: visible ) {
+                                   visible: visible,
+                                   color: color) {
 
           if (this.program == null) this.program = (context) {};
 

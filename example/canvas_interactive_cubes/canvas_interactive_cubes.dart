@@ -10,7 +10,7 @@ PerspectiveCamera camera;
 Scene scene;
 Projector projector;
 CanvasRenderer renderer;
-IParticleMaterial particleMaterial;
+Material particleMaterial;
 
 List<Mesh> objects;
 

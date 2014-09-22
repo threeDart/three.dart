@@ -1,8 +1,12 @@
 part of three;
 
-class MeshPhongMaterial extends Material implements ITextureMapMaterial {
+class MeshPhongMaterial extends Material
+  implements Lighting,
+       TextureMapping,
+       EnvironmentMapping,
+       Skinning,
+       Morphing {
 
-  Color color;
   Color ambient;
   Color emissive;
   Color specular;
@@ -39,11 +43,10 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
   var wireframeLinejoin;
 
   bool skinning;
-  bool morphTargets;
-  bool morphNormals;
 
-  int vertexColors;
-  bool fog;
+  // Morphing
+  bool morphTargets, morphNormals;
+  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   MeshPhongMaterial( { // MeshLambertMaterial
 
@@ -78,9 +81,9 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
 
                        this.shading: SmoothShading,
 
-                       this.vertexColors: NoColors,
+                       int vertexColors: NoColors,
 
-                       this.fog: true,
+                       bool fog: true,
 
                        this.wireframe: false,
                        this.wireframeLinewidth: 1,
@@ -114,9 +117,8 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
 
                        overdraw: false,
 
-                       visible: true })
+                       visible: true})
                        :
-                         this.color = new Color(color),
                          this.ambient = new Color(ambient),
                          this.emissive = new Color(emissive),
                          this.specular = new Color(specular),
@@ -138,8 +140,13 @@ class MeshPhongMaterial extends Material implements ITextureMapMaterial {
                                  polygonOffsetUnits: polygonOffsetUnits,
                                  alphaTest: alphaTest,
                                  overdraw: overdraw,
-                                 visible: visible ) {
+                                 visible: visible,
+                                 color: color,
+                                 fog: fog,
+                                 vertexColors: vertexColors) {
+
                            if (normalScale == null) { normalScale = new Vector2( 1.0, 1.0 ); }
+
                          }
 
 }

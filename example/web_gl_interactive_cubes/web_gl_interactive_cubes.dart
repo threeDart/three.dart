@@ -13,6 +13,7 @@ Projector projector;
 double mouseX = 0.0, mouseY = 0.0;
 
 Mesh INTERSECTED;
+num currentHex;
 
 void main() {
   init();
@@ -130,18 +131,18 @@ render() {
 
     if ( INTERSECTED != intersects[ 0 ].object ) {
 
-      if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
+      if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).emissive.setHex( currentHex );
 
       INTERSECTED = intersects[ 0 ].object;
       MeshLambertMaterial material = INTERSECTED.material;
-      INTERSECTED["currentHex"] = material.color.getHex();
-      material.color.setHex( 0xff0000 );
+      currentHex = material.emissive.getHex();
+      material.emissive.setHex( 0xff0000 );
 
     }
 
   } else {
 
-    if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
+    if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).emissive.setHex( currentHex );
 
     INTERSECTED = null;
 

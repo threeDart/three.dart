@@ -35,13 +35,20 @@ part of three;
  * }
  */
 
-class MeshLambertMaterial extends Material implements ITextureMapMaterial
-{
+class MeshLambertMaterial extends Material
+  implements Lighting,
+       TextureMapping,
+       EnvironmentMapping,
+       Skinning,
+       Morphing,
+       Wireframe {
   Map _parameters;
 
+  // Lighting
   Color color;
   Color ambient;
   Color emissive;
+  Color specular;
 
   bool wrapAround;
   Vector3 wrapRGB;
@@ -60,10 +67,10 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
   String wireframeLinejoin;
 
   bool skinning;
-  bool morphTargets, morphNormals;
 
-  int vertexColors;
-  bool fog;
+  // Morphing
+  bool morphTargets, morphNormals;
+  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   MeshLambertMaterial( { // MeshLambertMaterial
 
@@ -86,9 +93,9 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
 
                          this.shading: SmoothShading,
 
-                         this.vertexColors: NoColors,
+                         int vertexColors: NoColors,
 
-                         this.fog: true,
+                         bool fog: true,
 
                          this.wireframe: false,
                          this.wireframeLinewidth: 1,
@@ -145,6 +152,9 @@ class MeshLambertMaterial extends Material implements ITextureMapMaterial
                                    polygonOffsetUnits: polygonOffsetUnits,
                                    alphaTest: alphaTest,
                                    overdraw: overdraw,
-                                   visible: visible );
+                                   visible: visible,
+                                   color: color,
+                                   fog: fog,
+                                   vertexColors: vertexColors );
 
 }

@@ -31,8 +31,8 @@ var  _face = "helvetiker",
      _size = 150,
      _divisions = 10;
 
-/// Map of [FontFace]
-Map<String, Map<String, Map<String, Map<String, Map>>>> _faces = {};
+/// Map of [FontFace] of Map<String, Map> (before parsing)
+Map<String, Map<String, Map<String, dynamic>>> _faces = {};
 
 Map<String, Map> getFace() => _faces[ _face ][ _weight ][ _style ];
 
@@ -235,7 +235,7 @@ generateShapes( text, [ int size = 100,
     face = new FontFace(size: size, divisions: curveSegments);
     _faces[font][weight][style] = face;
   }
-  
+
   _size = size;
   _divisions = curveSegments;
 

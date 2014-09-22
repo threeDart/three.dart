@@ -9,12 +9,11 @@ part of three;
 
 class Line extends Object3D {
 
-  Geometry geometry;
   Material material;
   int type;
 
 
-  Line(this.geometry, [this.material, this.type = LineStrip]) : super() {
+  Line(Geometry geometry, [this.material, this.type = LineStrip]) : super() {
 
     if (material == null) { material = new LineBasicMaterial( color: new Math.Random().nextInt(0xffffff) ); }
 
@@ -23,6 +22,7 @@ class Line extends Object3D {
       if( geometry.boundingSphere == null ) {
         geometry.computeBoundingSphere();
       }
+      this.geometry = geometry;
     }
   }
 }

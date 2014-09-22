@@ -17,7 +17,7 @@ part of three;
  *  wireframeLinewidth: <float>
  * }
  */
-class MeshNormalMaterial extends Material {
+class MeshNormalMaterial extends Material implements Wireframe {
   //Map _parameters;
   int shading;
   bool wireframe;

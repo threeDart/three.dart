@@ -8,7 +8,7 @@ Element container;
 PerspectiveCamera camera;
 Scene scene;
 CanvasRenderer renderer;
-IParticleMaterial material;
+Material material;
 Geometry geometry;
 
 int mouseX = 0, mouseY = 0;

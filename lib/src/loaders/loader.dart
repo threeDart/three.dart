@@ -214,7 +214,7 @@ class Loader {
 
 
   _createMaterial( Map m, String texturePath ) {
-    IMaterial material;
+    Material material;
 
     // defaults
 

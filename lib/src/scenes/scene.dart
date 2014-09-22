@@ -16,6 +16,12 @@ class Scene extends Object3D {
   List __objectsAdded;
   List __objectsRemoved;
 
+  // WebGL
+  List<WebGLObject> __webglObjects;
+  List<WebGLObject> __webglObjectsImmediate;
+  List __webglSprites;
+  List __webglFlares;
+
   Scene() {
     // TODO: check how to call super constructor
     // super();

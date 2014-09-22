@@ -11,9 +11,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class Geometry {
-
-  int id;
+class Geometry extends Object with WebGLGeometry {
 
   String name;
 
@@ -43,10 +41,20 @@ class Geometry {
   // Used in JSONLoader
   var bones, animation;
 
-  Geometry()
-      : id = GeometryCount ++,
 
-        name = '',
+  // WebGL
+  bool  verticesNeedUpdate = false,
+        colorsNeedUpdate = false,
+        elementsNeedUpdate = false,
+        uvsNeedUpdate = false,
+        normalsNeedUpdate = false,
+        tangentsNeedUpdate = false,
+        buffersNeedUpdate = false,
+        morphTargetsNeedUpdate = false,
+        lineDistancesNeedUpdate = false;
+
+  Geometry()
+      : name = '',
 
         vertices = <Vector3>[],
         colors = [], // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
@@ -72,7 +80,10 @@ class Geometry {
 
         hasTangents = false,
 
-        _dynamic = false; // unless set to true the *Arrays will be deleted once sent to a buffer.
+        _dynamic = false // unless set to true the *Arrays will be deleted once sent to a buffer.
+  {
+    id = GeometryCount ++;
+  }
 
   // dynamic is a reserved word in Dart
   bool get isDynamic => _dynamic;

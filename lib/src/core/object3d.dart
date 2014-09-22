@@ -9,6 +9,10 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+abstract class GeometryObject {
+
+}
+//get _hasGeometry => (object i;
 class Object3D {
 
   int id;
@@ -40,6 +44,27 @@ class Object3D {
   Vector3 _vector;
 
   var customDepthMaterial;
+
+  // TODO : Introduce a mixin for objects with Geometry
+  Geometry geometry;
+
+  // TODO : Introduce a mixin for objects with Material
+  Material material;
+
+  // WebGL
+  bool __webglInit = false;
+  bool __webglActive = false;
+  var immediateRenderCallback;
+
+  Matrix4 _modelViewMatrix;
+  Matrix3 _normalMatrix;
+
+  int count;
+  bool hasPositions, hasNormals, hasUvs, hasColors;
+  var positionArray, normalArray, uvArray, colorArray;
+  gl.Buffer __webglVertexBuffer, __webglNormalBuffer, __webglUVBuffer, __webglColorBuffer;
+
+  var __webglMorphTargetInfluences;
 
   Object3D()
       : id = Object3DCount++,
@@ -151,7 +176,7 @@ class Object3D {
     }
 
     if ( scene is Scene ) {
-      scene.addObject( object );
+      (scene as Scene).addObject( object );
     }
 
   }
@@ -166,14 +191,14 @@ class Object3D {
       children.removeAt(index);
 
       // remove from scene
-      Object3D scene = this;
+      Object3D obj = this;
 
-      while ( scene.parent != null ) {
-        scene = scene.parent;
+      while ( obj.parent != null ) {
+        obj = obj.parent;
       }
 
-      if (scene is Scene ) {
-        scene.removeObject( object );
+      if (obj is Scene ) {
+        (obj as Scene).removeObject( object );
       }
     }
   }
@@ -262,17 +287,4 @@ class Object3D {
     }
     return ___m1;
   }
-
-  // Quick hack to allow setting new properties (used by the renderer)
-  Map __data;
-
-  get _data {
-    if (__data == null) {
-      __data = {};
-    }
-    return __data;
-  }
-
-  operator [] (String key) => _data[key];
-  operator []= (String key, value) => _data[key] = value;
 }

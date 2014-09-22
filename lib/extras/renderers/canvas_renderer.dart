@@ -450,7 +450,7 @@ class CanvasRenderer implements Renderer {
 
   }
 
-  void renderParticle ( RenderableParticle v1, RenderableParticle element, IMaterial material, Scene scene ) {
+  void renderParticle ( RenderableParticle v1, RenderableParticle element, Material material, Scene scene ) {
     setOpacity( material.opacity );
     setBlending( material.blending );
 
@@ -716,7 +716,7 @@ class CanvasRenderer implements Renderer {
 
     //TODO: make sure all relevant materials implement ITextureMapMaterial
 //    if ( material.map != null || material.envMap != null )
-    if (material is ITextureMapMaterial) {
+    if (material is TextureMapping) {
       // Let renderFace3() handle this
 
       renderFace3( v1, v2, v4, 0, 1, 3, element, material, scene );
@@ -1012,10 +1012,10 @@ class CanvasRenderer implements Renderer {
   CanvasElement getGradientTexture( Color color1, Color color2, Color color3, Color color4 ) {
     // http://mrdoob.com/blog/post/710
 
-    num c1r = color1._rr, c1g = color1._gg, c1b = color1._bb,
-    c2r = color2._rr, c2g = color2._gg, c2b = color2._bb,
-    c3r = color3._rr, c3g = color3._gg, c3b = color3._bb,
-    c4r = color4._rr, c4g = color4._gg, c4b = color4._bb;
+    num c1r = color1.rr, c1g = color1.gg, c1b = color1.bb,
+    c2r = color2.rr, c2g = color2.gg, c2b = color2.bb,
+    c3r = color3.rr, c3g = color3.gg, c3b = color3.bb,
+    c4r = color4.rr, c4g = color4.gg, c4b = color4.bb;
 
     _pixelMapData[ 0 ] = c1r < 0 ? 0 : c1r > 255 ? 255 : c1r;
     _pixelMapData[ 1 ] = c1g < 0 ? 0 : c1g > 255 ? 255 : c1g;
