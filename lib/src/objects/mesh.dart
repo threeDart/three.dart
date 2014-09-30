@@ -11,7 +11,6 @@ part of three;
  */
 
 class Mesh extends Object3D {
-  Geometry geometry;
   Material material;
 
   num morphTargetBase = 0;
@@ -19,7 +18,7 @@ class Mesh extends Object3D {
   List morphTargetInfluences;
   Map _morphTargetDictionary;
 
-  Mesh( this.geometry, [this.material] ) : super() {
+  Mesh( Geometry geometry, [this.material] ) : super() {
 
     if (material == null) {
       material = new MeshBasicMaterial( color: new Math.Random().nextInt(0xffffff), wireframe: true );
@@ -45,8 +44,11 @@ class Mesh extends Object3D {
           _morphTargetDictionary[ geometry.morphTargets[ m ].name ] = m;
         }
       }
+
+      this.geometry = geometry;
     }
   }
+
 
   /*
    * Get Morph Target Index by Name

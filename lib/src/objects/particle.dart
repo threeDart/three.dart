@@ -8,7 +8,7 @@ part of three;
  */
 
 class Particle extends Object3D {
-  IParticleMaterial material;
-
-  Particle( this.material ) : super();
+  Particle( Material material ) : super() {
+    this.material = material;
+  }
 }

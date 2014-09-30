@@ -1,12 +1,14 @@
 import 'dart:html';
 import 'dart:math' as Math;
+
 import 'package:three/three.dart';
+import 'package:three/extras/renderers/canvas_renderer.dart';
 
 Element container;
 PerspectiveCamera camera;
 Scene scene;
 CanvasRenderer renderer;
-IParticleMaterial material;
+Material material;
 Geometry geometry;
 
 int mouseX = 0, mouseY = 0;

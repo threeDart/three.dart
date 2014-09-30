@@ -25,15 +25,10 @@ part of three;
  */
 
 class LineBasicMaterial extends Material {
-  Color color;
+
   num linewidth;
   String linecap;
   String linejoin;
-
-  bool fog;
-
-  // Before changing this please checkout issue #79
-  dynamic vertexColors;
 
 
   LineBasicMaterial({ // LineBasicMaterial
@@ -44,9 +39,8 @@ class LineBasicMaterial extends Material {
                       this.linecap: 'round',
                       this.linejoin: 'round',
 
-                      this.vertexColors: false,
-
-                      this.fog: true,
+                      int vertexColors: NoColors,
+                      bool fog: true,
 
                       // Material
                       name: '',
@@ -73,7 +67,6 @@ class LineBasicMaterial extends Material {
 
                       visible: true })
       :
-                      this.color = new Color(color),
 
                       super(  name: name,
                               side: side,
@@ -90,5 +83,8 @@ class LineBasicMaterial extends Material {
                               polygonOffsetUnits: polygonOffsetUnits,
                               alphaTest: alphaTest,
                               overdraw: overdraw,
-                              visible: visible );
+                              visible: visible,
+                              color: color,
+                              fog: fog,
+                              vertexColors: vertexColors);
 }

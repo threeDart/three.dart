@@ -18,11 +18,14 @@ part of three;
  * }
  */
 
-class MeshDepthMaterial extends Material {
+class MeshDepthMaterial extends Material implements Wireframe {
   Map _parameters;
   int shading;
+
+  // Wireframe
   bool wireframe;
   num wireframeLinewidth;
+  String wireframeLinecap, wireframeLinejoin;
 
   MeshDepthMaterial( { // MeshDepthMaterial
                        this.shading: SmoothShading, // doesn't really apply here, normals are not used

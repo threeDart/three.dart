@@ -1,4 +1,9 @@
-part of three;
+library css3d_renderer;
+
+import 'dart:html';
+import 'dart:math' as Math;
+
+import 'package:three/three.dart';
 
 class CSS3DObject extends Object3D {
 

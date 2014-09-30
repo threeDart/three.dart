@@ -12,6 +12,7 @@ part of three;
  */
 
 class DirectionalLight extends ShadowCaster {
+
   Vector3 position;
   Object3D target;
   num intensity, distance;

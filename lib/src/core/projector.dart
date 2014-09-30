@@ -380,7 +380,7 @@ class Projector {
         _modelViewProjectionMatrix.transform( v1.positionScreen );
 
       // Handle LineStrip and LinePieces
-        var step = object.type == LinePieces ? 2 : 1;
+        var step = ((object is Line) && (object as Line).type == LinePieces) ? 2 : 1;
 
         vl = vertices.length;
         for ( v = 1; v < vl; v++ ) {
@@ -439,7 +439,7 @@ class Projector {
           _particle.scale.x = object.scale.x * ( _particle.x - ( _vector4.x + camera.projectionMatrix[0] ) / ( _vector4.w + camera.projectionMatrix[12] ) ).abs();
           _particle.scale.y = object.scale.y * ( _particle.y - ( _vector4.y + camera.projectionMatrix[5] ) / ( _vector4.w + camera.projectionMatrix[13] ) ).abs();
 
-          _particle.material = object.material as Material;
+          _particle.material = object.material;
 
           _renderData.elements.add( _particle );
         }

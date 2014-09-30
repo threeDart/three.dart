@@ -16,7 +16,7 @@ class ShadowMapPlugin {
 
   gl.RenderingContext _gl;
   WebGLRenderer _renderer;
-  WebGLMaterial _depthMaterial, _depthMaterialMorph, _depthMaterialSkin, _depthMaterialMorphSkin;
+  Material _depthMaterial, _depthMaterialMorph, _depthMaterialSkin, _depthMaterialMorphSkin;
 
   ShadowMapPlugin() :
     _frustum = new Frustum(),
@@ -33,10 +33,10 @@ class ShadowMapPlugin {
     var depthShader = ShaderLib[ "depthRGBA" ];
     var depthUniforms = UniformsUtils.clone( depthShader["uniforms"] );
 
-    _depthMaterial = new WebGLMaterial.from(new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms ));
-    _depthMaterialMorph =  new WebGLMaterial.from(new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms, morphTargets: true ));
-    _depthMaterialSkin =  new WebGLMaterial.from(new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms, skinning: true ));
-    _depthMaterialMorphSkin =  new WebGLMaterial.from(new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms, morphTargets: true, skinning: true ));
+    _depthMaterial = new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms );
+    _depthMaterialMorph =  new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms, morphTargets: true );
+    _depthMaterialSkin =  new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms, skinning: true );
+    _depthMaterialMorphSkin =  new ShaderMaterial( fragmentShader: depthShader["fragmentShader"], vertexShader: depthShader["vertexShader"], uniforms: depthUniforms, morphTargets: true, skinning: true );
 
     _depthMaterial.shadowPass = true;
     _depthMaterialMorph.shadowPass = true;
@@ -231,7 +231,7 @@ class ShadowMapPlugin {
 
       // set object matrices & frustum culling
 
-      renderList = scene["__webglObjects"];
+      renderList = scene.__webglObjects;
 
       jl = renderList.length;
       for ( j = 0; j < jl; j ++ ) {
@@ -245,7 +245,7 @@ class ShadowMapPlugin {
 
           if ( ! ( object is Mesh ) || (object is ParticleSystem ) || ! ( object.frustumCulled ) || _frustum.contains( object ) ) {
 
-            webglObject._modelViewMatrix = shadowCamera.matrixWorldInverse * object.matrixWorld;
+            object._modelViewMatrix = shadowCamera.matrixWorldInverse * object.matrixWorld;
 
             webglObject.render = true;
 
@@ -317,7 +317,7 @@ class ShadowMapPlugin {
 
       // set matrices and render immediate objects
 
-      renderList = scene["__webglObjectsImmediate"];
+      renderList = scene.__webglObjectsImmediate;
 
       jl = renderList.length;
       for ( j = 0; j < jl; j ++ ) {
@@ -327,7 +327,7 @@ class ShadowMapPlugin {
 
         if ( object.visible && object.castShadow ) {
 
-          object._modelViewMatrix.multiply( shadowCamera.matrixWorldInverse, object.matrixWorld );
+          object._modelViewMatrix.multiply( shadowCamera.matrixWorldInverse );
 
           _renderer.renderImmediateObject( shadowCamera, scene.lights, fog, _depthMaterial, object );
 

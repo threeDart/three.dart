@@ -16,6 +16,10 @@ class Camera extends Object3D {
   double near;
   double far;
 
+  // WebGL
+  Float32List _viewMatrixArray = new Float32List( 16 );
+  Float32List _projectionMatrixArray = new Float32List( 16 );
+
   Camera(this.near, this.far)
     : matrixWorldInverse = new Matrix4.identity(),
       projectionMatrix = new Matrix4.identity(),

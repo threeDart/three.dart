@@ -22,9 +22,9 @@ class Color {
   set b(num b) { _b = b.toDouble();}
   get b => _b;
 
-  int get _rr => (r*255).floor();
-  int get _gg => (g*255).floor();
-  int get _bb => (b*255).floor();
+  int get rr => (r*255).floor();
+  int get gg => (g*255).floor();
+  int get bb => (b*255).floor();
 
   Color( [num hex] )
       : _r = 1.0,
@@ -206,7 +206,7 @@ class Color {
   }
 
   num getHex() {
-    num h = (_rr<<16)^(_gg<<8)^(_bb);
+    num h = (rr<<16)^(gg<<8)^(bb);
     return h;
   }
 
@@ -215,7 +215,7 @@ class Color {
     // how r,g,b is set. Something in CanvasRender is setting them to doubles
     // when they should be int's. We could add setter/getter's to handle this
 
-    return 'rgb(${_rr},${_gg},${_bb})';
+    return 'rgb(${rr},${gg},${bb})';
   }
 
   Color clone() {

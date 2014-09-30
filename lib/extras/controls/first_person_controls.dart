@@ -179,8 +179,8 @@ class FirstPersonControls {
   }
 
   void update(delta) {
-    var actualMoveSpeed = 0;
-    var actualLookSpeed = 0;
+    var actualMoveSpeed = 0.0;
+    var actualLookSpeed = 0.0;
     if ( this.freeze ) {
 
       return;

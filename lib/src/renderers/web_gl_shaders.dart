@@ -1846,14 +1846,18 @@ class Attribute<T> {
     return a;
   }
 
-  factory Attribute.color([List<num> hex]) => new Attribute<Color>("c", (hex != null) ? hex.map((h) => new Color(h)) : null);
-
-  factory Attribute.float([List<double> v]) => new Attribute<double>("f", v);
-  factory Attribute.int([List<int> v]) => new Attribute<int>("i", v);
-
-  factory Attribute.vector2([List<Vector2> v]) => new Attribute<Vector2>("v2", v);
-  factory Attribute.vector3([List<Vector3> v]) => new Attribute<Vector3>("v3", v);
-  factory Attribute.vector4([List<Vector4> v]) => new Attribute<Vector4>("v4", v);
+  // <Color>
+  factory Attribute.color([List<num> hex]) => new Attribute("c", (hex != null) ? hex.map((h) => new Color(h)) : null);
+  // <double>
+  factory Attribute.float([List<double> v]) => new Attribute("f", v);
+  // <int>
+  factory Attribute.int([List<int> v]) => new Attribute("i", v);
+  // <Vector2>
+  factory Attribute.vector2([List<Vector2> v]) => new Attribute("v2", v);
+  // <Vector3>
+  factory Attribute.vector3([List<Vector3> v]) => new Attribute("v3", v);
+  // <Vector4>
+  factory Attribute.vector4([List<Vector4> v]) => new Attribute("v4", v);
 }
 
 class Uniform<T> {
@@ -2002,30 +2006,43 @@ class Uniform<T> {
     return new Uniform( type, dst);
   }
 
-  factory Uniform.color(num hex) => new Uniform<Color>("c", new Color(hex));
+  // <Color>
+  factory Uniform.color(num hex) => new Uniform("c", new Color(hex));
+  // <double>
+  factory Uniform.float([double v]) => new Uniform("f", v);
+  // <List<double>>
+  factory Uniform.floatv(List<double> v) => new Uniform("fv", v);
+  factory Uniform.floatv1(List<double> v) => new Uniform("fv1", v);
 
-  factory Uniform.float([double v]) => new Uniform<double>("f", v);
-  factory Uniform.floatv(List<double> v) => new Uniform<List<double>>("fv", v);
-  factory Uniform.floatv1(List<double> v) => new Uniform<List<double>>("fv1", v);
+  // <int>
+  factory Uniform.int([int v]) => new Uniform("i", v);
+  // <List<int>>
+  factory Uniform.intv(List<int> v) => new Uniform("iv", v);
+  factory Uniform.intv1(List<int> v) => new Uniform("iv1", v);
 
-  factory Uniform.int([int v]) => new Uniform<int>("i", v);
-  factory Uniform.intv(List<int> v) => new Uniform<List<int>>("iv", v);
-  factory Uniform.intv1(List<int> v) => new Uniform<List<int>>("iv1", v);
+  // <Texture>
+  factory Uniform.texture([Texture texture]) => new Uniform("t", texture);
+  // <List<Texture>>
+  factory Uniform.texturev([List<Texture> textures]) => new Uniform("tv", textures);
 
-  factory Uniform.texture([Texture texture]) => new Uniform<Texture>("t", texture);
-  factory Uniform.texturev([List<Texture> textures]) => new Uniform<List<Texture>>("tv", textures);
+  // <List<Vector2>>
+  factory Uniform.vector2v(List<Vector2> vectors) => new Uniform("v2v", vectors);
 
-  factory Uniform.vector2v(List<Vector2> vectors) => new Uniform<List<Vector2>>("v2v", vectors);
+  // <Vector2>
+  factory Uniform.vector2(double x, double y) => new Uniform("v2", new Vector2(x, y));
+  // <Vector3>
+  factory Uniform.vector3(double x, double y, double z) => new Uniform("v3", new Vector3(x, y, z));
+  // <Vector4>
+  factory Uniform.vector4(double x, double y, num z, double w) => new Uniform("v4", new Vector4(x, y, z, w));
 
-  factory Uniform.vector2(double x, double y) => new Uniform<Vector2>("v2", new Vector2(x, y));
-  factory Uniform.vector3(double x, double y, double z) => new Uniform<Vector3>("v3", new Vector3(x, y, z));
-  factory Uniform.vector4(double x, double y, num z, double w) => new Uniform<Vector4>("v4", new Vector4(x, y, z, w));
-
-  factory Uniform.matrix2(Matrix2 m) => new Uniform<Matrix2>("m2", m);
-  factory Uniform.matrix3(Matrix3 m) => new Uniform<Matrix3>("m3", m);
-  factory Uniform.matrix4(Matrix4 m) => new Uniform<Matrix4>("m4", m);
-
-  factory Uniform.matrix4v(List<Matrix4> m) => new Uniform<List<Matrix4>>("m4v", m);
+  // <Matrix2>
+  factory Uniform.matrix2(Matrix2 m) => new Uniform("m2", m);
+  // <Matrix3>
+  factory Uniform.matrix3(Matrix3 m) => new Uniform("m3", m);
+  // <Matrix4>
+  factory Uniform.matrix4(Matrix4 m) => new Uniform("m4", m);
+  // <List<Matrix4>>
+  factory Uniform.matrix4v(List<Matrix4> m) => new Uniform("m4v", m);
 }
 
 var __UniformsLib;

@@ -33,11 +33,14 @@ part of three;
  * }
  */
 
-class MeshBasicMaterial extends Material implements ITextureMapMaterial
-{
-  Color color;
+class MeshBasicMaterial extends Material
+  implements TextureMapping,
+             EnvironmentMapping,
+             Skinning,
+             Morphing,
+             Wireframe {
 
-  Texture map;
+ Texture map;
   Texture lightMap;
   Texture specularMap;
   var envMap; // TextureCube?
@@ -50,10 +53,10 @@ class MeshBasicMaterial extends Material implements ITextureMapMaterial
   num wireframeLinewidth;
   String wireframeLinecap, wireframeLinejoin;
 
-  bool skinning, morphTargets;
+  bool skinning;
 
-  int vertexColors;
-  bool fog;
+  bool morphTargets, morphNormals = false;
+  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   MeshBasicMaterial( { // MeshBasicMaterial
 
@@ -71,9 +74,9 @@ class MeshBasicMaterial extends Material implements ITextureMapMaterial
 
                        this.shading: SmoothShading,
 
-                       this.vertexColors: NoColors,
+                       int vertexColors: NoColors,
 
-                       this.fog: true,
+                       bool fog: true,
 
                        this.wireframe: false,
                        this.wireframeLinewidth: 1,
@@ -108,8 +111,6 @@ class MeshBasicMaterial extends Material implements ITextureMapMaterial
 
                        visible: true })
                        :
-                         this.color = new Color(color),
-
                          super(  name: name,
                                  side: side,
                                  opacity: opacity,
@@ -125,6 +126,9 @@ class MeshBasicMaterial extends Material implements ITextureMapMaterial
                                  polygonOffsetUnits: polygonOffsetUnits,
                                  alphaTest: alphaTest,
                                  overdraw: overdraw,
-                                 visible: visible );
+                                 visible: visible,
+                                 color: color,
+                                 fog: fog,
+                                 vertexColors: vertexColors);
 
 }
