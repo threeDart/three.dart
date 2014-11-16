@@ -50,7 +50,7 @@ class TrackballControls extends EventEmitter {
 
   StreamSubscription<MouseEvent> mouseMoveStream;
   StreamSubscription<MouseEvent> mouseUpStream;
-  StreamSubscription<KeyboardEvent> keydownStream;
+  StreamSubscription<KeyboardEvent> keydownStream, keyupStream;
 
   EventEmitterEvent changeEvent;
 
@@ -114,7 +114,7 @@ class TrackballControls extends EventEmitter {
     //this.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
 
     keydownStream = window.onKeyDown.listen(keydown);
-    window.onKeyUp.listen(keyup);
+    keyupStream = window.onKeyUp.listen(keyup);
 
 
     handleResize();
@@ -493,5 +493,10 @@ class TrackballControls extends EventEmitter {
 
       }
 
+    }
+
+    void unlisten() {
+      keydownStream.cancel();
+      keyupStream.cancel();
     }
 }
