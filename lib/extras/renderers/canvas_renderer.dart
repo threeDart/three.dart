@@ -898,7 +898,7 @@ class CanvasRenderer implements Renderer {
         _patterns.length = texture.id + 1;
       }
 
-      _patterns[ texture.id ] = _context.createPattern( texture.image, repeatX && repeatY ? 'repeat' : repeatX && !repeatY ? 'repeat-x' : !repeatX && repeatY ? 'repeat-y' : 'no-repeat' );
+      _patterns[ texture.id ] = _context.createPatternFromImage( texture.image, repeatX && repeatY ? 'repeat' : repeatX && !repeatY ? 'repeat-x' : !repeatX && repeatY ? 'repeat-y' : 'no-repeat' );
 
       texture.needsUpdate = false;
 
