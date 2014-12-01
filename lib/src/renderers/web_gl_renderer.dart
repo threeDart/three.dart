@@ -5878,7 +5878,7 @@ class WebGLRenderer implements Renderer {
 				pointPositions[ pointOffset + 2 ] = position.z;
 
 				if (pointDistances==null) { pointDistances = new List(); pointDistances.add(0); }
-				if (pointDistances.length == 0) {pointDistances.add(0);}
+				while (pointDistances.length <= pointLength) {pointDistances.add(0);}
 				pointDistances[ pointLength ] = distance;
 
 				pointLength += 1;
