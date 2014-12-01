@@ -88,4 +88,18 @@ class ShaderMaterial extends Material implements Morphing, Skinning, Wireframe {
                       this._vertexShader = vertexShader;
                     }
 
+  set vertexShader(String value) {
+    _vertexShader = value;
+    needsUpdate = true;
+  }
+
+  set fragmentShader(String value) {
+    _fragmentShader = value;
+    needsUpdate = true;
+  }
+
+  set uniforms(Map<String, Uniform> value) {
+    _uniforms = value;
+    needsUpdate = true;
+  }
 }
