@@ -38,6 +38,7 @@ class TrackballControls extends EventEmitter {
        noPan,
        noRoll;
   bool staticMoving;
+  bool autoUpdate; // emit a change event automatically when something changes (without having to call update explicitly)
   num dynamicDampingFactor;
   num minDistance, maxDistance;
   List keys;
@@ -77,6 +78,7 @@ class TrackballControls extends EventEmitter {
     noRoll = false;
 
     staticMoving = false;
+    autoUpdate = false;
     dynamicDampingFactor = 0.2;
 
     minDistance = 0;
@@ -301,6 +303,12 @@ class TrackballControls extends EventEmitter {
 
     }
 
+    void triggerAutoUpdate() {
+      if (autoUpdate) {
+        update();
+      }
+    }
+
     update() {
 
       _eye.setFrom( object.position ).sub( target );
@@ -428,6 +436,7 @@ class TrackballControls extends EventEmitter {
 
       }
 
+      triggerAutoUpdate();
     }
 
     mouseup( MouseEvent event ) {
@@ -470,6 +479,7 @@ class TrackballControls extends EventEmitter {
       dispatchEvent(startEvent);
       dispatchEvent(endEvent);
 
+      triggerAutoUpdate();
     }
 
     touchstart( TouchEvent event ) {
@@ -530,6 +540,7 @@ class TrackballControls extends EventEmitter {
 
       }
 
+      triggerAutoUpdate();
     }
 
     touchend( TouchEvent event ) {
