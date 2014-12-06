@@ -55,7 +55,7 @@ class TrackballControls extends EventEmitter {
   StreamSubscription<MouseEvent> mouseUpStream;
   StreamSubscription<KeyboardEvent> keydownStream, keyupStream;
 
-  EventEmitterEvent changeEvent;
+  EventEmitterEvent changeEvent, startEvent, endEvent;
 
   TrackballControls( this.object, [Element domElement] ) {
 
@@ -108,6 +108,8 @@ class TrackballControls extends EventEmitter {
     _panEnd = new Vector2.zero();
 
     changeEvent = new EventEmitterEvent(type: 'change');
+    startEvent = new EventEmitterEvent(type: 'start');
+    endEvent = new EventEmitterEvent(type: 'end');
 
     this.domElement
     ..onContextMenu.listen(( event ) => event.preventDefault())
@@ -134,11 +136,6 @@ class TrackballControls extends EventEmitter {
       } else {
         screen = domElement.getBoundingClientRect();
       }
-    }
-
-
-    handleEvent( event ) {
-      dispatchEvent(event);
     }
 
     getMouseOnScreen( clientX, clientY )
@@ -409,6 +406,8 @@ class TrackballControls extends EventEmitter {
       mouseMoveStream = document.onMouseMove.listen( mousemove );
       mouseUpStream = document.onMouseUp.listen( mouseup );
 
+      dispatchEvent(startEvent);
+
     }
 
     mousemove( MouseEvent event ) {
@@ -443,6 +442,7 @@ class TrackballControls extends EventEmitter {
       mouseMoveStream.cancel();
       mouseUpStream.cancel();
 
+      dispatchEvent(endEvent);
     }
 
     mousewheel( WheelEvent event ) {
@@ -466,6 +466,9 @@ class TrackballControls extends EventEmitter {
       }
 
       _zoomStart.y += ( 1 / delta ) * 0.05;
+
+      dispatchEvent(startEvent);
+      dispatchEvent(endEvent);
 
     }
 
@@ -498,6 +501,7 @@ class TrackballControls extends EventEmitter {
           break;
       }
 
+      dispatchEvent(startEvent);
     }
 
     touchmove( TouchEvent event ) {
@@ -551,6 +555,9 @@ class TrackballControls extends EventEmitter {
       }
 
       _state = STATE.NONE;
+
+      dispatchEvent(endEvent);
+
     }
 
     void unlisten() {
