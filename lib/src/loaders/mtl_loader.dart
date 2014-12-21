@@ -109,13 +109,13 @@ class MaterialCreator {
     }
     HashMap converted = {};
 
-    for (var mn in materialsInfo) {
+    for (var mn in materialsInfo.keys) {
       // Convert materials info into normalized form based on options
       HashMap mat = materialsInfo[mn];
       HashMap covmat = {};
 
       converted[mn] = covmat;
-      for (String prop in mat) {
+      for (String prop in mat.keys) {
         var save = true;
         var value = mat[prop];
         var lprop = prop.toLowerCase();
@@ -157,10 +157,12 @@ class MaterialCreator {
     return converted;
   }
 
-  void preload() {
-    for (var mn in this._materialsInfo) {
-      _create(mn);
+  Future preload() {
+    var futures = new List();
+    for (var mn in this._materialsInfo.keys) {
+      futures.add(create(mn));
     }
+    return Future.wait(futures);
   }
 
   getIndex(String materialName) {
@@ -170,23 +172,23 @@ class MaterialCreator {
   List getAsArray() {
     var index = 0;
     for (var mn in this._materialsInfo) {
-      this._materialsArray[index] = _create(mn);
+      this._materialsArray[index] = create(mn);
       this._nameLookup[mn] = index;
       index++;
     }
     return this._materialsArray;
   }
 
-  _create(String materialName) {
-
-    if (_materials.containsKey(materialName)) {
-      _createMaterial(materialName);
+  Future<Material> create(String materialName) {
+    if (!_materials.containsKey(materialName)) {
+      return _createMaterial(materialName);
     }
-
-    return _materials[materialName];
+    var completer = new Completer();
+    completer.complete(_materials[materialName]);
+    return completer.future;
   }
 
-  _createMaterial(String materialName) {
+  Future<Material> _createMaterial(String materialName) {
     // Create material
     var mat = this._materialsInfo[materialName];
     var params = {
@@ -194,7 +196,9 @@ class MaterialCreator {
       "side": this._side
     };
 
-    for (var prop in mat) {
+    var mapLoaded;
+    
+    for (var prop in mat.keys) {
       var value = mat[prop];
       switch (prop.toLowerCase()) {
         // Ns is material specular exponent
@@ -215,24 +219,22 @@ class MaterialCreator {
 
         case 'map_kd':
           // Diffuse texture map
-          params['map'] = this._loadTexture(_baseUrl + value);
-          params['map'].wrapS = this._wrap;
-          params['map'].wrapT = this._wrap;
+          mapLoaded = this._loadTexture(_baseUrl + value);
           break;
 
         case 'ns':
           // The specular exponent (defines the focus of the specular highlight)
           // A high exponent results in a tight, concentrated highlight. Ns values normally range from 0 to 1000.
-          params['shininess'] = value;
+          params['shininess'] = double.parse(value).toInt();
           break;
 
         case 'd':
           // According to MTL format (http://paulbourke.net/dataformats/mtl/):
           //   d is dissolve for current material
           //   factor of 1.0 is fully opaque, a factor of 0 is fully dissolved (completely transparent)
-          if (value < 1) {
+          if (double.parse(value) < 1.0) {
             params['transparent'] = true;
-            params['opacity'] = value;
+            params['opacity'] = double.parse(value);
           }
           break;
         default:
@@ -246,38 +248,56 @@ class MaterialCreator {
       }
       params['color'] = params['diffuse'];
     }
-
-    _materials[materialName] = new MeshPhongMaterial(
-        name: params['name'],
-        side: params['side'],
-        color: params.containsKey('color') ? (params['color'] as Color).getHex() : 0xffffff,
-        ambient: params.containsKey('ambient') ? (params['ambient'] as Color).getHex() : 0xffffff,
-        transparent: params.containsKey('transparent') ? params['transparent'] : false,
-        opacity: params.containsKey('opacity') ? params['opacity'] : 1,
-        shininess: params.containsKey('shininess') ? params['shininess'] : 30,
-        map: params.containsKey('map') ? params['map'] : null
-        );
-    return _materials[materialName];
+    
+    var completer = new Completer();
+    if (mapLoaded != null) {
+      mapLoaded.then((e) {
+        params['map'] = e;
+        params['map'].wrapS = this._wrap;
+        params['map'].wrapT = this._wrap;
+        var material = _createMeshPhongMaterial(params);
+        _materials[materialName] = material;
+        completer.complete(material);        
+      });
+    } else {
+      var material = _createMeshPhongMaterial(params);
+      _materials[materialName] = material;
+      completer.complete(material);
+    }
+    return completer.future;
   }
-
-  Texture _loadTexture(String url, [mapping]) {
+  
+  MeshPhongMaterial _createMeshPhongMaterial(params) =>
+    new MeshPhongMaterial(
+            name: params['name'],
+            side: params['side'],
+            color: params.containsKey('color') ? (params['color'] as Color).getHex() : 0xffffff,
+            ambient: params.containsKey('ambient') ? (params['ambient'] as Color).getHex() : 0xffffff,
+            transparent: params.containsKey('transparent') ? params['transparent'] : false,
+            opacity: params.containsKey('opacity') ? params['opacity'] : 1,
+            shininess: params.containsKey('shininess') ? params['shininess'] : 30,
+            map: params.containsKey('map') ? params['map'] : null
+            );
+  
+  Future<Texture> _loadTexture(String url, [mapping]) {
 
     var imageLoader = new ImageLoader();
     imageLoader.crossOrigin = _crossOrigin;
     
+    var completer = new Completer();
     var texture = new Texture();
     
-    imageLoader.addEventListener("load", (ImageElement image) {
-      texture.image = _ensurePowerOfTwo(image);
+    imageLoader.addEventListener("load", (EventEmitterEvent image) {
+      texture.image = _ensurePowerOfTwo(image.content);
       texture.needsUpdate = true;
+      completer.complete(texture);
     });
     
     imageLoader.load(url);
 
     texture.mapping = mapping;
 
-    return texture;
-
+    return completer.future;
   }
   
   ImageElement _ensurePowerOfTwo(ImageElement image) {
