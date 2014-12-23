@@ -34,6 +34,12 @@ class Color {
     if ( hex is num ) setHex( hex );
   }
 
+  Color.fromArray(List array) {
+    r = array[0];
+    g = array[1];
+    b = array[2];
+  }
+  
   Color copy( Color color ) {
     r = color.r;
     g = color.g;

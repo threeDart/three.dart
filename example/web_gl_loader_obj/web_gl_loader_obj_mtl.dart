@@ -11,7 +11,7 @@ var windowHalfY = window.innerHeight / 2;
 
 main() {
   init();
-  animate(0);
+  animate(0);    
 }
 
 init() {
@@ -33,37 +33,15 @@ init() {
   scene.add(directionalLight);
 
 
-  // texture
-
-  var texture = new Texture();
-
-  var loaderTexture = new ImageLoader();
-        
-  loaderTexture.addEventListener('load', (event) {
-    texture.image = event.content;
-    texture.needsUpdate = true;
-   });
-        
-  loaderTexture.load('textures/UV_Grid_Sm.jpg');
-  
   // model
-
-  var loader = new OBJLoader(useMtl: false);
+  var loader = new OBJLoader();
   loader.load( 'obj/male02.obj').then(( object ) {
-    
-    object.children.forEach((Object3D e) {
-      e.children.forEach((Object3D obj) {
-        if (obj is Mesh) {
-          (obj.material as MeshLambertMaterial).map = texture;
-        }
-      });
-    });
     
     object.position.y = - 80.0;
     scene.add( object );
 
-  } );
-
+  });
+  
   renderer = new WebGLRenderer( antialias: true, alpha: false );
   renderer.setSize( window.innerWidth, window.innerHeight );
   
