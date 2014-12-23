@@ -12,13 +12,29 @@ class OBJLoader extends Loader {
 
   bool _useMtl;
   
+  /// Creates an [OBJLoader]
+  ///
+  /// If [useMtl] is false, the mtl instruction are ignored.
   OBJLoader({useMtl: true}) : super() {
     this._useMtl = useMtl;
   }
 
-  Future<Object3D> load(url) =>
-      HttpRequest.request(url, responseType: "String")
-      .then((req) => _parse(req.response));
+  /// Loads and parses an obj file from an [url]
+  ///
+  /// A group of [Object3D] is return
+  Future<Object3D> load(String url, {String baseUrl, String crossOrigin}) =>
+      HttpRequest.request(((baseUrl != null) ? baseUrl : '') + url, responseType: "String")
+      .then((req) {
+        var index = url.lastIndexOf('/');
+        if (baseUrl == null) {
+          if (index > 0) {
+            baseUrl = url.substring(0, index + 1);
+          } else {
+            baseUrl = '';
+          }
+        }
+        return parse(req.response, baseUrl: baseUrl, crossOrigin: crossOrigin);
+  });
 
   void _addFace(Geometry geometry, int face_offset,
                 String a, String b, String c,
@@ -70,8 +86,10 @@ class OBJLoader extends Loader {
     }
   }
 
-
-  _parse(text) {
+  /// Parses an obj file
+  /// 
+  /// A group of [Object3D] is return
+  Future<Object3D> parse(String text, {String baseUrl: "", String crossOrigin: ''}) {
 
     Object3D group = new Object3D();
     Object3D object = group;
@@ -109,6 +127,7 @@ class OBJLoader extends Loader {
     
     //MTL
     StreamController<Mesh> controllerMtl;
+    var futuresMtl = new List<Future>();
     
     var lines = text.split('\n');
     lines.forEach((line) {
@@ -169,41 +188,56 @@ class OBJLoader extends Loader {
             [result[3], result[6], result[9], result[12]] //normal
           );
 
-        } else if (line.contains(new RegExp(r"^o "))) {
+        } else if (line.contains(new RegExp(r"^o "))
+            || line.contains(new RegExp(r"^g "))
+            || line.contains(new RegExp(r"^usemtl "))) {
 
           if (_editGeometry(vertices, geometry)) {
             object.add(mesh);
             geometry = new Geometry();
             mesh = new Mesh(geometry, material);
           }
-
-          
-          face_offset = face_offset + vertices.length;
-          vertices = new List();
-          object = new Object3D();
-          object.name = line.substring(2).trim();
-          group.add(object);
-
-        } else if (line.contains(new RegExp(r"^g "))) {
-          if (_editGeometry(vertices, geometry)) {
-            object.add(mesh);
-            geometry = new Geometry();
-            mesh = new Mesh(geometry, material);            
-          }
-        } else if (line.contains(new RegExp(r"^usemtl "))) {          
-          if (controllerMtl != null || _useMtl) {
-            material = new MeshLambertMaterial();
-            material.name = line.substring(7).trim();
-            mesh.material = material;
-            controllerMtl.add(mesh);
+          if (line.contains(new RegExp(r"^o "))) {
+            face_offset = face_offset + vertices.length;
+            vertices = new List();
+            object = new Object3D();
+            object.name = line.substring(2).trim();
+            group.add(object);          
+          } else if (line.contains(new RegExp(r"^usemtl "))) {          
+            if (controllerMtl != null || _useMtl) {
+              material = new MeshLambertMaterial();
+              material.name = line.substring(7).trim();
+              mesh.material = material;
+              controllerMtl.add(mesh);
+            }
           }
         } else if (line.contains(new RegExp(r"^mtllib "))) {
           if (_useMtl) {
-            var loaderMTL = new MTLLoader("obj/", {}, "");
+            var loaderMTL = new MTLLoader(baseUrl, {}, crossOrigin);
             if (controllerMtl != null) {
               controllerMtl.close();
             }
-            controllerMtl = _createStreamMTL(loaderMTL.load("obj/" + line.substring(7).trim()));
+            var future = loaderMTL.load(line.substring(7).trim());
+            controllerMtl = new StreamController<Mesh>();
+            
+            var completer = new Completer();
+            
+            future.then((materialCreator) {
+              controllerMtl.stream.listen((Mesh e) {
+                if (e.material is MeshLambertMaterial && e.material.name.isNotEmpty) { 
+                  materialCreator.create(e.material.name).then((material) {
+                    if ( material != null) {
+                      e.geometry.buffersNeedUpdate = true;
+                      e.geometry.uvsNeedUpdate = true;
+                      e.material = material;
+                    }
+                  });
+                }
+              }, onDone: () => completer.complete());
+            });
+
+            futuresMtl.add(completer.future);
+            
           }
         } else if (line.contains(new RegExp(r"^s "))) {
           // Smooth shading
@@ -218,7 +252,12 @@ class OBJLoader extends Loader {
       controllerMtl.close();
     }
     
-    return group;
+    var completer = new Completer();
+    Future.wait(futuresMtl).then((e) {
+      completer.complete(group);
+    });
+    
+    return completer.future;
   }
   
   bool _editGeometry(List vertices, Geometry geometry) {
@@ -232,24 +271,4 @@ class OBJLoader extends Loader {
       return false;
   }
 
-  StreamController<Mesh> _createStreamMTL(Future<MaterialCreator> future) {
-    var controller = new StreamController<Mesh>();
-    
-    future.then((materialCreator) {
-      controller.stream.listen((Mesh e) {
-        if (e.material is MeshLambertMaterial && e.material.name.isNotEmpty) { 
-          materialCreator.create(e.material.name).then((material) {
-            if ( material != null) {
-              e.geometry.buffersNeedUpdate = true;
-              e.geometry.uvsNeedUpdate = true;
-              e.material = material;
-            }
-          });
-        }
-      });
-    });
-    
-    return controller;
-  }
-  
 }

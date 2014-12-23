@@ -9,17 +9,25 @@ part of three;
  */
 class MTLLoader {
   
-  String _baseUrl;
-  var _options;
-  var _crossOrigin;
+  String _baseUrl = '';
+  HashMap _options = {};
+  String _crossOrigin = '';
 
-  MTLLoader(String this._baseUrl, this._options, this._crossOrigin);
+  /// Creates a new MTLLoader
+  ///
+  /// Options are the same of [MaterialCreator]
+  MTLLoader([String this._baseUrl, HashMap this._options, String this._crossOrigin]);
 
-  ///Load MTL from an url;
-  Future load(String url) => HttpRequest.request(url, responseType: "String").then((req) => parse(req.response));
+  /// Loads MTL from an url;
+  Future<MaterialCreator> load(String url) {
+    if (!url.startsWith('/')) {
+      url = this._baseUrl + url;
+    }
+    return HttpRequest.request(url, responseType: "String").then((req) => parse(req.response));
+  }
 
   /// Parses [text] loaded MTL file
-  parse(String text) {
+  MaterialCreator parse(String text) {
     List<String> lines = text.split("\n");
     HashMap info = {};
     var delimiter_pattern = new RegExp(r"\s+");
@@ -72,9 +80,9 @@ class MaterialCreator {
   int _side = FrontSide;
   int _wrap = RepeatWrapping;
 
-  ///Create a new MaterialCreator
+  /// Creates a new MaterialCreator
   ///
-  ///[options] is a set of options on how to construct the materials :
+  /// [options] is a set of options on how to construct the materials :
   ///       side: Which side to apply the material
   ///         [FrontSide] (default), [BackSide],  [DoubleSide]
   ///       wrap: What type of wrapping to apply for textures
@@ -96,6 +104,7 @@ class MaterialCreator {
     }
   }
 
+  /// Inits [MaterialCreator]
   void set materials(HashMap materialsInfo) {
     this._materialsInfo = _convert(materialsInfo);
     this._materials = {};
@@ -157,6 +166,7 @@ class MaterialCreator {
     return converted;
   }
 
+  /// Creates in cache all creation for this material.
   Future preload() {
     var futures = new List();
     for (var mn in this._materialsInfo.keys) {
@@ -165,11 +175,11 @@ class MaterialCreator {
     return Future.wait(futures);
   }
 
-  getIndex(String materialName) {
+  Material _getIndex(String materialName) {
     return this._nameLookup[materialName];
   }
 
-  List getAsArray() {
+  List _getAsArray() {
     var index = 0;
     for (var mn in this._materialsInfo) {
       this._materialsArray[index] = create(mn);
@@ -179,6 +189,9 @@ class MaterialCreator {
     return this._materialsArray;
   }
 
+  /// Creates a [Material] from a name.
+  ///
+  /// This method caches creation.
   Future<Material> create(String materialName) {
     if (!_materials.containsKey(materialName)) {
       return _createMaterial(materialName);

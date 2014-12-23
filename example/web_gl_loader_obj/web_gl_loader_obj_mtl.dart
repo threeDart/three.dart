@@ -33,21 +33,7 @@ init() {
   scene.add(directionalLight);
 
 
-  // texture
-
-  var texture = new Texture();
-
-  var loaderTexture = new ImageLoader();
-        
-  loaderTexture.addEventListener('load', (event) {
-    texture.image = event.content;
-    texture.needsUpdate = true;
-   });
-        
-  loaderTexture.load('textures/UV_Grid_Sm.jpg');
-  
   // model
-
   var loader = new OBJLoader();
   loader.load( 'obj/male02.obj').then(( object ) {
     
