@@ -45,6 +45,18 @@ Starting at three.js revision 47.0, the aim is to recreate all of the existing t
 [![controls_first_person](http://threedart.github.com/three.dart/example/controls_first_person/thumb_small.png)](http://threedart.github.com/three.dart/example/controls_first_person/controls_first_person.html)
 
 ### Change Log ###
+2013 04 29 - **v 0.2.5**
+
+* Added hop runner, tested here: https://drone.io/github.com/threeDart/three.dart/41
+* Bug fixes for dart-sdk version 0.5.0.1_r21823
+* Adding Quaternion rotationBetween method
+* Added customDepthMaterial to Object3D
+* Added ShadowCaster
+* Added ShadowMapPlugin
+* Added materials list to MeshFaceMaterial
+* Added WebGL_Materials example
+* Added shininess and specular to WebGLMaterial
+
 2013 01 30 - **v 0.2.4**
 
 * Minor refactoring to M3 ([adam](https://github.com/financeCoding))
