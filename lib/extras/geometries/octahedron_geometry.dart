@@ -1,7 +1,7 @@
 part of three;
 
 class OctahedronGeometry extends PolyhedronGeometry {
-  factory OctahedronGeometry( radius, detail ) {
+  factory OctahedronGeometry( double radius, num detail ) {
     var vertices = [
                     [ 1, 0, 0 ], [ -1, 0, 0 ], [ 0, 1, 0 ], [ 0, -1, 0 ], [ 0, 0, 1 ], [ 0, 0, -1 ]
                     ];
@@ -13,5 +13,5 @@ class OctahedronGeometry extends PolyhedronGeometry {
     return new OctahedronGeometry._internal(vertices, faces, radius, detail);
   }
 
-  OctahedronGeometry._internal(vertices, faces, radius, details) : super(vertices, faces, radius, details);
+  OctahedronGeometry._internal(List<List<num>> vertices, List<List<num>> faces, double radius, num details) : super(vertices, faces, radius, details);
 }

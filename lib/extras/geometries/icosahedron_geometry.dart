@@ -2,7 +2,7 @@ part of three;
 
 class IcosahedronGeometry extends PolyhedronGeometry {
 
-  factory IcosahedronGeometry( radius, detail ) {
+  factory IcosahedronGeometry( double radius, num detail ) {
     var t = ( 1 + Math.sqrt( 5 ) ) / 2;
 
     var vertices = [
@@ -21,5 +21,5 @@ class IcosahedronGeometry extends PolyhedronGeometry {
     return new IcosahedronGeometry._internal(vertices, faces, radius, detail);
   }
 
-  IcosahedronGeometry._internal(vertices, faces, radius, details) : super(vertices, faces, radius, details);
+  IcosahedronGeometry._internal(List<List<num>> vertices, List<List<num>> faces, double radius, num details) : super(vertices, faces, radius, details);
 }

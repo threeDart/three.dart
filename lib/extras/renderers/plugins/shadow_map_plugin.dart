@@ -353,7 +353,7 @@ class ShadowMapPlugin {
 
   }
 
-  createVirtualLight( light, cascade ) {
+  VirtualLight createVirtualLight( DirectionalLight light, int cascade ) {
 
     var virtualLight = new VirtualLight();
 
@@ -408,7 +408,7 @@ class ShadowMapPlugin {
 
   // Synchronize virtual light with the original light
 
-  updateVirtualLight( light, cascade ) {
+  updateVirtualLight( light, int cascade ) {
 
     var virtualLight = light.shadowCascadeArray[ cascade ];
 
@@ -440,7 +440,7 @@ class ShadowMapPlugin {
 
   // Fit shadow camera's ortho frustum to camera frustum
 
-  updateShadowCamera( camera, light ) {
+  updateShadowCamera( Camera camera, light ) {
 
     var shadowCamera = light.shadowCamera,
       pointsFrustum = light.pointsFrustum,
@@ -485,7 +485,7 @@ class ShadowMapPlugin {
   // For the moment just ignore objects that have multiple materials with different animation methods
   // Only the first material will be taken into account for deciding which depth material to use for shadow maps
 
-  getObjectMaterial( object ) {
+  Material getObjectMaterial( Object3D object ) {
 
     return object.material is MeshFaceMaterial ? object.geometry.materials[ 0 ] : object.material;
 

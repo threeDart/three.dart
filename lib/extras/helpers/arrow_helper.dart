@@ -5,7 +5,7 @@ class ArrowHelper extends Object3D {
   Line line;
   Mesh cone;
 
-  ArrowHelper(dir, [Vector3 origin = null, double length = 20.0, hex = 0xffff00] ) : super() {
+  ArrowHelper(Vector3 dir, [Vector3 origin = null, double length = 20.0, int hex = 0xffff00] ) : super() {
 
     var lineGeometry = new Geometry();
     lineGeometry.vertices.add( new Vector3.zero() );
@@ -26,7 +26,7 @@ class ArrowHelper extends Object3D {
     this.setLength( length );
   }
 
-  setDirection( dir ) {
+  setDirection( Vector3 dir ) {
 
     var axis = new Vector3( 0.0, 1.0, 0.0 ).cross( dir );
 

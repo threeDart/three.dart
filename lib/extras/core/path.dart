@@ -445,7 +445,7 @@ class Path extends CurvePath {
   }
 
   // Breaks path into shapes
-  toShapes() {
+  List<Shape> toShapes() {
 
   	var i, il, item, action, args;
 

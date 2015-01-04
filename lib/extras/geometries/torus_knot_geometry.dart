@@ -86,12 +86,12 @@ class TorusKnotGeometry extends Geometry {
 
    }
 
-  num _vert( x, y, z ) {
+  num _vert( double x, double y, double z ) {
     vertices.add( new Vector3( x, y, z ) );
     return vertices.length - 1;
   }
 
-  Vector3 getPos( u, v, in_q, in_p, radius, heightScale ) {
+  Vector3 getPos( double u, double v, double in_q, double in_p, double radius, double heightScale ) {
 
     var cu = Math.cos( u );
     var cv = Math.cos( v );
