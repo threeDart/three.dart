@@ -11,6 +11,9 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// Base class for geometries.
+/// A geometry holds all data necessary to describe a 3D model.
+// TODO - Create a IGeometry with only the necessary interface methods
 class Geometry extends Object with WebGLGeometry {
 
   String name;
@@ -85,10 +88,18 @@ class Geometry extends Object with WebGLGeometry {
     id = GeometryCount ++;
   }
 
-  // dynamic is a reserved word in Dart
+  /// Defaults to true.
+  // named isDynamic because dynamic is a reserved word in Dart
   bool get isDynamic => _dynamic;
+  /// Set to true if attribute buffers will need to change in runtime (using "dirty" flags).
+  /// Unless set to true internal typed arrays corresponding to buffers will be
+  /// deleted once sent to GPU.
+  ///
+  /// Defaults to true.
+  // named isDynamic because dynamic is a reserved word in Dart
   set isDynamic(bool value) => _dynamic = value;
 
+  /// Bakes matrix transform directly into vertex coordinates.
   void applyMatrix( Matrix4 matrix ) {
     Matrix4 matrixRotation = new Matrix4.identity();
     extractRotation( matrixRotation, matrix);
@@ -120,6 +131,7 @@ class Geometry extends Object with WebGLGeometry {
     });
   }
 
+  /// Computes face normals.
   void computeFaceNormals() {
     faces.forEach((face) {
 
@@ -138,6 +150,9 @@ class Geometry extends Object with WebGLGeometry {
     });
   }
 
+  /// Computes vertex normals by averaging face normals.
+  ///
+  /// Face normals must be existing / computed beforehand.
   void computeVertexNormals() {
 
     List<Vector3> vertices;
@@ -187,6 +202,10 @@ class Geometry extends Object with WebGLGeometry {
 
   // TODO - computeMorphNormals
 
+  /// Computes vertex tangents.
+  ///
+  /// Based on http://www.terathon.com/code/tangent.html
+  /// Geometry must have vertex UVs (layer 0 will be used).
   void computeTangents() {
     // based on http://www.terathon.com/code/tangent.html
     // tangents go to vertices
@@ -304,6 +323,7 @@ class Geometry extends Object with WebGLGeometry {
 
   }
 
+  /// Computes bounding box of the geometry, updating Geometry.boundingBox.
   void computeBoundingBox() {
     if ( boundingBox == null ) {
       boundingBox = new BoundingBox( min: new Vector3.zero(), max: new Vector3.zero() );
@@ -343,6 +363,10 @@ class Geometry extends Object with WebGLGeometry {
     }
   }
 
+  /// Computes bounding sphere of the geometry, updating Geometry.boundingSphere.
+  ///
+  /// Neither bounding boxes or bounding spheres are computed by default.
+  /// They need to be explicitly computed, otherwise they are null.
   void computeBoundingSphere() {
     num radiusSq;
 
@@ -354,12 +378,9 @@ class Geometry extends Object with WebGLGeometry {
     boundingSphere = new BoundingSphere(radius: Math.sqrt(maxRadiusSq) );
   }
 
-  /*
-   * Checks for duplicate vertices with hashmap.
-   * Duplicated vertices are removed
-   * and faces' vertices are updated.
-   */
-
+  /// Checks for duplicate vertices with hashmap.
+  /// Duplicated vertices are removed
+  /// and faces' vertices are updated.
   int mergeVertices() {
     Map verticesMap = {}; // Hashmap for looking up vertice by position coordinates (and making sure they are unique)
     List<Vector3> unique = [];

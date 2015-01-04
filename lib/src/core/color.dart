@@ -1,6 +1,8 @@
 part of three;
 
 /**
+ * Represents a color.
+ *
  * @author mr.doob / http://mrdoob.com/
  *
  * Ported to Dart from JS by:
@@ -13,19 +15,29 @@ class Color {
   double _g;
   double _b;
 
+  /// Sets the red component. The value passed must be between 0 and 1.
   set r(num r) { _r = r.toDouble();}
-  get r => _r;
+  /// Gets the red component. The value will be between 0 and 1.
+  double get r => _r;
 
+  /// Sets the green component. The value passed must be between 0 and 1.
   set g(num g) { _g = g.toDouble();}
-  get g => _g;
+  /// Gets the green component. The value will be between 0 and 1.
+  double get g => _g;
 
+  /// Sets the blue component. The value passed must be between 0 and 1.
   set b(num b) { _b = b.toDouble();}
-  get b => _b;
+  /// Gets the blue component. The value will be between 0 and 1.
+  double get b => _b;
 
+  /// Gets the red component as a value between 0 and 255.
   int get rr => (r*255).floor();
+  /// Gets the green component as a value between 0 and 255.
   int get gg => (g*255).floor();
+  /// Gets the blue component as a value between 0 and 255.
   int get bb => (b*255).floor();
 
+  /// Creates a Color from the (optional) given hex value.
   Color( [num hex] )
       : _r = 1.0,
         _g = 1.0,
@@ -34,6 +46,7 @@ class Color {
     if ( hex is num ) setHex( hex );
   }
 
+  /// Copies the color and returns this color.
   Color copy( Color color ) {
     r = color.r;
     g = color.g;
@@ -42,6 +55,7 @@ class Color {
     return this;
   }
 
+  /// Copies the given color making conversions from gamma to linear space.
   Color copyGammaToLinear( Color color ) {
     r = color.r * color.r;
     g = color.g * color.g;
@@ -50,6 +64,7 @@ class Color {
     return this;
   }
 
+  /// Copies the given color making conversions from linear to gamma space.
   Color copyLinearToGamma( Color color ) {
     num x = Math.sqrt( color.r );
 
@@ -60,6 +75,7 @@ class Color {
     return this;
   }
 
+  /// Converts this color from gamma to linear space.
   Color convertGammaToLinear() {
     var _r = r, _g = g, _b = b;
 
@@ -70,6 +86,7 @@ class Color {
     return this;
   }
 
+  /// Converts this color from linear to gamma space.
   Color convertLinearToGamma() {
     r = Math.sqrt( r );
     g = Math.sqrt( g );
@@ -77,6 +94,8 @@ class Color {
     return this;
   }
 
+  /// Sets this color from RGB values.
+  /// RGB ranges are in 0.0 - 1.0.
   Color setRGB( num newR, num newG, num newB ) {
     r = newR.toDouble();
     g = newG.toDouble();
@@ -85,14 +104,16 @@ class Color {
     return this;
   }
 
-  Color setHSV( num h, num s, num v ) {
+  /// Sets this color from HSV.
+  /// HSL ranges are in 0.0 - 1.0.
+  Color setHSV( double h, double s, double v ) {
     // based on MochiKit implementation by Bob Ippolito
-    // h,s,v ranges are < 0.0 - 1.0 >
-    num i, f, p, q, t;
 
     if ( v == 0 ) {
       r = g = b = 0.0;
     } else {
+      var i, f, p, q, t;
+
       i = ( h * 6 ).floor();
       f = ( h * 6 ) - i;
       p = v * ( 1 - s );
@@ -113,10 +134,9 @@ class Color {
     return this;
   }
 
-  Color setHSL( h, s, l ) {
-
-    // h,s,l ranges are in 0.0 - 1.0
-
+  /// Sets this color from HSL.
+  /// HSL ranges are in 0.0 - 1.0.
+  Color setHSL( double h, double s, double l ) {
     if ( s == 0 ) {
 
       r = g = b = l;
@@ -147,9 +167,9 @@ class Color {
 
   }
 
-  get HSL {
-    // h,s,l ranges are in 0.0 - 1.0
-
+  /// Gets this color as HSL (returned as [hue, saturation, lightness]).
+  /// HSL ranges are in 0.0 - 1.0.
+  List<double> get HSL {
     var r = this.r, g = this.g, b = this.b;
 
     var max = Math.max(Math.max( r, g), b );
@@ -185,7 +205,9 @@ class Color {
 
   }
 
-  Color offsetHSL( h, s, l ) {
+  /// Adds HSL to this color's HSL.
+  /// HSL ranges are in 0.0 - 1.0.
+  Color offsetHSL( double h, double s, double l ) {
 
     var hsl = this.HSL;
 
@@ -197,6 +219,7 @@ class Color {
 
   }
 
+  /// Sets this color from a hexadecimal value.
   Color setHex( num hex ) {
     var h = hex.floor().toInt();
     r = ( (h&0xFF0000)>>16 ) / 255;
@@ -205,11 +228,13 @@ class Color {
     return this;
   }
 
+  /// Returns the hexadecimal value of this color.
   num getHex() {
     num h = (rr<<16)^(gg<<8)^(bb);
     return h;
   }
 
+  /// Returns the value of this color as a CSS-style string (ex: rgb(255, 0, 0))
   String getContextStyle() {
     // TODO: this is a little bit of a mess. We should stay consistent between
     // how r,g,b is set. Something in CanvasRender is setting them to doubles
@@ -218,6 +243,7 @@ class Color {
     return 'rgb(${rr},${gg},${bb})';
   }
 
+  /// Clones this color.
   Color clone() {
     return new Color().setRGB( r, g, b);
   }

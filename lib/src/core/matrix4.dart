@@ -14,11 +14,14 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// A 4x4 Matrix.
 class Matrix4 {
 
   final Float32List elements;
 
 
+  /// Initialises the matrix with the supplied row-major values n11..n44,
+  /// or just creates an identity matrix if no values are passed.
   Matrix4( [num n11 = 1.0, num n12 = 0.0, num n13 = 0.0, num n14 = 0.0,
             num n21 = 0.0, num n22 = 1.0, num n23 = 0.0, num n24 = 0.0,
             num n31 = 0.0, num n32 = 0.0, num n33 = 1.0, num n34 = 0.0,
@@ -47,6 +50,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Resets this matrix to identity.
   Matrix4 identity() {
     setValues(
       1.0, 0.0, 0.0, 0.0,
@@ -58,6 +62,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Copies a matrix m into this matrix.
   Matrix4 copy( Matrix4 m ) {
     var me = m.elements;
 
@@ -73,7 +78,7 @@ class Matrix4 {
     return this;
   }
 
-
+  /// Constructs a rotation matrix, looking from eye towards center with defined up vector.
   Matrix4 lookAt( Vector3 eye, Vector3 center, Vector3 up ) {
     var te = elements;
 
@@ -103,6 +108,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix to a * b.
   Matrix4 multiply( Matrix4 a, Matrix4 b ) {
     var ae = a.elements;
     var be = b.elements;
@@ -141,8 +147,11 @@ class Matrix4 {
     return this;
   }
 
+  /// Multiplies this matrix by m.
   Matrix4 multiplySelf( Matrix4 m ) => multiply( this, m );
 
+  /// Sets this matrix to a x b and stores the result into the flat array r.
+  /// r can be either a regular Array or a TypedArray.
   Matrix4 multiplyToArray( Matrix4 a, Matrix4 b, List r ) {
 
     var te = elements;
@@ -157,6 +166,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Multiplies this matrix by s.
   Matrix4 multiplyScalar( num s ) {
     var te = elements;
 
@@ -244,6 +254,9 @@ class Matrix4 {
     return v;
   }
 
+  /// Computes determinant of this matrix.
+  ///
+  /// Based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
   num determinant() {
     var te = elements;
 
@@ -288,6 +301,7 @@ class Matrix4 {
     );
   }
 
+  /// Transposes this matrix.
   Matrix4 transpose() {
     var te = elements;
     var tmp;
@@ -342,6 +356,7 @@ class Matrix4 {
 
   Vector3 getPosition() => __v1.setValues( elements[12], elements[13], elements[14] );
 
+  /// Sets the position component for this matrix from vector v.
   Matrix4 setPosition( Vector3 v ) {
     var te = elements;
 
@@ -358,8 +373,10 @@ class Matrix4 {
 
   Vector3 getColumnZ() => __v1.setValues( elements[8], elements[9], elements[10] );
 
+  /// Sets this matrix to the inverse of matrix m.
+  ///
+  /// Based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm.
   Matrix4 getInverse( Matrix4 m ) {
-    // based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
     var te = elements;
     var me = m.elements;
 
@@ -388,6 +405,10 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets the rotation submatrix of this matrix to the rotation specified by
+  /// Euler angles, the rest of the matrix is identity.
+  ///
+  /// Default order is "XYZ".
   Matrix4 setRotationFromEuler( Vector3 v, [String order = 'XYZ'] ) {
     var te = elements;
     num x = v.x, y = v.y, z = v.z,
@@ -503,7 +524,7 @@ class Matrix4 {
     return this;
   }
 
-
+  /// Sets the rotation submatrix of this matrix to the rotation specified by q. The rest of the matrix is identity.
   Matrix4 setRotationFromQuaternion( Quaternion q ) {
     var te = this.elements;
 
@@ -528,6 +549,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix to the transformation composed of translation, quaternion and scale.
   Matrix4 compose( Vector3 translation, Quaternion rotation, Vector3 s ) {
 
     var te = elements;
@@ -549,6 +571,8 @@ class Matrix4 {
     return this;
   }
 
+  /// Decomposes this matrix into the translation, quaternion and scale components.
+  /// If parameters are not passed, new instances will be created.
   List decompose( Vector3 translation, Quaternion rotation, Vector3 scale ) {
 
     var te = elements;
@@ -607,6 +631,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Extracts the rotation of the supplied matrix m into this matrix rotation component.
   Matrix4 extractRotation( Matrix4 m ) {
 
     var te = elements;
@@ -633,6 +658,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as translation transform.
   Matrix4 translate( Vector3 v ) {
     var te = elements;
     var x = v.x, y = v.y, z = v.z;
@@ -645,6 +671,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around x axis by theta radians.
   Matrix4 rotateX( num angle ) {
     var te = elements;
     var m12 = te[4];
@@ -671,6 +698,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around y axis by theta radians.
   Matrix4 rotateY( num angle ) {
     var te = elements;
     var m11 = te[0];
@@ -697,6 +725,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around z axis by theta radians.
   Matrix4 rotateZ( num angle ) {
     var te = elements;
     var m11 = te[0];
@@ -723,6 +752,9 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around axis by angle radians.
+  ///
+  /// Based on http://www.gamedev.net/reference/articles/article1199.asp.
   Matrix4 rotateByAxis( Vector3 axis, num angle ) {
     var te = elements;
 
@@ -791,6 +823,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as scale transform.
   Matrix4 scale( Vector3 v ) {
 
     var te = elements;
@@ -804,6 +837,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Gets the max scale value of the 3 axes.
   double getMaxScaleOnAxis() {
 
     var te = elements;
@@ -816,6 +850,7 @@ class Matrix4 {
 
   }
 
+  /// Sets this matrix as translation transform.
   Matrix4 makeTranslation( num x, num y, num z ) {
     setValues(
       1.0, 0.0, 0.0, x,
@@ -827,6 +862,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around x axis by theta radians.
   Matrix4 makeRotationX( num theta ) {
     num c = Math.cos( theta ), s = Math.sin( theta );
 
@@ -840,6 +876,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around y axis by theta radians.
   Matrix4 makeRotationY( num theta ) {
     num c = Math.cos( theta ), s = Math.sin( theta );
 
@@ -853,6 +890,7 @@ class Matrix4 {
     return this;
   }
 
+  ///  Sets this matrix as rotation transform around z axis by theta radians.
   Matrix4 makeRotationZ( num theta ) {
     num c = Math.cos( theta ), s = Math.sin( theta );
 
@@ -866,9 +904,10 @@ class Matrix4 {
     return this;
   }
 
+  /// Sets this matrix as rotation transform around axis by angle radians.
+  ///
+  /// Based on http://www.gamedev.net/reference/articles/article1199.asp.
   Matrix4 makeRotationAxis( Vector3 axis, num angle ) {
-    // Based on http://www.gamedev.net/reference/articles/article1199.asp
-
     num c = Math.cos( angle ),
     s = Math.sin( angle ),
     t = 1.0 - c,
@@ -885,6 +924,7 @@ class Matrix4 {
      return this;
   }
 
+  /// Sets this matrix as scale transform.
   Matrix4 makeScale( num x, num y, num z ) {
     setValues(
       x, 0.0, 0.0, 0.0,
@@ -896,6 +936,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Creates a frustum matrix.
   Matrix4 makeFrustum( num left, num right, num bottom, num top, num near, num far ) {
     var te = elements;
 
@@ -928,6 +969,7 @@ class Matrix4 {
     return makeFrustum( xmin, xmax, ymin, ymax, near, far );
   }
 
+  /// Creates an orthographic projection matrix.
   Matrix4 makeOrthographic( num left, num right, num top, num bottom, num near, num far ) {
     var te = elements;
 
@@ -949,6 +991,7 @@ class Matrix4 {
     return this;
   }
 
+  /// Clones this matrix.
   Matrix4 clone() {
     var te = elements;
 

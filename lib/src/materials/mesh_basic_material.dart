@@ -33,6 +33,10 @@ part of three;
  * }
  */
 
+/// A material for drawing geometries in a simple shaded (flat or wireframe) way.
+///
+/// The default will render as flat polygons. To draw the mesh as wireframe,
+/// simply set the 'wireframe' property to true.
 class MeshBasicMaterial extends Material
   implements TextureMapping,
              EnvironmentMapping,
@@ -40,7 +44,7 @@ class MeshBasicMaterial extends Material
              Morphing,
              Wireframe {
 
- Texture map;
+  Texture map;
   Texture lightMap;
   Texture specularMap;
   var envMap; // TextureCube?
@@ -49,13 +53,36 @@ class MeshBasicMaterial extends Material
   num refractionRatio;
 
   int shading;
+  /// Render geometry as wireframe. Default is false (i.e. render as flat polygons).
   bool wireframe;
+  /// Controls wireframe thickness. Default is 1.
+  ///
+  /// Due to limitations in the ANGLE layer, on Windows platforms linewidth will
+  /// always be 1 regardless of the set value.
   num wireframeLinewidth;
-  String wireframeLinecap, wireframeLinejoin;
+  /// Define appearance of line ends.
+  ///
+  /// Possible values are "butt", "round" and "square". Default is 'round'.
+  ///
+  /// This setting might not have any effect when used with certain renderers.
+  /// For example, it is ignored with the WebGL renderer, but does work with
+  /// the Canvas renderer.
+  String wireframeLinecap;
+  /// Define appearance of line joints.
+  ///
+  /// Possible values are "round", "bevel" and "miter". Default is 'round'.
+  ///
+  /// This setting might not have any effect when used with certain renderers.
+  /// For example, it is ignored with the WebGL renderer, but does work with
+  /// the Canvas renderer.
+  String wireframeLinejoin;
 
+  /// Define whether the material uses skinning. Default is false.
   bool skinning;
 
-  bool morphTargets, morphNormals = false;
+  /// Define whether the material uses morphTargets. Default is false.
+  bool morphTargets;
+  bool morphNormals = false;
   num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   MeshBasicMaterial( { // MeshBasicMaterial

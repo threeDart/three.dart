@@ -8,8 +8,11 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// Abstract base class for lights.
 class Light extends Object3D {
+  /// Color of the light.
   Color color;
 
+  /// This creates a light with color.
   Light( num hex ): color = new Color( hex ), super();
 }

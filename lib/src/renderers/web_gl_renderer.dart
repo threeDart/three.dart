@@ -1,10 +1,18 @@
 // r54
 part of three;
 
+/// The WebGL renderer displays your beautifully crafted scenes using WebGL,
+/// if your device supports it.
+///
+/// This renderer has way better performance than CanvasRenderer.
 class WebGLRenderer implements Renderer {
 
   static const String PRECISION_HIGH = 'highp';
 
+  /// A Canvas where the renderer draws its output.
+  ///
+  /// This is automatically created by the renderer in the constructor (if not
+  /// provided already); you just need to add it to your page.
   CanvasElement canvas;
   gl.RenderingContext _gl;
 
@@ -20,39 +28,69 @@ class WebGLRenderer implements Renderer {
 		   stencil,
 		   preserveDrawingBuffer;
 
-  bool autoClear,
-		autoClearColor,
-		autoClearDepth,
-		autoClearStencil;
+	/// Defines whether the renderer should automatically clear its output before rendering.
+	bool autoClear;
+	/// If autoClear is true, defines whether the renderer should clear the color buffer. Default is true.
+	bool autoClearColor;
+	/// If autoClear is true, defines whether the renderer should clear the depth buffer. Default is true.
+	bool autoClearDepth;
+	/// If autoClear is true, defines whether the renderer should clear the stencil buffer. Default is true.
+	bool autoClearStencil;
 
 	// scene graph
 
-  bool sortObjects,
-	autoUpdateObjects,
-	autoUpdateScene;
+	/// Defines whether the renderer should sort objects. Default is true.
+	///
+	/// Note: Sorting is used to attempt to properly render objects that have some
+	/// degree of transparency. By definition, sorting objects may not work in all
+	/// cases. Depending on the needs of application, it may be necessary to turn
+	/// off sorting and use other methods to deal with transparency rendering
+	/// (e.g. manually determining the object rendering order).
+	bool sortObjects;
+	/// Defines whether the renderer should auto update objects. Default is true.
+	bool autoUpdateObjects;
+	bool autoUpdateScene;
 
 	// physically based shading
 
-	bool gammaInput,
-	gammaOutput,
-	physicallyBasedShading;
+	/// Default is false. If set, then it expects that all textures and colors are premultiplied gamma.
+	bool gammaInput;
+	/// Default is false. If set, then it expects that all textures and colors need to be outputted in premultiplied gamma.
+	bool gammaOutput;
+	bool physicallyBasedShading;
 
 	// shadow map
 
-	bool shadowMapEnabled,
-	shadowMapAutoUpdate,
-	shadowMapDebug,
-	shadowMapCascade;
-	int shadowMapType,
-	shadowMapCullFrontFaces;
+	/// Default is false. If set, use shadow maps in the scene.
+	bool shadowMapEnabled;
+	bool shadowMapAutoUpdate;
+	bool shadowMapDebug;
+	bool shadowMapCascade;
+	/// Defines shadow map type (unfiltered, percentage close filtering,
+	/// percentage close filtering with bilinear filtering in shader)
+	///
+	/// Options are BasicShadowMap, PCFShadowMap, PCFSoftShadowMap. Default is PCFShadowMap.
+	int shadowMapType;
+	/// Default is CullFaceFront. The faces that needed to be culled.
+	///
+	/// Possible values: CullFaceFront and CullFaceBack
+	int shadowMapCullFrontFaces;
 
 	// morphs
 
-	int maxMorphTargets,
-		maxMorphNormals;
+	/// Default is 8. The maximum number of MorphTargets allowed in a shader.
+	///
+	/// Keep in mind that the standard materials only allow 8 MorphTargets.
+	int maxMorphTargets;
+	/// Default is 4. The maximum number of MorphNormals allowed in a shader.
+	///
+	/// Keep in mind that the standard materials only allow 4 MorphNormals.
+	int maxMorphNormals;
 
 	// flags
 
+	/// Default is true. If set, then Cubemaps are scaled, when they are bigger
+	/// than the maximum size, to make sure that they aren't bigger than the maximum size.
 	bool autoScaleCubemaps;
 
 	// custom render plugins
@@ -134,7 +172,7 @@ class WebGLRenderer implements Renderer {
 
   num maxTextures, maxVertexTextures, maxTextureSize, maxCubemapSize;
 
-  WebGLRenderer( {	this.canvas,
+  WebGLRenderer( {  this.canvas,
   					this.precision: PRECISION_HIGH,
   					this.alpha: true,
 			      this.premultipliedAlpha: true,
@@ -343,9 +381,11 @@ class WebGLRenderer implements Renderer {
 
 	// API
 
-	get context => _gl;
+	gl.RenderingContext get context => _gl;
 
 
+	/// Resizes the output canvas to (width, height), and also sets the viewport
+	/// to fit that size, starting in (0, 0).
 	setSize( width, height ) {
 		canvas.width = (width * devicePixelRatio).toInt();
 		canvas.height = (height * devicePixelRatio).toInt();
@@ -357,6 +397,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
+	/// Sets the viewport to render from (x, y) to (x + width, y + height).
 	setViewport( [x = 0, y = 0, width = -1, height = -1] ) {
 
 		_viewportX = x;
@@ -370,16 +411,21 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setScissor( x, y, width, height ) {
+	// Sets the scissor area from (x, y) to (x + width, y + height).
+	setScissor( int x, int y, int width, int height ) {
 		_gl.scissor( x, y, width, height );
 	}
 
-	enableScissorTest( enable ) {
+	/// Enable the scissor test.
+	///
+	/// When this is enabled, only the pixels within the defined scissor area will
+	/// be affected by further renderer actions.
+	enableScissorTest( bool enable ) {
 		enable ? _gl.enable( gl.SCISSOR_TEST ) : _gl.disable( gl.SCISSOR_TEST );
 	}
 
 	// Clearing
-	setClearColorHex( hex, alpha ) {
+	setClearColorHex( num hex, num alpha ) {
 
 		_clearColor.setHex( hex );
 		_clearAlpha = alpha;
@@ -388,7 +434,8 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setClearColor( color, alpha ) {
+	/// Sets the clear color and opacity.
+	setClearColor( Color color, num alpha ) {
 
 		_clearColor.copy( color );
 		_clearAlpha = alpha;
@@ -397,7 +444,9 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-
+	/// Tells the renderer to clear its color, depth or stencil drawing buffer(s).
+	///
+	/// Arguments default to true.
 	clear( [ bool color = true, bool depth = true, bool stencil = true] ) {
 
 		var bits = 0;
@@ -410,7 +459,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	clearTarget( renderTarget, color, depth, stencil ) {
+	clearTarget( WebGLRenderTarget renderTarget, bool color, bool depth, bool stencil ) {
 		setRenderTarget( renderTarget );
 		clear( color, depth, stencil );
 	}
@@ -1063,7 +1112,7 @@ class WebGLRenderer implements Renderer {
 
 	// Buffer setting
 
-	setParticleBuffers ( Geometry geometry, hint, object ) {
+	setParticleBuffers ( Geometry geometry, int hint, object ) {
 
 		var v, c, vertex, offset, index, color,
 
@@ -1388,7 +1437,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setLineBuffers ( Geometry geometry, hint ) {
+	setLineBuffers ( Geometry geometry, int hint ) {
 
 		var v, c, d, vertex, offset, color,
 
@@ -1561,7 +1610,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setRibbonBuffers ( Geometry geometry, hint ) {
+	setRibbonBuffers ( Geometry geometry, int hint ) {
 
 		var v, c, n, vertex, offset, color, normal,
 
@@ -3358,7 +3407,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderBufferDirect ( Camera camera, List lights, fog, Material material, BufferGeometry geometry, Object object ) {
+	renderBufferDirect ( Camera camera, List<Light> lights, fog, Material material, BufferGeometry geometry, Object object ) {
 
 		if ( !material.visible ) return;
 
@@ -3616,7 +3665,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderBuffer ( camera, lights, fog, Material material, WebGLGeometry geometryGroup, Object3D object ) {
+	renderBuffer ( Camera camera, List<Light> lights, Fog fog, Material material, WebGLGeometry geometryGroup, Object3D object ) {
 
 
 		if ( !material.visible ) return;
@@ -4320,7 +4369,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	renderImmediateObject( camera, lights, fog, material, object ) {
+	renderImmediateObject( Camera camera, List<Light> lights, Fog fog, Material material, object ) {
 
 		var program = setProgram( camera, lights, fog, material, object );
 
@@ -4416,7 +4465,7 @@ class WebGLRenderer implements Renderer {
 
 	// Geometry splitting
 
-	sortFacesByMaterial ( Geometry geometry, material ) {
+	sortFacesByMaterial ( Geometry geometry, Material material ) {
 
 		var f, fl, face, materialIndex, vertices,
 			materialHash, groupHash;
@@ -4696,14 +4745,14 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	addBuffer ( objlist, WebGLGeometry buffer, Object3D object ) {
+	addBuffer ( List objlist, WebGLGeometry buffer, Object3D object ) {
 
 	  var o = new WebGLObject(object, null, null, buffer);
 		objlist.add(o);
 
 	}
 
-	addBufferImmediate ( objlist, Object3D object ) {
+	addBufferImmediate ( List objlist, Object3D object ) {
 
 	  var o = new WebGLObject(object, null, null, null);
 
@@ -4867,7 +4916,7 @@ class WebGLRenderer implements Renderer {
 
 	// Objects removal
 
-	removeObject ( Object3D object, scene ) {
+	removeObject ( Object3D object, Scene scene ) {
 
 		if ( object is Mesh  ||
 			 object is ParticleSystem ||
@@ -4894,7 +4943,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	removeInstances ( objlist, Object3D object ) {
+	removeInstances ( List objlist, Object3D object ) {
 
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
@@ -4908,7 +4957,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	removeInstancesDirect ( objlist, Object3D object ) {
+	removeInstancesDirect ( List objlist, Object3D object ) {
 
 		for ( var o = objlist.length - 1; o >= 0; o -- ) {
 
@@ -5079,7 +5128,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setMaterialShaders( Material material, shaders ) {
+	setMaterialShaders( Material material, Map shaders ) {
 
 		material._uniforms = UniformsUtils.clone( shaders["uniforms"] );
 		material._vertexShader = shaders["vertexShader"];
@@ -5087,7 +5136,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setProgram( Camera camera, List lights, Fog fog, Material material, Object3D object ) {
+	setProgram( Camera camera, List<Light> lights, Fog fog, Material material, Object3D object ) {
 
 	  _usedTextureUnits = 0;
 
@@ -5390,14 +5439,14 @@ class WebGLRenderer implements Renderer {
 		}
 	}
 
-	refreshUniformsLine ( uniforms, material ) {
+	refreshUniformsLine ( Map<String, Uniform> uniforms, LineBasicMaterial material ) {
 
 		uniforms["diffuse"].value = material.color;
 		uniforms["opacity"].value = material.opacity;
 
 	}
 
-	refreshUniformsDash ( uniforms, material ) {
+	refreshUniformsDash ( Map<String, Uniform> uniforms, material ) {
 
 		uniforms["dashSize"].value = material.dashSize;
 		uniforms["totalSize"].value = material.dashSize + material.gapSize;
@@ -5405,7 +5454,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsParticle ( uniforms, material ) {
+	refreshUniformsParticle ( Map<String, Uniform> uniforms, material ) {
 
 		uniforms["psColor"].value = material.color;
 		uniforms["opacity"].value = material.opacity;
@@ -5416,7 +5465,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsFog ( uniforms, Fog fog ) {
+	refreshUniformsFog ( Map<String, Uniform> uniforms, Fog fog ) {
 
 		uniforms["fogColor"].value = fog.color;
 
@@ -5433,7 +5482,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsPhong ( uniforms, MeshPhongMaterial material ) {
+	refreshUniformsPhong ( Map<String, Uniform> uniforms, MeshPhongMaterial material ) {
 
 		uniforms["shininess"].value = material.shininess;
 
@@ -5459,7 +5508,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	refreshUniformsLambert ( uniforms, material ) {
+	refreshUniformsLambert ( Map<String, Uniform> uniforms, MeshLambertMaterial material ) {
 
 		if ( gammaInput ) {
 
@@ -5547,7 +5596,7 @@ class WebGLRenderer implements Renderer {
 
 	// Uniforms (load to GPU)
 
-	loadUniformsMatrices ( uniforms, Object3D object ) {
+	loadUniformsMatrices ( Map uniforms, Object3D object ) {
 
 		_gl.uniformMatrix4fv( uniforms["modelViewMatrix"], false, object._modelViewMatrix.storage );
 
@@ -5573,7 +5622,7 @@ class WebGLRenderer implements Renderer {
 
   }
 
-	loadUniformsGeneric ( program, List uniforms ) {
+	loadUniformsGeneric ( Program program, List<List<Uniform>> uniforms ) {
 
 		var uniform, value, type, location, texture, textureUnit, i, il, j, jl, offset;
 
@@ -5705,7 +5754,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setColorGamma( array, offset, color, intensitySq ) {
+	setColorGamma( List<double> array, int offset, Color color, double intensitySq ) {
 
 		array[ offset ]     = color.r * color.r * intensitySq;
 		array[ offset + 1 ] = color.g * color.g * intensitySq;
@@ -5713,7 +5762,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setColorLinear( array, offset, color, intensity ) {
+	setColorLinear( List<double> array, int offset, Color color, double intensity ) {
 
 		array[ offset ]     = color.r * intensity;
 		array[ offset + 1 ] = color.g * intensity;
@@ -6008,7 +6057,7 @@ class WebGLRenderer implements Renderer {
 
 	// GL state setting
 
-	setFaceCulling( cullFace, frontFaceDirection ) {
+	setFaceCulling( int cullFace, int frontFaceDirection ) {
 
 		if ( cullFace == CullFaceNone ) {
 
@@ -6085,7 +6134,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setDepthTest( depthTest ) {
+	setDepthTest( bool depthTest ) {
 
 		if ( _oldDepthTest != depthTest ) {
 
@@ -6105,7 +6154,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setDepthWrite( depthWrite ) {
+	setDepthWrite( bool depthWrite ) {
 
 		if ( _oldDepthWrite != depthWrite ) {
 
@@ -6128,7 +6177,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setPolygonOffset ( polygonoffset, factor, units ) {
+	setPolygonOffset ( bool polygonoffset, num factor, num units ) {
 
 		if ( _oldPolygonOffset != polygonoffset ) {
 
@@ -6157,7 +6206,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setBlending( blending, [blendEquation, blendSrc, blendDst] ) {
+	setBlending( int blending, [blendEquation, blendSrc, blendDst] ) {
 
 		if ( blending != _oldBlending ) {
 
@@ -6232,7 +6281,7 @@ class WebGLRenderer implements Renderer {
 
 	// Defines
 
-	generateDefines ( defines ) {
+	String generateDefines ( Map defines ) {
 
 		var chunk, chunks = [];
 
@@ -6627,7 +6676,7 @@ class WebGLRenderer implements Renderer {
 
 	// Shader parameters cache
 
-	cacheUniformLocations ( program, identifiers ) {
+	cacheUniformLocations ( Program program, List<String> identifiers ) {
 
 		var i, l, id;
 
@@ -6641,7 +6690,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	cacheAttributeLocations ( program, identifiers ) {
+	cacheAttributeLocations ( Program program, List<String> identifiers ) {
 
 		var i, l, id;
 
@@ -6655,7 +6704,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	addLineNumbers ( string ) {
+	addLineNumbers ( String string ) {
 
 		var chunks = string.split( "\n" );
 
@@ -6673,7 +6722,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	getShader ( type, string ) {
+	gl.Shader getShader ( String type, String string ) {
 
 		var shader;
 
@@ -6705,9 +6754,9 @@ class WebGLRenderer implements Renderer {
 	// Textures
 
 
-	isPowerOfTwo ( int value ) => ( value & ( value - 1 ) ) == 0;
+	bool isPowerOfTwo ( int value ) => ( value & ( value - 1 ) ) == 0;
 
-	setTextureParameters ( textureType, texture, isImagePowerOfTwo ) {
+	setTextureParameters ( int textureType, Texture texture, bool isImagePowerOfTwo ) {
 
 		if ( isImagePowerOfTwo ) {
 
@@ -6747,7 +6796,7 @@ class WebGLRenderer implements Renderer {
     }
 	}
 
-	setTexture( Texture texture, slot ) {
+	setTexture( Texture texture, int slot ) {
 
 		if ( texture.needsUpdate ) {
 
@@ -6862,7 +6911,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	clampToMaxSize ( image, maxSize ) {
+	clampToMaxSize ( image, num maxSize ) {
 
 		if ( image.width <= maxSize && image.height <= maxSize ) {
 
@@ -6888,7 +6937,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	setCubeTexture ( Texture texture, slot ) {
+	setCubeTexture ( Texture texture, int slot ) {
 
 		if ( texture.image.length == 6 ) {
 		  if(texture.image is ImageList){
@@ -6984,14 +7033,14 @@ class WebGLRenderer implements Renderer {
 
 	// Render targets
 
-	setupFrameBuffer ( framebuffer, renderTarget, textureTarget ) {
+	setupFrameBuffer ( gl.Framebuffer framebuffer, WebGLRenderTarget renderTarget, int textureTarget ) {
 
 		_gl.bindFramebuffer( gl.FRAMEBUFFER, framebuffer );
 		_gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, textureTarget, renderTarget.__webglTexture, 0 );
 
 	}
 
-	setupRenderBuffer ( renderbuffer, renderTarget  ) {
+	setupRenderBuffer ( gl.Renderbuffer renderbuffer, WebGLRenderTarget renderTarget  ) {
 
 		_gl.bindRenderbuffer( gl.RENDERBUFFER, renderbuffer );
 
@@ -7168,7 +7217,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	updateRenderTargetMipmap ( renderTarget ) {
+	updateRenderTargetMipmap ( WebGLRenderTarget renderTarget ) {
 
 		if ( renderTarget is WebGLRenderTargetCube ) {
 
@@ -7188,7 +7237,7 @@ class WebGLRenderer implements Renderer {
 
 	// Fallback filters for non-power-of-2 textures
 
-	filterFallback ( f ) {
+	int filterFallback ( int f ) {
 
 		if ( f == NearestFilter || f == NearestMipMapNearestFilter || f == NearestMipMapLinearFilter ) {
 
@@ -7202,7 +7251,7 @@ class WebGLRenderer implements Renderer {
 
 	// Map three.js constants to WebGL constants
 
-	paramThreeToGL ( p ) {
+	int paramThreeToGL ( int p ) {
 
 		if ( p == RepeatWrapping ) return gl.REPEAT;
 		if ( p == ClampToEdgeWrapping ) return gl.CLAMP_TO_EDGE;
@@ -7304,7 +7353,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	allocateLights ( List<Light> lights ) {
+	Map<String, int> allocateLights ( List<Light> lights ) {
 
 		var l, ll, light, dirLights, pointLights, spotLights, hemiLights;
 
@@ -7330,7 +7379,7 @@ class WebGLRenderer implements Renderer {
 
 	}
 
-	allocateShadows ( lights ) {
+	int allocateShadows ( List<Light> lights ) {
 
 		var l, ll, light, maxShadows = 0;
 
@@ -7438,6 +7487,11 @@ class WebGLRenderer implements Renderer {
 //
 // Rendering Info classes by nelsonsilva
 //
+
+/// An object with a series of statistical information about the graphics board
+/// memory and the rendering process.
+///
+/// Useful for debugging or just for the sake of curiosity.
 class WebGLRendererInfo {
 	WebGLRendererMemoryInfo memory;
 	WebGLRendererRenderInfo render;
@@ -7482,7 +7536,7 @@ class Buffer {
   Buffer(this.context) {
     _glbuffer = context.createBuffer();
   }
-  bind(target) {
+  bind(int target) {
     context.bindBuffer( target, _glbuffer );
   }
 }
