@@ -1,16 +1,15 @@
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/controls/trackball_controls.dart';
 
-  Element container;
+Element container;
 
-  OrthographicCamera camera;
-  Scene scene;
-  CanvasRenderer renderer;
+PerspectiveCamera camera;
+Scene scene;
+WebGLRenderer renderer;
 
-  TrackballControls controls;
+TrackballControls controls;
 
 void main() {
   init();
@@ -32,7 +31,7 @@ void init() {
                   ''';
   container.nodes.add( info );
 
-  camera = new PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+  camera = new PerspectiveCamera( 60.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
   camera.position.z = 500.0;
 
   controls = new TrackballControls( camera );
@@ -60,7 +59,7 @@ void init() {
 
   // Pyramids
 
-  geometry = new CylinderGeometry( 0, 10, 30, 4, 1 );
+  geometry = new CylinderGeometry( 0.0, 10.0, 30.0, 4, 1 );
   material = new MeshLambertMaterial( color: 0xffffff, shading: FlatShading );
 
   var rnd = new Math.Random();

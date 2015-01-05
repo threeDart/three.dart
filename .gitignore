@@ -3,6 +3,7 @@ robots.txt
 .project
 packages
 pubspec.lock
+.pub
 *.js
 *.map
 *.dart.js.deps

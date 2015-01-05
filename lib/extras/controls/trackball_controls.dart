@@ -27,7 +27,7 @@ class TrackballControls extends EventEmitter {
 
   int _state, _prevState;
   Object3D object;
-  Element domElement;
+  dynamic domElement;
   bool enabled;
   Math.Rectangle screen;
   num rotateSpeed,
