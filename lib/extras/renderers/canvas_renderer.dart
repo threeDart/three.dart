@@ -459,7 +459,7 @@ class CanvasRenderer implements Renderer {
 
     if ( material is ParticleBasicMaterial ) {
       ParticleBasicMaterial pbMaterial = material;
-      if ( pbMaterial.map ) {
+      if ( pbMaterial.map != null ) {
         bitmap = pbMaterial.map.image;
         bitmapWidth = bitmap.width >> 1;
         bitmapHeight = bitmap.height >> 1;
