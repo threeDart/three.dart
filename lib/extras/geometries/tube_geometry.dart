@@ -24,7 +24,7 @@ class TubeGeometry extends Geometry {
 
   Object3D debug;
 
-  TubeGeometry ( path, [segments = 64, this.radius = 1.0, this.segmentsRadius = 8, closed = false, bool debug])
+  TubeGeometry ( path, [int segments = 64, this.radius = 1.0, this.segmentsRadius = 8, bool closed = false, bool debug])
     : grid = [], super() {
 
     if ( debug ) this.debug = new Object3D();
@@ -121,7 +121,7 @@ class TubeGeometry extends Geometry {
   }
 
 
-  _vert( x, y, z ) {
+  int _vert( double x, double y, double z ) {
     vertices.add( new Vector3(x, y, z) );
     return vertices.length - 1;
   }
@@ -135,7 +135,7 @@ class TubeGeometry extends Geometry {
   }
 
 // For computing of Frenet frames, exposing the tangents, normals and binormals the spline
-  _frenetFrames(ppath, psegments, pclosed) {
+  _frenetFrames(ppath, psegments, bool pclosed) {
 
     this.path = ppath;
     this.segments = psegments;

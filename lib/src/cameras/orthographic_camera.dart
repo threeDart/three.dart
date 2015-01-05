@@ -9,19 +9,27 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// Camera with orthographic projection.
 class OrthographicCamera extends Camera {
 
-	double left,
-		right,
-		top,
-		bottom;
+  /// Camera frustum left plane.
+  double left;
+  /// Camera frustum right plane.
+  double right;
+  /// Camera frustum top plane.
+  double top;
+  /// Camera frustum bottom plane.
+  double bottom;
 
-	OrthographicCamera( this.left, this.right, this.top, this.bottom,
-						[near = 0.1, far = 2000.0] ) : super(near, far) {
-		updateProjectionMatrix();
-	}
+  OrthographicCamera( this.left, this.right, this.top, this.bottom,
+            [near = 0.1, far = 2000.0] ) : super(near, far) {
+    updateProjectionMatrix();
+  }
 
-	updateProjectionMatrix() {
-		setOrthographicMatrix( projectionMatrix, left, right, bottom, top, near, far);
-	}
+  /// Updates the camera projection matrix.
+  ///
+  /// Must be called after change of parameters.
+  void updateProjectionMatrix() {
+    setOrthographicMatrix( projectionMatrix, left, right, bottom, top, near, far);
+  }
 }

@@ -35,6 +35,7 @@ part of three;
  * }
  */
 
+/// A material for non-shiny (Lambertian) surfaces, evaluated per vertex.
 class MeshLambertMaterial extends Material
   implements Lighting,
        TextureMapping,
@@ -45,8 +46,12 @@ class MeshLambertMaterial extends Material
   Map _parameters;
 
   // Lighting
+
+  /// Diffuse color of the material. Default is white.
   Color color;
+  /// Ambient color of the material, multiplied by the color of the AmbientLight. Default is white.
   Color ambient;
+  /// Emissive (light) color of the material, essentially a solid color unaffected by other lighting. Default is black.
   Color emissive;
   Color specular;
 
@@ -60,16 +65,40 @@ class MeshLambertMaterial extends Material
   num reflectivity;
   num refractionRatio;
 
+  /// How the triangles of a curved surface are rendered: as a smooth surface,
+  /// as flat separate facets, or no shading at all.
+  ///
+  /// Options are SmoothShading (default), FlatShading, NoShading.
   int shading;
+  /// Whether the triangles' edges are displayed instead of surfaces. Default is false.
   bool wireframe;
+  /// Line thickness for wireframe mode. Default is 1.0.
+  ///
+  /// Due to limitations in the ANGLE layer, on Windows platforms linewidth
+  /// will always be 1 regardless of the set value.
   num wireframeLinewidth;
+  /// Define appearance of line ends.
+  ///
+  /// Possible values are "butt", "round" and "square". Default is 'round'.
+  ///
+  /// This setting might not have any effect when used with certain renderers.
+  /// For example, it is ignored with the WebGL renderer, but does work with the Canvas renderer.
   String wireframeLinecap;
+  /// Define appearance of line joints.
+  ///
+  /// Possible values are "round", "bevel" and "miter". Default is 'round'.
+  ///
+  /// This setting might not have any effect when used with certain renderers.
+  /// For example, it is ignored with the WebGL renderer, but does work with the Canvas renderer.
   String wireframeLinejoin;
 
+  /// Define whether the material uses skinning. Default is false.
   bool skinning;
 
   // Morphing
-  bool morphTargets, morphNormals;
+  /// Define whether the material uses morphTargets. Default is false.
+  bool morphTargets;
+  bool morphNormals;
   num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   MeshLambertMaterial( { // MeshLambertMaterial

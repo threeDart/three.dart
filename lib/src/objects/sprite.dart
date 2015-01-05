@@ -1,5 +1,6 @@
 part of three;
 
+/// A sprite is a plane in an 3d scene which faces always towards the camera.
 class Sprite extends Object3D {
   Color color;
   Texture map;

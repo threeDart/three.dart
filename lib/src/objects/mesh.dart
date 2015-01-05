@@ -10,7 +10,11 @@ part of three;
  * @author nelson silva / http://www.inevo.pt/
  */
 
+/// Base class for Mesh objects, such as MorphAnimMesh and SkinnedMesh.
 class Mesh extends Object3D {
+  /// Defines the object's appearance.
+  ///
+  /// Default is a MeshBasicMaterial with wireframe mode enabled and randomised colour.
   Material material;
 
   num morphTargetBase = 0;
@@ -50,9 +54,7 @@ class Mesh extends Object3D {
   }
 
 
-  /*
-   * Get Morph Target Index by Name
-   */
+  /// Returns the index of a morph target defined by name.
   num getMorphTargetIndexByName( name ) {
     if ( _morphTargetDictionary[ name ] != null ) {
       return _morphTargetDictionary[ name ];

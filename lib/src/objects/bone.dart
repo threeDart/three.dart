@@ -1,13 +1,16 @@
 part of three;
 
+/// A bone which is part of a SkinnedMesh.
 class Bone extends Object3D {
-
-  var skin;
+  /// The skin that contains this bone.
+  SkinnedMesh skin;
+  /// The matrix of the bone.
   Matrix4 skinMatrix;
 
   Bone(this.skin) : skinMatrix = new Matrix4.identity(), super();
 
-  update( [Matrix4 parentSkinMatrix, forceUpdate = false] ) {
+  /// This updates the matrix of the bone and the matrices of its children.
+  update( [Matrix4 parentSkinMatrix, bool forceUpdate = false] ) {
 
     // update local
     if ( matrixAutoUpdate ) {

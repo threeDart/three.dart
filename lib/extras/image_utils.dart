@@ -8,7 +8,7 @@ import "package:three/three.dart";
 
 var crossOrigin = 'anonymous';
 
-Texture loadTexture ( url, {mapping, onLoad, onError} ) {
+Texture loadTexture ( String url, {mapping, Function onLoad(Texture texture), Function onError(String message)} ) {
 
 	var image = new ImageElement();
 	var texture = new Texture( image, mapping );
@@ -37,7 +37,7 @@ Texture loadTexture ( url, {mapping, onLoad, onError} ) {
 
 }
 
-Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
+Texture loadCompressedTexture( String url, {mapping, Function onLoad(Texture texture), Function onError(ProgressEvent e)} ) {
 
   var texture = new CompressedTexture();
   texture.mapping = mapping;
@@ -63,7 +63,7 @@ Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
 
     texture.needsUpdate = true;
 
-    if ( onLoad ) onLoad( texture );
+    if ( onLoad != null ) onLoad( texture );
 
   });
 
@@ -78,7 +78,7 @@ Texture loadCompressedTexture( url, {mapping, onLoad, onError} ) {
 }
 
 
-Texture loadTextureCube ( array, [mapping = null, onLoad ]) {
+Texture loadTextureCube ( List<String> array, [mapping, Function onLoad() ]) {
 
 	var i, l;
 	l = array.length;
@@ -115,7 +115,7 @@ Texture loadTextureCube ( array, [mapping = null, onLoad ]) {
 
 }
 
-parseDDS( buffer, loadMipmaps ) {
+Map parseDDS( ByteBuffer buffer, bool loadMipmaps ) {
 
   var dds = { "mipmaps": [], "width": 0, "height": 0, "format": null, "mipmapCount": 1 };
 
@@ -261,7 +261,7 @@ parseDDS( buffer, loadMipmaps ) {
 
 }
 
-getNormalMap ( image, depth ) {
+CanvasElement getNormalMap ( image, int depth ) {
 
 	// Adapted from http://www.paulbrunt.co.uk/lab/heightnormal/
 
@@ -364,7 +364,7 @@ getNormalMap ( image, depth ) {
 
 }
 
-generateDataTexture( width, height, color ) {
+DataTexture generateDataTexture( num width, num height, Color color ) {
 
 	var size = width * height;
 	var data = new Uint8List( 3 * size );

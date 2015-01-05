@@ -1,10 +1,13 @@
 part of three;
 
+/// An 3d object that has bones data. These Bones can then be used to animate the vertices of the object.
 class SkinnedMesh extends Mesh {
+	/// Whether a vertex texture is used to calculate the bones. This shouldn't be changed after constructor.
 	bool useVertexTexture;
 	num boneTextureWidth, boneTextureHeight;
 	List bones;
 	List boneMatrices;
+	/// This is an identityMatrix to calculate the bones matrices from.
 	Matrix4 identityMatrix;
 	DataTexture boneTexture;
 
@@ -106,7 +109,10 @@ class SkinnedMesh extends Mesh {
     }
 	}
 
-	addBone( {Bone bone} ) {
+	/// This method adds the bone to the skinnedmesh when it is provided.
+	///
+	/// It creates a new bone and adds that when no bone is given.
+	Bone addBone( {Bone bone} ) {
 
 	  if ( bone == null ) {
 	    bone = new Bone( this );
@@ -118,7 +124,7 @@ class SkinnedMesh extends Mesh {
 
 	}
 
-	updateMatrixWorld({force: false}) {
+	void updateMatrixWorld({bool force: false}) {
 
 	  if(matrixAutoUpdate) updateMatrix();
 
@@ -170,11 +176,8 @@ class SkinnedMesh extends Mesh {
 
 	}
 
-	/*
-	 * Pose
-	 */
-
-	pose() {
+	/// This method sets the skinnedmesh in the rest pose.
+	void pose() {
 
 	  updateMatrixWorld( force: true );
 

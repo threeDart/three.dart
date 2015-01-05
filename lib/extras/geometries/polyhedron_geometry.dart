@@ -52,7 +52,7 @@ class PolyhedronGeometry extends Geometry {
 
   // Approximate a curved face with recursively sub-divided triangles.
 
-  _make( PolyhedronGeometryVertex v1, PolyhedronGeometryVertex v2, PolyhedronGeometryVertex v3, detail ) {
+  _make( PolyhedronGeometryVertex v1, PolyhedronGeometryVertex v2, PolyhedronGeometryVertex v3, num detail ) {
 
     if ( detail < 1 ) {
 
@@ -130,16 +130,14 @@ class PolyhedronGeometry extends Geometry {
 
   }
 
-
   /// Angle around the Y axis, counter-clockwise when looking from above.
-  _azimuth( vector ) => Math.atan2( vector.z, -vector.x );
-
+  double _azimuth( Vector3 vector ) => Math.atan2( vector.z, -vector.x );
 
   /// Angle above the XZ plane.
-  _inclination( vector ) => Math.atan2( -vector.y, Math.sqrt( ( vector.x * vector.x ) + ( vector.z * vector.z ) ) );
+  double _inclination( Vector3 vector ) => Math.atan2( -vector.y, Math.sqrt( ( vector.x * vector.x ) + ( vector.z * vector.z ) ) );
 
   /// Texture fixing helper. Spheres have some odd behaviours.
-  _correctUV( uv, vector, azimuth ) {
+  UV _correctUV( UV uv, Vector3 vector, double azimuth ) {
     if ( ( azimuth < 0 ) && ( uv.u == 1 ) ) uv = new UV( uv.u - 1, uv.v );
     if ( ( vector.x == 0 ) && ( vector.z == 0 ) ) uv = new UV( azimuth / 2 / Math.PI + 0.5, uv.v );
     return uv;

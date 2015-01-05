@@ -1,7 +1,7 @@
 part of three;
 
 class TetrahedronGeometry extends PolyhedronGeometry {
-  factory TetrahedronGeometry( radius, detail ) {
+  factory TetrahedronGeometry( double radius, int detail ) {
     var vertices = [
                     [ 1,  1,  1 ], [ -1, -1, 1 ], [ -1, 1, -1 ], [ 1, -1, -1 ]
                     ];
@@ -13,6 +13,6 @@ class TetrahedronGeometry extends PolyhedronGeometry {
     return new TetrahedronGeometry._internal(vertices, faces, radius, detail);
   }
 
-  TetrahedronGeometry._internal(vertices, faces, radius, details) : super(vertices, faces, radius, details);
+  TetrahedronGeometry._internal(List<List<num>> vertices, List<List<num>> faces, double radius, int details) : super(vertices, faces, radius, details);
 
 }

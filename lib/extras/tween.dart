@@ -25,15 +25,15 @@ const REVISION = '7';
 
 List<Tween> _tweens = [];
 
-get all => _tweens;
+List<Tween> get all => _tweens;
 
 removeAll() => _tweens = [];
 
-add( tween ) => _tweens.add( tween );
+add( Tween tween ) => _tweens.add( tween );
 
-remove( tween ) => _tweens.removeAt(_tweens.indexOf(tween));
+remove( Tween tween ) => _tweens.removeAt(_tweens.indexOf(tween));
 
-update( {num time} ) {
+bool update( {num time} ) {
 
   if ( _tweens.isEmpty ) { return false; }
 
@@ -61,17 +61,17 @@ class Tween {
   num _duration = 1000;
   num _delayTime = 0;
   num _startTime = null;
-  var _easingFunction = Easing.Linear.None;
-  var _interpolationFunction = Interpolation.Linear;
+  Function _easingFunction = Easing.Linear.None;
+  Function _interpolationFunction = Interpolation.Linear;
   List _chainedTweens = [];
-  var _onStartCallback = null;
+  Function _onStartCallback = null;
   bool _onStartCallbackFired = false;
-  var _onUpdateCallback = null;
-  var _onCompleteCallback = null;
+  Function _onUpdateCallback = null;
+  Function _onCompleteCallback = null;
 
   Tween(this.object);
 
-  to( properties, [duration] ) {
+  to( Map properties, [num duration] ) {
     if ( duration != null ) {
       _duration = duration;
     }
@@ -79,7 +79,7 @@ class Tween {
     _valuesEnd = properties;
   }
 
-  // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet :(
+  // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet) :(
   _setPropertyValue(String name, Object value) {
     switch(name) {
       case "x": object.x = value; break;
@@ -90,7 +90,7 @@ class Tween {
     }
   }
 
-  // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet :(
+  // TODO(nelsonsilva) - We just support x, y and z props for now (no mirrors yet) :(
   Object _getPropertyValue(String name) {
     switch(name) {
       case "x": return object.x;
@@ -135,21 +135,21 @@ class Tween {
   stop() => remove( this );
 
 
-  set delay( amount ) { _delayTime = amount; }
+  set delay( num amount ) { _delayTime = amount; }
 
-  set easing( easing ) { _easingFunction = easing; }
+  set easing( num easing(num elapsed) ) { _easingFunction = easing; }
 
-  set interpolation( interpolation ) { _interpolationFunction = interpolation; }
+  set interpolation( Object interpolation(Object end, Object value) ) { _interpolationFunction = interpolation; }
 
-  chain( List tweens) {  _chainedTweens = tweens; }
+  chain( List<Tween> tweens) {  _chainedTweens = tweens; }
 
-  set onStart( callback ) { _onStartCallback = callback; }
+  set onStart( Function callback(object) ) { _onStartCallback = callback; }
 
-  set onUpdate( callback ) { _onUpdateCallback = callback; }
+  set onUpdate( Function callback(object, value) ) { _onUpdateCallback = callback; }
 
-  set onComplete( callback ) { _onCompleteCallback = callback; }
+  set onComplete( Function callback(object) ) { _onCompleteCallback = callback; }
 
-  update( num time ) {
+  bool update( num time ) {
 
     if ( time < _startTime ) {
       return true;
@@ -157,7 +157,7 @@ class Tween {
 
     if ( !_onStartCallbackFired ) {
       if ( _onStartCallback != null ) {
-        _onStartCallback(object );
+        _onStartCallback( object );
       }
       _onStartCallbackFired = true;
     }
@@ -206,7 +206,7 @@ class Easing {
 }
 
 class Interpolation {
-  static Linear( v, k ) {
+  static Linear( List v, num k ) {
     var m = v.length - 1,
         f = m * k,
         i = f.floor(),

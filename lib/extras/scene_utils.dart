@@ -5,14 +5,14 @@ import "package:three/three.dart";
 
 showHierarchy( root, visible ) => traverseHierarchy( root, (node) => node.visible = visible);
 
-void traverseHierarchy( root, callback(node) ) {
+void traverseHierarchy( Object3D root, Function callback(Object3D node) ) {
   root.children.forEach((n) {
     callback(n);
     traverseHierarchy( n, callback );
   });
 }
 
-Object3D createMultiMaterialObject( Geometry geometry, materials ) {
+Object3D createMultiMaterialObject( Geometry geometry, List<Material> materials ) {
   var group = new Object3D();
 
   materials.forEach((material) {
@@ -23,7 +23,7 @@ Object3D createMultiMaterialObject( Geometry geometry, materials ) {
 
 }
 
-cloneObject(Object3D source) {
+Object3D cloneObject(Object3D source) {
 
   Object3D object;
 
@@ -183,13 +183,13 @@ cloneObject(Object3D source) {
 
 }
 
-detach( child, parent, scene ) {
+void detach( Object3D child, Object3D parent, Scene scene ) {
   child.applyMatrix( parent.matrixWorld );
   parent.remove( child );
   scene.add( child );
 }
 
-attach( child, scene, parent ) {
+void attach( Object3D child, Scene scene, Object3D parent ) {
 
   Matrix4 matrixWorldInverse = parent.matrixWorld.clone();
   matrixWorldInverse.invert();

@@ -30,7 +30,18 @@ class Chunk {
   Chunk({this.start, this.count, this.index});
 }
 
-// TODO - Create a IGeometry with only the necessary interface methods
+/// This class is an efficient alternative to Geometry, because it stores all
+/// data, including vertex positions, face indices, normals, colors, UVs, and
+/// custom attributes within buffers; this reduces the cost of passing all this
+/// data to the GPU.
+///
+/// This also makes BufferGeometry harder to work with than Geometry; rather
+/// than accessing position data as Vector3 objects, color data as Color
+/// objects, and so on, you have to access the raw data from the appropriate
+/// attribute buffer. BufferGeometry is best-suited for static objects where you
+/// don't need to manipulate the geometry much after instantiating it.
+///
+/// TODO: there are several unported methods from three.js.
 class BufferGeometry implements Geometry {
 
 	int id = GeometryCount ++;
@@ -94,6 +105,7 @@ class BufferGeometry implements Geometry {
 
 	}
 
+	/// Computes bounding box of the geometry, updating Geometry.boundingBox.
 	computeBoundingBox () {
 
 		if ( boundingBox == null ) {
@@ -163,6 +175,10 @@ class BufferGeometry implements Geometry {
 
 	}
 
+	/// Computes bounding sphere of the geometry, updating Geometry.boundingSphere.
+	///
+	/// Neither bounding boxes or bounding spheres are computed by default.
+	/// They need to be explicitly computed, otherwise they are null.
 	computeBoundingSphere() {
 
 		if ( boundingSphere == null ) boundingSphere = new BoundingSphere( radius: 0 );
@@ -191,6 +207,8 @@ class BufferGeometry implements Geometry {
 
 	}
 
+	/// Computes vertex normals by averaging face normals.
+	/// Face normals must be existing / computed beforehand.
 	computeVertexNormals() {
 
 		if ( aPosition != null && aIndex != null ) {
@@ -299,6 +317,9 @@ class BufferGeometry implements Geometry {
 
 	}
 
+	/// Computes vertex tangents.
+	/// Based on http://www.terathon.com/code/tangent.html
+	/// Geometry must have vertex UVs (layer 0 will be used).
 	computeTangents() {
 
 		// based on http://www.terathon.com/code/tangent.html
@@ -463,7 +484,7 @@ class BufferGeometry implements Geometry {
 			test = tmp2.dot( tan2[ v ] );
 			w = ( test < 0.0 ) ? -1.0 : 1.0;
 
-			tangents[ v * 4 ] 	  = tmp.x;
+			tangents[ v * 4 ]     = tmp.x;
 			tangents[ v * 4 + 1 ] = tmp.y;
 			tangents[ v * 4 + 2 ] = tmp.z;
 			tangents[ v * 4 + 3 ] = w;
