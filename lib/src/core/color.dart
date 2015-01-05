@@ -46,6 +46,14 @@ class Color {
     if ( hex is num ) setHex( hex );
   }
 
+  /// Creates a Color from an rgb [array].
+  Color.fromArray(List<num> array) {
+    r = array[0].toDouble();
+    g = array[1].toDouble();
+    b = array[2].toDouble();
+  }
+
+  
   /// Copies the color and returns this color.
   Color copy( Color color ) {
     r = color.r;
