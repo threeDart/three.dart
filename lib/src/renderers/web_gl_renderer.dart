@@ -434,8 +434,14 @@ class WebGLRenderer implements Renderer {
 
   }
 
-  /// Sets the clear color and opacity.
-  setClearColor( Color color, num alpha ) {
+	/// Gets the clear alpha.
+	double getClearAlpha() => _clearAlpha;
+
+	/// Gets the clear color.
+	Color getClearColor() => _clearColor;
+
+	/// Sets the clear color and opacity.
+	setClearColor( Color color, num alpha ) {
 
     _clearColor.copy( color );
     _clearAlpha = alpha;
@@ -4044,7 +4050,12 @@ class WebGLRenderer implements Renderer {
   @override
   render ( Scene scene, Camera camera) => _render( scene, camera);
 
-  _render ( Scene scene, Camera camera, {renderTarget: null, forceClear: false} ) {
+	void renderTarget(Scene scene, Camera camera, WebGLRenderTarget renderTarget,
+	    [forceClear = false]) {
+	  _render(scene, camera, renderTarget: renderTarget, forceClear: forceClear);
+	}
+
+	_render ( Scene scene, Camera camera, {renderTarget: null, forceClear: false} ) {
 
     var i, il;
 
