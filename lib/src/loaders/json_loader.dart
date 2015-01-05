@@ -231,7 +231,7 @@ class JSONLoader extends Loader {
           u = uvLayer[ uvIndex * 2 ];
           v = uvLayer[ uvIndex * 2 + 1 ];
 
-          geometry.faceUvs[ i ][ fi ] = new UV( u, v );
+          geometry.faceUvs[ i ][ fi ] = new UV(u.toDouble(), v.toDouble());
 
         }
 
@@ -252,7 +252,7 @@ class JSONLoader extends Loader {
             u = uvLayer[ uvIndex * 2 ];
             v = uvLayer[ uvIndex * 2 + 1 ];
 
-            uvs[ j ] = new UV( u, v );
+            uvs[ j ] = new UV(u.toDouble(), v.toDouble());
 
           }
 
