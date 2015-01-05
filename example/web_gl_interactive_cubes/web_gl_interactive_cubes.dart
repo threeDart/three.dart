@@ -34,7 +34,7 @@ void init() {
 
   var light;
 
-  light = new DirectionalLight( 0xffffff, 2 );
+  light = new DirectionalLight( 0xffffff, 2.0 );
   light.position.setValues( 1.0, 1.0, 1.0 ).normalize();
   scene.add( light );
 
