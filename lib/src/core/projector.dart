@@ -323,8 +323,8 @@ class Projector {
 
           _face.normalWorld.setFrom( face.normal );
 
-		      if ( visible == false && ( side == BackSide || side == DoubleSide ) ) _face.normalWorld.negate();
-		      _face.normalWorld.applyProjection(rotationMatrix);
+          if ( visible == false && ( side == BackSide || side == DoubleSide ) ) _face.normalWorld.negate();
+          _face.normalWorld.applyProjection(rotationMatrix);
 
           _face.centroidWorld.setFrom( face.centroid );
           _face.centroidWorld.applyProjection(modelMatrix);
