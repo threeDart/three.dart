@@ -5,5 +5,5 @@ abstract class PostPass {
   get needsSwap;
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta);
+      WebGLRenderTarget readBuffer, double delta, bool maskActive);
 }

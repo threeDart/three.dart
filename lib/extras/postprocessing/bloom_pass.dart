@@ -7,19 +7,24 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class BloomPass  extends PostPass {
+class BloomPass implements PostPass {
   static final Vector2 blurX = new Vector2.array([0.001953125, 0.0]);
   static final Vector2 blurY = new Vector2.array([0.0, 0.001953125]);
   WebGLRenderTarget renderTargetX;
   WebGLRenderTarget renderTargetY;
   ShaderProgram copyShader;
+  Map<String, Uniform> copyUniforms;
   ShaderMaterial materialCopy;
   ShaderProgram convolutionShader;
+  Map<String, Uniform> convolutionUniforms;
   ShaderMaterial materialConvolution;
   bool enabled = true;
   bool needsSwap = false;
   bool clear = false;
-  bool maskActive;
+
+  Scene scene;
+  OrthographicCamera camera;
+  Mesh quad;
 
   BloomPass({int strength: 1, num kernelSize: 25, double sigma: 4.0,
       int resolution: 256}) {
@@ -38,67 +43,66 @@ class BloomPass  extends PostPass {
         format: RGBFormat);
 
     copyShader = new ShaderProgram.fromThreeish(CopyShader);
-    copyShader.uniforms['opacity'].value = strength;
+    copyUniforms = copyShader.uniforms;
+    copyUniforms['opacity'].value = strength;
 
     materialCopy = new ShaderMaterial(
-        uniforms: copyShader.uniforms,
+        uniforms: copyUniforms,
         vertexShader: copyShader.vertexShader,
         fragmentShader: copyShader.fragmentShader,
         blending: AdditiveBlending,
         transparent: true);
 
     convolutionShader = new ShaderProgram.fromThreeish(ConvolutionShader);
+    convolutionUniforms = convolutionShader.uniforms;
 
-    convolutionShader.uniforms['uImageIncrement'].value = BloomPass.blurX;
-    convolutionShader.uniforms['cKernel'].value = sigma;
+    convolutionUniforms['uImageIncrement'].value = BloomPass.blurX;
+    convolutionUniforms['cKernel'].value = ConvolutionShader.buildKernel(sigma);
 
     materialConvolution = new ShaderMaterial(
-        uniforms: convolutionShader.uniforms,
+        uniforms: convolutionUniforms,
         vertexShader: convolutionShader.vertexShader,
         fragmentShader: convolutionShader.fragmentShader);
+
     materialConvolution.defines['KERNEL_SIZE_FLOAT'] =
         double.parse(kernelSize.toStringAsFixed(1));
     materialConvolution.defines['KERNEL_SIZE_INT'] = kernelSize.toInt();
+
+    scene = new Scene();
+    camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
+    scene.add(camera);
+    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    scene.add(quad);
   }
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
+
     RenderingContext context = renderer.context;
-    if (maskActive == true) {
+
+    if (maskActive) {
       context.disable(RenderingContext.STENCIL_TEST);
     }
 
-    EffectComposer.quad.material = materialConvolution;
+    quad.material = materialConvolution;
 
     convolutionShader.uniforms['tDiffuse'].value = readBuffer;
     convolutionShader.uniforms['uImageIncrement'].value = BloomPass.blurX;
 
-    renderer.renderTarget(
-        EffectComposer.scene,
-        EffectComposer.camera,
-        this.renderTargetX,
-        true);
+    renderer.renderToTarget(scene, camera, renderTargetX, true);
 
-    convolutionShader.uniforms['tDiffuse'].value = renderTargetX;
-    convolutionShader.uniforms['uImageIncrement'].value = BloomPass.blurY;
+    convolutionUniforms['tDiffuse'].value = renderTargetX;
+    convolutionUniforms['uImageIncrement'].value = BloomPass.blurY;
 
-    renderer.renderTarget(
-        EffectComposer.scene,
-        EffectComposer.camera,
-        this.renderTargetY,
-        true);
+    renderer.renderToTarget(scene, camera, renderTargetY, true);
 
-    EffectComposer.quad.material = materialCopy;
-    copyShader.uniforms['tDiffuse'].value = renderTargetY;
+    quad.material = materialCopy;
+    copyUniforms['tDiffuse'].value = renderTargetY;
 
-    if (maskActive == true) {
+    if (maskActive) {
       context.enable(RenderingContext.STENCIL_TEST);
     }
 
-    renderer.renderTarget(
-        EffectComposer.scene,
-        EffectComposer.camera,
-        readBuffer,
-        true);
+    renderer.renderToTarget(scene, camera, readBuffer, clear);
   }
 }

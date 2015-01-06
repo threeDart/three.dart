@@ -7,24 +7,27 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class FilmPass  extends PostPass {
-  ShaderProgram filmShader;
+class FilmPass implements PostPass {
+  ShaderProgram program;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
   bool enabled = true;
   bool renderToScreen = false;
   bool needsSwap = true;
+  Scene scene;
+  Camera camera;
+  Mesh quad;
 
   FilmPass({double noiseIntensity, double scanlinesIntensity,
       double scanlinesCount, int grayscale}) {
 
-    filmShader = new ShaderProgram.fromThreeish(FilmShader);
-    uniforms = filmShader.uniforms;
+    program = new ShaderProgram.fromThreeish(FilmShader);
+    uniforms = program.uniforms;
 
     material = new ShaderMaterial(
-        uniforms: filmShader.uniforms,
-        vertexShader: filmShader.vertexShader,
-        fragmentShader: filmShader.fragmentShader);
+        uniforms: uniforms,
+        vertexShader: program.vertexShader,
+        fragmentShader: program.fragmentShader);
 
     if (grayscale != null) {
       uniforms['grayscale'].value = grayscale;
@@ -38,24 +41,26 @@ class FilmPass  extends PostPass {
     if (scanlinesCount != null) {
       uniforms['sCount'].value = scanlinesCount;
     }
+
+    scene = new Scene();
+    camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
+    scene.add(camera);
+    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    scene.add(quad);
   }
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
     uniforms['tDiffuse'].value = readBuffer;
     uniforms['time'].value += delta;
 
-    EffectComposer.quad.material = this.material;
+    quad.material = material;
 
-    if (renderToScreen == true) {
-      renderer.render(EffectComposer.scene, EffectComposer.camera);
+    if (renderToScreen) {
+      renderer.render(scene, camera);
     } else {
-      renderer.renderTarget(
-          EffectComposer.scene,
-          EffectComposer.camera,
-          writeBuffer,
-          false);
+      renderer.renderToTarget(scene, camera, writeBuffer, false);
     }
   }
 }

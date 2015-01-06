@@ -8,32 +8,38 @@ part of three_postprocessing;
  */
 
 class TexturePass extends PostPass {
-  ShaderProgram copyShader;
+  ShaderProgram program;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
+  Scene scene;
+  OrthographicCamera camera;
+  Mesh quad;
   bool enabled = true;
   bool needsSwap = false;
 
   TexturePass(Texture texture, [double opacity = 1.0]) {
 
-    copyShader = new ShaderProgram.fromThreeish(CopyShader);
-    uniforms = copyShader.uniforms;
+    program = new ShaderProgram.fromThreeish(CopyShader);
+    uniforms = program.uniforms;
     uniforms['opacity'].value = opacity;
     uniforms['tDiffuse'].value = texture;
 
     material = new ShaderMaterial(
-        uniforms: copyShader.uniforms,
-        vertexShader: copyShader.vertexShader,
-        fragmentShader: copyShader.fragmentShader);
+        uniforms: uniforms,
+        vertexShader: program.vertexShader,
+        fragmentShader: program.fragmentShader);
+
+    scene = new Scene();
+    camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
+    scene.add(camera);
+    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    scene.add(quad);
   }
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
-    EffectComposer.quad.material = material;
-    renderer.renderTarget(
-        EffectComposer.scene,
-        EffectComposer.camera,
-        readBuffer);
+    quad.material = material;
+    renderer.renderToTarget(scene, camera, readBuffer);
   }
 }

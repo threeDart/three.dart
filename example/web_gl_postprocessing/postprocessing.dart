@@ -28,14 +28,16 @@ void init() {
       1.0,
       1000.0);
   camera.position.z = 400.0;
+
   scene = new Scene();
-  scene.fog = new Fog();
-  scene.fog.color = new Color(0x000000);
+  scene.fog = new Fog(new Color(0x000000));
   object = new Object3D();
   scene.add(object);
+
   var geometry = new SphereGeometry(1.0, 4, 4);
   var material = new MeshPhongMaterial(color: 0xffffff, shading: FlatShading);
-  for (var i = 0; i < 100; i++) {
+
+  for (var i = 0; i < 100; ++i) {
     var mesh = new Mesh(geometry, material);
     mesh.position.setValues(
         random.nextDouble() - 0.5,
@@ -53,15 +55,16 @@ void init() {
   light = new DirectionalLight(0xffffff);
   light.position.setValues(1.0, 1.0, 1.0);
   scene.add(light);
+
   // postprocessing
   composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   var effect1 = new ShaderPass(new ShaderProgram.fromThreeish(DotScreenShader));
   effect1.uniforms['scale'].value = 4;
   composer.addPass(effect1);
-  var effect2 = new ShaderPass(new ShaderProgram.fromThreeish(RGBShiftShader));
-  effect2.uniforms['amount'].value = 0.0015;
-  effect2.renderToScreen = true;
+  //var effect2 = new ShaderPass(new ShaderProgram.fromThreeish(RGBShiftShader));
+  //effect2.uniforms['amount'].value = 0.0015;
+  //effect2.renderToScreen = true;
   //composer.addPass(effect2);
 
   window.onResize.listen(onWindowResize);

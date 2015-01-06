@@ -7,13 +7,16 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class DotScreenPass  extends PostPass {
+class DotScreenPass implements PostPass {
   ShaderProgram dotScreenShader;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
   bool enabled = true;
   bool renderToScreen = false;
   bool needsSwap = true;
+  Scene scene;
+  Camera camera;
+  Mesh quad;
 
   DotScreenPass({Vector3 center, double angle, double scale}) {
 
@@ -31,27 +34,29 @@ class DotScreenPass  extends PostPass {
     }
 
     material = new ShaderMaterial(
-        uniforms: dotScreenShader.uniforms,
+        uniforms: uniforms,
         vertexShader: dotScreenShader.vertexShader,
         fragmentShader: dotScreenShader.fragmentShader);
+
+    scene = new Scene();
+    camera = new OrthographicCamera(-1.0, 1.0, 1.0 - 1.0, 0.0, 1.0);
+    scene.add(camera);
+    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    scene.add(quad);
   }
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
     uniforms['tDiffuse'].value = readBuffer;
     uniforms['tSize'].value.set(readBuffer.width, readBuffer.height);
 
-    EffectComposer.quad.material = material;
+    quad.material = material;
 
-    if (renderToScreen == true) {
-      renderer.render(EffectComposer.scene, EffectComposer.camera);
+    if (renderToScreen) {
+      renderer.render(scene, camera);
     } else {
-      renderer.renderTarget(
-          EffectComposer.scene,
-          EffectComposer.camera,
-          writeBuffer,
-          false);
+      renderer.renderToTarget(scene, camera, writeBuffer, false);
     }
   }
 }

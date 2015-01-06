@@ -9,23 +9,26 @@ part of three_postprocessing;
 
 class SavePass  extends PostPass {
   WebGLRenderTarget renderTarget;
-  ShaderProgram copyShader;
+  ShaderProgram shader;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
   String textureID = 'tDiffuse';
   bool enabled = true;
   bool needsSwap = false;
   bool clear = false;
+  Scene scene;
+  OrthographicCamera camera;
+  Mesh quad;
 
-  SavePass([WebGLRenderTarget this.renderTarget]) {
+  SavePass([WebGLRenderTarget this.renderTarget = null]) {
 
-    copyShader = new ShaderProgram.fromThreeish(CopyShader);
-    uniforms = copyShader.uniforms;
+    shader = new ShaderProgram.fromThreeish(CopyShader);
+    uniforms = shader.uniforms;
 
     material = new ShaderMaterial(
         uniforms: uniforms,
-        vertexShader: copyShader.vertexShader,
-        fragmentShader: copyShader.fragmentShader);
+        vertexShader: shader.vertexShader,
+        fragmentShader: shader.fragmentShader);
 
     if (renderTarget == null) {
       renderTarget = new WebGLRenderTarget(
@@ -36,20 +39,26 @@ class SavePass  extends PostPass {
           format: RGBFormat,
           stencilBuffer: false);
     }
+
+    scene = new Scene();
+    camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
+    scene.add(camera);
+    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    scene.add(quad);
   }
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
     if (uniforms['textureID'] != null) {
       uniforms['textureID'].value = readBuffer;
     }
 
-    EffectComposer.quad.material = material;
+    quad.material = material;
 
-    renderer.renderTarget(
-        EffectComposer.scene,
-        EffectComposer.camera,
+    renderer.renderToTarget(
+        scene,
+        camera,
         renderTarget,
         clear);
   }

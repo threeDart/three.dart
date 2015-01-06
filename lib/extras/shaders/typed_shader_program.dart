@@ -11,7 +11,9 @@ class ShaderProgram {
   String vertexShader;
   String fragmentShader;
 
-  ShaderProgram(this.uniforms, this.vertexShader, this.fragmentShader);
+  ShaderProgram(Map<String, Uniform> uniforms, this.vertexShader, this.fragmentShader){
+    this.uniforms = new Map<String, Uniform>.from(uniforms);
+  }
 
   // Constructs a typed program from a dynamically-typed Map
   // in the typical three.js program format.

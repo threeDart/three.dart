@@ -8,11 +8,6 @@ part of three_postprocessing;
  */
 
 class EffectComposer {
-// shared static fields
-  static final OrthographicCamera camera =
-      new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
-  static final Mesh quad = new Mesh(new PlaneGeometry(2.0, 2.0), null);
-  static final Scene scene = new Scene()..add(quad);
 
   WebGLRenderer renderer;
   WebGLRenderTarget renderTarget1;
@@ -21,16 +16,14 @@ class EffectComposer {
   WebGLRenderTarget readBuffer;
   ShaderPass copyPass;
   List<PostPass> passes = new List<PostPass>();
+  bool maskActive = false;
 
   EffectComposer(this.renderer, [WebGLRenderTarget renderTarget = null]) {
 
     if (renderTarget == null) {
-      int width = (window == null) ? window.innerWidth : 1;
-      int height = (window == null) ? window.innerHeight : 1;
-
       renderTarget = new WebGLRenderTarget(
-          width,
-          height,
+          window.innerWidth,
+          window.innerHeight,
           minFilter: LinearFilter,
           magFilter: LinearFilter,
           format: RGBFormat,
@@ -43,8 +36,7 @@ class EffectComposer {
     writeBuffer = renderTarget1;
     readBuffer = renderTarget2;
 
-    copyPass =
-        new ShaderPass(new ShaderProgram.fromThreeish(CopyShader));
+    copyPass = new ShaderPass(new ShaderProgram.fromThreeish(CopyShader));
   }
 
   void swapBuffers() {
@@ -62,57 +54,39 @@ class EffectComposer {
     writeBuffer = renderTarget1;
     readBuffer = renderTarget2;
 
-    var maskActive = false;
+    maskActive = false;
 
-    PostPass pass;
-    int il = passes.length;
-    for (int i = 0; i < il; ++i) {
+    passes.forEach((PostPass pass) {
+      if (!pass.enabled) return;
 
-      pass = this.passes[i];
-
-      if (!pass.enabled) continue;
-
-      pass.render(
-          this.renderer,
-          this.writeBuffer,
-          this.readBuffer,
-          delta);
+      pass.render(renderer, writeBuffer, readBuffer, delta, maskActive);
 
       if (pass.needsSwap) {
 
         if (maskActive) {
-
-          var context = this.renderer.context;
+          var context = renderer.context;
 
           context.stencilFunc(context.NOTEQUAL, 1, 0xffffffff);
-
-          this.copyPass.render(
-              this.renderer,
-              this.writeBuffer,
-              this.readBuffer,
-              delta);
-
+          copyPass.render(renderer, writeBuffer, readBuffer, delta, maskActive);
           context.stencilFunc(context.EQUAL, 1, 0xffffffff);
         }
 
-        this.swapBuffers();
+        swapBuffers();
       }
 
       if (pass is MaskPass) {
         maskActive = true;
-
       } else if (pass is ClearMaskPass) {
         maskActive = false;
-
       }
-    }
+    });
   }
 
-  void reset(renderTarget) {
+  void reset(WebGLRenderTarget renderTarget) {
 
     if (renderTarget == null) {
 
-      renderTarget = this.renderTarget1.clone();
+      renderTarget = renderTarget1.clone();
 
       renderTarget.width = window.innerWidth;
       renderTarget.height = window.innerHeight;
@@ -121,17 +95,17 @@ class EffectComposer {
     this.renderTarget1 = renderTarget;
     this.renderTarget2 = renderTarget.clone();
 
-    this.writeBuffer = this.renderTarget1;
-    this.readBuffer = this.renderTarget2;
+    this.writeBuffer = renderTarget1;
+    this.readBuffer = renderTarget2;
   }
 
   void setSize(width, height) {
 
-    var renderTarget = this.renderTarget1.clone();
+    var renderTarget = renderTarget1.clone();
 
     renderTarget.width = width;
     renderTarget.height = height;
 
-    this.reset(renderTarget);
+    reset(renderTarget);
   }
 }

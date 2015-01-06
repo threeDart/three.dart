@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class RenderPass  extends PostPass {
+class RenderPass extends PostPass {
   Scene scene;
   Camera camera;
   Material overrideMaterial;
@@ -17,13 +17,13 @@ class RenderPass  extends PostPass {
   double oldClearAlpha = 1.0;
   bool enabled = true;
   bool clear = true;
-  bool needsSwap = true;
+  bool needsSwap = false;
 
-  RenderPass(this.scene, this.camera, [this.overrideMaterial, this.clearColor,
-      this.clearAlpha = 1.0]);
+  RenderPass(this.scene, this.camera, [this.overrideMaterial = null,
+      this.clearColor = null, this.clearAlpha = 1.0]);
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
     scene.overrideMaterial = overrideMaterial;
     if (clearColor != null) {
@@ -32,8 +32,9 @@ class RenderPass  extends PostPass {
       renderer.setClearColor(clearColor, clearAlpha);
     }
 
-    renderer.renderTarget(scene, camera, readBuffer, clear);
-    renderer.render(scene, camera);
+    renderer.renderToTarget(scene, camera, readBuffer, clear);
+    //renderer.renderTarget(scene, camera, null, clear);
+    //renderer.render(scene, camera);
 
     if (clearColor != null) {
       renderer.setClearColor(oldClearColor, oldClearAlpha);

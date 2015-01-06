@@ -14,6 +14,7 @@ import 'package:three/three.dart';
 import 'package:three/extras/shaders/shaders.dart';
 
 part 'bloom_pass.dart';
+part 'bokeh_pass.dart';
 part 'dot_screen_pass.dart';
 part 'effect_composer.dart';
 part 'film_pass.dart';

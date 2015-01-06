@@ -7,11 +7,14 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class ShaderPass  extends PostPass {
+class ShaderPass implements PostPass {
   ShaderProgram program;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
   String textureID;
+  Scene scene;
+  OrthographicCamera camera;
+  Mesh quad;
   bool renderToScreen = false;
   bool enabled = true;
   bool needsSwap = true;
@@ -25,30 +28,27 @@ class ShaderPass  extends PostPass {
         vertexShader: program.vertexShader,
         fragmentShader: program.fragmentShader);
 
-    this.renderToScreen = false;
-
-    this.enabled = true;
-    this.needsSwap = true;
-    this.clear = false;
+    scene = new Scene();
+    camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
+    scene.add(camera);
+    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    scene.add(quad);
   }
 
-  void render(renderer, writeBuffer, readBuffer, delta) {
+  void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
-    if (uniforms[this.textureID] != null) {
-      uniforms[this.textureID].value = readBuffer;
+    if (uniforms[textureID] != null) {
+      uniforms[textureID].value = readBuffer;
     }
 
-    EffectComposer.quad.material = this.material;
+    quad.material = material;
 
-    if (this.renderToScreen) {
-      renderer.render(EffectComposer.scene, EffectComposer.camera);
+    if (renderToScreen) {
+      renderer.render(scene, camera);
 
     } else {
-      renderer.renderTarget(
-          EffectComposer.scene,
-          EffectComposer.camera,
-          writeBuffer,
-          this.clear);
+      renderer.renderToTarget(scene, camera, writeBuffer, clear);
     }
   }
 }

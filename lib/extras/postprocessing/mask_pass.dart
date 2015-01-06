@@ -7,12 +7,12 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class ClearMaskPass  extends PostPass {
+class ClearMaskPass implements PostPass {
   bool enabled = true;
   bool needsSwap = true;
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
     renderer.context.disable(RenderingContext.STENCIL_TEST);
   }
 }
@@ -28,7 +28,7 @@ class MaskPass {
   MaskPass(this.scene, this.camera);
 
   void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta) {
+      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
 
     RenderingContext context = renderer.context;
 
@@ -45,13 +45,12 @@ class MaskPass {
         RenderingContext.REPLACE,
         RenderingContext.REPLACE,
         RenderingContext.REPLACE);
-
     context.stencilFunc(RenderingContext.ALWAYS, writeValue, 0xffffffff);
     context.clearStencil(clearValue);
 
     // draw into the stencil buffer
-    renderer.renderTarget(scene, camera, readBuffer, clear);
-    renderer.renderTarget(scene, camera, writeBuffer, clear);
+    renderer.renderToTarget(scene, camera, readBuffer, clear);
+    renderer.renderToTarget(scene, camera, writeBuffer, clear);
 
     // re-enable update of color and depth
     context.colorMask(true, true, true, true);
