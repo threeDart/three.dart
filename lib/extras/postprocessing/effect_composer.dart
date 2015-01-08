@@ -10,18 +10,17 @@ part of three_postprocessing;
 class EffectComposer {
 
   WebGLRenderer renderer;
-  WebGLRenderTarget renderTarget1;
-  WebGLRenderTarget renderTarget2;
-  WebGLRenderTarget writeBuffer;
-  WebGLRenderTarget readBuffer;
+  WebGLRenderTarget readTarget;
+  WebGLRenderTarget writeTarget;
   ShaderPass copyPass;
-  List<PostPass> passes = new List<PostPass>();
+  List<Pass> passes = new List<Pass>();
   bool maskActive = false;
 
-  EffectComposer(this.renderer, [WebGLRenderTarget renderTarget = null]) {
+  EffectComposer(this.renderer, [WebGLRenderTarget target = null]) {
+    this.renderer.autoClear = false;
 
-    if (renderTarget == null) {
-      renderTarget = new WebGLRenderTarget(
+    if (target == null) {
+      target = new WebGLRenderTarget(
           window.innerWidth,
           window.innerHeight,
           minFilter: LinearFilter,
@@ -29,20 +28,15 @@ class EffectComposer {
           format: RGBFormat,
           stencilBuffer: false);
     }
-
-    renderTarget1 = renderTarget;
-    renderTarget2 = renderTarget.clone();
-
-    writeBuffer = renderTarget1;
-    readBuffer = renderTarget2;
-
+    writeTarget = target;
+    readTarget = target.clone();
     copyPass = new ShaderPass(new ShaderProgram.fromThreeish(CopyShader));
   }
 
   void swapBuffers() {
-    var tmp = readBuffer;
-    readBuffer = writeBuffer;
-    writeBuffer = tmp;
+    var tmp = readTarget;
+    readTarget = writeTarget;
+    writeTarget = tmp;
   }
 
   void addPass(pass) => passes.add(pass);
@@ -51,15 +45,12 @@ class EffectComposer {
 
   void render(double delta) {
 
-    writeBuffer = renderTarget1;
-    readBuffer = renderTarget2;
-
     maskActive = false;
 
-    passes.forEach((PostPass pass) {
+    passes.forEach((Pass pass) {
       if (!pass.enabled) return;
 
-      pass.render(renderer, writeBuffer, readBuffer, delta, maskActive);
+      pass.render(renderer, writeTarget, readTarget, delta, maskActive);
 
       if (pass.needsSwap) {
 
@@ -67,7 +58,7 @@ class EffectComposer {
           var context = renderer.context;
 
           context.stencilFunc(context.NOTEQUAL, 1, 0xffffffff);
-          copyPass.render(renderer, writeBuffer, readBuffer, delta, maskActive);
+          copyPass.render(renderer, writeTarget, readTarget, delta, maskActive);
           context.stencilFunc(context.EQUAL, 1, 0xffffffff);
         }
 
@@ -82,30 +73,24 @@ class EffectComposer {
     });
   }
 
-  void reset(WebGLRenderTarget renderTarget) {
+  void reset([WebGLRenderTarget target = null, int width, int height]) {
 
-    if (renderTarget == null) {
-
-      renderTarget = renderTarget1.clone();
-
-      renderTarget.width = window.innerWidth;
-      renderTarget.height = window.innerHeight;
+    if (width == null) {
+      width = window.innerWidth;
     }
-
-    this.renderTarget1 = renderTarget;
-    this.renderTarget2 = renderTarget.clone();
-
-    this.writeBuffer = renderTarget1;
-    this.readBuffer = renderTarget2;
-  }
-
-  void setSize(width, height) {
-
-    var renderTarget = renderTarget1.clone();
-
-    renderTarget.width = width;
-    renderTarget.height = height;
-
-    reset(renderTarget);
+    if (height = null) {
+      height = window.innerHeight;
+    }
+    if (target == null) {
+      target = new WebGLRenderTarget(
+          width,
+          height,
+          minFilter: LinearFilter,
+          magFilter: LinearFilter,
+          format: RGBFormat,
+          stencilBuffer: false);
+    }
+    writeTarget = target;
+    readTarget = target.clone();
   }
 }

@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class BloomPass implements PostPass {
+class BloomPass implements Pass {
   static final Vector2 blurX = new Vector2.array([0.001953125, 0.0]);
   static final Vector2 blurY = new Vector2.array([0.0, 0.001953125]);
   WebGLRenderTarget renderTargetX;

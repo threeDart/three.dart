@@ -19,7 +19,7 @@ part 'dot_screen_pass.dart';
 part 'effect_composer.dart';
 part 'film_pass.dart';
 part 'mask_pass.dart';
-part 'post_pass.dart';
+part 'pass.dart';
 part 'render_pass.dart';
 part 'save_pass.dart';
 part 'shader_pass.dart';

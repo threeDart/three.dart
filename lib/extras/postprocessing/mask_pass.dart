@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class ClearMaskPass implements PostPass {
+class ClearMaskPass implements Pass {
   bool enabled = true;
   bool needsSwap = true;
 

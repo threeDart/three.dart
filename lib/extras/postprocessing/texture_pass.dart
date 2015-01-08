@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class TexturePass extends PostPass {
+class TexturePass implements Pass {
   ShaderProgram program;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;

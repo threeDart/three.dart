@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class SavePass  extends PostPass {
+class SavePass  implements Pass {
   WebGLRenderTarget renderTarget;
   ShaderProgram shader;
   Map<String, Uniform> uniforms;

@@ -6,7 +6,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
   */
 
-class BokehPass implements PostPass {
+class BokehPass implements Pass {
   WebGLRenderTarget renderTargetColor, renderTargetDepth;
   Scene scene1, scene2;
   PerspectiveCamera camera1;

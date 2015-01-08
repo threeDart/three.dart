@@ -7,13 +7,13 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class ShaderPass implements PostPass {
+class ShaderPass implements Pass {
   ShaderProgram program;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
   String textureID;
   Scene scene;
-  OrthographicCamera camera;
+  Camera camera;
   Mesh quad;
   bool renderToScreen = false;
   bool enabled = true;
@@ -22,7 +22,6 @@ class ShaderPass implements PostPass {
 
   ShaderPass(this.program, [this.textureID = 'tDiffuse']) {
     uniforms = program.uniforms;
-
     material = new ShaderMaterial(
         uniforms: uniforms,
         vertexShader: program.vertexShader,
@@ -30,25 +29,22 @@ class ShaderPass implements PostPass {
 
     scene = new Scene();
     camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
-    scene.add(camera);
-    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    quad = new Mesh(new PlaneGeometry(2.0, 2.0), material);
     scene.add(quad);
   }
 
-  void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
+  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget,
+      WebGLRenderTarget readTarget, double delta, bool maskActive) {
 
     if (uniforms[textureID] != null) {
-      uniforms[textureID].value = readBuffer;
+      uniforms[textureID].value = readTarget;
     }
-
-    quad.material = material;
 
     if (renderToScreen) {
       renderer.render(scene, camera);
 
     } else {
-      renderer.renderToTarget(scene, camera, writeBuffer, clear);
+      renderer.renderToTarget(scene, camera, writeTarget, clear);
     }
   }
 }

@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class FilmPass implements PostPass {
+class FilmPass implements Pass {
   ShaderProgram program;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;

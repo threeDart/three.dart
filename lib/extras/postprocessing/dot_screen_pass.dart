@@ -7,7 +7,7 @@ part of three_postprocessing;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class DotScreenPass implements PostPass {
+class DotScreenPass implements Pass {
   ShaderProgram dotScreenShader;
   Map<String, Uniform> uniforms;
   ShaderMaterial material;
