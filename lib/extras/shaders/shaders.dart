@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 
+part 'additive.dart';
 part 'basic_shader.dart';
 part 'bleach_bypass_shader.dart';
 part 'blend_shader.dart';
@@ -20,6 +21,7 @@ part 'dot_screen_shader.dart';
 part 'edge_shader.dart';
 part 'edge_shader2.dart';
 part 'fxaa_shader.dart';
+part 'godrays.dart';
 part 'film_shader.dart';
 part 'focus_shader.dart';
 part 'fresnel_shader.dart';

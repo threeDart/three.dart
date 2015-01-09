@@ -47,11 +47,11 @@ class SavePass  implements Pass {
     scene.add(quad);
   }
 
-  void render(WebGLRenderer renderer, WebGLRenderTarget writeBuffer,
-      WebGLRenderTarget readBuffer, double delta, bool maskActive) {
+  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget,
+      WebGLRenderTarget readTarget, double delta, bool maskActive) {
 
     if (uniforms['textureID'] != null) {
-      uniforms['textureID'].value = readBuffer;
+      uniforms['textureID'].value = readTarget;
     }
 
     quad.material = material;

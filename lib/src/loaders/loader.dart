@@ -164,7 +164,7 @@ class Loader {
     // TODO(nelsonsilva) - do whe need this?
     // result.sourceFile = sourceFile;
 
-    if( repeat ) {
+    if( repeat != null) {
 
       result.repeat.setValues( repeat[ 0 ], repeat[ 1 ] );
 
@@ -173,13 +173,13 @@ class Loader {
 
     }
 
-    if ( offset ) {
+    if ( offset != null) {
 
       result.offset.setValues( offset[ 0 ], offset[ 1 ] );
 
     }
 
-    if ( wrap ) {
+    if ( wrap != null) {
 
       var wrapMap = {
                      "repeat": RepeatWrapping,
@@ -191,7 +191,7 @@ class Loader {
 
     }
 
-    if ( anisotropy ) {
+    if ( anisotropy != null) {
 
       result.anisotropy = anisotropy;
 
