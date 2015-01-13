@@ -18,7 +18,7 @@ class DirectionalLight extends ShadowCaster {
   /// Target used for shadow camera orientation.
   Object3D target;
   /// Light's intensity (default: 1.0)
-  num intensity;
+  double intensity;
   num distance;
 
   /// Orthographic shadow camera frustum parameter (default: -500)
@@ -48,7 +48,7 @@ class DirectionalLight extends ShadowCaster {
   /// produced from it are all parallel.
   /// The best analogy would be a light source that acts like the sun: the sun
   /// is so far away that all sunlight hitting objects comes from the same angle.
-  DirectionalLight( num hex, [this.intensity = 1, this.distance = 0]) : super( hex ) {
+  DirectionalLight( num hex, [this.intensity = 1.0, this.distance = 0]) : super( hex ) {
 
     position = new Vector3( 0.0, 1.0, 0.0 );
     target = new Object3D();

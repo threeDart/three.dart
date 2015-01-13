@@ -29,11 +29,11 @@ void init() {
 
   var light;
 
-  light = new DirectionalLight( 0xefefff, 2 );
+  light = new DirectionalLight( 0xefefff, 2.0 );
   light.position.setValues( 1.0, 1.0, 1.0 ).normalize();
   scene.add( light );
 
-  light = new DirectionalLight( 0xffefef, 2 );
+  light = new DirectionalLight( 0xffefef, 2.0 );
   light.position.setValues( -1.0, -1.0, -1.0 ).normalize();
   scene.add( light );
 
