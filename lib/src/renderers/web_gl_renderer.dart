@@ -6955,7 +6955,7 @@ class WebGLRenderer implements Renderer {
 
     if ( texture.image.length == 6 ) {
       if(texture.image is ImageList){
-        texture.image = new ImageList(texture.image);
+        texture.image = new ImageList.from(texture.image);
       }
       if ( texture.needsUpdate ) {
 

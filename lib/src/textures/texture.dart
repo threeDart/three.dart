@@ -15,9 +15,12 @@ class ImageList extends Object with ListMixin<ImageElement> {
   Map<String,dynamic> props;
 
   // WebGL
-  var webglTextureCube;
+  gl.Texture webglTextureCube;
 
   ImageList(size): props = {},_images = new List<ImageElement>(size);
+
+  ImageList.from(ImageList other)
+      : props = {}, _images = new List<ImageElement>.from(other._images);
 
   ImageElement operator [](int index) => _images[index];
   void operator []=(int index, ImageElement img) { _images[index] = img; }
