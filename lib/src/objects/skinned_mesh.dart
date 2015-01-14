@@ -2,16 +2,16 @@ part of three;
 
 /// An 3d object that has bones data. These Bones can then be used to animate the vertices of the object.
 class SkinnedMesh extends Mesh {
-	/// Whether a vertex texture is used to calculate the bones. This shouldn't be changed after constructor.
-	bool useVertexTexture;
-	num boneTextureWidth, boneTextureHeight;
-	List bones;
-	List boneMatrices;
-	/// This is an identityMatrix to calculate the bones matrices from.
-	Matrix4 identityMatrix;
-	DataTexture boneTexture;
+  /// Whether a vertex texture is used to calculate the bones. This shouldn't be changed after constructor.
+  bool useVertexTexture;
+  num boneTextureWidth, boneTextureHeight;
+  List bones;
+  List boneMatrices;
+  /// This is an identityMatrix to calculate the bones matrices from.
+  Matrix4 identityMatrix;
+  DataTexture boneTexture;
 
-	SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
+  SkinnedMesh( geometry, material, {this.useVertexTexture: true} )
       : identityMatrix = new Matrix4.identity(),
         bones = [],
         boneMatrices = [],
@@ -107,135 +107,135 @@ class SkinnedMesh extends Mesh {
       pose();
 
     }
-	}
+  }
 
-	/// This method adds the bone to the skinnedmesh when it is provided.
-	///
-	/// It creates a new bone and adds that when no bone is given.
-	Bone addBone( {Bone bone} ) {
+  /// This method adds the bone to the skinnedmesh when it is provided.
+  ///
+  /// It creates a new bone and adds that when no bone is given.
+  Bone addBone( {Bone bone} ) {
 
-	  if ( bone == null ) {
-	    bone = new Bone( this );
-	  }
+    if ( bone == null ) {
+      bone = new Bone( this );
+    }
 
-	  bones.add( bone );
+    bones.add( bone );
 
-	  return bone;
+    return bone;
 
-	}
+  }
 
-	void updateMatrixWorld({bool force: false}) {
+  void updateMatrixWorld({bool force: false}) {
 
-	  if(matrixAutoUpdate) updateMatrix();
+    if(matrixAutoUpdate) updateMatrix();
 
-	  // update matrixWorld
+    // update matrixWorld
 
-	  if ( matrixWorldNeedsUpdate || force ) {
+    if ( matrixWorldNeedsUpdate || force ) {
 
-	    if ( parent != null) {
+      if ( parent != null) {
 
-	      matrixWorld = parent.matrixWorld * matrix;
+        matrixWorld = parent.matrixWorld * matrix;
 
-	    } else {
+      } else {
 
-	      matrixWorld.setFrom( matrix );
+        matrixWorld.setFrom( matrix );
 
-	    }
+      }
 
-	    matrixWorldNeedsUpdate = false;
+      matrixWorldNeedsUpdate = false;
 
-	    force = true;
+      force = true;
 
-	  }
+    }
 
-	  // update children
-	  children.forEach((child) {
+    // update children
+    children.forEach((child) {
 
-	    if ( child is Bone ) {
-	      child.update( identityMatrix, false );
-	    } else {
-	      child.updateMatrixWorld( true );
-	    }
+      if ( child is Bone ) {
+        child.update( identityMatrix, false );
+      } else {
+        child.updateMatrixWorld( true );
+      }
 
-	  });
+    });
 
-	  // flatten bone matrices to array
+    // flatten bone matrices to array
 
-	  var b, bl = this.bones.length,
-	      ba = this.bones,
-	      bm = this.boneMatrices;
+    var b, bl = this.bones.length,
+        ba = this.bones,
+        bm = this.boneMatrices;
 
-	  for ( b = 0; b < bl; b ++ ) {
-	    ba[ b ].skinMatrix.flattenToArrayOffset( bm, b * 16 );
+    for ( b = 0; b < bl; b ++ ) {
+      ba[ b ].skinMatrix.flattenToArrayOffset( bm, b * 16 );
 
-	  }
+    }
 
-	  if ( useVertexTexture ) {
-	    boneTexture.needsUpdate = true;
-	  }
+    if ( useVertexTexture ) {
+      boneTexture.needsUpdate = true;
+    }
 
-	}
+  }
 
-	/// This method sets the skinnedmesh in the rest pose.
-	void pose() {
+  /// This method sets the skinnedmesh in the rest pose.
+  void pose() {
 
-	  updateMatrixWorld( force: true );
+    updateMatrixWorld( force: true );
 
-	  var bim, bone;
+    var bim, bone;
 
-	  List<Matrix4> boneInverses = [];
+    List<Matrix4> boneInverses = [];
 
-	  for ( var b = 0; b < bones.length; b ++ ) {
+    for ( var b = 0; b < bones.length; b ++ ) {
 
-	    bone = bones[ b ];
+      bone = bones[ b ];
 
-	    var inverseMatrix = bone.skinMatrix.clone();
-	    inverseMatrix.invert();
+      var inverseMatrix = bone.skinMatrix.clone();
+      inverseMatrix.invert();
 
-	    boneInverses.add( inverseMatrix );
+      boneInverses.add( inverseMatrix );
 
-	    bone.skinMatrix.flattenToArrayOffset( boneMatrices, b * 16 );
+      bone.skinMatrix.flattenToArrayOffset( boneMatrices, b * 16 );
 
-	  }
+    }
 
-	  // project vertices to local
+    // project vertices to local
 
-	  if ( geometry["skinVerticesA"] == null ) {
+    if ( geometry["skinVerticesA"] == null ) {
 
-	    geometry["skinVerticesA"] = [];
-	    geometry["skinVerticesA"] = [];
+      geometry["skinVerticesA"] = [];
+      geometry["skinVerticesA"] = [];
 
-	    var orgVertex, vertex;
+      var orgVertex, vertex;
 
-	    for ( var i = 0; i < geometry.skinIndices.length; i ++ ) {
+      for ( var i = 0; i < geometry.skinIndices.length; i ++ ) {
 
-	      orgVertex = geometry.vertices[ i ];
+        orgVertex = geometry.vertices[ i ];
 
-	      var indexA = geometry.skinIndices[ i ].x;
-	      var indexB = geometry.skinIndices[ i ].y;
+        var indexA = geometry.skinIndices[ i ].x;
+        var indexB = geometry.skinIndices[ i ].y;
 
-	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
-	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexA]));
+        vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
+        geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexA]));
 
-	      vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
-	      geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexB]));
+        vertex = new Vector3( orgVertex.x, orgVertex.y, orgVertex.z );
+        geometry["skinVerticesA"].add(vertex.applyProjection(boneInverses[indexB]));
 
-	      // todo: add more influences
+        // todo: add more influences
 
-	      // normalize weights
+        // normalize weights
 
-	      if ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y != 1 ) {
+        if ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y != 1 ) {
 
-	        var len = ( 1.0 - ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y ) ) * 0.5;
-	        geometry.skinWeights[ i ].x += len;
-	        geometry.skinWeights[ i ].y += len;
+          var len = ( 1.0 - ( geometry.skinWeights[ i ].x + geometry.skinWeights[ i ].y ) ) * 0.5;
+          geometry.skinWeights[ i ].x += len;
+          geometry.skinWeights[ i ].y += len;
 
-	      }
+        }
 
-	    }
+      }
 
-	  }
+    }
 
-	}
+  }
 
 }

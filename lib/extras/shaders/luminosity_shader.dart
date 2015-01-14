@@ -12,44 +12,44 @@ part of three_shaders;
 
 var LuminosityShader = {
 
-	'uniforms': {
+  'uniforms': {
 
-		"tDiffuse": { 'type': "t", 'value': null }
+    "tDiffuse": { 'type': "t", 'value': null }
 
-	},
+  },
 
-	'vertexShader': [
+  'vertexShader': [
 
-		"varying vec2 vUv;",
+    "varying vec2 vUv;",
 
-		"void main() {",
+    "void main() {",
 
-			"vUv = uv;",
+      "vUv = uv;",
 
-			"gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
+      "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
 
-		"}"
+    "}"
 
-	].join("\n"),
+  ].join("\n"),
 
-	'fragmentShader': [
+  'fragmentShader': [
 
-		"uniform sampler2D tDiffuse;",
+    "uniform sampler2D tDiffuse;",
 
-		"varying vec2 vUv;",
+    "varying vec2 vUv;",
 
-		"void main() {",
+    "void main() {",
 
-			"vec4 texel = texture2D( tDiffuse, vUv );",
+      "vec4 texel = texture2D( tDiffuse, vUv );",
 
-			"vec3 luma = vec3( 0.299, 0.587, 0.114 );",
+      "vec3 luma = vec3( 0.299, 0.587, 0.114 );",
 
-			"float v = dot( texel.xyz, luma );",
+      "float v = dot( texel.xyz, luma );",
 
-			"gl_FragColor = vec4( v, v, v, texel.w );",
+      "gl_FragColor = vec4( v, v, v, texel.w );",
 
-		"}"
+    "}"
 
-	].join("\n")
+  ].join("\n")
 
 };
