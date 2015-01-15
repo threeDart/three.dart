@@ -6,6 +6,7 @@ authors:
 - Adam Singer <financeCoding@gmail.com>
 - John <jwbito@gmail.com>
 - Anders Forsell http://aforsell.blogspot.com/
+- Christopher Grabowski https://github.com/cgrabowski
 description: A port of the three.js JavaScript 3D engine to Dart.
 homepage: http://threedart.github.com/three.dart/
 environment:
@@ -13,6 +14,10 @@ environment:
 dependencies:
   browser: '>=0.9.0 <0.11.0'
   vector_math: '>=1.3.5 <1.5.0'
+  datgui:
+    git: git://github.com/cgrabowski/datgui.git
+  stats:
+    git: git://github.com/Dartist/stats.dart.git
 dev_dependencies:
   hop: '>=0.30.0 <0.31.0'
   unittest: any

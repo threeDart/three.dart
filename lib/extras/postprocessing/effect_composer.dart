@@ -65,11 +65,13 @@ class EffectComposer {
         swapBuffers();
       }
 
+      /*
       if (pass is MaskPass) {
         maskActive = true;
       } else if (pass is ClearMaskPass) {
         maskActive = false;
       }
+       */
     });
   }
 
@@ -78,7 +80,7 @@ class EffectComposer {
     if (width == null) {
       width = window.innerWidth;
     }
-    if (height = null) {
+    if (height == null) {
       height = window.innerHeight;
     }
     if (target == null) {

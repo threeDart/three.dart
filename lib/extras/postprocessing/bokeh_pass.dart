@@ -24,10 +24,17 @@ class BokehPass implements Pass {
   BokehPass(this.scene1, this.camera1, {double focus: 1.0, double aspect,
       double aperture: 0.025, double maxblur: 1.0, int width, int height}) {
 
+    if (width == null) {
+      width = window.innerWidth;
+    }
+    if (height == null) {
+      height = window.innerHeight;
+    }
+
     if (aspect == null) aspect = camera1.aspect;
     renderTargetColor = new WebGLRenderTarget(
-        window.innerWidth,
-        window.innerHeight,
+        width,
+        height,
         minFilter: LinearFilter,
         magFilter: LinearFilter,
         format: RGBFormat);
@@ -51,7 +58,7 @@ class BokehPass implements Pass {
     scene2 = new Scene();
     camera2 = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
     scene2.add(camera2);
-    quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    quad = new Mesh(new PlaneGeometry(2.0, 2.0), materialBokeh);
     scene2.add(quad);
   }
 

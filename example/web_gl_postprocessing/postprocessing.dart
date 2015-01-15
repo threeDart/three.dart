@@ -1,11 +1,16 @@
-import 'dart:math'  show Random;
+import 'dart:math' show Random;
 import 'dart:html' show window, document;
 import 'package:three/three.dart';
 import 'package:three/extras/shaders/shaders.dart';
 import 'package:three/extras/postprocessing/postprocessing.dart';
+import 'package:stats/stats.dart';
+
+const double DOT_SCALE = 2.0;
+const double RGB_SHIFT_AMOUNT = 0.009;
 
 EffectComposer composer;
 Object3D spheres;
+Stats stats;
 
 void main() {
   init();
@@ -55,14 +60,17 @@ void init() {
 
   ShaderPass effect1 =
       new ShaderPass(new ShaderProgram.fromThreeish(DotScreenShader));
-  effect1.uniforms['scale'].value = 2.0;
+  effect1.uniforms['scale'].value = DOT_SCALE;
   composer.addPass(effect1);
 
   ShaderPass effect2 =
       new ShaderPass(new ShaderProgram.fromThreeish(RGBShiftShader));
-  effect2.uniforms['amount'].value = 0.01;
+  effect2.uniforms['amount'].value = RGB_SHIFT_AMOUNT;
   effect2.renderToScreen = true;
   composer.addPass(effect2);
+
+  stats = new Stats();
+  document.body.append(stats.container);
 
   window.onResize.listen((event) {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -73,9 +81,11 @@ void init() {
 
 double oldTime = 0.0;
 void animate(double time) {
-  window.requestAnimationFrame(animate);
+  stats.begin();
   spheres.rotation.x += 0.005;
   spheres.rotation.y += 0.01;
   composer.render(time - oldTime);
   oldTime = time;
+  stats.end();
+  window.requestAnimationFrame(animate);
 }

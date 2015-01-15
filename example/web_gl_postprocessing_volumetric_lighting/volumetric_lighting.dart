@@ -10,12 +10,14 @@ import 'dart:html';
 import 'package:three/three.dart';
 import 'package:three/extras/shaders/shaders.dart';
 import 'package:three/extras/postprocessing/postprocessing.dart';
+//import 'package:datgui/datgui.dart' as dat;
+import 'package:stats/stats.dart';
 
 const int COLOR1 = 0x77bbff;
 const int COLOR11 = 0x99ddff;
 const int COLOR2 = 0x8ec5e5;
 const int COLOR3 = 0x97a8ba;
-const double BLURINESS = 2.0;
+const double BLURINESS = 10.0;
 
 double mouseX = 0.0;
 double mouseY = 0.0;
@@ -23,9 +25,11 @@ WebGLRenderer renderer;
 Scene scene, oclscene;
 PerspectiveCamera camera, oclcamera;
 EffectComposer oclcomposer, finalComposer;
+ShaderPass hblur, vblur;
 PointLight pointLight;
 Mesh vlight;
 ShaderPass godrayPass;
+Stats stats;
 
 void main() {
   init();
@@ -86,14 +90,12 @@ void init() {
   RenderPass oclrenderPass = new RenderPass(oclscene, oclcamera);
   oclcomposer.addPass(oclrenderPass);
 
-  ShaderPass hblur =
-      new ShaderPass(new ShaderProgram.fromThreeish(HorizontalBlurShader));
+  hblur = new ShaderPass(new ShaderProgram.fromThreeish(HorizontalBlurShader));
   hblur.uniforms['h'].value = BLURINESS / window.innerWidth;
   //hblur.renderToScreen = true;
   oclcomposer.addPass(hblur);
 
-  ShaderPass vblur =
-      new ShaderPass(new ShaderProgram.fromThreeish(VerticalBlurShader));
+  vblur = new ShaderPass(new ShaderProgram.fromThreeish(VerticalBlurShader));
   vblur.uniforms['v'].value = BLURINESS / window.innerHeight;
   //vblur.renderToScreen = true;
   oclcomposer.addPass(vblur);
@@ -123,12 +125,50 @@ void init() {
   finalPass.renderToScreen = true;
   finalComposer.addPass(finalPass);
 
+  /*
+  dat.GUI gui = new dat.GUI();
+  gui.add(effectController, "vblur", 1.0, 10.0).onChange(matChanger);
+  gui.add(effectController, "hblur", 1.0, 10.0).onChange(matChanger);
+  gui.addColor(effectController, 'color').onChange(matChanger);
+  gui.close();
+   */
+
+  stats = new Stats();
+  document.body.append(stats.container);
+
+  window.onResize.listen(onWindowResize);
   document.onMouseMove.listen(onDocumentMouseMove);
 }
+
+/*
+var effectController = {
+  'vblur': BLURINESS,
+  'hblur': BLURINESS,
+  'color': COLOR11
+};
+
+void matChanger(var value) {
+  vblur.uniforms['v'].value =
+      effectController['vblur'] * 2.0 / window.innerHeight;
+  hblur.uniforms['h'].value =
+      effectController['hblur'] * 2.0 / window.innerWidth;
+  vlight.material.color.setHex(effectController['color']);
+  vlight.material.needsUpdate = true;
+}
+ */
 
 void onDocumentMouseMove(MouseEvent event) {
   mouseX = event.client.x - window.innerWidth.toDouble();
   mouseY = event.client.y - window.innerHeight.toDouble();
+}
+
+void onWindowResize(Event event) {
+  int winWidth = window.innerWidth;
+  int winHeight = window.innerHeight;
+
+  camera.aspect = winWidth / winHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(winWidth, winHeight);
 }
 
 void createScene(Geometry geometry) {
@@ -192,6 +232,8 @@ render(double time) {
 }
 
 void animate(double time) {
+  stats.begin();
   render(time);
+  stats.end();
   window.requestAnimationFrame(animate);
 }
