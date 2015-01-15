@@ -59,7 +59,6 @@ part 'extras/geometries/icosahedron_geometry.dart';
 part 'extras/geometries/lathe_geometry.dart';
 part 'extras/geometries/octahedron_geometry.dart';
 part 'extras/geometries/parametric_geometry.dart';
-part 'extras/geometries/plane_buffer_geometry.dart';
 part 'extras/geometries/plane_geometry.dart';
 part 'extras/geometries/polyhedron_geometry.dart';
 part 'extras/geometries/shape_geometry.dart';
