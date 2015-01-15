@@ -6323,10 +6323,10 @@ class WebGLRenderer implements Renderer {
           int maxBones: 0,
           Texture map: null,
           Texture envMap: null,
-          bool lightMap: false,
-          bool bumpMap: false,
-          bool normalMap: false,
-          bool specularMap: false,
+          Texture lightMap: null,
+          Texture bumpMap: null,
+          Texture normalMap: null,
+          Texture specularMap: null,
           var vertexColors: NoColors,
           bool skinning: false,
           bool useVertexTexture: false,
@@ -6954,15 +6954,11 @@ class WebGLRenderer implements Renderer {
   setCubeTexture ( Texture texture, int slot ) {
 
     if ( texture.image.length == 6 ) {
-      if(texture.image is ImageList){
-        texture.image = new ImageList.from(texture.image);
-      }
       if ( texture.needsUpdate ) {
 
         if ( texture.image.webglTextureCube == null ) {
 
           texture.image.webglTextureCube = _gl.createTexture();
-
           info.memory.textures ++;
         }
 
@@ -7026,6 +7022,7 @@ class WebGLRenderer implements Renderer {
         texture.needsUpdate = false;
 
         if ( texture.onUpdate != null) texture.onUpdate();
+
 
       } else {
 
