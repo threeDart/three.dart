@@ -37,7 +37,7 @@ part 'parallax_shader.dart';
 part 'rgb_shift_shader.dart';
 part 'ssao_shader.dart';
 part 'sepia_shader.dart';
-part 'typed_shader_program.dart';
+part 'shader_program.dart';
 part 'technicolor_shader.dart';
 part 'triangle_blur_shader.dart';
 part 'unpack_depth_rgba_shader.dart';
