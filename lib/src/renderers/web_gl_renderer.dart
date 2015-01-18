@@ -434,8 +434,14 @@ class WebGLRenderer implements Renderer {
 
   }
 
-  /// Sets the clear color and opacity.
-  setClearColor( Color color, num alpha ) {
+	/// Gets the clear alpha.
+	double getClearAlpha() => _clearAlpha;
+
+	/// Gets the clear color.
+	Color getClearColor() => _clearColor;
+
+	/// Sets the clear color and opacity.
+	setClearColor( Color color, num alpha ) {
 
     _clearColor.copy( color );
     _clearAlpha = alpha;
@@ -4044,7 +4050,12 @@ class WebGLRenderer implements Renderer {
   @override
   render ( Scene scene, Camera camera) => _render( scene, camera);
 
-  _render ( Scene scene, Camera camera, {renderTarget: null, forceClear: false} ) {
+	void renderToTarget(Scene scene, Camera camera, WebGLRenderTarget renderTarget,
+	    [forceClear = false]) {
+	  _render(scene, camera, renderTarget: renderTarget, forceClear: forceClear);
+	}
+
+	_render ( Scene scene, Camera camera, {renderTarget: null, forceClear: false} ) {
 
     var i, il;
 
@@ -4111,8 +4122,8 @@ class WebGLRenderer implements Renderer {
 
       if ( object.visible ) {
 
-        if ( ! ( object is Mesh || object is ParticleSystem ) || ! ( object.frustumCulled ) || _frustum.contains( object ) ) {
-
+				if ( ! ( object is Mesh || object is ParticleSystem ) ||
+				    ! ( object.frustumCulled ) || _frustum.contains( object ) ) {
 
           setupMatrices( object, camera );
 
@@ -4206,7 +4217,9 @@ class WebGLRenderer implements Renderer {
 
     // Generate mipmap if we're using any kind of mipmap filtering
 
-    if ( (renderTarget != null ) && renderTarget.generateMipmaps && renderTarget.minFilter != NearestFilter && renderTarget.minFilter != LinearFilter ) {
+		if ( (renderTarget != null ) && renderTarget.generateMipmaps &&
+		    renderTarget.minFilter != NearestFilter &&
+		    renderTarget.minFilter != LinearFilter ) {
 
       updateRenderTargetMipmap( renderTarget );
 
@@ -5565,7 +5578,8 @@ class WebGLRenderer implements Renderer {
 
         if ( ! light.castShadow ) continue;
 
-        if ( light is SpotLight || ( light is DirectionalLight && ! light.shadowCascade ) ) {
+				if ( light is SpotLight || ( light is DirectionalLight &&
+				    ! light.shadowCascade ) ) {
 
           // Grow the arrays
           if (uniforms["shadowMap"].value.length < j + 1) {
@@ -6309,10 +6323,10 @@ class WebGLRenderer implements Renderer {
           int maxBones: 0,
           Texture map: null,
           Texture envMap: null,
-          bool lightMap: false,
-          bool bumpMap: false,
-          bool normalMap: false,
-          bool specularMap: false,
+          Texture lightMap: null,
+          Texture bumpMap: null,
+          Texture normalMap: null,
+          Texture specularMap: null,
           var vertexColors: NoColors,
           bool skinning: false,
           bool useVertexTexture: false,
@@ -6940,15 +6954,11 @@ class WebGLRenderer implements Renderer {
   setCubeTexture ( Texture texture, int slot ) {
 
     if ( texture.image.length == 6 ) {
-      if(texture.image is ImageList){
-        texture.image = new ImageList(texture.image);
-      }
       if ( texture.needsUpdate ) {
 
         if ( texture.image.webglTextureCube == null ) {
 
           texture.image.webglTextureCube = _gl.createTexture();
-
           info.memory.textures ++;
         }
 
@@ -7013,6 +7023,7 @@ class WebGLRenderer implements Renderer {
 
         if ( texture.onUpdate != null) texture.onUpdate();
 
+
       } else {
 
         _gl.activeTexture( gl.TEXTURE0 + slot );
@@ -7033,10 +7044,12 @@ class WebGLRenderer implements Renderer {
 
   // Render targets
 
-  setupFrameBuffer ( gl.Framebuffer framebuffer, WebGLRenderTarget renderTarget, int textureTarget ) {
+	setupFrameBuffer ( gl.Framebuffer framebuffer, WebGLRenderTarget renderTarget,
+	    int textureTarget ) {
 
-    _gl.bindFramebuffer( gl.FRAMEBUFFER, framebuffer );
-    _gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, textureTarget, renderTarget.__webglTexture, 0 );
+		_gl.bindFramebuffer( gl.FRAMEBUFFER, framebuffer );
+		_gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
+		    textureTarget, renderTarget.__webglTexture, 0 );
 
   }
 
@@ -7046,23 +7059,30 @@ class WebGLRenderer implements Renderer {
 
     if ( renderTarget.depthBuffer && ! renderTarget.stencilBuffer ) {
 
-      _gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, renderTarget.width, renderTarget.height );
-      _gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderbuffer );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_COMPONENT16,
+			    renderTarget.width, renderTarget.height );
+			_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT,
+			    gl.RENDERBUFFER, renderbuffer );
 
     /* For some reason this is not working. Defaulting to RGBA4.
     } else if( ! renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
 
-      _gl.renderbufferStorage( gl.RENDERBUFFER, gl.STENCIL_INDEX8, renderTarget.width, renderTarget.height );
-      _gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, WebGLRenderingContext.RENDERBUFFER, renderbuffer );
-    */
-    } else if( renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.STENCIL_INDEX8,
+			*  renderTarget.width, renderTarget.height );
+			_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT,
+			*  WebGLRenderingContext.RENDERBUFFER, renderbuffer );
+		*/
+		} else if( renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
 
-      _gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_STENCIL, renderTarget.width, renderTarget.height );
-      _gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderbuffer );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_STENCIL,
+			    renderTarget.width, renderTarget.height );
+			_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT,
+			    gl.RENDERBUFFER, renderbuffer );
 
     } else {
 
-      _gl.renderbufferStorage( gl.RENDERBUFFER, gl.RGBA4, renderTarget.width, renderTarget.height );
+			_gl.renderbufferStorage( gl.RENDERBUFFER, gl.RGBA4, renderTarget.width,
+			    renderTarget.height );
 
     }
 
@@ -7070,14 +7090,9 @@ class WebGLRenderer implements Renderer {
 
   setRenderTarget ( WebGLRenderTarget renderTarget ) {
 
-    var isCube = ( renderTarget is WebGLRenderTargetCube );
+		if ( (renderTarget != null ) && ( renderTarget.__webglFramebuffer == null) ) {
 
-    if ( (renderTarget != null ) && ( renderTarget.__webglFramebuffer == null) ) {
-
-      if ( renderTarget.depthBuffer == null ) renderTarget.depthBuffer = true;
-      if ( renderTarget.stencilBuffer == null ) renderTarget.stencilBuffer = true;
-
-      //renderTarget.addEventListener( 'dispose', onRenderTargetDispose );
+			//renderTarget.addEventListener( 'dispose', onRenderTargetDispose );
 
       renderTarget.__webglTexture = _gl.createTexture();
 
@@ -7085,11 +7100,12 @@ class WebGLRenderer implements Renderer {
 
       // Setup texture, create render and frame buffers
 
-      var isTargetPowerOfTwo = isPowerOfTwo( renderTarget.width ) && isPowerOfTwo( renderTarget.height ),
-        glFormat = paramThreeToGL( renderTarget.format ),
-        glType = paramThreeToGL( renderTarget.type );
+			var isTargetPowerOfTwo = isPowerOfTwo( renderTarget.width ) &&
+			    isPowerOfTwo( renderTarget.height ),
+				glFormat = paramThreeToGL( renderTarget.format ),
+				glType = paramThreeToGL( renderTarget.type );
 
-      if ( isCube ) {
+			if ( renderTarget is WebGLRenderTargetCube ) {
 
         renderTarget.__webglFramebuffer = [];
         renderTarget.__webglRenderbuffer = [];
@@ -7102,10 +7118,12 @@ class WebGLRenderer implements Renderer {
           renderTarget.__webglFramebuffer[ i ] = _gl.createFramebuffer();
           renderTarget.__webglRenderbuffer[ i ] = _gl.createRenderbuffer();
 
-          _gl.texImage2DTyped( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
+					_gl.texImage2DTyped( gl.TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, glFormat,
+					    renderTarget.width, renderTarget.height, 0, glFormat, glType, null );
 
-          setupFrameBuffer( renderTarget.__webglFramebuffer[ i ], renderTarget, gl.TEXTURE_CUBE_MAP_POSITIVE_X + i );
-          setupRenderBuffer( renderTarget.__webglRenderbuffer[ i ], renderTarget );
+					setupFrameBuffer( renderTarget.__webglFramebuffer[ i ], renderTarget,
+					    gl.TEXTURE_CUBE_MAP_POSITIVE_X + i );
+					setupRenderBuffer( renderTarget.__webglRenderbuffer[ i ], renderTarget );
 
         }
 
@@ -7117,7 +7135,8 @@ class WebGLRenderer implements Renderer {
 
         if ( renderTarget.shareDepthFrom != null ) {
 
-          renderTarget.__webglRenderbuffer = renderTarget.shareDepthFrom.__webglRenderbuffer;
+					renderTarget.__webglRenderbuffer =
+					    renderTarget.shareDepthFrom.__webglRenderbuffer;
 
         } else {
 
@@ -7128,7 +7147,8 @@ class WebGLRenderer implements Renderer {
         _gl.bindTexture( gl.TEXTURE_2D, renderTarget.__webglTexture );
         setTextureParameters( gl.TEXTURE_2D, renderTarget, isTargetPowerOfTwo );
 
-        _gl.texImage2DTyped( gl.TEXTURE_2D, 0, glFormat, renderTarget.width, renderTarget.height, 0, glFormat, glType, null);
+				_gl.texImage2DTyped( gl.TEXTURE_2D, 0, glFormat, renderTarget.width,
+				    renderTarget.height, 0, glFormat, glType, null);
 
         setupFrameBuffer( renderTarget.__webglFramebuffer, renderTarget, gl.TEXTURE_2D );
 
@@ -7136,11 +7156,13 @@ class WebGLRenderer implements Renderer {
 
           if ( renderTarget.depthBuffer && ! renderTarget.stencilBuffer ) {
 
-            _gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
+						_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT,
+						    gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
 
           } else if ( renderTarget.depthBuffer && renderTarget.stencilBuffer ) {
 
-            _gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
+						_gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT,
+						    gl.RENDERBUFFER, renderTarget.__webglRenderbuffer );
 
           }
 
@@ -7156,7 +7178,7 @@ class WebGLRenderer implements Renderer {
 
       // Release everything
 
-      if ( isCube ) {
+			if ( renderTarget is WebGLRenderTargetCube ) {
 
         _gl.bindTexture( gl.TEXTURE_CUBE_MAP, null );
 
@@ -7175,9 +7197,9 @@ class WebGLRenderer implements Renderer {
 
     if ( renderTarget != null ) {
 
-      if ( isCube ) {
+			if ( renderTarget is WebGLRenderTargetCube ) {
 
-        framebuffer = renderTarget.__webglFramebuffer[ (renderTarget as WebGLRenderTargetCube).activeCubeFace ];
+				framebuffer = renderTarget.__webglFramebuffer[ renderTarget.activeCubeFace ];
 
       } else {
 

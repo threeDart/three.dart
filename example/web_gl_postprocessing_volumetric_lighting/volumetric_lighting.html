@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background:#000;
+        padding:0;
+        margin:0;
+        overflow:hidden;
+        font-family:georgia;
+        text-align:center;
+        color: #ccc;
+      }
+      canvas {
+        pointer-events:none;
+      }
+      #stats {
+        z-index: 9999;
+        position:absolute;
+        top: 0px;
+        left: 0px;
+      }
+    </style>
+    <title>Three.dart - Volumetric Lighting</title>
+  </head>
+
+  <body>
+    <script src="dat.gui.min.js"></script>
+    <script type="application/dart" src="volumetric_lighting.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
