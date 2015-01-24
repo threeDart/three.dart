@@ -64,7 +64,7 @@ init(){
   scene.add(sundial);
 
   // var geometry  = new TorusGeometry( 2, 1, 16, 32 );
-  var geometry  = new TorusKnotGeometry(25, 8, 75, 20);
+  var geometry  = new TorusKnotGeometry(25.0, 8.0, 75, 20);
   //var geometry  = new THREE.OctahedronGeometry( 1, 1 );
   //var geometry  = new THREE.CubeGeometry( 3, 3, 3 );
   //var geometry  = new THREE.SphereGeometry( 3, 32,16 );

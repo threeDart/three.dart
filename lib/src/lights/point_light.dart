@@ -12,14 +12,14 @@ class PointLight extends Light
 {
   Vector3 _position;
   /// Light's intensity.
-  num intensity;
+  double intensity;
   /// If non-zero, light will attenuate linearly from maximum intensity at light position down to zero at distance.
-  num distance;
+  double distance;
 
   /// Creates a light at a specific position in the scene.
   ///
   /// The light shines in all directions (roughly similar to a light bulb.)
-  PointLight( num hex, {this.intensity: 1, this.distance: 0} ) : super( hex )
+  PointLight( num hex, {this.intensity: 1.0, this.distance: 0.0} ) : super( hex )
   {
     //THREE.Light.call( this, hex );
 

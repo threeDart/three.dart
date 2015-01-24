@@ -31,17 +31,17 @@ class SkinnedMesh extends Mesh {
         bone = addBone();
 
         bone.name = gbone.name;
-        bone.position.set( p[0], p[1], p[2] );
+        bone.position.setValues( p[0], p[1], p[2] );
         bone.quaternion.set( q[0], q[1], q[2], q[3] );
         bone.useQuaternion = true;
 
         if ( s != null ) {
 
-          bone.scale.set( s[0], s[1], s[2] );
+          bone.scale.setValues( s[0], s[1], s[2] );
 
         } else {
 
-          bone.scale.set( 1, 1, 1 );
+          bone.scale.setValues( 1.0, 1.0, 1.0 );
 
         }
 

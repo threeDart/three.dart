@@ -101,7 +101,7 @@ void init() {
   //text = "abcdefghijklmnopqrstuvwxyz0123456789";
   //text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-   pointLight.color.setHSL( new Math.Random().nextDouble(), 1, 0.5 );
+   pointLight.color.setHSL( new Math.Random().nextDouble(), 1.0, 0.5 );
 
    material = new MeshFaceMaterial( [
      new MeshPhongMaterial( color: 0xffffff, shading: FlatShading ), // front

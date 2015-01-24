@@ -93,7 +93,7 @@ void init() {
   object.position.setValues( -200.0, 0.0, -200.0 );
   scene.add( object );
 
-  object = SceneUtils.createMultiMaterialObject( new TorusKnotGeometry( 50, 10, 50, 20 ), materials );
+  object = SceneUtils.createMultiMaterialObject( new TorusKnotGeometry( 50.0, 10.0, 50, 20 ), materials );
   object.position.setValues( 0.0, 0.0, -200.0 );
   scene.add( object );
 
