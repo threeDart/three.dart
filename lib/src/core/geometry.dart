@@ -490,20 +490,20 @@ class BoundingBox {
   get min => _aabb3.min;
   get max => _aabb3.max;
 
-  BoundingBox({Vector3 min, Vector3 max}) : _aabb3 = new Aabb3.copyMinMax(min,max);
+  BoundingBox({Vector3 min, Vector3 max}) : _aabb3 = new Aabb3.minMax(min,max);
 
   BoundingBox.fromPoints( Iterable<Vector3> points ) {
-    _aabb3 = new Aabb3.copyMinMax(points.first, points.first);
+    _aabb3 = new Aabb3.minMax(points.first, points.first);
     points.skip(1).forEach( (point) => _aabb3.hullPoint(point));
   }
 
   BoundingBox.fromCenterAndSize( Vector3 center, Vector3 size ) {
     var halfSize = new Vector3.copy( size ).multiplyScalar( 0.5 );
-    _aabb3 = new Aabb3.copyMinMax(new Vector3.copy( center ).sub( haldSize ), new Vector3.copy( center ).add( haldSize ));
+    _aabb3 = new Aabb3.minMax(new Vector3.copy( center ).sub( haldSize ), new Vector3.copy( center ).add( haldSize ));
   }
 
   BoundingBox.fromObject( Object3D object ) {
-    object.updateMatrixWorld(true);
+    object.updateMatrixWorld( force: true );
     object.traverse(( node ) {
       var geometry = node.geometry;
       if( geometry is BufferGeometry ) {
@@ -514,7 +514,7 @@ class BoundingBox {
           for ( var i = 0; i < il; i += 3 ) {
             position.setValues( a[ i ], a[ i + 1 ],a[ i + 2 ] ).applyProjection( node.matrixWorld );
             if(_aabb3 == null) {
-              _aabb3 = new Aabb3.copyMinMax(position,position);
+              _aabb3 = new Aabb3.minMax(position,position);
             } else {
               _aabb3.hullPoint(position);
             }
@@ -524,7 +524,7 @@ class BoundingBox {
         geometry.vertices.forEach( (vertice) {
           var transfVertice = new Vector3.copy(vertice).applyProjection(node.matrixWorld);
           if(_aabb3 == null) {
-            _aabb3 = new Aabb3.copyMinMax(transfVertice,transfVertice);
+            _aabb3 = new Aabb3.minMax(transfVertice,transfVertice);
           } else {
             _aabb3.hullPoint(transfVertice);
           }
@@ -552,14 +552,14 @@ class BoundingBox {
 
   bool containsPoint( Vector3 point ) => _aabb3.containsVector3(point);
 
-  bool containsBox( BoundingBox box ) => _aabb3.containsAabb3( new _aabb3.copyMinMax(box.min,box.max) );
+  bool containsBox( BoundingBox box ) => _aabb3.containsAabb3( new Aabb3.minMax(box.min,box.max) );
 
   Vector3 getParameter( Vector3 point ) => new Vector3.array([( point.x - min.x ) / ( max.x - min.x ),
                                                     ( point.y - min.y ) / ( max.y - min.y ),
                                                     ( point.z - min.z ) / ( max.z - min.z )]
   );
 
-  bool isIntersectionBox( BoundingBox box) => _aabb3.intersectsWithAabb3( new _aabb3.copyMinMax(box.min,box.max) );
+  bool isIntersectionBox( BoundingBox box) => _aabb3.intersectsWithAabb3( new Aabb3.minMax(box.min,box.max) );
 
   //todo: clampPoint
 
