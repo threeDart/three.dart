@@ -502,6 +502,39 @@ class BoundingBox {
     _aabb3 = new Aabb3.copyMinMax(new Vector3.copy( center ).sub( haldSize ), new Vector3.copy( center ).add( haldSize ));
   }
 
+  BoundingBox.fromObject( Object3D object ) {
+    object.updateMatrixWorld(true);
+    object.traverse(( node ) {
+      var geometry = node.geometry;
+      if( geometry is BufferGeometry ) {
+        if(geometry.aPosition != null) {
+          var position = new Vector3.zero();
+          var a = geometry.aPosition.array;
+          var il = a.length;
+          for ( var i = 0; i < il; i += 3 ) {
+            position.setValues( a[ i ], a[ i + 1 ],a[ i + 2 ] ).applyProjection( node.matrixWorld );
+            if(_aabb3 == null) {
+              _aabb3 = new Aabb3.copyMinMax(position,position);
+            } else {
+              _aabb3.hullPoint(position);
+            }
+          }
+        }
+      } else if (geometry is Geometry) {
+        geometry.vertices.forEach( (vertice) {
+          var transfVertice = new Vector3.copy(vertice).applyProjection(node.matrixWorld);
+          if(_aabb3 == null) {
+            _aabb3 = new Aabb3.copyMinMax(transfVertice,transfVertice);
+          } else {
+            _aabb3.hullPoint(transfVertice);
+          }
+        });
+      }
+    });
+    if( _aabb3 == null ) {
+      _aabb3 = new Aabb3();
+    }
+  }
 
   set copy( BoundingBox box ) => _aabb3.copyMinMax(box.min,box.max);
 
@@ -538,6 +571,24 @@ class BoundingBox {
     _aabb3.min.max( box.min );
     _aabb3.max.min( box.max );
   }
+
+  union( BoundingBox box ) {
+    _aabb3.min.min( box.min );
+    _aabb3.max.min( box.max );
+  }
+
+  applyMatrix4( Matrix4 matrix ) {
+    _aabb3.transform( matrix );
+  }
+
+  translate( Vector3 offset ) {
+    _aabb3.min.add( offset );
+    _aabb3.max.add( offset );
+  }
+
+  bool operator== ( BoundingBox box ) => min == box.min && max == box.max;
+
+  BoundingBox clone() => new BoundingBox( min, max );
 
 }
 
