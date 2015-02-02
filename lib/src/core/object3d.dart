@@ -266,6 +266,25 @@ class Object3D {
     return null;
   }
 
+  traverse( Function callback(Object3D object) ) {
+    callback(this);
+    children.forEach((child) => child.traverse(callback));
+  }
+
+  traverseVisible( Function callback(Object3D object) ) {
+    if( visible ) {
+      callback( this );
+      children.forEach((child) => child.traverseVisible(callback));
+    }
+  }
+
+  traverseAncestors( Function callback(Object3D object) ) {
+    if ( parent != null ) {
+      callback( parent );
+      parent.traverseAncestors( callback );
+    }
+  }
+
   /// Updates local transform.
   void updateMatrix() {
 

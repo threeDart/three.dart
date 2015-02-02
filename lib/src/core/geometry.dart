@@ -484,12 +484,116 @@ class Geometry extends Object with WebGLGeometry {
 }
 
 class BoundingBox {
-  Vector3 min;
-  Vector3 max;
-  BoundingBox({this.min, this.max});
+
+  Aabb3 _aabb3;
+
+  get min => _aabb3.min;
+  get max => _aabb3.max;
+
+  BoundingBox({Vector3 min, Vector3 max}) : _aabb3 = new Aabb3.minMax(min,max);
+
+  BoundingBox.fromPoints( Iterable<Vector3> points ) {
+    _aabb3 = new Aabb3.minMax(points.first, points.first);
+    points.skip(1).forEach( (point) => _aabb3.hullPoint(point));
+  }
+
+  BoundingBox.fromCenterAndSize( Vector3 center, Vector3 size ) {
+    var halfSize = new Vector3.copy( size ).multiplyScalar( 0.5 );
+    _aabb3 = new Aabb3.minMax(new Vector3.copy( center ).sub( haldSize ), new Vector3.copy( center ).add( haldSize ));
+  }
+
+  BoundingBox.fromObject( Object3D object ) {
+    object.updateMatrixWorld( force: true );
+    object.traverse(( node ) {
+      var geometry = node.geometry;
+      if( geometry is BufferGeometry ) {
+        if(geometry.aPosition != null) {
+          var position = new Vector3.zero();
+          var a = geometry.aPosition.array;
+          var il = a.length;
+          for ( var i = 0; i < il; i += 3 ) {
+            position.setValues( a[ i ], a[ i + 1 ],a[ i + 2 ] ).applyProjection( node.matrixWorld );
+            if(_aabb3 == null) {
+              _aabb3 = new Aabb3.minMax(position,position);
+            } else {
+              _aabb3.hullPoint(position);
+            }
+          }
+        }
+      } else if (geometry is Geometry) {
+        geometry.vertices.forEach( (vertice) {
+          var transfVertice = new Vector3.copy(vertice).applyProjection(node.matrixWorld);
+          if(_aabb3 == null) {
+            _aabb3 = new Aabb3.minMax(transfVertice,transfVertice);
+          } else {
+            _aabb3.hullPoint(transfVertice);
+          }
+        });
+      }
+    });
+    if( _aabb3 == null ) {
+      _aabb3 = new Aabb3();
+    }
+  }
+
+  set copy( BoundingBox box ) => _aabb3.copyMinMax(box.min,box.max);
+
+  bool get isEmpty => ( this.max.x < this.min.x ) || ( this.max.y < this.min.y ) || ( this.max.z < this.min.z );
+
+  Vector3 get center =>  _aabb3.center;
+
+  Vector3 get size => new Vector3.copy( this.max ).sub( this.min );
+
+  expandByPoint( Vector3 point ) => _aabb3.hullPoint( point );
+
+  expandByVector( Vector3 vector ) => _aabb3.copyMinMax(_aabb3.min.sub(vector),_aabb3.max.add(vector));
+
+  expandByScalar( num scalar ) => _aabb3.copyMinMax(_aabb3.min.addScalar(-scalar),_aabb3.max.addScalar(scalar));
+
+  bool containsPoint( Vector3 point ) => _aabb3.containsVector3(point);
+
+  bool containsBox( BoundingBox box ) => _aabb3.containsAabb3( new Aabb3.minMax(box.min,box.max) );
+
+  Vector3 getParameter( Vector3 point ) => new Vector3.array([( point.x - min.x ) / ( max.x - min.x ),
+                                                    ( point.y - min.y ) / ( max.y - min.y ),
+                                                    ( point.z - min.z ) / ( max.z - min.z )]
+  );
+
+  bool isIntersectionBox( BoundingBox box) => _aabb3.intersectsWithAabb3( new Aabb3.minMax(box.min,box.max) );
+
+  //todo: clampPoint
+
+  //todo: distanceToPoint
+
+  BoundingSphere get boundingSphere => new BoundingSphere( size.length * 0.5, center );
+
+  intersect( BoundingBox box ) {
+    _aabb3.min.max( box.min );
+    _aabb3.max.min( box.max );
+  }
+
+  union( BoundingBox box ) {
+    _aabb3.min.min( box.min );
+    _aabb3.max.min( box.max );
+  }
+
+  applyMatrix4( Matrix4 matrix ) {
+    _aabb3.transform( matrix );
+  }
+
+  translate( Vector3 offset ) {
+    _aabb3.min.add( offset );
+    _aabb3.max.add( offset );
+  }
+
+  bool operator== ( BoundingBox box ) => min == box.min && max == box.max;
+
+  BoundingBox clone() => new BoundingBox( min, max );
+
 }
 
 class BoundingSphere {
   num radius;
-  BoundingSphere({this.radius});
+  Vector3 center;
+  BoundingSphere({this.radius, this.center});
 }
