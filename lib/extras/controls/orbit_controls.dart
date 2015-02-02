@@ -522,10 +522,10 @@ class OrbitControls extends EventEmitter {
 
     var delta = 0;
 
-    if ( event.deltaY != 0 ) {
+    if ( event.wheelDeltaY != 0 ) {
 
       // WebKit / Opera / Internet Explorer 9
-      delta = event.deltaY;
+      delta = event.wheelDeltaY;
 
     } else if ( event.detail != 0 ) {
 
