@@ -207,8 +207,8 @@ render() {
 
   });
 
-  materials[ materials.length - 3 ].emissive.setHSV( 0.54, 1, 0.7 * ( 0.5 + 0.5 * Math.sin( 35 * timer ) ) );
-  materials[ materials.length - 4 ].emissive.setHSV( 0.04, 1, 0.7 * ( 0.5 + 0.5 * Math.cos( 35 * timer ) ) );
+  materials[ materials.length - 3 ].emissive.setHSV( 0.54, 1.0, 0.7 * ( 0.5 + 0.5 * Math.sin( 35 * timer ) ) );
+  materials[ materials.length - 4 ].emissive.setHSV( 0.04, 1.0, 0.7 * ( 0.5 + 0.5 * Math.cos( 35 * timer ) ) );
 
   particleLight.position
   ..x = Math.sin( timer * 7 ) * 300

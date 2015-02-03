@@ -7,16 +7,17 @@ part of three;
 
 class TorusKnotGeometry extends Geometry {
 
-  num radius, tube, segmentsR, segmentsT, p, q, heightScale;
+  double radius, tube, p, q, heightScale;
+  num segmentsR, segmentsT;
   List grid;
 
-  TorusKnotGeometry( [ this.radius = 200,
-                       this.tube = 40,
+  TorusKnotGeometry( [ this.radius = 200.0,
+                       this.tube = 40.0,
                        this.segmentsR = 64,
                        this.segmentsT = 8,
-                       this.p = 2,
-                       this.q = 3,
-                       this.heightScale = 1]) : super() {
+                       this.p = 2.0,
+                       this.q = 3.0,
+                       this.heightScale = 1.0]) : super() {
 
     grid = new List(segmentsR);
 
