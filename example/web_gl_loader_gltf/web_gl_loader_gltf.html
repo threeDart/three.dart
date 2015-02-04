@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>WebGL Loader - glTF</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <style>
+    body {
+      font-family: Monospace;
+      background-color: #EEF;
+      margin: 0px;
+      overflow: hidden;
+    }
+
+    #info {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      z-index: 100;
+      display: block;
+    }
+
+    #container {
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    #controls {
+      position: absolute;
+      width: 250px;
+      bottom: 0%;
+      right: 0%;
+      height: 134px;
+      background-color: White;
+      opacity: .9;
+      font: 13px/1.231 "Lucida Grande", Lucida, Verdana, sans-serif;
+    }
+
+    #status {
+      position: absolute;
+      width: 25%;
+      left: 2%;
+      top: 95%;
+      height: 5%;
+      opacity: .9;
+      font: 13px/1.231 "Lucida Grande", Lucida, Verdana, sans-serif;
+    }
+
+    .control {
+      position: absolute;
+      margin-left: 12px;
+      width: 100%;
+      font-weight: bold;
+    }
+
+    .controlValue {
+      position: absolute;
+      left: 36%;
+      top: 0%;
+    }
+
+    #scenes_control {
+      position: absolute;
+      top: 8px;
+    }
+
+    #cameras_control {
+      position: absolute;
+      top: 40px;
+    }
+
+    #animations_control {
+      position: absolute;
+      top: 72px;
+    }
+
+    #buffer_geometry_control {
+      position: absolute;
+      top: 104px;
+    }
+
+    #info a, .button {
+      color: #f00;
+      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer
+    }
+  </style>
+</head>
+
+<body>
+<div id="info">
+  <a href="http://threejs.org" target="_blank">three.js</a> -
+  <a href="http://gltf.gl/" target="_blank">glTF</a> loader -
+  <br>
+  monster by <a href="http://www.3drt.com/downloads.htm" target="_blank">3drt</a> -
+  COLLADA duck by Sony
+</div>
+<div id="container">
+</div>
+<div id="status">
+</div>
+<div id="controls">
+  <div class="control" id="scenes_control">
+    Model
+    <select class="controlValue" id="scenes_list" size="1">
+    </select>
+  </div>
+
+  <div class="control" id="cameras_control">
+    Camera
+    <select class="controlValue" id="cameras_list" size="1">
+    </select>
+  </div>
+  <div class="control" id="animations_control">
+    Animations
+    <div class="controlValue"><input type="checkbox" checked id="toggle_animations">Play</input></div>
+  </div>
+  <div class="control" id="buffer_geometry_control">
+    Geometry
+    <div class="controlValue">
+      <input type="checkbox" id="buffer_geometry_checkbox" checked>BufferGeometry</input>
+    </div>
+  </div>
+</div>
+<script type="application/dart" src="web_gl_loader_gltf.dart"></script>
+<script src="packages/browser/dart.js"></script>
+</body>
+</html>

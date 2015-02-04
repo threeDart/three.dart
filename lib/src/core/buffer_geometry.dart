@@ -23,6 +23,9 @@ class GeometryAttribute<T> {
   factory GeometryAttribute.int16(int numItems, [int itemSize = 1]) =>
       new GeometryAttribute._internal(numItems, itemSize, new Int16List(numItems));
 
+  factory GeometryAttribute.uint16(int numItems, [int itemSize = 1]) =>
+        new GeometryAttribute<Uint16List>._internal(numItems, itemSize, new Uint16List(numItems));
+
 }
 
 class Chunk {
@@ -529,7 +532,7 @@ class BufferGeometry implements Geometry {
   GeometryAttribute<Float32List> get aNormal => attributes[GeometryAttribute.NORMAL];
   set aNormal(a){ attributes[GeometryAttribute.NORMAL] = a; }
 
-  GeometryAttribute<Int16List> get aIndex => attributes[GeometryAttribute.INDEX];
+  GeometryAttribute<Uint16List> get aIndex => attributes[GeometryAttribute.INDEX];
   set aIndex(a){ attributes[GeometryAttribute.INDEX] = a; }
 
   GeometryAttribute<Float32List> get aUV => attributes[GeometryAttribute.UV];
