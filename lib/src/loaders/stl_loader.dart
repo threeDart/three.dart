@@ -33,10 +33,9 @@ class STLLoader extends Loader {
   STLLoader() : super();
 
   Future<Geometry> load(url) =>
-    HttpRequest.request(url, responseType: "arraybuffer")
-    .then((req) => _parse( req.response ));
+      HttpRequest.request(url, responseType: "arraybuffer").then((req) => _parse(req.response));
 
-  _parse(Uint8List data) => _isBinary(data) ? _parseBinary(data.buffer) : _parseASCII( new String.fromCharCodes( data ) );
+  _parse(Uint8List data) => _isBinary(data) ? _parseBinary(data.buffer) : _parseASCII(new String.fromCharCodes(data));
 
   /**
    * UINT8[80] – Header
@@ -65,76 +64,84 @@ class STLLoader extends Loader {
    */
   _parseBinary(ByteBuffer bytes) {
 
-        var data = new ByteData.view(bytes),
-            n_faces = data.getUint32(80, Endianness.LITTLE_ENDIAN),
-            geometry = new Geometry(),
-            dataOffset = 84,
-            faceLength = 12 * 4 + 2;
+    var data = new ByteData.view(bytes),
+        n_faces = data.getUint32(80, Endianness.LITTLE_ENDIAN),
+        geometry = new Geometry(),
+        dataOffset = 84,
+        faceLength = 12 * 4 + 2;
 
-        for (var face = 0; face < n_faces; face++) {
-          var start = dataOffset + (face * faceLength);
+    for (var face = 0; face < n_faces; face++) {
+      var start = dataOffset + (face * faceLength);
 
-          var normal = new Vector3(
-            data.getFloat32(start, Endianness.LITTLE_ENDIAN),
-            data.getFloat32(start + 4, Endianness.LITTLE_ENDIAN),
-            data.getFloat32(start + 8, Endianness.LITTLE_ENDIAN)
-          );
+      var normal = new Vector3(
+          data.getFloat32(start, Endianness.LITTLE_ENDIAN),
+          data.getFloat32(start + 4, Endianness.LITTLE_ENDIAN),
+          data.getFloat32(start + 8, Endianness.LITTLE_ENDIAN));
 
-          for (var i = 1; i <= 3; i++) {
-            var vertexstart = start + i * 12;
-            geometry.vertices.add(new Vector3(
+      for (var i = 1; i <= 3; i++) {
+        var vertexstart = start + i * 12;
+        geometry.vertices.add(
+            new Vector3(
                 data.getFloat32(vertexstart, Endianness.LITTLE_ENDIAN),
                 data.getFloat32(vertexstart + 4, Endianness.LITTLE_ENDIAN),
-                data.getFloat32(vertexstart + 8, Endianness.LITTLE_ENDIAN)
-            ));
-          }
+                data.getFloat32(vertexstart + 8, Endianness.LITTLE_ENDIAN)));
+      }
 
-          var length = geometry.vertices.length;
-          geometry.faces.add(new Face3(length - 3, length - 2, length - 1, normal));
+      var length = geometry.vertices.length;
+      geometry.faces.add(new Face3(length - 3, length - 2, length - 1, normal));
 
-        }
+    }
 
-        geometry.computeCentroids();
-        geometry.computeBoundingSphere();
+    geometry.computeCentroids();
+    geometry.computeBoundingSphere();
 
-        return geometry;
+    return geometry;
 
   }
 
   _parseASCII(data) {
 
-        var geometry = new Geometry();
+    var geometry = new Geometry();
 
-        var patternFace = new RegExp(r"facet([\s\S]*?)endfacet");
-        var patternNormal = new RegExp(r"normal[\s]+([\-+]?[0-9]+\.?[0-9]*([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+");
-        var patternVertex = new RegExp(r"vertex[\s]+([\-+]?[0-9]+\.?[0-9]*([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+");
+    var patternFace = new RegExp(r"facet([\s\S]*?)endfacet");
+    var patternNormal = new RegExp(
+        r"normal[\s]+([\-+]?[0-9]+\.?[0-9]*([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+");
+    var patternVertex = new RegExp(
+        r"vertex[\s]+([\-+]?[0-9]+\.?[0-9]*([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+[\s]+([\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?)+");
 
-        var faceMatches = patternFace.allMatches(data);
+    var faceMatches = patternFace.allMatches(data);
 
-        faceMatches.forEach((faceMatch) {
+    faceMatches.forEach((faceMatch) {
 
-                var text = faceMatch.group(0);
+      var text = faceMatch.group(0);
 
-                var normalMatch = patternNormal.allMatches(text).first;
+      var normalMatch = patternNormal.allMatches(text).first;
 
-                var normal = new Vector3(double.parse(normalMatch.group(1)), double.parse(normalMatch.group(3)), double.parse(normalMatch.group(5)));
+      var normal = new Vector3(
+          double.parse(normalMatch.group(1)),
+          double.parse(normalMatch.group(3)),
+          double.parse(normalMatch.group(5)));
 
-                var vertexMatches = patternVertex.allMatches(text);
+      var vertexMatches = patternVertex.allMatches(text);
 
-                vertexMatches.forEach((vertexMatch) {
-                      geometry.vertices.add(new Vector3(double.parse(vertexMatch.group(1)), double.parse(vertexMatch.group(3)), double.parse(vertexMatch.group(5))));
-                });
+      vertexMatches.forEach((vertexMatch) {
+        geometry.vertices.add(
+            new Vector3(
+                double.parse(vertexMatch.group(1)),
+                double.parse(vertexMatch.group(3)),
+                double.parse(vertexMatch.group(5))));
+      });
 
-                var length = geometry.vertices.length;
-                geometry.faces.add(new Face3(length - 3, length - 2, length - 1, normal));
+      var length = geometry.vertices.length;
+      geometry.faces.add(new Face3(length - 3, length - 2, length - 1, normal));
 
-        });
+    });
 
-        geometry.computeCentroids();
-        geometry.computeBoundingBox();
-        geometry.computeBoundingSphere();
+    geometry.computeCentroids();
+    geometry.computeBoundingBox();
+    geometry.computeBoundingSphere();
 
-        return geometry;
+    return geometry;
 
   }
 }

@@ -23,11 +23,13 @@ class Line extends Object3D {
 
   Line(Geometry geometry, [this.material, this.type = LineStrip]) : super() {
 
-    if (material == null) { material = new LineBasicMaterial( color: new Math.Random().nextInt(0xffffff) ); }
+    if (material == null) {
+      material = new LineBasicMaterial(color: new Math.Random().nextInt(0xffffff));
+    }
 
-    if ( geometry != null ) {
+    if (geometry != null) {
       // calc bound radius
-      if( geometry.boundingSphere == null ) {
+      if (geometry.boundingSphere == null) {
         geometry.computeBoundingSphere();
       }
       this.geometry = geometry;

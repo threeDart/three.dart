@@ -19,11 +19,10 @@ class RenderPass extends Pass {
   bool clear = true;
   bool needsSwap = true;
 
-  RenderPass(this.scene, this.camera, [this.overrideMaterial = null,
-      this.clearColor = null, this.clearAlpha = 1.0]);
+  RenderPass(this.scene, this.camera, [this.overrideMaterial = null, this.clearColor = null, this.clearAlpha = 1.0]);
 
-  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget,
-      WebGLRenderTarget readTarget, double delta, bool maskActive) {
+  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget, WebGLRenderTarget readTarget, double delta,
+      bool maskActive) {
 
     scene.overrideMaterial = overrideMaterial;
     if (clearColor != null) {

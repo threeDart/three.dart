@@ -14,5 +14,7 @@ class Light extends Object3D {
   Color color;
 
   /// This creates a light with color.
-  Light( num hex ): color = new Color( hex ), super();
+  Light(num hex)
+      : color = new Color(hex),
+        super();
 }

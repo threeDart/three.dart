@@ -22,14 +22,14 @@ class Mesh extends Object3D {
   List morphTargetInfluences;
   Map _morphTargetDictionary;
 
-  Mesh( Geometry geometry, [this.material] ) : super() {
+  Mesh(Geometry geometry, [this.material]) : super() {
 
     if (material == null) {
-      material = new MeshBasicMaterial( color: new Math.Random().nextInt(0xffffff), wireframe: true );
+      material = new MeshBasicMaterial(color: new Math.Random().nextInt(0xffffff), wireframe: true);
     }
-    if ( geometry != null ) {
+    if (geometry != null) {
       // calc bound radius
-      if( geometry.boundingSphere == null ) {
+      if (geometry.boundingSphere == null) {
         geometry.computeBoundingSphere();
       }
 
@@ -37,15 +37,15 @@ class Mesh extends Object3D {
 
 
       // setup morph targets
-      if( geometry.morphTargets.length != 0 ) {
+      if (geometry.morphTargets.length != 0) {
         morphTargetBase = -1;
         morphTargetForcedOrder = [];
         morphTargetInfluences = [];
         _morphTargetDictionary = {};
 
-        for( int m = 0; m < geometry.morphTargets.length; m ++ ) {
-          morphTargetInfluences.add( 0.0 );
-          _morphTargetDictionary[ geometry.morphTargets[ m ].name ] = m;
+        for (int m = 0; m < geometry.morphTargets.length; m++) {
+          morphTargetInfluences.add(0.0);
+          _morphTargetDictionary[geometry.morphTargets[m].name] = m;
         }
       }
 
@@ -55,12 +55,12 @@ class Mesh extends Object3D {
 
 
   /// Returns the index of a morph target defined by name.
-  num getMorphTargetIndexByName( name ) {
-    if ( _morphTargetDictionary[ name ] != null ) {
-      return _morphTargetDictionary[ name ];
+  num getMorphTargetIndexByName(name) {
+    if (_morphTargetDictionary[name] != null) {
+      return _morphTargetDictionary[name];
     }
 
-    print( "THREE.Mesh.getMorphTargetIndexByName: morph target $name does not exist. Returning 0." );
+    print("THREE.Mesh.getMorphTargetIndexByName: morph target $name does not exist. Returning 0.");
     return 0;
   }
 }

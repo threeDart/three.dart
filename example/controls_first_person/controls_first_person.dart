@@ -47,14 +47,15 @@ class Game {
   void makeParticles() {
     var rng = new Math.Random();
     for (var i = 0; i < 500; i++) {
-      var material = new THREE.ParticleCanvasMaterial(color: rng.nextDouble() * 0x808080 + 0x808080, program: particleRender);
+      var material =
+          new THREE.ParticleCanvasMaterial(color: rng.nextDouble() * 0x808080 + 0x808080, program: particleRender);
       var particle = new THREE.Particle(material);
 
       particle.position.x = rng.nextDouble() * 1000 - 500;
       particle.position.y = rng.nextDouble() * 1000 - 500;
       particle.position.z = rng.nextDouble() * 1000 - 500;
 
-      particle.scale.x = particle.scale.y =  rng.nextDouble() * 10 + 10;
+      particle.scale.x = particle.scale.y = rng.nextDouble() * 10 + 10;
 
       scene.add(particle);
 
@@ -69,7 +70,7 @@ class Game {
   }
 
   void animate(timestamp) {
-    window.requestAnimationFrame( animate );
+    window.requestAnimationFrame(animate);
     controls.update(1.0);
     render();
   }

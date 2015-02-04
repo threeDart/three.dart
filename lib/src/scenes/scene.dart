@@ -38,56 +38,56 @@ class Scene extends Object3D {
     __objectsRemoved = [];
   }
 
-  void addObject( Object3D object ) {
-    if ( object is Light ) {
-      if ( lights.indexOf( object ) == - 1 ) {
-        lights.add( object );
+  void addObject(Object3D object) {
+    if (object is Light) {
+      if (lights.indexOf(object) == -1) {
+        lights.add(object);
       }
-    } else if ( !( object is Camera || object is Bone ) ) {
-      if ( objects.indexOf( object ) == - 1 ) {
-        objects.add( object );
-        __objectsAdded.add( object );
+    } else if (!(object is Camera || object is Bone)) {
+      if (objects.indexOf(object) == -1) {
+        objects.add(object);
+        __objectsAdded.add(object);
 
         // check if previously removed
-        int i = __objectsRemoved.indexOf( object );
+        int i = __objectsRemoved.indexOf(object);
 
-        if ( i != -1 ) {
+        if (i != -1) {
           __objectsRemoved.removeAt(i);
         }
       }
     }
 
-    for ( int c = 0; c < object.children.length; c ++ ) {
-      addObject( object.children[ c ] );
+    for (int c = 0; c < object.children.length; c++) {
+      addObject(object.children[c]);
     }
   }
 
-  void removeObject( Object3D object ) {
+  void removeObject(Object3D object) {
     //TODO: "instanceof" replaced by "is"?
-    if ( object is Light ) {
-      int i = lights.indexOf( object );
+    if (object is Light) {
+      int i = lights.indexOf(object);
 
-      if ( i != -1 ) {
+      if (i != -1) {
         lights.removeAt(i);
       }
-    } else if ( !( object is Camera ) ) {
-      int i = objects.indexOf( object );
+    } else if (!(object is Camera)) {
+      int i = objects.indexOf(object);
 
-      if( i != -1 ) {
+      if (i != -1) {
         objects.removeAt(i);
-        __objectsRemoved.add( object );
+        __objectsRemoved.add(object);
 
         // check if previously added
-        var ai = __objectsAdded.indexOf( object );
+        var ai = __objectsAdded.indexOf(object);
 
-        if ( ai != -1 ) {
+        if (ai != -1) {
           __objectsAdded.removeAt(ai);
         }
       }
     }
 
-    for ( int c = 0; c < object.children.length; c ++ ) {
-      removeObject( object.children[ c ] );
+    for (int c = 0; c < object.children.length; c++) {
+      removeObject(object.children[c]);
     }
   }
 }

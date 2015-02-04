@@ -46,23 +46,23 @@ class Geometry extends Object with WebGLGeometry {
 
 
   // WebGL
-  bool  verticesNeedUpdate = false,
-        colorsNeedUpdate = false,
-        elementsNeedUpdate = false,
-        uvsNeedUpdate = false,
-        normalsNeedUpdate = false,
-        tangentsNeedUpdate = false,
-        buffersNeedUpdate = false,
-        morphTargetsNeedUpdate = false,
-        lineDistancesNeedUpdate = false;
+  bool verticesNeedUpdate = false,
+      colorsNeedUpdate = false,
+      elementsNeedUpdate = false,
+      uvsNeedUpdate = false,
+      normalsNeedUpdate = false,
+      tangentsNeedUpdate = false,
+      buffersNeedUpdate = false,
+      morphTargetsNeedUpdate = false,
+      lineDistancesNeedUpdate = false;
 
   Geometry()
       : name = '',
 
         vertices = <Vector3>[],
-        colors = [], // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
+        colors = [],  // one-to-one vertex colors, used in ParticleSystem, Line and Ribbon
 
-        materials = [],
+      materials = [],
 
         faces = [],
 
@@ -85,7 +85,7 @@ class Geometry extends Object with WebGLGeometry {
 
         _dynamic = false // unless set to true the *Arrays will be deleted once sent to a buffer.
   {
-    id = GeometryCount ++;
+    id = GeometryCount++;
   }
 
   /// Defaults to true.
@@ -100,11 +100,11 @@ class Geometry extends Object with WebGLGeometry {
   set isDynamic(bool value) => _dynamic = value;
 
   /// Bakes matrix transform directly into vertex coordinates.
-  void applyMatrix( Matrix4 matrix ) {
+  void applyMatrix(Matrix4 matrix) {
     Matrix4 matrixRotation = new Matrix4.identity();
-    extractRotation( matrixRotation, matrix);
+    extractRotation(matrixRotation, matrix);
 
-    vertices.forEach((vertex) =>  vertex.applyProjection(matrix));
+    vertices.forEach((vertex) => vertex.applyProjection(matrix));
 
     faces.forEach((face) {
 
@@ -120,10 +120,10 @@ class Geometry extends Object with WebGLGeometry {
 
     faces.forEach((Face face) {
 
-      face.centroid.setValues( 0.0, 0.0, 0.0 );
+      face.centroid.setValues(0.0, 0.0, 0.0);
 
       face.indices.forEach((idx) {
-        face.centroid.add( vertices[ idx ] );
+        face.centroid.add(vertices[idx]);
       });
 
       face.centroid /= face.size.toDouble();
@@ -135,13 +135,13 @@ class Geometry extends Object with WebGLGeometry {
   void computeFaceNormals() {
     faces.forEach((face) {
 
-      var vA = vertices[ face.a ],
-          vB = vertices[ face.b ],
-          vC = vertices[ face.c ];
+      var vA = vertices[face.a],
+          vB = vertices[face.b],
+          vC = vertices[face.c];
 
       Vector3 cb = vC - vB;
       Vector3 ab = vA - vB;
-      cb = cb.cross( ab );
+      cb = cb.cross(ab);
 
       cb.normalize();
 
@@ -160,7 +160,7 @@ class Geometry extends Object with WebGLGeometry {
 
     // create internal buffers for reuse when calling this method repeatedly
     // (otherwise memory allocation / deallocation every frame is big resource hog)
-    if ( __tmpVertices == null ) {
+    if (__tmpVertices == null) {
 
       __tmpVertices = [];
       this.vertices.forEach((_) => __tmpVertices.add(new Vector3.zero()));
@@ -174,8 +174,8 @@ class Geometry extends Object with WebGLGeometry {
       vertices = __tmpVertices;
 
       var vl = this.vertices.length;
-      for ( var v = 0; v < vl; v ++ ) {
-        vertices[ v ].setValues( 0.0, 0.0, 0.0 );
+      for (var v = 0; v < vl; v++) {
+        vertices[v].setValues(0.0, 0.0, 0.0);
       }
 
     }
@@ -183,7 +183,7 @@ class Geometry extends Object with WebGLGeometry {
     faces.forEach((Face face) {
 
       face.indices.forEach((idx) {
-        vertices[ idx ].add( face.normal );
+        vertices[idx].add(face.normal);
       });
 
     });
@@ -194,7 +194,7 @@ class Geometry extends Object with WebGLGeometry {
 
       var i = 0;
       face.indices.forEach((idx) {
-        face.vertexNormals[ i++ ].setFrom( vertices[ idx ] );
+        face.vertexNormals[i++].setFrom(vertices[idx]);
       });
 
     });
@@ -220,24 +220,24 @@ class Geometry extends Object with WebGLGeometry {
     num x1, x2, y1, y2, z1, z2, s1, s2, t1, t2, r;
 
     Vector3 sdir = new Vector3.zero(),
-            tdir = new Vector3.zero(),
-            tmp = new Vector3.zero(),
-            tmp2 = new Vector3.zero(),
-            n = new Vector3.zero(),
-            t;
+        tdir = new Vector3.zero(),
+        tmp = new Vector3.zero(),
+        tmp2 = new Vector3.zero(),
+        n = new Vector3.zero(),
+        t;
 
     List<Vector3> tan1 = vertices.map((_) => new Vector3.zero()).toList(),
-                  tan2 = vertices.map((_) => new Vector3.zero()).toList();
+        tan2 = vertices.map((_) => new Vector3.zero()).toList();
 
-    var handleTriangle = ( context, a, b, c, ua, ub, uc ) {
+    var handleTriangle = (context, a, b, c, ua, ub, uc) {
 
-      vA = context.vertices[ a ];
-      vB = context.vertices[ b ];
-      vC = context.vertices[ c ];
+      vA = context.vertices[a];
+      vB = context.vertices[b];
+      vC = context.vertices[c];
 
-      uvA = uv[ ua ];
-      uvB = uv[ ub ];
-      uvC = uv[ uc ];
+      uvA = uv[ua];
+      uvB = uv[ub];
+      uvC = uv[uc];
 
       x1 = vB.x - vA.x;
       x2 = vC.x - vA.x;
@@ -251,42 +251,38 @@ class Geometry extends Object with WebGLGeometry {
       t1 = uvB.v - uvA.v;
       t2 = uvC.v - uvA.v;
 
-      r = 1.0 / ( s1 * t2 - s2 * t1 );
-      sdir.setValues( ( t2 * x1 - t1 * x2 ) * r,
-          ( t2 * y1 - t1 * y2 ) * r,
-          ( t2 * z1 - t1 * z2 ) * r );
-      tdir.setValues( ( s1 * x2 - s2 * x1 ) * r,
-            ( s1 * y2 - s2 * y1 ) * r,
-            ( s1 * z2 - s2 * z1 ) * r );
+      r = 1.0 / (s1 * t2 - s2 * t1);
+      sdir.setValues((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r);
+      tdir.setValues((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r, (s1 * z2 - s2 * z1) * r);
 
-      tan1[ a ].add( sdir );
-      tan1[ b ].add( sdir );
-      tan1[ c ].add( sdir );
+      tan1[a].add(sdir);
+      tan1[b].add(sdir);
+      tan1[c].add(sdir);
 
-      tan2[ a ].add( tdir );
-      tan2[ b ].add( tdir );
-      tan2[ c ].add( tdir );
+      tan2[a].add(tdir);
+      tan2[b].add(tdir);
+      tan2[c].add(tdir);
 
     };
 
     fl = this.faces.length;
 
-    for ( f = 0; f < fl; f ++ ) {
+    for (f = 0; f < fl; f++) {
 
-      face = this.faces[ f ];
-      UV uv = faceVertexUvs[ 0 ][ f ]; // use UV layer 0 for tangents
+      face = this.faces[f];
+      UV uv = faceVertexUvs[0][f]; // use UV layer 0 for tangents
 
       // TODO - Come up with a way to handle an arbitrary number of vertexes
       var triangles = [];
-      if ( face.size == 3 ) {
+      if (face.size == 3) {
         triangles.add([0, 1, 2]);
-      } else if ( face.size == 4 ) {
+      } else if (face.size == 4) {
         triangles.add([0, 1, 3]);
         triangles.add([1, 2, 3]);
       }
 
       triangles.forEach((t) {
-        handleTriangle( this, face.indices[t[0]], face.indices[t[1]], face.indices[t[2]], t[0], t[1], t[2] );
+        handleTriangle(this, face.indices[t[0]], face.indices[t[1]], face.indices[t[2]], t[0], t[1], t[2]);
       });
     }
 
@@ -294,26 +290,26 @@ class Geometry extends Object with WebGLGeometry {
 
       il = face.vertexNormals.length;
 
-      for ( i = 0; i < il; i++ ) {
+      for (i = 0; i < il; i++) {
 
-        n.setFrom( face.vertexNormals[ i ] );
+        n.setFrom(face.vertexNormals[i]);
 
         vertexIndex = face.indices[i];
 
-        t = tan1[ vertexIndex ];
+        t = tan1[vertexIndex];
 
         // Gram-Schmidt orthogonalize
 
-        tmp.setFrom( t );
-        tmp.sub( n.scale( n.dot( t ) ) ).normalize();
+        tmp.setFrom(t);
+        tmp.sub(n.scale(n.dot(t))).normalize();
 
         // Calculate handedness
 
         tmp2 = face.vertexNormals[i].cross(t);
-        test = tmp2.dot( tan2[ vertexIndex ] );
+        test = tmp2.dot(tan2[vertexIndex]);
         w = (test < 0.0) ? -1.0 : 1.0;
 
-        face.vertexTangents[ i ] = new Vector4( tmp.x, tmp.y, tmp.z, w );
+        face.vertexTangents[i] = new Vector4(tmp.x, tmp.y, tmp.z, w);
 
       }
 
@@ -325,38 +321,39 @@ class Geometry extends Object with WebGLGeometry {
 
   /// Computes bounding box of the geometry, updating Geometry.boundingBox.
   void computeBoundingBox() {
-    if ( boundingBox == null ) {
-      boundingBox = new BoundingBox( min: new Vector3.zero(), max: new Vector3.zero() );
+    if (boundingBox == null) {
+      boundingBox = new BoundingBox(min: new Vector3.zero(), max: new Vector3.zero());
     }
 
-    if ( vertices.length > 0 ) {
-      Vector3 position, firstPosition = vertices[ 0 ];
+    if (vertices.length > 0) {
+      Vector3 position,
+          firstPosition = vertices[0];
 
-      boundingBox.min.setFrom( firstPosition );
-      boundingBox.max.setFrom( firstPosition );
+      boundingBox.min.setFrom(firstPosition);
+      boundingBox.max.setFrom(firstPosition);
 
       Vector3 min = boundingBox.min,
-              max = boundingBox.max;
+          max = boundingBox.max;
 
       num vl = vertices.length;
-      for ( int v = 1; v < vl; v ++ ) {
-        position = vertices[ v ];
+      for (int v = 1; v < vl; v++) {
+        position = vertices[v];
 
-        if ( position.x < min.x ) {
+        if (position.x < min.x) {
           min.x = position.x;
-        } else if ( position.x > max.x ) {
+        } else if (position.x > max.x) {
           max.x = position.x;
         }
 
-        if ( position.y < min.y ) {
+        if (position.y < min.y) {
           min.y = position.y;
-        } else if ( position.y > max.y ) {
+        } else if (position.y > max.y) {
           max.y = position.y;
         }
 
-        if ( position.z < min.z ) {
+        if (position.z < min.z) {
           min.z = position.z;
-        } else if ( position.z > max.z ) {
+        } else if (position.z > max.z) {
           max.z = position.z;
         }
       }
@@ -372,10 +369,10 @@ class Geometry extends Object with WebGLGeometry {
 
     var maxRadiusSq = vertices.fold(0, (num curMaxRadiusSq, Vector3 vertex) {
       radiusSq = vertex.length2;
-      return ( radiusSq > curMaxRadiusSq ) ?  radiusSq : curMaxRadiusSq;
+      return (radiusSq > curMaxRadiusSq) ? radiusSq : curMaxRadiusSq;
     });
 
-    boundingSphere = new BoundingSphere(radius: Math.sqrt(maxRadiusSq) );
+    boundingSphere = new BoundingSphere(radius: Math.sqrt(maxRadiusSq));
   }
 
   /// Checks for duplicate vertices with hashmap.
@@ -388,31 +385,37 @@ class Geometry extends Object with WebGLGeometry {
 
     String key;
     int precisionPoints = 4; // number of decimal points, eg. 4 for epsilon of 0.0001
-    num precision = Math.pow( 10, precisionPoints );
+    num precision = Math.pow(10, precisionPoints);
     int i, il;
-    var abcd = 'abcd', o, k, j, jl, u;
+    var abcd = 'abcd',
+        o,
+        k,
+        j,
+        jl,
+        u;
 
     Vector3 v;
     il = this.vertices.length;
 
-    for( i = 0; i < il; i++) {
+    for (i = 0; i < il; i++) {
       v = this.vertices[i];
 
-      key = [ ( v.x * precision ).round().toStringAsFixed(0),
-                            ( v.y * precision ).round().toStringAsFixed(0),
-                            ( v.z * precision ).round().toStringAsFixed(0) ].join('_' );
+      key = [
+          (v.x * precision).round().toStringAsFixed(0),
+          (v.y * precision).round().toStringAsFixed(0),
+          (v.z * precision).round().toStringAsFixed(0)].join('_');
 
-      if ( verticesMap[ key ] == null ) {
-        verticesMap[ key ] = i;
-        unique.add( v );
+      if (verticesMap[key] == null) {
+        verticesMap[key] = i;
+        unique.add(v);
         //TODO: pretty sure this is an acceptable change in syntax here:
         //changes[ i ] = unique.length - 1;
-        changes.add( unique.length - 1);
+        changes.add(unique.length - 1);
       } else {
         //print('Duplicate vertex found. $i could be using  ${verticesMap[key]}');
         //print('changes len ${changes.length} add at i = $i');
         //changes[ i ] = changes[ verticesMap[ key ] ];
-        changes.add( changes[ verticesMap[ key ] ] );
+        changes.add(changes[verticesMap[key]]);
       }
 
     }
@@ -422,7 +425,7 @@ class Geometry extends Object with WebGLGeometry {
 
     faces.forEach((Face face) {
       for (var i = 0; i < face.size; i++) {
-        face.indices[i] = changes[ face.indices[i] ];
+        face.indices[i] = changes[face.indices[i]];
 
         /* TODO
 
@@ -479,8 +482,8 @@ class Geometry extends Object with WebGLGeometry {
     return __data;
   }
 
-  operator [] (String key) => _data[key];
-  operator []= (String key, value) => _data[key] = value;
+  operator [](String key) => _data[key];
+  operator []=(String key, value) => _data[key] = value;
 }
 
 class BoundingBox {
@@ -490,105 +493,104 @@ class BoundingBox {
   get min => _aabb3.min;
   get max => _aabb3.max;
 
-  BoundingBox({Vector3 min, Vector3 max}) : _aabb3 = new Aabb3.minMax(min,max);
+  BoundingBox({Vector3 min, Vector3 max}) : _aabb3 = new Aabb3.minMax(min, max);
 
-  BoundingBox.fromPoints( Iterable<Vector3> points ) {
+  BoundingBox.fromPoints(Iterable<Vector3> points) {
     _aabb3 = new Aabb3.minMax(points.first, points.first);
-    points.skip(1).forEach( (point) => _aabb3.hullPoint(point));
+    points.skip(1).forEach((point) => _aabb3.hullPoint(point));
   }
 
-  BoundingBox.fromCenterAndSize( Vector3 center, Vector3 size ) {
-    var halfSize = new Vector3.copy( size ).multiplyScalar( 0.5 );
-    _aabb3 = new Aabb3.minMax(new Vector3.copy( center ).sub( haldSize ), new Vector3.copy( center ).add( haldSize ));
+  BoundingBox.fromCenterAndSize(Vector3 center, Vector3 size) {
+    var halfSize = new Vector3.copy(size).multiplyScalar(0.5);
+    _aabb3 = new Aabb3.minMax(new Vector3.copy(center).sub(haldSize), new Vector3.copy(center).add(haldSize));
   }
 
-  BoundingBox.fromObject( Object3D object ) {
-    object.updateMatrixWorld( force: true );
-    object.traverse(( node ) {
+  BoundingBox.fromObject(Object3D object) {
+    object.updateMatrixWorld(force: true);
+    object.traverse((node) {
       var geometry = node.geometry;
-      if( geometry is BufferGeometry ) {
-        if(geometry.aPosition != null) {
+      if (geometry is BufferGeometry) {
+        if (geometry.aPosition != null) {
           var position = new Vector3.zero();
           var a = geometry.aPosition.array;
           var il = a.length;
-          for ( var i = 0; i < il; i += 3 ) {
-            position.setValues( a[ i ], a[ i + 1 ],a[ i + 2 ] ).applyProjection( node.matrixWorld );
-            if(_aabb3 == null) {
-              _aabb3 = new Aabb3.minMax(position,position);
+          for (var i = 0; i < il; i += 3) {
+            position.setValues(a[i], a[i + 1], a[i + 2]).applyProjection(node.matrixWorld);
+            if (_aabb3 == null) {
+              _aabb3 = new Aabb3.minMax(position, position);
             } else {
               _aabb3.hullPoint(position);
             }
           }
         }
       } else if (geometry is Geometry) {
-        geometry.vertices.forEach( (vertice) {
+        geometry.vertices.forEach((vertice) {
           var transfVertice = new Vector3.copy(vertice).applyProjection(node.matrixWorld);
-          if(_aabb3 == null) {
-            _aabb3 = new Aabb3.minMax(transfVertice,transfVertice);
+          if (_aabb3 == null) {
+            _aabb3 = new Aabb3.minMax(transfVertice, transfVertice);
           } else {
             _aabb3.hullPoint(transfVertice);
           }
         });
       }
     });
-    if( _aabb3 == null ) {
+    if (_aabb3 == null) {
       _aabb3 = new Aabb3();
     }
   }
 
-  set copy( BoundingBox box ) => _aabb3.copyMinMax(box.min,box.max);
+  set copy(BoundingBox box) => _aabb3.copyMinMax(box.min, box.max);
 
-  bool get isEmpty => ( this.max.x < this.min.x ) || ( this.max.y < this.min.y ) || ( this.max.z < this.min.z );
+  bool get isEmpty => (this.max.x < this.min.x) || (this.max.y < this.min.y) || (this.max.z < this.min.z);
 
-  Vector3 get center =>  _aabb3.center;
+  Vector3 get center => _aabb3.center;
 
-  Vector3 get size => new Vector3.copy( this.max ).sub( this.min );
+  Vector3 get size => new Vector3.copy(this.max).sub(this.min);
 
-  expandByPoint( Vector3 point ) => _aabb3.hullPoint( point );
+  expandByPoint(Vector3 point) => _aabb3.hullPoint(point);
 
-  expandByVector( Vector3 vector ) => _aabb3.copyMinMax(_aabb3.min.sub(vector),_aabb3.max.add(vector));
+  expandByVector(Vector3 vector) => _aabb3.copyMinMax(_aabb3.min.sub(vector), _aabb3.max.add(vector));
 
-  expandByScalar( num scalar ) => _aabb3.copyMinMax(_aabb3.min.addScalar(-scalar),_aabb3.max.addScalar(scalar));
+  expandByScalar(num scalar) => _aabb3.copyMinMax(_aabb3.min.addScalar(-scalar), _aabb3.max.addScalar(scalar));
 
-  bool containsPoint( Vector3 point ) => _aabb3.containsVector3(point);
+  bool containsPoint(Vector3 point) => _aabb3.containsVector3(point);
 
-  bool containsBox( BoundingBox box ) => _aabb3.containsAabb3( new Aabb3.minMax(box.min,box.max) );
+  bool containsBox(BoundingBox box) => _aabb3.containsAabb3(new Aabb3.minMax(box.min, box.max));
 
-  Vector3 getParameter( Vector3 point ) => new Vector3.array([( point.x - min.x ) / ( max.x - min.x ),
-                                                    ( point.y - min.y ) / ( max.y - min.y ),
-                                                    ( point.z - min.z ) / ( max.z - min.z )]
-  );
+  Vector3 getParameter(Vector3 point) =>
+      new Vector3.array(
+          [(point.x - min.x) / (max.x - min.x), (point.y - min.y) / (max.y - min.y), (point.z - min.z) / (max.z - min.z)]);
 
-  bool isIntersectionBox( BoundingBox box) => _aabb3.intersectsWithAabb3( new Aabb3.minMax(box.min,box.max) );
+  bool isIntersectionBox(BoundingBox box) => _aabb3.intersectsWithAabb3(new Aabb3.minMax(box.min, box.max));
 
   //todo: clampPoint
 
   //todo: distanceToPoint
 
-  BoundingSphere get boundingSphere => new BoundingSphere( size.length * 0.5, center );
+  BoundingSphere get boundingSphere => new BoundingSphere(size.length * 0.5, center);
 
-  intersect( BoundingBox box ) {
-    _aabb3.min.max( box.min );
-    _aabb3.max.min( box.max );
+  intersect(BoundingBox box) {
+    _aabb3.min.max(box.min);
+    _aabb3.max.min(box.max);
   }
 
-  union( BoundingBox box ) {
-    _aabb3.min.min( box.min );
-    _aabb3.max.min( box.max );
+  union(BoundingBox box) {
+    _aabb3.min.min(box.min);
+    _aabb3.max.min(box.max);
   }
 
-  applyMatrix4( Matrix4 matrix ) {
-    _aabb3.transform( matrix );
+  applyMatrix4(Matrix4 matrix) {
+    _aabb3.transform(matrix);
   }
 
-  translate( Vector3 offset ) {
-    _aabb3.min.add( offset );
-    _aabb3.max.add( offset );
+  translate(Vector3 offset) {
+    _aabb3.min.add(offset);
+    _aabb3.max.add(offset);
   }
 
-  bool operator== ( BoundingBox box ) => min == box.min && max == box.max;
+  bool operator ==(BoundingBox box) => min == box.min && max == box.max;
 
-  BoundingBox clone() => new BoundingBox( min, max );
+  BoundingBox clone() => new BoundingBox(min, max);
 
 }
 

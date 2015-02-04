@@ -4,6 +4,6 @@ abstract class Pass {
   get enabled;
   get needsSwap;
 
-  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget,
-      WebGLRenderTarget readTarget, double delta, bool maskActive);
+  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget, WebGLRenderTarget readTarget, double delta,
+      bool maskActive);
 }

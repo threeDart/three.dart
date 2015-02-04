@@ -22,10 +22,8 @@ class ShaderPass implements Pass {
 
   ShaderPass(this.program, [this.textureID = 'tDiffuse']) {
     uniforms = program.uniforms;
-    material = new ShaderMaterial(
-        uniforms: uniforms,
-        vertexShader: program.vertexShader,
-        fragmentShader: program.fragmentShader);
+    material =
+        new ShaderMaterial(uniforms: uniforms, vertexShader: program.vertexShader, fragmentShader: program.fragmentShader);
 
     scene = new Scene();
     camera = new OrthographicCamera(-1.0, 1.0, 1.0, -1.0, 0.0, 1.0);
@@ -33,8 +31,8 @@ class ShaderPass implements Pass {
     scene.add(quad);
   }
 
-  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget,
-      WebGLRenderTarget readTarget, double delta, bool maskActive) {
+  void render(WebGLRenderer renderer, WebGLRenderTarget writeTarget, WebGLRenderTarget readTarget, double delta,
+      bool maskActive) {
 
     if (uniforms[textureID] != null) {
       uniforms[textureID].value = readTarget;

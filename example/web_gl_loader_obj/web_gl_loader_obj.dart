@@ -5,7 +5,8 @@ var container, stats;
 
 var camera, cameraTarget, scene, renderer;
 
-var mouseX = 0, mouseY = 0;
+var mouseX = 0,
+    mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
@@ -20,7 +21,7 @@ init() {
 
   camera = new PerspectiveCamera(35.0, window.innerWidth / window.innerHeight, 1.0, 2000.0);
   camera.position.z = 100.0;
-  
+
   // scene
 
   scene = new Scene();
@@ -39,14 +40,14 @@ init() {
   var texture = new Texture();
 
   var loaderTexture = new ImageLoader();
-        
+
   loaderTexture.addEventListener('load', (event) {
     texture.image = event.content;
     texture.needsUpdate = true;
-   });
-        
+  });
+
   loaderTexture.load('textures/UV_Grid_Sm.jpg');
-  
+
   // model
 
   var loader = new OBJLoader(useMtl: false);
@@ -58,13 +59,13 @@ init() {
         }
       });
     });
-    object.position.y = - 80.0;
+    object.position.y = -80.0;
     scene.add(object);
   });
 
   renderer = new WebGLRenderer(antialias: true, alpha: false);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  
+
   container.append(renderer.domElement);
 
   document.onMouseMove.listen(onDocumentMouseMove);
