@@ -21,8 +21,7 @@ class OrthographicCamera extends Camera {
   /// Camera frustum bottom plane.
   double bottom;
 
-  OrthographicCamera( this.left, this.right, this.top, this.bottom,
-            [near = 0.1, far = 2000.0] ) : super(near, far) {
+  OrthographicCamera(this.left, this.right, this.top, this.bottom, [near = 0.1, far = 2000.0]) : super(near, far) {
     updateProjectionMatrix();
   }
 
@@ -30,6 +29,6 @@ class OrthographicCamera extends Camera {
   ///
   /// Must be called after change of parameters.
   void updateProjectionMatrix() {
-    setOrthographicMatrix( projectionMatrix, left, right, bottom, top, near, far);
+    setOrthographicMatrix(projectionMatrix, left, right, bottom, top, near, far);
   }
 }

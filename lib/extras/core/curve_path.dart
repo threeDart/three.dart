@@ -20,12 +20,12 @@ class CurvePath extends Curve {
   List cacheLengths = null;
 
   CurvePath()
-    :  curves = [],
-      _bends = [],
-      autoClose = false,
-      super();
+      : curves = [],
+        _bends = [],
+        autoClose = false,
+        super();
 
-  add( curve ) => curves.add( curve );
+  add(curve) => curves.add(curve);
 
   checkConnection() {
     // TODO
@@ -38,10 +38,10 @@ class CurvePath extends Curve {
     // and verify for vector3 (needs to implement equals)
     // Add a line curve if start and end of lines are not connected
     var startPoint = curves[0].getPoint(0);
-    var endPoint = curves[curves.length-1].getPoint(1);
+    var endPoint = curves[curves.length - 1].getPoint(1);
 
     if (!startPoint.equals(endPoint)) {
-      this.curves.add( new LineCurve(endPoint, startPoint) );
+      this.curves.add(new LineCurve(endPoint, startPoint));
     }
 
   }
@@ -54,29 +54,30 @@ class CurvePath extends Curve {
   // 2. Locate and identify type of curve
   // 3. Get t for the curve
   // 4. Return curve.getPointAt(t')
-  getPoint( num t ) {
+  getPoint(num t) {
 
     var d = t * this.length;
     var curveLengths = this.getCurveLengths();
-    var i = 0, diff;
+    var i = 0,
+        diff;
     Curve curve;
 
     // To think about boundaries points.
 
-    while ( i < curveLengths.length ) {
+    while (i < curveLengths.length) {
 
-      if ( curveLengths[ i ] >= d ) {
+      if (curveLengths[i] >= d) {
 
-        diff = curveLengths[ i ] - d;
-        curve = this.curves[ i ];
+        diff = curveLengths[i] - d;
+        curve = this.curves[i];
 
         var u = 1 - diff / curve.length;
 
-        return curve.getPointAt( u );
+        return curve.getPointAt(u);
 
       }
 
-      i ++;
+      i++;
 
     }
 
@@ -99,7 +100,7 @@ class CurvePath extends Curve {
 
     // We use cache values if curves and cache array are same length
 
-    if ( this.cacheLengths != null && this.cacheLengths.length == this.curves.length ) {
+    if (this.cacheLengths != null && this.cacheLengths.length == this.curves.length) {
 
       return this.cacheLengths;
 
@@ -108,13 +109,15 @@ class CurvePath extends Curve {
     // Get length of subsurve
     // Push sums into cached array
 
-    var lengths = [], sums = 0;
-    var i, il = this.curves.length;
+    var lengths = [],
+        sums = 0;
+    var i,
+        il = this.curves.length;
 
-    for ( i = 0; i < il; i ++ ) {
+    for (i = 0; i < il; i++) {
 
-      sums += this.curves[ i ].length;
-      lengths.add( sums );
+      sums += this.curves[i].length;
+      lengths.add(sums);
 
     }
 
@@ -143,24 +146,27 @@ class CurvePath extends Curve {
     sum = (v3) ? new Vector3.zero() : new Vector2.zero();
 
     int il = points.length;
-    for ( i = 0; i < il; i ++ ) {
+    for (i = 0; i < il; i++) {
 
-      p = points[ i ];
+      p = points[i];
 
-      if ( p.x > maxX ) { maxX = p.x;
-      } else if ( p.x < minX ) minX = p.x;
+      if (p.x > maxX) {
+        maxX = p.x;
+      } else if (p.x < minX) minX = p.x;
 
-      if ( p.y > maxY ) { maxY = p.y;
-      } else if ( p.y < minY ) minY = p.y;
+      if (p.y > maxY) {
+        maxY = p.y;
+      } else if (p.y < minY) minY = p.y;
 
       if (v3) {
         p = p as Vector3;
-        if ( p.z > maxZ ) { maxZ = p.z;
-        } else if ( p.z < minZ ) minZ = p.z;
+        if (p.z > maxZ) {
+          maxZ = p.z;
+        } else if (p.z < minZ) minZ = p.z;
 
-        (sum as Vector3).add( p );
+        (sum as Vector3).add(p);
       } else {
-        (sum as Vector2).add( p );
+        (sum as Vector2).add(p);
       }
 
 
@@ -173,7 +179,7 @@ class CurvePath extends Curve {
       "minY": minY,
       "maxX": maxX,
       "maxY": maxY,
-      "centroid": (sum as dynamic).scale( 1.0 / il )
+      "centroid": (sum as dynamic).scale(1.0 / il)
 
     };
 
@@ -192,24 +198,24 @@ class CurvePath extends Curve {
    **************************************************************/
 
   /// Generate geometry from path points (for Line or ParticleSystem objects)
-  createPointsGeometry( {divisions} ) {
-    var pts = this.getPoints( divisions, true );
-    return this.createGeometry( pts );
+  createPointsGeometry({divisions}) {
+    var pts = this.getPoints(divisions, true);
+    return this.createGeometry(pts);
   }
 
   // Generate geometry from equidistance sampling along the path
-  createSpacedPointsGeometry( [divisions] ) {
-    var pts = this.getSpacedPoints( divisions, true );
-    return this.createGeometry( pts );
+  createSpacedPointsGeometry([divisions]) {
+    var pts = this.getSpacedPoints(divisions, true);
+    return this.createGeometry(pts);
   }
 
-  createGeometry( points ) {
+  createGeometry(points) {
 
     var geometry = new Geometry();
 
-    for ( var i = 0; i < points.length; i ++ ) {
-      var z = (points[i] is Vector3) ? points[ i ].z : 0.0;
-      geometry.vertices.add( new Vector3( points[ i ].x, points[ i ].y, z) );
+    for (var i = 0; i < points.length; i++) {
+      var z = (points[i] is Vector3) ? points[i].z : 0.0;
+      geometry.vertices.add(new Vector3(points[i].x, points[i].y, z));
     }
 
     return geometry;
@@ -222,28 +228,28 @@ class CurvePath extends Curve {
 
   // Wrap path / Bend modifiers?
 
-  addWrapPath( bendpath ) => _bends.add( bendpath );
+  addWrapPath(bendpath) => _bends.add(bendpath);
 
-  getTransformedPoints( segments, {List bends: null} ) {
+  getTransformedPoints(segments, {List bends: null}) {
 
-    var oldPts = this.getPoints( segments ); // getPoints getSpacedPoints
+    var oldPts = this.getPoints(segments); // getPoints getSpacedPoints
     var i, il;
 
     if (bends == null) {
       bends = _bends;
     }
 
-    for ( i = 0; i < bends.length; i ++ ) {
-      oldPts = this.getWrapPoints( oldPts, bends[ i ] );
+    for (i = 0; i < bends.length; i++) {
+      oldPts = this.getWrapPoints(oldPts, bends[i]);
     }
 
     return oldPts;
 
   }
 
-  getTransformedSpacedPoints( [num segments, List bends = null] ) {
+  getTransformedSpacedPoints([num segments, List bends = null]) {
 
-    var oldPts = getSpacedPoints( segments );
+    var oldPts = getSpacedPoints(segments);
 
     var i, il;
 
@@ -251,8 +257,8 @@ class CurvePath extends Curve {
       bends = _bends;
     }
 
-    for ( i = 0; i < bends.length; i ++ ) {
-      oldPts = this.getWrapPoints( oldPts, bends[ i ] );
+    for (i = 0; i < bends.length; i++) {
+      oldPts = this.getWrapPoints(oldPts, bends[i]);
     }
 
     return oldPts;
@@ -261,15 +267,15 @@ class CurvePath extends Curve {
   // This returns getPoints() bend/wrapped around the contour of a path.
   // Read http://www.planetclegg.com/projects/WarpingTextToSplines.html
 
-  getWrapPoints( oldPts, path ) {
+  getWrapPoints(oldPts, path) {
 
     var bounds = getBoundingBox();
 
     var i, il, p, oldX, oldY, xNorm;
 
-    for ( i = 0; i < oldPts.length; i ++ ) {
+    for (i = 0; i < oldPts.length; i++) {
 
-      p = oldPts[ i ];
+      p = oldPts[i];
 
       oldX = p.x;
       oldY = p.y;
@@ -277,14 +283,15 @@ class CurvePath extends Curve {
       xNorm = oldX / bounds.maxX;
 
       // If using actual distance, for length > path, requires line extrusions
-      //xNorm = path.getUtoTmapping(xNorm, oldX); // 3 styles. 1) wrap stretched. 2) wrap stretch by arc length 3) warp by actual distance
 
-      xNorm = path.getUtoTmapping( xNorm, oldX );
+          //xNorm = path.getUtoTmapping(xNorm, oldX); // 3 styles. 1) wrap stretched. 2) wrap stretch by arc length 3) warp by actual distance
+
+      xNorm = path.getUtoTmapping(xNorm, oldX);
 
       // check for out of bounds?
 
-      var pathPt = path.getPoint( xNorm );
-      var normal = path.getNormalVector( xNorm ).scale( oldY );
+      var pathPt = path.getPoint(xNorm);
+      var normal = path.getNormalVector(xNorm).scale(oldY);
 
       p.x = pathPt.x + normal.x;
       p.y = pathPt.y + normal.y;

@@ -16,17 +16,14 @@ class MTLLoader {
   /// Creates a new MTLLoader
   ///
   /// Options are the same of [MaterialCreator]
-  MTLLoader([String this._baseUrl,
-             HashMap this._options,
-             String this._crossOrigin]);
+  MTLLoader([String this._baseUrl, HashMap this._options, String this._crossOrigin]);
 
   /// Loads MTL from an url;
   Future<MaterialCreator> load(String url) {
     if (!url.startsWith('/')) {
       url = this._baseUrl + url;
     }
-    return HttpRequest.request(url, responseType: "String")
-        .then((req) => parse(req.response));
+    return HttpRequest.request(url, responseType: "String").then((req) => parse(req.response));
   }
 
   /// Parses [text] loaded MTL file
@@ -56,10 +53,7 @@ class MTLLoader {
       } else if (info.isNotEmpty) {
         if (key == "ka" || key == "kd" || key == "ks") {
           List<String> ss = value.split(delimiter_pattern);
-          info[key] = [
-            double.parse(ss[0]),
-            double.parse(ss[1]),
-            double.parse(ss[2])];
+          info[key] = [double.parse(ss[0]), double.parse(ss[1]), double.parse(ss[2])];
         } else {
           info[key] = value;
         }
@@ -99,7 +93,7 @@ class MaterialCreator {
   ///         Default: false
   ///       invertTransparency: If transparency need to be inverted (inversion is needed if d = 0 is fully opaque)
   ///         Default: false (d = 1 is fully opaque)
-  MaterialCreator(String this._baseUrl,[HashMap this._options, String this._crossOrigin]) {
+  MaterialCreator(String this._baseUrl, [HashMap this._options, String this._crossOrigin]) {
 
     if (_options != null) {
       if (_options.containsKey("side")) {
@@ -291,12 +285,8 @@ class MaterialCreator {
       new MeshPhongMaterial(
           name: params['name'],
           side: params['side'],
-          color: params.containsKey('color') ?
-              (params['color'] as Color).getHex() :
-              0xffffff,
-          ambient: params.containsKey('ambient') ?
-              (params['ambient'] as Color).getHex() :
-              0xffffff,
+          color: params.containsKey('color') ? (params['color'] as Color).getHex() : 0xffffff,
+          ambient: params.containsKey('ambient') ? (params['ambient'] as Color).getHex() : 0xffffff,
           transparent: params.containsKey('transparent') ? params['transparent'] : false,
           opacity: params.containsKey('opacity') ? params['opacity'] : 1,
           shininess: params.containsKey('shininess') ? params['shininess'] : 30,
@@ -320,7 +310,7 @@ class MaterialCreator {
   }
 
   ImageElement _ensurePowerOfTwo(ImageElement image) {
-    if (!_isPowerOfTwo( image.width ) || !_isPowerOfTwo(image.height)) {
+    if (!_isPowerOfTwo(image.width) || !_isPowerOfTwo(image.height)) {
       var canvas = document.createElement("canvas");
       canvas.width = _nextHighestPowerOfTwo(image.width);
       canvas.height = _nextHighestPowerOfTwo(image.height);

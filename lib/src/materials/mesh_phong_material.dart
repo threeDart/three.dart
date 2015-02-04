@@ -1,12 +1,7 @@
 part of three;
 
 /// A material for shiny surfaces, evaluated per pixel.
-class MeshPhongMaterial extends Material
-  implements Lighting,
-       TextureMapping,
-       EnvironmentMapping,
-       Skinning,
-       Morphing {
+class MeshPhongMaterial extends Material implements Lighting, TextureMapping, EnvironmentMapping, Skinning, Morphing {
 
   /// Ambient color of the material, multiplied by the color of the AmbientLight. Default is white.
   Color ambient;
@@ -83,107 +78,52 @@ class MeshPhongMaterial extends Material
   /// Define whether the material uses morphTargets. Default is false.
   bool morphTargets;
   bool morphNormals;
-  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
+  num numSupportedMorphTargets = 0,
+      numSupportedMorphNormals = 0;
 
-  MeshPhongMaterial( { // MeshLambertMaterial
+  MeshPhongMaterial({ // MeshLambertMaterial
 
-                       num color: 0xffffff, //emissive
-                       num ambient: 0xffffff,
-                       num emissive: 0x000000,
-                       num specular: 0x111111,
+  num color: 0xffffff, //emissive
+  num ambient: 0xffffff, num emissive: 0x000000, num specular: 0x111111, this.map, this.shininess: 30, this.metal:
+      false, this.perPixel: false, this.wrapAround: false, Vector3 wrapRGB, this.lightMap, this.specularMap, this.envMap,
+      this.bumpMap, this.bumpScale: 1, this.normalMap: null, this.normalScale, this.combine: MultiplyOperation,
+      this.reflectivity: 1, this.refractionRatio: 0.98, this.shading: SmoothShading, int vertexColors: NoColors, bool fog:
+      true, this.wireframe: false, this.wireframeLinewidth: 1, this.wireframeLinecap: 'round', this.wireframeLinejoin:
+      'round', this.skinning: false, this.morphTargets: false, this.morphNormals: false, // Material
+  name: '', side: FrontSide, opacity: 1, transparent: false, blending: NormalBlending, blendSrc: SrcAlphaFactor,
+      blendDst: OneMinusSrcAlphaFactor, blendEquation: AddEquation, depthTest: true, depthWrite: true, polygonOffset: false,
+      polygonOffsetFactor: 0, polygonOffsetUnits: 0, alphaTest: 0, overdraw: false, visible: true})
+      : this.ambient = new Color(ambient),
+        this.emissive = new Color(emissive),
+        this.specular = new Color(specular),
 
-                       this.map,
+        this.wrapRGB = wrapRGB == null ? new Vector3(1.0, 1.0, 1.0) : wrapRGB,
 
-                       this.shininess: 30,
+        super(
+          name: name,
+          side: side,
+          opacity: opacity,
+          transparent: transparent,
+          blending: blending,
+          blendSrc: blendSrc,
+          blendDst: blendDst,
+          blendEquation: blendEquation,
+          depthTest: depthTest,
+          depthWrite: depthWrite,
+          polygonOffset: polygonOffset,
+          polygonOffsetFactor: polygonOffsetFactor,
+          polygonOffsetUnits: polygonOffsetUnits,
+          alphaTest: alphaTest,
+          overdraw: overdraw,
+          visible: visible,
+          color: color,
+          fog: fog,
+          vertexColors: vertexColors) {
 
-                       this.metal: false,
-                       this.perPixel: false,
+    if (normalScale == null) {
+      normalScale = new Vector2(1.0, 1.0);
+    }
 
-                       this.wrapAround: false,
-                       Vector3 wrapRGB,
-
-                       this.lightMap,
-                       this.specularMap,
-                       this.envMap,
-
-                       this.bumpMap,
-                       this.bumpScale: 1,
-
-                       this.normalMap: null,
-                       this.normalScale,
-
-                       this.combine: MultiplyOperation,
-                       this.reflectivity: 1,
-                       this.refractionRatio: 0.98,
-
-                       this.shading: SmoothShading,
-
-                       int vertexColors: NoColors,
-
-                       bool fog: true,
-
-                       this.wireframe: false,
-                       this.wireframeLinewidth: 1,
-                       this.wireframeLinecap: 'round',
-                       this.wireframeLinejoin: 'round',
-
-                       this.skinning: false,
-                       this.morphTargets: false,
-                       this.morphNormals: false,
-
-                       // Material
-                       name: '',
-                       side: FrontSide,
-
-                       opacity: 1,
-                       transparent: false,
-
-                       blending: NormalBlending,
-                       blendSrc: SrcAlphaFactor,
-                       blendDst: OneMinusSrcAlphaFactor,
-                       blendEquation: AddEquation,
-
-                       depthTest: true,
-                       depthWrite: true,
-
-                       polygonOffset: false,
-                       polygonOffsetFactor: 0,
-                       polygonOffsetUnits:  0,
-
-                       alphaTest: 0,
-
-                       overdraw: false,
-
-                       visible: true})
-                       :
-                         this.ambient = new Color(ambient),
-                         this.emissive = new Color(emissive),
-                         this.specular = new Color(specular),
-
-                         this.wrapRGB = wrapRGB == null ? new Vector3( 1.0, 1.0, 1.0 ) : wrapRGB,
-
-                             super(  name: name,
-                                 side: side,
-                                 opacity: opacity,
-                                 transparent: transparent,
-                                 blending: blending,
-                                 blendSrc: blendSrc,
-                                 blendDst: blendDst,
-                                 blendEquation: blendEquation,
-                                 depthTest: depthTest,
-                                 depthWrite: depthWrite,
-                                 polygonOffset: polygonOffset,
-                                 polygonOffsetFactor: polygonOffsetFactor,
-                                 polygonOffsetUnits: polygonOffsetUnits,
-                                 alphaTest: alphaTest,
-                                 overdraw: overdraw,
-                                 visible: visible,
-                                 color: color,
-                                 fog: fog,
-                                 vertexColors: vertexColors) {
-
-                           if (normalScale == null) { normalScale = new Vector2( 1.0, 1.0 ); }
-
-                         }
+  }
 
 }

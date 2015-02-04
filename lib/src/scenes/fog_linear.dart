@@ -12,5 +12,5 @@ class FogLinear implements Fog {
   Color color;
   double near;
   double far;
-  FogLinear( num hex, [this.near = 1.0, this.far = 1000.0] ) : color = new Color( hex );
+  FogLinear(num hex, [this.near = 1.0, this.far = 1000.0]) : color = new Color(hex);
 }

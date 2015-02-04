@@ -8,16 +8,16 @@ class Gyroscope extends Object3D {
   Quaternion rotationWorld, rotationObject;
   Vector3 scaleWorld, scaleObject;
 
-  Gyroscope() :
-    translationWorld = new Vector3.zero(),
-    translationObject = new Vector3.zero(),
-    rotationWorld = new Quaternion.identity(),
-    rotationObject = new Quaternion.identity(),
-    scaleWorld = new Vector3.zero(),
-    scaleObject = new Vector3.zero(),
-    super();
+  Gyroscope()
+      : translationWorld = new Vector3.zero(),
+        translationObject = new Vector3.zero(),
+        rotationWorld = new Quaternion.identity(),
+        rotationObject = new Quaternion.identity(),
+        scaleWorld = new Vector3.zero(),
+        scaleObject = new Vector3.zero(),
+        super();
 
-  updateMatrixWorld( {bool force: false} ) {
+  updateMatrixWorld({bool force: false}) {
 
     if (matrixAutoUpdate) {
       updateMatrix();
@@ -25,21 +25,21 @@ class Gyroscope extends Object3D {
 
     // update matrixWorld
 
-    if ( matrixWorldNeedsUpdate || force ) {
+    if (matrixWorldNeedsUpdate || force) {
 
-      if ( parent != null ) {
+      if (parent != null) {
 
         matrixWorld = parent.matrixWorld * matrix;
 
-        decompose( matrixWorld, translationWorld, rotationWorld, scaleWorld );
-        decompose( matrix, translationObject, rotationObject, scaleObject );
+        decompose(matrixWorld, translationWorld, rotationWorld, scaleWorld);
+        decompose(matrix, translationObject, rotationObject, scaleObject);
 
-        compose( matrixWorld, translationWorld, rotationObject, scaleWorld );
+        compose(matrixWorld, translationWorld, rotationObject, scaleWorld);
 
 
       } else {
 
-        matrixWorld.setFrom( matrix );
+        matrixWorld.setFrom(matrix);
 
       }
 
@@ -52,9 +52,9 @@ class Gyroscope extends Object3D {
 
     // update children
     var l = this.children.length;
-    for ( var i = 0; i < l; i ++ ) {
+    for (var i = 0; i < l; i++) {
 
-      children[ i ].updateMatrixWorld( force );
+      children[i].updateMatrixWorld(force);
 
     }
 

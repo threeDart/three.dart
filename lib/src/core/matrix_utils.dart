@@ -14,37 +14,42 @@ part of three;
  * @author anders forsell / http://aforsell.blogspot.com/
  */
 
-Matrix4 makeLookAt(Matrix4 m, Vector3 eye, Vector3 center, Vector3 up ) {
-  Vector3 z = (eye - center ).normalize();
-  if ( z.length == 0.0 ) {
+Matrix4 makeLookAt(Matrix4 m, Vector3 eye, Vector3 center, Vector3 up) {
+  Vector3 z = (eye - center).normalize();
+  if (z.length == 0.0) {
     z.z = 1.0;
   }
 
   Vector3 x = up.cross(z).normalize();
-  if ( x.length == 0.0 ) {
+  if (x.length == 0.0) {
     z.x = z.x + 0.0001;
-    x = up.cross( z ).normalize();
+    x = up.cross(z).normalize();
   }
 
-  Vector3 y = z.cross( x ).normalize();
+  Vector3 y = z.cross(x).normalize();
 
-  m.setValues(x.x, x.y, x.z, 0.0,
-              y.x, y.y, y.z, 0.0,
-              z.x, z.y, z.z, 0.0,
-              0.0, 0.0, 0.0, 1.0);
+  m.setValues(x.x, x.y, x.z, 0.0, y.x, y.y, y.z, 0.0, z.x, z.y, z.z, 0.0, 0.0, 0.0, 0.0, 1.0);
   return m;
 }
 
-Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
-  num x = v.x, y = v.y, z = v.z,
-      a = Math.cos( x ), b = Math.sin( x ),
-      c = Math.cos( y ), d = Math.sin( y ),
-      e = Math.cos( z ), f = Math.sin( z );
+Matrix4 setRotationFromEuler(Matrix4 m, Vector3 v, [String order = 'XYZ']) {
+  num x = v.x,
+      y = v.y,
+      z = v.z,
+      a = Math.cos(x),
+      b = Math.sin(x),
+      c = Math.cos(y),
+      d = Math.sin(y),
+      e = Math.cos(z),
+      f = Math.sin(z);
 
-  switch ( order ) {
+  switch (order) {
     case 'YXZ':
 
-      num ce = c * e, cf = c * f, de = d * e, df = d * f;
+      num ce = c * e,
+          cf = c * f,
+          de = d * e,
+          df = d * f;
 
       m[0] = ce + df * b;
       m[4] = de * b - cf;
@@ -52,7 +57,7 @@ Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
 
       m[1] = a * f;
       m[5] = a * e;
-      m[9] = - b;
+      m[9] = -b;
 
       m[2] = cf * b - de;
       m[6] = df + ce * b;
@@ -61,24 +66,30 @@ Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
 
     case 'ZXY':
 
-      num ce = c * e, cf = c * f, de = d * e, df = d * f;
+      num ce = c * e,
+          cf = c * f,
+          de = d * e,
+          df = d * f;
 
       m[0] = ce - df * b;
-      m[4] = - a * f;
+      m[4] = -a * f;
       m[8] = de + cf * b;
 
       m[1] = cf + de * b;
       m[5] = a * e;
       m[9] = df - ce * b;
 
-      m[2] = - a * d;
+      m[2] = -a * d;
       m[6] = b;
       m[10] = a * c;
       break;
 
     case 'ZYX':
 
-      num ae = a * e, af = a * f, be = b * e, bf = b * f;
+      num ae = a * e,
+          af = a * f,
+          be = b * e,
+          bf = b * f;
 
       m[0] = c * e;
       m[4] = be * d - af;
@@ -88,14 +99,17 @@ Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
       m[5] = bf * d + ae;
       m[9] = af * d - be;
 
-      m[2] = - d;
+      m[2] = -d;
       m[6] = b * c;
       m[10] = a * c;
       break;
 
     case 'YZX':
 
-      num ac = a * c, ad = a * d, bc = b * c, bd = b * d;
+      num ac = a * c,
+          ad = a * d,
+          bc = b * c,
+          bd = b * d;
 
       m[0] = c * e;
       m[4] = bd - ac * f;
@@ -103,19 +117,22 @@ Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
 
       m[1] = f;
       m[5] = a * e;
-      m[9] = - b * e;
+      m[9] = -b * e;
 
-      m[2] = - d * e;
+      m[2] = -d * e;
       m[6] = ad * f + bc;
       m[10] = ac - bd * f;
       break;
 
     case 'XZY':
 
-      num ac = a * c, ad = a * d, bc = b * c, bd = b * d;
+      num ac = a * c,
+          ad = a * d,
+          bc = b * c,
+          bd = b * d;
 
       m[0] = c * e;
-      m[4] = - f;
+      m[4] = -f;
       m[8] = d * e;
 
       m[1] = ac * f + bd;
@@ -129,15 +146,18 @@ Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
 
     default: // 'XYZ'
 
-      num ae = a * e, af = a * f, be = b * e, bf = b * f;
+      num ae = a * e,
+          af = a * f,
+          be = b * e,
+          bf = b * f;
 
       m[0] = c * e;
-      m[4] = - c * f;
+      m[4] = -c * f;
       m[8] = d;
 
       m[1] = af + be * d;
       m[5] = ae - bf * d;
-      m[9] = - b * c;
+      m[9] = -b * c;
 
       m[2] = bf - ae * d;
       m[6] = be + af * d;
@@ -150,78 +170,96 @@ Matrix4 setRotationFromEuler( Matrix4 m, Vector3 v, [String order = 'XYZ'] ) {
 }
 
 
-Matrix4 setRotationFromQuaternion( Matrix4 m, Quaternion q ) {
-  num x = q.x, y = q.y, z = q.z, w = q.w,
-      x2 = x + x, y2 = y + y, z2 = z + z,
-      xx = x * x2, xy = x * y2, xz = x * z2,
-      yy = y * y2, yz = y * z2, zz = z * z2,
-      wx = w * x2, wy = w * y2, wz = w * z2;
+Matrix4 setRotationFromQuaternion(Matrix4 m, Quaternion q) {
+  num x = q.x,
+      y = q.y,
+      z = q.z,
+      w = q.w,
+      x2 = x + x,
+      y2 = y + y,
+      z2 = z + z,
+      xx = x * x2,
+      xy = x * y2,
+      xz = x * z2,
+      yy = y * y2,
+      yz = y * z2,
+      zz = z * z2,
+      wx = w * x2,
+      wy = w * y2,
+      wz = w * z2;
 
-  m[0] = 1.0 - ( yy + zz );
+  m[0] = 1.0 - (yy + zz);
   m[4] = xy - wz;
   m[8] = xz + wy;
 
   m[1] = xy + wz;
-  m[5] = 1.0 - ( xx + zz );
+  m[5] = 1.0 - (xx + zz);
   m[9] = yz - wx;
 
   m[2] = xz - wy;
   m[6] = yz + wx;
-  m[10] = 1.0 - ( xx + yy );
+  m[10] = 1.0 - (xx + yy);
 
   return m;
 }
 
 double calcMaxScaleOnAxis(Matrix4 te) {
 
-  var scaleXSq =  te[0] * te[0] + te[1] * te[1] + te[2] * te[2];
-  var scaleYSq =  te[4] * te[4] + te[5] * te[5] + te[6] * te[6];
-  var scaleZSq =  te[8] * te[8] + te[9] * te[9] + te[10] * te[10];
+  var scaleXSq = te[0] * te[0] + te[1] * te[1] + te[2] * te[2];
+  var scaleYSq = te[4] * te[4] + te[5] * te[5] + te[6] * te[6];
+  var scaleZSq = te[8] * te[8] + te[9] * te[9] + te[10] * te[10];
 
-  return Math.sqrt( Math.max( scaleXSq, Math.max( scaleYSq, scaleZSq ) ) );
+  return Math.sqrt(Math.max(scaleXSq, Math.max(scaleYSq, scaleZSq)));
 
 }
 
 // TODO check if this is available in vector_math library
-Matrix3 calcInverse( Matrix4 m ) {
+Matrix3 calcInverse(Matrix4 m) {
 
   // input: THREE.Matrix4
   // ( based on http://code.google.com/p/webgl-mjs/ )
 
-  double a11 =   m[10] * m[5] - m[6] * m[9];
-  double a21 = - m[10] * m[1] + m[2] * m[9];
-  double a31 =   m[6]  * m[1] - m[2] * m[5];
-  double a12 = - m[10] * m[4] + m[6] * m[8];
-  double a22 =   m[10] * m[0] - m[2] * m[8];
-  double a32 = - m[6]  * m[0] + m[2] * m[4];
-  double a13 =   m[9]  * m[4] - m[5] * m[8];
-  double a23 = - m[9]  * m[0] + m[1] * m[8];
-  double a33 =   m[5]  * m[0] - m[1] * m[4];
+  double a11 = m[10] * m[5] - m[6] * m[9];
+  double a21 = -m[10] * m[1] + m[2] * m[9];
+  double a31 = m[6] * m[1] - m[2] * m[5];
+  double a12 = -m[10] * m[4] + m[6] * m[8];
+  double a22 = m[10] * m[0] - m[2] * m[8];
+  double a32 = -m[6] * m[0] + m[2] * m[4];
+  double a13 = m[9] * m[4] - m[5] * m[8];
+  double a23 = -m[9] * m[0] + m[1] * m[8];
+  double a33 = m[5] * m[0] - m[1] * m[4];
 
   var det = m[0] * a11 + m[1] * a12 + m[2] * a13;
 
   // no inverse
 
-  if ( det == 0 ) {
+  if (det == 0) {
 
-    print( "Matrix3.getInverse(): determinant == 0" );
+    print("Matrix3.getInverse(): determinant == 0");
 
   }
 
   var idet = 1.0 / det;
 
-  return new Matrix3(idet * a11, idet * a21, idet * a31,
-                     idet * a12, idet * a22, idet * a32,
-                     idet * a13, idet * a23, idet * a33);
+  return new Matrix3(
+      idet * a11,
+      idet * a21,
+      idet * a31,
+      idet * a12,
+      idet * a22,
+      idet * a32,
+      idet * a13,
+      idet * a23,
+      idet * a33);
 }
 
-Matrix4 extractRotation( Matrix4 te, Matrix4 m ) {
+Matrix4 extractRotation(Matrix4 te, Matrix4 m) {
 
   Vector3 vector = new Vector3.zero();
 
-  var scaleX = 1.0 / vector.setValues ( m[0], m[1], m[2] ).length;
-  var scaleY = 1.0 / vector.setValues( m[4], m[5], m[6] ).length;
-  var scaleZ = 1.0 / vector.setValues( m[8], m[9], m[10] ).length;
+  var scaleX = 1.0 / vector.setValues(m[0], m[1], m[2]).length;
+  var scaleY = 1.0 / vector.setValues(m[4], m[5], m[6]).length;
+  var scaleZ = 1.0 / vector.setValues(m[8], m[9], m[10]).length;
 
   te[0] = m[0] * scaleX;
   te[1] = m[1] * scaleX;
@@ -245,18 +283,18 @@ Vector3 getScaleFromMatrix(Matrix4 m) {
   return new Vector3(sx, sy, sz);
 }
 
-List decompose(Matrix4 m, Vector3 translation, Quaternion rotation, Vector3 scale ) {
+List decompose(Matrix4 m, Vector3 translation, Quaternion rotation, Vector3 scale) {
 
   var te = m.storage;
 
   // grab the axis vectors
-  Vector3 x = new Vector3( te[0], te[1], te[2] );
-  Vector3 y = new Vector3( te[4], te[5], te[6] );
-  Vector3 z = new Vector3( te[8], te[9], te[10] );
+  Vector3 x = new Vector3(te[0], te[1], te[2]);
+  Vector3 y = new Vector3(te[4], te[5], te[6]);
+  Vector3 z = new Vector3(te[8], te[9], te[10]);
 
-  translation = ( translation is Vector3 ) ? translation : new Vector3.zero();
-  rotation = ( rotation is Quaternion ) ? rotation : new Quaternion.identity();
-  scale = ( scale is Vector3 ) ? scale : new Vector3.zero();
+  translation = (translation is Vector3) ? translation : new Vector3.zero();
+  rotation = (rotation is Quaternion) ? rotation : new Quaternion.identity();
+  scale = (scale is Vector3) ? scale : new Vector3.zero();
 
   scale.x = x.length;
   scale.y = y.length;
@@ -282,13 +320,13 @@ List decompose(Matrix4 m, Vector3 translation, Quaternion rotation, Vector3 scal
   matrix.storage[9] /= scale.z;
   matrix.storage[10] /= scale.z;
 
-  setFromRotationMatrix( rotation, matrix );
+  setFromRotationMatrix(rotation, matrix);
 
 
-  return [ translation, rotation, scale ];
+  return [translation, rotation, scale];
 }
 
-Quaternion setFromRotationMatrix(Quaternion quaternion, Matrix4 m ) {
+Quaternion setFromRotationMatrix(Quaternion quaternion, Matrix4 m) {
 
   // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
@@ -296,46 +334,52 @@ Quaternion setFromRotationMatrix(Quaternion quaternion, Matrix4 m ) {
   quaternion = new Quaternion.identity();
 
   var te = m.storage,
-      m11 = te[0], m12 = te[4], m13 = te[8],
-      m21 = te[1], m22 = te[5], m23 = te[9],
-      m31 = te[2], m32 = te[6], m33 = te[10],
+      m11 = te[0],
+      m12 = te[4],
+      m13 = te[8],
+      m21 = te[1],
+      m22 = te[5],
+      m23 = te[9],
+      m31 = te[2],
+      m32 = te[6],
+      m33 = te[10],
       trace = m11 + m22 + m33,
       s;
 
-  if( trace > 0 ) {
+  if (trace > 0) {
 
-    s = 0.5 / Math.sqrt( trace + 1.0 );
+    s = 0.5 / Math.sqrt(trace + 1.0);
 
     quaternion.w = 0.25 / s;
-    quaternion.x = ( m32 - m23 ) * s;
-    quaternion.y = ( m13 - m31 ) * s;
-    quaternion.z = ( m21 - m12 ) * s;
+    quaternion.x = (m32 - m23) * s;
+    quaternion.y = (m13 - m31) * s;
+    quaternion.z = (m21 - m12) * s;
 
-  } else if ( m11 > m22 && m11 > m33 ) {
+  } else if (m11 > m22 && m11 > m33) {
 
-    s = 2.0 * Math.sqrt( 1.0 + m11 - m22 - m33 );
+    s = 2.0 * Math.sqrt(1.0 + m11 - m22 - m33);
 
-    quaternion.w = (m32 - m23 ) / s;
+    quaternion.w = (m32 - m23) / s;
     quaternion.x = 0.25 * s;
-    quaternion.y = (m12 + m21 ) / s;
-    quaternion.z = (m13 + m31 ) / s;
+    quaternion.y = (m12 + m21) / s;
+    quaternion.z = (m13 + m31) / s;
 
   } else if (m22 > m33) {
 
-    s = 2.0 * Math.sqrt( 1.0 + m22 - m11 - m33 );
+    s = 2.0 * Math.sqrt(1.0 + m22 - m11 - m33);
 
-    quaternion.w = (m13 - m31 ) / s;
-    quaternion.x = (m12 + m21 ) / s;
+    quaternion.w = (m13 - m31) / s;
+    quaternion.x = (m12 + m21) / s;
     quaternion.y = 0.25 * s;
-    quaternion.z = (m23 + m32 ) / s;
+    quaternion.z = (m23 + m32) / s;
 
   } else {
 
-    s = 2.0 * Math.sqrt( 1.0 + m33 - m11 - m22 );
+    s = 2.0 * Math.sqrt(1.0 + m33 - m11 - m22);
 
-    quaternion.w = ( m21 - m12 ) / s;
-    quaternion.x = ( m13 + m31 ) / s;
-    quaternion.y = ( m23 + m32 ) / s;
+    quaternion.w = (m21 - m12) / s;
+    quaternion.x = (m13 + m31) / s;
+    quaternion.y = (m23 + m32) / s;
     quaternion.z = 0.25 * s;
 
   }
@@ -343,12 +387,12 @@ Quaternion setFromRotationMatrix(Quaternion quaternion, Matrix4 m ) {
   return quaternion;
 }
 
-Matrix4 compose( Matrix4 matrix, Vector3 translation, Quaternion rotation, Vector3 s ) {
+Matrix4 compose(Matrix4 matrix, Vector3 translation, Quaternion rotation, Vector3 s) {
 
   var te = matrix.storage;
 
   Matrix4 mRotation = new Matrix4.identity();
-  setRotationFromQuaternion( mRotation, rotation );
+  setRotationFromQuaternion(mRotation, rotation);
 
   Matrix4 mScale = new Matrix4.diagonal3Values(s.x, s.y, s.z);
 
@@ -361,23 +405,37 @@ Matrix4 compose( Matrix4 matrix, Vector3 translation, Quaternion rotation, Vecto
   return matrix;
 }
 
-Matrix4 makeRotationAxis( Matrix4 m, Vector3 axis, num angle ) {
+Matrix4 makeRotationAxis(Matrix4 m, Vector3 axis, num angle) {
   // Based on http://www.gamedev.net/reference/articles/article1199.asp
 
-  num c = Math.cos( angle ),
-      s = Math.sin( angle ),
+  num c = Math.cos(angle),
+      s = Math.sin(angle),
       t = 1.0 - c,
-      x = axis.x, y = axis.y, z = axis.z,
-      tx = t * x, ty = t * y;
+      x = axis.x,
+      y = axis.y,
+      z = axis.z,
+      tx = t * x,
+      ty = t * y;
 
   m.setValues(
-      tx * x + c, tx * y - s * z, tx * z + s * y, 0.0,
-      tx * y + s * z, ty * y + c, ty * z - s * x, 0.0,
-      tx * z - s * y, ty * z + s * x, t * z * z + c, 0.0,
-      0.0, 0.0, 0.0, 1.0
-    );
+      tx * x + c,
+      tx * y - s * z,
+      tx * z + s * y,
+      0.0,
+      tx * y + s * z,
+      ty * y + c,
+      ty * z - s * x,
+      0.0,
+      tx * z - s * y,
+      ty * z + s * x,
+      t * z * z + c,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0);
 
-   return m;
+  return m;
 }
 
 multiplyVector3Array(Matrix4 m, List<double> a) {
@@ -385,17 +443,17 @@ multiplyVector3Array(Matrix4 m, List<double> a) {
   var v1 = new Vector3.zero();
   var il = a.length;
 
-  for ( var i = 0; i < il; i += 3 ) {
+  for (var i = 0; i < il; i += 3) {
 
-    v1.x = a[ i ];
-    v1.y = a[ i + 1 ];
-    v1.z = a[ i + 2 ];
+    v1.x = a[i];
+    v1.y = a[i + 1];
+    v1.z = a[i + 2];
 
-    v1.applyProjection( m );
+    v1.applyProjection(m);
 
-    a[ i ]     = v1.x;
-    a[ i + 1 ] = v1.y;
-    a[ i + 2 ] = v1.z;
+    a[i] = v1.x;
+    a[i + 1] = v1.y;
+    a[i + 2] = v1.z;
 
   }
 

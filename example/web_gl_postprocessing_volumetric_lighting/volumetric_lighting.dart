@@ -49,18 +49,10 @@ void init() {
   oclscene = new Scene();
 
   // cameras init
-  camera = new PerspectiveCamera(
-      70.0,
-      window.innerWidth / window.innerHeight,
-      1.0,
-      100000.0)
+  camera = new PerspectiveCamera(70.0, window.innerWidth / window.innerHeight, 1.0, 100000.0)
       ..position.z = 280.0
       ..lookAt(scene.position);
-  oclcamera = new PerspectiveCamera(
-      70.0,
-      window.innerWidth / window.innerHeight,
-      1.0,
-      100000.0)
+  oclcamera = new PerspectiveCamera(70.0, window.innerWidth / window.innerHeight, 1.0, 100000.0)
       ..position = camera.position
       ..lookAt(scene.position);
 
@@ -72,9 +64,7 @@ void init() {
   camera.add(cameraLight);
 
   oclscene.add(new AmbientLight(0xffffff)); // ocl scene lights
-  vlight = new Mesh(
-      new IcosahedronGeometry(50.0, 3),
-      new MeshBasicMaterial(color: COLOR11));
+  vlight = new Mesh(new IcosahedronGeometry(50.0, 3), new MeshBasicMaterial(color: COLOR11));
   vlight.position = pointLight.position;
   oclscene.add(vlight);
 
@@ -112,15 +102,11 @@ void init() {
   RenderPass renderModel = new RenderPass(scene, camera);
   finalComposer.addPass(renderModel);
 
-  ShaderPass fxaaPass =
-      new ShaderPass(new ShaderProgram.fromThreeish(FXAAShader));
-  fxaaPass.uniforms['resolution'].value.setValues(
-      1 / window.innerWidth,
-      1 / window.innerHeight);
+  ShaderPass fxaaPass = new ShaderPass(new ShaderProgram.fromThreeish(FXAAShader));
+  fxaaPass.uniforms['resolution'].value.setValues(1 / window.innerWidth, 1 / window.innerHeight);
   finalComposer.addPass(fxaaPass);
 
-  ShaderPass finalPass =
-      new ShaderPass(new ShaderProgram.fromThreeish(AdditiveShader));
+  ShaderPass finalPass = new ShaderPass(new ShaderProgram.fromThreeish(AdditiveShader));
   finalPass.uniforms['tAdd'].value = oclcomposer.readTarget;
   finalPass.renderToScreen = true;
   finalComposer.addPass(finalPass);

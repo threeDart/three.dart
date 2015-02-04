@@ -89,39 +89,13 @@ class Material {
   // Used by ShadowMapPlugin
   bool shadowPass = false;
 
-  Material( { this.name: '',
-              this.side: FrontSide,
-
-              this.opacity: 1,
-              this.transparent: false,
-
-              this.blending: NormalBlending,
-              this.blendSrc: SrcAlphaFactor,
-              this.blendDst: OneMinusSrcAlphaFactor,
-              this.blendEquation: AddEquation,
-
-              this.depthTest: true,
-              this.depthWrite: true,
-
-              this.polygonOffset: false,
-              this.polygonOffsetFactor: 0,
-              this.polygonOffsetUnits:  0,
-
-              this.alphaTest: 0,
-
-              num color,
-
-              this.overdraw: false,
-
-              this.visible: true,
-
-              this.fog: false,
-
-              this.vertexColors: NoColors})
-      :
-
-            id = MaterialCount ++,
-            this.color = new Color(color);
+  Material({this.name: '', this.side: FrontSide, this.opacity: 1, this.transparent: false, this.blending:
+      NormalBlending, this.blendSrc: SrcAlphaFactor, this.blendDst: OneMinusSrcAlphaFactor, this.blendEquation: AddEquation,
+      this.depthTest: true, this.depthWrite: true, this.polygonOffset: false, this.polygonOffsetFactor: 0,
+      this.polygonOffsetUnits: 0, this.alphaTest: 0, num color, this.overdraw: false, this.visible: true, this.fog: false,
+      this.vertexColors: NoColors})
+      : id = MaterialCount++,
+        this.color = new Color(color);
 
 /*
   THREE.MaterialCount = 0;
@@ -150,7 +124,8 @@ abstract class TextureMapping {
 abstract class EnvironmentMapping {
   Texture envMap;
 
-  /// Since this material does not have a specular component, the specular value affects only how much of the environment map affects the surface.
+
+      /// Since this material does not have a specular component, the specular value affects only how much of the environment map affects the surface.
   Texture specularMap;
   Texture lightMap;
 
@@ -181,8 +156,10 @@ abstract class Lighting {
 
 /** [Material] that uses skinning **/
 abstract class Morphing {
-  bool morphTargets = false, morphNormals = false;
-  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
+  bool morphTargets = false,
+      morphNormals = false;
+  num numSupportedMorphTargets = 0,
+      numSupportedMorphNormals = 0;
 }
 
 abstract class Skinning {

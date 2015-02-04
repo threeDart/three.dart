@@ -48,17 +48,14 @@ void init() {
       ..setSize(winWidth, winHeight)
       ..sortObjects = false;
   document.body.append(renderer.domElement);
-  camera = new PerspectiveCamera(70.0, winWidth / winHeight, 1.0, 3000.0)
-      ..position.z = 200.0;
+  camera = new PerspectiveCamera(70.0, winWidth / winHeight, 1.0, 3000.0)..position.z = 200.0;
   container = new Object3D();
   scene = new Scene();
 
   Texture cubeTexture = ImageUtils.loadTextureCube(
-      ['px', 'nx', 'py', 'ny', 'pz', 'nz']
-          .map((halfaxis) => "textures/" + halfaxis + ".jpg").toList());
+      ['px', 'nx', 'py', 'ny', 'pz', 'nz'].map((halfaxis) => "textures/" + halfaxis + ".jpg").toList());
 
-  SphereGeometry geometry =
-      new SphereGeometry(1.0, SPHERE_MERIDIANS, SPHERE_PARALLELS);
+  SphereGeometry geometry = new SphereGeometry(1.0, SPHERE_MERIDIANS, SPHERE_PARALLELS);
 
   materials = new List<Material>();
 
@@ -66,10 +63,7 @@ void init() {
   for (int n = 0; n < GRID_N; ++n) //
   for (int p = 0; p < GRID_P; ++p) {
 
-    MeshBasicMaterial material = new MeshBasicMaterial(
-        color: 0xff1100,
-        envMap: cubeTexture,
-        shading: FlatShading);
+    MeshBasicMaterial material = new MeshBasicMaterial(color: 0xff1100, envMap: cubeTexture, shading: FlatShading);
     materials.add(material);
     Mesh mesh = new Mesh(geometry, material);
 
@@ -88,16 +82,16 @@ void init() {
   scene.matrixAutoUpdate = false;
   renderer.autoClear = false;
 
-  composer = new EffectComposer(renderer)
-      ..addPass(new RenderPass(scene, camera));
+  composer = new EffectComposer(renderer)..addPass(new RenderPass(scene, camera));
 
-  bokehPass = new BokehPass(scene, camera,
+  bokehPass = new BokehPass(
+      scene,
+      camera,
       focus: FOCUS,
       aperture: APERTURE,
       maxblur: MAX_BLUR,
       width: winWidth,
-      height: winHeight)
-      ..renderToScreen = true;
+      height: winHeight)..renderToScreen = true;
   composer.addPass(bokehPass);
 
   window.onResize.listen(onWindowResize);

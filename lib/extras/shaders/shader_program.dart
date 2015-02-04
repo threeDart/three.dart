@@ -30,8 +30,7 @@ class ShaderProgram {
   String vertexShader;
   String fragmentShader;
 
-  ShaderProgram(Map<String, Uniform> uniforms, this.vertexShader,
-      this.fragmentShader) {
+  ShaderProgram(Map<String, Uniform> uniforms, this.vertexShader, this.fragmentShader) {
     this.uniforms = new Map<String, Uniform>.from(uniforms);
   }
 
@@ -54,8 +53,7 @@ class ShaderProgram {
 
     dynamicUniformMap.forEach((name, dynamicUniform) {
       //print(name.toString() + ", " + dynamicUniform.toString());
-      typedUniformMap[name] =
-          new Uniform(dynamicUniform['type'], dynamicUniform['value']);
+      typedUniformMap[name] = new Uniform(dynamicUniform['type'], dynamicUniform['value']);
     });
 
     return typedUniformMap;

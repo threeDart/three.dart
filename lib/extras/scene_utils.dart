@@ -3,16 +3,16 @@ library SceneUtils;
 import 'package:vector_math/vector_math.dart';
 import "package:three/three.dart";
 
-showHierarchy( root, visible ) => traverseHierarchy( root, (node) => node.visible = visible);
+showHierarchy(root, visible) => traverseHierarchy(root, (node) => node.visible = visible);
 
-void traverseHierarchy( Object3D root, Function callback(Object3D node) ) {
+void traverseHierarchy(Object3D root, Function callback(Object3D node)) {
   root.children.forEach((n) {
     callback(n);
-    traverseHierarchy( n, callback );
+    traverseHierarchy(n, callback);
   });
 }
 
-Object3D createMultiMaterialObject( Geometry geometry, List<Material> materials ) {
+Object3D createMultiMaterialObject(Geometry geometry, List<Material> materials) {
   var group = new Object3D();
 
   materials.forEach((material) {
@@ -30,9 +30,9 @@ Object3D cloneObject(Object3D source) {
   // subclass specific properties
   // (must process in order from more specific subclasses to more abstract classes)
 
-  if ( source is MorphAnimMesh ) {
+  if (source is MorphAnimMesh) {
 
-    object = new MorphAnimMesh( source.geometry, source.material );
+    object = new MorphAnimMesh(source.geometry, source.material);
 
     (object as MorphAnimMesh).duration = source.duration;
     (object as MorphAnimMesh).mirroredLoop = source.mirroredLoop;
@@ -44,36 +44,36 @@ Object3D cloneObject(Object3D source) {
     (object as MorphAnimMesh).direction = source.direction;
     (object as MorphAnimMesh).directionBackwards = source.directionBackwards;
 
-  } else if ( source is SkinnedMesh ) {
+  } else if (source is SkinnedMesh) {
 
-    object = new SkinnedMesh( source.geometry, source.material );
+    object = new SkinnedMesh(source.geometry, source.material);
 
-  } else if ( source is Mesh ) {
+  } else if (source is Mesh) {
 
-    object = new Mesh( source.geometry, source.material );
+    object = new Mesh(source.geometry, source.material);
 
-  } else if ( source is Line ) {
+  } else if (source is Line) {
 
-    object = new Line( source.geometry, source.material, source.type );
+    object = new Line(source.geometry, source.material, source.type);
 
-  } else if ( source is Ribbon ) {
+  } else if (source is Ribbon) {
 
-    object = new Ribbon( source.geometry, source.material );
+    object = new Ribbon(source.geometry, source.material);
 
-  } else if ( source is ParticleSystem ) {
+  } else if (source is ParticleSystem) {
 
-    object = new ParticleSystem( source.geometry, source.material );
+    object = new ParticleSystem(source.geometry, source.material);
     (object as ParticleSystem).sortParticles = source.sortParticles;
 
-  } else if ( source is Particle ) {
+  } else if (source is Particle) {
 
-    object = new Particle( source.material );
+    object = new Particle(source.material);
 
-  } else if ( source is Sprite ) {
+  } else if (source is Sprite) {
 
     object = new Sprite();
 
-    (object as Sprite).color.copy( source.color );
+    (object as Sprite).color.copy(source.color);
     (object as Sprite).map = source.map;
     (object as Sprite).blending = source.blending;
 
@@ -90,11 +90,11 @@ Object3D cloneObject(Object3D source) {
     (object as Sprite).uvOffset.setFrom(source.uvOffset);
     (object as Sprite).uvScale.setFrom(source.uvScale);
 
-  } else if ( source is LOD ) {
+  } else if (source is LOD) {
 
     object = new LOD();
 
-  /*
+    /*
   } else if ( source instanceof THREE.MarchingCubes ) {
 
     object = new THREE.MarchingCubes( source.resolution, source.material );
@@ -102,7 +102,7 @@ Object3D cloneObject(Object3D source) {
     object.isolation = source.isolation;
   */
 
-  } else if ( source is Object3D ) {
+  } else if (source is Object3D) {
 
     object = new Object3D();
 
@@ -120,7 +120,7 @@ Object3D cloneObject(Object3D source) {
 
   // because of Sprite madness
 
-  if ( object.rotation is Vector3 ) {
+  if (object.rotation is Vector3) {
     object.rotation.setFrom(source.rotation);
   }
 
@@ -141,7 +141,7 @@ Object3D cloneObject(Object3D source) {
   object.matrixAutoUpdate = source.matrixAutoUpdate;
   object.matrixWorldNeedsUpdate = source.matrixWorldNeedsUpdate;
 
-  object.quaternion.copy( source.quaternion );
+  object.quaternion.copy(source.quaternion);
   object.useQuaternion = source.useQuaternion;
 
   object.boundRadius = source.boundRadius;
@@ -156,10 +156,10 @@ Object3D cloneObject(Object3D source) {
 
   // children
 
-  for ( var i = 0; i < source.children.length; i ++ ) {
+  for (var i = 0; i < source.children.length; i++) {
 
-    var child = cloneObject( source.children[ i ] );
-    object.children[ i ] = child;
+    var child = cloneObject(source.children[i]);
+    object.children[i] = child;
 
     child.parent = object;
 
@@ -167,13 +167,16 @@ Object3D cloneObject(Object3D source) {
 
   // LODs need to be patched separately to use cloned children
 
-  if ( source is LOD ) {
+  if (source is LOD) {
 
-    for ( var i = 0; i < source.LODs.length; i ++ ) {
+    for (var i = 0; i < source.LODs.length; i++) {
 
-      var slod = source.LODs[ i ];
+      var slod = source.LODs[i];
       var tlod = object as LOD;
-      tlod.LODs[ i ] = { "visibleAtDistance": slod.visibleAtDistance, "object3D": tlod.children[ i ] };
+      tlod.LODs[i] = {
+        "visibleAtDistance": slod.visibleAtDistance,
+        "object3D": tlod.children[i]
+      };
 
     }
 
@@ -183,18 +186,18 @@ Object3D cloneObject(Object3D source) {
 
 }
 
-void detach( Object3D child, Object3D parent, Scene scene ) {
-  child.applyMatrix( parent.matrixWorld );
-  parent.remove( child );
-  scene.add( child );
+void detach(Object3D child, Object3D parent, Scene scene) {
+  child.applyMatrix(parent.matrixWorld);
+  parent.remove(child);
+  scene.add(child);
 }
 
-void attach( Object3D child, Scene scene, Object3D parent ) {
+void attach(Object3D child, Scene scene, Object3D parent) {
 
   Matrix4 matrixWorldInverse = parent.matrixWorld.clone();
   matrixWorldInverse.invert();
-  child.applyMatrix( matrixWorldInverse );
+  child.applyMatrix(matrixWorldInverse);
 
-  scene.remove( child );
-  parent.add( child );
+  scene.remove(child);
+  parent.add(child);
 }

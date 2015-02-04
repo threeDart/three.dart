@@ -11,20 +11,21 @@ part of three;
  */
 class JSONLoader extends Loader {
 
-  JSONLoader( {bool showStatus: false} ) : super(showStatus );
+  JSONLoader({bool showStatus: false}) : super(showStatus);
 
-  load( url, LoadedCallback callback, {texturePath: null} ) {
+  load(url, LoadedCallback callback, {texturePath: null}) {
 
     if (texturePath == null) {
-      texturePath = Loader._extractUrlBase( url );
+      texturePath = Loader._extractUrlBase(url);
     }
 
     onLoadStart();
 
-    _loadAjaxJSON(url, callback, texturePath );
+    _loadAjaxJSON(url, callback, texturePath);
   }
 
-  _loadAjaxJSON(String url, LoadedCallback callback, String texturePath, {LoadProgressCallback callbackProgress: null} ) {
+  _loadAjaxJSON(String url, LoadedCallback callback, String texturePath, {LoadProgressCallback callbackProgress:
+      null}) {
 
     HttpRequest xhr = new HttpRequest();
 
@@ -32,18 +33,18 @@ class JSONLoader extends Loader {
 
     xhr.onReadyStateChange.listen((Event e) {
 
-      if ( xhr.readyState == HttpRequest.DONE ) {
+      if (xhr.readyState == HttpRequest.DONE) {
 
-        if ( xhr.status == 200 || xhr.status == 0 ) {
+        if (xhr.status == 200 || xhr.status == 0) {
 
-          if ( !xhr.responseText.isEmpty ) {
+          if (!xhr.responseText.isEmpty) {
 
-            var json = JSON.decode( xhr.responseText );
-            _createModel( json, callback, texturePath );
+            var json = JSON.decode(xhr.responseText);
+            _createModel(json, callback, texturePath);
 
           } else {
 
-            print( "THREE.JSONLoader: [$url] seems to be unreachable or file there is empty" );
+            print("THREE.JSONLoader: [$url] seems to be unreachable or file there is empty");
 
           }
 
@@ -55,145 +56,165 @@ class JSONLoader extends Loader {
 
         } else {
 
-          print( "THREE.JSONLoader: Couldn't load [$url] [${xhr.status}]" );
+          print("THREE.JSONLoader: Couldn't load [$url] [${xhr.status}]");
 
         }
 
-      } else if ( xhr.readyState == HttpRequest.LOADING ) {
+      } else if (xhr.readyState == HttpRequest.LOADING) {
 
-        if ( callbackProgress != null) {
+        if (callbackProgress != null) {
 
-          if ( length == 0 ) {
+          if (length == 0) {
 
-            length = xhr.getResponseHeader( "Content-Length" );
+            length = xhr.getResponseHeader("Content-Length");
 
           }
 
-          callbackProgress( { "total": length, "loaded": xhr.responseText.length } );
+          callbackProgress({
+            "total": length,
+            "loaded": xhr.responseText.length
+          });
 
         }
 
-      } else if ( xhr.readyState == HttpRequest.HEADERS_RECEIVED ) {
+      } else if (xhr.readyState == HttpRequest.HEADERS_RECEIVED) {
 
-        length = xhr.getResponseHeader( "Content-Length" );
+        length = xhr.getResponseHeader("Content-Length");
 
       }
 
     });
 
-    xhr.open( "GET", url);
-    xhr.send( null );
+    xhr.open("GET", url);
+    xhr.send(null);
 
   }
 
-  bool _isBitSet( value, position ) => (value & ( 1 << position )) > 0;
+  bool _isBitSet(value, position) => (value & (1 << position)) > 0;
 
-  _createModel( Map json, LoadedCallback callback, String texturePath ) {
+  _createModel(Map json, LoadedCallback callback, String texturePath) {
 
     var geometry = new Geometry(),
-        scale = ( json.containsKey("scale")) ? 1.0 / json["scale"] : 1.0;
+        scale = (json.containsKey("scale")) ? 1.0 / json["scale"] : 1.0;
 
-    _initMaterials( geometry, json["materials"], texturePath );
+    _initMaterials(geometry, json["materials"], texturePath);
 
-    _parseModel( json, geometry, scale );
+    _parseModel(json, geometry, scale);
 
-    _parseSkin( json, geometry);
-    _parseMorphing( json, geometry, scale );
+    _parseSkin(json, geometry);
+    _parseMorphing(json, geometry, scale);
 
     geometry.computeCentroids();
     geometry.computeFaceNormals();
 
-    if ( _hasNormals( geometry ) ) geometry.computeTangents();
+    if (_hasNormals(geometry)) geometry.computeTangents();
 
-    callback( geometry );
+    callback(geometry);
   }
 
-  _parseModel( Map json, Geometry geometry, num scale ) {
+  _parseModel(Map json, Geometry geometry, num scale) {
 
-    var i, j, fi,
+    var i,
+        j,
+        fi,
 
-    offset, zLength, nVertices,
+        offset,
+        zLength,
+        nVertices,
 
-    colorIndex, normalIndex, uvIndex, materialIndex,
+        colorIndex,
+        normalIndex,
+        uvIndex,
+        materialIndex,
 
-    type,
-    isQuad,
-    hasMaterial,
-    hasFaceUv, hasFaceVertexUv,
-    hasFaceNormal, hasFaceVertexNormal,
-    hasFaceColor, hasFaceVertexColor,
+        type,
+        isQuad,
+        hasMaterial,
+        hasFaceUv,
+        hasFaceVertexUv,
+        hasFaceNormal,
+        hasFaceVertexNormal,
+        hasFaceColor,
+        hasFaceVertexColor,
 
-    vertex, face, color, normal,
+        vertex,
+        face,
+        color,
+        normal,
 
-    uvLayer, uvs, u, v,
+        uvLayer,
+        uvs,
+        u,
+        v,
 
-    faces = json["faces"],
-    vertices = json["vertices"],
-    normals = json["normals"],
-    colors = json["colors"],
+        faces = json["faces"],
+        vertices = json["vertices"],
+        normals = json["normals"],
+        colors = json["colors"],
 
-    nUvLayers = 0;
+        nUvLayers = 0;
 
     // disregard empty arrays
 
-    for ( i = 0; i < json["uvs"].length; i++ ) {
+    for (i = 0; i < json["uvs"].length; i++) {
 
-      if ( !json["uvs"][ i ].isEmpty ) nUvLayers ++;
+      if (!json["uvs"][i].isEmpty) nUvLayers++;
 
     }
 
     geometry.faceUvs = new List(nUvLayers);
     geometry.faceVertexUvs = new List(nUvLayers);
 
-    for ( i = 0; i < nUvLayers; i++ ) {
+    for (i = 0; i < nUvLayers; i++) {
 
-      geometry.faceUvs[ i ] = new List(faces.length);
-      geometry.faceVertexUvs[ i ] = new List(faces.length);
+      geometry.faceUvs[i] = new List(faces.length);
+      geometry.faceVertexUvs[i] = new List(faces.length);
 
     }
 
     offset = 0;
     zLength = vertices.length;
 
-    while ( offset < zLength ) {
+    while (offset < zLength) {
 
       vertex = new Vector3.zero();
 
-      vertex.x = vertices[ offset ++ ] * scale;
-      vertex.y = vertices[ offset ++ ] * scale;
-      vertex.z = vertices[ offset ++ ] * scale;
+      vertex.x = vertices[offset++] * scale;
+      vertex.y = vertices[offset++] * scale;
+      vertex.z = vertices[offset++] * scale;
 
-      geometry.vertices.add( vertex );
+      geometry.vertices.add(vertex);
 
     }
 
     offset = 0;
     zLength = faces.length;
 
-    while ( offset < zLength ) {
+    while (offset < zLength) {
 
-      type = faces[ offset ++ ];
+      type = faces[offset++];
 
 
-      isQuad            = _isBitSet( type, 0 );
-      hasMaterial         = _isBitSet( type, 1 );
-      hasFaceUv           = _isBitSet( type, 2 );
-      hasFaceVertexUv     = _isBitSet( type, 3 );
-      hasFaceNormal       = _isBitSet( type, 4 );
-      hasFaceVertexNormal = _isBitSet( type, 5 );
-      hasFaceColor      = _isBitSet( type, 6 );
-      hasFaceVertexColor  = _isBitSet( type, 7 );
+      isQuad = _isBitSet(type, 0);
+      hasMaterial = _isBitSet(type, 1);
+      hasFaceUv = _isBitSet(type, 2);
+      hasFaceVertexUv = _isBitSet(type, 3);
+      hasFaceNormal = _isBitSet(type, 4);
+      hasFaceVertexNormal = _isBitSet(type, 5);
+      hasFaceColor = _isBitSet(type, 6);
+      hasFaceVertexColor = _isBitSet(type, 7);
 
-      //console.log("type", type, "bits", isQuad, hasMaterial, hasFaceUv, hasFaceVertexUv, hasFaceNormal, hasFaceVertexNormal, hasFaceColor, hasFaceVertexColor);
 
-      if ( isQuad ) {
+          //console.log("type", type, "bits", isQuad, hasMaterial, hasFaceUv, hasFaceVertexUv, hasFaceNormal, hasFaceVertexNormal, hasFaceColor, hasFaceVertexColor);
+
+      if (isQuad) {
 
         face = new Face4();
 
-        face.a = faces[ offset ++ ];
-        face.b = faces[ offset ++ ];
-        face.c = faces[ offset ++ ];
-        face.d = faces[ offset ++ ];
+        face.a = faces[offset++];
+        face.b = faces[offset++];
+        face.c = faces[offset++];
+        face.d = faces[offset++];
 
         nVertices = 4;
 
@@ -201,17 +222,17 @@ class JSONLoader extends Loader {
 
         face = new Face3();
 
-        face.a = faces[ offset ++ ];
-        face.b = faces[ offset ++ ];
-        face.c = faces[ offset ++ ];
+        face.a = faces[offset++];
+        face.b = faces[offset++];
+        face.c = faces[offset++];
 
         nVertices = 3;
 
       }
 
-      if ( hasMaterial ) {
+      if (hasMaterial) {
 
-        materialIndex = faces[ offset ++ ];
+        materialIndex = faces[offset++];
         face.materialIndex = materialIndex;
 
       }
@@ -220,105 +241,105 @@ class JSONLoader extends Loader {
 
       fi = geometry.faces.length;
 
-      if ( hasFaceUv ) {
+      if (hasFaceUv) {
 
-        for ( i = 0; i < nUvLayers; i++ ) {
+        for (i = 0; i < nUvLayers; i++) {
 
-          uvLayer = json["uvs"][ i ];
+          uvLayer = json["uvs"][i];
 
-          uvIndex = faces[ offset ++ ];
+          uvIndex = faces[offset++];
 
-          u = uvLayer[ uvIndex * 2 ];
-          v = uvLayer[ uvIndex * 2 + 1 ];
+          u = uvLayer[uvIndex * 2];
+          v = uvLayer[uvIndex * 2 + 1];
 
-          geometry.faceUvs[ i ][ fi ] = new UV(u.toDouble(), v.toDouble());
+          geometry.faceUvs[i][fi] = new UV(u.toDouble(), v.toDouble());
 
         }
 
       }
 
-      if ( hasFaceVertexUv ) {
+      if (hasFaceVertexUv) {
 
-        for ( i = 0; i < nUvLayers; i++ ) {
+        for (i = 0; i < nUvLayers; i++) {
 
-          uvLayer = json["uvs"][ i ];
+          uvLayer = json["uvs"][i];
 
           uvs = new List(nVertices);
 
-          for ( j = 0; j < nVertices; j ++ ) {
+          for (j = 0; j < nVertices; j++) {
 
-            uvIndex = faces[ offset ++ ];
+            uvIndex = faces[offset++];
 
-            u = uvLayer[ uvIndex * 2 ];
-            v = uvLayer[ uvIndex * 2 + 1 ];
+            u = uvLayer[uvIndex * 2];
+            v = uvLayer[uvIndex * 2 + 1];
 
-            uvs[ j ] = new UV(u.toDouble(), v.toDouble());
+            uvs[j] = new UV(u.toDouble(), v.toDouble());
 
           }
 
-          geometry.faceVertexUvs[ i ][ fi ] = uvs;
+          geometry.faceVertexUvs[i][fi] = uvs;
 
         }
 
       }
 
-      if ( hasFaceNormal ) {
+      if (hasFaceNormal) {
 
-        normalIndex = faces[ offset ++ ] * 3;
+        normalIndex = faces[offset++] * 3;
 
         normal = new Vector3.zero();
 
-        normal.x = normals[ normalIndex ++ ].toDouble();
-        normal.y = normals[ normalIndex ++ ].toDouble();
-        normal.z = normals[ normalIndex ].toDouble();
+        normal.x = normals[normalIndex++].toDouble();
+        normal.y = normals[normalIndex++].toDouble();
+        normal.z = normals[normalIndex].toDouble();
 
         face.normal = normal;
 
       }
 
-      if ( hasFaceVertexNormal ) {
+      if (hasFaceVertexNormal) {
 
-        for ( i = 0; i < nVertices; i++ ) {
+        for (i = 0; i < nVertices; i++) {
 
-          normalIndex = faces[ offset ++ ] * 3;
+          normalIndex = faces[offset++] * 3;
 
           normal = new Vector3.zero();
 
-          normal.x = normals[ normalIndex ++ ].toDouble();
-          normal.y = normals[ normalIndex ++ ].toDouble();
-          normal.z = normals[ normalIndex ].toDouble();
+          normal.x = normals[normalIndex++].toDouble();
+          normal.y = normals[normalIndex++].toDouble();
+          normal.z = normals[normalIndex].toDouble();
 
-          face.vertexNormals.add( normal );
+          face.vertexNormals.add(normal);
 
         }
 
       }
 
 
-      if ( hasFaceColor ) {
+      if (hasFaceColor) {
 
-        colorIndex = faces[ offset ++ ];
+        colorIndex = faces[offset++];
 
-        color = new Color( colors[ colorIndex ] );
+        color = new Color(colors[colorIndex]);
         face.color = color;
 
       }
 
 
-      if ( hasFaceVertexColor ) {
+      if (hasFaceVertexColor) {
 
-        for ( i = 0; i < nVertices; i++ ) {
+        for (i = 0; i < nVertices; i++) {
 
-          colorIndex = faces[ offset ++ ];
+          colorIndex = faces[offset++];
 
-          color = new Color( colors[ colorIndex ] );
-          face.vertexColors.add( color );
+          color = new Color(colors[colorIndex]);
+          face.vertexColors.add(color);
 
         }
 
       }
 
-      geometry.faces.add( face );
+      geometry.faces.add(face);
 
     }
 
@@ -328,33 +349,33 @@ class JSONLoader extends Loader {
 
     var i, l, x, y, z, w, a, b, c, d;
 
-    if ( json.containsKey("skinWeights") ) {
+    if (json.containsKey("skinWeights")) {
 
       l = json["skinWeights"].length;
-      for ( i = 0; i < l; i += 2 ) {
+      for (i = 0; i < l; i += 2) {
 
-        x = json["skinWeights"][ i     ];
-        y = json["skinWeights"][ i + 1 ];
+        x = json["skinWeights"][i];
+        y = json["skinWeights"][i + 1];
         z = 0.0;
         w = 0.0;
 
-        geometry.skinWeights.add( new Vector4( x.toDouble(), y.toDouble(), z.toDouble(), w.toDouble() ) );
+        geometry.skinWeights.add(new Vector4(x.toDouble(), y.toDouble(), z.toDouble(), w.toDouble()));
 
       }
 
     }
 
-    if ( json.containsKey("skinIndices") ) {
+    if (json.containsKey("skinIndices")) {
 
       l = json["skinIndices"].length;
-      for ( i = 0; i < l; i += 2 ) {
+      for (i = 0; i < l; i += 2) {
 
-        a = json["skinIndices"][ i     ];
-        b = json["skinIndices"][ i + 1 ];
+        a = json["skinIndices"][i];
+        b = json["skinIndices"][i + 1];
         c = 0.0;
         d = 0.0;
 
-        geometry.skinIndices.add( new Vector4( a.toDouble(), b.toDouble(), c.toDouble(), d.toDouble() ) );
+        geometry.skinIndices.add(new Vector4(a.toDouble(), b.toDouble(), c.toDouble(), d.toDouble()));
 
       }
 
@@ -365,30 +386,30 @@ class JSONLoader extends Loader {
 
   }
 
-  _parseMorphing( Map json, Geometry geometry, num scale ) {
+  _parseMorphing(Map json, Geometry geometry, num scale) {
 
-    if ( json.containsKey("morphTargets") ) {
+    if (json.containsKey("morphTargets")) {
 
       var i, l, v, vl, dstVertices, srcVertices;
 
       geometry.morphTargets = new List(json["morphTargets"].length);
 
-      for ( i = 0; i < geometry.morphTargets.length; i ++ ) {
+      for (i = 0; i < geometry.morphTargets.length; i++) {
 
-        geometry.morphTargets[ i ] = new MorphTarget(name: json["morphTargets"][ i ]["name"], vertices: []);
+        geometry.morphTargets[i] = new MorphTarget(name: json["morphTargets"][i]["name"], vertices: []);
 
-        dstVertices = geometry.morphTargets[ i ].vertices;
-        srcVertices = json["morphTargets"][ i ]["vertices"];
+        dstVertices = geometry.morphTargets[i].vertices;
+        srcVertices = json["morphTargets"][i]["vertices"];
 
         vl = srcVertices.length;
-        for( v = 0; v < vl; v += 3 ) {
+        for (v = 0; v < vl; v += 3) {
 
           var vertex = new Vector3.zero();
-          vertex.x = srcVertices[ v ] * scale;
-          vertex.y = srcVertices[ v + 1 ] * scale;
-          vertex.z = srcVertices[ v + 2 ] * scale;
+          vertex.x = srcVertices[v] * scale;
+          vertex.y = srcVertices[v + 1] * scale;
+          vertex.z = srcVertices[v + 2] * scale;
 
-          dstVertices.add( vertex );
+          dstVertices.add(vertex);
 
         }
 
@@ -396,29 +417,27 @@ class JSONLoader extends Loader {
 
     }
 
-    if ( json.containsKey("morphColors") ) {
+    if (json.containsKey("morphColors")) {
 
       var i, l, c, cl, dstColors, srcColors, color;
 
       geometry.morphColors = new List(json["morphColors"].length);
 
-      for ( i = 0; i < geometry.morphColors.length; i++ ) {
+      for (i = 0; i < geometry.morphColors.length; i++) {
 
         dstColors = [];
-        srcColors = json["morphColors"][ i ]["colors"];
+        srcColors = json["morphColors"][i]["colors"];
 
         cl = srcColors.length;
-        for ( c = 0; c < cl; c += 3 ) {
+        for (c = 0; c < cl; c += 3) {
 
-          color = new Color( 0xffaa00 );
-          color.setRGB( srcColors[ c ], srcColors[ c + 1 ], srcColors[ c + 2 ] );
-          dstColors.add( color );
+          color = new Color(0xffaa00);
+          color.setRGB(srcColors[c], srcColors[c + 1], srcColors[c + 2]);
+          dstColors.add(color);
 
         }
 
-        geometry.morphColors[ i ] = new MorphColors(
-            name: json["morphColors"][ i ]["name"],
-            colors: dstColors);
+        geometry.morphColors[i] = new MorphColors(name: json["morphColors"][i]["name"], colors: dstColors);
       }
     }
   }
