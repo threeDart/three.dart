@@ -17,10 +17,10 @@ class RenderableVertex {
       : positionWorld = new Vector3.zero(),
         positionScreen = new Vector4(0.0, 0.0, 0.0, 1.0);
 
-  copy( RenderableVertex vertex ) {
-    positionWorld.setFrom( vertex.positionWorld );
-    positionScreen.setFrom( vertex.positionScreen );
+  copy(RenderableVertex vertex) {
+    positionWorld.setFrom(vertex.positionWorld);
+    positionScreen.setFrom(vertex.positionScreen);
   }
-  
+
   clone() => new RenderableVertex()..copy(this);
 }

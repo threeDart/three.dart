@@ -24,8 +24,8 @@ class PerspectiveCamera extends Camera {
   double _height;
 
 
-  PerspectiveCamera( [this.fov = 50.0, this.aspect = 1.0, near = 0.1, far = 2000.0] )
-    : super(near, far){
+  PerspectiveCamera([this.fov = 50.0, this.aspect = 1.0, near = 0.1, far = 2000.0])
+      : super(near, far) {
 
     updateProjectionMatrix();
   }
@@ -34,10 +34,10 @@ class PerspectiveCamera extends Camera {
   /// 35mm (fullframe) camera is used if frame size is not specified.
   ///
   /// Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
-  void setLens( double focalLength, double frameSize ) {
+  void setLens(double focalLength, double frameSize) {
     frameSize = frameSize != null ? frameSize : 43.25; // 36x24mm
 
-    fov = 2.0 * Math.atan( frameSize / ( focalLength * 2.0 ) );
+    fov = 2.0 * Math.atan(frameSize / (focalLength * 2.0));
     fov = 180.0 / Math.PI * fov;
 
     updateProjectionMatrix();
@@ -78,7 +78,7 @@ class PerspectiveCamera extends Camera {
    *
    *   Note there is no reason monitors have to be the same size or in a grid.
    */
-  void setViewOffset( double fullWidth, double fullHeight, double x, double y, double width, double height ) {
+  void setViewOffset(double fullWidth, double fullHeight, double x, double y, double width, double height) {
     _fullWidth = fullWidth;
     _fullHeight = fullHeight;
     _x = x;
@@ -93,22 +93,23 @@ class PerspectiveCamera extends Camera {
   ///
   /// Must be called after change of parameters.
   void updateProjectionMatrix() {
-    if ( _fullWidth != null ) {
+    if (_fullWidth != null) {
       double aspect = _fullWidth / _fullHeight;
-      double top = Math.tan( fov * Math.PI / 360.0 ) * near;
+      double top = Math.tan(fov * Math.PI / 360.0) * near;
       double bottom = -top;
       double left = aspect * bottom;
       double right = aspect * top;
-      double width = ( right - left ).abs();
-      double height = ( top - bottom ).abs();
+      double width = (right - left).abs();
+      double height = (top - bottom).abs();
 
-      setFrustumMatrix(projectionMatrix,
-        left + _x * width / _fullWidth,
-        left + ( _x + width ) * width / _fullWidth,
-        top - ( _y + height ) * height / _fullHeight,
-        top - _y * height / _fullHeight,
-        near,
-        far );
+      setFrustumMatrix(
+          projectionMatrix,
+          left + _x * width / _fullWidth,
+          left + (_x + width) * width / _fullWidth,
+          top - (_y + height) * height / _fullHeight,
+          top - _y * height / _fullHeight,
+          near,
+          far);
     } else {
       projectionMatrix = makePerspectiveMatrix(fov * (Math.PI / 180), aspect, near, far);
     }

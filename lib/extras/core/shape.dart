@@ -15,46 +15,42 @@ class Shape extends Path {
 
   List holes;
 
-  Shape([List points]) : holes = [], super(points);
+  Shape([List points])
+      : holes = [],
+        super(points);
 
   // Convenience method to return ExtrudeGeometry
-  extrude( {amount: 100,
-            bevelThickness: 6.0,
-            bevelSize: null,
-            bevelSegments: 3,
-            bevelEnabled: true,
-            curveSegments: 12,
-            steps: 1,
-            bendPath,
-            extrudePath,
-            material,
-            extrudeMaterial} ) {
+  extrude({amount: 100, bevelThickness: 6.0, bevelSize: null, bevelSegments: 3, bevelEnabled: true, curveSegments: 12,
+      steps: 1, bendPath, extrudePath, material, extrudeMaterial}) {
 
     if (bevelSize == null) bevelSize = bevelThickness - 2.0;
 
-    return new ExtrudeGeometry( [this], amount: amount,
-                                        bevelThickness: bevelThickness,
-                                        bevelSize: bevelSize,
-                                        bevelSegments: bevelSegments,
-                                        bevelEnabled: bevelEnabled,
-                                        curveSegments: curveSegments,
-                                        steps: steps,
-                                        bendPath: bendPath,
-                                        extrudePath: extrudePath,
-                                        material: material,
-                                        extrudeMaterial: extrudeMaterial );
+    return new ExtrudeGeometry(
+        [this],
+        amount: amount,
+        bevelThickness: bevelThickness,
+        bevelSize: bevelSize,
+        bevelSegments: bevelSegments,
+        bevelEnabled: bevelEnabled,
+        curveSegments: curveSegments,
+        steps: steps,
+        bendPath: bendPath,
+        extrudePath: extrudePath,
+        material: material,
+        extrudeMaterial: extrudeMaterial);
   }
 
 
   // Get points of holes
-  getPointsHoles( divisions ) {
+  getPointsHoles(divisions) {
 
-    var i, il = holes.length;
+    var i,
+        il = holes.length;
     var holesPts = new List(il);
 
-    for ( i = 0; i < il; i ++ ) {
+    for (i = 0; i < il; i++) {
 
-      holesPts[ i ] = holes[ i ].getTransformedPoints( divisions, bends: _bends );
+      holesPts[i] = holes[i].getTransformedPoints(divisions, bends: _bends);
 
     }
 
@@ -63,14 +59,15 @@ class Shape extends Path {
   }
 
   // Get points of holes (spaced by regular distance)
-  getSpacedPointsHoles ( divisions ) {
+  getSpacedPointsHoles(divisions) {
 
-    var i, il = holes.length;
+    var i,
+        il = holes.length;
     var holesPts = new List(il);
 
-    for ( i = 0; i < il; i ++ ) {
+    for (i = 0; i < il; i++) {
 
-      holesPts[ i ] = holes[ i ].getTransformedSpacedPoints( divisions, _bends );
+      holesPts[i] = holes[i].getTransformedSpacedPoints(divisions, _bends);
 
     }
 
@@ -80,18 +77,18 @@ class Shape extends Path {
 
 
   // Get points of shape and holes (keypoints based on segments parameter)
-  extractAllPoints( divisions ) {
+  extractAllPoints(divisions) {
 
     return {
 
-      "shape": getTransformedPoints( divisions ),
-      "holes": getPointsHoles( divisions )
+      "shape": getTransformedPoints(divisions),
+      "holes": getPointsHoles(divisions)
 
     };
 
   }
 
-  extractPoints( [num divisions] ) {
+  extractPoints([num divisions]) {
 
     if (useSpacedPoints) {
       return extractAllSpacedPoints(divisions);
@@ -114,10 +111,10 @@ class Shape extends Path {
   // };
 
   // Get points of shape and holes (spaced by regular distance)
-  extractAllSpacedPoints( [num divisions] ) {
+  extractAllSpacedPoints([num divisions]) {
     return {
-      "shape": getTransformedSpacedPoints( divisions ),
-      "holes": getSpacedPointsHoles( divisions )
+      "shape": getTransformedSpacedPoints(divisions),
+      "holes": getSpacedPointsHoles(divisions)
 
     };
   }

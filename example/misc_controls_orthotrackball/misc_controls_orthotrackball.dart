@@ -3,16 +3,16 @@ import 'dart:math' as Math;
 import 'package:three/three.dart';
 import 'package:three/extras/controls/orthographic_trackball_controls.dart';
 
-  Element container;
+Element container;
 
-  OrthographicCamera camera;
-  Scene scene;
-  WebGLRenderer renderer;
+OrthographicCamera camera;
+Scene scene;
+WebGLRenderer renderer;
 
-  num windowHalfX;
-  num windowHalfY;
+num windowHalfX;
+num windowHalfY;
 
-  OrthographicTrackballControls controls;
+OrthographicTrackballControls controls;
 
 void main() {
   init();
@@ -24,7 +24,7 @@ void init() {
   windowHalfY = window.innerHeight / 2;
 
   container = new Element.tag('div');
-  document.body.nodes.add( container );
+  document.body.nodes.add(container);
 
   Element info = new Element.tag('div');
   info.style.position = 'absolute';
@@ -35,14 +35,14 @@ void init() {
                     three.dart - misc controls orthographic trackball<br />
                     MOVE mouse &amp; press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan
                   ''';
-  container.nodes.add( info );
+  container.nodes.add(info);
 
-  camera = new OrthographicCamera( -windowHalfX, windowHalfX, windowHalfY, -windowHalfY, -2000.0, 1000.0);
+  camera = new OrthographicCamera(-windowHalfX, windowHalfX, windowHalfY, -windowHalfY, -2000.0, 1000.0);
   camera.position.x = 200.0;
   camera.position.y = 100.0;
   camera.position.z = 200.0;
 
-  controls = new OrthographicTrackballControls( camera );
+  controls = new OrthographicTrackballControls(camera);
 
   controls.rotateSpeed = 1.0;
   controls.zoomSpeed = 1.2;
@@ -54,12 +54,12 @@ void init() {
   controls.staticMoving = true;
   controls.dynamicDampingFactor = 0.3;
 
-  controls.keys = [ 65, 83, 68 ];
+  controls.keys = [65, 83, 68];
 
-  controls.addEventListener( 'change', (_) => render() );
+  controls.addEventListener('change', (_) => render());
 
   scene = new Scene();
-  scene.fog = new FogExp2( 0xcccccc, 0.002 );
+  scene.fog = new FogExp2(0xcccccc, 0.002);
 
   var geometry;
   var material;
@@ -67,47 +67,47 @@ void init() {
 
   // Pyramids
 
-  geometry = new CylinderGeometry( 0.0, 10.0, 30.0, 4, 1 );
-  material = new MeshLambertMaterial( color: 0xffffff, shading: FlatShading );
+  geometry = new CylinderGeometry(0.0, 10.0, 30.0, 4, 1);
+  material = new MeshLambertMaterial(color: 0xffffff, shading: FlatShading);
 
   var rnd = new Math.Random();
 
-  for ( var i = 0; i < 500; i++ ) {
+  for (var i = 0; i < 500; i++) {
 
-    var mesh = new Mesh( geometry, material );
-    mesh.position.x = ( rnd.nextDouble() - 0.5 ) * 1000;
-    mesh.position.y = ( rnd.nextDouble() - 0.5 ) * 1000;
-    mesh.position.z = ( rnd.nextDouble() - 0.5 ) * 1000;
+    var mesh = new Mesh(geometry, material);
+    mesh.position.x = (rnd.nextDouble() - 0.5) * 1000;
+    mesh.position.y = (rnd.nextDouble() - 0.5) * 1000;
+    mesh.position.z = (rnd.nextDouble() - 0.5) * 1000;
     mesh.updateMatrix();
     mesh.matrixAutoUpdate = false;
-    scene.add( mesh );
+    scene.add(mesh);
 
   }
 
   // Lights
 
-  light = new DirectionalLight( 0xffffff );
+  light = new DirectionalLight(0xffffff);
   light.position.x = 1.0;
   light.position.y = 1.0;
   light.position.z = 1.0;
-  scene.add( light );
+  scene.add(light);
 
-  light = new DirectionalLight( 0x002288 );
+  light = new DirectionalLight(0x002288);
   light.position.x = -1.0;
   light.position.y = -1.0;
   light.position.z = -1.0;
-  scene.add( light );
+  scene.add(light);
 
-  light = new AmbientLight( 0x222222 );
-  scene.add( light );
+  light = new AmbientLight(0x222222);
+  scene.add(light);
 
   // Renderer
-  
-  renderer = new WebGLRenderer( antialias: false );
-  renderer.setClearColor( scene.fog.color, 1 );
-  renderer.setSize( window.innerWidth, window.innerHeight );
 
-  container.nodes.add( renderer.domElement );
+  renderer = new WebGLRenderer(antialias: false);
+  renderer.setClearColor(scene.fog.color, 1);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  container.nodes.add(renderer.domElement);
 
   window.onResize.listen(onWindowResize);
 }
@@ -124,7 +124,7 @@ onWindowResize(e) {
 
   camera.updateProjectionMatrix();
 
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
   controls.handleResize();
 
@@ -140,5 +140,5 @@ animate(num time) {
 }
 
 void render() {
-  renderer.render( scene, camera );
+  renderer.render(scene, camera);
 }

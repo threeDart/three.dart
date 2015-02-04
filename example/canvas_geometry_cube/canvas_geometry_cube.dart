@@ -41,7 +41,7 @@ void init() {
 
   container = new Element.tag('div');
   //document.body.appendChild( container );
-  document.body.nodes.add( container );
+  document.body.nodes.add(container);
 
   Element info = new Element.tag('div');
   info.style.position = 'absolute';
@@ -50,59 +50,59 @@ void init() {
   info.style.textAlign = 'center';
   info.innerHtml = 'Drag to spin the cube';
   //container.appendChild( info );
-  container.nodes.add( info );
+  container.nodes.add(info);
 
   scene = new Scene();
 
-  camera = new PerspectiveCamera( 70.0, window.innerWidth / window.innerHeight, 1.0, 1000.0 );
+  camera = new PerspectiveCamera(70.0, window.innerWidth / window.innerHeight, 1.0, 1000.0);
   camera.position.y = 150.0;
   camera.position.z = 500.0;
-  scene.add( camera );
+  scene.add(camera);
 
   // Cube
 
   List materials = [];
 
   var rnd = new Math.Random();
-  for ( int i = 0; i < 6; i ++ ) {
-    materials.add( new MeshBasicMaterial( color: rnd.nextDouble() * 0xffffff ) );
+  for (int i = 0; i < 6; i++) {
+    materials.add(new MeshBasicMaterial(color: rnd.nextDouble() * 0xffffff));
   }
 
-  cube = new Mesh( new CubeGeometry( 200.0, 200.0, 200.0, 1, 1, 1, materials ), new MeshFaceMaterial(materials));// { 'overdraw' : true }) );
+  cube = new Mesh(
+      new CubeGeometry(200.0, 200.0, 200.0, 1, 1, 1, materials),
+      new MeshFaceMaterial(materials));// { 'overdraw' : true }) );
   cube.position.y = 150.0;
   //cube.overdraw = true; //TODO where is this prop?
-  scene.add( cube );
+  scene.add(cube);
 
   // Plane
 
-  plane = new Mesh( new PlaneGeometry( 200.0, 200.0 ), new MeshBasicMaterial( color: 0xe0e0e0, overdraw: true ) );
-  plane.rotation.x = - 90.0 * ( Math.PI / 180.0 );
+  plane = new Mesh(new PlaneGeometry(200.0, 200.0), new MeshBasicMaterial(color: 0xe0e0e0, overdraw: true));
+  plane.rotation.x = -90.0 * (Math.PI / 180.0);
   //plane.overdraw = true; //TODO where is this prop?
-  scene.add( plane );
+  scene.add(plane);
 
   renderer = new CanvasRenderer();
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
 
   //container.appendChild( renderer.domElement );
-  container.nodes.add( renderer.domElement );
+  container.nodes.add(renderer.domElement);
 
   evtSubscriptions = [
-    document.onMouseDown.listen(onDocumentMouseDown),
-    document.onTouchStart.listen(onDocumentTouchStart),
-    document.onTouchMove.listen(onDocumentTouchMove)
-    ];
+      document.onMouseDown.listen(onDocumentMouseDown),
+      document.onTouchStart.listen(onDocumentTouchStart),
+      document.onTouchMove.listen(onDocumentTouchMove)];
 
 }
 
-void onDocumentMouseDown( event ) {
+void onDocumentMouseDown(event) {
   event.preventDefault();
 
   evtSubscriptions = [
-    document.onMouseMove.listen(onDocumentMouseMove),
-    document.onMouseUp.listen(onDocumentMouseUp),
-    document.onMouseOut.listen(onDocumentMouseOut)
-    ];
+      document.onMouseMove.listen(onDocumentMouseMove),
+      document.onMouseUp.listen(onDocumentMouseUp),
+      document.onMouseOut.listen(onDocumentMouseOut)];
 
   mouseXOnMouseDown = event.client.x - windowHalfX;
   targetRotationOnMouseDown = targetRotation;
@@ -110,10 +110,10 @@ void onDocumentMouseDown( event ) {
   print('onMouseDown mouseX = $mouseXOnMouseDown targRot = $targetRotationOnMouseDown');
 }
 
-void onDocumentMouseMove( event ) {
+void onDocumentMouseMove(event) {
   mouseX = event.client.x - windowHalfX;
 
-  targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
+  targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.02;
 
   print('onMouseMove mouseX = $mouseX targRot = $targetRotation');
 }
@@ -123,29 +123,29 @@ void cancelEvtSubscriptions() {
   evtSubscriptions = [];
 }
 
-void onDocumentMouseUp( event ){
+void onDocumentMouseUp(event) {
   cancelEvtSubscriptions();
 }
 
-void onDocumentMouseOut( event ) {
+void onDocumentMouseOut(event) {
   cancelEvtSubscriptions();
 }
 
-void onDocumentTouchStart( event ) {
-  if ( event.touches.length == 1 ) {
+void onDocumentTouchStart(event) {
+  if (event.touches.length == 1) {
     event.preventDefault();
 
-    mouseXOnMouseDown = event.touches[ 0 ].page.x - windowHalfX;
+    mouseXOnMouseDown = event.touches[0].page.x - windowHalfX;
     targetRotationOnMouseDown = targetRotation;
   }
 }
 
-void onDocumentTouchMove( event ) {
-  if ( event.touches.length == 1 ) {
+void onDocumentTouchMove(event) {
+  if (event.touches.length == 1) {
     event.preventDefault();
 
-    mouseX = event.touches[ 0 ].page.x - windowHalfX;
-    targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
+    mouseX = event.touches[0].page.x - windowHalfX;
+    targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.05;
   }
 }
 
@@ -156,6 +156,6 @@ animate(num time) {
 }
 
 void render() {
-  plane.rotation.z = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
-  renderer.render( scene, camera );
+  plane.rotation.z = cube.rotation.y += (targetRotation - cube.rotation.y) * 0.05;
+  renderer.render(scene, camera);
 }

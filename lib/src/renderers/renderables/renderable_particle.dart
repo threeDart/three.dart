@@ -8,16 +8,16 @@ part of three;
  */
 
 class RenderableParticle implements IRenderable {
-    num x = null;
-    num y = null;
-    num z = null;
+  num x = null;
+  num y = null;
+  num z = null;
 
-    num rotation = null;
-    Vector2 scale;
+  num rotation = null;
+  Vector2 scale;
 
-    Material material = null;
+  Material material = null;
 
-    RenderableParticle()
+  RenderableParticle()
       : scale = new Vector2.zero();
 
 }

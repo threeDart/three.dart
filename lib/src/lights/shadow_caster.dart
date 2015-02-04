@@ -36,28 +36,28 @@ class ShadowCaster extends Light {
 
   var cameraHelper;
 
-  ShadowCaster(num hex) :
-    castShadow = false,
-    onlyShadow = false,
+  ShadowCaster(num hex)
+      : castShadow = false,
+        onlyShadow = false,
 
-    shadowCameraNear = 50.0,
-    shadowCameraFar = 5000.0,
-    shadowCameraFov = 50.0,
+        shadowCameraNear = 50.0,
+        shadowCameraFar = 5000.0,
+        shadowCameraFov = 50.0,
 
-    shadowCameraVisible = false,
+        shadowCameraVisible = false,
 
-    shadowBias = 0.0,
-    shadowDarkness = 0.5,
+        shadowBias = 0.0,
+        shadowDarkness = 0.5,
 
-    shadowMapWidth = 512,
-    shadowMapHeight = 512,
+        shadowMapWidth = 512,
+        shadowMapHeight = 512,
 
-    //
+        //
 
-    shadowMap = null,
-    shadowMapSize = null,
-    shadowCamera = null,
-    shadowMatrix = null,
-    super(hex);
+      shadowMap = null,
+        shadowMapSize = null,
+        shadowCamera = null,
+        shadowMatrix = null,
+        super(hex);
 }
 

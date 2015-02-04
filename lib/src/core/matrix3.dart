@@ -6,36 +6,36 @@ part of three;
  */
 
 /// A 3x3 matrix.
-class Matrix3  {
+class Matrix3 {
   Float32List elements;
 
   Matrix3() : elements = new Float32List(9);
 
   /// Set this matrix to the inverse of the passed matrix.
-  Matrix3 getInverse( Matrix4 matrix ) {
+  Matrix3 getInverse(Matrix4 matrix) {
 
     // input: THREE.Matrix4
     // ( based on http://code.google.com/p/webgl-mjs/ )
 
     var me = matrix.elements;
 
-    var a11 =   me[10] * me[5] - me[6] * me[9];
-    var a21 = - me[10] * me[1] + me[2] * me[9];
-    var a31 =   me[6] * me[1] - me[2] * me[5];
-    var a12 = - me[10] * me[4] + me[6] * me[8];
-    var a22 =   me[10] * me[0] - me[2] * me[8];
-    var a32 = - me[6] * me[0] + me[2] * me[4];
-    var a13 =   me[9] * me[4] - me[5] * me[8];
-    var a23 = - me[9] * me[0] + me[1] * me[8];
-    var a33 =   me[5] * me[0] - me[1] * me[4];
+    var a11 = me[10] * me[5] - me[6] * me[9];
+    var a21 = -me[10] * me[1] + me[2] * me[9];
+    var a31 = me[6] * me[1] - me[2] * me[5];
+    var a12 = -me[10] * me[4] + me[6] * me[8];
+    var a22 = me[10] * me[0] - me[2] * me[8];
+    var a32 = -me[6] * me[0] + me[2] * me[4];
+    var a13 = me[9] * me[4] - me[5] * me[8];
+    var a23 = -me[9] * me[0] + me[1] * me[8];
+    var a33 = me[5] * me[0] - me[1] * me[4];
 
     var det = me[0] * a11 + me[1] * a12 + me[2] * a13;
 
     // no inverse
 
-    if ( det == 0 ) {
+    if (det == 0) {
 
-      print( "Matrix3.getInverse(): determinant == 0" );
+      print("Matrix3.getInverse(): determinant == 0");
 
     }
 
@@ -43,9 +43,15 @@ class Matrix3  {
 
     var m = elements;
 
-    m[ 0 ] = idet * a11; m[ 1 ] = idet * a21; m[ 2 ] = idet * a31;
-    m[ 3 ] = idet * a12; m[ 4 ] = idet * a22; m[ 5 ] = idet * a32;
-    m[ 6 ] = idet * a13; m[ 7 ] = idet * a23; m[ 8 ] = idet * a33;
+    m[0] = idet * a11;
+    m[1] = idet * a21;
+    m[2] = idet * a31;
+    m[3] = idet * a12;
+    m[4] = idet * a22;
+    m[5] = idet * a32;
+    m[6] = idet * a13;
+    m[7] = idet * a23;
+    m[8] = idet * a33;
 
     return this;
 
@@ -53,28 +59,35 @@ class Matrix3  {
 
   /// Transposes this matrix in place.
   Matrix3 transpose() {
-    var tmp, m = elements;
+    var tmp,
+        m = elements;
 
-    tmp = m[1]; m[1] = m[3]; m[3] = tmp;
-    tmp = m[2]; m[2] = m[6]; m[6] = tmp;
-    tmp = m[5]; m[5] = m[7]; m[7] = tmp;
+    tmp = m[1];
+    m[1] = m[3];
+    m[3] = tmp;
+    tmp = m[2];
+    m[2] = m[6];
+    m[6] = tmp;
+    tmp = m[5];
+    m[5] = m[7];
+    m[7] = tmp;
 
     return this;
   }
 
   /// Transposes this matrix into the supplied array, and returns itself.
-  Matrix3 transposeIntoArray( List r ) {
+  Matrix3 transposeIntoArray(List r) {
     var m = elements;
 
-    r[ 0 ] = m[ 0 ];
-    r[ 1 ] = m[ 3 ];
-    r[ 2 ] = m[ 6 ];
-    r[ 3 ] = m[ 1 ];
-    r[ 4 ] = m[ 4 ];
-    r[ 5 ] = m[ 7 ];
-    r[ 6 ] = m[ 2 ];
-    r[ 7 ] = m[ 5 ];
-    r[ 8 ] = m[ 8 ];
+    r[0] = m[0];
+    r[1] = m[3];
+    r[2] = m[6];
+    r[3] = m[1];
+    r[4] = m[4];
+    r[5] = m[7];
+    r[6] = m[2];
+    r[7] = m[5];
+    r[8] = m[8];
 
     return this;
   }

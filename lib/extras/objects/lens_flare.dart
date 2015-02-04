@@ -6,10 +6,10 @@ class LensFlare extends Object3D {
 
   Vector3 positionScreen;
 
-  LensFlare(texture, size, distance, blending, color )
-    :   lensFlares = [],
-      customUpdateCallback = null,
-      super() {
+  LensFlare(texture, size, distance, blending, color)
+      : lensFlares = [],
+        customUpdateCallback = null,
+        super() {
 
     positionScreen = new Vector3.zero();
 

@@ -23,17 +23,12 @@ void init() {
   document.body.append(renderer.domElement);
 
   Scene scene = new Scene();
-  PerspectiveCamera camera = new PerspectiveCamera(
-      70.0,
-      window.innerWidth / window.innerHeight,
-      1.0,
-      1000.0);
+  PerspectiveCamera camera = new PerspectiveCamera(70.0, window.innerWidth / window.innerHeight, 1.0, 1000.0);
   camera.position.z = 400.0;
   spheres = new Object3D();
   scene.add(spheres);
   SphereGeometry geometry = new SphereGeometry(1.0, 4, 4);
-  MeshPhongMaterial material =
-      new MeshPhongMaterial(color: 0xaaaaaa, shading: FlatShading);
+  MeshPhongMaterial material = new MeshPhongMaterial(color: 0xaaaaaa, shading: FlatShading);
   Random random = new Random();
   for (var i = 0; i < 100; ++i) {
     var mesh = new Mesh(geometry, material);
@@ -42,10 +37,7 @@ void init() {
         random.nextDouble() - 0.5,
         random.nextDouble() - 0.5).normalize();
     mesh.position.scale(random.nextDouble() * 400);
-    mesh.rotation.setValues(
-        random.nextDouble() * 2,
-        random.nextDouble() * 2,
-        random.nextDouble() * 2);
+    mesh.rotation.setValues(random.nextDouble() * 2, random.nextDouble() * 2, random.nextDouble() * 2);
     mesh.scale.x = mesh.scale.y = mesh.scale.z = random.nextDouble() * 50;
     spheres.add(mesh);
   }
@@ -58,13 +50,11 @@ void init() {
   composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
 
-  ShaderPass effect1 =
-      new ShaderPass(new ShaderProgram.fromThreeish(DotScreenShader));
+  ShaderPass effect1 = new ShaderPass(new ShaderProgram.fromThreeish(DotScreenShader));
   effect1.uniforms['scale'].value = DOT_SCALE;
   composer.addPass(effect1);
 
-  ShaderPass effect2 =
-      new ShaderPass(new ShaderProgram.fromThreeish(RGBShiftShader));
+  ShaderPass effect2 = new ShaderPass(new ShaderProgram.fromThreeish(RGBShiftShader));
   effect2.uniforms['amount'].value = RGB_SHIFT_AMOUNT;
   effect2.renderToScreen = true;
   composer.addPass(effect2);
