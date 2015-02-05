@@ -214,11 +214,6 @@ class ExtrudeGeometry extends Geometry {
     }
 
     var anglec = (anglea + angleb) / 2;
-
-
-
-        //console.log('angle1', anglea * RAD_TO_DEGREES,'angle2', angleb * RAD_TO_DEGREES, 'anglec', anglec *RAD_TO_DEGREES);
-
     var x = -Math.cos(anglec);
     var y = -Math.sin(anglec);
 
@@ -279,10 +274,6 @@ class ExtrudeGeometry extends Geometry {
       // Reuse TNB from TubeGeomtry for now.
       // TODO1 - have a .isClosed in spline?
       splineTube = (frames != null) ? frames : new TubeGeometry.FrenetFrames(extrudePath, steps, false);
-
-
-          // console.log(splineTube, 'splineTube', splineTube.normals.length, 'steps', steps, 'extrudePts', extrudePts.length);
-
       binormal = new Vector3.zero();
       normal = new Vector3.zero();
       position2 = new Vector3.zero();

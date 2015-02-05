@@ -547,8 +547,6 @@ class Projector {
 
   RenderableParticle getNextParticleInPool() {
     //TODO: make sure I've interpreted this logic correctly
-
-        //RenderableParticle particle = _particlePool[ _particleCount ] = _particlePool[ _particleCount ] || new RenderableParticle();
     RenderableParticle particle;
     if (_particleCount < _particlePool.length) {
       particle = (_particlePool[_particleCount] != null) ? _particlePool[_particleCount] : new RenderableParticle();

@@ -282,9 +282,7 @@ class CurvePath extends Curve {
 
       xNorm = oldX / bounds.maxX;
 
-      // If using actual distance, for length > path, requires line extrusions
-
-          //xNorm = path.getUtoTmapping(xNorm, oldX); // 3 styles. 1) wrap stretched. 2) wrap stretch by arc length 3) warp by actual distance
+      // If using actual distance, for length > path, requires line extrusions.
 
       xNorm = path.getUtoTmapping(xNorm, oldX);
 

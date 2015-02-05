@@ -142,9 +142,6 @@ Vector3 calcEulerFromQuaternion(Vector4 q, [String order = 'XYZ']) {
 
   var clamp = (x) => Math.min(Math.max(x, -1), 1);
 
-
-      // http://www.mathworks.com/matlabcentral/fileexchange/20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/content/SpinCalc.m
-
   var sqx = q.x * q.x;
   var sqy = q.y * q.y;
   var sqz = q.z * q.z;

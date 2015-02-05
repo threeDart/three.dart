@@ -293,7 +293,6 @@ CanvasElement getNormalMap(image, int depth) {
   var height = image.height;
 
   var canvas = new CanvasElement();
-  ;
   canvas.width = width;
   canvas.height = height;
 

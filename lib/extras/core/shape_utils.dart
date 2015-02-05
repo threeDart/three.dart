@@ -197,8 +197,8 @@ triangulateShape(contour, holes) {
 
   var triangles = FontUtils.process(shape, false); // True returns indices for points of spooled shape
 
-
-      // To maintain reference to old shape, one must match coordinates, or offset the indices from original arrays. It's probably easier to do the first.
+  // To maintain reference to old shape, one must match coordinates, or offset the indices from original arrays.
+  // It's probably easier to do the first.
 
   //console.log( "triangles",triangles, triangles.length );
   //console.log( "allpoints",allpoints, allpoints.length );

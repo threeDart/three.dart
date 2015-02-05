@@ -204,9 +204,6 @@ class JSONLoader extends Loader {
       hasFaceColor = _isBitSet(type, 6);
       hasFaceVertexColor = _isBitSet(type, 7);
 
-
-          //console.log("type", type, "bits", isQuad, hasMaterial, hasFaceUv, hasFaceVertexUv, hasFaceNormal, hasFaceVertexNormal, hasFaceColor, hasFaceVertexColor);
-
       if (isQuad) {
 
         face = new Face4();

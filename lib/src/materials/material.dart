@@ -125,7 +125,8 @@ abstract class EnvironmentMapping {
   Texture envMap;
 
 
-      /// Since this material does not have a specular component, the specular value affects only how much of the environment map affects the surface.
+  /// Since this material does not have a specular component, the specular value affects only
+  /// how much of the environment map affects the surface.
   Texture specularMap;
   Texture lightMap;
 

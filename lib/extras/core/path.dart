@@ -500,7 +500,6 @@ class Path extends CurvePath {
       shapes.add(tmpShape);
       return shapes;
     }
-    ;
 
     if (holesFirst) {
 

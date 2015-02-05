@@ -117,7 +117,7 @@ abstract class Curve<V> {
     getLengths();
   }
 
-  // Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equi distance
+  /// Given u ( 0 .. 1 ), get a t to find p. This gives you points which are equi distance
   getUtoTmapping(u, {distance: null}) {
 
     var arcLengths = getLengths();
@@ -135,7 +135,7 @@ abstract class Curve<V> {
 
     //var time = Date.now();
 
-    // binary search for the index with largest value smaller than target u distance
+    // binary search for the index with largest value smaller than target u distance.
 
     var low = 0,
         high = il - 1,
@@ -145,8 +145,8 @@ abstract class Curve<V> {
 
       i = (low + (high - low) / 2).floor().toInt();
 
-          // less likely to overflow, though probably not issue here, JS doesn't really have integers, all numbers are floats
-
+      // less likely to overflow, though probably not issue here
+      // JS doesn't really have integers, all numbers are floats.
       comparison = arcLengths[i] - targetArcLength;
 
       if (comparison < 0) {

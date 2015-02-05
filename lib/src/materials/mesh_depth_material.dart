@@ -30,8 +30,8 @@ class MeshDepthMaterial extends Material implements Wireframe {
   bool wireframe;
   /// Controls wireframe thickness. Default is 1.
   ///
-
-      /// Due to limitations in the ANGLE layer, on Windows platforms linewidth will always be 1 regardless of the set value.
+  /// Due to limitations in the ANGLE layer, on Windows platforms linewidth will always be 1
+  /// regardless of the set value.
   num wireframeLinewidth;
   String wireframeLinecap, wireframeLinejoin;
 

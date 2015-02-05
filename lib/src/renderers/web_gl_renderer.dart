@@ -52,7 +52,8 @@ class WebGLRenderer implements Renderer {
   /// Default is false. If set, then it expects that all textures and colors are premultiplied gamma.
   bool gammaInput;
 
-      /// Default is false. If set, then it expects that all textures and colors need to be outputted in premultiplied gamma.
+  /// Default is false. If set, then it expects that all textures and colors need to be outputted in
+  /// premultiplied gamma.
   bool gammaOutput;
   bool physicallyBasedShading;
 
@@ -922,9 +923,6 @@ class WebGLRenderer implements Renderer {
 
     var uvType = bufferGuessUVType(material),
         normalType = bufferGuessNormalType(material);
-
-
-        //console.log( "uvType", uvType, "normalType", normalType, "vertexColorType", vertexColorType, object, geometryGroup, material );
 
     geometryGroup.__vertexArray = new Float32List(nvertices * 3);
 
@@ -4122,7 +4120,6 @@ class WebGLRenderer implements Renderer {
         activeInfluenceIndices.add([0, 0]);
 
       }
-      ;
 
       var influenceIndex,
           m = 0;

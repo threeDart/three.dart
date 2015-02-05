@@ -184,15 +184,18 @@ class Object3D {
     makeLookAt(matrix, vector, position, up);
 
     if (rotationAutoUpdate) {
-      if (useQuaternion) quaternion.setFromRotationMatrix(matrix); else rotation =
-          calcEulerFromRotationMatrix(matrix, eulerOrder);
+      if (useQuaternion) {
+        quaternion.setFromRotationMatrix(matrix);
+      } else {
+        rotation = calcEulerFromRotationMatrix(matrix, eulerOrder);
+      }
     }
   }
 
   /// Adds object as child of this object.
   void add(Object3D object) {
     if (object == this) {
-      print('THREE.Object3D.add: An object can\'t be added as a child of itself.');
+      print("THREE.Object3D.add: An object can't be added as a child of itself.");
       return;
     }
 

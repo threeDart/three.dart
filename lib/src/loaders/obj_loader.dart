@@ -175,8 +175,6 @@ class OBJLoader extends Loader {
 
         } else if ((result = face_pattern3.firstMatch(line)) != null) {
 
-
-              // ["f 1/1/1 2/2/2 3/3/3", " 1/1/1", "1", "1", "1", " 2/2/2", "2", "2", "2", " 3/3/3", "3", "3", "3", undefined, undefined, undefined, undefined]
           _handle_face_line(geometry, face_offset, normals, uvs, [result[2], result[6], result[10], result[14]], //faces
           [result[3], result[7], result[11], result[15]], //uv
           [result[4], result[8], result[12], result[16]] //normal
@@ -184,8 +182,6 @@ class OBJLoader extends Loader {
 
         } else if ((result = face_pattern4.firstMatch(line)) != null) {
 
-
-              // ["f 1//1 2//2 3//3", " 1//1", "1", "1", " 2//2", "2", "2", " 3//3", "3", "3", undefined, undefined, undefined]
           _handle_face_line(geometry, face_offset, normals, uvs, [result[2], result[5], result[8], result[11]], [], //uv
           [result[3], result[6], result[9], result[12]] //normal
           );
