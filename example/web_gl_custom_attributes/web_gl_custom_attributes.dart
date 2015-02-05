@@ -99,7 +99,7 @@ render() {
   sphere.rotation.y = sphere.rotation.z = 0.01 * time;
 
   amplitude.value = 2.5 * Math.sin( sphere.rotation.y * 0.125 );
-  color.value.offsetHSL( 0.0005, 0, 0 );
+  color.value.offsetHSL( 0.0005, 0.0, 0.0 );
 
   for ( var i = 0; i < displacement.value.length; i ++ ) {
 

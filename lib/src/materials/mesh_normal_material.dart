@@ -17,10 +17,20 @@ part of three;
  *  wireframeLinewidth: <float>
  * }
  */
-class MeshNormalMaterial extends Material {
-  //Map _parameters;
+
+/// A material that maps the normal vectors to RGB colors.
+class MeshNormalMaterial extends Material implements Wireframe {
+  /// How the triangles of a curved surface are rendered: as a smooth surface,
+  /// as flat separate facets, or no shading at all.
+  ///
+  /// Options are THREE.SmoothShading (default), THREE.FlatShading
   int shading;
+  /// Render geometry as wireframe. Default is false (i.e. render as smooth shaded).
   bool wireframe;
+  /// Controls wireframe thickness. Default is 1.
+  ///
+  /// Due to limitations in the ANGLE layer, on Windows platforms linewidth will
+  /// always be 1 regardless of the set value.
   num wireframeLinewidth;
   String wireframeLinecap;
   String wireframeLinejoin;

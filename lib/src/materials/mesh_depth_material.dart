@@ -18,11 +18,21 @@ part of three;
  * }
  */
 
-class MeshDepthMaterial extends Material {
+/// A material for drawing geometry by depth.
+///
+/// Depth is based off of the camera near and far plane.
+/// White is nearest, black is farthest.
+class MeshDepthMaterial extends Material implements Wireframe {
   Map _parameters;
   int shading;
+
+  /// Render geometry as wireframe. Default is false (i.e. render as smooth shaded).
   bool wireframe;
+  /// Controls wireframe thickness. Default is 1.
+  ///
+  /// Due to limitations in the ANGLE layer, on Windows platforms linewidth will always be 1 regardless of the set value.
   num wireframeLinewidth;
+  String wireframeLinecap, wireframeLinejoin;
 
   MeshDepthMaterial( { // MeshDepthMaterial
                        this.shading: SmoothShading, // doesn't really apply here, normals are not used

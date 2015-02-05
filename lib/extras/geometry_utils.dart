@@ -4,7 +4,7 @@ import "package:three/three.dart";
 import 'package:vector_math/vector_math.dart';
 
 // TODO(nelsonsilva) - Add remaining functions
-clone( Geometry geometry ) {
+Geometry clone( Geometry geometry ) {
 
     var cloneGeo = new Geometry();
 
@@ -49,10 +49,25 @@ clone( Geometry geometry ) {
 
 }
 
-triangleArea ( Vector3 vectorA, Vector3 vectorB, Vector3 vectorC ) {
+num triangleArea ( Vector3 vectorA, Vector3 vectorB, Vector3 vectorC ) {
 
   var tmp = (vectorB - vectorA).cross( vectorC - vectorA );
 
   return 0.5 * tmp.length;
+}
+
+// Center geometry so that 0,0,0 is in center of bounding box
+
+num center ( Geometry geometry ) {
+  geometry.computeBoundingBox();
+
+  var bb = geometry.boundingBox;
+
+  var offset = (bb.min + bb.max) * -0.5;
+
+  geometry.applyMatrix( new Matrix4.translation(offset) );
+  geometry.computeBoundingBox();
+
+  return offset;
 }
 

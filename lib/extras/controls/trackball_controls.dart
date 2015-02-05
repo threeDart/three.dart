@@ -19,13 +19,15 @@ class STATE {
  static const ROTATE =  0;
  static const ZOOM = 1;
  static const PAN = 2;
+ static const TOUCH_ROTATE = 3;
+ static const TOUCH_ZOOM_PAN = 4;
 }
 
 class TrackballControls extends EventEmitter {
 
   int _state, _prevState;
   Object3D object;
-  Element domElement;
+  dynamic domElement;
   bool enabled;
   Math.Rectangle screen;
   num rotateSpeed,
@@ -36,6 +38,7 @@ class TrackballControls extends EventEmitter {
        noPan,
        noRoll;
   bool staticMoving;
+  bool autoUpdate; // emit a change event automatically when something changes (without having to call update explicitly)
   num dynamicDampingFactor;
   num minDistance, maxDistance;
   List keys;
@@ -45,14 +48,15 @@ class TrackballControls extends EventEmitter {
 
   Vector3 _rotateStart, _rotateEnd;
   Vector2 _zoomStart, _zoomEnd;
+  double _touchZoomDistanceStart, _touchZoomDistanceEnd;
   Vector2 _panStart, _panEnd;
   Vector3 lastPosition;
 
   StreamSubscription<MouseEvent> mouseMoveStream;
   StreamSubscription<MouseEvent> mouseUpStream;
-  StreamSubscription<KeyboardEvent> keydownStream;
+  StreamSubscription<KeyboardEvent> keydownStream, keyupStream;
 
-  EventEmitterEvent changeEvent;
+  EventEmitterEvent changeEvent, startEvent, endEvent;
 
   TrackballControls( this.object, [Element domElement] ) {
 
@@ -74,6 +78,7 @@ class TrackballControls extends EventEmitter {
     noRoll = false;
 
     staticMoving = false;
+    autoUpdate = false;
     dynamicDampingFactor = 0.2;
 
     minDistance = 0;
@@ -98,23 +103,28 @@ class TrackballControls extends EventEmitter {
     _zoomStart = new Vector2.zero();
     _zoomEnd = new Vector2.zero();
 
+    _touchZoomDistanceStart = 0.0;
+    _touchZoomDistanceEnd = 0.0;
+
     _panStart = new Vector2.zero();
     _panEnd = new Vector2.zero();
 
     changeEvent = new EventEmitterEvent(type: 'change');
+    startEvent = new EventEmitterEvent(type: 'start');
+    endEvent = new EventEmitterEvent(type: 'end');
 
-    domElement
+    this.domElement
     ..onContextMenu.listen(( event ) => event.preventDefault())
     ..onMouseDown.listen(mousedown)
     ..onMouseWheel.listen(mousewheel)
     ..onTouchStart.listen(touchstart)
-    ..onTouchEnd.listen(touchstart)
+    ..onTouchEnd.listen(touchend)
     ..onTouchMove.listen(touchmove);
 
     //this.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
 
     keydownStream = window.onKeyDown.listen(keydown);
-    window.onKeyUp.listen(keyup);
+    keyupStream = window.onKeyUp.listen(keyup);
 
 
     handleResize();
@@ -128,11 +138,6 @@ class TrackballControls extends EventEmitter {
       } else {
         screen = domElement.getBoundingClientRect();
       }
-    }
-
-
-    handleEvent( event ) {
-      dispatchEvent(event);
     }
 
     getMouseOnScreen( clientX, clientY )
@@ -218,19 +223,31 @@ class TrackballControls extends EventEmitter {
 
     zoomCamera() {
 
-      var factor = 1.0 + ( _zoomEnd.y - _zoomStart.y ) * zoomSpeed;
+      if (_state == STATE.TOUCH_ZOOM_PAN) {
 
-      if ( factor != 1.0 && factor > 0.0 ) {
+        var factor = _touchZoomDistanceStart / _touchZoomDistanceEnd;
+
+        _touchZoomDistanceStart = _touchZoomDistanceEnd;
 
         _eye.scale( factor );
 
-        if ( staticMoving ) {
+      } else {
 
-          _zoomStart.setFrom(_zoomEnd);
+        var factor = 1.0 + ( _zoomEnd.y - _zoomStart.y ) * zoomSpeed;
 
-        } else {
+        if ( factor != 1.0 && factor > 0.0 ) {
 
-          _zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
+          _eye.scale( factor );
+
+          if ( staticMoving ) {
+
+            _zoomStart.setFrom(_zoomEnd);
+
+          } else {
+
+            _zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
+
+          }
 
         }
 
@@ -254,7 +271,7 @@ class TrackballControls extends EventEmitter {
 
         if ( staticMoving ) {
 
-          _panStart = _panEnd;
+          _panStart.setFrom(_panEnd);
 
         } else {
 
@@ -284,6 +301,12 @@ class TrackballControls extends EventEmitter {
 
       }
 
+    }
+
+    void triggerAutoUpdate() {
+      if (autoUpdate) {
+        update();
+      }
     }
 
     update() {
@@ -374,22 +397,24 @@ class TrackballControls extends EventEmitter {
       if ( _state == STATE.ROTATE && !noRotate ) {
 
         _rotateStart = getMouseProjectionOnBall( event.client.x, event.client.y );
-        _rotateEnd = _rotateStart;
+        _rotateEnd.setFrom(_rotateStart);
 
       } else if ( _state == STATE.ZOOM && !noZoom ) {
 
         _zoomStart = getMouseOnScreen( event.client.x, event.client.y );
-        _zoomEnd = _zoomStart;
+        _zoomEnd.setFrom(_zoomStart);
 
       } else if ( _state == STATE.PAN && !noPan ) {
 
         _panStart = getMouseOnScreen( event.client.x, event.client.y );
-        _panEnd = _panStart;
+        _panEnd.setFrom(_panStart);
 
       }
 
       mouseMoveStream = document.onMouseMove.listen( mousemove );
       mouseUpStream = document.onMouseUp.listen( mouseup );
+
+      dispatchEvent(startEvent);
 
     }
 
@@ -411,6 +436,7 @@ class TrackballControls extends EventEmitter {
 
       }
 
+      triggerAutoUpdate();
     }
 
     mouseup( MouseEvent event ) {
@@ -425,6 +451,7 @@ class TrackballControls extends EventEmitter {
       mouseMoveStream.cancel();
       mouseUpStream.cancel();
 
+      dispatchEvent(endEvent);
     }
 
     mousewheel( WheelEvent event ) {
@@ -449,6 +476,10 @@ class TrackballControls extends EventEmitter {
 
       _zoomStart.y += ( 1 / delta ) * 0.05;
 
+      dispatchEvent(startEvent);
+      dispatchEvent(endEvent);
+
+      triggerAutoUpdate();
     }
 
     touchstart( TouchEvent event ) {
@@ -460,17 +491,27 @@ class TrackballControls extends EventEmitter {
       switch ( event.touches.length ) {
 
         case 1:
-          _rotateStart = _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+          _state = STATE.TOUCH_ROTATE;
+          _rotateStart = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+          _rotateEnd.setFrom(_rotateStart);
           break;
         case 2:
-          _zoomStart = _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
-          break;
-        case 3:
-          _panStart = _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
-          break;
+          _state = STATE.TOUCH_ZOOM_PAN;
+          var dx = event.touches[ 0 ].page.x - event.touches[ 1 ].page.x;
+          var dy = event.touches[ 0 ].page.y - event.touches[ 1 ].page.y;
+          _touchZoomDistanceEnd = _touchZoomDistanceStart = Math.sqrt( dx * dx + dy * dy );
 
+          var x = ( event.touches[ 0 ].page.x + event.touches[ 1 ].page.x ) / 2;
+          var y = ( event.touches[ 0 ].page.y + event.touches[ 1 ].page.y ) / 2;
+          _panStart = getMouseOnScreen( x, y );
+          _panEnd.setFrom( _panStart );
+          break;
+        default:
+          _state = STATE.NONE;
+          break;
       }
 
+      dispatchEvent(startEvent);
     }
 
     touchmove( TouchEvent event ) {
@@ -485,13 +526,53 @@ class TrackballControls extends EventEmitter {
           _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
           break;
         case 2:
-          _zoomEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+          var dx = event.touches[ 0 ].page.x - event.touches[ 1 ].page.x;
+          var dy = event.touches[ 0 ].page.y - event.touches[ 1 ].page.y;
+          _touchZoomDistanceEnd = Math.sqrt( dx * dx + dy * dy );
+
+          var x = ( event.touches[ 0 ].page.x + event.touches[ 1 ].page.x ) / 2;
+          var y = ( event.touches[ 0 ].page.y + event.touches[ 1 ].page.y ) / 2;
+          _panEnd = getMouseOnScreen( x, y );
           break;
-        case 3:
-          _panEnd = getMouseOnScreen( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+        default:
+          _state = STATE.NONE;
           break;
 
       }
 
+      triggerAutoUpdate();
+    }
+
+    touchend( TouchEvent event ) {
+
+      if ( !enabled ) { return; }
+
+      switch ( event.touches.length ) {
+
+        case 1:
+          _rotateEnd = getMouseProjectionOnBall( event.touches[ 0 ].page.x, event.touches[ 0 ].page.y );
+          _rotateStart.setFrom( _rotateEnd );
+          break;
+
+        case 2:
+          _touchZoomDistanceStart = _touchZoomDistanceEnd = 0.0;
+
+          var x = ( event.touches[ 0 ].page.x + event.touches[ 1 ].page.x ) / 2;
+          var y = ( event.touches[ 0 ].page.y + event.touches[ 1 ].page.y ) / 2;
+          _panEnd =  getMouseOnScreen( x, y );
+          _panStart.setFrom( _panEnd );
+          break;
+
+      }
+
+      _state = STATE.NONE;
+
+      dispatchEvent(endEvent);
+
+    }
+
+    void unlisten() {
+      keydownStream.cancel();
+      keyupStream.cancel();
     }
 }

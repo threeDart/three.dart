@@ -7,9 +7,14 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// A ray that emits from an origin in a certain direction.
 class Ray {
-  Vector3 origin,
-          direction;
+  /// The origin of the Ray.
+  Vector3 origin;
+  /// The direction of the Ray. This must be normalized (with Vector3.normalize)
+  /// for the methods to operate properly.
+  Vector3 direction;
+
   num near,
       far;
 
@@ -213,6 +218,3 @@ class Intersect {
 
   Intersect({this.distance, this.point, this.face, this.object});
 }
-
-
-

@@ -1,5 +1,7 @@
 library three;
 
+import 'dart:async';
+import 'dart:collection';
 import 'dart:html' hide Path;
 import 'dart:typed_data';
 import 'dart:web_gl' as gl;
@@ -44,6 +46,9 @@ part 'src/core/event_emitter.dart';
 part 'src/loaders/loader.dart';
 part 'src/loaders/json_loader.dart';
 part 'src/loaders/image_loader.dart';
+part 'src/loaders/stl_loader.dart';
+part 'src/loaders/mtl_loader.dart';
+part 'src/loaders/obj_loader.dart';
 
 part 'extras/geometries/circle_geometry.dart';
 part 'extras/geometries/convex_geometry.dart';
@@ -109,9 +114,6 @@ part 'src/materials/line_basic_material.dart';
 part 'src/materials/mesh_lambert_material.dart';
 part 'src/materials/mesh_depth_material.dart';
 part 'src/materials/mesh_normal_material.dart';
-part 'src/materials/itexture_map_material.dart';
-part 'src/materials/iparticle_material.dart';
-part 'src/materials/imaterial.dart';
 part 'src/materials/mesh_phong_material.dart';
 part 'src/materials/shader_material.dart';
 
@@ -139,8 +141,6 @@ part 'src/renderers/web_gl_renderer.dart';
 part 'src/renderers/web_gl_render_target.dart';
 part 'src/renderers/web_gl_render_target_cube.dart';
 part 'src/renderers/web_gl_shaders.dart';
-part 'src/renderers/canvas_renderer.dart';
-part 'src/renderers/css3d_renderer.dart';
 
 part 'src/renderers/renderables/irenderable.dart';
 

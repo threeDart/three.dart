@@ -5,7 +5,7 @@ class LatheGeometry extends Geometry {
   int steps;
   num angle;
 
-  LatheGeometry(points, [this.steps = 12, this.angle = 2 * Math.PI] ) : super() {
+  LatheGeometry(List<Vector3> points, [this.steps = 12, this.angle = 2 * Math.PI] ) : super() {
 
     var newV = points.map((pt) => pt.clone()).toList();
     vertices.addAll(newV);

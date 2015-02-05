@@ -8,14 +8,23 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// Implementation of a [quaternion](http://en.wikipedia.org/wiki/Quaternion).
+///
+/// This is used for rotating things without encountering the dreaded
+/// [gimbal lock](http://en.wikipedia.org/wiki/Gimbal_lock) issue, amongst other advantages.
 class Quaternion implements IVector4 {
+  /// x coordinate
   num x;
+  /// y coordinate
   num y;
+  /// z coordinate
   num z;
+  /// w coordinate
   num w;
 
   Quaternion( [num this.x=0.0, num this.y=0.0, num this.z=0.0, num this.w=1.0] );
 
+  /// Sets values of this quaternion.
   Quaternion setValues( num newX, num newY, num newZ, num newW ) {
     this.x = newX;
     this.y = newY;
@@ -25,6 +34,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Copies values of q to this quaternion.
   Quaternion copy( IVector4 q ) {
     this.x = q.x;
     this.y = q.y;
@@ -34,6 +44,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Sets this quaternion from rotation specified by Euler angle.
   Quaternion setFromEuler( Vector3 v, [String order = 'XYZ'] ) {
     // http://www.mathworks.com/matlabcentral/fileexchange/
     //  20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
@@ -94,12 +105,13 @@ class Quaternion implements IVector4 {
 
   }
 
+  /// Sets this quaternion from rotation specified by axis and angle.
+  ///
+  /// Adapted from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm.
+  /// Axis is asumed to be normalized, angle is in radians.
   Quaternion setFromAxisAngle( Vector3 axis, num angle ) {
-    // from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
-    // axis have to be normalized
-
-    num halfAngle = angle / 2.0,
-      s = Math.sin( halfAngle );
+    num halfAngle = angle / 2.0;
+    num s = Math.sin( halfAngle );
 
     this.x = axis.x * s;
     this.y = axis.y * s;
@@ -109,6 +121,9 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Sets this quaternion from rotation component of m.
+  ///
+  /// Adapted from http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm.
   Quaternion setFromRotationMatrix( Matrix4 m ) {
 
     // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
@@ -179,8 +194,10 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Computes length of this quaternion.
   double length() => Math.sqrt( x * x + y * y + z * z + w * w );
 
+  /// Normalizes this quaternion.
   Quaternion normalize() {
     num l = Math.sqrt( x * x + y * y + z * z + w * w );
 
@@ -201,6 +218,9 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Sets this quaternion to a x b
+  ///
+  /// Adapted from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm.
   Quaternion multiply( IVector4 q1, IVector4 q2 ) {
     // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
@@ -212,6 +232,7 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Multiplies this quaternion by b.
   Quaternion multiplySelf( IVector4 quat2 ) {
     num qax = x,  qay = y,  qaz = z,  qaw = w,
     qbx = quat2.x, qby = quat2.y, qbz = quat2.z, qbw = quat2.w;
@@ -224,6 +245,8 @@ class Quaternion implements IVector4 {
     return this;
   }
 
+  /// Rotates vector by this quaternion into dest.
+  /// If dest is not specified, result goes to vec.
   Vector3 multiplyVector3( Vector3 vec, {Vector3 dest: null} ) {
     if( dest == null ) { dest = vec; }
 
@@ -284,7 +307,11 @@ class Quaternion implements IVector4 {
     return this;
   }
 
-  slerpSelf(Vector4 qb, num t ) {
+  /// Handles the spherical linear interpolation between this quaternion's
+  /// configuration and that of qb.
+  ///
+  /// t represents how close to the current (0) or target (1) rotation the result should be.
+  Quaternion slerpSelf(Vector4 qb, num t ) {
 
     // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
@@ -342,8 +369,10 @@ class Quaternion implements IVector4 {
 
   }
 
+  /// Clones this quaternion.
   clone() => new Quaternion( this.x, this.y, this.z, this.w );
 
+  /// Adapted from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/.
   static IVector4 slerp( IVector4 qa, IVector4 qb, IVector4 qm, num t ) {
     // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 

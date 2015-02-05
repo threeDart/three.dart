@@ -101,7 +101,7 @@ void init() {
   //text = "abcdefghijklmnopqrstuvwxyz0123456789";
   //text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-   pointLight.color.setHSL( new Math.Random().nextDouble(), 1, 0.5 );
+   pointLight.color.setHSL( new Math.Random().nextDouble(), 1.0, 0.5 );
 
    material = new MeshFaceMaterial( [
      new MeshPhongMaterial( color: 0xffffff, shading: FlatShading ), // front
@@ -321,14 +321,14 @@ onDocumentMouseDown( event ) {
     document.onMouseUp.listen( onDocumentMouseUp ),
     document.onMouseOut.listen( onDocumentMouseOut )];
 
-  mouseXOnMouseDown = event.clientX - windowHalfX;
+  mouseXOnMouseDown = event.client.x - windowHalfX;
   targetRotationOnMouseDown = targetRotation;
 
 }
 
 onDocumentMouseMove( event ) {
 
-  mouseX = event.clientX - windowHalfX;
+  mouseX = event.client.x - windowHalfX;
 
   targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 

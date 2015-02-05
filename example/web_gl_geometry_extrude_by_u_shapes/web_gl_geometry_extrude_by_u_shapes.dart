@@ -166,17 +166,17 @@ void init() {
   smileyShape.moveTo( 80, 40 );
   smileyShape.arc( 40, 40, 40, 0, Math.PI*2, false );
 
-  var smileyEye1Path = new Path();
+  var smileyEye1Path = new THREE.Path();
   smileyEye1Path.moveTo( 35, 20 );
   smileyEye1Path.arc( 25, 20, 10, 0, Math.PI*2, true );
   smileyShape.holes.add( smileyEye1Path );
 
-  var smileyEye2Path = new Path();
+  var smileyEye2Path = new THREE.Path();
   smileyEye2Path.moveTo( 65, 20 );
   smileyEye2Path.arc( 55, 20, 10, 0, Math.PI*2, true );
   smileyShape.holes.add( smileyEye2Path );
 
-  var smileyMouthPath = new Path();
+  var smileyMouthPath = new THREE.Path();
 
   smileyMouthPath.moveTo( 20, 40 );
   smileyMouthPath.quadraticCurveTo( 40, 60, 60, 40 );

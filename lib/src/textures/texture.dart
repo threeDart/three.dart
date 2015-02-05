@@ -9,18 +9,23 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class ImageList {
+class ImageList extends Object with ListMixin<ImageElement> {
   int loadCount;
   List<ImageElement> _images;
   Map<String,dynamic> props;
 
+  // WebGL
+  gl.Texture webglTextureCube;
+
   ImageList(size): props = {},_images = new List<ImageElement>(size);
+
+  ImageList.from(ImageList other)
+      : props = {}, _images = new List<ImageElement>.from(other._images);
 
   ImageElement operator [](int index) => _images[index];
   void operator []=(int index, ImageElement img) { _images[index] = img; }
   int get length => _images.length;
-  List<ImageElement> getRange(int start, int length) => _images.getRange(start, length);
-
+  void set length(int size) { _images.length = size; }
 }
 
 class Texture {
@@ -40,6 +45,9 @@ class Texture {
   int unpackAlignment = 4; // valid values: 1, 2, 4, 8 (see http://www.khronos.org/opengles/sdk/docs/man/xhtml/glPixelStorei.xml)
 
   List mipmaps = [];
+
+  // WebGL
+  var __webglTexture;
 
   //TODO: resolve dynamic vars, find out what UVMapping is!
   Texture( [  this.image,

@@ -31,12 +31,12 @@ var  _face = "helvetiker",
      _size = 150,
      _divisions = 10;
 
-/// Map of [FontFace]
-Map<String, Map<String, Map<String, Map<String, Map>>>> _faces = {};
+/// Map of [FontFace] of Map<String, Map> (before parsing)
+Map<String, Map<String, Map<String, dynamic>>> _faces = {};
 
 Map<String, Map> getFace() => _faces[ _face ][ _weight ][ _style ];
 
-loadFace( data ) {
+Map<String, String> loadFace( Map<String, String> data ) {
 
   var family = data["familyName"].toLowerCase();
 
@@ -52,7 +52,7 @@ loadFace( data ) {
 
 }
 
-drawText( String text ) {
+Map drawText( String text ) {
 
   var characterPts = [], allPts = [];
 
@@ -98,7 +98,7 @@ drawText( String text ) {
 
 }
 
-extractGlyphPoints ( String c, face, scale, offset, path ) {
+Map extractGlyphPoints ( String c, Map face, int scale, int offset, path ) {
 
   List<Vector2> pts = [];
 
@@ -218,12 +218,10 @@ extractGlyphPoints ( String c, face, scale, offset, path ) {
     }
   }
 
-
-
-  return { "offset": glyph["ha"]*scale, "path":path};
+  return { "offset": glyph["ha"]*scale, "path": path};
 }
 
-generateShapes( text, [ int size = 100,
+List<Shape> generateShapes( String text, [ int size = 100,
                         int curveSegments = 4,
                         String font = "helvetiker",
                         String weight = "normal",
@@ -235,7 +233,7 @@ generateShapes( text, [ int size = 100,
     face = new FontFace(size: size, divisions: curveSegments);
     _faces[font][weight][style] = face;
   }
-  
+
   _size = size;
   _divisions = curveSegments;
 
@@ -248,17 +246,8 @@ generateShapes( text, [ int size = 100,
   var data = drawText( text );
 
   var paths = data["paths"];
-  var shapes = [];
-  var pl = paths.length;
 
-  for ( var p = 0; p < pl; p ++ ) {
-
-    shapes.addAll(paths[ p ].toShapes() );
-
-  }
-
-  return shapes;
-
+  return paths.map((p) => p.toShapes()).toList();
 }
 
 class Glyph {
@@ -398,7 +387,7 @@ List<List<Vector2>> process( List<Vector2> contour, bool indices ) {
 }
 
 // calculate area of the contour polygon
-area( contour ) {
+double area( List contour ) {
 
   var n = contour.length;
   var a = 0.0;
@@ -414,10 +403,10 @@ area( contour ) {
 }
 
 // see if p is inside triangle abc
-insideTriangle( ax, ay,
-                 bx, by,
-                 cx, cy,
-                 px, py ) {
+insideTriangle( num ax, num ay,
+                num bx, num by,
+                num cx, num cy,
+                num px, num py ) {
 
     var aX, aY, bX, bY;
     var cX, cY, apx, apy;
@@ -440,7 +429,7 @@ insideTriangle( ax, ay,
 }
 
 
-snip( contour, u, v, w, n, verts ) {
+bool snip( List<Vector2> contour, num u, num v, num w, num n, List<num> verts ) {
 
   var p;
   var ax, ay, bx, by;
@@ -457,18 +446,18 @@ snip( contour, u, v, w, n, verts ) {
 
   if ( EPSILON > (((bx-ax)*(cy-ay)) - ((by-ay)*(cx-ax))) ) return false;
 
-    for ( p = 0; p < n; p++ ) {
+  for ( p = 0; p < n; p++ ) {
 
-      if( (p == u) || (p == v) || (p == w) ) continue;
+    if( (p == u) || (p == v) || (p == w) ) continue;
 
-      px = contour[ verts[ p ] ].x;
-      py = contour[ verts[ p ] ].y;
+    px = contour[ verts[ p ] ].x;
+    py = contour[ verts[ p ] ].y;
 
-      if ( insideTriangle( ax, ay, bx, by, cx, cy, px, py ) ) return false;
+    if ( insideTriangle( ax, ay, bx, by, cx, cy, px, py ) ) return false;
 
-    }
+  }
 
-    return true;
+  return true;
 
 }
 

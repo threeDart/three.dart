@@ -78,8 +78,8 @@ class ExtrudeGeometry extends Geometry {
 
 
 
-  addShapeList(shapes, amount, bevelThickness, bevelSize, bevelSegments,bevelEnabled,
-               curveSegments,steps,bendPath,extrudePath,frames,material, extrudeMaterial) {
+  addShapeList(List shapes, num amount, double bevelThickness, double bevelSize, int bevelSegments, bool bevelEnabled,
+               curveSegments, steps, bendPath, Curve extrudePath, TubeGeometry frames, int material, int extrudeMaterial) {
     var sl = shapes.length;
 
     for ( var s = 0; s < sl; s ++ ) {
@@ -227,8 +227,8 @@ class ExtrudeGeometry extends Geometry {
       return reversed;
    }
 
-  addShape( Shape shape, amount, bevelThickness, bevelSize, bevelSegments, bevelEnabled,
-            curveSegments, steps, bendPath, extrudePath, TubeGeometry frames, material, extrudeMaterial,
+  addShape( Shape shape, num amount, double bevelThickness, double bevelSize, int bevelSegments, bool bevelEnabled,
+            curveSegments, steps, bendPath, Curve extrudePath, TubeGeometry frames, int material, int extrudeMaterial,
             {ExtrudeGeometryWorldUVGenerator UVGenerator }) {
 
 
@@ -276,8 +276,8 @@ class ExtrudeGeometry extends Geometry {
     if ( ! bevelEnabled ) {
 
       bevelSegments = 0;
-      bevelThickness = 0;
-      bevelSize = 0;
+      bevelThickness = 0.0;
+      bevelSize = 0.0;
 
     }
 
@@ -643,7 +643,7 @@ class ExtrudeGeometry extends Geometry {
       }
     }
 
-    sidewalls( contour, layeroffset ) {
+    sidewalls( List contour, int layeroffset ) {
       var i, j, k;
       i = contour.length;
 
@@ -695,7 +695,7 @@ class ExtrudeGeometry extends Geometry {
 }
 
 class ExtrudeGeometryWorldUVGenerator {
-  generateTopUV( geometry, extrudedShape, extrudeOptions, indexA, indexB, indexC) {
+  List<UV> generateTopUV( Geometry geometry, extrudedShape, extrudeOptions, int indexA, int indexB, int indexC) {
     var ax = geometry.vertices[ indexA ].x,
       ay = geometry.vertices[ indexA ].y,
 
@@ -712,12 +712,12 @@ class ExtrudeGeometryWorldUVGenerator {
     ];
   }
 
-  generateBottomUV( geometry, extrudedShape, extrudeOptions, indexA, indexB, indexC) {
+  List<UV> generateBottomUV( Geometry geometry, extrudedShape, extrudeOptions, int indexA, int indexB, int indexC) {
     return generateTopUV( geometry, extrudedShape, extrudeOptions, indexA, indexB, indexC );
   }
 
-  generateSideWallUV( geometry, extrudedShape, wallContour, extrudeOptions,
-                                indexA, indexB, indexC, indexD, stepIndex, stepsLength) {
+  List<UV> generateSideWallUV( Geometry geometry, extrudedShape, wallContour, extrudeOptions,
+                                int indexA, int indexB, int indexC, int indexD, stepIndex, stepsLength) {
     var ax = geometry.vertices[ indexA ].x,
       ay = geometry.vertices[ indexA ].y,
       az = geometry.vertices[ indexA ].z,

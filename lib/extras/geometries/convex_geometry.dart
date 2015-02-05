@@ -133,7 +133,7 @@ class ConvexGeometry extends Geometry {
   /**
    * Whether the face is visible from the vertex
    */
-  _visible( face, vertex ) {
+  bool _visible( List<int> face, Vector3 vertex ) {
 
     var va = vertices[ face[ 0 ] ];
     var vb = vertices[ face[ 1 ] ];
@@ -151,7 +151,7 @@ class ConvexGeometry extends Geometry {
   /**
    * Face normal
    */
-  _normal( va, vb, vc ) {
+  Vector3 _normal( Vector3 va, Vector3 vb, Vector3 vc ) {
 
     Vector3 cb = new Vector3.zero();
     Vector3 ab = new Vector3.zero();

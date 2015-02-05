@@ -8,6 +8,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// Frustums are used to determine what is inside the camera's field of view. They help speed up the rendering process.
 class Frustum {
   List<Vector4> planes;
 
@@ -22,6 +23,7 @@ class Frustum {
     return ___v1;
   }
 
+  /// Creates a new frustrum with default planes.
   Frustum()
       : planes = [
                   new Vector4(0.0, 0.0, 0.0, 1.0),

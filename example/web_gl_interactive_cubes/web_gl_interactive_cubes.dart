@@ -13,6 +13,7 @@ Projector projector;
 double mouseX = 0.0, mouseY = 0.0;
 
 Mesh INTERSECTED;
+num currentHex;
 
 void main() {
   init();
@@ -33,7 +34,7 @@ void init() {
 
   var light;
 
-  light = new DirectionalLight( 0xffffff, 2 );
+  light = new DirectionalLight( 0xffffff, 2.0 );
   light.position.setValues( 1.0, 1.0, 1.0 ).normalize();
   scene.add( light );
 
@@ -91,8 +92,8 @@ onDocumentMouseMove( event ) {
 
   event.preventDefault();
 
-  mouseX = ( event.clientX / window.innerWidth ) * 2 - 1;
-  mouseY = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  mouseX = ( event.client.x / window.innerWidth ) * 2 - 1;
+  mouseY = - ( event.client.y / window.innerHeight ) * 2 + 1;
 
 }
 
@@ -130,18 +131,18 @@ render() {
 
     if ( INTERSECTED != intersects[ 0 ].object ) {
 
-      if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
+      if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).emissive.setHex( currentHex );
 
       INTERSECTED = intersects[ 0 ].object;
       MeshLambertMaterial material = INTERSECTED.material;
-      INTERSECTED["currentHex"] = material.color.getHex();
-      material.color.setHex( 0xff0000 );
+      currentHex = material.emissive.getHex();
+      material.emissive.setHex( 0xff0000 );
 
     }
 
   } else {
 
-    if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).color.setHex( INTERSECTED["currentHex"] );
+    if ( INTERSECTED != null ) (INTERSECTED.material as MeshLambertMaterial).emissive.setHex( currentHex );
 
     INTERSECTED = null;
 

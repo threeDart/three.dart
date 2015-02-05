@@ -3,7 +3,7 @@ part of three;
 class CircleGeometry extends Geometry {
   num radius, segments, thetaStart, thetaLength;
 
-  CircleGeometry( [this.radius = 50, this.segments = 8, this.thetaStart = 0, thetaLength =  Math.PI * 2]) : super() {
+  CircleGeometry( [this.radius = 50, this.segments = 8, this.thetaStart = 0, this.thetaLength =  Math.PI * 2]) : super() {
     segments = Math.max(3, segments);
 
     var i,

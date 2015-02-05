@@ -92,8 +92,8 @@ onWindowResize(event) {
 }
 
 onDocumentMouseMove(event) {
-  mouseX = ( event.clientX - windowHalfX );
-  mouseY = ( event.clientY - windowHalfY ) * 2;
+  mouseX = ( event.client.x - windowHalfX );
+  mouseY = ( event.client.y - windowHalfY ) * 2;
 }
 
 animate(num time) {

@@ -9,9 +9,11 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// Camera with perspective projection.
 class PerspectiveCamera extends Camera {
-
+  /// Camera frustum vertical field of view, from bottom to top of view, in degrees.
   double fov;
+  /// Camera frustum aspect ratio, window width divided by window height.
   double aspect;
 
   double _fullWidth;
@@ -28,12 +30,10 @@ class PerspectiveCamera extends Camera {
     updateProjectionMatrix();
   }
 
-  /**
-   * Uses Focal Length (in mm) to estimate and set FOV
-   * 35mm (fullframe) camera is used if frame size is not specified;
-   * Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
-   */
-
+  /// Uses Focal Length (in mm) to estimate and set FOV
+  /// 35mm (fullframe) camera is used if frame size is not specified.
+  ///
+  /// Formula based on http://www.bobatkins.com/photography/technical/field_of_view.html
   void setLens( double focalLength, double frameSize ) {
     frameSize = frameSize != null ? frameSize : 43.25; // 36x24mm
 
@@ -42,7 +42,6 @@ class PerspectiveCamera extends Camera {
 
     updateProjectionMatrix();
   }
-
 
   /**
    * Sets an offset in a larger frustum. This is useful for multi-window or
@@ -79,7 +78,6 @@ class PerspectiveCamera extends Camera {
    *
    *   Note there is no reason monitors have to be the same size or in a grid.
    */
-
   void setViewOffset( double fullWidth, double fullHeight, double x, double y, double width, double height ) {
     _fullWidth = fullWidth;
     _fullHeight = fullHeight;
@@ -91,7 +89,9 @@ class PerspectiveCamera extends Camera {
     updateProjectionMatrix();
   }
 
-
+  /// Updates the camera projection matrix.
+  ///
+  /// Must be called after change of parameters.
   void updateProjectionMatrix() {
     if ( _fullWidth != null ) {
       double aspect = _fullWidth / _fullHeight;

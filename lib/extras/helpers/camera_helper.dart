@@ -19,7 +19,7 @@ class CameraHelper extends Line {
 
   Matrix4 matrixWorld;
   bool matrixAutoUpdate;
-  Map pointMap;
+  Map<String, List> pointMap;
 
   CameraHelper( this.camera ) :
     matrixAutoUpdate = false,
@@ -88,14 +88,14 @@ class CameraHelper extends Line {
     update();
   }
 
-  addLine( a, b, hex ) {
+  void addLine( String a, String b, int hex ) {
 
     addPoint( a, hex );
     addPoint( b, hex );
 
   }
 
-  addPoint( id, hex ) {
+  void addPoint( String id, int hex ) {
 
     geometry.vertices.add( new Vector3.zero() );
     geometry.colors.add( new Color( hex ) );
@@ -108,7 +108,7 @@ class CameraHelper extends Line {
 
   }
 
-  setPoint( String point, double x, double y, double z ) {
+  void setPoint( String point, double x, double y, double z ) {
 
     __v.setValues( x, y, z );
     __projector.unprojectVector( __v, __c );
@@ -127,7 +127,8 @@ class CameraHelper extends Line {
     }
 
   }
-  update() {
+
+  void update() {
 
     var w = 1.0, h = 1.0;
 

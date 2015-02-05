@@ -1,28 +1,28 @@
 part of three;
 
 class TextGeometry extends ExtrudeGeometry {
-  factory TextGeometry( text, [ height = 50, // height <=> amount,
-                                bend = false,
+  factory TextGeometry( String text, [ int height = 50, // height <=> amount,
+                                bool bend = false,
 
                                 // ExtrudeGeometry parameters
-                                bevelThickness = 10,
-                                bevelSize = 8,
-                                bevelSegments = 3,
-                                bevelEnabled = false,
+                                int bevelThickness = 10,
+                                int bevelSize = 8,
+                                int bevelSegments = 3,
+                                bool bevelEnabled = false,
 
 
-                                curveSegments = 12,
-                                steps = 1,
+                                int curveSegments = 12,
+                                int steps = 1,
                                 bendPath,
                                 extrudePath,
-                                material,
-                                extrudeMaterial,
+                                int material,
+                                int extrudeMaterial,
 
                                 // FontUtils.generateShapes parameters
-                                size = 100,
-                                font = "helvetiker",
-                                weight = "normal",
-                                style = "normal"
+                                int size = 100,
+                                String font = "helvetiker",
+                                String weight = "normal",
+                                String style = "normal"
                                 ] ) {
 
     var textShapes = FontUtils.generateShapes( text, size, curveSegments, font, weight, style);

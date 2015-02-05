@@ -1,6 +1,8 @@
 import 'dart:html';
 import 'dart:math' as Math;
+
 import 'package:three/three.dart';
+import 'package:three/extras/renderers/canvas_renderer.dart';
 
 Element container;
 

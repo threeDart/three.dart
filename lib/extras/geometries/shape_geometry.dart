@@ -18,14 +18,14 @@ part of three;
 
 class ShapeGeometry extends Geometry {
 
-  List shapes;
+  List<Shape> shapes;
 
   var shapebb;
 
   ShapeGeometry( this.shapes,
                   {
-                    curveSegments: 12,
-                    material,
+                    int curveSegments: 12,
+                    int material,
                     ExtrudeGeometryWorldUVGenerator UVGenerator } ) : super() {
 
     if (shapes == null) {
@@ -45,7 +45,7 @@ class ShapeGeometry extends Geometry {
 
 
 
-  addShapeList(shapes, curveSegments, material, [ ExtrudeGeometryWorldUVGenerator UVGenerator = null ] ) {
+  addShapeList(List<Shape> shapes, num curveSegments, int material, [ ExtrudeGeometryWorldUVGenerator UVGenerator = null ] ) {
     var sl = shapes.length;
 
     for ( var s = 0; s < sl; s ++ ) {
@@ -54,7 +54,7 @@ class ShapeGeometry extends Geometry {
     }
   }
 
-  addShape( Shape shape, curveSegments, material, [ ExtrudeGeometryWorldUVGenerator UVGenerator = null ] ) {
+  addShape( Shape shape, num curveSegments, int material, [ ExtrudeGeometryWorldUVGenerator UVGenerator = null ] ) {
 
     // set UV generator
     var uvgen = (UVGenerator!= null) ? UVGenerator : new ExtrudeGeometryWorldUVGenerator();

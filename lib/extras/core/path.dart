@@ -7,18 +7,18 @@ part of three;
  **/
 
 class PathAction {
-	static const String MOVE_TO = 'moveTo';
-	static const String LINE_TO = 'lineTo';
-	static const String QUADRATIC_CURVE_TO = 'quadraticCurveTo';    // Bezier quadratic curve
-	static const String BEZIER_CURVE_TO = 'bezierCurveTo';  		// Bezier cubic curve
-	static const String CSPLINE_THRU = 'splineThru';				// Catmull-rom spline
-	static const String ARC = 'arc';								// Circle
-	static const String ELLIPSE = 'ellipse';
+  static const String MOVE_TO = 'moveTo';
+  static const String LINE_TO = 'lineTo';
+  static const String QUADRATIC_CURVE_TO = 'quadraticCurveTo';    // Bezier quadratic curve
+  static const String BEZIER_CURVE_TO = 'bezierCurveTo';      // Bezier cubic curve
+  static const String CSPLINE_THRU = 'splineThru';        // Catmull-rom spline
+  static const String ARC = 'arc';                // Circle
+  static const String ELLIPSE = 'ellipse';
 
-	String action;
-	var args;
+  String action;
+  var args;
 
-	PathAction(this.action, this.args);
+  PathAction(this.action, this.args);
 }
 
 class Path extends CurvePath {
@@ -28,11 +28,11 @@ class Path extends CurvePath {
   List _points;
   List<PathAction> actions;
 
-	Path( [List points] ) : actions = [],  super(){
-	  if (points != null) {
-	    _fromPoints(points);
-	  }
-	}
+  Path( [List points] ) : actions = [],  super(){
+    if (points != null) {
+      _fromPoints(points);
+    }
+  }
 
   // Create path using straight lines to connect all points
   // - vectors: array of Vector2
@@ -55,74 +55,74 @@ class Path extends CurvePath {
 
   lineTo( x, y ) {
 
-  	var args = [x, y];
+    var args = [x, y];
 
-  	var lastargs = actions.last.args;
+    var lastargs = actions.last.args;
 
-  	var x0 = lastargs[ lastargs.length - 2 ];
-  	var y0 = lastargs[ lastargs.length - 1 ];
+    var x0 = lastargs[ lastargs.length - 2 ];
+    var y0 = lastargs[ lastargs.length - 1 ];
 
-  	var curve = new LineCurve( new Vector2( x0, y0 ), new Vector2( x, y ) );
-  	curves.add( curve );
+    var curve = new LineCurve( new Vector2( x0, y0 ), new Vector2( x, y ) );
+    curves.add( curve );
 
-  	addAction( PathAction.LINE_TO, args);
+    addAction( PathAction.LINE_TO, args);
   }
 
   quadraticCurveTo( aCPx, aCPy, aX, aY ) {
 
-  	var args = [aCPx, aCPy, aX, aY];
+    var args = [aCPx, aCPy, aX, aY];
 
-  	var lastargs = actions.last.args;
+    var lastargs = actions.last.args;
 
-  	var x0 = lastargs[ lastargs.length - 2 ].toDouble();
-  	var y0 = lastargs[ lastargs.length - 1 ].toDouble();
+    var x0 = lastargs[ lastargs.length - 2 ].toDouble();
+    var y0 = lastargs[ lastargs.length - 1 ].toDouble();
 
-  	var curve = new QuadraticBezierCurve( new Vector2( x0, y0 ),
-  												new Vector2( aCPx.toDouble(), aCPy.toDouble() ),
-  												new Vector2( aX.toDouble(), aY.toDouble() ) );
-  	curves.add( curve );
+    var curve = new QuadraticBezierCurve( new Vector2( x0, y0 ),
+                          new Vector2( aCPx.toDouble(), aCPy.toDouble() ),
+                          new Vector2( aX.toDouble(), aY.toDouble() ) );
+    curves.add( curve );
 
-  	addAction( PathAction.QUADRATIC_CURVE_TO, args );
+    addAction( PathAction.QUADRATIC_CURVE_TO, args );
   }
 
   bezierCurveTo( aCP1x, aCP1y,
                  aCP2x, aCP2y,
                  aX, aY ) {
 
-  	var args = [aCP1x, aCP1y,
+    var args = [aCP1x, aCP1y,
                  aCP2x, aCP2y,
                  aX, aY];
 
-  	var lastargs = actions.last.args;
+    var lastargs = actions.last.args;
 
-  	var x0 = lastargs[ lastargs.length - 2 ].toDouble();
-  	var y0 = lastargs[ lastargs.length - 1 ].toDouble();
+    var x0 = lastargs[ lastargs.length - 2 ].toDouble();
+    var y0 = lastargs[ lastargs.length - 1 ].toDouble();
 
-  	var curve = new CubicBezierCurve( new Vector2( x0, y0 ),
-  											new Vector2( aCP1x.toDouble(), aCP1y.toDouble() ),
-  											new Vector2( aCP2x.toDouble(), aCP2y.toDouble() ),
-  											new Vector2( aX.toDouble(), aY.toDouble() ) );
-  	curves.add( curve );
+    var curve = new CubicBezierCurve( new Vector2( x0, y0 ),
+                        new Vector2( aCP1x.toDouble(), aCP1y.toDouble() ),
+                        new Vector2( aCP2x.toDouble(), aCP2y.toDouble() ),
+                        new Vector2( aX.toDouble(), aY.toDouble() ) );
+    curves.add( curve );
 
-  	addAction( PathAction.BEZIER_CURVE_TO, args );
+    addAction( PathAction.BEZIER_CURVE_TO, args );
 
   }
 
   splineThru( List<Vector2> pts) {
 
-  	var args = [pts];
-  	var lastargs = actions.last.args;
+    var args = [pts];
+    var lastargs = actions.last.args;
 
-  	var x0 = lastargs[ lastargs.length - 2 ];
-  	var y0 = lastargs[ lastargs.length - 1 ];
+    var x0 = lastargs[ lastargs.length - 2 ];
+    var y0 = lastargs[ lastargs.length - 1 ];
   //---
-  	var npts = [ new Vector2( x0, y0 ) ];
-  	npts.addAll(pts); //Array.prototype.push.apply( npts, pts );
+    var npts = [ new Vector2( x0, y0 ) ];
+    npts.addAll(pts); //Array.prototype.push.apply( npts, pts );
 
-  	var curve = new SplineCurve( npts );
-  	curves.add( curve );
+    var curve = new SplineCurve( npts );
+    curves.add( curve );
 
-  	addAction( PathAction.CSPLINE_THRU, args);
+    addAction( PathAction.CSPLINE_THRU, args);
 
   }
 
@@ -130,7 +130,7 @@ class Path extends CurvePath {
   // TODO ARC ( x, y, x - radius, y - radius, startAngle, endAngle )
 
   arc( aX, aY, aRadius,
-  								aStartAngle, aEndAngle, aClockwise ) {
+                  aStartAngle, aEndAngle, aClockwise ) {
 
     var lastargs = actions[ actions.length - 1].args;
     var x0 = lastargs[ lastargs.length - 2 ];
@@ -173,204 +173,204 @@ class Path extends CurvePath {
 
   getSpacedPoints( [int divisions = 5, bool closedPath = false] ) {
 
-  	if ( divisions == null ) divisions = 40;
+    if ( divisions == null ) divisions = 40;
 
-  	var points = [];
+    var points = [];
 
-  	for ( var i = 0; i < divisions; i ++ ) {
+    for ( var i = 0; i < divisions; i ++ ) {
 
-  		points.add( this.getPoint( i / divisions ) );
+      points.add( this.getPoint( i / divisions ) );
 
-  		//if( !this.getPoint( i / divisions ) ) throw "DIE";
+      //if( !this.getPoint( i / divisions ) ) throw "DIE";
 
-  	}
+    }
 
-  	// if ( closedPath ) {
-  	//
-  	// 	points.push( points[ 0 ] );
-  	//
-  	// }
+    // if ( closedPath ) {
+    //
+    //   points.push( points[ 0 ] );
+    //
+    // }
 
-  	return points;
+    return points;
 
   }
 
   /* Return an array of vectors based on contour of the path */
   getPoints( [int divisions = null, closedPath = false] ) {
 
-  	if (useSpacedPoints) {
-  		return getSpacedPoints( divisions, closedPath );
-  	}
+    if (useSpacedPoints) {
+      return getSpacedPoints( divisions, closedPath );
+    }
 
-  	if (divisions == null) divisions =  12;
+    if (divisions == null) divisions =  12;
 
-  	List<Vector2> points = [];
+    List<Vector2> points = [];
 
-  	var i, il, item, action, args;
-  	var cpx, cpy, cpx2, cpy2, cpx1, cpy1, cpx0, cpy0,
-  		laste, j,
-  		t, tx, ty;
+    var i, il, item, action, args;
+    var cpx, cpy, cpx2, cpy2, cpx1, cpy1, cpx0, cpy0,
+      laste, j,
+      t, tx, ty;
 
-  	for ( i = 0; i < actions.length; i ++ ) {
+    for ( i = 0; i < actions.length; i ++ ) {
 
-  		item = actions[ i ];
+      item = actions[ i ];
 
-  		action = item.action;
-  		args = item.args;
+      action = item.action;
+      args = item.args;
 
-  		switch( action ) {
+      switch( action ) {
 
-  		case PathAction.MOVE_TO:
+      case PathAction.MOVE_TO:
 
-  			points.add( new Vector2( args[ 0 ], args[ 1 ] ) );
+        points.add( new Vector2( args[ 0 ], args[ 1 ] ) );
 
-  			break;
+        break;
 
-  		case PathAction.LINE_TO:
+      case PathAction.LINE_TO:
 
-  			points.add( new Vector2( args[ 0 ], args[ 1 ] ) );
+        points.add( new Vector2( args[ 0 ], args[ 1 ] ) );
 
-  			break;
+        break;
 
-  		case PathAction.QUADRATIC_CURVE_TO:
+      case PathAction.QUADRATIC_CURVE_TO:
 
-  			cpx  = args[ 2 ];
-  			cpy  = args[ 3 ];
+        cpx  = args[ 2 ];
+        cpy  = args[ 3 ];
 
-  			cpx1 = args[ 0 ];
-  			cpy1 = args[ 1 ];
+        cpx1 = args[ 0 ];
+        cpy1 = args[ 1 ];
 
-  			if ( points.length > 0 ) {
+        if ( points.length > 0 ) {
 
-  				laste = points[ points.length - 1 ];
+          laste = points[ points.length - 1 ];
 
-  				cpx0 = laste.x;
-  				cpy0 = laste.y;
+          cpx0 = laste.x;
+          cpy0 = laste.y;
 
-  			} else {
+        } else {
 
-  				laste = actions[ i - 1 ].args;
+          laste = actions[ i - 1 ].args;
 
-  				cpx0 = laste[ laste.length - 2 ];
-  				cpy0 = laste[ laste.length - 1 ];
+          cpx0 = laste[ laste.length - 2 ];
+          cpy0 = laste[ laste.length - 1 ];
 
-  			}
+        }
 
-  			for ( j = 1; j <= divisions; j ++ ) {
+        for ( j = 1; j <= divisions; j ++ ) {
 
-  				t = j / divisions;
+          t = j / divisions;
 
-  				tx = ShapeUtils.b2( t, cpx0, cpx1, cpx );
-  				ty = ShapeUtils.b2( t, cpy0, cpy1, cpy );
+          tx = ShapeUtils.b2( t, cpx0, cpx1, cpx );
+          ty = ShapeUtils.b2( t, cpy0, cpy1, cpy );
 
-  				points.add( new Vector2( tx, ty ) );
+          points.add( new Vector2( tx, ty ) );
 
-  		  	}
+          }
 
-  			break;
+        break;
 
-  		case PathAction.BEZIER_CURVE_TO:
+      case PathAction.BEZIER_CURVE_TO:
 
-  			cpx  = args[ 4 ];
-  			cpy  = args[ 5 ];
+        cpx  = args[ 4 ];
+        cpy  = args[ 5 ];
 
-  			cpx1 = args[ 0 ];
-  			cpy1 = args[ 1 ];
+        cpx1 = args[ 0 ];
+        cpy1 = args[ 1 ];
 
-  			cpx2 = args[ 2 ];
-  			cpy2 = args[ 3 ];
+        cpx2 = args[ 2 ];
+        cpy2 = args[ 3 ];
 
-  			if ( points.length > 0 ) {
+        if ( points.length > 0 ) {
 
-  				laste = points[ points.length - 1 ];
+          laste = points[ points.length - 1 ];
 
-  				cpx0 = laste.x;
-  				cpy0 = laste.y;
+          cpx0 = laste.x;
+          cpy0 = laste.y;
 
-  			} else {
+        } else {
 
-  				laste = actions[ i - 1 ].args;
+          laste = actions[ i - 1 ].args;
 
-  				cpx0 = laste[ laste.length - 2 ];
-  				cpy0 = laste[ laste.length - 1 ];
+          cpx0 = laste[ laste.length - 2 ];
+          cpy0 = laste[ laste.length - 1 ];
 
-  			}
+        }
 
 
-  			for ( j = 1; j <= divisions; j ++ ) {
+        for ( j = 1; j <= divisions; j ++ ) {
 
-  				t = j / divisions;
+          t = j / divisions;
 
-  				tx = ShapeUtils.b3( t, cpx0, cpx1, cpx2, cpx );
-  				ty = ShapeUtils.b3( t, cpy0, cpy1, cpy2, cpy );
+          tx = ShapeUtils.b3( t, cpx0, cpx1, cpx2, cpx );
+          ty = ShapeUtils.b3( t, cpy0, cpy1, cpy2, cpy );
 
-  				points.add( new Vector2( tx, ty ) );
+          points.add( new Vector2( tx, ty ) );
 
-  			}
+        }
 
-  			break;
+        break;
 
-  		case PathAction.CSPLINE_THRU:
+      case PathAction.CSPLINE_THRU:
 
-  			laste = actions[ i - 1 ].args;
+        laste = actions[ i - 1 ].args;
 
-  			var last = new Vector2( laste[ laste.length - 2 ], laste[ laste.length - 1 ] );
-  			var spts = [ last ];
+        var last = new Vector2( laste[ laste.length - 2 ], laste[ laste.length - 1 ] );
+        var spts = [ last ];
 
-  			var n = divisions * args[ 0 ].length;
+        var n = divisions * args[ 0 ].length;
 
-  			spts.addAll( args[ 0 ] );
+        spts.addAll( args[ 0 ] );
 
-  			var spline = new SplineCurve( spts );
+        var spline = new SplineCurve( spts );
 
-  			for ( j = 1; j <= n; j ++ ) {
+        for ( j = 1; j <= n; j ++ ) {
 
-  				points.add( spline.getPointAt( j / n ) ) ;
+          points.add( spline.getPointAt( j / n ) ) ;
 
-  			}
+        }
 
-  			break;
+        break;
 
-  		case PathAction.ARC:
+      case PathAction.ARC:
 
-  			laste = actions[ i - 1 ].args;
+        laste = actions[ i - 1 ].args;
 
-  			var aX = args[ 0 ], aY = args[ 1 ],
-  				aRadius = args[ 2 ],
-  				aStartAngle = args[ 3 ], aEndAngle = args[ 4 ],
-  				aClockwise = !!args[ 5 ];
+        var aX = args[ 0 ], aY = args[ 1 ],
+          aRadius = args[ 2 ],
+          aStartAngle = args[ 3 ], aEndAngle = args[ 4 ],
+          aClockwise = !!args[ 5 ];
 
 
-  			var deltaAngle = aEndAngle - aStartAngle;
-  			var angle;
-  			var tdivisions = divisions * 2;
+        var deltaAngle = aEndAngle - aStartAngle;
+        var angle;
+        var tdivisions = divisions * 2;
 
-  			for ( j = 1; j <= tdivisions; j ++ ) {
+        for ( j = 1; j <= tdivisions; j ++ ) {
 
-  				t = j / tdivisions;
+          t = j / tdivisions;
 
-  				if ( ! aClockwise ) {
+          if ( ! aClockwise ) {
 
-  					t = 1 - t;
+            t = 1 - t;
 
-  				}
+          }
 
-  				angle = aStartAngle + t * deltaAngle;
+          angle = aStartAngle + t * deltaAngle;
 
-  				tx = aX + aRadius * Math.cos( angle );
-  				ty = aY + aRadius * Math.sin( angle );
+          tx = aX + aRadius * Math.cos( angle );
+          ty = aY + aRadius * Math.sin( angle );
 
-  				//console.log('t', t, 'angle', angle, 'tx', tx, 'ty', ty);
+          //console.log('t', t, 'angle', angle, 'tx', tx, 'ty', ty);
 
-  				points.add( new Vector2( tx, ty ) );
+          points.add( new Vector2( tx, ty ) );
 
-  			}
+        }
 
-  			//console.log(points);
+        //console.log(points);
 
-  		  break;
+        break;
 
-  		case PathAction.ELLIPSE:
+      case PathAction.ELLIPSE:
 
         var aX = args[ 0 ], aY = args[ 1 ],
         xRadius = args[ 2 ],
@@ -407,24 +407,24 @@ class Path extends CurvePath {
       //console.log(points);
 
       break;
-  		} // end switch
+      } // end switch
 
-  	}
+    }
 
 
 
-  	// Normalize to remove the closing point by default.
-  	var lastPoint = points[ points.length - 1];
-  	var EPSILON = 0.0000000001;
-  	if ( (lastPoint.x - points[ 0 ].x).abs() < EPSILON &&
+    // Normalize to remove the closing point by default.
+    var lastPoint = points[ points.length - 1];
+    var EPSILON = 0.0000000001;
+    if ( (lastPoint.x - points[ 0 ].x).abs() < EPSILON &&
           (lastPoint.y - points[ 0 ].y).abs() < EPSILON) {
-  	  points.removeLast();
-  	}
-  	if ( closedPath ) {
-  		points.add( points[ 0 ] );
-  	}
+      points.removeLast();
+    }
+    if ( closedPath ) {
+      points.add( points[ 0 ] );
+    }
 
-  	return points;
+    return points;
 
   }
 
@@ -433,133 +433,133 @@ class Path extends CurvePath {
   // This was used for testing purposes. Should be removed soon.
   transform ( path, segments ) {
 
-  	var bounds = getBoundingBox();
-  	var oldPts = getPoints( segments ); // getPoints getSpacedPoints
+    var bounds = getBoundingBox();
+    var oldPts = getPoints( segments ); // getPoints getSpacedPoints
 
-  	//console.log( path.cacheArcLengths() );
-  	//path.getLengths(400);
-  	//segments = 40;
+    //console.log( path.cacheArcLengths() );
+    //path.getLengths(400);
+    //segments = 40;
 
-  	return getWrapPoints( oldPts, path );
+    return getWrapPoints( oldPts, path );
 
   }
 
   // Breaks path into shapes
-  toShapes() {
+  List<Shape> toShapes() {
 
-  	var i, il, item, action, args;
+    var i, il, item, action, args;
 
-  	List<Path> subPaths = [];
-  	var lastPath = new Path();
+    List<Path> subPaths = [];
+    var lastPath = new Path();
 
-  	for ( i = 0; i < actions.length; i ++ ) {
+    for ( i = 0; i < actions.length; i ++ ) {
 
-  		item = actions[ i ];
+      item = actions[ i ];
 
-  		args = item.args;
-  		action = item.action;
+      args = item.args;
+      action = item.action;
 
-  		if ( action == PathAction.MOVE_TO ) {
+      if ( action == PathAction.MOVE_TO ) {
 
-  			if ( lastPath.actions.length != 0 ) {
+        if ( lastPath.actions.length != 0 ) {
 
-  				subPaths.add( lastPath );
-  				lastPath = new Path();
+          subPaths.add( lastPath );
+          lastPath = new Path();
 
-  			}
+        }
 
-  		}
+      }
 
-  		lastPath._applyAction( action, args);
+      lastPath._applyAction( action, args);
 
-  	}
+    }
 
-  	if ( lastPath.actions.length != 0 ) {
+    if ( lastPath.actions.length != 0 ) {
 
-  		subPaths.add( lastPath );
+      subPaths.add( lastPath );
 
-  	}
+    }
 
-  	// console.log(subPaths);
+    // console.log(subPaths);
 
-  	if ( subPaths.length == 0 ) return [];
+    if ( subPaths.length == 0 ) return [];
 
-  	var tmpPath;
-  	Shape tmpShape;
-  	List<Shape> shapes = [];
+    var tmpPath;
+    Shape tmpShape;
+    List<Shape> shapes = [];
 
-  	var holesFirst = !ShapeUtils.isClockWise( subPaths[ 0 ].getPoints() );
-  	// console.log("Holes first", holesFirst);
+    var holesFirst = !ShapeUtils.isClockWise( subPaths[ 0 ].getPoints() );
+    // console.log("Holes first", holesFirst);
 
-  	if ( subPaths.length == 1) {
-  		tmpPath = subPaths[0];
-  		tmpShape = new Shape();
-  		tmpShape.actions = tmpPath.actions;
-  		tmpShape.curves = tmpPath.curves;
-  		shapes.add( tmpShape );
-  		return shapes;
-  	};
+    if ( subPaths.length == 1) {
+      tmpPath = subPaths[0];
+      tmpShape = new Shape();
+      tmpShape.actions = tmpPath.actions;
+      tmpShape.curves = tmpPath.curves;
+      shapes.add( tmpShape );
+      return shapes;
+    };
 
-  	if ( holesFirst ) {
+    if ( holesFirst ) {
 
-  		tmpShape = new Shape();
+      tmpShape = new Shape();
 
-  		for ( i = 0; i < subPaths.length; i ++ ) {
+      for ( i = 0; i < subPaths.length; i ++ ) {
 
-  			tmpPath = subPaths[ i ];
+        tmpPath = subPaths[ i ];
 
-  			if ( ShapeUtils.isClockWise( tmpPath.getPoints() ) ) {
+        if ( ShapeUtils.isClockWise( tmpPath.getPoints() ) ) {
 
-  				tmpShape.actions = tmpPath.actions;
-  				tmpShape.curves = tmpPath.curves;
+          tmpShape.actions = tmpPath.actions;
+          tmpShape.curves = tmpPath.curves;
 
-  				shapes.add( tmpShape );
-  				tmpShape = new Shape();
+          shapes.add( tmpShape );
+          tmpShape = new Shape();
 
-  				//console.log('cw', i);
+          //console.log('cw', i);
 
-  			} else {
+        } else {
 
-  				tmpShape.holes.add( tmpPath );
+          tmpShape.holes.add( tmpPath );
 
-  				//console.log('ccw', i);
+          //console.log('ccw', i);
 
-  			}
+        }
 
-  		}
+      }
 
-  	} else {
+    } else {
 
-  		// Shapes first
+      // Shapes first
 
-  		for ( i = 0; i < subPaths.length; i ++ ) {
+      for ( i = 0; i < subPaths.length; i ++ ) {
 
-  			tmpPath = subPaths[ i ];
+        tmpPath = subPaths[ i ];
 
-  			if ( ShapeUtils.isClockWise( tmpPath.getPoints() ) ) {
+        if ( ShapeUtils.isClockWise( tmpPath.getPoints() ) ) {
 
 
-  				if (tmpShape != null) shapes.add( tmpShape );
+          if (tmpShape != null) shapes.add( tmpShape );
 
-  				tmpShape = new Shape();
-  				tmpShape.actions = tmpPath.actions;
-  				tmpShape.curves = tmpPath.curves;
+          tmpShape = new Shape();
+          tmpShape.actions = tmpPath.actions;
+          tmpShape.curves = tmpPath.curves;
 
-  			} else {
+        } else {
 
-  				tmpShape.holes.add( tmpPath );
+          tmpShape.holes.add( tmpPath );
 
-  			}
+        }
 
-  		}
+      }
 
-  		shapes.add( tmpShape );
+      shapes.add( tmpShape );
 
-  	}
+    }
 
-  	//console.log("shape", shapes);
+    //console.log("shape", shapes);
 
-  	return shapes;
+    return shapes;
 
   }
 

@@ -1,28 +1,22 @@
 part of three;
 
-class ShaderMaterial extends Material {
-
-  String fragmentShader;
-  String vertexShader;
-  Map<String, Uniform> uniforms;
-
-  //var attributes; - Moved to Material
+class ShaderMaterial extends Material implements Morphing, Skinning, Wireframe {
 
   int shading;
 
+  // Wireframe
   bool wireframe;
   num wireframeLinewidth;
-
+  String wireframeLinecap, wireframeLinejoin;
 
   bool lights; // set to use scene lights
 
   bool skinning; // set to use skinning attribute streams
 
+  // Morphing
   bool morphTargets; // set to use morph targets
   bool morphNormals; // set to use morph normals
-
-  int vertexColors;
-  bool fog;
+  num numSupportedMorphTargets = 0, numSupportedMorphNormals = 0;
 
   Map<String, Attribute> attributes;
 
@@ -30,15 +24,14 @@ class ShaderMaterial extends Material {
 
   ShaderMaterial( { // ShaderMaterial
                     this.attributes,
-                    this.fragmentShader: "void main() {}",
-                    this.vertexShader: "void main() {}",
+                    String fragmentShader: "void main() {}",
+                    String vertexShader: "void main() {}",
                     Map uniforms,
 
                     this.shading: SmoothShading,
 
-                    this.vertexColors: NoColors,
-
-                    this.fog: true,
+                    int vertexColors: NoColors,
+                    bool fog: true,
 
                     this.wireframe: false,
                     this.wireframeLinewidth: 1,
@@ -87,8 +80,26 @@ class ShaderMaterial extends Material {
                               polygonOffsetUnits: polygonOffsetUnits,
                               alphaTest: alphaTest,
                               overdraw: overdraw,
-                              visible: visible ) {
-                      this.uniforms = (uniforms != null) ? uniforms : {};
+                              visible: visible,
+                              fog: fog,
+                              vertexColors: vertexColors) {
+                      this._uniforms = (uniforms != null) ? uniforms : {};
+                      this._fragmentShader = fragmentShader;
+                      this._vertexShader = vertexShader;
                     }
 
+  set vertexShader(String value) {
+    _vertexShader = value;
+    needsUpdate = true;
+  }
+
+  set fragmentShader(String value) {
+    _fragmentShader = value;
+    needsUpdate = true;
+  }
+
+  set uniforms(Map<String, Uniform> value) {
+    _uniforms = value;
+    needsUpdate = true;
+  }
 }

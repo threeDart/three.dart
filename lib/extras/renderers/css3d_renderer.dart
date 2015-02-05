@@ -1,4 +1,9 @@
-part of three;
+library css3d_renderer;
+
+import 'dart:html';
+import 'dart:math' as Math;
+
+import 'package:three/three.dart';
 
 class CSS3DObject extends Object3D {
 
@@ -51,9 +56,9 @@ class CSS3DRenderer implements Renderer {
 
   }
 
-  epsilon( num value ) => ( value.abs() < 0.000001 ) ? 0 : value;
+  num epsilon( num value ) => ( value.abs() < 0.000001 ) ? 0 : value;
 
-  getCameraCSSMatrix( matrix ) {
+  String getCameraCSSMatrix( matrix ) {
 
     return 'matrix3d('
           '${epsilon( matrix[ 0 ] )},'
@@ -75,7 +80,7 @@ class CSS3DRenderer implements Renderer {
           ')';
   }
 
-  getObjectCSSMatrix( matrix ) {
+  String getObjectCSSMatrix( matrix ) {
 
     return 'translate3d(-50%,-50%,0px) matrix3d('
           '${epsilon( matrix[ 0 ] )},'
@@ -98,7 +103,7 @@ class CSS3DRenderer implements Renderer {
 
   }
 
-  render( scene, camera ) {
+  render( Scene scene, camera ) {
 
     var fov = 0.5 / Math.tan( camera.fov * Math.PI / 360 ) * _height;
 

@@ -5,12 +5,14 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
+/// A 3x3 matrix.
 class Matrix3  {
   Float32List elements;
 
   Matrix3() : elements = new Float32List(9);
 
-  getInverse( Matrix4 matrix ) {
+  /// Set this matrix to the inverse of the passed matrix.
+  Matrix3 getInverse( Matrix4 matrix ) {
 
     // input: THREE.Matrix4
     // ( based on http://code.google.com/p/webgl-mjs/ )
@@ -49,6 +51,7 @@ class Matrix3  {
 
   }
 
+  /// Transposes this matrix in place.
   Matrix3 transpose() {
     var tmp, m = elements;
 
@@ -59,6 +62,7 @@ class Matrix3  {
     return this;
   }
 
+  /// Transposes this matrix into the supplied array, and returns itself.
   Matrix3 transposeIntoArray( List r ) {
     var m = elements;
 

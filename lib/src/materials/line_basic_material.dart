@@ -24,16 +24,29 @@ part of three;
  * }
  */
 
+/// A material for drawing wireframe-style geometries.
 class LineBasicMaterial extends Material {
-  Color color;
+  /// Controls line thickness. Default is 1.
+  ///
+  /// Due to limitations in the ANGLE layer, on Windows platforms linewidth
+  /// will always be 1 regardless of the set value.
   num linewidth;
+  /// Define appearance of line ends.
+  ///
+  /// Possible values are "butt", "round" and "square". Default is 'round'.
+  ///
+  /// This setting might not have any effect when used with certain renderers.
+  /// For example, it is ignored with the WebGL renderer, but does work with
+  /// the Canvas renderer.
   String linecap;
+  /// Define appearance of line joints.
+  ///
+  /// Possible values are "round", "bevel" and "miter". Default is 'round'.
+  ///
+  /// This setting might not have any effect when used with certain renderers.
+  /// For example, it is ignored with the WebGL renderer, but does work with
+  /// the Canvas renderer.
   String linejoin;
-
-  bool fog;
-
-  // Before changing this please checkout issue #79
-  dynamic vertexColors;
 
 
   LineBasicMaterial({ // LineBasicMaterial
@@ -44,9 +57,8 @@ class LineBasicMaterial extends Material {
                       this.linecap: 'round',
                       this.linejoin: 'round',
 
-                      this.vertexColors: false,
-
-                      this.fog: true,
+                      int vertexColors: NoColors,
+                      bool fog: true,
 
                       // Material
                       name: '',
@@ -73,7 +85,6 @@ class LineBasicMaterial extends Material {
 
                       visible: true })
       :
-                      this.color = new Color(color),
 
                       super(  name: name,
                               side: side,
@@ -90,5 +101,8 @@ class LineBasicMaterial extends Material {
                               polygonOffsetUnits: polygonOffsetUnits,
                               alphaTest: alphaTest,
                               overdraw: overdraw,
-                              visible: visible );
+                              visible: visible,
+                              color: color,
+                              fog: fog,
+                              vertexColors: vertexColors);
 }

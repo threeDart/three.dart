@@ -23,15 +23,11 @@ part of three;
  * }
  */
 
-class ParticleBasicMaterial extends Material implements IParticleMaterial
-{
-  Color color;
+class ParticleBasicMaterial extends Material implements TextureMapping {
+
   var map;
   num size;
   bool sizeAttenuation;
-
-  int vertexColors;
-  bool fog;
 
   ParticleBasicMaterial( { // ParticleBasicMaterial
 
@@ -39,9 +35,9 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
                        num color: 0xffffff,
                        this.size: 1,
                        this.sizeAttenuation: true,
-                       this.vertexColors: NoColors,
+                       int vertexColors: NoColors,
 
-                       this.fog: true,
+                       bool fog: true,
 
                        // Material
                        name: '',
@@ -68,8 +64,6 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
 
                        visible: true })
                        :
-                         this.color = new Color(color),
-
                          super(  name: name,
                                  side: side,
                                  opacity: opacity,
@@ -85,7 +79,10 @@ class ParticleBasicMaterial extends Material implements IParticleMaterial
                                  polygonOffsetUnits: polygonOffsetUnits,
                                  alphaTest: alphaTest,
                                  overdraw: overdraw,
-                                 visible: visible );
+                                 visible: visible,
+                                 color: color,
+                                 fog: fog,
+                                 vertexColors: vertexColors );
 
 }
 

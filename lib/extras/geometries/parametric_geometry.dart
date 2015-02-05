@@ -11,7 +11,7 @@ part of three;
 
 class ParametricGeometry extends Geometry {
 
-  ParametricGeometry( func(u, v), int slices, int stacks, [bool useTris = false] ) : super() {
+  ParametricGeometry( Vector3 func(num u, num v), int slices, int stacks, [bool useTris = false] ) : super() {
     var verts = this.vertices;
     var faces = this.faces;
     var uvs = this.faceVertexUvs[ 0 ];

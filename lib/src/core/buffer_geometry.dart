@@ -18,10 +18,10 @@ class GeometryAttribute<T> {
   GeometryAttribute._internal(this.numItems, this.itemSize, this.array);
 
   factory GeometryAttribute.float32(int numItems, [int itemSize = 1]) =>
-    new GeometryAttribute<Float32List>._internal(numItems, itemSize, new Float32List(numItems));
+    new GeometryAttribute._internal(numItems, itemSize, new Float32List(numItems));
 
   factory GeometryAttribute.int16(int numItems, [int itemSize = 1]) =>
-      new GeometryAttribute<Int16List>._internal(numItems, itemSize, new Int16List(numItems));
+      new GeometryAttribute._internal(numItems, itemSize, new Int16List(numItems));
 
 }
 
@@ -30,459 +30,493 @@ class Chunk {
   Chunk({this.start, this.count, this.index});
 }
 
-// TODO - Create a IGeometry with only the necessary interface methods
+/// This class is an efficient alternative to Geometry, because it stores all
+/// data, including vertex positions, face indices, normals, colors, UVs, and
+/// custom attributes within buffers; this reduces the cost of passing all this
+/// data to the GPU.
+///
+/// This also makes BufferGeometry harder to work with than Geometry; rather
+/// than accessing position data as Vector3 objects, color data as Color
+/// objects, and so on, you have to access the raw data from the appropriate
+/// attribute buffer. BufferGeometry is best-suited for static objects where you
+/// don't need to manipulate the geometry much after instantiating it.
+///
+/// TODO: there are several unported methods from three.js.
 class BufferGeometry implements Geometry {
 
-	int id = GeometryCount ++;
+  int id = GeometryCount ++;
 
-	// attributes
-	Map<String, GeometryAttribute> attributes = {};
+  // attributes
+  Map<String, GeometryAttribute> attributes = {};
 
   // offsets for chunks when using indexed elements
-	List<Chunk> offsets = [];
+  List<Chunk> offsets = [];
 
-	// attributes typed arrays are kept only if dynamic flag is set
-	bool _dynamic = false;
+  // attributes typed arrays are kept only if dynamic flag is set
+  bool _dynamic = false;
 
-	// boundings
-	var boundingBox = null;
-	var boundingSphere = null;
+  // boundings
+  var boundingBox = null;
+  var boundingSphere = null;
 
-	bool hasTangents;
+  bool hasTangents;
 
-	// for compatibility
-	List morphTargets = [];
-	List morphNormals = [];
+  // for compatibility
+  List morphTargets = [];
+  List morphNormals = [];
 
-	applyMatrix ( Matrix4 matrix ) {
+  // WebGL
+  bool  verticesNeedUpdate = true,
+       colorsNeedUpdate = true,
+       elementsNeedUpdate = true,
+       uvsNeedUpdate = true,
+       normalsNeedUpdate = true,
+       tangentsNeedUpdate = true,
+       buffersNeedUpdate = true,
+       morphTargetsNeedUpdate = true,
+       lineDistancesNeedUpdate = true;
+  bool __webglInit = false;
+  var __webglVertexBuffer;
 
-		var positionArray;
-		var normalArray;
+  applyMatrix ( Matrix4 matrix ) {
 
-		if ( aPosition != null ) positionArray = aPosition.array;
-		if ( aNormal != null ) normalArray = aNormal.array;
+    var positionArray;
+    var normalArray;
 
-		if ( positionArray != null) {
+    if ( aPosition != null ) positionArray = aPosition.array;
+    if ( aNormal != null ) normalArray = aNormal.array;
 
-			multiplyVector3Array(matrix, positionArray);
-			this["verticesNeedUpdate"] = true;
+    if ( positionArray != null) {
 
-		}
+      multiplyVector3Array(matrix, positionArray);
+      this["verticesNeedUpdate"] = true;
 
-		if ( normalArray != null ) {
+    }
 
-			var matrixRotation = new Matrix4.identity();
-			extractRotation( matrixRotation, matrix );
+    if ( normalArray != null ) {
 
-			multiplyVector3Array(matrixRotation, normalArray );
-			this["normalsNeedUpdate"] = true;
+      var matrixRotation = new Matrix4.identity();
+      extractRotation( matrixRotation, matrix );
 
-		}
+      multiplyVector3Array(matrixRotation, normalArray );
+      this["normalsNeedUpdate"] = true;
 
-	}
+    }
 
-	computeBoundingBox () {
+  }
 
-		if ( boundingBox == null ) {
+  /// Computes bounding box of the geometry, updating Geometry.boundingBox.
+  computeBoundingBox () {
 
-			boundingBox = new BoundingBox(
-				min: new Vector3( double.INFINITY, double.INFINITY, double.INFINITY ),
-				max: new Vector3( -double.INFINITY, -double.INFINITY, -double.INFINITY )
-			);
+    if ( boundingBox == null ) {
 
-		}
+      boundingBox = new BoundingBox(
+        min: new Vector3( double.INFINITY, double.INFINITY, double.INFINITY ),
+        max: new Vector3( -double.INFINITY, -double.INFINITY, -double.INFINITY )
+      );
 
-		var positions = aPosition.array;
+    }
 
-		if ( positions ) {
+    var positions = aPosition.array;
 
-			var bb = boundingBox;
-			var x, y, z;
+    if ( positions ) {
 
-			for ( var i = 0, il = positions.length; i < il; i += 3 ) {
+      var bb = boundingBox;
+      var x, y, z;
 
-				x = positions[ i ];
-				y = positions[ i + 1 ];
-				z = positions[ i + 2 ];
+      for ( var i = 0, il = positions.length; i < il; i += 3 ) {
 
-				// bounding box
+        x = positions[ i ];
+        y = positions[ i + 1 ];
+        z = positions[ i + 2 ];
 
-				if ( x < bb.min.x ) {
+        // bounding box
 
-					bb.min.x = x;
+        if ( x < bb.min.x ) {
 
-				} else if ( x > bb.max.x ) {
+          bb.min.x = x;
 
-					bb.max.x = x;
+        } else if ( x > bb.max.x ) {
 
-				}
+          bb.max.x = x;
 
-				if ( y < bb.min.y ) {
+        }
 
-					bb.min.y = y;
+        if ( y < bb.min.y ) {
 
-				} else if ( y > bb.max.y ) {
+          bb.min.y = y;
 
-					bb.max.y = y;
+        } else if ( y > bb.max.y ) {
 
-				}
+          bb.max.y = y;
 
-				if ( z < bb.min.z ) {
+        }
 
-					bb.min.z = z;
+        if ( z < bb.min.z ) {
 
-				} else if ( z > bb.max.z ) {
+          bb.min.z = z;
 
-					bb.max.z = z;
+        } else if ( z > bb.max.z ) {
 
-				}
+          bb.max.z = z;
 
-			}
+        }
 
-		}
+      }
 
-		if ( positions == null || positions.length == 0 ) {
+    }
 
-			boundingBox.min.setValues( 0, 0, 0 );
-			boundingBox.max.setValues( 0, 0, 0 );
+    if ( positions == null || positions.length == 0 ) {
 
-		}
+      boundingBox.min.setValues( 0, 0, 0 );
+      boundingBox.max.setValues( 0, 0, 0 );
 
-	}
+    }
 
-	computeBoundingSphere() {
+  }
 
-		if ( boundingSphere == null ) boundingSphere = new BoundingSphere( radius: 0 );
+  /// Computes bounding sphere of the geometry, updating Geometry.boundingSphere.
+  ///
+  /// Neither bounding boxes or bounding spheres are computed by default.
+  /// They need to be explicitly computed, otherwise they are null.
+  computeBoundingSphere() {
 
-		var positions = aPosition.array;
+    if ( boundingSphere == null ) boundingSphere = new BoundingSphere( radius: 0 );
 
-		if ( positions != null ) {
+    var positions = aPosition.array;
 
-			var radiusSq, maxRadiusSq = 0;
-			var x, y, z;
+    if ( positions != null ) {
 
-			for ( var i = 0, il = positions.length; i < il; i += 3 ) {
+      var radiusSq, maxRadiusSq = 0;
+      var x, y, z;
 
-				x = positions[ i ];
-				y = positions[ i + 1 ];
-				z = positions[ i + 2 ];
+      for ( var i = 0, il = positions.length; i < il; i += 3 ) {
 
-				radiusSq =  x * x + y * y + z * z;
-				if ( radiusSq > maxRadiusSq ) maxRadiusSq = radiusSq;
+        x = positions[ i ];
+        y = positions[ i + 1 ];
+        z = positions[ i + 2 ];
 
-			}
+        radiusSq =  x * x + y * y + z * z;
+        if ( radiusSq > maxRadiusSq ) maxRadiusSq = radiusSq;
 
-			boundingSphere.radius = Math.sqrt( maxRadiusSq );
+      }
 
-		}
+      boundingSphere.radius = Math.sqrt( maxRadiusSq );
 
-	}
+    }
 
-	computeVertexNormals() {
+  }
 
-		if ( aPosition != null && aIndex != null ) {
+  /// Computes vertex normals by averaging face normals.
+  /// Face normals must be existing / computed beforehand.
+  computeVertexNormals() {
 
-			var i, il;
-			var j, jl;
+    if ( aPosition != null && aIndex != null ) {
 
-			if ( aNormal == null ) {
+      var i, il;
+      var j, jl;
 
-				attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.numItems, 3);
+      if ( aNormal == null ) {
 
-			} else {
+        attributes[ GeometryAttribute.NORMAL ] = new GeometryAttribute.float32(aPosition.numItems, 3);
 
-				// reset existing normals to zero
-			  il = aNormal.array.length;
+      } else {
 
-				for ( i = 0; i < il; i ++ ) {
+        // reset existing normals to zero
+        il = aNormal.array.length;
 
-					attributes[ "normal" ].array[ i ] = 0.0;
+        for ( i = 0; i < il; i ++ ) {
 
-				}
+          attributes[ "normal" ].array[ i ] = 0.0;
 
-			}
+        }
 
-			var indices = aIndex.array;
-			var positions = aPosition.array;
-			var normals = aNormal.array;
+      }
 
-			var vA, vB, vC, x, y, z,
+      var indices = aIndex.array;
+      var positions = aPosition.array;
+      var normals = aNormal.array;
 
-			pA = new Vector3.zero(),
-			pB = new Vector3.zero(),
-			pC = new Vector3.zero(),
+      var vA, vB, vC, x, y, z,
 
-			cb = new Vector3.zero(),
-			ab = new Vector3.zero();
+      pA = new Vector3.zero(),
+      pB = new Vector3.zero(),
+      pC = new Vector3.zero(),
 
-			jl = offsets.length;
-			for ( j = 0; j < jl; ++ j ) {
+      cb = new Vector3.zero(),
+      ab = new Vector3.zero();
 
-				var start = offsets[ j ].start;
-				var count = offsets[ j ].count;
-				var index = offsets[ j ].index;
+      jl = offsets.length;
+      for ( j = 0; j < jl; ++ j ) {
 
-				il = start + count;
-				for ( i = start; i < il; i += 3 ) {
+        var start = offsets[ j ].start;
+        var count = offsets[ j ].count;
+        var index = offsets[ j ].index;
 
-					vA = index + indices[ i ];
-					vB = index + indices[ i + 1 ];
-					vC = index + indices[ i + 2 ];
+        il = start + count;
+        for ( i = start; i < il; i += 3 ) {
 
-					x = positions[ vA * 3 ];
-					y = positions[ vA * 3 + 1 ];
-					z = positions[ vA * 3 + 2 ];
-					pA.setValues( x, y, z );
+          vA = index + indices[ i ];
+          vB = index + indices[ i + 1 ];
+          vC = index + indices[ i + 2 ];
 
-					x = positions[ vB * 3 ];
-					y = positions[ vB * 3 + 1 ];
-					z = positions[ vB * 3 + 2 ];
-					pB.setValues( x, y, z );
+          x = positions[ vA * 3 ];
+          y = positions[ vA * 3 + 1 ];
+          z = positions[ vA * 3 + 2 ];
+          pA.setValues( x, y, z );
 
-					x = positions[ vC * 3 ];
-					y = positions[ vC * 3 + 1 ];
-					z = positions[ vC * 3 + 2 ];
-					pC.setValues( x, y, z );
+          x = positions[ vB * 3 ];
+          y = positions[ vB * 3 + 1 ];
+          z = positions[ vB * 3 + 2 ];
+          pB.setValues( x, y, z );
 
-					cb = pC - pB;
-					ab = pA - pB;
-					cb = cb.cross( ab );
+          x = positions[ vC * 3 ];
+          y = positions[ vC * 3 + 1 ];
+          z = positions[ vC * 3 + 2 ];
+          pC.setValues( x, y, z );
 
-					normals[ vA * 3 ] += cb.x;
-					normals[ vA * 3 + 1 ] += cb.y;
-					normals[ vA * 3 + 2 ] += cb.z;
+          cb = pC - pB;
+          ab = pA - pB;
+          cb = cb.cross( ab );
 
-					normals[ vB * 3 ] += cb.x;
-					normals[ vB * 3 + 1 ] += cb.y;
-					normals[ vB * 3 + 2 ] += cb.z;
+          normals[ vA * 3 ] += cb.x;
+          normals[ vA * 3 + 1 ] += cb.y;
+          normals[ vA * 3 + 2 ] += cb.z;
 
-					normals[ vC * 3 ] += cb.x;
-					normals[ vC * 3 + 1 ] += cb.y;
-					normals[ vC * 3 + 2 ] += cb.z;
+          normals[ vB * 3 ] += cb.x;
+          normals[ vB * 3 + 1 ] += cb.y;
+          normals[ vB * 3 + 2 ] += cb.z;
 
-				}
+          normals[ vC * 3 ] += cb.x;
+          normals[ vC * 3 + 1 ] += cb.y;
+          normals[ vC * 3 + 2 ] += cb.z;
 
-			}
+        }
 
-			// normalize normals
-			il = normals.length;
-			for ( i = 0; i < il; i += 3 ) {
+      }
 
-				x = normals[ i ];
-				y = normals[ i + 1 ];
-				z = normals[ i + 2 ];
+      // normalize normals
+      il = normals.length;
+      for ( i = 0; i < il; i += 3 ) {
 
-				var n = 1.0 / Math.sqrt( x * x + y * y + z * z );
+        x = normals[ i ];
+        y = normals[ i + 1 ];
+        z = normals[ i + 2 ];
 
-				normals[ i ] *= n;
-				normals[ i + 1 ] *= n;
-				normals[ i + 2 ] *= n;
+        var n = 1.0 / Math.sqrt( x * x + y * y + z * z );
 
-			}
+        normals[ i ] *= n;
+        normals[ i + 1 ] *= n;
+        normals[ i + 2 ] *= n;
 
-			this["normalsNeedUpdate"] = true;
+      }
 
-		}
+      this["normalsNeedUpdate"] = true;
 
-	}
+    }
 
-	computeTangents() {
+  }
 
-		// based on http://www.terathon.com/code/tangent.html
-		// (per vertex tangents)
+  /// Computes vertex tangents.
+  /// Based on http://www.terathon.com/code/tangent.html
+  /// Geometry must have vertex UVs (layer 0 will be used).
+  computeTangents() {
 
-		if ( aIndex == null || aPosition == null || aNormal == null || aUV == null ) {
+    // based on http://www.terathon.com/code/tangent.html
+    // (per vertex tangents)
 
-			print( "Missing required attributes (index, position, normal or uv) in BufferGeometry.computeTangents()" );
-			return;
+    if ( aIndex == null || aPosition == null || aNormal == null || aUV == null ) {
 
-		}
+      print( "Missing required attributes (index, position, normal or uv) in BufferGeometry.computeTangents()" );
+      return;
 
-		var indices = aIndex.array;
-		var positions = aPosition.array;
-		var normals = aNormal.array;
-		var uvs = aUV.array;
+    }
 
-		var nVertices = aPosition.numItems ~/ 3;
+    var indices = aIndex.array;
+    var positions = aPosition.array;
+    var normals = aNormal.array;
+    var uvs = aUV.array;
 
-		if ( aTangent == null ) {
+    var nVertices = aPosition.numItems ~/ 3;
 
-			attributes[ "tangent" ] = new GeometryAttribute.float32(nVertices, 4);
+    if ( aTangent == null ) {
 
-		}
+      attributes[ "tangent" ] = new GeometryAttribute.float32(nVertices, 4);
 
-		var tangents = aTangent.array;
+    }
 
-		List<Vector3> tan1 = [], tan2 = [];
+    var tangents = aTangent.array;
 
-		for ( var k = 0; k < nVertices; k ++ ) {
+    List<Vector3> tan1 = [], tan2 = [];
 
-			tan1[ k ] = new Vector3.zero();
-			tan2[ k ] = new Vector3.zero();
+    for ( var k = 0; k < nVertices; k ++ ) {
 
-		}
+      tan1[ k ] = new Vector3.zero();
+      tan2[ k ] = new Vector3.zero();
 
-		var xA, yA, zA,
-			xB, yB, zB,
-			xC, yC, zC,
+    }
 
-			uA, vA,
-			uB, vB,
-			uC, vC,
+    var xA, yA, zA,
+      xB, yB, zB,
+      xC, yC, zC,
 
-			x1, x2, y1, y2, z1, z2,
-			s1, s2, t1, t2, r;
+      uA, vA,
+      uB, vB,
+      uC, vC,
 
-		var sdir = new Vector3.zero(),
-		    tdir = new Vector3.zero();
+      x1, x2, y1, y2, z1, z2,
+      s1, s2, t1, t2, r;
 
-		var handleTriangle = ( a, b, c ) {
+    var sdir = new Vector3.zero(),
+        tdir = new Vector3.zero();
 
-			xA = positions[ a * 3 ];
-			yA = positions[ a * 3 + 1 ];
-			zA = positions[ a * 3 + 2 ];
+    var handleTriangle = ( a, b, c ) {
 
-			xB = positions[ b * 3 ];
-			yB = positions[ b * 3 + 1 ];
-			zB = positions[ b * 3 + 2 ];
+      xA = positions[ a * 3 ];
+      yA = positions[ a * 3 + 1 ];
+      zA = positions[ a * 3 + 2 ];
 
-			xC = positions[ c * 3 ];
-			yC = positions[ c * 3 + 1 ];
-			zC = positions[ c * 3 + 2 ];
+      xB = positions[ b * 3 ];
+      yB = positions[ b * 3 + 1 ];
+      zB = positions[ b * 3 + 2 ];
 
-			uA = uvs[ a * 2 ];
-			vA = uvs[ a * 2 + 1 ];
+      xC = positions[ c * 3 ];
+      yC = positions[ c * 3 + 1 ];
+      zC = positions[ c * 3 + 2 ];
 
-			uB = uvs[ b * 2 ];
-			vB = uvs[ b * 2 + 1 ];
+      uA = uvs[ a * 2 ];
+      vA = uvs[ a * 2 + 1 ];
 
-			uC = uvs[ c * 2 ];
-			vC = uvs[ c * 2 + 1 ];
+      uB = uvs[ b * 2 ];
+      vB = uvs[ b * 2 + 1 ];
 
-			x1 = xB - xA;
-			x2 = xC - xA;
+      uC = uvs[ c * 2 ];
+      vC = uvs[ c * 2 + 1 ];
 
-			y1 = yB - yA;
-			y2 = yC - yA;
+      x1 = xB - xA;
+      x2 = xC - xA;
 
-			z1 = zB - zA;
-			z2 = zC - zA;
+      y1 = yB - yA;
+      y2 = yC - yA;
 
-			s1 = uB - uA;
-			s2 = uC - uA;
+      z1 = zB - zA;
+      z2 = zC - zA;
 
-			t1 = vB - vA;
-			t2 = vC - vA;
+      s1 = uB - uA;
+      s2 = uC - uA;
 
-			r = 1.0 / ( s1 * t2 - s2 * t1 );
+      t1 = vB - vA;
+      t2 = vC - vA;
 
-			sdir.setValues(
-				( t2 * x1 - t1 * x2 ) * r,
-				( t2 * y1 - t1 * y2 ) * r,
-				( t2 * z1 - t1 * z2 ) * r
-			);
+      r = 1.0 / ( s1 * t2 - s2 * t1 );
 
-			tdir.setValues(
-				( s1 * x2 - s2 * x1 ) * r,
-				( s1 * y2 - s2 * y1 ) * r,
-				( s1 * z2 - s2 * z1 ) * r
-			);
+      sdir.setValues(
+        ( t2 * x1 - t1 * x2 ) * r,
+        ( t2 * y1 - t1 * y2 ) * r,
+        ( t2 * z1 - t1 * z2 ) * r
+      );
 
-			tan1[ a ].add( sdir );
-			tan1[ b ].add( sdir );
-			tan1[ c ].add( sdir );
+      tdir.setValues(
+        ( s1 * x2 - s2 * x1 ) * r,
+        ( s1 * y2 - s2 * y1 ) * r,
+        ( s1 * z2 - s2 * z1 ) * r
+      );
 
-			tan2[ a ].add( tdir );
-			tan2[ b ].add( tdir );
-			tan2[ c ].add( tdir );
+      tan1[ a ].add( sdir );
+      tan1[ b ].add( sdir );
+      tan1[ c ].add( sdir );
 
-		};
+      tan2[ a ].add( tdir );
+      tan2[ b ].add( tdir );
+      tan2[ c ].add( tdir );
 
-		var i, il;
-		var j, jl;
-		var iA, iB, iC;
+    };
 
-		jl = offsets.length;
-		for ( j = 0; j < jl; ++ j ) {
+    var i, il;
+    var j, jl;
+    var iA, iB, iC;
 
-			var start = offsets[ j ].start;
-			var count = offsets[ j ].count;
-			var index = offsets[ j ].index;
+    jl = offsets.length;
+    for ( j = 0; j < jl; ++ j ) {
 
-			il = start + count;
-			for ( i = start; i < il; i += 3 ) {
+      var start = offsets[ j ].start;
+      var count = offsets[ j ].count;
+      var index = offsets[ j ].index;
 
-				iA = index + indices[ i ];
-				iB = index + indices[ i + 1 ];
-				iC = index + indices[ i + 2 ];
+      il = start + count;
+      for ( i = start; i < il; i += 3 ) {
 
-				handleTriangle( iA, iB, iC );
+        iA = index + indices[ i ];
+        iB = index + indices[ i + 1 ];
+        iC = index + indices[ i + 2 ];
 
-			}
+        handleTriangle( iA, iB, iC );
 
-		}
+      }
 
-		var tmp = new Vector3.zero(),
-		    tmp2 = new Vector3.zero();
-		var n = new Vector3.zero(),
-		    n2 = new Vector3.zero();
-		var w, t, test;
-		var nx, ny, nz;
+    }
 
-		var handleVertex = ( v ) {
+    var tmp = new Vector3.zero(),
+        tmp2 = new Vector3.zero();
+    var n = new Vector3.zero(),
+        n2 = new Vector3.zero();
+    var w, t, test;
+    var nx, ny, nz;
 
-			n.x = normals[ v * 3 ];
-			n.y = normals[ v * 3 + 1 ];
-			n.z = normals[ v * 3 + 2 ];
+    var handleVertex = ( v ) {
 
-			n2.setFrom( n );
+      n.x = normals[ v * 3 ];
+      n.y = normals[ v * 3 + 1 ];
+      n.z = normals[ v * 3 + 2 ];
 
-			t = tan1[ v ];
+      n2.setFrom( n );
 
-			// Gram-Schmidt orthogonalize
+      t = tan1[ v ];
 
-			tmp.setFrom( t );
-			tmp.sub( n.scale( n.dot( t ) ) ).normalize();
+      // Gram-Schmidt orthogonalize
 
-			// Calculate handedness
+      tmp.setFrom( t );
+      tmp.sub( n.scale( n.dot( t ) ) ).normalize();
 
-			tmp2 = n2.cross( t );
-			test = tmp2.dot( tan2[ v ] );
-			w = ( test < 0.0 ) ? -1.0 : 1.0;
+      // Calculate handedness
 
-			tangents[ v * 4 ] 	  = tmp.x;
-			tangents[ v * 4 + 1 ] = tmp.y;
-			tangents[ v * 4 + 2 ] = tmp.z;
-			tangents[ v * 4 + 3 ] = w;
+      tmp2 = n2.cross( t );
+      test = tmp2.dot( tan2[ v ] );
+      w = ( test < 0.0 ) ? -1.0 : 1.0;
 
-		};
+      tangents[ v * 4 ]     = tmp.x;
+      tangents[ v * 4 + 1 ] = tmp.y;
+      tangents[ v * 4 + 2 ] = tmp.z;
+      tangents[ v * 4 + 3 ] = w;
 
-		jl = offsets.length;
-		for ( j = 0; j < jl; ++ j ) {
+    };
 
-			var start = offsets[ j ].start;
-			var count = offsets[ j ].count;
-			var index = offsets[ j ].index;
+    jl = offsets.length;
+    for ( j = 0; j < jl; ++ j ) {
 
-			il = start + count;
-			for ( i = start; i < il; i += 3 ) {
+      var start = offsets[ j ].start;
+      var count = offsets[ j ].count;
+      var index = offsets[ j ].index;
 
-				iA = index + indices[ i ];
-				iB = index + indices[ i + 1 ];
-				iC = index + indices[ i + 2 ];
+      il = start + count;
+      for ( i = start; i < il; i += 3 ) {
 
-				handleVertex( iA );
-				handleVertex( iB );
-				handleVertex( iC );
+        iA = index + indices[ i ];
+        iB = index + indices[ i + 1 ];
+        iC = index + indices[ i + 2 ];
 
-			}
+        handleVertex( iA );
+        handleVertex( iB );
+        handleVertex( iC );
 
-		}
+      }
 
-		hasTangents = true;
-		this["tangentsNeedUpdate"] = true;
+    }
 
-	}
+    hasTangents = true;
+    this["tangentsNeedUpdate"] = true;
+
+  }
 
   // dynamic is a reserved word in Dart
   bool get isDynamic => _dynamic;
@@ -510,18 +544,5 @@ class BufferGeometry implements Geometry {
   noSuchMethod(Invocation invocation) {
     throw new Exception('Unimplemented ${invocation.memberName}');
   }
-
-	 // Quick hack to allow setting new properties (used by the renderer)
-  Map __data;
-
-  get _data {
-    if (__data == null) {
-      __data = {};
-    }
-    return __data;
-  }
-
-  operator [] (String key) => _data[key];
-  operator []= (String key, value) => _data[key] = value;
 
 }

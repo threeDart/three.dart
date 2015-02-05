@@ -1,5 +1,6 @@
 part of three;
 
+/// Base class for all Face types.
 abstract class Face {
   List<int> indices;
   Vector3 normal;
@@ -24,6 +25,7 @@ abstract class Face {
 
   int get size => indices.length;
 
+  /// Copies all the values from `other` into this Face.
   Face setFrom(Face other) {
     normal.setFrom(other.normal);
     color.copy( other.color );
