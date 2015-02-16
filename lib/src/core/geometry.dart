@@ -569,14 +569,14 @@ class BoundingBox {
 
   BoundingSphere get boundingSphere => new BoundingSphere(size.length * 0.5, center);
 
-  intersect(BoundingBox box) {
-    _aabb3.min.max(box.min);
-    _aabb3.max.min(box.max);
+  intersect( BoundingBox box ) {
+    Vector3.max(_aabb3.min, box.min, _aabb3.min );
+    Vector3.min(_aabb3.max, box.max, _aabb3.max);
   }
 
-  union(BoundingBox box) {
-    _aabb3.min.min(box.min);
-    _aabb3.max.min(box.max);
+  union( BoundingBox box ) {
+    Vector3.min(_aabb3.min, box.min, _aabb3.min );
+    Vector3.min(_aabb3.max, box.max, _aabb3.max );
   }
 
   applyMatrix4(Matrix4 matrix) {
