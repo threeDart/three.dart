@@ -28,7 +28,7 @@ class OrthographicTrackballControls extends EventEmitter {
 
   int _state, _prevState;
   Object3D object;
-  Element domElement;
+  dynamic domElement;
   bool enabled;
   Map<String, num> screen;
   num radius;

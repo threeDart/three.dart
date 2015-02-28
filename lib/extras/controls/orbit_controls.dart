@@ -53,7 +53,7 @@ class OrbitControls extends EventEmitter {
 
   int _state;
   Object3D object;
-  Element domElement;
+  dynamic domElement;
   bool enabled;
   Math.Rectangle screen;
   num rotateSpeed, zoomSpeed, keyPanSpeed;
