@@ -8,8 +8,6 @@ library three_postprocessing;
  */
 
 import 'dart:html';
-import 'dart:web_gl' show RenderingContext;
-import 'package:vector_math/vector_math.dart';
 import 'package:three/three.dart';
 import 'package:three/extras/shaders/shaders.dart';
 
