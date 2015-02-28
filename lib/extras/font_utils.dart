@@ -103,7 +103,7 @@ Map drawText(String text) {
 
 }
 
-Map extractGlyphPoints(String c, Map face, int scale, int offset, path) {
+Map extractGlyphPoints(String c, Map face, num scale, num offset, path) {
 
   List<Vector2> pts = [];
 

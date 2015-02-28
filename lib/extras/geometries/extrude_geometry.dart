@@ -78,7 +78,7 @@ class ExtrudeGeometry extends Geometry {
 
 
 
-  addShapeList(List shapes, num amount, double bevelThickness, double bevelSize, int bevelSegments, bool bevelEnabled,
+  addShapeList(List shapes, num amount, num bevelThickness, double bevelSize, int bevelSegments, bool bevelEnabled,
       curveSegments, steps, bendPath, Curve extrudePath, TubeGeometry frames, int material, int extrudeMaterial) {
     var sl = shapes.length;
 
@@ -238,7 +238,7 @@ class ExtrudeGeometry extends Geometry {
     return reversed;
   }
 
-  addShape(Shape shape, num amount, double bevelThickness, double bevelSize, int bevelSegments, bool bevelEnabled,
+  addShape(Shape shape, num amount, num bevelThickness, double bevelSize, int bevelSegments, bool bevelEnabled,
       curveSegments, steps, bendPath, Curve extrudePath, TubeGeometry frames, int material, int extrudeMaterial,
       {ExtrudeGeometryWorldUVGenerator UVGenerator}) {
 
