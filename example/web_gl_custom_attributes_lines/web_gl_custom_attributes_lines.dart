@@ -149,7 +149,7 @@ render() {
   object.rotation.y = 0.25 * delta_in_sec;
 
   amplitude.value = 0.5 * Math.sin(0.5 * delta_in_sec);
-  color.value.offsetHSL(0.0005, 0, 0);
+  color.value.offsetHSL(0.0005, 0.0, 0.0);
 
   var nx, ny, nz, value;
 
