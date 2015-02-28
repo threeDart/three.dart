@@ -502,7 +502,7 @@ class BoundingBox {
 
   BoundingBox.fromCenterAndSize(Vector3 center, Vector3 size) {
     var halfSize = size * 0.5;
-    _aabb3 = new Aabb3.minMax(new Vector3.copy(center).sub(halfSize), new Vector3.copy(center).add(halfSize));
+    _aabb3 = new Aabb3.minMax(center - halfSize, center + halfSize);
   }
 
   BoundingBox.fromObject(Object3D object) {
