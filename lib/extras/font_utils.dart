@@ -249,7 +249,9 @@ List<Shape> generateShapes(String text, [int size = 100, int curveSegments = 4, 
 
   var paths = data["paths"];
 
-  return paths.map((p) => p.toShapes()).toList();
+  var shapes = [];
+  paths.forEach((p) { shapes.addAll(p.toShapes()); });
+  return shapes;
 }
 
 class Glyph {
