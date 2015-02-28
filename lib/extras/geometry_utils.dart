@@ -59,7 +59,7 @@ num triangleArea(Vector3 vectorA, Vector3 vectorB, Vector3 vectorC) {
 
 // Center geometry so that 0,0,0 is in center of bounding box
 
-num center(Geometry geometry) {
+Vector3 center(Geometry geometry) {
   geometry.computeBoundingBox();
 
   var bb = geometry.boundingBox;
