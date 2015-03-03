@@ -501,8 +501,8 @@ class BoundingBox {
   }
 
   BoundingBox.fromCenterAndSize(Vector3 center, Vector3 size) {
-    var halfSize = new Vector3.copy(size).multiplyScalar(0.5);
-    _aabb3 = new Aabb3.minMax(new Vector3.copy(center).sub(haldSize), new Vector3.copy(center).add(haldSize));
+    var halfSize = size * 0.5;
+    _aabb3 = new Aabb3.minMax(center - halfSize, center + halfSize);
   }
 
   BoundingBox.fromObject(Object3D object) {
@@ -551,7 +551,7 @@ class BoundingBox {
 
   expandByVector(Vector3 vector) => _aabb3.copyMinMax(_aabb3.min.sub(vector), _aabb3.max.add(vector));
 
-  expandByScalar(num scalar) => _aabb3.copyMinMax(_aabb3.min.addScalar(-scalar), _aabb3.max.addScalar(scalar));
+  expandByScalar(num scalar) => _aabb3.copyMinMax(_aabb3.min - new Vector3.all(scalar), _aabb3.max + new Vector3.all(scalar));
 
   bool containsPoint(Vector3 point) => _aabb3.containsVector3(point);
 
@@ -567,7 +567,7 @@ class BoundingBox {
 
   //todo: distanceToPoint
 
-  BoundingSphere get boundingSphere => new BoundingSphere(size.length * 0.5, center);
+  BoundingSphere get boundingSphere => new BoundingSphere(radius: size.length * 0.5, center: center);
 
   intersect( BoundingBox box ) {
     Vector3.max(_aabb3.min, box.min, _aabb3.min );
@@ -590,7 +590,7 @@ class BoundingBox {
 
   bool operator ==(BoundingBox box) => min == box.min && max == box.max;
 
-  BoundingBox clone() => new BoundingBox(min, max);
+  BoundingBox clone() => new BoundingBox(min: min, max: max);
 
 }
 

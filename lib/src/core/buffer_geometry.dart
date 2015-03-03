@@ -318,7 +318,7 @@ class BufferGeometry implements Geometry {
 
       }
 
-      this["normalsNeedUpdate"] = true;
+      normalsNeedUpdate = true;
 
     }
 
