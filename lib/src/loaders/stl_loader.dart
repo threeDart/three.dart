@@ -35,14 +35,15 @@ class STLLoader extends Loader {
   Future<Geometry> load(url) =>
       HttpRequest.request(url, responseType: "arraybuffer").then((req) => _parse(req.response));
 
-  _parse(Object resp) {
+  Geometry _parse(Object resp){
     Uint8List data;
     if (resp is! Uint8List) {
       data = new Uint8List.view(resp as ByteBuffer);
     } else {
       data = (resp as Uint8List);
     }
-    _isBinary(data) ? _parseBinary(data.buffer) : _parseASCII(new String.fromCharCodes(data));
+    var geom = _isBinary(data) ? _parseBinary(data.buffer) : _parseASCII(new String.fromCharCodes(data));
+    return geom;
   }
 
   /**
@@ -70,7 +71,7 @@ class STLLoader extends Loader {
    * UINT16 – Attribute byte count
    * end
    */
-  _parseBinary(ByteBuffer bytes) {
+  Geometry _parseBinary(ByteBuffer bytes) {
 
     var data = new ByteData.view(bytes),
         n_faces = data.getUint32(80, Endianness.LITTLE_ENDIAN),
@@ -107,7 +108,7 @@ class STLLoader extends Loader {
 
   }
 
-  _parseASCII(data) {
+  Geometry _parseASCII(data) {
 
     var geometry = new Geometry();
 
