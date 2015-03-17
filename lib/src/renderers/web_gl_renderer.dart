@@ -723,9 +723,9 @@ class WebGLRenderer implements Renderer {
 
   }
 
-  deallocateRenderTarget(renderTarget) {
+  deallocateRenderTarget(WebGLRenderTarget renderTarget) {
 
-    if (!renderTarget || !renderTarget.__webglTexture) return;
+    if (renderTarget != null && renderTarget.__webglTexture != null) return;
 
     _gl.deleteTexture(renderTarget.__webglTexture);
 
