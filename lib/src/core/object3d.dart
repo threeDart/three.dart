@@ -75,7 +75,7 @@ class Object3D {
 
   Vector3 _vector;
 
-  var customDepthMaterial;
+  Material customDepthMaterial;
 
   // TODO : Introduce a mixin for objects with Geometry
   Geometry geometry;
