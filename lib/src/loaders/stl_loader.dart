@@ -35,7 +35,15 @@ class STLLoader extends Loader {
   Future<Geometry> load(url) =>
       HttpRequest.request(url, responseType: "arraybuffer").then((req) => _parse(req.response));
 
-  _parse(Uint8List data) => _isBinary(data) ? _parseBinary(data.buffer) : _parseASCII(new String.fromCharCodes(data));
+  _parse(Object resp) {
+    Uint8List data;
+    if (!resp is Uint8List) {
+      data = new Uint8List.view(resp as ByteBuffer);
+    } else {
+      data = (resp as Uint8List);
+    }
+    _isBinary(data) ? _parseBinary(data.buffer) : _parseASCII(new String.fromCharCodes(data));
+  }
 
   /**
    * UINT8[80] – Header
