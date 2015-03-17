@@ -37,7 +37,7 @@ class STLLoader extends Loader {
 
   _parse(Object resp) {
     Uint8List data;
-    if (!resp is Uint8List) {
+    if (resp is! Uint8List) {
       data = new Uint8List.view(resp as ByteBuffer);
     } else {
       data = (resp as Uint8List);
