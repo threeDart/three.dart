@@ -15,7 +15,7 @@ class OBJLoader extends Loader {
   /// Creates an [OBJLoader]
   ///
   /// If [useMtl] is false, the mtl instruction are ignored.
-  OBJLoader({useMtl: true}) : super() {
+  OBJLoader({bool useMtl: true}) : super() {
     this._useMtl = useMtl;
   }
 

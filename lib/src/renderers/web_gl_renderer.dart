@@ -5994,9 +5994,11 @@ class WebGLRenderer implements Renderer {
 
       color = light.color;
 
-      if ((light is DirectionalLight) || (light is SpotLight) || (light is PointLight) || (light is HemisphereLight)) {
+      if ((light is DirectionalLight) || (light is SpotLight) || (light is PointLight)) {
         intensity = (light as dynamic).intensity;
         distance = (light as dynamic).distance;
+      } else if (light is HemisphereLight) {
+        intensity = (light as dynamic).intensity;
       }
 
       if (light is AmbientLight) {
