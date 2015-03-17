@@ -141,7 +141,7 @@ Object3D cloneObject(Object3D source) {
   object.matrixAutoUpdate = source.matrixAutoUpdate;
   object.matrixWorldNeedsUpdate = source.matrixWorldNeedsUpdate;
 
-  object.quaternion.copy(source.quaternion);
+  object.quaternion.copyFrom(source.quaternion);
   object.useQuaternion = source.useQuaternion;
 
   object.boundRadius = source.boundRadius;
