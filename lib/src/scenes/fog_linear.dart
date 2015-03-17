@@ -8,9 +8,10 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class FogLinear implements Fog {
-  Color color;
+class FogLinear extends Fog {
   double near;
   double far;
-  FogLinear(num hex, [this.near = 1.0, this.far = 1000.0]) : color = new Color(hex);
+  FogLinear(num hex, [this.near = 1.0, this.far = 1000.0]) {
+    color = new Color(hex);
+  }
 }

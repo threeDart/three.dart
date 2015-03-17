@@ -723,9 +723,9 @@ class WebGLRenderer implements Renderer {
 
   }
 
-  deallocateRenderTarget(renderTarget) {
+  deallocateRenderTarget(WebGLRenderTarget renderTarget) {
 
-    if (!renderTarget || !renderTarget.__webglTexture) return;
+    if (renderTarget == null || renderTarget.__webglTexture == null) return;
 
     _gl.deleteTexture(renderTarget.__webglTexture);
 
@@ -5997,6 +5997,8 @@ class WebGLRenderer implements Renderer {
       if ((light is DirectionalLight) || (light is SpotLight) || (light is PointLight)) {
         intensity = (light as dynamic).intensity;
         distance = (light as dynamic).distance;
+      } else if (light is HemisphereLight) {
+        intensity = (light as dynamic).intensity;
       }
 
       if (light is AmbientLight) {

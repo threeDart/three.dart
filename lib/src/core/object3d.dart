@@ -57,7 +57,7 @@ class Object3D {
 
   /// Object's local rotation as Quaternion.
   /// Only used when useQuaternion is set to true.
-  var quaternion;
+  Quaternion quaternion;
   /// Use quaternion instead of Euler angles for specifying local rotation.
   bool useQuaternion;
 
@@ -75,7 +75,7 @@ class Object3D {
 
   Vector3 _vector;
 
-  var customDepthMaterial;
+  Material customDepthMaterial;
 
   // TODO : Introduce a mixin for objects with Geometry
   Geometry geometry;
@@ -185,7 +185,7 @@ class Object3D {
 
     if (rotationAutoUpdate) {
       if (useQuaternion) {
-        quaternion.setFromRotationMatrix(matrix);
+        quaternion = new Quaternion.fromRotation(matrix.getRotation());
       } else {
         rotation = calcEulerFromRotationMatrix(matrix, eulerOrder);
       }

@@ -322,41 +322,7 @@ class Geometry extends Object with WebGLGeometry {
   /// Computes bounding box of the geometry, updating Geometry.boundingBox.
   void computeBoundingBox() {
     if (boundingBox == null) {
-      boundingBox = new BoundingBox(min: new Vector3.zero(), max: new Vector3.zero());
-    }
-
-    if (vertices.length > 0) {
-      Vector3 position,
-          firstPosition = vertices[0];
-
-      boundingBox.min.setFrom(firstPosition);
-      boundingBox.max.setFrom(firstPosition);
-
-      Vector3 min = boundingBox.min,
-          max = boundingBox.max;
-
-      num vl = vertices.length;
-      for (int v = 1; v < vl; v++) {
-        position = vertices[v];
-
-        if (position.x < min.x) {
-          min.x = position.x;
-        } else if (position.x > max.x) {
-          max.x = position.x;
-        }
-
-        if (position.y < min.y) {
-          min.y = position.y;
-        } else if (position.y > max.y) {
-          max.y = position.y;
-        }
-
-        if (position.z < min.z) {
-          min.z = position.z;
-        } else if (position.z > max.z) {
-          max.z = position.z;
-        }
-      }
+      boundingBox = new BoundingBox.fromPoints(this.vertices);
     }
   }
 
@@ -551,7 +517,8 @@ class BoundingBox {
 
   expandByVector(Vector3 vector) => _aabb3.copyMinMax(_aabb3.min.sub(vector), _aabb3.max.add(vector));
 
-  expandByScalar(num scalar) => _aabb3.copyMinMax(_aabb3.min - new Vector3.all(scalar), _aabb3.max + new Vector3.all(scalar));
+  expandByScalar(num scalar) =>
+      _aabb3.copyMinMax(_aabb3.min - new Vector3.all(scalar), _aabb3.max + new Vector3.all(scalar));
 
   bool containsPoint(Vector3 point) => _aabb3.containsVector3(point);
 
@@ -569,14 +536,14 @@ class BoundingBox {
 
   BoundingSphere get boundingSphere => new BoundingSphere(radius: size.length * 0.5, center: center);
 
-  intersect( BoundingBox box ) {
-    Vector3.max(_aabb3.min, box.min, _aabb3.min );
+  intersect(BoundingBox box) {
+    Vector3.max(_aabb3.min, box.min, _aabb3.min);
     Vector3.min(_aabb3.max, box.max, _aabb3.max);
   }
 
-  union( BoundingBox box ) {
-    Vector3.min(_aabb3.min, box.min, _aabb3.min );
-    Vector3.min(_aabb3.max, box.max, _aabb3.max );
+  union(BoundingBox box) {
+    Vector3.min(_aabb3.min, box.min, _aabb3.min);
+    Vector3.min(_aabb3.max, box.max, _aabb3.max);
   }
 
   applyMatrix4(Matrix4 matrix) {

@@ -23,9 +23,6 @@ class Scene extends Object3D {
   List __webglFlares;
 
   Scene() {
-    // TODO: check how to call super constructor
-    // super();
-
     fog = null;
     overrideMaterial = null;
 
