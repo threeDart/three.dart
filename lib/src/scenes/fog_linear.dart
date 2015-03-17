@@ -8,7 +8,7 @@ part of three;
  * @author rob silverton / http://www.unwrong.com/
  */
 
-class FogLinear implements Fog {
+class FogLinear extends Fog {
   Color color;
   double near;
   double far;

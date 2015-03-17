@@ -8,15 +8,8 @@ part of three;
  * @author Christopher Grabowski / https://github.com/cgrabowski
  */
 
-class Fog {
+abstract class Fog {
   Color color;
-  double near;
-  double far;
   String name = '';
 
-  Fog(Color color, [this.near = 1.0, this.far = 1000.0]) {
-    this.color = color.clone();
-  }
-
-  Fog clone() => new Fog(color, near, far);
 }
