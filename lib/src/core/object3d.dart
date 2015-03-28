@@ -249,7 +249,7 @@ class Object3D {
     int cl = children.length;
     Object3D child, recurseResult;
 
-    children.forEach((child) {
+    for (Object3D child in children) {
 
       if (child.name == name) {
         return child;
@@ -262,7 +262,7 @@ class Object3D {
           return recurseResult;
         }
       }
-    });
+    }
 
     return null;
   }
