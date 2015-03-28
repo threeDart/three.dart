@@ -76,21 +76,18 @@ void init() {
     scene.add(sphere);
   }
   
-  particleLight = new Mesh( new SphereGeometry( 4.0, 8, 8 ), new MeshBasicMaterial(color: 0xffffff) );
-  scene.add( particleLight );
+  particleLight = new Mesh(new SphereGeometry(4.0, 8, 8), new MeshBasicMaterial(color: 0xffffff));
+  scene.add(particleLight);
 
   // Lights
   
   scene.add(new AmbientLight(0x444444));
-  
-  scene.add(new DirectionalLight(0xffffff, 1.0)..position.setValues(1.0, 1.0, 1.0).normalize());
-  
 
-  var directionalLight = new DirectionalLight( 0xffffff, 1.0 );
-  directionalLight.position.setValues( 1.0, 1.0, 1.0 ).normalize();
+  var directionalLight = new DirectionalLight(0xffffff, 1.0);
+  directionalLight.position.setValues(1.0, 1.0, 1.0).normalize();
   scene.add(directionalLight);
   
-  var pointLight = new PointLight( 0xffffff, intensity: 2.0, distance: 800.0 );
+  var pointLight = new PointLight(0xffffff, intensity: 2.0, distance: 800.0);
   particleLight.add(pointLight);
   
   //
