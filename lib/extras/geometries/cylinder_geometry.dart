@@ -38,7 +38,7 @@ class CylinderGeometry extends Geometry {
         this.vertices.add(vertex);
 
         verticesRow.add(this.vertices.length - 1);
-        uvsRow.add(new UV(u, 1 - v));
+        uvsRow.add(new Vector2(u, 1 - v));
 
       }
 
@@ -111,7 +111,7 @@ class CylinderGeometry extends Geometry {
 
         var uv1 = uvs[0][x].clone();
         var uv2 = uvs[0][x + 1].clone();
-        var uv3 = new UV(uv2.u, 0.0);
+        var uv3 = new Vector2(uv2.x, 0.0);
 
         this.faces.add(new Face3(v1, v2, v3, [n1, n2, n3]));
         this.faceVertexUvs[0].add([uv1, uv2, uv3]);
@@ -138,7 +138,7 @@ class CylinderGeometry extends Geometry {
 
         var uv1 = uvs[y][x + 1].clone();
         var uv2 = uvs[y][x].clone();
-        var uv3 = new UV(uv2.u, 1.0);
+        var uv3 = new Vector2(uv2.x, 1.0);
 
         this.faces.add(new Face3(v1, v2, v3, [n1, n2, n3]));
         this.faceVertexUvs[0].add([uv1, uv2, uv3]);

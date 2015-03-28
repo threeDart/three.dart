@@ -119,10 +119,10 @@ class TubeGeometry extends Geometry {
         c = this.grid[ip][jp];
         d = this.grid[i][jp];
 
-        uva = new UV(i / this.nSegments, j / this.segmentsRadius);
-        uvb = new UV((i + 1) / this.nSegments, j / this.segmentsRadius);
-        uvc = new UV((i + 1) / this.nSegments, (j + 1) / this.segmentsRadius);
-        uvd = new UV(i / this.nSegments, (j + 1) / this.segmentsRadius);
+        uva = new Vector2(i / this.nSegments, j / this.segmentsRadius);
+        uvb = new Vector2((i + 1) / this.nSegments, j / this.segmentsRadius);
+        uvc = new Vector2((i + 1) / this.nSegments, (j + 1) / this.segmentsRadius);
+        uvd = new Vector2(i / this.nSegments, (j + 1) / this.segmentsRadius);
 
         this.faces.add(new Face4(a, b, c, d));
         this.faceVertexUvs[0].add([uva, uvb, uvc, uvd]);

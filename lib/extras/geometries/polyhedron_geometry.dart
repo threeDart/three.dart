@@ -44,7 +44,7 @@ class PolyhedronGeometry extends Geometry {
 
     var u = _azimuth(vertex) / 2 / Math.PI + 0.5;
     var v = _inclination(vertex) / Math.PI + 0.5;
-    vertex.uv = new UV(u, 1 - v);
+    vertex.uv = new Vector2(u, 1 - v);
 
     return vertex;
 
@@ -133,9 +133,9 @@ class PolyhedronGeometry extends Geometry {
       Math.atan2(-vector.y, Math.sqrt((vector.x * vector.x) + (vector.z * vector.z)));
 
   /// Texture fixing helper. Spheres have some odd behaviours.
-  UV _correctUV(UV uv, Vector3 vector, double azimuth) {
-    if ((azimuth < 0) && (uv.u == 1)) uv = new UV(uv.u - 1, uv.v);
-    if ((vector.x == 0) && (vector.z == 0)) uv = new UV(azimuth / 2 / Math.PI + 0.5, uv.v);
+  Vector2 _correctUV(Vector2 uv, Vector3 vector, double azimuth) {
+    if ((azimuth < 0) && (uv.x == 1)) uv = new Vector2(uv.x - 1, uv.y);
+    if ((vector.x == 0) && (vector.z == 0)) uv = new Vector2(azimuth / 2 / Math.PI + 0.5, uv.y);
     return uv;
 
   }
@@ -146,7 +146,7 @@ class PolyhedronGeometry extends Geometry {
  * */
 class PolyhedronGeometryVertex extends Vector3 {
   int index;
-  UV uv;
+  Vector2 uv;
   PolyhedronGeometryVertex([num x = 0.0, num y = 0.0, num z = 0.0]) : super(x.toDouble(), y.toDouble(), z.toDouble());
 
   PolyhedronGeometryVertex.fromVector3(Vector3 other) : super.copy(other);

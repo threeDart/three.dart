@@ -48,10 +48,10 @@ class ParametricGeometry extends Geometry {
         c = (i + 1) * sliceCount + j;
         d = (i + 1) * sliceCount + j + 1;
 
-        uva = new UV(j / slices, i / stacks);
-        uvb = new UV((j + 1) / slices, i / stacks);
-        uvc = new UV(j / slices, (i + 1) / stacks);
-        uvd = new UV((j + 1) / slices, (i + 1) / stacks);
+        uva = new Vector2(j / slices, i / stacks);
+        uvb = new Vector2((j + 1) / slices, i / stacks);
+        uvc = new Vector2(j / slices, (i + 1) / stacks);
+        uvd = new Vector2((j + 1) / slices, (i + 1) / stacks);
 
         if (useTris) {
 

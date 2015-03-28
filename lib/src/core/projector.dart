@@ -355,7 +355,7 @@ class Projector {
           for (c = 0; c < cl; c++) {
             if (faceVertexUvs[c].length == 0) continue;
 
-            List<UV> uvs = faceVertexUvs[c][f];
+            List<Vector2> uvs = faceVertexUvs[c][f];
 
             if (uvs == null) continue;
 
