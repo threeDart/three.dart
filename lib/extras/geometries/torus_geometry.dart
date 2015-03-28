@@ -7,7 +7,7 @@ class TorusGeometry extends Geometry {
       2]) : super() {
 
     var center = new Vector3.zero();
-    var uvs = <UV>[];
+    var uvs = <Vector2>[];
     var normals = <Vector3>[];
 
     for (var j = 0; j <= this.segmentsR; j++) {
@@ -27,7 +27,7 @@ class TorusGeometry extends Geometry {
 
         this.vertices.add(vertex);
 
-        uvs.add(new UV(i / this.segmentsT, j / this.segmentsR));
+        uvs.add(new Vector2(i / this.segmentsT, j / this.segmentsR));
         normals.add(vertex.clone().sub(center).normalize());
 
       }

@@ -213,7 +213,7 @@ class Geometry extends Object with WebGLGeometry {
     var f, fl, face;
     num i, il, vertexIndex, test, w;
     Vector3 vA, vB, vC;
-    UV uvA, uvB, uvC;
+    Vector2 uvA, uvB, uvC;
 
     List uv;
 
@@ -246,10 +246,10 @@ class Geometry extends Object with WebGLGeometry {
       z1 = vB.z - vA.z;
       z2 = vC.z - vA.z;
 
-      s1 = uvB.u - uvA.u;
-      s2 = uvC.u - uvA.u;
-      t1 = uvB.v - uvA.v;
-      t2 = uvC.v - uvA.v;
+      s1 = uvB.x - uvA.x;
+      s2 = uvC.x - uvA.x;
+      t1 = uvB.y - uvA.y;
+      t2 = uvC.y - uvA.y;
 
       r = 1.0 / (s1 * t2 - s2 * t1);
       sdir.setValues((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r);
@@ -270,7 +270,7 @@ class Geometry extends Object with WebGLGeometry {
     for (f = 0; f < fl; f++) {
 
       face = this.faces[f];
-      UV uv = faceVertexUvs[0][f]; // use UV layer 0 for tangents
+      Vector2 uv = faceVertexUvs[0][f]; // use UV layer 0 for tangents
 
       // TODO - Come up with a way to handle an arbitrary number of vertexes
       var triangles = [];

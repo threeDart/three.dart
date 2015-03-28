@@ -2589,8 +2589,8 @@ class WebGLRenderer implements Renderer {
 
           uvi = uv[i];
 
-          uvArray[offset_uv] = uvi.u;
-          uvArray[offset_uv + 1] = uvi.v;
+          uvArray[offset_uv] = uvi.x;
+          uvArray[offset_uv + 1] = uvi.y;
 
           offset_uv += 2;
 
@@ -2611,8 +2611,8 @@ class WebGLRenderer implements Renderer {
 
           uvi = uv[i];
 
-          uvArray[offset_uv] = uvi.u;
-          uvArray[offset_uv + 1] = uvi.v;
+          uvArray[offset_uv] = uvi.x;
+          uvArray[offset_uv + 1] = uvi.y;
 
           offset_uv += 2;
 

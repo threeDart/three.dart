@@ -38,7 +38,6 @@ part 'src/core/morph_target.dart';
 part 'src/core/geometry.dart';
 part 'src/core/projector.dart';
 part 'src/core/ray.dart';
-part 'src/core/uv.dart';
 part 'src/core/rectangle.dart';
 part 'src/core/buffer_geometry.dart';
 part 'src/core/event_emitter.dart';

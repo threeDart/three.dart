@@ -31,7 +31,7 @@ class SphereGeometry extends Geometry {
         this.vertices.add(vertex);
 
         verticesRow.add(this.vertices.length - 1);
-        uvsRow.add(new UV(u, 1 - v));
+        uvsRow.add(new Vector2(u, 1 - v));
 
       }
 

@@ -66,10 +66,10 @@ class TorusKnotGeometry extends Geometry {
         var c = this.grid[ip][jp];
         var d = this.grid[i][jp];
 
-        var uva = new UV(i / this.segmentsR, j / this.segmentsT);
-        var uvb = new UV((i + 1) / this.segmentsR, j / this.segmentsT);
-        var uvc = new UV((i + 1) / this.segmentsR, (j + 1) / this.segmentsT);
-        var uvd = new UV(i / this.segmentsR, (j + 1) / this.segmentsT);
+        var uva = new Vector2(i / this.segmentsR, j / this.segmentsT);
+        var uvb = new Vector2((i + 1) / this.segmentsR, j / this.segmentsT);
+        var uvc = new Vector2((i + 1) / this.segmentsR, (j + 1) / this.segmentsT);
+        var uvd = new Vector2(i / this.segmentsR, (j + 1) / this.segmentsT);
 
         this.faces.add(new Face4(a, b, c, d));
         this.faceVertexUvs[0].add([uva, uvb, uvc, uvd]);

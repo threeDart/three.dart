@@ -154,10 +154,10 @@ class CubeGeometry extends Geometry {
         List newUVs = new List();
         newUVs.addAll(
             [
-                new UV(ix / gridX, 1 - iy / gridY),
-                new UV(ix / gridX, 1 - (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, 1 - (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, 1 - iy / gridY)]);
+                new Vector2(ix / gridX, 1 - iy / gridY),
+                new Vector2(ix / gridX, 1 - (iy + 1) / gridY),
+                new Vector2((ix + 1) / gridX, 1 - (iy + 1) / gridY),
+                new Vector2((ix + 1) / gridX, 1 - iy / gridY)]);
         faceVertexUV.add(newUVs);
       }
     }

@@ -38,10 +38,10 @@ class LatheGeometry extends Geometry {
 
         this.faceVertexUvs[0].add(
             [
-                new UV(1 - i / steps, k / kl),
-                new UV(1 - (i + 1) / steps, k / kl),
-                new UV(1 - (i + 1) / steps, (k + 1) / kl),
-                new UV(1 - i / steps, (k + 1) / kl)]);
+                new Vector2(1 - i / steps, k / kl),
+                new Vector2(1 - (i + 1) / steps, k / kl),
+                new Vector2(1 - (i + 1) / steps, (k + 1) / kl),
+                new Vector2(1 - i / steps, (k + 1) / kl)]);
 
       }
 

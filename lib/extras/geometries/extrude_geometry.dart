@@ -718,7 +718,7 @@ class ExtrudeGeometry extends Geometry {
 }
 
 class ExtrudeGeometryWorldUVGenerator {
-  List<UV> generateTopUV(Geometry geometry, extrudedShape, extrudeOptions, int indexA, int indexB, int indexC) {
+  List<Vector2> generateTopUV(Geometry geometry, extrudedShape, extrudeOptions, int indexA, int indexB, int indexC) {
     var ax = geometry.vertices[indexA].x,
         ay = geometry.vertices[indexA].y,
 
@@ -728,14 +728,14 @@ class ExtrudeGeometryWorldUVGenerator {
         cx = geometry.vertices[indexC].x,
         cy = geometry.vertices[indexC].y;
 
-    return [new UV(ax, 1 - ay), new UV(bx, 1 - by), new UV(cx, 1 - cy)];
+    return [new Vector2(ax, 1 - ay), new Vector2(bx, 1 - by), new Vector2(cx, 1 - cy)];
   }
 
-  List<UV> generateBottomUV(Geometry geometry, extrudedShape, extrudeOptions, int indexA, int indexB, int indexC) {
+  List<Vector2> generateBottomUV(Geometry geometry, extrudedShape, extrudeOptions, int indexA, int indexB, int indexC) {
     return generateTopUV(geometry, extrudedShape, extrudeOptions, indexA, indexB, indexC);
   }
 
-  List<UV> generateSideWallUV(Geometry geometry, extrudedShape, wallContour, extrudeOptions, int indexA, int indexB,
+  List<Vector2> generateSideWallUV(Geometry geometry, extrudedShape, wallContour, extrudeOptions, int indexA, int indexB,
       int indexC, int indexD, stepIndex, stepsLength) {
     var ax = geometry.vertices[indexA].x,
         ay = geometry.vertices[indexA].y,
@@ -754,9 +754,9 @@ class ExtrudeGeometryWorldUVGenerator {
         dz = geometry.vertices[indexD].z;
 
     if ((ay - by).abs() < 0.01) {
-      return [new UV(ax, az), new UV(bx, bz), new UV(cx, cz), new UV(dx, dz)];
+      return [new Vector2(ax, az), new Vector2(bx, bz), new Vector2(cx, cz), new Vector2(dx, dz)];
     } else {
-      return [new UV(ay, az), new UV(by, bz), new UV(cy, cz), new UV(dy, dz)];
+      return [new Vector2(ay, az), new Vector2(by, bz), new Vector2(cy, cz), new Vector2(dy, dz)];
     }
   }
 }

@@ -49,10 +49,10 @@ class PlaneGeometry extends Geometry {
         List newUVs = new List();
         newUVs.addAll(
             [
-                new UV(ix / gridX, iy / gridY),
-                new UV(ix / gridX, (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, iy / gridY)]);
+                new Vector2(ix / gridX, iy / gridY),
+                new Vector2(ix / gridX, (iy + 1) / gridY),
+                new Vector2((ix + 1) / gridX, (iy + 1) / gridY),
+                new Vector2((ix + 1) / gridX, iy / gridY)]);
         faceVertexUV.add(newUVs);
       }
     }

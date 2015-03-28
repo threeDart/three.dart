@@ -174,7 +174,7 @@ class ConvexGeometry extends Geometry {
   _vertexUv(vertex) {
 
     var mag = vertex.length();
-    return new UV(vertex.x / mag, vertex.y / mag);
+    return new Vector2(vertex.x / mag, vertex.y / mag);
 
   }
 }
