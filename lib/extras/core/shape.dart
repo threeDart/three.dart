@@ -12,111 +12,39 @@ part of three;
 // STEP 3b - Triangulate each shape, add faces.
 
 class Shape extends Path {
+  List<Path> holes = [];
 
-  List holes;
+  Shape([List<Vector2> points]) : super(points);
 
-  Shape([List points])
-      : holes = [],
-        super(points);
-
-  // Convenience method to return ExtrudeGeometry
-  extrude({amount: 100, bevelThickness: 6.0, bevelSize: null, bevelSegments: 3, bevelEnabled: true, curveSegments: 12,
-      steps: 1, bendPath, extrudePath, material, extrudeMaterial}) {
-
-    if (bevelSize == null) bevelSize = bevelThickness - 2.0;
-
-    return new ExtrudeGeometry(
-        [this],
-        amount: amount,
-        bevelThickness: bevelThickness,
-        bevelSize: bevelSize,
-        bevelSegments: bevelSegments,
-        bevelEnabled: bevelEnabled,
-        curveSegments: curveSegments,
-        steps: steps,
-        bendPath: bendPath,
-        extrudePath: extrudePath,
-        material: material,
-        extrudeMaterial: extrudeMaterial);
+  /// Convenience method to return ExtrudeGeometry.
+  ExtrudeGeometry extrude({int amount: 100, double bevelThickness: 6.0, double bevelSize, int bevelSegments: 3, bool bevelEnabled: true, int curveSegments: 12, 
+    steps: 1, Curve extrudePath, int material, int extrudeMaterial}) {
+    return new ExtrudeGeometry([this], amount: amount, bevelThickness: bevelThickness, bevelSize: bevelSize, bevelSegments: bevelSegments, bevelEnabled: bevelEnabled,
+        curveSegments: curveSegments, steps: steps, extrudePath: extrudePath, material: material, extrudeMaterial: extrudeMaterial);
   }
+  
+  /// Convenience method to return ShapeGeometry.
+  ShapeGeometry makeGeometry({int curveSegments: 12, int material, ExtrudeGeometryWorldUVGenerator uvGenerator}) =>
+      new ShapeGeometry([this], curveSegments: curveSegments, material: material, uvGenerator: uvGenerator);
 
+  /// Get points of holes.
+  List<List<Vector2>> getPointsHoles(int divisions) =>
+      new List.generate(holes.length, (i) => holes[i].getTransformedPoints(divisions));
 
-  // Get points of holes
-  getPointsHoles(divisions) {
+  /// Get points of holes (spaced by regular distance).
+  List<List<Vector2>> getSpacedPointsHoles(int divisions) =>
+      new List.generate(holes.length, (i) => holes[i].getTransformedSpacedPoints(divisions));
 
-    var i,
-        il = holes.length;
-    var holesPts = new List(il);
+  /// Get points of shape and holes (keypoints based on segments parameter).
+  Map<String, dynamic> extractAllPoints(int divisions) =>
+      {"shape": getTransformedPoints(divisions),
+       "holes": getPointsHoles(divisions)};
+       
+  Map<String, dynamic> extractPoints([int divisions]) => 
+      useSpacedPoints ? extractAllSpacedPoints(divisions) : extractAllPoints(divisions);
 
-    for (i = 0; i < il; i++) {
-
-      holesPts[i] = holes[i].getTransformedPoints(divisions, bends: _bends);
-
-    }
-
-    return holesPts;
-
-  }
-
-  // Get points of holes (spaced by regular distance)
-  getSpacedPointsHoles(divisions) {
-
-    var i,
-        il = holes.length;
-    var holesPts = new List(il);
-
-    for (i = 0; i < il; i++) {
-
-      holesPts[i] = holes[i].getTransformedSpacedPoints(divisions, _bends);
-
-    }
-
-    return holesPts;
-
-  }
-
-
-  // Get points of shape and holes (keypoints based on segments parameter)
-  extractAllPoints(divisions) {
-
-    return {
-
-      "shape": getTransformedPoints(divisions),
-      "holes": getPointsHoles(divisions)
-
-    };
-
-  }
-
-  extractPoints([num divisions]) {
-
-    if (useSpacedPoints) {
-      return extractAllSpacedPoints(divisions);
-    }
-
-    return extractAllPoints(divisions);
-
-  }
-
-  //
-  // THREE.Shape.prototype.extractAllPointsWithBend = function ( divisions, bend ) {
-  //
-  //   return {
-  //
-  //     shape: this.transform( bend, divisions ),
-  //     holes: this.getPointsHoles( divisions, bend )
-  //
-  //   };
-  //
-  // };
-
-  // Get points of shape and holes (spaced by regular distance)
-  extractAllSpacedPoints([num divisions]) {
-    return {
-      "shape": getTransformedSpacedPoints(divisions),
-      "holes": getSpacedPointsHoles(divisions)
-
-    };
-  }
-
+  /// Get points of shape and holes (spaced by regular distance).
+  Map<String, dynamic> extractAllSpacedPoints([int divisions]) =>
+      {"shape": getTransformedSpacedPoints(divisions),
+       "holes": getSpacedPointsHoles(divisions)};
 }
