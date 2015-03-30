@@ -213,7 +213,7 @@ class Geometry extends Object with WebGLGeometry {
     var f, fl, face;
     num i, il, vertexIndex, test, w;
     Vector3 vA, vB, vC;
-    UV uvA, uvB, uvC;
+    Vector2 uvA, uvB, uvC;
 
     List uv;
 
@@ -246,10 +246,10 @@ class Geometry extends Object with WebGLGeometry {
       z1 = vB.z - vA.z;
       z2 = vC.z - vA.z;
 
-      s1 = uvB.u - uvA.u;
-      s2 = uvC.u - uvA.u;
-      t1 = uvB.v - uvA.v;
-      t2 = uvC.v - uvA.v;
+      s1 = uvB.x - uvA.x;
+      s2 = uvC.x - uvA.x;
+      t1 = uvB.y - uvA.y;
+      t2 = uvC.y - uvA.y;
 
       r = 1.0 / (s1 * t2 - s2 * t1);
       sdir.setValues((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r);
@@ -270,7 +270,7 @@ class Geometry extends Object with WebGLGeometry {
     for (f = 0; f < fl; f++) {
 
       face = this.faces[f];
-      UV uv = faceVertexUvs[0][f]; // use UV layer 0 for tangents
+      Vector2 uv = faceVertexUvs[0][f]; // use UV layer 0 for tangents
 
       // TODO - Come up with a way to handle an arbitrary number of vertexes
       var triangles = [];
@@ -375,12 +375,12 @@ class Geometry extends Object with WebGLGeometry {
         verticesMap[key] = i;
         unique.add(v);
         //TODO: pretty sure this is an acceptable change in syntax here:
-        //changes[ i ] = unique.length - 1;
+        //changes[i] = unique.length - 1;
         changes.add(unique.length - 1);
       } else {
         //print('Duplicate vertex found. $i could be using  ${verticesMap[key]}');
         //print('changes len ${changes.length} add at i = $i');
-        //changes[ i ] = changes[ verticesMap[ key ] ];
+        //changes[i] = changes[verticesMap[key]];
         changes.add(changes[verticesMap[key]]);
       }
 
@@ -397,26 +397,26 @@ class Geometry extends Object with WebGLGeometry {
 
         // check dups in (a, b, c, d) and convert to -> face3
 
-        var o = [ face.a, face.b, face.c, face.d ];
+        var o = [face.a, face.b, face.c, face.d];
 
-        for ( var k = 3; k > 0; k -- ) {
+        for (var k = 3; k > 0; k --) {
 
-          if ( o.indexOf( face[ abcd[ k ] ] ) != k ) {
+          if (o.indexOf(face[abcd[k]]) != k) {
 
             // console.log('faces', face.a, face.b, face.c, face.d, 'dup at', k);
 
-            o.removeAt( k );
+            o.removeAt(k);
 
-            this.faces[ i ] = new THREE.Face3( o[0], o[1], o[2], face.normal, face.color, face.materialIndex );
+            this.faces[i] = new THREE.Face3(o[0], o[1], o[2], face.normal, face.color, face.materialIndex);
 
-            for ( j = 0, jl = this.faceVertexUvs.length; j < jl; j ++ ) {
+            for (j = 0, jl = this.faceVertexUvs.length; j < jl; j ++) {
 
-              u = this.faceVertexUvs[ j ][ i ];
-              if ( u ) u.removeAt( k );
+              u = this.faceVertexUvs[j][i];
+              if (u) u.removeAt(k);
 
             }
 
-            this.faces[ i ].vertexColors = face.vertexColors;
+            this.faces[i].vertexColors = face.vertexColors;
 
             break;
           }
@@ -432,10 +432,42 @@ class Geometry extends Object with WebGLGeometry {
     return diff;
   }
 
-  clone() {
+  Geometry clone() {
+    var geometry = new Geometry();
 
-    // TODO
+    var vertices = this.vertices;
 
+    for (var i = 0; i < vertices.length; i ++) {
+      geometry.vertices.add(vertices[i].clone());
+    }
+
+    var faces = this.faces;
+
+    for (var i = 0; i < faces.length; i++) {
+      geometry.faces.add(faces[i].clone());
+    }
+
+    for (var i = 0; i < this.faceVertexUvs.length; i ++) {
+      var faceVertexUvs = this.faceVertexUvs[i];
+
+      if (geometry.faceVertexUvs[i] == null) {
+        geometry.faceVertexUvs[i] = [];
+      }
+
+      for (var j = 0; j < faceVertexUvs.length; j ++) {
+        var uvs = faceVertexUvs[j], uvsCopy = [];
+
+        for (var k = 0; k < uvs.length; k ++) {
+          var uv = uvs[k];
+
+          uvsCopy.add(uv.clone());
+        }
+
+        geometry.faceVertexUvs[i].add(uvsCopy);
+      }
+    }
+
+    return geometry;
   }
 
   // Quick hack to allow setting new properties (used by the renderer)
