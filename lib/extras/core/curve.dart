@@ -3,15 +3,21 @@ part of three;
 /**************************************************************
  *  Abstract Curve base class
  **************************************************************/
-abstract class Curve<V> {
+class Curve<V> {
 
   int _arcLengthDivisions = null;
   List cacheArcLengths = null;
   bool needsUpdate = false;
+  
+  Function _getPoint;
+  
+  Curve();
+    
+  Curve.create(this._getPoint);
 
   // Virtual base class method to overwrite and implement in subclasses
   //  - t [0 .. 1]
-  V getPoint(t);
+  V getPoint(double t) => _getPoint(t);
 
   // Get point at relative position in curve according to arc length
   // - u [0 .. 1]
@@ -212,8 +218,8 @@ abstract class Curve<V> {
 
     // Capping in case of danger
 
-    if (t1 < 0) t1 = 0;
-    if (t2 > 1) t2 = 1;
+    if (t1 < 0) t1 = 0.0;
+    if (t2 > 1) t2 = 1.0;
 
     var pt1 = getPoint(t1);
     var pt2 = getPoint(t2);
