@@ -66,6 +66,7 @@ part 'extras/geometries/text_geometry.dart';
 part 'extras/geometries/torus_geometry.dart';
 part 'extras/geometries/torus_knot_geometry.dart';
 part 'extras/geometries/tube_geometry.dart';
+part 'extras/geometries/ring_geometry.dart';
 
 part 'extras/core/curve.dart';
 part 'extras/core/curve_path.dart';
