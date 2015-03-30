@@ -98,7 +98,7 @@ class CubeGeometry extends Geometry {
     Vector3 normal = new Vector3.zero();
 
     //TODO: find out how to do this sort of casting in Dart...
-    // normal.dynamic[ w ] = depth > 0 ? 1 : - 1;
+    // normal.dynamic[w] = depth > 0 ? 1 : - 1;
 
     if (w == 'x') {
       normal.x = depth > 0 ? 1.0 : -1.0;
@@ -110,9 +110,9 @@ class CubeGeometry extends Geometry {
       for (int ix = 0; ix < gridX1; ix++) {
         Vector3 vector = new Vector3.zero();
         //TODO: find out how to do this sort of casting in Dart...
-//        vector[ u ] = ( ix * segment_width - width_half ) * udir;
-//        vector[ v ] = ( iy * segment_height - height_half ) * vdir;
-//        vector[ w ] = depth;
+//        vector[u] = (ix * segment_width - width_half) * udir;
+//        vector[v] = (iy * segment_height - height_half) * vdir;
+//        vector[w] = depth;
 
         if (u == 'x') {
           vector.x = (ix * segment_width - width_half) * udir;
@@ -143,22 +143,26 @@ class CubeGeometry extends Geometry {
         num c = (ix + 1) + gridX1 * (iy + 1);
         num d = (ix + 1) + gridX1 * iy;
 
-        Face4 face = new Face4(a + offset, b + offset, c + offset, d + offset);
+        var uva = new Vector2(ix / gridX, 1 - iy / gridY);
+        var uvb = new Vector2(ix / gridX, 1 - (iy + 1) / gridY);
+        var uvc = new Vector2((ix + 1) / gridX, 1 - (iy + 1) / gridY);
+        var uvd = new Vector2((ix + 1) / gridX, 1 - iy / gridY);
+
+        var face = new Face3(a + offset, b + offset, d + offset);
         face.normal.setFrom(normal);
-        face.vertexNormals.addAll([normal.clone(), normal.clone(), normal.clone(), normal.clone()]);
+        face.vertexNormals.addAll([normal.clone(), normal.clone(), normal.clone()]);
         face.materialIndex = material;
 
         faces.add(face);
+        faceVertexUvs[0].add([uva, uvb, uvd]);
 
-        List faceVertexUV = faceVertexUvs[0];
-        List newUVs = new List();
-        newUVs.addAll(
-            [
-                new UV(ix / gridX, 1 - iy / gridY),
-                new UV(ix / gridX, 1 - (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, 1 - (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, 1 - iy / gridY)]);
-        faceVertexUV.add(newUVs);
+        face = new Face3(b + offset, c + offset, d + offset);
+        face.normal.setFrom(normal);
+        face.vertexNormals.addAll([normal.clone(), normal.clone(), normal.clone()]);
+        face.materialIndex = material;
+
+        faces.add(face);
+        faceVertexUvs[0].add([uvb.clone(), uvc, uvd.clone()]);
       }
     }
   }
@@ -170,6 +174,5 @@ class CubeGeomSides {
 
   CubeGeomSides({this.px: true, this.nx: true, this.py: true, this.ny: true, this.pz: true, this.nz: true});
 }
-
 
 
