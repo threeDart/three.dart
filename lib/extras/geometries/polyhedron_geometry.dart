@@ -1,7 +1,6 @@
 part of three;
 
 class PolyhedronGeometry extends Geometry {
-
   List _midpoints;
 
   // nelsonsilva - We're using a PolyhedronGeometryVertex decorator to allow adding index and uv properties
@@ -9,7 +8,6 @@ class PolyhedronGeometry extends Geometry {
 
   PolyhedronGeometry(List<List<num>> lvertices, List<List<num>> lfaces, [double radius = 1.0, num detail = 0])
       : super() {
-
     _midpoints = [];
 
     lvertices.forEach((vertex) {
@@ -30,12 +28,10 @@ class PolyhedronGeometry extends Geometry {
     computeCentroids();
 
     boundingSphere = new BoundingSphere(radius: radius);
-
   }
 
   // Project vector onto sphere's surface
   PolyhedronGeometryVertex _prepare(PolyhedronGeometryVertex vertex) {
-
     vertex.normalize();
     _p.add(vertex);
     vertex.index = _p.length - 1;
@@ -44,19 +40,14 @@ class PolyhedronGeometry extends Geometry {
 
     var u = _azimuth(vertex) / 2 / Math.PI + 0.5;
     var v = _inclination(vertex) / Math.PI + 0.5;
-    vertex.uv = new UV(u, 1 - v);
+    vertex.uv = new Vector2(u, 1 - v);
 
     return vertex;
-
   }
 
-
   // Approximate a curved face with recursively sub-divided triangles.
-
   _make(PolyhedronGeometryVertex v1, PolyhedronGeometryVertex v2, PolyhedronGeometryVertex v3, num detail) {
-
     if (detail < 1) {
-
       var face = new Face3(v1.index, v2.index, v3.index, [v1.clone(), v2.clone(), v3.clone()]);
       face.centroid.add(v1).add(v2).add(v3).scale(1.0 / 3.0);
       face.normal = face.centroid.clone().normalize();
@@ -64,9 +55,7 @@ class PolyhedronGeometry extends Geometry {
 
       var azi = _azimuth(face.centroid);
       this.faceVertexUvs[0].add([_correctUV(v1.uv, v1, azi), _correctUV(v2.uv, v2, azi), _correctUV(v3.uv, v3, azi)]);
-
     } else {
-
       detail -= 1;
 
       // split triangle into 4 smaller triangles
@@ -75,13 +64,10 @@ class PolyhedronGeometry extends Geometry {
       _make(_midpoint(v1, v2), v2, _midpoint(v2, v3), detail); // left quadrant
       _make(_midpoint(v1, v3), _midpoint(v2, v3), v3, detail); // right quadrant
       _make(_midpoint(v1, v2), _midpoint(v2, v3), _midpoint(v1, v3), detail); // center quadrant
-
     }
-
   }
 
   _midpoint(v1, v2) {
-
     // TODO - nelsonsilva - refactor this code
     // arrays don't "automagically" grow in Dart!
     if (_midpoints.length < v1.index + 1) {
@@ -122,7 +108,6 @@ class PolyhedronGeometry extends Geometry {
     }
 
     return mid;
-
   }
 
   /// Angle around the Y axis, counter-clockwise when looking from above.
@@ -133,11 +118,10 @@ class PolyhedronGeometry extends Geometry {
       Math.atan2(-vector.y, Math.sqrt((vector.x * vector.x) + (vector.z * vector.z)));
 
   /// Texture fixing helper. Spheres have some odd behaviours.
-  UV _correctUV(UV uv, Vector3 vector, double azimuth) {
-    if ((azimuth < 0) && (uv.u == 1)) uv = new UV(uv.u - 1, uv.v);
-    if ((vector.x == 0) && (vector.z == 0)) uv = new UV(azimuth / 2 / Math.PI + 0.5, uv.v);
+  Vector2 _correctUV(Vector2 uv, Vector3 vector, double azimuth) {
+    if ((azimuth < 0) && (uv.x == 1)) uv = new Vector2(uv.x - 1, uv.y);
+    if ((vector.x == 0) && (vector.z == 0)) uv = new Vector2(azimuth / 2 / Math.PI + 0.5, uv.y);
     return uv;
-
   }
 }
 
@@ -146,7 +130,7 @@ class PolyhedronGeometry extends Geometry {
  * */
 class PolyhedronGeometryVertex extends Vector3 {
   int index;
-  UV uv;
+  Vector2 uv;
   PolyhedronGeometryVertex([num x = 0.0, num y = 0.0, num z = 0.0]) : super(x.toDouble(), y.toDouble(), z.toDouble());
 
   PolyhedronGeometryVertex.fromVector3(Vector3 other) : super.copy(other);
