@@ -131,7 +131,6 @@ part 'src/renderers/renderables/renderable_object.dart';
 part 'src/renderers/renderables/renderable_vertex.dart';
 part 'src/renderers/renderables/renderable_face.dart';
 part 'src/renderers/renderables/renderable_face3.dart';
-part 'src/renderers/renderables/renderable_face4.dart';
 part 'src/renderers/renderables/renderable_line.dart';
 part 'src/renderers/renderables/renderable_particle.dart';
 

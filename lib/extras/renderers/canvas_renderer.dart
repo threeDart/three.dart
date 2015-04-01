@@ -335,42 +335,6 @@ class CanvasRenderer implements Renderer {
         if (_clipRect.intersects(_bboxRect)) {
           renderFace3(_v1, _v2, _v3, 0, 1, 2, element, material, scene);
         }
-
-      } else if (element is RenderableFace4) {
-        _v1 = element.v1;
-        _v2 = element.v2;
-        _v3 = element.v3;
-        _v4 = element.v4;
-
-        _v1.positionScreen.x *= _canvasWidthHalf;
-        _v1.positionScreen.y *= _canvasHeightHalf;
-        _v2.positionScreen.x *= _canvasWidthHalf;
-        _v2.positionScreen.y *= _canvasHeightHalf;
-        _v3.positionScreen.x *= _canvasWidthHalf;
-        _v3.positionScreen.y *= _canvasHeightHalf;
-        _v4.positionScreen.x *= _canvasWidthHalf;
-        _v4.positionScreen.y *= _canvasHeightHalf;
-
-        _v5.positionScreen.setFrom(_v2.positionScreen);
-        _v6.positionScreen.setFrom(_v4.positionScreen);
-
-        if (material.overdraw) {
-          expand(_v1.positionScreen, _v2.positionScreen);
-          expand(_v2.positionScreen, _v4.positionScreen);
-          expand(_v4.positionScreen, _v1.positionScreen);
-
-          expand(_v3.positionScreen, _v5.positionScreen);
-          expand(_v3.positionScreen, _v6.positionScreen);
-        }
-
-        _bboxRect.addPoint(_v1.positionScreen.x, _v1.positionScreen.y);
-        _bboxRect.addPoint(_v2.positionScreen.x, _v2.positionScreen.y);
-        _bboxRect.addPoint(_v3.positionScreen.x, _v3.positionScreen.y);
-        _bboxRect.addPoint(_v4.positionScreen.x, _v4.positionScreen.y);
-
-        if (_clipRect.intersects(_bboxRect)) {
-          renderFace4(_v1, _v2, _v3, _v4, _v5, _v6, element, material, scene);
-        }
       }
 
       if (debug) {

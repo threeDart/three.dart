@@ -15,12 +15,11 @@ part of three;
 class Projector {
   List<RenderableObject> _objectPool;
   List<RenderableVertex> _vertexPool;
-  List<RenderableFace4> _face4Pool;
   List<RenderableFace3> _face3Pool;
   List<RenderableLine> _linePool;
   List<RenderableParticle> _particlePool;
 
-  int _objectCount, _vertexCount, _face3Count, _face4Count, _lineCount, _particleCount;
+  int _objectCount, _vertexCount, _face3Count, _lineCount, _particleCount;
 
   RenderableObject _object;
   RenderableVertex _vertex;
@@ -43,7 +42,6 @@ class Projector {
       : _objectPool = [],
         _vertexPool = [],
         _face3Pool = [],
-        _face4Pool = [],
         _linePool = [],
         _particlePool = [],
 
@@ -223,7 +221,6 @@ class Projector {
     int side;
 
     _face3Count = 0;
-    _face4Count = 0;
     _lineCount = 0;
     _particleCount = 0;
 
@@ -317,7 +314,7 @@ class Projector {
 
             if (side == DoubleSide || visible == (side == FrontSide)) {
 
-              _face = (face.size == 3) ? getNextFace3InPool() : getNextFace4InPool();
+              _face = getNextFace3InPool();
 
               _face.vertices = vtx.map((v) => v.clone()).toList(growable: false);
 
@@ -510,21 +507,6 @@ class Projector {
     }
 
     _face3Count++;
-
-    return face;
-  }
-
-  RenderableFace getNextFace4InPool() {
-
-    RenderableFace4 face;
-    if (_face4Count < _face4Pool.length) {
-      face = (_face4Pool[_face4Count] != null) ? _face4Pool[_face4Count] : new RenderableFace4();
-    } else {
-      face = new RenderableFace4();
-      _face4Pool.add(face);
-    }
-
-    _face4Count++;
 
     return face;
   }
