@@ -174,7 +174,7 @@ class CameraHelper extends Line {
 
 
 
-    geometry["verticesNeedUpdate"] = true;
+    geometry.verticesNeedUpdate = true;
 
   }
 
