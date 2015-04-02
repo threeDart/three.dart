@@ -38,7 +38,7 @@ Geometry clone(Geometry geometry) {
     var jl = uv.length;
     for (var j = 0; j < jl; j++) {
 
-      uvCopy.add(new UV(uv[j].u, uv[j].v));
+      uvCopy.add(new Vector2(uv[j].u, uv[j].v));
 
     }
 

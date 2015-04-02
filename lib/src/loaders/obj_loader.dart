@@ -159,7 +159,7 @@ class OBJLoader extends Loader {
         } else if ((result = uv_pattern.firstMatch(line)) != null) {
 
           // ["vt 0.1 0.2", "0.1", "0.2"]
-          uvs.add(new UV(double.parse(result[1]), double.parse(result[2])));
+          uvs.add(new Vector2(double.parse(result[1]), double.parse(result[2])));
 
         } else if ((result = face_pattern1.firstMatch(line)) != null) {
 

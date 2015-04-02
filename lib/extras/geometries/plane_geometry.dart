@@ -1,62 +1,67 @@
-part of three;
-
-/**
+/*
  * @author mr.doob / http://mrdoob.com/
  * based on http://papervision3d.googlecode.com/svn/trunk/as3/trunk/src/org/papervision3d/objects/primitives/Plane.as
  *
  * Ported to Dart from JS by:
  * @author rob silverton / http://www.unwrong.com/
+ * 
+ * based on r66
  */
 
+part of three;
+
+/** 
+ * A class for generating plane geometries.
+ *   
+ *     var geometry = new PlaneGeometry(5.0, 20.0);
+ *     var material = new MeshBasicMaterial(color: 0xffff00, side: DOUBLE_SIDE);
+ *     var plane = new Mesh(geometry, material);
+ *     scene.add(plane);
+ */ 
 class PlaneGeometry extends Geometry {
+  /// Creates a new plane geometry.
+  PlaneGeometry(double width, double height, [int widthSegments = 1, int heightSegments = 1]) : super() {
+    var width_half = width / 2;
+    var height_half = height / 2;
 
-  PlaneGeometry(double width, double height, [int segmentsWidth, int segmentsHeight]) : super() {
-    //THREE.Geometry.call( this );
+    var gridX = widthSegments;
+    var gridZ = heightSegments;
 
-    double width_half = width / 2;
-    double height_half = height / 2;
-    int gridX = segmentsWidth != null ? segmentsWidth : 1;
-    int gridY = segmentsHeight != null ? segmentsHeight : 1;
-    int gridX1 = gridX + 1;
-    int gridY1 = gridY + 1;
-    double segment_width = width / gridX;
-    double segment_height = height / gridY;
-    Vector3 normal = new Vector3(0.0, 0.0, 1.0);
+    var gridX1 = gridX + 1;
+    var gridZ1 = gridZ + 1;
 
-    for (int iy = 0; iy < gridY1; iy++) {
-      for (int ix = 0; ix < gridX1; ix++) {
-        num x = ix * segment_width - width_half;
-        num y = iy * segment_height - height_half;
+    var segment_width = width / gridX;
+    var segment_height = height / gridZ;
+
+    var normal = new Vector3(0.0, -1.0, 0.0);
+
+    for (var iz = 0; iz < gridZ1; iz++) {
+      for (var ix = 0; ix < gridX1; ix++) {
+        var x = ix * segment_width - width_half;
+        var y = iz * segment_height - height_half;
 
         vertices.add(new Vector3(x, -y, 0.0));
       }
     }
 
-    for (int iy = 0; iy < gridY; iy++) {
-      for (int ix = 0; ix < gridX; ix++) {
-        num a = ix + gridX1 * iy;
-        num b = ix + gridX1 * (iy + 1);
-        num c = (ix + 1) + gridX1 * (iy + 1);
-        num d = (ix + 1) + gridX1 * iy;
+    for (var iz = 0; iz < gridZ; iz++) {
+      for (var ix = 0; ix < gridX; ix++) {
+        var a = ix + gridX1 * iz;
+        var b = ix + gridX1 * (iz + 1);
+        var c = (ix + 1) + gridX1 * (iz + 1);
+        var d = (ix + 1) + gridX1 * iz;
 
-        Face4 face = new Face4(a, b, c, d);
-        face.normal = normal.clone();
-        face.vertexNormals.addAll([normal.clone(), normal.clone(), normal.clone(), normal.clone()]);
+        var uva = new Vector2(ix / gridX, 1 - iz / gridZ);
+        var uvb = new Vector2(ix / gridX, 1 - (iz + 1) / gridZ);
+        var uvc = new Vector2((ix + 1) / gridX, 1 - (iz + 1) / gridZ);
+        var uvd = new Vector2((ix + 1) / gridX, 1 - iz / gridZ);
 
-        faces.add(face);
+        faces.add(new Face3(a, b, d, [normal.clone(), normal.clone(), normal.clone()]));
+        faceVertexUvs[0].add([uva, uvb, uvd]);
 
-        List faceVertexUV = faceVertexUvs[0];
-        List newUVs = new List();
-        newUVs.addAll(
-            [
-                new UV(ix / gridX, iy / gridY),
-                new UV(ix / gridX, (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, (iy + 1) / gridY),
-                new UV((ix + 1) / gridX, iy / gridY)]);
-        faceVertexUV.add(newUVs);
+        faces.add(new Face3(b, c, d, [normal.clone(), normal.clone(), normal.clone()]));            
+        faceVertexUvs[0].add([uvb.clone(), uvc, uvd.clone()]);
       }
     }
-
-    computeCentroids();
   }
 }

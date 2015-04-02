@@ -24,7 +24,7 @@ var firstLetter = true,
 
     curveSegments = 4,
 
-    bevelThickness = 2,
+    bevelThickness = 2.0,
     bevelSize = 1.5,
     bevelSegments = 3,
     bevelEnabled = true,
@@ -202,7 +202,7 @@ createText() {
 
   textGeo = new TextGeometry(
       text,
-      height,
+      height.toInt(),
       false,
       bevelThickness,
       bevelSize,
@@ -210,7 +210,6 @@ createText() {
       bevelEnabled,
       curveSegments,
       1,
-      null,
       null,
       0,
       1,

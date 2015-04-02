@@ -12,13 +12,13 @@ var uniforms, amplitude, opacity, color;
 var attributes, displacement, customColor;
 
 var text = "three.dart",
-    height = 15.0,
+    height = 15,
     size = 50,
 
     curveSegments = 10,
     steps = 40,
 
-    bevelThickness = 5,
+    bevelThickness = 5.0,
     bevelSize = 1.5,
     bevelSegments = 10,
     bevelEnabled = true,
@@ -87,7 +87,6 @@ void init() {
       bevelEnabled,
       curveSegments,
       1,
-      null,
       null,
       0,
       1,
