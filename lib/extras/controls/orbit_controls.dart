@@ -407,7 +407,7 @@ class OrbitControls extends EventEmitter {
 
       _state = STATE.ROTATE;
 
-      _rotateStart = new Vector2(event.clientX.toDouble(), event.clientY.toDouble());
+      _rotateStart = new Vector2(event.client.x.toDouble(), event.client.y.toDouble());
 
     } else if (event.button == 1) {
 
@@ -415,7 +415,7 @@ class OrbitControls extends EventEmitter {
 
       _state = STATE.DOLLY;
 
-      _dollyStart = new Vector2(event.clientX.toDouble(), event.clientY.toDouble());
+      _dollyStart = new Vector2(event.client.x.toDouble(), event.client.y.toDouble());
 
     } else if (event.button == 2) {
 
@@ -423,7 +423,7 @@ class OrbitControls extends EventEmitter {
 
       _state = STATE.PAN;
 
-      _panStart = new Vector2(event.clientX.toDouble(), event.clientY.toDouble());
+      _panStart = new Vector2(event.client.x.toDouble(), event.client.y.toDouble());
 
     }
 
@@ -445,7 +445,7 @@ class OrbitControls extends EventEmitter {
 
       if (noRotate == true) return;
 
-      _rotateEnd = new Vector2(event.clientX.toDouble(), event.clientY.toDouble());
+      _rotateEnd = new Vector2(event.client.x.toDouble(), event.client.y.toDouble());
       _rotateDelta = _rotateEnd - _rotateStart;
 
       // Rotating across the whole screen is 360 degrees around.
@@ -461,7 +461,7 @@ class OrbitControls extends EventEmitter {
 
       if (noZoom == true) return;
 
-      _dollyEnd = new Vector2(event.clientX.toDouble(), event.clientY.toDouble());
+      _dollyEnd = new Vector2(event.client.x.toDouble(), event.client.y.toDouble());
       _dollyDelta = _dollyEnd - _dollyStart;
 
       if (_dollyDelta.y > 0) {
@@ -480,7 +480,7 @@ class OrbitControls extends EventEmitter {
 
       if (noPan == true) return;
 
-      _panEnd = new Vector2(event.clientX.toDouble(), event.clientY.toDouble());
+      _panEnd = new Vector2(event.client.x.toDouble(), event.client.y.toDouble());
       _panDelta = _panEnd - _panStart;
 
       pan(_panDelta.x.toDouble(), _panDelta.y.toDouble());
