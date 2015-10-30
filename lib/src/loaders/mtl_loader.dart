@@ -315,8 +315,8 @@ class MaterialCreator {
       canvas.width = _nextHighestPowerOfTwo(image.width);
       canvas.height = _nextHighestPowerOfTwo(image.height);
 
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+      final CanvasRenderingContext2D ctx = canvas.getContext("2d");
+      ctx.drawImageScaledFromSource(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
       return canvas;
     }
     return image;
