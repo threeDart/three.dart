@@ -20,7 +20,7 @@ class WebGLRenderer implements Renderer {
 
   Color _clearColor;
   num _clearAlpha;
-  double devicePixelRatio;
+  num devicePixelRatio;
 
   bool alpha, premultipliedAlpha, antialias, stencil, preserveDrawingBuffer;
 
