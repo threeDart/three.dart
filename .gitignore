@@ -8,3 +8,4 @@ pubspec.lock
 *.map
 *.dart.js.deps
 out
+.packages
